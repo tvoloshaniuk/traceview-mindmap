@@ -306,5 +306,10 @@
   "Map file patterns": "マップのファイルパターン",
   "One pattern per line; any match is enough. Glob without a slash matches file names in any folder. With a slash it matches vault-relative paths. Use *, ** and ?. Regex matches vault-relative paths, without / delimiters. Matching ignores case. Only Markdown files qualify.": "1行に1パターン、いずれかの一致で対象となります。Glob は / なしなら全フォルダーのファイル名、/ ありなら保管庫からの相対パスに一致します。*、**、? が使えます。正規表現は / で囲まず相対パスを指定。大文字小文字を区別せず、Markdown のみ対象です。",
   "The mindmap: true property also identifies a map. Invalid input keeps the last saved rules active. Patterns are shared by automatic opening, map search and step lists.": "mindmap: true プロパティでもマップを指定できます。無効な入力時は最後に保存したルールを維持します。自動表示、マップ検索、ステップ一覧で共通のパターンを使用します。",
-  "This JSON map format is not supported.": "この JSON マップ形式は非対応です。"
+  "This JSON map format is not supported.": "この JSON マップ形式は非対応です。",
+  "Restore default patterns": "初期パターンに戻す",
+  "Restore default settings": "初期設定に戻す",
+  "Restore defaults": "初期値に戻す",
+  "Reset plugin preferences, shortcuts and map patterns? Device-local view states and saved notes are retained. Restart Obsidian to apply the language.": "設定、ショートカット、マップパターンを初期値に戻しますか？端末の表示状態と保存済みノートは保持されます。言語の適用には Obsidian を再起動してください。",
+  "Default settings restored. Restart Obsidian to apply the language.": "初期設定に戻しました。言語の適用には Obsidian を再起動してください。"
 }

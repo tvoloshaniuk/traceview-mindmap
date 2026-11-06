@@ -1,6 +1,6 @@
 {
   "name": "traceview-mindmap",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "private": true,
   "description": "Edit Markdown notes as mind maps with keyboard navigation, persistent folds, linked nodes and ordered task planning.",
   "scripts": {

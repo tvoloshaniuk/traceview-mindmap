@@ -333,7 +333,12 @@ var en_default = {
   "Map file patterns": "Map file patterns",
   "One pattern per line; any match is enough. Glob without a slash matches file names in any folder. With a slash it matches vault-relative paths. Use *, ** and ?. Regex matches vault-relative paths, without / delimiters. Matching ignores case. Only Markdown files qualify.": "One pattern per line; any match is enough. Glob without a slash matches file names in any folder. With a slash it matches vault-relative paths. Use *, ** and ?. Regex matches vault-relative paths, without / delimiters. Matching ignores case. Only Markdown files qualify.",
   "The mindmap: true property also identifies a map. Invalid input keeps the last saved rules active. Patterns are shared by automatic opening, map search and step lists.": "The mindmap: true property also identifies a map. Invalid input keeps the last saved rules active. Patterns are shared by automatic opening, map search and step lists.",
-  "This JSON map format is not supported.": "This JSON map format is not supported."
+  "This JSON map format is not supported.": "This JSON map format is not supported.",
+  "Restore default patterns": "Restore default patterns",
+  "Restore default settings": "Restore default settings",
+  "Restore defaults": "Restore defaults",
+  "Reset plugin preferences, shortcuts and map patterns? Device-local view states and saved notes are retained. Restart Obsidian to apply the language.": "Reset plugin preferences, shortcuts and map patterns? Device-local view states and saved notes are retained. Restart Obsidian to apply the language.",
+  "Default settings restored. Restart Obsidian to apply the language.": "Default settings restored. Restart Obsidian to apply the language."
 };
 
 // src/locales/uk.json
@@ -645,7 +650,12 @@ var uk_default = {
   "Map file patterns": "\u041F\u0430\u0442\u0435\u0440\u043D\u0438 \u0444\u0430\u0439\u043B\u0456\u0432 \u043A\u0430\u0440\u0442",
   "One pattern per line; any match is enough. Glob without a slash matches file names in any folder. With a slash it matches vault-relative paths. Use *, ** and ?. Regex matches vault-relative paths, without / delimiters. Matching ignores case. Only Markdown files qualify.": "\u041E\u0434\u0438\u043D \u043F\u0430\u0442\u0435\u0440\u043D \u043D\u0430 \u0440\u044F\u0434\u043E\u043A; \u0434\u043E\u0441\u0442\u0430\u0442\u043D\u044C\u043E \u0437\u0431\u0456\u0433\u0443 \u0437 \u0431\u0443\u0434\u044C-\u044F\u043A\u0438\u043C. Glob \u0431\u0435\u0437 / \u043F\u0435\u0440\u0435\u0432\u0456\u0440\u044F\u0454 \u043D\u0430\u0437\u0432\u0443 \u0444\u0430\u0439\u043B\u0443 \u0432 \u0443\u0441\u0456\u0445 \u043F\u0430\u043F\u043A\u0430\u0445, \u0456\u0437 / \u2014 \u0448\u043B\u044F\u0445 \u0432\u0456\u0434 \u043A\u043E\u0440\u0435\u043D\u044F \u0441\u0445\u043E\u0432\u0438\u0449\u0430. \u0414\u043E\u0441\u0442\u0443\u043F\u043D\u0456 *, ** \u0456 ?. Regex \u043F\u0435\u0440\u0435\u0432\u0456\u0440\u044F\u0454 \u0448\u043B\u044F\u0445 \u0432\u0456\u0434 \u043A\u043E\u0440\u0435\u043D\u044F \u0441\u0445\u043E\u0432\u0438\u0449\u0430, \u0431\u0435\u0437 \u043E\u0431\u0433\u043E\u0440\u0442\u043A\u0438 /\u2026/. \u0420\u0435\u0433\u0456\u0441\u0442\u0440 \u043D\u0435 \u0432\u0440\u0430\u0445\u043E\u0432\u0443\u0454\u0442\u044C\u0441\u044F. \u041B\u0438\u0448\u0435 Markdown-\u0444\u0430\u0439\u043B\u0438.",
   "The mindmap: true property also identifies a map. Invalid input keeps the last saved rules active. Patterns are shared by automatic opening, map search and step lists.": "\u0412\u043B\u0430\u0441\u0442\u0438\u0432\u0456\u0441\u0442\u044C mindmap: true \u0442\u0430\u043A\u043E\u0436 \u043F\u043E\u0437\u043D\u0430\u0447\u0430\u0454 \u043A\u0430\u0440\u0442\u0443. \u041D\u0435\u043A\u043E\u0440\u0435\u043A\u0442\u043D\u0438\u0439 \u0432\u0432\u0456\u0434 \u0437\u0430\u043B\u0438\u0448\u0430\u0454 \u0430\u043A\u0442\u0438\u0432\u043D\u0438\u043C\u0438 \u043E\u0441\u0442\u0430\u043D\u043D\u0456 \u0437\u0431\u0435\u0440\u0435\u0436\u0435\u043D\u0456 \u043F\u0440\u0430\u0432\u0438\u043B\u0430. \u041F\u0430\u0442\u0435\u0440\u043D\u0438 \u0441\u043F\u0456\u043B\u044C\u043D\u0456 \u0434\u043B\u044F \u0430\u0432\u0442\u043E\u0432\u0456\u0434\u043A\u0440\u0438\u0442\u0442\u044F, \u043F\u043E\u0448\u0443\u043A\u0443 \u043A\u0430\u0440\u0442 \u0456 \u0441\u043F\u0438\u0441\u043A\u0456\u0432 \u043A\u0440\u043E\u043A\u0456\u0432.",
-  "This JSON map format is not supported.": "\u0426\u0435\u0439 \u0444\u043E\u0440\u043C\u0430\u0442 JSON-\u043A\u0430\u0440\u0442 \u043D\u0435 \u043F\u0456\u0434\u0442\u0440\u0438\u043C\u0443\u0454\u0442\u044C\u0441\u044F."
+  "This JSON map format is not supported.": "\u0426\u0435\u0439 \u0444\u043E\u0440\u043C\u0430\u0442 JSON-\u043A\u0430\u0440\u0442 \u043D\u0435 \u043F\u0456\u0434\u0442\u0440\u0438\u043C\u0443\u0454\u0442\u044C\u0441\u044F.",
+  "Restore default patterns": "\u0412\u0456\u0434\u043D\u043E\u0432\u0438\u0442\u0438 \u043F\u043E\u0447\u0430\u0442\u043A\u043E\u0432\u0456 \u043F\u0430\u0442\u0435\u0440\u043D\u0438",
+  "Restore default settings": "\u0412\u0456\u0434\u043D\u043E\u0432\u0438\u0442\u0438 \u043F\u043E\u0447\u0430\u0442\u043A\u043E\u0432\u0456 \u043D\u0430\u043B\u0430\u0448\u0442\u0443\u0432\u0430\u043D\u043D\u044F",
+  "Restore defaults": "\u0412\u0456\u0434\u043D\u043E\u0432\u0438\u0442\u0438",
+  "Reset plugin preferences, shortcuts and map patterns? Device-local view states and saved notes are retained. Restart Obsidian to apply the language.": "\u0412\u0456\u0434\u043D\u043E\u0432\u0438\u0442\u0438 \u043F\u043E\u0447\u0430\u0442\u043A\u043E\u0432\u0456 \u043D\u0430\u043B\u0430\u0448\u0442\u0443\u0432\u0430\u043D\u043D\u044F \u043F\u043B\u0430\u0433\u0456\u043D\u0430, \u0433\u0430\u0440\u044F\u0447\u0456 \u043A\u043B\u0430\u0432\u0456\u0448\u0456 \u0439 \u043F\u0430\u0442\u0435\u0440\u043D\u0438 \u043A\u0430\u0440\u0442? \u041B\u043E\u043A\u0430\u043B\u044C\u043D\u0456 \u0441\u0442\u0430\u043D\u0438 \u043F\u0435\u0440\u0435\u0433\u043B\u044F\u0434\u0443 \u0442\u0430 \u0437\u0431\u0435\u0440\u0435\u0436\u0435\u043D\u0456 \u043D\u043E\u0442\u0430\u0442\u043A\u0438 \u0437\u0430\u043B\u0438\u0448\u0430\u0442\u044C\u0441\u044F. \u0414\u043B\u044F \u0437\u0430\u0441\u0442\u043E\u0441\u0443\u0432\u0430\u043D\u043D\u044F \u043C\u043E\u0432\u0438 \u043F\u0435\u0440\u0435\u0437\u0430\u043F\u0443\u0441\u0442\u0438 Obsidian.",
+  "Default settings restored. Restart Obsidian to apply the language.": "\u041F\u043E\u0447\u0430\u0442\u043A\u043E\u0432\u0456 \u043D\u0430\u043B\u0430\u0448\u0442\u0443\u0432\u0430\u043D\u043D\u044F \u0432\u0456\u0434\u043D\u043E\u0432\u043B\u0435\u043D\u043E. \u041F\u0435\u0440\u0435\u0437\u0430\u043F\u0443\u0441\u0442\u0438 Obsidian, \u0449\u043E\u0431 \u0437\u0430\u0441\u0442\u043E\u0441\u0443\u0432\u0430\u0442\u0438 \u043C\u043E\u0432\u0443."
 };
 
 // src/locales/pl.json
@@ -957,7 +967,12 @@ var pl_default = {
   "Map file patterns": "Wzorce plik\xF3w map",
   "One pattern per line; any match is enough. Glob without a slash matches file names in any folder. With a slash it matches vault-relative paths. Use *, ** and ?. Regex matches vault-relative paths, without / delimiters. Matching ignores case. Only Markdown files qualify.": "Jeden wzorzec na wiersz; wystarczy dowolne dopasowanie. Glob bez / sprawdza nazwy w ka\u017Cdej teczce, z / \u015Bcie\u017Cki wzgl\u0119dem skarbca. U\u017Cyj *, ** i ?. Regex sprawdza \u015Bcie\u017Cki bez otaczaj\u0105cych /. Wielko\u015B\u0107 liter nie ma znaczenia. Tylko pliki Markdown.",
   "The mindmap: true property also identifies a map. Invalid input keeps the last saved rules active. Patterns are shared by automatic opening, map search and step lists.": "W\u0142a\u015Bciwo\u015B\u0107 mindmap: true te\u017C oznacza map\u0119. Nieprawid\u0142owy wpis zachowuje ostatnie zapisane regu\u0142y. Wzorce s\u0105 wsp\xF3lne dla automatycznego otwierania, wyszukiwania map i list krok\xF3w.",
-  "This JSON map format is not supported.": "Ten format map JSON nie jest obs\u0142ugiwany."
+  "This JSON map format is not supported.": "Ten format map JSON nie jest obs\u0142ugiwany.",
+  "Restore default patterns": "Przywr\xF3\u0107 domy\u015Blne wzorce",
+  "Restore default settings": "Przywr\xF3\u0107 ustawienia domy\u015Blne",
+  "Restore defaults": "Przywr\xF3\u0107",
+  "Reset plugin preferences, shortcuts and map patterns? Device-local view states and saved notes are retained. Restart Obsidian to apply the language.": "Przywr\xF3ci\u0107 ustawienia, skr\xF3ty i wzorce map? Lokalne stany widoku i zapisane notatki zostan\u0105 zachowane. Uruchom ponownie Obsidian, aby zastosowa\u0107 j\u0119zyk.",
+  "Default settings restored. Restart Obsidian to apply the language.": "Przywr\xF3cono ustawienia domy\u015Blne. Uruchom ponownie Obsidian, aby zastosowa\u0107 j\u0119zyk."
 };
 
 // src/locales/de.json
@@ -1269,7 +1284,12 @@ var de_default = {
   "Map file patterns": "Dateimuster f\xFCr Karten",
   "One pattern per line; any match is enough. Glob without a slash matches file names in any folder. With a slash it matches vault-relative paths. Use *, ** and ?. Regex matches vault-relative paths, without / delimiters. Matching ignores case. Only Markdown files qualify.": "Ein Muster pro Zeile; ein Treffer gen\xFCgt. Glob ohne / pr\xFCft Dateinamen in allen Ordnern, mit / vault-relative Pfade. *, ** und ? sind verf\xFCgbar. Regex pr\xFCft vault-relative Pfade ohne umschlie\xDFende /. Gro\xDF-/Kleinschreibung wird ignoriert. Nur Markdown-Dateien.",
   "The mindmap: true property also identifies a map. Invalid input keeps the last saved rules active. Patterns are shared by automatic opening, map search and step lists.": "Auch mindmap: true kennzeichnet eine Karte. Bei ung\xFCltiger Eingabe gelten die zuletzt gespeicherten Regeln. Muster gelten gemeinsam f\xFCr automatisches \xD6ffnen, Kartensuche und Schrittlisten.",
-  "This JSON map format is not supported.": "Dieses JSON-Kartenformat wird nicht unterst\xFCtzt."
+  "This JSON map format is not supported.": "Dieses JSON-Kartenformat wird nicht unterst\xFCtzt.",
+  "Restore default patterns": "Standardmuster wiederherstellen",
+  "Restore default settings": "Standardeinstellungen wiederherstellen",
+  "Restore defaults": "Wiederherstellen",
+  "Reset plugin preferences, shortcuts and map patterns? Device-local view states and saved notes are retained. Restart Obsidian to apply the language.": "Einstellungen, Tastenk\xFCrzel und Kartenmuster zur\xFCcksetzen? Lokale Ansichten und gespeicherte Notizen bleiben erhalten. Obsidian zum Anwenden der Sprache neu starten.",
+  "Default settings restored. Restart Obsidian to apply the language.": "Standardeinstellungen wiederhergestellt. Obsidian zum Anwenden der Sprache neu starten."
 };
 
 // src/locales/es.json
@@ -1581,7 +1601,12 @@ var es_default = {
   "Map file patterns": "Patrones de archivos de mapas",
   "One pattern per line; any match is enough. Glob without a slash matches file names in any folder. With a slash it matches vault-relative paths. Use *, ** and ?. Regex matches vault-relative paths, without / delimiters. Matching ignores case. Only Markdown files qualify.": "Un patr\xF3n por l\xEDnea; basta una coincidencia. Glob sin / compara nombres en cualquier carpeta; con /, rutas relativas a la b\xF3veda. Usa *, ** y ?. Regex compara rutas relativas sin delimitadores /. Sin distinguir may\xFAsculas. Solo archivos Markdown.",
   "The mindmap: true property also identifies a map. Invalid input keeps the last saved rules active. Patterns are shared by automatic opening, map search and step lists.": "La propiedad mindmap: true tambi\xE9n identifica un mapa. Una entrada inv\xE1lida conserva las \xFAltimas reglas guardadas. Los patrones se comparten entre apertura autom\xE1tica, b\xFAsqueda y listas de pasos.",
-  "This JSON map format is not supported.": "Este formato de mapa JSON no es compatible."
+  "This JSON map format is not supported.": "Este formato de mapa JSON no es compatible.",
+  "Restore default patterns": "Restaurar patrones predeterminados",
+  "Restore default settings": "Restaurar ajustes predeterminados",
+  "Restore defaults": "Restaurar",
+  "Reset plugin preferences, shortcuts and map patterns? Device-local view states and saved notes are retained. Restart Obsidian to apply the language.": "\xBFRestaurar ajustes, atajos y patrones de mapas? Se conservan las vistas locales y las notas guardadas. Reinicia Obsidian para aplicar el idioma.",
+  "Default settings restored. Restart Obsidian to apply the language.": "Ajustes predeterminados restaurados. Reinicia Obsidian para aplicar el idioma."
 };
 
 // src/locales/fr.json
@@ -1893,7 +1918,12 @@ var fr_default = {
   "Map file patterns": "Motifs de fichiers de cartes",
   "One pattern per line; any match is enough. Glob without a slash matches file names in any folder. With a slash it matches vault-relative paths. Use *, ** and ?. Regex matches vault-relative paths, without / delimiters. Matching ignores case. Only Markdown files qualify.": "Un motif par ligne ; une correspondance suffit. Glob sans / compare les noms dans tous les dossiers ; avec /, les chemins relatifs au coffre. Utilisez *, ** et ?. Regex compare ces chemins sans d\xE9limiteurs /. La casse est ignor\xE9e. Fichiers Markdown uniquement.",
   "The mindmap: true property also identifies a map. Invalid input keeps the last saved rules active. Patterns are shared by automatic opening, map search and step lists.": "La propri\xE9t\xE9 mindmap: true identifie aussi une carte. Une saisie invalide conserve les derni\xE8res r\xE8gles enregistr\xE9es. Les motifs sont partag\xE9s entre ouverture automatique, recherche et listes d\u2019\xE9tapes.",
-  "This JSON map format is not supported.": "Ce format de carte JSON n\u2019est pas pris en charge."
+  "This JSON map format is not supported.": "Ce format de carte JSON n\u2019est pas pris en charge.",
+  "Restore default patterns": "R\xE9tablir les motifs par d\xE9faut",
+  "Restore default settings": "R\xE9tablir les param\xE8tres par d\xE9faut",
+  "Restore defaults": "R\xE9tablir",
+  "Reset plugin preferences, shortcuts and map patterns? Device-local view states and saved notes are retained. Restart Obsidian to apply the language.": "R\xE9tablir les param\xE8tres, raccourcis et motifs de cartes ? Les vues locales et les notes enregistr\xE9es sont conserv\xE9es. Red\xE9marrez Obsidian pour appliquer la langue.",
+  "Default settings restored. Restart Obsidian to apply the language.": "Param\xE8tres par d\xE9faut r\xE9tablis. Red\xE9marrez Obsidian pour appliquer la langue."
 };
 
 // src/locales/pt-BR.json
@@ -2205,7 +2235,12 @@ var pt_BR_default = {
   "Map file patterns": "Padr\xF5es de arquivos de mapas",
   "One pattern per line; any match is enough. Glob without a slash matches file names in any folder. With a slash it matches vault-relative paths. Use *, ** and ?. Regex matches vault-relative paths, without / delimiters. Matching ignores case. Only Markdown files qualify.": "Um padr\xE3o por linha; qualquer correspond\xEAncia basta. Glob sem / verifica nomes em qualquer pasta; com /, caminhos relativos ao cofre. Use *, ** e ?. Regex verifica esses caminhos sem delimitadores /. Ignora mai\xFAsculas e min\xFAsculas. Apenas arquivos Markdown.",
   "The mindmap: true property also identifies a map. Invalid input keeps the last saved rules active. Patterns are shared by automatic opening, map search and step lists.": "A propriedade mindmap: true tamb\xE9m identifica um mapa. Entrada inv\xE1lida mant\xE9m as \xFAltimas regras salvas. Padr\xF5es s\xE3o compartilhados por abertura autom\xE1tica, busca e listas de etapas.",
-  "This JSON map format is not supported.": "Este formato de mapa JSON n\xE3o \xE9 suportado."
+  "This JSON map format is not supported.": "Este formato de mapa JSON n\xE3o \xE9 suportado.",
+  "Restore default patterns": "Restaurar padr\xF5es iniciais",
+  "Restore default settings": "Restaurar configura\xE7\xF5es padr\xE3o",
+  "Restore defaults": "Restaurar",
+  "Reset plugin preferences, shortcuts and map patterns? Device-local view states and saved notes are retained. Restart Obsidian to apply the language.": "Restaurar prefer\xEAncias, atalhos e padr\xF5es de mapas? Estados locais de visualiza\xE7\xE3o e notas salvas ser\xE3o preservados. Reinicie Obsidian para aplicar o idioma.",
+  "Default settings restored. Restart Obsidian to apply the language.": "Configura\xE7\xF5es padr\xE3o restauradas. Reinicie Obsidian para aplicar o idioma."
 };
 
 // src/locales/zh-CN.json
@@ -2517,7 +2552,12 @@ var zh_CN_default = {
   "Map file patterns": "\u5BFC\u56FE\u6587\u4EF6\u89C4\u5219",
   "One pattern per line; any match is enough. Glob without a slash matches file names in any folder. With a slash it matches vault-relative paths. Use *, ** and ?. Regex matches vault-relative paths, without / delimiters. Matching ignores case. Only Markdown files qualify.": "\u6BCF\u884C\u4E00\u6761\u89C4\u5219\uFF0C\u5339\u914D\u4EFB\u4E00\u89C4\u5219\u5373\u53EF\u3002Glob \u4E0D\u542B / \u65F6\u5339\u914D\u4EFB\u610F\u6587\u4EF6\u5939\u4E2D\u7684\u6587\u4EF6\u540D\uFF0C\u542B / \u65F6\u5339\u914D\u4ED3\u5E93\u76F8\u5BF9\u8DEF\u5F84\u3002\u652F\u6301 *\u3001** \u548C ?\u3002\u6B63\u5219\u5339\u914D\u4ED3\u5E93\u76F8\u5BF9\u8DEF\u5F84\uFF0C\u65E0\u9700 / \u5206\u9694\u7B26\u3002\u4E0D\u533A\u5206\u5927\u5C0F\u5199\uFF0C\u4EC5\u9002\u7528\u4E8E Markdown \u6587\u4EF6\u3002",
   "The mindmap: true property also identifies a map. Invalid input keeps the last saved rules active. Patterns are shared by automatic opening, map search and step lists.": "\u5C5E\u6027 mindmap: true \u4E5F\u53EF\u6807\u8BC6\u5BFC\u56FE\u3002\u8F93\u5165\u65E0\u6548\u65F6\u7EE7\u7EED\u4F7F\u7528\u4E0A\u6B21\u4FDD\u5B58\u7684\u89C4\u5219\u3002\u81EA\u52A8\u6253\u5F00\u3001\u5BFC\u56FE\u641C\u7D22\u548C\u6B65\u9AA4\u5217\u8868\u4F7F\u7528\u540C\u4E00\u7EC4\u89C4\u5219\u3002",
-  "This JSON map format is not supported.": "\u4E0D\u652F\u6301\u6B64 JSON \u5BFC\u56FE\u683C\u5F0F\u3002"
+  "This JSON map format is not supported.": "\u4E0D\u652F\u6301\u6B64 JSON \u5BFC\u56FE\u683C\u5F0F\u3002",
+  "Restore default patterns": "\u6062\u590D\u9ED8\u8BA4\u89C4\u5219",
+  "Restore default settings": "\u6062\u590D\u9ED8\u8BA4\u8BBE\u7F6E",
+  "Restore defaults": "\u6062\u590D",
+  "Reset plugin preferences, shortcuts and map patterns? Device-local view states and saved notes are retained. Restart Obsidian to apply the language.": "\u91CD\u7F6E\u63D2\u4EF6\u8BBE\u7F6E\u3001\u5FEB\u6377\u952E\u548C\u5BFC\u56FE\u89C4\u5219\uFF1F\u672C\u8BBE\u5907\u7684\u89C6\u56FE\u72B6\u6001\u548C\u5DF2\u4FDD\u5B58\u7684\u7B14\u8BB0\u5C06\u4FDD\u7559\u3002\u8BF7\u91CD\u542F Obsidian \u4EE5\u5E94\u7528\u8BED\u8A00\u3002",
+  "Default settings restored. Restart Obsidian to apply the language.": "\u5DF2\u6062\u590D\u9ED8\u8BA4\u8BBE\u7F6E\u3002\u8BF7\u91CD\u542F Obsidian \u4EE5\u5E94\u7528\u8BED\u8A00\u3002"
 };
 
 // src/locales/ja.json
@@ -2829,7 +2869,12 @@ var ja_default = {
   "Map file patterns": "\u30DE\u30C3\u30D7\u306E\u30D5\u30A1\u30A4\u30EB\u30D1\u30BF\u30FC\u30F3",
   "One pattern per line; any match is enough. Glob without a slash matches file names in any folder. With a slash it matches vault-relative paths. Use *, ** and ?. Regex matches vault-relative paths, without / delimiters. Matching ignores case. Only Markdown files qualify.": "1\u884C\u306B1\u30D1\u30BF\u30FC\u30F3\u3001\u3044\u305A\u308C\u304B\u306E\u4E00\u81F4\u3067\u5BFE\u8C61\u3068\u306A\u308A\u307E\u3059\u3002Glob \u306F / \u306A\u3057\u306A\u3089\u5168\u30D5\u30A9\u30EB\u30C0\u30FC\u306E\u30D5\u30A1\u30A4\u30EB\u540D\u3001/ \u3042\u308A\u306A\u3089\u4FDD\u7BA1\u5EAB\u304B\u3089\u306E\u76F8\u5BFE\u30D1\u30B9\u306B\u4E00\u81F4\u3057\u307E\u3059\u3002*\u3001**\u3001? \u304C\u4F7F\u3048\u307E\u3059\u3002\u6B63\u898F\u8868\u73FE\u306F / \u3067\u56F2\u307E\u305A\u76F8\u5BFE\u30D1\u30B9\u3092\u6307\u5B9A\u3002\u5927\u6587\u5B57\u5C0F\u6587\u5B57\u3092\u533A\u5225\u305B\u305A\u3001Markdown \u306E\u307F\u5BFE\u8C61\u3067\u3059\u3002",
   "The mindmap: true property also identifies a map. Invalid input keeps the last saved rules active. Patterns are shared by automatic opening, map search and step lists.": "mindmap: true \u30D7\u30ED\u30D1\u30C6\u30A3\u3067\u3082\u30DE\u30C3\u30D7\u3092\u6307\u5B9A\u3067\u304D\u307E\u3059\u3002\u7121\u52B9\u306A\u5165\u529B\u6642\u306F\u6700\u5F8C\u306B\u4FDD\u5B58\u3057\u305F\u30EB\u30FC\u30EB\u3092\u7DAD\u6301\u3057\u307E\u3059\u3002\u81EA\u52D5\u8868\u793A\u3001\u30DE\u30C3\u30D7\u691C\u7D22\u3001\u30B9\u30C6\u30C3\u30D7\u4E00\u89A7\u3067\u5171\u901A\u306E\u30D1\u30BF\u30FC\u30F3\u3092\u4F7F\u7528\u3057\u307E\u3059\u3002",
-  "This JSON map format is not supported.": "\u3053\u306E JSON \u30DE\u30C3\u30D7\u5F62\u5F0F\u306F\u975E\u5BFE\u5FDC\u3067\u3059\u3002"
+  "This JSON map format is not supported.": "\u3053\u306E JSON \u30DE\u30C3\u30D7\u5F62\u5F0F\u306F\u975E\u5BFE\u5FDC\u3067\u3059\u3002",
+  "Restore default patterns": "\u521D\u671F\u30D1\u30BF\u30FC\u30F3\u306B\u623B\u3059",
+  "Restore default settings": "\u521D\u671F\u8A2D\u5B9A\u306B\u623B\u3059",
+  "Restore defaults": "\u521D\u671F\u5024\u306B\u623B\u3059",
+  "Reset plugin preferences, shortcuts and map patterns? Device-local view states and saved notes are retained. Restart Obsidian to apply the language.": "\u8A2D\u5B9A\u3001\u30B7\u30E7\u30FC\u30C8\u30AB\u30C3\u30C8\u3001\u30DE\u30C3\u30D7\u30D1\u30BF\u30FC\u30F3\u3092\u521D\u671F\u5024\u306B\u623B\u3057\u307E\u3059\u304B\uFF1F\u7AEF\u672B\u306E\u8868\u793A\u72B6\u614B\u3068\u4FDD\u5B58\u6E08\u307F\u30CE\u30FC\u30C8\u306F\u4FDD\u6301\u3055\u308C\u307E\u3059\u3002\u8A00\u8A9E\u306E\u9069\u7528\u306B\u306F Obsidian \u3092\u518D\u8D77\u52D5\u3057\u3066\u304F\u3060\u3055\u3044\u3002",
+  "Default settings restored. Restart Obsidian to apply the language.": "\u521D\u671F\u8A2D\u5B9A\u306B\u623B\u3057\u307E\u3057\u305F\u3002\u8A00\u8A9E\u306E\u9069\u7528\u306B\u306F Obsidian \u3092\u518D\u8D77\u52D5\u3057\u3066\u304F\u3060\u3055\u3044\u3002"
 };
 
 // src/locales/ko.json
@@ -3141,7 +3186,12 @@ var ko_default = {
   "Map file patterns": "\uB9C8\uC778\uB4DC\uB9F5 \uD30C\uC77C \uD328\uD134",
   "One pattern per line; any match is enough. Glob without a slash matches file names in any folder. With a slash it matches vault-relative paths. Use *, ** and ?. Regex matches vault-relative paths, without / delimiters. Matching ignores case. Only Markdown files qualify.": "\uD55C \uC904\uC5D0 \uD328\uD134 \uD558\uB098\uC774\uBA70, \uD558\uB098\uB9CC \uC77C\uCE58\uD574\uB3C4 \uB429\uB2C8\uB2E4. Glob\uC5D0 /\uAC00 \uC5C6\uC73C\uBA74 \uBAA8\uB4E0 \uD3F4\uB354\uC758 \uD30C\uC77C \uC774\uB984, \uC788\uC73C\uBA74 \uBCF4\uAD00\uD568 \uC0C1\uB300 \uACBD\uB85C\uC640 \uBE44\uAD50\uD569\uB2C8\uB2E4. *, **, ?\uB97C \uC9C0\uC6D0\uD569\uB2C8\uB2E4. \uC815\uADDC\uC2DD\uC740 / \uAD6C\uBD84 \uC5C6\uC774 \uC0C1\uB300 \uACBD\uB85C\uC640 \uBE44\uAD50\uD569\uB2C8\uB2E4. \uB300\uC18C\uBB38\uC790\uB97C \uAD6C\uBD84\uD558\uC9C0 \uC54A\uC73C\uBA70 Markdown \uD30C\uC77C\uB9CC \uD574\uB2F9\uD569\uB2C8\uB2E4.",
   "The mindmap: true property also identifies a map. Invalid input keeps the last saved rules active. Patterns are shared by automatic opening, map search and step lists.": "mindmap: true \uC18D\uC131\uB3C4 \uB9C8\uC778\uB4DC\uB9F5\uC744 \uB098\uD0C0\uB0C5\uB2C8\uB2E4. \uC798\uBABB\uB41C \uC785\uB825\uC740 \uB9C8\uC9C0\uB9C9 \uC800\uC7A5 \uADDC\uCE59\uC744 \uC720\uC9C0\uD569\uB2C8\uB2E4. \uC790\uB3D9 \uC5F4\uAE30, \uAC80\uC0C9, \uB2E8\uACC4 \uBAA9\uB85D\uC5D0 \uAC19\uC740 \uD328\uD134\uC744 \uC0AC\uC6A9\uD569\uB2C8\uB2E4.",
-  "This JSON map format is not supported.": "\uC774 JSON \uB9C8\uC778\uB4DC\uB9F5 \uD615\uC2DD\uC740 \uC9C0\uC6D0\uD558\uC9C0 \uC54A\uC2B5\uB2C8\uB2E4."
+  "This JSON map format is not supported.": "\uC774 JSON \uB9C8\uC778\uB4DC\uB9F5 \uD615\uC2DD\uC740 \uC9C0\uC6D0\uD558\uC9C0 \uC54A\uC2B5\uB2C8\uB2E4.",
+  "Restore default patterns": "\uAE30\uBCF8 \uD328\uD134 \uBCF5\uC6D0",
+  "Restore default settings": "\uAE30\uBCF8 \uC124\uC815 \uBCF5\uC6D0",
+  "Restore defaults": "\uBCF5\uC6D0",
+  "Reset plugin preferences, shortcuts and map patterns? Device-local view states and saved notes are retained. Restart Obsidian to apply the language.": "\uD50C\uB7EC\uADF8\uC778 \uC124\uC815, \uB2E8\uCD95\uD0A4, \uB9C8\uC778\uB4DC\uB9F5 \uD328\uD134\uC744 \uCD08\uAE30\uD654\uD560\uAE4C\uC694? \uAE30\uAE30\uC758 \uBCF4\uAE30 \uC0C1\uD0DC\uC640 \uC800\uC7A5\uB41C \uB178\uD2B8\uB294 \uC720\uC9C0\uB429\uB2C8\uB2E4. \uC5B8\uC5B4\uB97C \uC801\uC6A9\uD558\uB824\uBA74 Obsidian\uC744 \uB2E4\uC2DC \uC2DC\uC791\uD558\uC138\uC694.",
+  "Default settings restored. Restart Obsidian to apply the language.": "\uAE30\uBCF8 \uC124\uC815\uC744 \uBCF5\uC6D0\uD588\uC2B5\uB2C8\uB2E4. \uC5B8\uC5B4\uB97C \uC801\uC6A9\uD558\uB824\uBA74 Obsidian\uC744 \uB2E4\uC2DC \uC2DC\uC791\uD558\uC138\uC694."
 };
 
 // src/locales/ru.json
@@ -3453,7 +3503,12 @@ var ru_default = {
   "Map file patterns": "\u0428\u0430\u0431\u043B\u043E\u043D\u044B \u0444\u0430\u0439\u043B\u043E\u0432 \u043A\u0430\u0440\u0442",
   "One pattern per line; any match is enough. Glob without a slash matches file names in any folder. With a slash it matches vault-relative paths. Use *, ** and ?. Regex matches vault-relative paths, without / delimiters. Matching ignores case. Only Markdown files qualify.": "\u041E\u0434\u0438\u043D \u0448\u0430\u0431\u043B\u043E\u043D \u043D\u0430 \u0441\u0442\u0440\u043E\u043A\u0443; \u0434\u043E\u0441\u0442\u0430\u0442\u043E\u0447\u043D\u043E \u043B\u044E\u0431\u043E\u0433\u043E \u0441\u043E\u0432\u043F\u0430\u0434\u0435\u043D\u0438\u044F. Glob \u0431\u0435\u0437 / \u043F\u0440\u043E\u0432\u0435\u0440\u044F\u0435\u0442 \u0438\u043C\u044F \u0432\u043E \u0432\u0441\u0435\u0445 \u043F\u0430\u043F\u043A\u0430\u0445, \u0441 / \u2014 \u043F\u0443\u0442\u044C \u043E\u0442 \u043A\u043E\u0440\u043D\u044F \u0445\u0440\u0430\u043D\u0438\u043B\u0438\u0449\u0430. \u0414\u043E\u0441\u0442\u0443\u043F\u043D\u044B *, ** \u0438 ?. Regex \u043F\u0440\u043E\u0432\u0435\u0440\u044F\u0435\u0442 \u043F\u0443\u0442\u044C \u043E\u0442 \u043A\u043E\u0440\u043D\u044F, \u0431\u0435\u0437 \u043E\u0431\u0451\u0440\u0442\u043A\u0438 /\u2026/. \u0420\u0435\u0433\u0438\u0441\u0442\u0440 \u043D\u0435 \u0443\u0447\u0438\u0442\u044B\u0432\u0430\u0435\u0442\u0441\u044F. \u0422\u043E\u043B\u044C\u043A\u043E Markdown-\u0444\u0430\u0439\u043B\u044B.",
   "The mindmap: true property also identifies a map. Invalid input keeps the last saved rules active. Patterns are shared by automatic opening, map search and step lists.": "\u0421\u0432\u043E\u0439\u0441\u0442\u0432\u043E mindmap: true \u0442\u0430\u043A\u0436\u0435 \u043E\u0431\u043E\u0437\u043D\u0430\u0447\u0430\u0435\u0442 \u043A\u0430\u0440\u0442\u0443. \u041F\u0440\u0438 \u043E\u0448\u0438\u0431\u043A\u0435 \u0432\u0432\u043E\u0434\u0430 \u0434\u0435\u0439\u0441\u0442\u0432\u0443\u044E\u0442 \u043F\u043E\u0441\u043B\u0435\u0434\u043D\u0438\u0435 \u0441\u043E\u0445\u0440\u0430\u043D\u0451\u043D\u043D\u044B\u0435 \u043F\u0440\u0430\u0432\u0438\u043B\u0430. \u0428\u0430\u0431\u043B\u043E\u043D\u044B \u043E\u0431\u0449\u0438\u0435 \u0434\u043B\u044F \u0430\u0432\u0442\u043E\u043E\u0442\u043A\u0440\u044B\u0442\u0438\u044F, \u043F\u043E\u0438\u0441\u043A\u0430 \u043A\u0430\u0440\u0442 \u0438 \u0441\u043F\u0438\u0441\u043A\u043E\u0432 \u0448\u0430\u0433\u043E\u0432.",
-  "This JSON map format is not supported.": "\u042D\u0442\u043E\u0442 \u0444\u043E\u0440\u043C\u0430\u0442 JSON-\u043A\u0430\u0440\u0442 \u043D\u0435 \u043F\u043E\u0434\u0434\u0435\u0440\u0436\u0438\u0432\u0430\u0435\u0442\u0441\u044F."
+  "This JSON map format is not supported.": "\u042D\u0442\u043E\u0442 \u0444\u043E\u0440\u043C\u0430\u0442 JSON-\u043A\u0430\u0440\u0442 \u043D\u0435 \u043F\u043E\u0434\u0434\u0435\u0440\u0436\u0438\u0432\u0430\u0435\u0442\u0441\u044F.",
+  "Restore default patterns": "\u0412\u043E\u0441\u0441\u0442\u0430\u043D\u043E\u0432\u0438\u0442\u044C \u0438\u0441\u0445\u043E\u0434\u043D\u044B\u0435 \u0448\u0430\u0431\u043B\u043E\u043D\u044B",
+  "Restore default settings": "\u0412\u043E\u0441\u0441\u0442\u0430\u043D\u043E\u0432\u0438\u0442\u044C \u0438\u0441\u0445\u043E\u0434\u043D\u044B\u0435 \u043D\u0430\u0441\u0442\u0440\u043E\u0439\u043A\u0438",
+  "Restore defaults": "\u0412\u043E\u0441\u0441\u0442\u0430\u043D\u043E\u0432\u0438\u0442\u044C",
+  "Reset plugin preferences, shortcuts and map patterns? Device-local view states and saved notes are retained. Restart Obsidian to apply the language.": "\u0412\u043E\u0441\u0441\u0442\u0430\u043D\u043E\u0432\u0438\u0442\u044C \u0438\u0441\u0445\u043E\u0434\u043D\u044B\u0435 \u043D\u0430\u0441\u0442\u0440\u043E\u0439\u043A\u0438 \u043F\u043B\u0430\u0433\u0438\u043D\u0430, \u0433\u043E\u0440\u044F\u0447\u0438\u0435 \u043A\u043B\u0430\u0432\u0438\u0448\u0438 \u0438 \u0448\u0430\u0431\u043B\u043E\u043D\u044B \u043A\u0430\u0440\u0442? \u041B\u043E\u043A\u0430\u043B\u044C\u043D\u044B\u0435 \u0441\u043E\u0441\u0442\u043E\u044F\u043D\u0438\u044F \u043F\u0440\u043E\u0441\u043C\u043E\u0442\u0440\u0430 \u0438 \u0441\u043E\u0445\u0440\u0430\u043D\u0451\u043D\u043D\u044B\u0435 \u0437\u0430\u043C\u0435\u0442\u043A\u0438 \u043E\u0441\u0442\u0430\u043D\u0443\u0442\u0441\u044F. \u0414\u043B\u044F \u043F\u0440\u0438\u043C\u0435\u043D\u0435\u043D\u0438\u044F \u044F\u0437\u044B\u043A\u0430 \u043F\u0435\u0440\u0435\u0437\u0430\u043F\u0443\u0441\u0442\u0438\u0442\u0435 Obsidian.",
+  "Default settings restored. Restart Obsidian to apply the language.": "\u0418\u0441\u0445\u043E\u0434\u043D\u044B\u0435 \u043D\u0430\u0441\u0442\u0440\u043E\u0439\u043A\u0438 \u0432\u043E\u0441\u0441\u0442\u0430\u043D\u043E\u0432\u043B\u0435\u043D\u044B. \u041F\u0435\u0440\u0435\u0437\u0430\u043F\u0443\u0441\u0442\u0438\u0442\u0435 Obsidian \u0434\u043B\u044F \u043F\u0440\u0438\u043C\u0435\u043D\u0435\u043D\u0438\u044F \u044F\u0437\u044B\u043A\u0430."
 };
 
 // src/i18n.ts
@@ -7297,6 +7352,57 @@ var TextDialog = class extends import_obsidian3.Modal {
     this.contentEl.empty();
   }
 };
+var ConfirmDialog = class extends import_obsidian3.Modal {
+  constructor(app, title, detail, confirm, options = {}) {
+    super(app);
+    this.title = title;
+    this.detail = detail;
+    this.confirm = confirm;
+    this.options = options;
+    this.saving = false;
+  }
+  onOpen() {
+    this.titleEl.setText(this.title);
+    this.contentEl.createEl("p", { text: this.detail });
+    new import_obsidian3.Setting(this.contentEl).addButton((button2) => {
+      button2.setButtonText(t("Cancel")).onClick(() => this.close());
+      if (this.options.focusConfirm === false) {
+        button2.buttonEl.focus();
+        window.setTimeout(() => {
+          if (button2.buttonEl.isConnected) button2.buttonEl.focus();
+        }, 0);
+      }
+    }).addButton((button2) => {
+      button2.setButtonText(this.options.label ?? t("Delete branch")).setWarning().onClick(() => {
+        void this.submit();
+      });
+      if (this.options.focusConfirm !== false) {
+        button2.buttonEl.focus();
+        window.setTimeout(() => {
+          if (button2.buttonEl.isConnected) button2.buttonEl.focus();
+        }, 0);
+      }
+      button2.buttonEl.addEventListener("keydown", (event) => {
+        if (event.key === "Enter" && event.repeat) event.preventDefault();
+      });
+    });
+    if (this.options.focusConfirm !== false) primaryEnter(this, () => {
+      void this.submit();
+    });
+  }
+  async submit() {
+    if (this.saving) return;
+    this.saving = true;
+    try {
+      await this.confirm();
+      this.close();
+    } catch (error) {
+      new import_obsidian3.Notice(String(error));
+    } finally {
+      this.saving = false;
+    }
+  }
+};
 
 // src/export.ts
 function escape(value) {
@@ -7843,6 +7949,20 @@ var TraceViewMindmap = class extends import_obsidian4.Plugin {
     await this.saveData({ ...this.settings, ...rules });
     Object.assign(this.settings, rules);
     this.matchesMap = matches;
+    this.refreshQueues();
+  }
+  async resetSettings() {
+    const defaults = { ...DEFAULT_SETTINGS, hotkeys: {} };
+    if (this.settings.previousPluginId) defaults.previousPluginId = this.settings.previousPluginId;
+    await this.saveData(defaults);
+    this.settings = defaults;
+    this.matchesMap = compileMapPatterns(defaults);
+    this.refreshBindings();
+    for (const leaf of this.app.workspace.getLeavesOfType(VIEW)) {
+      const view = leaf.view;
+      view.surface?.refreshLayout();
+      view.refreshRestoreWait();
+    }
     this.refreshQueues();
   }
   refreshQueues() {
@@ -8901,6 +9021,8 @@ var SettingsTab = class extends import_obsidian4.PluginSettingTab {
     this.plugin = plugin;
     this.stopRecording = () => {
     };
+    this.patternRevision = 0;
+    this.savingPatterns = Promise.resolve();
     plugin.register(() => this.stopRecording());
   }
   hide() {
@@ -8908,8 +9030,19 @@ var SettingsTab = class extends import_obsidian4.PluginSettingTab {
   }
   display() {
     this.stopRecording();
+    this.patternRevision++;
     this.containerEl.empty();
-    this.containerEl.createEl("h2", { text: "TraceView Mindmap" });
+    const header = this.containerEl.createDiv("tvm-settings-header");
+    header.createEl("h2", { text: "TraceView Mindmap" });
+    button(header, t("Restore default settings"), () => {
+      new ConfirmDialog(this.app, t("Restore default settings"), t("Reset plugin preferences, shortcuts and map patterns? Device-local view states and saved notes are retained. Restart Obsidian to apply the language."), async () => {
+        this.patternRevision++;
+        await this.savingPatterns;
+        await this.plugin.resetSettings();
+        this.display();
+        new import_obsidian4.Notice(t("Default settings restored. Restart Obsidian to apply the language."));
+      }, { label: t("Restore defaults"), focusConfirm: false }).open();
+    });
     new import_obsidian4.Setting(this.containerEl).setName(t("Language")).setDesc(t("Automatic follows Obsidian. Restart Obsidian to apply a language change.")).addDropdown((dropdown) => {
       dropdown.addOption("auto", t("Automatic (Obsidian)"));
       for (const [code, name] of Object.entries(LANGUAGES)) dropdown.addOption(code, name);
@@ -8933,10 +9066,8 @@ var SettingsTab = class extends import_obsidian4.PluginSettingTab {
     }));
     let patternMode = this.plugin.settings.patternMode, mapPatterns = this.plugin.settings.mapPatterns;
     const patternStatus = this.containerEl.createEl("p", { cls: "setting-item-description", attr: { role: "status", "aria-live": "polite" } });
-    let saveRevision = 0;
-    let savingPatterns = Promise.resolve();
     const savePatterns = () => {
-      const revision = ++saveRevision;
+      const revision = ++this.patternRevision;
       const rules = { patternMode, mapPatterns };
       try {
         compileMapPatterns(rules);
@@ -8944,32 +9075,42 @@ var SettingsTab = class extends import_obsidian4.PluginSettingTab {
         patternStatus.setText(error instanceof PatternError ? t("Invalid pattern on line {line}: {error}", { line: error.line, error: error.message }) : message(error));
         return;
       }
-      savingPatterns = savingPatterns.then(async () => {
-        if (revision !== saveRevision) return;
+      this.savingPatterns = this.savingPatterns.then(async () => {
+        if (revision !== this.patternRevision) return;
         try {
           await this.plugin.setMapRules(rules);
-          if (revision === saveRevision) patternStatus.setText(t("Patterns saved."));
+          if (revision === this.patternRevision) patternStatus.setText(t("Patterns saved."));
         } catch (error) {
-          if (revision === saveRevision) patternStatus.setText(message(error));
+          if (revision === this.patternRevision) patternStatus.setText(message(error));
         }
       });
     };
+    let syntaxInput, patternsInput;
     new import_obsidian4.Setting(this.containerEl).setName(t("Pattern syntax")).addDropdown((dropdown) => {
+      syntaxInput = dropdown.selectEl;
       dropdown.addOption("glob", t("Glob (wildcards)")).addOption("regex", t("Regular expressions"));
       dropdown.setValue(patternMode).onChange((value) => {
         patternMode = value;
         savePatterns();
       });
     });
-    new import_obsidian4.Setting(this.containerEl).setName(t("Map file patterns")).setDesc(t("One pattern per line; any match is enough. Glob without a slash matches file names in any folder. With a slash it matches vault-relative paths. Use *, ** and ?. Regex matches vault-relative paths, without / delimiters. Matching ignores case. Only Markdown files qualify.")).addTextArea((text) => {
+    const patternsSetting = new import_obsidian4.Setting(this.containerEl).setName(t("Map file patterns")).setDesc(t("One pattern per line; any match is enough. Glob without a slash matches file names in any folder. With a slash it matches vault-relative paths. Use *, ** and ?. Regex matches vault-relative paths, without / delimiters. Matching ignores case. Only Markdown files qualify.")).addTextArea((text) => {
+      patternsInput = text.inputEl;
       text.setValue(mapPatterns).setPlaceholder("*.mindmap.md\n\u{1F3AF}*.md").onChange((value) => {
         mapPatterns = value;
         savePatterns();
       });
       text.inputEl.rows = 5;
-      text.inputEl.style.width = "100%";
       text.inputEl.setAttribute("aria-label", t("Map file patterns"));
-    });
+      text.inputEl.spellcheck = false;
+    }).addButton((button2) => button2.setButtonText(t("Restore default patterns")).onClick(() => {
+      patternMode = DEFAULT_SETTINGS.patternMode;
+      mapPatterns = DEFAULT_SETTINGS.mapPatterns;
+      syntaxInput.value = patternMode;
+      patternsInput.value = mapPatterns;
+      savePatterns();
+    }));
+    patternsSetting.settingEl.addClass("tvm-pattern-setting");
     this.containerEl.createEl("p", { cls: "setting-item-description", text: t("The mindmap: true property also identifies a map. Invalid input keeps the last saved rules active. Patterns are shared by automatic opening, map search and step lists.") });
     if (import_obsidian4.Platform?.isWin) new import_obsidian4.Setting(this.containerEl).setName(t("Automatically restore large maps")).setDesc(t("At startup the active map waits for Obsidian to respond steadily. \u201COpen now\u201D skips the wait.")).addToggle((toggle) => toggle.setValue(this.plugin.settings.autoRestoreLargeMaps).onChange(async (value) => {
       this.plugin.settings.autoRestoreLargeMaps = value;

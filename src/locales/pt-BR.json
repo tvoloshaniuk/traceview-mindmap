@@ -306,5 +306,10 @@
   "Map file patterns": "Padrões de arquivos de mapas",
   "One pattern per line; any match is enough. Glob without a slash matches file names in any folder. With a slash it matches vault-relative paths. Use *, ** and ?. Regex matches vault-relative paths, without / delimiters. Matching ignores case. Only Markdown files qualify.": "Um padrão por linha; qualquer correspondência basta. Glob sem / verifica nomes em qualquer pasta; com /, caminhos relativos ao cofre. Use *, ** e ?. Regex verifica esses caminhos sem delimitadores /. Ignora maiúsculas e minúsculas. Apenas arquivos Markdown.",
   "The mindmap: true property also identifies a map. Invalid input keeps the last saved rules active. Patterns are shared by automatic opening, map search and step lists.": "A propriedade mindmap: true também identifica um mapa. Entrada inválida mantém as últimas regras salvas. Padrões são compartilhados por abertura automática, busca e listas de etapas.",
-  "This JSON map format is not supported.": "Este formato de mapa JSON não é suportado."
+  "This JSON map format is not supported.": "Este formato de mapa JSON não é suportado.",
+  "Restore default patterns": "Restaurar padrões iniciais",
+  "Restore default settings": "Restaurar configurações padrão",
+  "Restore defaults": "Restaurar",
+  "Reset plugin preferences, shortcuts and map patterns? Device-local view states and saved notes are retained. Restart Obsidian to apply the language.": "Restaurar preferências, atalhos e padrões de mapas? Estados locais de visualização e notas salvas serão preservados. Reinicie Obsidian para aplicar o idioma.",
+  "Default settings restored. Restart Obsidian to apply the language.": "Configurações padrão restauradas. Reinicie Obsidian para aplicar o idioma."
 }

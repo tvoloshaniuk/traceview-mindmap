@@ -306,5 +306,10 @@
   "Map file patterns": "导图文件规则",
   "One pattern per line; any match is enough. Glob without a slash matches file names in any folder. With a slash it matches vault-relative paths. Use *, ** and ?. Regex matches vault-relative paths, without / delimiters. Matching ignores case. Only Markdown files qualify.": "每行一条规则，匹配任一规则即可。Glob 不含 / 时匹配任意文件夹中的文件名，含 / 时匹配仓库相对路径。支持 *、** 和 ?。正则匹配仓库相对路径，无需 / 分隔符。不区分大小写，仅适用于 Markdown 文件。",
   "The mindmap: true property also identifies a map. Invalid input keeps the last saved rules active. Patterns are shared by automatic opening, map search and step lists.": "属性 mindmap: true 也可标识导图。输入无效时继续使用上次保存的规则。自动打开、导图搜索和步骤列表使用同一组规则。",
-  "This JSON map format is not supported.": "不支持此 JSON 导图格式。"
+  "This JSON map format is not supported.": "不支持此 JSON 导图格式。",
+  "Restore default patterns": "恢复默认规则",
+  "Restore default settings": "恢复默认设置",
+  "Restore defaults": "恢复",
+  "Reset plugin preferences, shortcuts and map patterns? Device-local view states and saved notes are retained. Restart Obsidian to apply the language.": "重置插件设置、快捷键和导图规则？本设备的视图状态和已保存的笔记将保留。请重启 Obsidian 以应用语言。",
+  "Default settings restored. Restart Obsidian to apply the language.": "已恢复默认设置。请重启 Obsidian 以应用语言。"
 }

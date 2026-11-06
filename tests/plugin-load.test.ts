@@ -440,3 +440,35 @@ test('installation import preserves source preferences and device-local folds an
   storage.set(currentKey, JSON.stringify({ ...saved, camera: { x: 5, y: 8, scale: 1 } }));
   assert.equal(JSON.parse(view.readState()).camera.x, 5);
 });
+
+test('reset restores preferences only after saving and retains imported state access and local view state', async () => {
+  const storage = new Map<string, unknown>([['earlier-map-tool:v1:Tree.md', 'saved-view-state']]);
+  const loaded = await loadBundle({ previousPluginId: 'earlier-map-tool', language: 'ja', widthMode: 'column', patternMode: 'glob', mapPatterns: 'Only.md', autoOpen: true, hotkeys: { copy: 'Alt+C' } }, undefined, [], storage);
+  const plugin = loaded.plugin as any, app = loaded.app as any;
+  app.metadataCache = { getFileCache: () => ({}) };
+  let refreshed = 0, queues = 0, saved: any;
+  app.workspace.getLeavesOfType = (type: string) => type === 'traceview-mindmap-map'
+    ? [{ view: { refreshBindings() { refreshed++; }, surface: { refreshLayout() { refreshed++; } }, refreshRestoreWait() { refreshed++; } } }]
+    : [{ view: { scheduleReload() { queues++; } } }];
+  const previousSettings = plugin.settings;
+  plugin.saveData = async () => { throw new Error('Storage unavailable'); };
+  await assert.rejects(plugin.resetSettings());
+  assert.equal(plugin.settings, previousSettings);
+  assert.equal(plugin.isMap(new loaded.TFile('Only.md')), true);
+  assert.equal(refreshed, 0);
+  plugin.saveData = async (value: unknown) => { saved = value; };
+  await plugin.resetSettings();
+  assert.equal(plugin.settings.language, 'auto');
+  assert.equal(plugin.settings.autoOpen, false);
+  assert.equal(plugin.settings.widthMode, 'fixed');
+  assert.equal(plugin.settings.patternMode, 'glob');
+  assert.equal(plugin.settings.mapPatterns, '*.mindmap.md\n🎯*.md');
+  assert.equal(plugin.settings.previousPluginId, 'earlier-map-tool');
+  assert.deepEqual(Object.keys(plugin.settings.hotkeys), []);
+  assert.equal(saved, plugin.settings);
+  assert.equal(plugin.isMap(new loaded.TFile('Only.md')), false);
+  assert.equal(plugin.isMap(new loaded.TFile('Folder/Tree.mindmap.md')), true);
+  assert.equal(storage.get('earlier-map-tool:v1:Tree.md'), 'saved-view-state');
+  assert.equal(refreshed, 3);
+  assert.equal(queues, 1);
+});

@@ -213,17 +213,25 @@ export class TextDialog extends Modal {
 
 export class ConfirmDialog extends Modal {
   private saving = false;
-  constructor(app: App, private title: string, private detail: string, private confirm: () => Promise<void>) { super(app); }
+  constructor(app: App, private title: string, private detail: string, private confirm: () => Promise<void>, private options: { label?: string; focusConfirm?: boolean } = {}) { super(app); }
   onOpen(): void {
     this.titleEl.setText(this.title);
     this.contentEl.createEl('p', { text: this.detail });
-    new Setting(this.contentEl).addButton(button => button.setButtonText(t("Cancel")).onClick(() => this.close())).addButton(button => {
-      button.setButtonText(t("Delete branch")).setWarning().onClick(() => { void this.submit(); });
-      button.buttonEl.focus();
-      window.setTimeout(() => { if (button.buttonEl.isConnected) button.buttonEl.focus(); }, 0);
+    new Setting(this.contentEl).addButton(button => {
+      button.setButtonText(t("Cancel")).onClick(() => this.close());
+      if (this.options.focusConfirm === false) {
+        button.buttonEl.focus();
+        window.setTimeout(() => { if (button.buttonEl.isConnected) button.buttonEl.focus(); }, 0);
+      }
+    }).addButton(button => {
+      button.setButtonText(this.options.label ?? t("Delete branch")).setWarning().onClick(() => { void this.submit(); });
+      if (this.options.focusConfirm !== false) {
+        button.buttonEl.focus();
+        window.setTimeout(() => { if (button.buttonEl.isConnected) button.buttonEl.focus(); }, 0);
+      }
       button.buttonEl.addEventListener('keydown', event => { if (event.key === 'Enter' && event.repeat) event.preventDefault(); });
     });
-    primaryEnter(this, () => { void this.submit(); });
+    if (this.options.focusConfirm !== false) primaryEnter(this, () => { void this.submit(); });
   }
   private async submit(): Promise<void> {
     if (this.saving) return;

@@ -306,5 +306,10 @@
   "Map file patterns": "Патерни файлів карт",
   "One pattern per line; any match is enough. Glob without a slash matches file names in any folder. With a slash it matches vault-relative paths. Use *, ** and ?. Regex matches vault-relative paths, without / delimiters. Matching ignores case. Only Markdown files qualify.": "Один патерн на рядок; достатньо збігу з будь-яким. Glob без / перевіряє назву файлу в усіх папках, із / — шлях від кореня сховища. Доступні *, ** і ?. Regex перевіряє шлях від кореня сховища, без обгортки /…/. Регістр не враховується. Лише Markdown-файли.",
   "The mindmap: true property also identifies a map. Invalid input keeps the last saved rules active. Patterns are shared by automatic opening, map search and step lists.": "Властивість mindmap: true також позначає карту. Некоректний ввід залишає активними останні збережені правила. Патерни спільні для автовідкриття, пошуку карт і списків кроків.",
-  "This JSON map format is not supported.": "Цей формат JSON-карт не підтримується."
+  "This JSON map format is not supported.": "Цей формат JSON-карт не підтримується.",
+  "Restore default patterns": "Відновити початкові патерни",
+  "Restore default settings": "Відновити початкові налаштування",
+  "Restore defaults": "Відновити",
+  "Reset plugin preferences, shortcuts and map patterns? Device-local view states and saved notes are retained. Restart Obsidian to apply the language.": "Відновити початкові налаштування плагіна, гарячі клавіші й патерни карт? Локальні стани перегляду та збережені нотатки залишаться. Для застосування мови перезапусти Obsidian.",
+  "Default settings restored. Restart Obsidian to apply the language.": "Початкові налаштування відновлено. Перезапусти Obsidian, щоб застосувати мову."
 }

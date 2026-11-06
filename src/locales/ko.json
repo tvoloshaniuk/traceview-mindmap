@@ -306,5 +306,10 @@
   "Map file patterns": "마인드맵 파일 패턴",
   "One pattern per line; any match is enough. Glob without a slash matches file names in any folder. With a slash it matches vault-relative paths. Use *, ** and ?. Regex matches vault-relative paths, without / delimiters. Matching ignores case. Only Markdown files qualify.": "한 줄에 패턴 하나이며, 하나만 일치해도 됩니다. Glob에 /가 없으면 모든 폴더의 파일 이름, 있으면 보관함 상대 경로와 비교합니다. *, **, ?를 지원합니다. 정규식은 / 구분 없이 상대 경로와 비교합니다. 대소문자를 구분하지 않으며 Markdown 파일만 해당합니다.",
   "The mindmap: true property also identifies a map. Invalid input keeps the last saved rules active. Patterns are shared by automatic opening, map search and step lists.": "mindmap: true 속성도 마인드맵을 나타냅니다. 잘못된 입력은 마지막 저장 규칙을 유지합니다. 자동 열기, 검색, 단계 목록에 같은 패턴을 사용합니다.",
-  "This JSON map format is not supported.": "이 JSON 마인드맵 형식은 지원하지 않습니다."
+  "This JSON map format is not supported.": "이 JSON 마인드맵 형식은 지원하지 않습니다.",
+  "Restore default patterns": "기본 패턴 복원",
+  "Restore default settings": "기본 설정 복원",
+  "Restore defaults": "복원",
+  "Reset plugin preferences, shortcuts and map patterns? Device-local view states and saved notes are retained. Restart Obsidian to apply the language.": "플러그인 설정, 단축키, 마인드맵 패턴을 초기화할까요? 기기의 보기 상태와 저장된 노트는 유지됩니다. 언어를 적용하려면 Obsidian을 다시 시작하세요.",
+  "Default settings restored. Restart Obsidian to apply the language.": "기본 설정을 복원했습니다. 언어를 적용하려면 Obsidian을 다시 시작하세요."
 }

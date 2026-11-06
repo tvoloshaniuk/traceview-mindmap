@@ -306,5 +306,10 @@
   "Map file patterns": "Map file patterns",
   "One pattern per line; any match is enough. Glob without a slash matches file names in any folder. With a slash it matches vault-relative paths. Use *, ** and ?. Regex matches vault-relative paths, without / delimiters. Matching ignores case. Only Markdown files qualify.": "One pattern per line; any match is enough. Glob without a slash matches file names in any folder. With a slash it matches vault-relative paths. Use *, ** and ?. Regex matches vault-relative paths, without / delimiters. Matching ignores case. Only Markdown files qualify.",
   "The mindmap: true property also identifies a map. Invalid input keeps the last saved rules active. Patterns are shared by automatic opening, map search and step lists.": "The mindmap: true property also identifies a map. Invalid input keeps the last saved rules active. Patterns are shared by automatic opening, map search and step lists.",
-  "This JSON map format is not supported.": "This JSON map format is not supported."
+  "This JSON map format is not supported.": "This JSON map format is not supported.",
+  "Restore default patterns": "Restore default patterns",
+  "Restore default settings": "Restore default settings",
+  "Restore defaults": "Restore defaults",
+  "Reset plugin preferences, shortcuts and map patterns? Device-local view states and saved notes are retained. Restart Obsidian to apply the language.": "Reset plugin preferences, shortcuts and map patterns? Device-local view states and saved notes are retained. Restart Obsidian to apply the language.",
+  "Default settings restored. Restart Obsidian to apply the language.": "Default settings restored. Restart Obsidian to apply the language."
 }

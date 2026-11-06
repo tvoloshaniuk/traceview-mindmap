@@ -301,3 +301,9 @@
 .tvm-native-editor .cm-sizer { min-height: 0 !important; padding-bottom: 0 !important; }
 .tvm-native-editor .cm-editor { min-height: 26px !important; }
 .tvm-node-address { position: absolute; top: 1px; right: 3px; font-size: 10px; line-height: 12px; opacity: .65; }
+.tvm-settings-header { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; }
+.tvm-pattern-setting.setting-item { flex-direction: column; align-items: stretch; gap: 12px; }
+.tvm-pattern-setting .setting-item-info { width: 100%; min-width: 0; margin-right: 0; }
+.tvm-pattern-setting .setting-item-control { width: 100%; min-width: 0; flex-direction: column; align-items: stretch; }
+.tvm-pattern-setting textarea { width: 100%; max-width: 100%; min-width: 0; min-height: 8em; box-sizing: border-box; resize: vertical; white-space: pre; overflow-wrap: normal; overflow-x: auto; }
+.tvm-pattern-setting button { align-self: flex-end; max-width: 100%; white-space: normal; height: auto; min-height: var(--input-height); }

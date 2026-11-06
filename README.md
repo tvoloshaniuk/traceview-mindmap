@@ -66,6 +66,8 @@ Choose glob or regex, with one pattern per line. Any matching rule qualifies the
 
 The `mindmap: true` property also identifies a map. Invalid patterns keep the last saved rules active. Automatic opening, map search and planning lists share these rules. Explicitly opening source Markdown keeps that note in Markdown mode until you choose to open it as a map again.
 
+The pattern field uses the full settings width. **Restore default patterns** resets the filename rules and switches their syntax to glob. **Restore default settings** at the top of the settings page resets all plugin preferences and custom shortcuts after confirmation. Local view states and saved notes are retained. Restart Obsidian to apply a reset language preference.
+
 ## Languages
 
 English, Ukrainian, Russian, Polish, German, Spanish, French, Brazilian Portuguese, Simplified Chinese, Japanese and Korean are included. **Automatic (Obsidian)** follows the app language, with English fallback. Restart Obsidian after changing the language setting.

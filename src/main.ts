@@ -12,7 +12,7 @@ import type { InlineEditor, InlineDriver } from './inline';
 import type { Editor } from 'obsidian';
 import { InputEditor } from './input-editor';
 import { attachImagePaste, saveClipboardImage } from './image-paste';
-import { attachNodeTools, DateDialog, MapPicker, TextDialog } from './editor';
+import { attachNodeTools, ConfirmDialog, DateDialog, MapPicker, TextDialog } from './editor';
 import { exportHtml, exportSvg } from './export';
 import { guardedChange, History, restoreViewState, serializeViewState } from './session';
 import type { MapDocument, MapViewState, NodeAction, Step, WidthMode, DropPosition } from './types';
@@ -257,6 +257,20 @@ export default class TraceViewMindmap extends Plugin {
     await this.saveData({ ...this.settings, ...rules });
     Object.assign(this.settings, rules);
     this.matchesMap = matches;
+    this.refreshQueues();
+  }
+  async resetSettings(): Promise<void> {
+    const defaults: Settings = { ...DEFAULT_SETTINGS, hotkeys: {} };
+    if (this.settings.previousPluginId) defaults.previousPluginId = this.settings.previousPluginId;
+    await this.saveData(defaults);
+    this.settings = defaults;
+    this.matchesMap = compileMapPatterns(defaults);
+    this.refreshBindings();
+    for (const leaf of this.app.workspace.getLeavesOfType(VIEW)) {
+      const view = leaf.view as MapView;
+      view.surface?.refreshLayout();
+      view.refreshRestoreWait();
+    }
     this.refreshQueues();
   }
   refreshQueues(): void {
@@ -1053,6 +1067,8 @@ class QueueView extends ItemView {
 
 class SettingsTab extends PluginSettingTab {
   private stopRecording: () => void = () => {};
+  private patternRevision = 0;
+  private savingPatterns = Promise.resolve();
   constructor(private plugin: TraceViewMindmap) {
     super(plugin.app, plugin);
     plugin.register(() => this.stopRecording());
@@ -1060,8 +1076,19 @@ class SettingsTab extends PluginSettingTab {
   hide(): void { this.stopRecording(); }
   display(): void {
     this.stopRecording();
+    this.patternRevision++;
     this.containerEl.empty();
-    this.containerEl.createEl('h2', { text: 'TraceView Mindmap' });
+    const header = this.containerEl.createDiv('tvm-settings-header');
+    header.createEl('h2', { text: 'TraceView Mindmap' });
+    button(header, t("Restore default settings"), () => {
+      new ConfirmDialog(this.app, t("Restore default settings"), t("Reset plugin preferences, shortcuts and map patterns? Device-local view states and saved notes are retained. Restart Obsidian to apply the language."), async () => {
+        this.patternRevision++;
+        await this.savingPatterns;
+        await this.plugin.resetSettings();
+        this.display();
+        new Notice(t("Default settings restored. Restart Obsidian to apply the language."));
+      }, { label: t("Restore defaults"), focusConfirm: false }).open();
+    });
     new Setting(this.containerEl).setName(t("Language")).setDesc(t("Automatic follows Obsidian. Restart Obsidian to apply a language change.")).addDropdown(dropdown => {
       dropdown.addOption('auto', t("Automatic (Obsidian)"));
       for (const [code, name] of Object.entries(LANGUAGES)) dropdown.addOption(code, name);
@@ -1079,32 +1106,39 @@ class SettingsTab extends PluginSettingTab {
     new Setting(this.containerEl).setName(t("Automatically open matching notes as maps")).setDesc(t("Applies to notes matching the patterns below. Opening source Markdown explicitly keeps that note in Markdown mode.")).addToggle(toggle => toggle.setValue(this.plugin.settings.autoOpen).onChange(async value => { this.plugin.settings.autoOpen = value; await this.plugin.saveData(this.plugin.settings); }));
     let patternMode = this.plugin.settings.patternMode, mapPatterns = this.plugin.settings.mapPatterns;
     const patternStatus = this.containerEl.createEl('p', { cls: 'setting-item-description', attr: { role: 'status', 'aria-live': 'polite' } });
-    let saveRevision = 0;
-    let savingPatterns = Promise.resolve();
     const savePatterns = () => {
-      const revision = ++saveRevision;
+      const revision = ++this.patternRevision;
       const rules = { patternMode, mapPatterns };
       try { compileMapPatterns(rules); }
       catch (error) {
         patternStatus.setText(error instanceof PatternError ? t("Invalid pattern on line {line}: {error}", { line: error.line, error: error.message }) : message(error));
         return;
       }
-      savingPatterns = savingPatterns.then(async () => {
-        if (revision !== saveRevision) return;
+      this.savingPatterns = this.savingPatterns.then(async () => {
+        if (revision !== this.patternRevision) return;
         try {
           await this.plugin.setMapRules(rules);
-          if (revision === saveRevision) patternStatus.setText(t("Patterns saved."));
-        } catch (error) { if (revision === saveRevision) patternStatus.setText(message(error)); }
+          if (revision === this.patternRevision) patternStatus.setText(t("Patterns saved."));
+        } catch (error) { if (revision === this.patternRevision) patternStatus.setText(message(error)); }
       });
     };
+    let syntaxInput: HTMLSelectElement, patternsInput: HTMLTextAreaElement;
     new Setting(this.containerEl).setName(t("Pattern syntax")).addDropdown(dropdown => {
+      syntaxInput = dropdown.selectEl;
       dropdown.addOption('glob', t("Glob (wildcards)")).addOption('regex', t("Regular expressions"));
       dropdown.setValue(patternMode).onChange(value => { patternMode = value as PatternMode; savePatterns(); });
     });
-    new Setting(this.containerEl).setName(t("Map file patterns")).setDesc(t("One pattern per line; any match is enough. Glob without a slash matches file names in any folder. With a slash it matches vault-relative paths. Use *, ** and ?. Regex matches vault-relative paths, without / delimiters. Matching ignores case. Only Markdown files qualify.")).addTextArea(text => {
+    const patternsSetting = new Setting(this.containerEl).setName(t("Map file patterns")).setDesc(t("One pattern per line; any match is enough. Glob without a slash matches file names in any folder. With a slash it matches vault-relative paths. Use *, ** and ?. Regex matches vault-relative paths, without / delimiters. Matching ignores case. Only Markdown files qualify.")).addTextArea(text => {
+      patternsInput = text.inputEl;
       text.setValue(mapPatterns).setPlaceholder('*.mindmap.md\n🎯*.md').onChange(value => { mapPatterns = value; savePatterns(); });
-      text.inputEl.rows = 5; text.inputEl.style.width = '100%'; text.inputEl.setAttribute('aria-label', t("Map file patterns"));
-    });
+      text.inputEl.rows = 5; text.inputEl.setAttribute('aria-label', t("Map file patterns"));
+      text.inputEl.spellcheck = false;
+    }).addButton(button => button.setButtonText(t("Restore default patterns")).onClick(() => {
+      patternMode = DEFAULT_SETTINGS.patternMode; mapPatterns = DEFAULT_SETTINGS.mapPatterns;
+      syntaxInput.value = patternMode; patternsInput.value = mapPatterns;
+      savePatterns();
+    }));
+    patternsSetting.settingEl.addClass('tvm-pattern-setting');
     this.containerEl.createEl('p', { cls: 'setting-item-description', text: t("The mindmap: true property also identifies a map. Invalid input keeps the last saved rules active. Patterns are shared by automatic opening, map search and step lists.") });
     if (Platform?.isWin) new Setting(this.containerEl).setName(t("Automatically restore large maps")).setDesc(t("At startup the active map waits for Obsidian to respond steadily. “Open now” skips the wait.")).addToggle(toggle => toggle.setValue(this.plugin.settings.autoRestoreLargeMaps).onChange(async value => {
       this.plugin.settings.autoRestoreLargeMaps = value;

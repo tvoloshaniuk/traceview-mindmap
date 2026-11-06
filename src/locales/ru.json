@@ -306,5 +306,10 @@
   "Map file patterns": "Шаблоны файлов карт",
   "One pattern per line; any match is enough. Glob without a slash matches file names in any folder. With a slash it matches vault-relative paths. Use *, ** and ?. Regex matches vault-relative paths, without / delimiters. Matching ignores case. Only Markdown files qualify.": "Один шаблон на строку; достаточно любого совпадения. Glob без / проверяет имя во всех папках, с / — путь от корня хранилища. Доступны *, ** и ?. Regex проверяет путь от корня, без обёртки /…/. Регистр не учитывается. Только Markdown-файлы.",
   "The mindmap: true property also identifies a map. Invalid input keeps the last saved rules active. Patterns are shared by automatic opening, map search and step lists.": "Свойство mindmap: true также обозначает карту. При ошибке ввода действуют последние сохранённые правила. Шаблоны общие для автооткрытия, поиска карт и списков шагов.",
-  "This JSON map format is not supported.": "Этот формат JSON-карт не поддерживается."
+  "This JSON map format is not supported.": "Этот формат JSON-карт не поддерживается.",
+  "Restore default patterns": "Восстановить исходные шаблоны",
+  "Restore default settings": "Восстановить исходные настройки",
+  "Restore defaults": "Восстановить",
+  "Reset plugin preferences, shortcuts and map patterns? Device-local view states and saved notes are retained. Restart Obsidian to apply the language.": "Восстановить исходные настройки плагина, горячие клавиши и шаблоны карт? Локальные состояния просмотра и сохранённые заметки останутся. Для применения языка перезапустите Obsidian.",
+  "Default settings restored. Restart Obsidian to apply the language.": "Исходные настройки восстановлены. Перезапустите Obsidian для применения языка."
 }

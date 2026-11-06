@@ -134,6 +134,29 @@ test('Enter confirms single-line text and date; held Enter and IME do not submit
   } finally { env.dom.window.close(); }
 });
 
+test('settings reset confirmation starts on Cancel and runs only after explicit confirmation', async () => {
+  const env = environment();
+  try {
+    let calls = 0;
+    const cancelled = new env.exports.ConfirmDialog(env.app, 'Reset?', 'Preferences', async () => { calls++; }, { label: 'Restore defaults', focusConfirm: false });
+    cancelled.open();
+    await new Promise(resolve => setTimeout(resolve, 5));
+    const cancel = cancelled.contentEl.querySelector('button');
+    assert.equal(env.win.document.activeElement, cancel);
+    assert.equal(cancelled.enter, undefined);
+    cancel.click();
+    assert.equal(calls, 0);
+    const confirmed = new env.exports.ConfirmDialog(env.app, 'Reset?', 'Preferences', async () => { calls++; }, { label: 'Restore defaults', focusConfirm: false });
+    confirmed.open();
+    const submit = confirmed.contentEl.querySelectorAll('button')[1];
+    assert.equal(submit.textContent, 'Restore defaults');
+    submit.click();
+    await new Promise(resolve => setTimeout(resolve, 0));
+    assert.equal(calls, 1);
+    assert.equal(confirmed.modalEl.isConnected, false);
+  } finally { env.dom.window.close(); }
+});
+
 test('delete confirmation focuses primary action, ignores repeats and prevents double submission', async () => {
   const env = environment();
   try {
