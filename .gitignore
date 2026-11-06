@@ -1,0 +1,6 @@
+node_modules/
+preview.js
+coverage/
+.npm-cache/
+release/
+work/

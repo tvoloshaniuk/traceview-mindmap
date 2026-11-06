@@ -1,0 +1,9 @@
+{
+  "id": "traceview-mindmap",
+  "name": "TraceView Mindmap",
+  "version": "1.0.0",
+  "minAppVersion": "1.8.7",
+  "description": "Edit Markdown notes as mind maps with keyboard navigation, persistent folds, linked nodes and ordered task planning.",
+  "author": "tvoloshaniuk",
+  "isDesktopOnly": false
+}
