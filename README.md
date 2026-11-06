@@ -4,6 +4,8 @@ Edit Markdown notes as mind maps in Obsidian. Organize ideas into branches, brea
 
 By **tvoloshaniuk**. Available for desktop and mobile Obsidian.
 
+![A Markdown note opened as a mind map, edited inline and returned to Markdown](media/markdown-editing.gif)
+
 ## License
 
 Copyright (C) 2026 tvoloshaniuk. Original copyrightable project material is
@@ -34,6 +36,39 @@ mindmap: true
     - [ ] #step 1) Draft the outline
     - [ ] #step 2) Review the result
 ```
+
+## See it in action
+
+### Plan with steps and deadlines
+
+Choose a date in the calendar, then review numbered tasks in the planning view.
+
+![Setting a deadline and reviewing the steps list](media/planning.gif)
+
+### Navigate and select nodes
+
+Move between nodes and extend a selection across branches. Arrow keys navigate; Space folds or unfolds the selected branch.
+
+![Moving between nodes and selecting multiple branches](media/navigation-selection.gif)
+
+### Work in split panes
+
+Open the same Markdown note in two map views. Saved edits in either pane appear in the other view.
+
+![Editing one note from two split map views](media/split-view.gif)
+
+<details>
+<summary>Screenshots: map, calendar, steps and split view</summary>
+
+![A project broken into branches with links and numbered tasks](media/map-overview.png)
+
+![The deadline calendar opened from a map node](media/deadline-calendar.png)
+
+![Numbered steps collected in the planning view](media/steps-list.png)
+
+![Two map views of the same Markdown note in split panes](media/split-view.png)
+
+</details>
 
 ## Editing and navigation
 
