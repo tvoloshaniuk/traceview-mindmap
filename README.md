@@ -41,9 +41,9 @@ mindmap: true
 
 ### Plan with steps and deadlines
 
-Choose a date in the calendar, then review numbered tasks in the planning view.
+Choose a date in the calendar, then review and reorder numbered tasks with the up and down controls in the planning view. Step numbers update in the map too; branches keep their positions.
 
-![Setting a deadline and reviewing the steps list](media/planning.gif)
+![Setting a deadline, reordering numbered tasks and checking their numbers in the map](media/planning.gif)
 
 ### Navigate and select nodes
 
@@ -63,8 +63,7 @@ Obsidian's linked Local graph follows the active map. Copy a link to an individu
 
 ![Switching maps with Local graph and following a link to a specific node](media/linked-maps.gif)
 
-<details>
-<summary>Screenshots: map, calendar, steps, split view and Local graph</summary>
+### Screenshots
 
 ![A project broken into branches with links and numbered tasks](media/map-overview.png)
 
@@ -75,8 +74,6 @@ Obsidian's linked Local graph follows the active map. Copy a link to an individu
 ![Two map views of the same Markdown note in split panes](media/split-view.png)
 
 ![A map alongside Obsidian's linked Local graph](media/local-graph.png)
-
-</details>
 
 ## Editing and navigation
 
