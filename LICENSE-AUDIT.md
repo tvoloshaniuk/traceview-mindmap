@@ -10,9 +10,12 @@ dependency license metadata and the installed esbuild and Obsidian SDK notices.
 
 The production build has 30 source inputs: 19 project TypeScript modules and 11
 translation dictionaries under src/. Its sole external module is obsidian. No
-node_modules file is an esbuild input. The reviewed tracked inventory contains no
+node_modules file is an esbuild input. The plugin runtime contains no bundled
 image, font, WebAssembly or host application archive assets. The stylesheet has
-no external imports or asset URLs.
+no external imports or asset URLs. Documentation media added after the initial
+review consists of GIF and PNG captures from the maintainer's demonstrations in
+a test vault. These captures show the Obsidian interface; the project license
+does not grant rights over third-party interface elements or trademarks.
 
 Classifying a file as project source does not establish its originality. This
 review did not run an external source-similarity search or determine authorship
