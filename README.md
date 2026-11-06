@@ -57,8 +57,14 @@ Open the same Markdown note in two map views. Saved edits in either pane appear 
 
 ![Editing one note from two split map views](media/split-view.gif)
 
+### Follow links between maps and nodes
+
+Obsidian's linked Local graph follows the active map. Copy a link to an individual node, insert it in another map, and follow it back to that node.
+
+![Switching maps with Local graph and following a link to a specific node](media/linked-maps.gif)
+
 <details>
-<summary>Screenshots: map, calendar, steps and split view</summary>
+<summary>Screenshots: map, calendar, steps, split view and Local graph</summary>
 
 ![A project broken into branches with links and numbered tasks](media/map-overview.png)
 
@@ -67,6 +73,8 @@ Open the same Markdown note in two map views. Saved edits in either pane appear 
 ![Numbered steps collected in the planning view](media/steps-list.png)
 
 ![Two map views of the same Markdown note in split panes](media/split-view.png)
+
+![A map alongside Obsidian's linked Local graph](media/local-graph.png)
 
 </details>
 
