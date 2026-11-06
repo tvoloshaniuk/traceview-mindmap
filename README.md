@@ -57,6 +57,12 @@ Open the same Markdown note in two map views. Saved edits in either pane appear 
 
 ![Editing one note from two split map views](media/split-view.gif)
 
+### Transfer branches between files
+
+Copy or cut a branch in one map, then paste it into another. Its child nodes travel with it, so you can reorganize ideas across Markdown notes.
+
+![Copying and moving branches between two Markdown files in split panes](media/branch-transfer.gif)
+
 ### Follow links between maps and nodes
 
 Obsidian's linked Local graph follows the active map. Copy a link to an individual node, insert it in another map, and follow it back to that node.
