@@ -4,3 +4,8 @@ coverage/
 .npm-cache/
 release/
 work/
+
+# Local development instructions and planning notes
+/AGENTS.md
+/RELEASE-CHECK.md
+/SPRINTS.md
