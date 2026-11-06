@@ -1,3 +1,8 @@
+/*
+ * Copyright (C) 2026 tvoloshaniuk
+ * GPL-3.0-only with the Obsidian Host Additional Permission.
+ * See LICENSE, LICENSING.md and OBSIDIAN-HOST-PERMISSION.md.
+ */
 import {test} from 'node:test';import assert from 'node:assert/strict';import {JSDOM} from 'jsdom';import {MapSearch} from '../src/map-search';
 test('search arrows only select, Enter navigates and Escape keeps the query and same input',()=>{
  const dom=new JSDOM('<div></div>');const visited:string[]=[];const search=new MapSearch(dom.window.document.querySelector('div')!,{search:q=>q?[{id:'a',text:'Alpha'},{id:'b',text:'Beta'}]:[],reveal:id=>visited.push(id),focusMap(){}});

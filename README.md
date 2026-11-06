@@ -4,6 +4,16 @@ Edit Markdown notes as mind maps in Obsidian. Organize ideas into branches, brea
 
 By **tvoloshaniuk**. Available for desktop and mobile Obsidian.
 
+## License
+
+Copyright (C) 2026 tvoloshaniuk. Original copyrightable project material is
+licensed under **GNU GPL version 3 only**, with the **Obsidian Host Additional
+Permission** for integration with an independently obtained Obsidian application.
+See [LICENSING.md](LICENSING.md), [LICENSE](LICENSE) and
+[OBSIDIAN-HOST-PERMISSION.md](OBSIDIAN-HOST-PERMISSION.md) for the complete terms.
+Third-party notices and the scope of the licensing review are recorded in
+[THIRD-PARTY-NOTICES.md](THIRD-PARTY-NOTICES.md) and [LICENSE-AUDIT.md](LICENSE-AUDIT.md).
+
 ## Getting started
 
 1. Open a Markdown note containing headings or a nested list.
@@ -76,7 +86,7 @@ Language dictionaries are in `src/locales`. Initial translations welcome review 
 
 ## Installation and building
 
-For a manual installation, copy `main.js`, `manifest.json` and `styles.css` into `<vault>/.obsidian/plugins/traceview-mindmap/`, then enable **TraceView Mindmap** in Community plugins. For upgrades, replace these three files and keep `data.json`.
+For a manual installation, copy the contents of `release/traceview-mindmap/`, including its licensing documents, into `<vault>/.obsidian/plugins/traceview-mindmap/`, then enable **TraceView Mindmap** in Community plugins. For upgrades, replace the packaged files and keep `data.json`. The three runtime files are `main.js`, `manifest.json` and `styles.css`; licensing text also accompanies `main.js` for Community directory installations.
 
 To build from source with Node.js and npm:
 
@@ -87,6 +97,8 @@ npm test
 ```
 
 Installable files are written to `release/traceview-mindmap/`. The minimum declared Obsidian version is 1.8.7.
+
+`npm run audit:licenses` reproduces the build composition and notice checks. When distributing compiled releases, provide their complete Corresponding Source and build scripts at the matching source tag with equivalent access alongside the binaries.
 
 ## Current limitations
 

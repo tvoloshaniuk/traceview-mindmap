@@ -1,3 +1,8 @@
+/*
+ * Copyright (C) 2026 tvoloshaniuk
+ * GPL-3.0-only with the Obsidian Host Additional Permission.
+ * See LICENSE, LICENSING.md and OBSIDIAN-HOST-PERMISSION.md.
+ */
 import * as i18n from '../src/i18n';
 i18n.setLanguage('uk');
 import { test, type TestContext } from 'node:test';

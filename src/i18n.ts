@@ -1,3 +1,8 @@
+/*
+ * Copyright (C) 2026 tvoloshaniuk
+ * GPL-3.0-only with the Obsidian Host Additional Permission.
+ * See LICENSE, LICENSING.md and OBSIDIAN-HOST-PERMISSION.md.
+ */
 import en from './locales/en.json';
 import uk from './locales/uk.json';
 import pl from './locales/pl.json';

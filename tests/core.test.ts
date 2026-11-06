@@ -1,3 +1,8 @@
+/*
+ * Copyright (C) 2026 tvoloshaniuk
+ * GPL-3.0-only with the Obsidian Host Additional Permission.
+ * See LICENSE, LICENSING.md and OBSIDIAN-HOST-PERMISSION.md.
+ */
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { parseMap, editNode, addNode, addParent, deleteNode, moveNode, reparentNode, copyBranch, pasteBranch, toggleTask, setStep, setDated, setQuestion, getSteps, compareSteps, renumberSteps } from '../src/core';

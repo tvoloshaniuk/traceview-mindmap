@@ -1,3 +1,8 @@
+/*
+ * Copyright (C) 2026 tvoloshaniuk
+ * GPL-3.0-only with the Obsidian Host Additional Permission.
+ * See LICENSE, LICENSING.md and OBSIDIAN-HOST-PERMISSION.md.
+ */
 import { t, LANGUAGES, isLanguageSetting, setLanguage, type LanguageSetting } from './i18n';
 import { getLanguage, App, Component, EditableFileView, ItemView, MarkdownRenderer, MarkdownView, Menu, Notice, Platform, Plugin, PluginSettingTab, Scope, Setting, TFile, WorkspaceLeaf, normalizePath, parseLinktext, setIcon, type HoverPopover } from 'obsidian';
 import { moveBranches, changeNodes, copyBranches, deleteNodes, parseMap, editNode, addNode, addParent, deleteNode, moveNode, copyBranch, pasteBranch, toggleTask, setStep, setDated, setQuestion, getSteps, compareSteps, renumberSteps } from './core';

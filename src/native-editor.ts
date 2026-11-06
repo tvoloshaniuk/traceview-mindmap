@@ -1,3 +1,8 @@
+/*
+ * Copyright (C) 2026 tvoloshaniuk
+ * GPL-3.0-only with the Obsidian Host Additional Permission.
+ * See LICENSE, LICENSING.md and OBSIDIAN-HOST-PERMISSION.md.
+ */
 import { t } from './i18n';
 import { Scope, MarkdownView, type App, type Component, type Editor, type MarkdownFileInfo, type TFile } from 'obsidian';
 import { singleLine, type InlineDriver, type InlineEditor } from './inline';

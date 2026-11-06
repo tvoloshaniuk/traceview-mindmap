@@ -1,3 +1,8 @@
+/*
+ * Copyright (C) 2026 tvoloshaniuk
+ * GPL-3.0-only with the Obsidian Host Additional Permission.
+ * See LICENSE, LICENSING.md and OBSIDIAN-HOST-PERMISSION.md.
+ */
 export type PatternMode = 'glob' | 'regex';
 export interface MapRules { patternMode: PatternMode; mapPatterns: string; }
 export class PatternError extends Error {

@@ -1,12 +1,13 @@
 {
   "name": "traceview-mindmap",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "private": true,
   "description": "Edit Markdown notes as mind maps with keyboard navigation, persistent folds, linked nodes and ordered task planning.",
   "scripts": {
     "build": "tsc --noEmit && node esbuild.config.mjs",
-    "package": "npm run build && node scripts/package.mjs",
-    "test": "tsx --test tests/*.test.ts"
+    "package": "npm run build && node scripts/audit-licenses.mjs && node scripts/package.mjs",
+    "test": "tsx --test tests/*.test.ts",
+    "audit:licenses": "npm run build && node scripts/audit-licenses.mjs"
   },
   "devDependencies": {
     "@playwright/test": "^1.63.0",
@@ -17,5 +18,6 @@
     "obsidian": "latest",
     "tsx": "^4.0.0",
     "typescript": "^5.0.0"
-  }
+  },
+  "license": "SEE LICENSE IN LICENSING.md"
 }

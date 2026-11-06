@@ -1,3 +1,8 @@
+/*
+ * Copyright (C) 2026 tvoloshaniuk
+ * GPL-3.0-only with the Obsidian Host Additional Permission.
+ * See LICENSE, LICENSING.md and OBSIDIAN-HOST-PERMISSION.md.
+ */
 import {test} from 'node:test';import assert from 'node:assert/strict';import {JSDOM} from 'jsdom';import {CreationHandles} from '../src/creation-handles';import {parseMap,addNode,addParent,editNode} from '../src/core';
 test('directional handles only create after an axial pull and cancel sideways or interrupted gestures',()=>{
  const dom=new JSDOM('<div></div>');const host=dom.window.document.querySelector('div')!;const actions:string[]=[];const handles=new CreationHandles(host,(action,id)=>actions.push(action+':'+id));handles.place(host,'root');

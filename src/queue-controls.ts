@@ -1,3 +1,8 @@
+/*
+ * Copyright (C) 2026 tvoloshaniuk
+ * GPL-3.0-only with the Obsidian Host Additional Permission.
+ * See LICENSE, LICENSING.md and OBSIDIAN-HOST-PERMISSION.md.
+ */
 import { t } from './i18n';
 /** Presentation only: consume the same leading markers as the step parser. */
 export function queueLabel(text: string, showTask = true, showStep = true): string {

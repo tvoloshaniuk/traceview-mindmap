@@ -1,3 +1,8 @@
+/*
+ * Copyright (C) 2026 tvoloshaniuk
+ * GPL-3.0-only with the Obsidian Host Additional Permission.
+ * See LICENSE, LICENSING.md and OBSIDIAN-HOST-PERMISSION.md.
+ */
 import { t } from './i18n';
 import { Editor, type EditorPosition, type EditorSelection, type EditorSelectionOrCaret, type EditorRange, type EditorTransaction, type EditorCommandName } from 'obsidian';
 import { singleLine } from './inline';
