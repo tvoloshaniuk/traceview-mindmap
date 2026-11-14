@@ -678,3 +678,23 @@ test('safe camera path survives repeated reverse wheel motion without changing f
   assert.equal(f.host.querySelector<HTMLElement>('.tvm-world')!.style.transform, '');
   assert.equal(f.host.querySelector<HTMLElement>('.tvm-world')!.style.willChange, '');
 });
+
+test('map and node text keep localized accessible names without tooltip attributes on the hover path', t => {
+  const f = fixture(t, '- Root\n  - Child\n');
+  const document = f.dom.window.document;
+  // Obsidian builds hover tooltips from the nearest aria-label; browsers build them from title.
+  const tooltipSource = (element: Element) => element.closest('[aria-label], [title]');
+  assert.equal(f.viewport.getAttribute('role'), 'tree');
+  assert.equal(tooltipSource(f.viewport), null);
+  assert.equal(tooltipSource(f.host.querySelector('.tvm-world')!), null);
+  assert.equal(tooltipSource(f.element('Child')), null);
+  const mapLabel = document.getElementById(f.viewport.getAttribute('aria-labelledby')!)!;
+  assert.equal(mapLabel.textContent, 'Карта'); assert.equal(mapLabel.hidden, true);
+  assert.ok(f.element('Root').querySelector('[aria-label][title]'), 'Fold button keeps its tooltip');
+  f.surface.beginEdit(f.id('Child'), 'Child', async () => undefined);
+  const input = f.host.querySelector<HTMLTextAreaElement>('.tvm-inline-input')!;
+  assert.equal(tooltipSource(input), null);
+  const inputLabel = document.getElementById(input.getAttribute('aria-labelledby')!)!;
+  assert.equal(inputLabel.textContent, 'Текст вузла'); assert.equal(inputLabel.hidden, true);
+  assert.notEqual(inputLabel, mapLabel);
+});

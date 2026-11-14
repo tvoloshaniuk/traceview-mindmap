@@ -5079,6 +5079,7 @@ var CreationHandles = class {
 
 // src/inline.ts
 var singleLine2 = (text) => text.replace(/[\r\n\u2028\u2029]+/g, " ");
+var nextLabelId = 0;
 var InlineEditor = class {
   constructor(document, initial, options) {
     this.options = options;
@@ -5089,11 +5090,15 @@ var InlineEditor = class {
     this.input = document.createElement("textarea");
     this.input.className = "tvm-inline-input";
     this.input.rows = 1;
-    this.input.setAttribute("aria-label", t("Node text"));
+    const label2 = document.createElement("span");
+    label2.id = "tvm-node-text-label-" + ++nextLabelId;
+    label2.hidden = true;
+    label2.textContent = t("Node text");
+    this.input.setAttribute("aria-labelledby", label2.id);
     this.input.setAttribute("enterkeyhint", "done");
     this.initial = singleLine2(initial);
     this.input.value = this.initial;
-    this.host.append(this.input);
+    this.host.append(this.input, label2);
     const tools = document.createElement("div");
     tools.className = "tvm-inline-tools";
     this.host.append(tools);
@@ -5103,10 +5108,10 @@ var InlineEditor = class {
       this.driver = mounted;
       this.unmount = () => mounted.dispose();
     }
-    const button2 = (label2, title, action) => {
+    const button2 = (label3, title, action) => {
       const el = document.createElement("button");
       el.type = "button";
-      el.textContent = label2;
+      el.textContent = label3;
       el.title = title;
       el.setAttribute("aria-label", title);
       el.onclick = action;
@@ -5335,7 +5340,11 @@ var MapSurface = class {
     this.viewport.tabIndex = 0;
     this.viewport.setAttribute("role", "tree");
     this.viewport.setAttribute("aria-multiselectable", "true");
-    this.viewport.setAttribute("aria-label", t("Map"));
+    const label2 = d.createElement("span");
+    label2.id = `tvm-map-label-${this.instanceId}`;
+    label2.hidden = true;
+    label2.textContent = t("Map");
+    this.viewport.setAttribute("aria-labelledby", label2.id);
     this.world = d.createElement("div");
     this.world.className = "tvm-world";
     this.edges = d.createElementNS("http://www.w3.org/2000/svg", "svg");
@@ -5352,7 +5361,7 @@ var MapSurface = class {
     this.loading.setAttribute("role", "status");
     this.loading.textContent = t("Loading map\u2026");
     this.loading.hidden = true;
-    this.viewport.append(this.edges, this.world, this.live, this.loading);
+    this.viewport.append(this.edges, this.world, this.live, this.loading, label2);
     container.append(this.viewport);
     this.handles = new CreationHandles(this.viewport, (action, id) => this.options.onAction(action, id));
     this.listen(this.viewport, "click", (e) => this.click(e), { capture: true });
@@ -7025,7 +7034,9 @@ function mountNativeEditor(owner, input, tools, inline, Native, ensureAddress) {
         if (suggestion.selectSuggestion === select) suggestion.selectSuggestion = original;
       });
     }
-    native.cm.contentDOM.setAttribute("aria-label", t("Node text"));
+    const labelledBy = input.getAttribute("aria-labelledby");
+    if (labelledBy) native.cm.contentDOM.setAttribute("aria-labelledby", labelledBy);
+    else native.cm.contentDOM.setAttribute("aria-label", t("Node text"));
     native.cm.contentDOM.setAttribute("enterkeyhint", "done");
     input.hidden = true;
     input.addEventListener("input", pull);

@@ -37,3 +37,20 @@ test('unchanged or reverted drafts cancel directly, but a pending image needs co
   assert.ok(editor.host.querySelector('[role=alertdialog]'));
   editor.dispose(); dom.window.close();
 });
+
+test('node text field is named by a hidden localized label, not a tooltip attribute; button tooltips remain', () => {
+  const dom = new JSDOM('<body></body>'); const document = dom.window.document;
+  const options = {save:async()=>{},cancel:()=>{},resize:()=>{}};
+  const editor = new InlineEditor(document,'Original',options), other = new InlineEditor(document,'Other',options);
+  document.body.append(editor.host, other.host);
+  // Obsidian builds hover tooltips from aria-label; browsers build them from title.
+  assert.equal(editor.input.closest('[aria-label], [title]'), null);
+  const label = document.getElementById(editor.input.getAttribute('aria-labelledby')!)!;
+  assert.equal(label.textContent, 'Текст вузла'); assert.equal(label.hidden, true); assert.ok(editor.host.contains(label));
+  assert.notEqual(other.input.getAttribute('aria-labelledby'), label.id, 'Each draft needs its own label id');
+  assert.equal(document.getElementById(other.input.getAttribute('aria-labelledby')!)!.textContent, 'Текст вузла');
+  for (const name of ['Зберегти (Enter)', 'Скасувати (Escape)']) {
+    assert.equal(editor.host.querySelector<HTMLButtonElement>(`button[aria-label="${name}"]`)?.title, name);
+  }
+  editor.dispose(); other.dispose(); dom.window.close();
+});

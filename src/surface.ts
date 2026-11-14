@@ -82,7 +82,10 @@ export class MapSurface {
     this.viewport.tabIndex = 0;
     this.viewport.setAttribute('role', 'tree');
     this.viewport.setAttribute('aria-multiselectable', 'true');
-    this.viewport.setAttribute('aria-label', t("Map"));
+    // Obsidian shows every aria-label as a hover tooltip, so name the map through a hidden label instead.
+    const label = d.createElement('span');
+    label.id = `tvm-map-label-${this.instanceId}`; label.hidden = true; label.textContent = t("Map");
+    this.viewport.setAttribute('aria-labelledby', label.id);
     this.world = d.createElement('div');
     this.world.className = 'tvm-world';
     this.edges = d.createElementNS('http://www.w3.org/2000/svg', 'svg');
@@ -99,7 +102,7 @@ export class MapSurface {
     this.loading.setAttribute('role', 'status');
     this.loading.textContent = t("Loading map…");
     this.loading.hidden = true;
-    this.viewport.append(this.edges, this.world, this.live, this.loading);
+    this.viewport.append(this.edges, this.world, this.live, this.loading, label);
     container.append(this.viewport);
     this.handles = new CreationHandles(this.viewport, (action,id) => this.options.onAction(action,id));
     this.listen(this.viewport, 'click', (e) => this.click(e as MouseEvent), { capture: true });

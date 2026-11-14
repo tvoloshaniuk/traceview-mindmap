@@ -21,6 +21,7 @@ export interface InlineOptions {
 }
 
 export const singleLine = (text: string): string => text.replace(/[\r\n\u2028\u2029]+/g, ' ');
+let nextLabelId = 0;
 
 /** The draft lives in this element, never in the Markdown document. */
 export class InlineEditor {
@@ -39,11 +40,14 @@ export class InlineEditor {
     this.input = document.createElement('textarea');
     this.input.className = 'tvm-inline-input';
     this.input.rows = 1;
-    this.input.setAttribute('aria-label', t("Node text"));
+    // Obsidian shows every aria-label as a hover tooltip, so name the field through a hidden label instead.
+    const label = document.createElement('span');
+    label.id = 'tvm-node-text-label-' + (++nextLabelId); label.hidden = true; label.textContent = t("Node text");
+    this.input.setAttribute('aria-labelledby', label.id);
     this.input.setAttribute('enterkeyhint', 'done');
     this.initial = singleLine(initial);
     this.input.value = this.initial;
-    this.host.append(this.input);
+    this.host.append(this.input, label);
     const tools = document.createElement('div');
     tools.className = 'tvm-inline-tools';
     this.host.append(tools);

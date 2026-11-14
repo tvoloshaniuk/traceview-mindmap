@@ -159,7 +159,10 @@ export function mountNativeEditor(owner: NativeOwner, input: HTMLTextAreaElement
       suggestion.selectSuggestion = select;
       releaseSuggestions.push(() => { if (suggestion.selectSuggestion === select) suggestion.selectSuggestion = original; });
     }
-    native.cm.contentDOM.setAttribute('aria-label', t("Node text"));
+    // Share the draft's hidden label: an aria-label here would surface as an Obsidian hover tooltip.
+    const labelledBy = input.getAttribute('aria-labelledby');
+    if (labelledBy) native.cm.contentDOM.setAttribute('aria-labelledby', labelledBy);
+    else native.cm.contentDOM.setAttribute('aria-label', t("Node text"));
     native.cm.contentDOM.setAttribute('enterkeyhint', 'done');
     input.hidden = true;
     input.addEventListener('input', pull); host.addEventListener('keydown', keydown, true); host.addEventListener('beforeinput', beforeinput); host.addEventListener('focusin', focus); host.addEventListener('focusout', blur);

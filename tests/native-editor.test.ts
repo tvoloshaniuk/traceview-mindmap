@@ -42,3 +42,34 @@ test('native draft takes command ownership on focus and reacquires it without st
   driver.focus();assert.equal(app.workspace.activeEditor,null,'Disposed drafts must not retake commands');
  } finally {dom.window.close();}
 });
+
+test('native draft shares the textarea label instead of a tooltip attribute; unlabelled drafts keep a name',()=>{
+ const dom=new JSDOM('<div id="labelled"><span id="node-label" hidden>Node text</span><textarea aria-labelledby="node-label"></textarea><div class="tools"></div></div><div id="bare"><textarea></textarea><div class="tools"></div></div>');
+ try {
+  const document=dom.window.document;
+  const app:any={scope:{},workspace:{activeEditor:null},keymap:{pushScope:()=>{},popScope:()=>{}}};
+  class Native {
+   editor:any;cm:any;editorSuggest={isShowingSuggestion:()=>false,close:()=>{}};
+   value='';
+   constructor(_app:any,host:HTMLElement){const content=document.createElement('div');host.append(content);this.cm={contentDOM:content};this.editor={focus:()=>{},setCursor:()=>{}};}
+   set(text:string){this.value=text;} get(){return this.value;} destroy(){} onResize(){} buildLocalExtensions(){return [];} onUpdate(){}
+  }
+  const source=ts.transpileModule(readFileSync('src/native-editor.ts','utf8'),{compilerOptions:{module:ts.ModuleKind.CommonJS,target:ts.ScriptTarget.ES2020}}).outputText;
+  const exports:any={};
+  runInNewContext(source,{exports,require:(name:string)=>name==='obsidian'?{Scope:class {register(){}},MarkdownView:class {}}:name==='./inline'?{singleLine}:i18n});
+  const mount=(id:string)=>{
+   const root=document.getElementById(id)!,owner:any={app,file:{path:'Note.md'},addChild:()=>{},removeChild:()=>{}};
+   const driver=exports.mountNativeEditor(owner,root.querySelector('textarea'),root.querySelector('.tools'),{handleKeydown:()=>false},Native);
+   return {root,driver,content:owner.editMode.cm.contentDOM as HTMLElement};
+  };
+  const labelled=mount('labelled');
+  // Obsidian builds hover tooltips from the nearest aria-label; browsers build them from title.
+  assert.equal(labelled.content.closest('[aria-label], [title]'),null);
+  assert.equal(labelled.content.getAttribute('aria-labelledby'),'node-label');
+  const link=i18n.t("Native Obsidian link");
+  assert.equal(labelled.root.querySelector<HTMLButtonElement>(`.tools button[aria-label="${link}"]`)?.title,link,'Formatting buttons keep their tooltips');
+  const bare=mount('bare');
+  assert.equal(bare.content.getAttribute('aria-label'),i18n.t("Node text"),'A draft without a label element must still be named');
+  labelled.driver.dispose();bare.driver.dispose();
+ } finally {dom.window.close();}
+});
