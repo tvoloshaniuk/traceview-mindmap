@@ -6883,7 +6883,9 @@ function mountNativeEditor(owner, input, tools, inline, Native, ensureAddress) {
     if (!native?.editorSuggest.isShowingSuggestion() && inline.handleKeydown(event)) return false;
   });
   const focus = () => {
-    if (!scoped && active) {
+    if (!active) return;
+    owner.app.workspace.activeEditor = owner;
+    if (!scoped) {
       owner.app.keymap.pushScope(scope);
       scoped = true;
     }
@@ -7051,7 +7053,10 @@ function mountNativeEditor(owner, input, tools, inline, Native, ensureAddress) {
     return {
       element: host,
       focus: () => {
-        if (active) native?.editor.focus();
+        if (active) {
+          native?.editor.focus();
+          focus();
+        }
       },
       resize: () => {
         if (active && host.isConnected) native?.onResize();

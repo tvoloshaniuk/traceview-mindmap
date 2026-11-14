@@ -66,7 +66,11 @@ export function mountNativeEditor(owner: NativeOwner, input: HTMLTextAreaElement
   for (const key of ['Enter', 'Escape']) scope.register([], key, event => {
     if (!native?.editorSuggest.isShowingSuggestion() && inline.handleKeydown(event)) return false;
   });
-  const focus = () => { if (!scoped && active) { owner.app.keymap.pushScope(scope); scoped = true; } };
+  const focus = () => {
+    if (!active) return;
+    owner.app.workspace.activeEditor = owner;
+    if (!scoped) { owner.app.keymap.pushScope(scope); scoped = true; }
+  };
   const blur = () => { if (scoped) { owner.app.keymap.popScope(scope); scoped = false; } };
   let native: InternalEditor | undefined;
   const releaseSuggestions: (() => void)[] = [];
@@ -168,7 +172,7 @@ export function mountNativeEditor(owner: NativeOwner, input: HTMLTextAreaElement
     add('QA', t("Mark as question"), () => native?.editor.replaceSelection('==//todo Q: =='));
     return {
       element: host,
-      focus: () => { if (active) native?.editor.focus(); },
+      focus: () => { if (active) { native?.editor.focus(); focus(); } },
       resize: () => { if (active && host.isConnected) native?.onResize(); },
       setReadOnly: value => { if (native) native.cm.contentDOM.contentEditable = String(!value); },
       suggestionActive: () => !!native?.editorSuggest.isShowingSuggestion(),
