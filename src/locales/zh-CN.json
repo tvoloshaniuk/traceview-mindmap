@@ -1,4 +1,6 @@
 {
+  "Recover local draft": "恢复本地草稿",
+  "No saved drafts": "没有已保存的草稿",
   "Insert template at selected node…": "在所选节点处插入模板…",
   "Enable Templater or Templates and configure a template folder.": "请启用 Templater 或 Templates 并设置模板文件夹。",
   "A node with its own Markdown line is required.": "需要具有独立 Markdown 行的节点。",

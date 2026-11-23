@@ -1,4 +1,6 @@
 {
+  "Recover local draft": "Recuperar borrador local",
+  "No saved drafts": "No hay borradores guardados",
   "Insert template at selected node…": "Insertar plantilla en el nodo seleccionado…",
   "Enable Templater or Templates and configure a template folder.": "Activa Templater o Templates y configura una carpeta de plantillas.",
   "A node with its own Markdown line is required.": "Se necesita un nodo con su propia línea Markdown.",

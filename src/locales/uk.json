@@ -1,4 +1,6 @@
 {
+  "Recover local draft": "Відновити локальну чернетку",
+  "No saved drafts": "Немає збережених чернеток",
   "Insert template at selected node…": "Вставити шаблон у файлі біля вибраного вузла…",
   "Enable Templater or Templates and configure a template folder.": "Увімкни Templater або Templates і вкажи папку шаблонів.",
   "A node with its own Markdown line is required.": "Потрібен вузол із власним Markdown-рядком.",

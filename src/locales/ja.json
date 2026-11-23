@@ -1,4 +1,6 @@
 {
+  "Recover local draft": "ローカルの下書きを復元",
+  "No saved drafts": "保存された下書きはありません",
   "Insert template at selected node…": "選択したノードの位置にテンプレートを挿入…",
   "Enable Templater or Templates and configure a template folder.": "Templater または Templates を有効にし、テンプレートフォルダを設定してください。",
   "A node with its own Markdown line is required.": "独立した Markdown 行を持つノードが必要です。",

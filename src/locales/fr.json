@@ -1,4 +1,6 @@
 {
+  "Recover local draft": "Récupérer le brouillon local",
+  "No saved drafts": "Aucun brouillon enregistré",
   "Insert template at selected node…": "Insérer un modèle au niveau du nœud sélectionné…",
   "Enable Templater or Templates and configure a template folder.": "Activez Templater ou Templates et configurez un dossier de modèles.",
   "A node with its own Markdown line is required.": "Un nœud avec sa propre ligne Markdown est requis.",

@@ -358,6 +358,8 @@ module.exports = __toCommonJS(main_exports);
 
 // src/locales/en.json
 var en_default = {
+  "Recover local draft": "Recover local draft",
+  "No saved drafts": "No saved drafts",
   "Insert template at selected node\u2026": "Insert template at selected node\u2026",
   "Enable Templater or Templates and configure a template folder.": "Enable Templater or Templates and configure a template folder.",
   "A node with its own Markdown line is required.": "A node with its own Markdown line is required.",
@@ -677,6 +679,8 @@ var en_default = {
 
 // src/locales/uk.json
 var uk_default = {
+  "Recover local draft": "\u0412\u0456\u0434\u043D\u043E\u0432\u0438\u0442\u0438 \u043B\u043E\u043A\u0430\u043B\u044C\u043D\u0443 \u0447\u0435\u0440\u043D\u0435\u0442\u043A\u0443",
+  "No saved drafts": "\u041D\u0435\u043C\u0430\u0454 \u0437\u0431\u0435\u0440\u0435\u0436\u0435\u043D\u0438\u0445 \u0447\u0435\u0440\u043D\u0435\u0442\u043E\u043A",
   "Insert template at selected node\u2026": "\u0412\u0441\u0442\u0430\u0432\u0438\u0442\u0438 \u0448\u0430\u0431\u043B\u043E\u043D \u0443 \u0444\u0430\u0439\u043B\u0456 \u0431\u0456\u043B\u044F \u0432\u0438\u0431\u0440\u0430\u043D\u043E\u0433\u043E \u0432\u0443\u0437\u043B\u0430\u2026",
   "Enable Templater or Templates and configure a template folder.": "\u0423\u0432\u0456\u043C\u043A\u043D\u0438 Templater \u0430\u0431\u043E Templates \u0456 \u0432\u043A\u0430\u0436\u0438 \u043F\u0430\u043F\u043A\u0443 \u0448\u0430\u0431\u043B\u043E\u043D\u0456\u0432.",
   "A node with its own Markdown line is required.": "\u041F\u043E\u0442\u0440\u0456\u0431\u0435\u043D \u0432\u0443\u0437\u043E\u043B \u0456\u0437 \u0432\u043B\u0430\u0441\u043D\u0438\u043C Markdown-\u0440\u044F\u0434\u043A\u043E\u043C.",
@@ -996,6 +1000,8 @@ var uk_default = {
 
 // src/locales/pl.json
 var pl_default = {
+  "Recover local draft": "Przywr\xF3\u0107 lokalny szkic",
+  "No saved drafts": "Brak zapisanych szkic\xF3w",
   "Insert template at selected node\u2026": "Wstaw szablon przy wybranym w\u0119\u017Ale\u2026",
   "Enable Templater or Templates and configure a template folder.": "W\u0142\u0105cz Templater lub Templates i wska\u017C folder szablon\xF3w.",
   "A node with its own Markdown line is required.": "Wymagany jest w\u0119ze\u0142 z w\u0142asnym wierszem Markdown.",
@@ -1315,6 +1321,8 @@ var pl_default = {
 
 // src/locales/de.json
 var de_default = {
+  "Recover local draft": "Lokalen Entwurf wiederherstellen",
+  "No saved drafts": "Keine gespeicherten Entw\xFCrfe",
   "Insert template at selected node\u2026": "Vorlage am ausgew\xE4hlten Knoten einf\xFCgen\u2026",
   "Enable Templater or Templates and configure a template folder.": "Aktiviere Templater oder Templates und lege einen Vorlagenordner fest.",
   "A node with its own Markdown line is required.": "Ein Knoten mit eigener Markdown-Zeile ist erforderlich.",
@@ -1634,6 +1642,8 @@ var de_default = {
 
 // src/locales/es.json
 var es_default = {
+  "Recover local draft": "Recuperar borrador local",
+  "No saved drafts": "No hay borradores guardados",
   "Insert template at selected node\u2026": "Insertar plantilla en el nodo seleccionado\u2026",
   "Enable Templater or Templates and configure a template folder.": "Activa Templater o Templates y configura una carpeta de plantillas.",
   "A node with its own Markdown line is required.": "Se necesita un nodo con su propia l\xEDnea Markdown.",
@@ -1953,6 +1963,8 @@ var es_default = {
 
 // src/locales/fr.json
 var fr_default = {
+  "Recover local draft": "R\xE9cup\xE9rer le brouillon local",
+  "No saved drafts": "Aucun brouillon enregistr\xE9",
   "Insert template at selected node\u2026": "Ins\xE9rer un mod\xE8le au niveau du n\u0153ud s\xE9lectionn\xE9\u2026",
   "Enable Templater or Templates and configure a template folder.": "Activez Templater ou Templates et configurez un dossier de mod\xE8les.",
   "A node with its own Markdown line is required.": "Un n\u0153ud avec sa propre ligne Markdown est requis.",
@@ -2272,6 +2284,8 @@ var fr_default = {
 
 // src/locales/pt-BR.json
 var pt_BR_default = {
+  "Recover local draft": "Recuperar rascunho local",
+  "No saved drafts": "Nenhum rascunho salvo",
   "Insert template at selected node\u2026": "Inserir modelo no n\xF3 selecionado\u2026",
   "Enable Templater or Templates and configure a template folder.": "Ative o Templater ou Templates e configure uma pasta de modelos.",
   "A node with its own Markdown line is required.": "\xC9 necess\xE1rio um n\xF3 com sua pr\xF3pria linha Markdown.",
@@ -2591,6 +2605,8 @@ var pt_BR_default = {
 
 // src/locales/zh-CN.json
 var zh_CN_default = {
+  "Recover local draft": "\u6062\u590D\u672C\u5730\u8349\u7A3F",
+  "No saved drafts": "\u6CA1\u6709\u5DF2\u4FDD\u5B58\u7684\u8349\u7A3F",
   "Insert template at selected node\u2026": "\u5728\u6240\u9009\u8282\u70B9\u5904\u63D2\u5165\u6A21\u677F\u2026",
   "Enable Templater or Templates and configure a template folder.": "\u8BF7\u542F\u7528 Templater \u6216 Templates \u5E76\u8BBE\u7F6E\u6A21\u677F\u6587\u4EF6\u5939\u3002",
   "A node with its own Markdown line is required.": "\u9700\u8981\u5177\u6709\u72EC\u7ACB Markdown \u884C\u7684\u8282\u70B9\u3002",
@@ -2910,6 +2926,8 @@ var zh_CN_default = {
 
 // src/locales/ja.json
 var ja_default = {
+  "Recover local draft": "\u30ED\u30FC\u30AB\u30EB\u306E\u4E0B\u66F8\u304D\u3092\u5FA9\u5143",
+  "No saved drafts": "\u4FDD\u5B58\u3055\u308C\u305F\u4E0B\u66F8\u304D\u306F\u3042\u308A\u307E\u305B\u3093",
   "Insert template at selected node\u2026": "\u9078\u629E\u3057\u305F\u30CE\u30FC\u30C9\u306E\u4F4D\u7F6E\u306B\u30C6\u30F3\u30D7\u30EC\u30FC\u30C8\u3092\u633F\u5165\u2026",
   "Enable Templater or Templates and configure a template folder.": "Templater \u307E\u305F\u306F Templates \u3092\u6709\u52B9\u306B\u3057\u3001\u30C6\u30F3\u30D7\u30EC\u30FC\u30C8\u30D5\u30A9\u30EB\u30C0\u3092\u8A2D\u5B9A\u3057\u3066\u304F\u3060\u3055\u3044\u3002",
   "A node with its own Markdown line is required.": "\u72EC\u7ACB\u3057\u305F Markdown \u884C\u3092\u6301\u3064\u30CE\u30FC\u30C9\u304C\u5FC5\u8981\u3067\u3059\u3002",
@@ -3229,6 +3247,8 @@ var ja_default = {
 
 // src/locales/ko.json
 var ko_default = {
+  "Recover local draft": "\uB85C\uCEEC \uCD08\uC548 \uBCF5\uC6D0",
+  "No saved drafts": "\uC800\uC7A5\uB41C \uCD08\uC548 \uC5C6\uC74C",
   "Insert template at selected node\u2026": "\uC120\uD0DD\uD55C \uB178\uB4DC \uC704\uCE58\uC5D0 \uD15C\uD50C\uB9BF \uC0BD\uC785\u2026",
   "Enable Templater or Templates and configure a template folder.": "Templater \uB610\uB294 Templates\uB97C \uD65C\uC131\uD654\uD558\uACE0 \uD15C\uD50C\uB9BF \uD3F4\uB354\uB97C \uC9C0\uC815\uD558\uC138\uC694.",
   "A node with its own Markdown line is required.": "\uB3C5\uB9BD\uB41C Markdown \uC904\uC774 \uC788\uB294 \uB178\uB4DC\uAC00 \uD544\uC694\uD569\uB2C8\uB2E4.",
@@ -3548,6 +3568,8 @@ var ko_default = {
 
 // src/locales/ru.json
 var ru_default = {
+  "Recover local draft": "\u0412\u043E\u0441\u0441\u0442\u0430\u043D\u043E\u0432\u0438\u0442\u044C \u043B\u043E\u043A\u0430\u043B\u044C\u043D\u044B\u0439 \u0447\u0435\u0440\u043D\u043E\u0432\u0438\u043A",
+  "No saved drafts": "\u041D\u0435\u0442 \u0441\u043E\u0445\u0440\u0430\u043D\u0451\u043D\u043D\u044B\u0445 \u0447\u0435\u0440\u043D\u043E\u0432\u0438\u043A\u043E\u0432",
   "Insert template at selected node\u2026": "\u0412\u0441\u0442\u0430\u0432\u0438\u0442\u044C \u0448\u0430\u0431\u043B\u043E\u043D \u0432 \u0444\u0430\u0439\u043B\u0435 \u0443 \u0432\u044B\u0431\u0440\u0430\u043D\u043D\u043E\u0433\u043E \u0443\u0437\u043B\u0430\u2026",
   "Enable Templater or Templates and configure a template folder.": "\u0412\u043A\u043B\u044E\u0447\u0438\u0442\u0435 Templater \u0438\u043B\u0438 Templates \u0438 \u0443\u043A\u0430\u0436\u0438\u0442\u0435 \u043F\u0430\u043F\u043A\u0443 \u0448\u0430\u0431\u043B\u043E\u043D\u043E\u0432.",
   "A node with its own Markdown line is required.": "\u041D\u0443\u0436\u0435\u043D \u0443\u0437\u0435\u043B \u0441 \u0441\u043E\u0431\u0441\u0442\u0432\u0435\u043D\u043D\u043E\u0439 \u0441\u0442\u0440\u043E\u043A\u043E\u0439 Markdown.",
@@ -5517,7 +5539,7 @@ var MapSurface = class {
     this.rendered.clear();
     if (!this.editing) this.render();
   }
-  beginEdit(id, initial, save, mount, draft) {
+  beginEdit(id, initial, save, mount, draft, onFinish) {
     if (this.editing || !this.doc || this.destroyed) {
       this.focusEditor();
       return;
@@ -5526,9 +5548,13 @@ var MapSurface = class {
     const editor = new InlineEditor(this.container.ownerDocument, initial, {
       save: async (text) => {
         const selected = await save(text);
+        onFinish?.();
         if (this.editing?.editor === editor) this.finishEdit(selected);
       },
-      cancel: () => this.finishEdit(),
+      cancel: () => {
+        onFinish?.();
+        this.finishEdit();
+      },
       resize: () => this.scheduleLayout(true),
       mount
     });
@@ -7273,6 +7299,32 @@ var InputEditor = class extends import_obsidian2.Editor {
   }
 };
 
+// src/main.ts
+var import_obsidian6 = require("obsidian");
+
+// src/draft-recovery.ts
+var DraftRecovery = class {
+  constructor(app) {
+    this.app = app;
+    this.prefix = "traceview-mindmap:drafts:";
+  }
+  keys() {
+    return this.app.loadLocalStorage(this.prefix) ?? [];
+  }
+  list() {
+    return this.keys().map((key) => this.app.loadLocalStorage(this.prefix + key)).filter(Boolean);
+  }
+  save(draft) {
+    const keys = this.keys();
+    if (!keys.includes(draft.key)) this.app.saveLocalStorage(this.prefix, [...keys, draft.key]);
+    this.app.saveLocalStorage(this.prefix + draft.key, draft);
+  }
+  remove(key) {
+    this.app.saveLocalStorage(this.prefix + key, null);
+    this.app.saveLocalStorage(this.prefix, this.keys().filter((item) => item !== key));
+  }
+};
+
 // src/node-templates.ts
 var import_obsidian3 = require("obsidian");
 var NodeTemplatePicker = class extends import_obsidian3.FuzzySuggestModal {
@@ -8118,6 +8170,7 @@ var iconButton = (parent, icon, label2, action) => {
 var TraceViewMindmap = class extends import_obsidian5.Plugin {
   constructor() {
     super(...arguments);
+    this.liveDrafts = /* @__PURE__ */ new Set();
     this.settings = { ...DEFAULT_SETTINGS };
     this.clipboard = "";
     this.matchesMap = compileMapPatterns(DEFAULT_SETTINGS);
@@ -8148,6 +8201,10 @@ var TraceViewMindmap = class extends import_obsidian5.Plugin {
     if (this.settings.nodeEditor !== "native" && this.settings.nodeEditor !== "text") this.settings.nodeEditor = "native";
     if (!isLanguageSetting(this.settings.language)) this.settings.language = "auto";
     setLanguage(this.settings.language, typeof import_obsidian5.getLanguage === "function" ? (0, import_obsidian5.getLanguage)() : "en");
+    if (import_obsidian5.Platform?.isAndroidApp) {
+      this.drafts = new DraftRecovery(this.app);
+      this.addCommand({ id: "recover-draft", name: t("Recover local draft"), callback: () => this.showDrafts() });
+    }
     if (this.settings.patternMode !== "regex") this.settings.patternMode = "glob";
     if (typeof this.settings.mapPatterns !== "string") this.settings.mapPatterns = DEFAULT_SETTINGS.mapPatterns;
     try {
@@ -8346,6 +8403,37 @@ var TraceViewMindmap = class extends import_obsidian5.Plugin {
     new MapPicker(this.app, (file) => this.isMap(file), (file) => {
       void this.openMap(file);
     }).open();
+  }
+  showDrafts(path) {
+    const modal = new import_obsidian6.Modal(this.app);
+    modal.titleEl.setText(t("Recover local draft"));
+    const drafts = this.drafts?.list().filter((d) => !this.liveDrafts.has(d.key) && (!path || d.path === path)) ?? [];
+    if (!drafts.length) modal.contentEl.createEl("p", { text: t("No saved drafts") });
+    for (const draft of drafts) {
+      modal.contentEl.createEl("p", { text: draft.path + " \xB7 " + draft.original });
+      const preview = modal.contentEl.createEl("textarea");
+      preview.value = draft.text;
+      preview.readOnly = true;
+      button(modal.contentEl, t("Continue editing"), () => {
+        void (async () => {
+          const file = this.app.vault.getAbstractFileByPath(draft.path);
+          if (!(file instanceof import_obsidian5.TFile)) throw new Error(t("File missing or deleted. Open another map."));
+          await this.openMap(file);
+          const view = this.app.workspace.getActiveViewOfType(MapView);
+          const node = view?.doc?.byId.get(draft.nodeId);
+          if (view?.file !== file || !node || node.text !== draft.original || view.surface?.isEditing() || this.liveDrafts.has(draft.key))
+            throw new Error(t("The note changed. Open it again at the current line."));
+          modal.close();
+          await view.action(draft.action, node.id, draft);
+        })().catch((error) => new import_obsidian5.Notice(message(error)));
+      });
+      button(modal.contentEl, t("Discard changes"), () => new ConfirmDialog(this.app, t("Discard changes"), draft.text, async () => {
+        if (!this.liveDrafts.has(draft.key)) this.drafts?.remove(draft.key);
+        modal.close();
+        for (const leaf of this.app.workspace.getLeavesOfType(VIEW)) leaf.view.refreshDraftButton();
+      }, { label: t("Discard changes"), focusConfirm: false }).open());
+    }
+    modal.open();
   }
   activeFile() {
     const view = this.app.workspace.getActiveViewOfType(MapView);
@@ -8596,6 +8684,9 @@ var MapView = class extends import_obsidian5.EditableFileView {
       if (target?.closest?.(".tvm-surface") && this.contentEl.contains(target) && this.surface?.handleKeydown(event)) return false;
     });
   }
+  refreshDraftButton() {
+    if (this.draftButton) this.draftButton.hidden = !this.plugin.drafts?.list().some((d) => d.path === this.path && !this.plugin.liveDrafts.has(d.key));
+  }
   getViewType() {
     return VIEW;
   }
@@ -8634,6 +8725,7 @@ var MapView = class extends import_obsidian5.EditableFileView {
     this.path = file.path;
     this.doc = void 0;
     this.history = new History();
+    this.refreshDraftButton();
     if (this.startupGate) this.startupGate.hidden = true;
     this.pendingState = this.readState();
     if (this.surface) await this.reload();
@@ -8801,6 +8893,10 @@ var MapView = class extends import_obsidian5.EditableFileView {
       onHoverLink: (event, targetEl, linktext) => this.app.workspace.trigger("hover-link", { event, source: "traceview-mindmap", hoverParent: this, targetEl, linktext, sourcePath: this.path })
     });
     this.status = this.host.createDiv("tvm-status tvm-map-status");
+    if (this.plugin.drafts) {
+      this.draftButton = button(this.host, t("Recover local draft"), () => this.plugin.showDrafts(this.path));
+      this.refreshDraftButton();
+    }
     this.startupGate = this.host.createDiv("tvm-startup-gate");
     this.startupGate.hidden = true;
     this.startupMessage = this.startupGate.createDiv({ attr: { role: "status" } });
@@ -9000,7 +9096,7 @@ var MapView = class extends import_obsidian5.EditableFileView {
       new import_obsidian5.Notice(message(error), 8e3);
     }
   }
-  async action(action, id) {
+  async action(action, id, recovered) {
     const doc = this.doc;
     const path = this.path;
     if (!doc) return;
@@ -9135,7 +9231,10 @@ var MapView = class extends import_obsidian5.EditableFileView {
         const placeholder = `tvm-draft-${Date.now()}-${Math.random().toString(36).slice(2)}`;
         const draft = action === "edit" ? doc : parseMap(transform(placeholder), doc);
         const draftId = action === "edit" ? id : draft.nodes.find((candidate) => candidate.text === placeholder).id;
-        this.surface?.beginEdit(draftId, action === "edit" ? node.text : "", async (text) => {
+        const initial = action === "edit" ? node.text : "";
+        const storage = this.plugin.drafts;
+        const record = storage ? recovered ?? { key: crypto.randomUUID(), path, nodeId: id, original: node.text, action, text: initial } : void 0;
+        this.surface?.beginEdit(draftId, initial, async (text) => {
           if (this.path !== path) throw new Error(t("The note was renamed. Copy the draft and reopen the editor."));
           await this.reload();
           const base = this.doc;
@@ -9144,7 +9243,34 @@ var MapView = class extends import_obsidian5.EditableFileView {
           if (!selected) throw new Error(t("The node no longer exists. Your draft is preserved."));
           await this.apply(base, transformOn(base, selected, text));
           return action === "edit" ? selected : action === "add-parent" ? this.doc?.nodes.find((candidate) => candidate.line === node.line)?.id : this.doc?.nodes.find((candidate) => !base.byId.has(candidate.id))?.id;
-        }, (input, tools, inline) => this.mountEditor(input, tools, path, inline), draft);
+        }, (input, tools, inline) => {
+          const driver = this.mountEditor(input, tools, path, inline);
+          if (storage && record) {
+            this.activeDraftKey = record.key;
+            this.plugin.liveDrafts.add(record.key);
+            if (recovered) {
+              input.value = recovered.text;
+              input.dispatchEvent(new input.ownerDocument.defaultView.Event("input", { bubbles: true }));
+            }
+            let warned = false;
+            input.addEventListener("input", () => {
+              try {
+                if (input.value === initial) storage.remove(record.key);
+                else storage.save({ ...record, text: input.value });
+              } catch (error) {
+                if (!warned) new import_obsidian5.Notice(message(error));
+                warned = true;
+              }
+            });
+          }
+          return driver;
+        }, draft, record && (() => {
+          this.plugin.liveDrafts.delete(record.key);
+          this.activeDraftKey = void 0;
+          storage.remove(record.key);
+          this.refreshDraftButton();
+        }));
+        if (recovered) this.refreshDraftButton();
         return;
       }
       if (action === "delete") {
@@ -9296,6 +9422,7 @@ var MapView = class extends import_obsidian5.EditableFileView {
     }, this.path, "single-line").open();
   }
   async onClose() {
+    if (this.activeDraftKey) this.plugin.liveDrafts.delete(this.activeDraftKey);
     this.cancelRestoreWait?.();
     this.persist();
     this.closed = true;

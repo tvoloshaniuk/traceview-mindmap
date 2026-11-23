@@ -1,4 +1,6 @@
 {
+  "Recover local draft": "Recuperar rascunho local",
+  "No saved drafts": "Nenhum rascunho salvo",
   "Insert template at selected node…": "Inserir modelo no nó selecionado…",
   "Enable Templater or Templates and configure a template folder.": "Ative o Templater ou Templates e configure uma pasta de modelos.",
   "A node with its own Markdown line is required.": "É necessário um nó com sua própria linha Markdown.",

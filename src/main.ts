@@ -16,6 +16,8 @@ import { mountNativeEditor, prepareNativeEditor, type NativeConstructor } from '
 import type { InlineEditor, InlineDriver } from './inline';
 import type { Editor } from 'obsidian';
 import { InputEditor } from './input-editor';
+import { Modal } from 'obsidian';
+import { DraftRecovery, type LocalDraft } from './draft-recovery';
 import { NodeTemplatePicker, type NodeTemplate } from './node-templates';
 import { attachImagePaste, saveClipboardImage } from './image-paste';
 import { attachNodeTools, ConfirmDialog, DateDialog, MapPicker, TextDialog } from './editor';
@@ -56,6 +58,8 @@ const iconButton = (parent: HTMLElement, icon: string, label: string, action: ()
 };
 
 export default class TraceViewMindmap extends Plugin {
+  drafts?: DraftRecovery;
+  liveDrafts = new Set<string>();
   settings: Settings = { ...DEFAULT_SETTINGS };
   private clipboard = '';
   private matchesMap = compileMapPatterns(DEFAULT_SETTINGS);
@@ -79,6 +83,10 @@ export default class TraceViewMindmap extends Plugin {
     if (this.settings.nodeEditor !== 'native' && this.settings.nodeEditor !== 'text') this.settings.nodeEditor = 'native';
     if (!isLanguageSetting(this.settings.language)) this.settings.language = 'auto';
     setLanguage(this.settings.language, typeof getLanguage === 'function' ? getLanguage() : 'en');
+    if (Platform?.isAndroidApp) {
+      this.drafts = new DraftRecovery(this.app);
+      this.addCommand({ id: 'recover-draft', name: t("Recover local draft"), callback: () => this.showDrafts() });
+    }
     if (this.settings.patternMode !== 'regex') this.settings.patternMode = 'glob';
     if (typeof this.settings.mapPatterns !== 'string') this.settings.mapPatterns = DEFAULT_SETTINGS.mapPatterns;
     try { this.matchesMap = compileMapPatterns(this.settings); }
@@ -237,6 +245,34 @@ export default class TraceViewMindmap extends Plugin {
   }
 
   pickMap(): void { new MapPicker(this.app, file => this.isMap(file), file => { void this.openMap(file); }).open(); }
+  showDrafts(path?: string): void {
+    const modal = new Modal(this.app);
+    modal.titleEl.setText(t("Recover local draft"));
+    const drafts = this.drafts?.list().filter(d => !this.liveDrafts.has(d.key) && (!path || d.path === path)) ?? [];
+    if (!drafts.length) modal.contentEl.createEl('p', { text: t("No saved drafts") });
+    for (const draft of drafts) {
+      modal.contentEl.createEl('p', { text: draft.path + ' · ' + draft.original });
+      const preview = modal.contentEl.createEl('textarea');
+      preview.value = draft.text; preview.readOnly = true;
+      button(modal.contentEl, t("Continue editing"), () => { void (async () => {
+        const file = this.app.vault.getAbstractFileByPath(draft.path);
+        if (!(file instanceof TFile)) throw new Error(t("File missing or deleted. Open another map."));
+        await this.openMap(file);
+        const view = this.app.workspace.getActiveViewOfType(MapView);
+        const node = view?.doc?.byId.get(draft.nodeId);
+        if (view?.file !== file || !node || node.text !== draft.original || view.surface?.isEditing() || this.liveDrafts.has(draft.key))
+          throw new Error(t("The note changed. Open it again at the current line."));
+        modal.close();
+        await view.action(draft.action, node.id, draft);
+      })().catch(error => new Notice(message(error))); });
+      button(modal.contentEl, t("Discard changes"), () => new ConfirmDialog(this.app, t("Discard changes"), draft.text, async () => {
+        if (!this.liveDrafts.has(draft.key)) this.drafts?.remove(draft.key);
+        modal.close();
+        for (const leaf of this.app.workspace.getLeavesOfType(VIEW)) (leaf.view as MapView).refreshDraftButton();
+      }, {label:t("Discard changes"), focusConfirm:false}).open());
+    }
+    modal.open();
+  }
   activeFile(): TFile | null {
     const view = this.app.workspace.getActiveViewOfType(MapView);
     if (view?.path) { const file = this.app.vault.getAbstractFileByPath(view.path); if (file instanceof TFile) return file; }
@@ -416,6 +452,11 @@ export default class TraceViewMindmap extends Plugin {
 }
 
 class MapView extends EditableFileView {
+  private draftButton?: HTMLButtonElement;
+  private activeDraftKey?: string;
+  refreshDraftButton(): void {
+    if (this.draftButton) this.draftButton.hidden = !this.plugin.drafts?.list().some(d => d.path === this.path && !this.plugin.liveDrafts.has(d.key));
+  }
   path = '';
   hoverPopover: HoverPopover | null = null;
   editor?: Editor;
@@ -424,7 +465,7 @@ class MapView extends EditableFileView {
   private nativeConstructor?: NativeConstructor;
   private pendingSubpath?: string;
   surface?: MapSurface;
-  private doc?: MapDocument;
+  doc?: MapDocument;
   private history = new History();
   private title?: HTMLElement;
   private status?: HTMLElement;
@@ -480,6 +521,7 @@ class MapView extends EditableFileView {
   async onLoadFile(file: TFile): Promise<void> {
     this.cancelRestoreWait?.();
     this.path = file.path; this.doc = undefined; this.history = new History();
+    this.refreshDraftButton();
     if (this.startupGate) this.startupGate.hidden = true;
     this.pendingState = this.readState();
     if (this.surface) await this.reload();
@@ -613,6 +655,10 @@ class MapView extends EditableFileView {
       onHoverLink: (event, targetEl, linktext) => this.app.workspace.trigger('hover-link', { event, source: 'traceview-mindmap', hoverParent: this, targetEl, linktext, sourcePath: this.path }),
     });
     this.status = this.host.createDiv('tvm-status tvm-map-status');
+    if (this.plugin.drafts) {
+      this.draftButton = button(this.host, t("Recover local draft"), () => this.plugin.showDrafts(this.path));
+      this.refreshDraftButton();
+    }
     this.startupGate = this.host.createDiv('tvm-startup-gate');
     this.startupGate.hidden = true;
     this.startupMessage = this.startupGate.createDiv({ attr: { role: 'status' } });
@@ -765,7 +811,7 @@ class MapView extends EditableFileView {
     try { await this.apply(doc, moveBranches(doc, ids, target, position)); this.surface?.revealSelection(ids); }
     catch (error) { new Notice(message(error), 8000); }
   }
-  async action(action: NodeAction, id: string | null): Promise<void> {
+  async action(action: NodeAction, id: string | null, recovered?: LocalDraft): Promise<void> {
     const doc = this.doc;
     const path = this.path;
     if (!doc) return;
@@ -865,7 +911,10 @@ class MapView extends EditableFileView {
         const placeholder = `tvm-draft-${Date.now()}-${Math.random().toString(36).slice(2)}`;
         const draft = action === 'edit' ? doc : parseMap(transform(placeholder), doc);
         const draftId = action === 'edit' ? id : draft.nodes.find(candidate => candidate.text === placeholder)!.id;
-        this.surface?.beginEdit(draftId, action === 'edit' ? node.text : '', async text => {
+        const initial = action === 'edit' ? node.text : '';
+        const storage = this.plugin.drafts;
+        const record = storage ? recovered ?? {key: crypto.randomUUID(), path, nodeId:id, original:node.text, action, text:initial} : undefined;
+        this.surface?.beginEdit(draftId, initial, async text => {
           if (this.path !== path) throw new Error(t("The note was renamed. Copy the draft and reopen the editor."));
           await this.reload();
           const base = this.doc;
@@ -875,7 +924,25 @@ class MapView extends EditableFileView {
           await this.apply(base, transformOn(base, selected, text));
           return action === 'edit' ? selected : action === 'add-parent' ? this.doc?.nodes.find(candidate => candidate.line === node.line)?.id
             : this.doc?.nodes.find(candidate => !base.byId.has(candidate.id))?.id;
-        }, (input, tools, inline) => this.mountEditor(input, tools, path, inline), draft);
+        }, (input, tools, inline) => {
+          const driver = this.mountEditor(input, tools, path, inline);
+          if (storage && record) {
+            this.activeDraftKey = record.key; this.plugin.liveDrafts.add(record.key);
+            if (recovered) { input.value = recovered.text; input.dispatchEvent(new input.ownerDocument.defaultView!.Event('input', { bubbles:true })); }
+            let warned = false;
+            input.addEventListener('input', () => {
+              try {
+                if (input.value === initial) storage.remove(record.key);
+                else storage.save({ ...record, text: input.value });
+              } catch (error) { if (!warned) new Notice(message(error)); warned = true; }
+            });
+          }
+          return driver;
+        }, draft, record && (() => {
+          this.plugin.liveDrafts.delete(record.key); this.activeDraftKey = undefined;
+          storage!.remove(record.key); this.refreshDraftButton();
+        }));
+        if (recovered) this.refreshDraftButton();
         return;
       }
       if (action === 'delete') {
@@ -987,6 +1054,7 @@ class MapView extends EditableFileView {
     }, this.path, 'single-line').open();
   }
   async onClose(): Promise<void> {
+    if (this.activeDraftKey) this.plugin.liveDrafts.delete(this.activeDraftKey);
     this.cancelRestoreWait?.();
     this.persist(); this.closed = true; this.revision++;
     window.clearTimeout(this.refreshTimer); window.clearTimeout(this.stateTimer);

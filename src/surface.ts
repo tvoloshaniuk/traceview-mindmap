@@ -188,12 +188,12 @@ export class MapSurface {
     this.rendered.clear();
     if (!this.editing) this.render();
   }
-  beginEdit(id: string, initial: string, save: (text: string) => Promise<string | undefined>, mount?: InlineOptions['mount'], draft?: MapDocument): void {
+  beginEdit(id: string, initial: string, save: (text: string) => Promise<string | undefined>, mount?: InlineOptions['mount'], draft?: MapDocument, onFinish?: () => void): void {
     if (this.editing || !this.doc || this.destroyed) { this.focusEditor(); return; }
     const original = this.doc, state = this.getState();
     const editor = new InlineEditor(this.container.ownerDocument, initial, {
-      save: async text => { const selected = await save(text); if (this.editing?.editor === editor) this.finishEdit(selected); },
-      cancel: () => this.finishEdit(), resize: () => this.scheduleLayout(true), mount,
+      save: async text => { const selected = await save(text); onFinish?.(); if (this.editing?.editor === editor) this.finishEdit(selected); },
+      cancel: () => { onFinish?.(); this.finishEdit(); }, resize: () => this.scheduleLayout(true), mount,
     });
     this.editing = { id, editor, original, state };
     this.doc = draft ?? original;

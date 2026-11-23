@@ -1,4 +1,6 @@
 {
+  "Recover local draft": "Восстановить локальный черновик",
+  "No saved drafts": "Нет сохранённых черновиков",
   "Insert template at selected node…": "Вставить шаблон в файле у выбранного узла…",
   "Enable Templater or Templates and configure a template folder.": "Включите Templater или Templates и укажите папку шаблонов.",
   "A node with its own Markdown line is required.": "Нужен узел с собственной строкой Markdown.",

@@ -1,4 +1,6 @@
 {
+  "Recover local draft": "Przywróć lokalny szkic",
+  "No saved drafts": "Brak zapisanych szkiców",
   "Insert template at selected node…": "Wstaw szablon przy wybranym węźle…",
   "Enable Templater or Templates and configure a template folder.": "Włącz Templater lub Templates i wskaż folder szablonów.",
   "A node with its own Markdown line is required.": "Wymagany jest węzeł z własnym wierszem Markdown.",
