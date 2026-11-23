@@ -18,13 +18,14 @@ test('changed drafts require explicit discard; Escape/repeats and Continue prese
   const key=(key:string,repeat=false)=>dom.window.document.activeElement!.dispatchEvent(new dom.window.KeyboardEvent('keydown',{key,repeat,bubbles:true,cancelable:true}));
   editor.input.value='[[Ghost|Alias]]'; editor.input.setSelectionRange(2,7); editor.focus();
   key('Escape'); assert.ok(editor.host.querySelector('[role=alertdialog]')); assert.equal(cancels,0);
-  assert.equal(dom.window.document.activeElement,editor.host.querySelector('.tvm-inline-discard'));
+  assert.equal(dom.window.document.activeElement,editor.host.querySelector('.tvm-inline-keep'));
   key('Escape',true); key('Enter',true); assert.equal(cancels,0);
   key('Escape'); assert.equal(editor.host.querySelector('[role=alertdialog]'),null);
   assert.equal(dom.window.document.activeElement,editor.input); assert.equal(editor.input.selectionStart,2); assert.equal(editor.input.selectionEnd,7);
-  editor.cancel(); editor.host.querySelector<HTMLButtonElement>('.tvm-inline-keep')!.focus(); key('Enter');
+  key('Escape'); key('Enter');
   assert.equal(cancels,0); assert.equal(editor.input.value,'[[Ghost|Alias]]');
-  editor.host.querySelector<HTMLButtonElement>('[aria-label="Скасувати (Escape)"]')!.click(); key('Enter');
+  editor.host.querySelector<HTMLButtonElement>('[aria-label="Скасувати (Escape)"]')!.click();
+  editor.host.querySelector<HTMLButtonElement>('.tvm-inline-discard')!.focus(); key('Enter');
   assert.equal(cancels,1); assert.equal(saves,0); dom.window.close();
 });
 

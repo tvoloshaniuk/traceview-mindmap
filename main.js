@@ -5226,7 +5226,7 @@ var InlineEditor = class {
     return true;
   }
   focus() {
-    const confirmation = this.confirmation?.querySelector(".tvm-inline-discard");
+    const confirmation = this.confirmation?.querySelector(".tvm-inline-keep");
     if (confirmation) confirmation.focus({ preventScroll: true });
     else if (this.driver) this.driver.focus();
     else this.input.focus({ preventScroll: true });

@@ -112,7 +112,7 @@ export class InlineEditor {
     return true;
   }
   focus(): void {
-    const confirmation = this.confirmation?.querySelector<HTMLButtonElement>('.tvm-inline-discard');
+    const confirmation = this.confirmation?.querySelector<HTMLButtonElement>('.tvm-inline-keep');
     if (confirmation) confirmation.focus({ preventScroll: true });
     else if (this.driver) this.driver.focus();
     else this.input.focus({ preventScroll: true });
