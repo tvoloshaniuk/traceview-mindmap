@@ -122,7 +122,11 @@ export class InlineEditor {
     else if (this.driver) this.driver.focus();
     else this.input.focus({ preventScroll: true });
   }
-  setMaxHeight(height: number): void { (this.driver?.element ?? this.input).style.maxHeight = height + 'px'; }
+  fitHeight(node: HTMLElement, available: number): void {
+    const field = this.driver?.element ?? this.input;
+    const surroundingHeight = node.offsetHeight - field.offsetHeight;
+    field.style.maxHeight = Math.max(26, Math.floor(available - surroundingHeight)) + 'px';
+  }
   resize(): void {
     if (this.driver) this.driver.resize();
     else { this.input.style.height = 'auto'; this.input.style.height = `${Math.max(26, this.input.scrollHeight)}px`; }

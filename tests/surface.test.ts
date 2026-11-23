@@ -609,6 +609,14 @@ test('editor follows the visible viewport when keyboard opens before any input a
  const camera=f.surface.getState().camera;const [,x,y]=/translate\(([-\d.]+)px, ([-\d.]+)px\)/.exec(f.element('Child').style.transform)!;
  const top=Number(y)*camera.scale+camera.y;assert.ok(top>=82);assert.ok(top+45*camera.scale<=288);
  const input=f.host.querySelector<HTMLTextAreaElement>('.tvm-inline-input')!;assert.equal(input.value,'Child');assert.ok(parseFloat(input.style.maxHeight)<230);
+ Object.defineProperty(input, 'offsetHeight', { value: 100 });
+ Object.defineProperty(f.element('Child'), 'offsetHeight', { get: () => f.host.querySelector('.tvm-inline-confirm') ? 200 : 140 });
+ f.dom.window.dispatchEvent(new f.dom.window.Event('resize'));f.flush();
+ const beforeConfirmation = parseFloat(input.style.maxHeight);
+ input.value = 'Unsaved changes';
+ input.dispatchEvent(new f.dom.window.KeyboardEvent('keydown', { key: 'Escape', bubbles: true, cancelable: true }));
+ f.flush();
+ assert.equal(parseFloat(input.style.maxHeight), beforeConfirmation - 60);
  f.surface.destroy();f.dom.window.dispatchEvent(new f.dom.window.Event('resize'));assert.equal(f.host.children.length,0);
 });
 

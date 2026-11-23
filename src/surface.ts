@@ -21,6 +21,7 @@ const COLUMN_GAP = 74;
 const ROW_GAP = 18;
 const ROOT_GAP = 44;
 const MIN_WIDTH = 84;
+const EDITOR_VIEWPORT_PADDING = 12;
 
 /** A read-only document surface: every source mutation is an explicit action. */
 export class MapSurface {
@@ -642,6 +643,7 @@ export class MapSurface {
       el.style.width = `${width}px`;
       el.style.maxWidth = '';
     }
+    if (this.mode !== 'outline') this.fitEditorHeight();
     for (const id of this.visible) {
       const el = this.elements.get(id)!;
       height.set(id, el.offsetHeight || this.estimateHeight(this.doc.byId.get(id)!.text));
@@ -659,6 +661,7 @@ export class MapSurface {
         const el = this.elements.get(id)!;
         const ownWidth = Math.max(WIDTH, width - level * 28);
         el.style.width = `${ownWidth}px`;
+        if (id === this.editing?.id) this.fitEditorHeight();
         const ownHeight = el.offsetHeight || height.get(id)!;
         const pos = { x: level * 28, y, width: ownWidth, height: ownHeight };
         this.positions.set(id, pos);
@@ -836,11 +839,16 @@ export class MapSurface {
 
   private followEditorViewport(): void {
     if (!this.editing || this.destroyed) return;
-    const area = this.editorArea(), editor = this.editing.editor;
-    const tools = editor.host.querySelector<HTMLElement>('.tvm-inline-tools');
-    editor.setMaxHeight(Math.max(26, (area.height - 32) / this.state.camera.scale - (tools?.offsetHeight ?? 0) - 28));
-    editor.resize();
+    this.editing.editor.resize();
     this.scheduleLayout(true);
+  }
+
+  private fitEditorHeight(): void {
+    if (!this.editing) return;
+    const node = this.elements.get(this.editing.id);
+    if (!node) return;
+    const available = (this.editorArea().height - EDITOR_VIEWPORT_PADDING * 2) / this.state.camera.scale;
+    this.editing.editor.fitHeight(node, available);
   }
 
   private ensureVisible(id: string, center = false): void {
@@ -849,7 +857,7 @@ export class MapSurface {
     const c = this.state.camera;
     const area = this.editing?.id === id ? this.editorArea() : { left: 0, top: 0, ...this.viewportSize() };
     const size = { width: area.width, height: area.height };
-    const padding = this.editing?.id === id ? 12 : 44;
+    const padding = this.editing?.id === id ? EDITOR_VIEWPORT_PADDING : 44;
     if (center) {
       c.x = area.left + size.width / 2 - (pos.x + pos.width / 2) * c.scale;
       c.y = area.top + size.height / 2 - (pos.y + pos.height / 2) * c.scale;

@@ -5287,8 +5287,10 @@ var InlineEditor = class {
     else if (this.driver) this.driver.focus();
     else this.input.focus({ preventScroll: true });
   }
-  setMaxHeight(height) {
-    (this.driver?.element ?? this.input).style.maxHeight = height + "px";
+  fitHeight(node, available) {
+    const field = this.driver?.element ?? this.input;
+    const surroundingHeight = node.offsetHeight - field.offsetHeight;
+    field.style.maxHeight = Math.max(26, Math.floor(available - surroundingHeight)) + "px";
   }
   resize() {
     if (this.driver) this.driver.resize();
@@ -5393,6 +5395,7 @@ var COLUMN_GAP = 74;
 var ROW_GAP = 18;
 var ROOT_GAP = 44;
 var MIN_WIDTH = 84;
+var EDITOR_VIEWPORT_PADDING = 12;
 var MapSurface = class {
   constructor(container, options) {
     this.container = container;
@@ -6042,6 +6045,7 @@ var MapSurface = class {
       el.style.width = `${width2}px`;
       el.style.maxWidth = "";
     }
+    if (this.mode !== "outline") this.fitEditorHeight();
     for (const id of this.visible) {
       const el = this.elements.get(id);
       height.set(id, el.offsetHeight || this.estimateHeight(this.doc.byId.get(id).text));
@@ -6059,6 +6063,7 @@ var MapSurface = class {
         const el = this.elements.get(id);
         const ownWidth = Math.max(WIDTH, width2 - level * 28);
         el.style.width = `${ownWidth}px`;
+        if (id === this.editing?.id) this.fitEditorHeight();
         const ownHeight = el.offsetHeight || height.get(id);
         const pos = { x: level * 28, y, width: ownWidth, height: ownHeight };
         this.positions.set(id, pos);
@@ -6231,11 +6236,15 @@ var MapSurface = class {
   }
   followEditorViewport() {
     if (!this.editing || this.destroyed) return;
-    const area = this.editorArea(), editor = this.editing.editor;
-    const tools = editor.host.querySelector(".tvm-inline-tools");
-    editor.setMaxHeight(Math.max(26, (area.height - 32) / this.state.camera.scale - (tools?.offsetHeight ?? 0) - 28));
-    editor.resize();
+    this.editing.editor.resize();
     this.scheduleLayout(true);
+  }
+  fitEditorHeight() {
+    if (!this.editing) return;
+    const node = this.elements.get(this.editing.id);
+    if (!node) return;
+    const available = (this.editorArea().height - EDITOR_VIEWPORT_PADDING * 2) / this.state.camera.scale;
+    this.editing.editor.fitHeight(node, available);
   }
   ensureVisible(id, center = false) {
     const pos = this.positions.get(id);
@@ -6243,7 +6252,7 @@ var MapSurface = class {
     const c = this.state.camera;
     const area = this.editing?.id === id ? this.editorArea() : { left: 0, top: 0, ...this.viewportSize() };
     const size = { width: area.width, height: area.height };
-    const padding = this.editing?.id === id ? 12 : 44;
+    const padding = this.editing?.id === id ? EDITOR_VIEWPORT_PADDING : 44;
     if (center) {
       c.x = area.left + size.width / 2 - (pos.x + pos.width / 2) * c.scale;
       c.y = area.top + size.height / 2 - (pos.y + pos.height / 2) * c.scale;

@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.8 — 2026-11-23
+
+### Bug fixes
+
+- Keep the node editor and its confirmation buttons above the on-screen keyboard by reserving space for the controls currently displayed.
+
 ## 1.0.7 — 2026-11-23
 
 ### New features
