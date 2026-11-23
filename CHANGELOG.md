@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.0.12
+
+### Added
+
+- A vertical tree layout with orientation-aware arrow keys, creation handles, and drop targets.
+- Write multiline text in an embedded Markdown note while keeping the node title and children in the map.
+
 ## 1.0.11
 
 ### Added

@@ -1,4 +1,8 @@
 {
+  "Edit embedded node note": "Редактировать встроенную заметку узла",
+  "Vertical tree": "Вертикальное дерево",
+  "Sibling to the left": "Соседний узел слева",
+  "Sibling to the right": "Соседний узел справа",
   "Switch between map and Markdown": "Переключить карту и Markdown",
   "Select branches with the same parent.": "Выберите ветви с общим родительским узлом.",
   "Copy selected nodes without children": "Копировать выбранные узлы без потомков",

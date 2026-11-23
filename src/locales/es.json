@@ -1,4 +1,8 @@
 {
+  "Edit embedded node note": "Editar la nota incrustada del nodo",
+  "Vertical tree": "Árbol vertical",
+  "Sibling to the left": "Nodo hermano a la izquierda",
+  "Sibling to the right": "Nodo hermano a la derecha",
   "Switch between map and Markdown": "Alternar entre mapa y Markdown",
   "Select branches with the same parent.": "Selecciona ramas con el mismo nodo padre.",
   "Copy selected nodes without children": "Copiar los nodos seleccionados sin sus hijos",

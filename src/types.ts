@@ -3,6 +3,8 @@
  * GPL-3.0-only with the Obsidian Host Additional Permission.
  * See LICENSE, LICENSING.md and OBSIDIAN-HOST-PERMISSION.md.
  */
+export type MapLayout = 'map' | 'vertical' | 'outline' | 'table';
+
 export interface MapNode {
   id: string;
   text: string;
@@ -34,7 +36,7 @@ export interface MapViewState {
   camera: Camera;
   focusRoot: string | null;
 }
-export type NodeAction = 'copy-node-link' | 'edit' | 'add-child' | 'add-sibling' | 'add-sibling-before' | 'add-parent' | 'delete' | 'move-up' | 'move-down' | 'indent' | 'outdent' | 'copy' | 'copy-node-labels' | 'cut' | 'paste' | 'paste-after' | 'toggle-task' | 'make-step' | 'make-dated' | 'make-question' | 'source' | 'insert-template' | 'undo' | 'redo';
+export type NodeAction = 'copy-node-link' | 'node-note' | 'edit' | 'add-child' | 'add-sibling' | 'add-sibling-before' | 'add-parent' | 'delete' | 'move-up' | 'move-down' | 'indent' | 'outdent' | 'copy' | 'copy-node-labels' | 'cut' | 'paste' | 'paste-after' | 'toggle-task' | 'make-step' | 'make-dated' | 'make-question' | 'source' | 'insert-template' | 'undo' | 'redo';
 export interface MapSurfaceOptions {
   useTransformPan?: () => boolean;
   getWidthMode?: () => WidthMode;

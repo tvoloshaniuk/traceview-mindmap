@@ -1,4 +1,8 @@
 {
+  "Edit embedded node note": "Eingebettete Knotennotiz bearbeiten",
+  "Vertical tree": "Vertikaler Baum",
+  "Sibling to the left": "Nachbarknoten links",
+  "Sibling to the right": "Nachbarknoten rechts",
   "Switch between map and Markdown": "Zwischen Karte und Markdown wechseln",
   "Select branches with the same parent.": "Wähle Zweige mit demselben Elternknoten aus.",
   "Copy selected nodes without children": "Ausgewählte Knoten ohne Kinder kopieren",

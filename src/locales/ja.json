@@ -1,4 +1,8 @@
 {
+  "Edit embedded node note": "ノードに埋め込まれたノートを編集",
+  "Vertical tree": "縦向きツリー",
+  "Sibling to the left": "左の兄弟ノード",
+  "Sibling to the right": "右の兄弟ノード",
   "Switch between map and Markdown": "マップとMarkdownを切り替える",
   "Select branches with the same parent.": "同じ親を持つ枝を選択してください。",
   "Copy selected nodes without children": "選択したノードを子なしでコピー",

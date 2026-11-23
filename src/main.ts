@@ -23,7 +23,7 @@ import { attachImagePaste, saveClipboardImage } from './image-paste';
 import { attachNodeTools, ConfirmDialog, DateDialog, MapPicker, TextDialog } from './editor';
 import { exportHtml, exportSvg } from './export';
 import { guardedChange, History, restoreViewState, serializeViewState } from './session';
-import type { MapDocument, MapNode, MapViewState, NodeAction, Step, WidthMode, DropPosition } from './types';
+import type { MapDocument, MapLayout, MapNode, MapViewState, NodeAction, Step, WidthMode, DropPosition } from './types';
 
 const VIEW = 'traceview-mindmap-map';
 const QUEUE = 'traceview-mindmap-queue';
@@ -149,7 +149,7 @@ export default class TraceViewMindmap extends Plugin {
       ['add-child', t("Add child node"), 'add-child'], ['add-sibling', t("Add sibling node"), 'add-sibling'],
       ['add-sibling-before', t("Add sibling above"), 'add-sibling-before'],
       ['add-parent', t("Add parent node"), 'add-parent'], ['insert-template', t("Insert template at selected node…"), 'insert-template'],
-      ['copy-node-link', t("Copy link to node"), 'copy-node-link'], ['edit-node', t("Edit node"), 'edit'], ['make-step', t("Mark as atomic step"), 'make-step'],
+      ['copy-node-link', t("Copy link to node"), 'copy-node-link'], ['edit-node', t("Edit node"), 'edit'], ['node-note', t("Edit embedded node note"), 'node-note'], ['make-step', t("Mark as atomic step"), 'make-step'],
       ['make-dated', t("Add step deadline"), 'make-dated'], ['make-question', t("Mark as QA"), 'make-question'],
       ['toggle-task', t("Toggle step completion"), 'toggle-task'], ['copy-node-labels', t("Copy selected nodes without children"), 'copy-node-labels'], ['copy-branch', t("Copy branch"), 'copy'], ['cut-branch', t("Cut branch"), 'cut'],
       ['paste-branch', t("Paste as child branch"), 'paste'], ['paste-after', t("Paste as sibling branch"), 'paste-after'], ['undo', t("Undo map change"), 'undo'], ['redo', t("Redo map change"), 'redo']
@@ -512,7 +512,7 @@ class MapView extends EditableFileView {
   private changing = false;
   private cutting = false;
   private pendingState?: string;
-  private layoutMode: 'map' | 'outline' | 'table' = 'map';
+  private layoutMode: MapLayout = 'map';
   private showSearch?: () => void;
   private undoButton?: HTMLButtonElement;
   private redoButton?: HTMLButtonElement;
@@ -730,7 +730,7 @@ class MapView extends EditableFileView {
   }
   private layoutMenu(anchor: HTMLElement): void {
     const menu = new Menu();
-    for (const [mode, label] of [['map', t("Map")], ['outline', t("Outline")], ['table', t("Table")]] as const) {
+    for (const [mode, label] of [['map', t("Map")], ['vertical', t("Vertical tree")], ['outline', t("Outline")], ['table', t("Table")]] as const) {
       menu.addItem(item => item.setTitle(label).setChecked(this.layoutMode === mode).onClick(() => {
         this.layoutMode = mode; this.surface?.setLayout(mode); this.persist();
       }));
@@ -831,7 +831,7 @@ class MapView extends EditableFileView {
       this.restoredRender = 'allowed';
       this.doc = next;
       if (saved) {
-        try { const mode = JSON.parse(saved).layout; if (['map', 'outline', 'table'].includes(mode)) this.layoutMode = mode; } catch { /* Ignore malformed view preference. */ }
+        try { const mode = JSON.parse(saved).layout; if (['map', 'vertical', 'outline', 'table'].includes(mode)) this.layoutMode = mode; } catch { /* Ignore malformed view preference. */ }
       }
       this.surface.setLayout(this.layoutMode);
       this.surface.update(next, state);
@@ -927,6 +927,7 @@ class MapView extends EditableFileView {
         await this.plugin.copy('[[' + this.app.metadataCache.fileToLinktext(file, '', true) + '#^' + address.blockId + ']]');
         new Notice(t("Node link copied.")); return;
       }
+      if (action === 'node-note') { await this.editNodeNote(doc, node); return; }
       if (action === 'insert-template' && this.file) {
         const file = this.file;
         new NodeTemplatePicker(this.app, async item => {
@@ -1032,6 +1033,37 @@ class MapView extends EditableFileView {
       storage!.remove(record.key); this.refreshDraftButton();
     }));
     if (recovered) this.refreshDraftButton();
+  }
+
+  private async editNodeNote(doc: MapDocument, node: MapNode): Promise<void> {
+    const map = this.file;
+    if (!map) return;
+    const embeds = [...node.text.matchAll(/!\[\[([^\]#|]+)(?:\|[^\]]*)?\]\]/g)];
+    const notes = embeds.map(match => this.app.metadataCache.getFirstLinkpathDest(match[1], map.path))
+      .filter((file): file is TFile => file !== null && file !== map && file.extension === 'md');
+    const note = notes.at(-1);
+    const original = note ? await this.app.vault.read(note) : '';
+    let created: TFile | undefined;
+    let savedText = '';
+    new TextDialog(this.app, t("Edit embedded node note"), original, async text => {
+      if (note) {
+        await this.plugin.write(note, original, text);
+        this.surface?.invalidateMarkdown();
+        return;
+      }
+      if (!text.trim()) throw new Error(t("A node cannot be empty."));
+      if (this.file !== map || this.doc !== doc) throw new Error(t("The note changed. Open it again at the current line."));
+      if (created) await this.plugin.write(created, savedText, text);
+      else {
+        const folder = this.app.fileManager.getNewFileParent(map.path);
+        const name = map.basename.replace(/\.mindmap$/, '').replace(/[\\/:*?"<>|#\[\]^]/g, ' ').slice(0, 40).trim() || 'Map';
+        const suffix = globalThis.crypto.randomUUID().slice(0, 8);
+        created = await this.app.vault.create(normalizePath(`${folder.path}/${name} - note ${suffix}.md`), text);
+      }
+      savedText = text;
+      const link = this.app.metadataCache.fileToLinktext(created, map.path, true);
+      await this.apply(doc, editNode(doc, node.id, `${node.text} ![[${link}]]`));
+    }, map.path, false).open();
   }
   private menu(anchor: HTMLElement): void {
     const menu = new Menu();

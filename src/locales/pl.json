@@ -1,4 +1,8 @@
 {
+  "Edit embedded node note": "Edytuj osadzoną notatkę węzła",
+  "Vertical tree": "Drzewo pionowe",
+  "Sibling to the left": "Węzeł siostrzany po lewej",
+  "Sibling to the right": "Węzeł siostrzany po prawej",
   "Switch between map and Markdown": "Przełącz między mapą a Markdown",
   "Select branches with the same parent.": "Wybierz gałęzie o wspólnym węźle nadrzędnym.",
   "Copy selected nodes without children": "Kopiuj wybrane węzły bez potomków",

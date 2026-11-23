@@ -283,6 +283,12 @@
 .tvm-node.is-drop-target[data-drop-position=before] > .tvm-node-content::before,
 .tvm-node.is-drop-target[data-drop-position=after] > .tvm-node-content::before { position: absolute; left: -26px; top: -12px; font-size: 24px; line-height: 1; color: var(--interactive-accent); content: '↑'; pointer-events: none; }
 .tvm-node.is-drop-target[data-drop-position=after] > .tvm-node-content::before { top: auto; bottom: -12px; content: '↓'; }
+.tvm-surface[data-layout="vertical"] .tvm-fold { top: auto; right: auto; bottom: -13px; left: 50%; transform: translateX(-50%); }
+.tvm-surface[data-layout="vertical"] .tvm-node.is-drop-target[data-drop-position=before]::before,
+.tvm-surface[data-layout="vertical"] .tvm-node.is-drop-target[data-drop-position=after]::after { top: -6px; bottom: -6px; width: 3px; height: auto; }
+.tvm-surface[data-layout="vertical"] .tvm-node.is-drop-target[data-drop-position=before]::before { left: -7px; right: auto; }
+.tvm-surface[data-layout="vertical"] .tvm-node.is-drop-target[data-drop-position=after]::after { left: auto; right: -7px; }
+.tvm-surface[data-layout="vertical"] .tvm-node.is-drop-target > .tvm-node-content::before { display: none; }
 .tvm-result.is-active { background: var(--background-modifier-hover); outline: 1px solid var(--interactive-accent); outline-offset: -1px; }
 .tvm-delete-node { color: var(--text-error); }
 

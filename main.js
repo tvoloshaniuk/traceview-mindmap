@@ -358,6 +358,10 @@ module.exports = __toCommonJS(main_exports);
 
 // src/locales/en.json
 var en_default = {
+  "Edit embedded node note": "Edit embedded node note",
+  "Vertical tree": "Vertical tree",
+  "Sibling to the left": "Sibling to the left",
+  "Sibling to the right": "Sibling to the right",
   "Switch between map and Markdown": "Switch between map and Markdown",
   "Select branches with the same parent.": "Select branches with the same parent.",
   "Copy selected nodes without children": "Copy selected nodes without children",
@@ -690,6 +694,10 @@ var en_default = {
 
 // src/locales/uk.json
 var uk_default = {
+  "Edit embedded node note": "\u0420\u0435\u0434\u0430\u0433\u0443\u0432\u0430\u0442\u0438 \u0432\u043A\u043B\u0430\u0434\u0435\u043D\u0443 \u043D\u043E\u0442\u0430\u0442\u043A\u0443 \u0432\u0443\u0437\u043B\u0430",
+  "Vertical tree": "\u0412\u0435\u0440\u0442\u0438\u043A\u0430\u043B\u044C\u043D\u0435 \u0434\u0435\u0440\u0435\u0432\u043E",
+  "Sibling to the left": "\u0421\u0443\u0441\u0456\u0434\u043D\u0456\u0439 \u0432\u0443\u0437\u043E\u043B \u043B\u0456\u0432\u043E\u0440\u0443\u0447",
+  "Sibling to the right": "\u0421\u0443\u0441\u0456\u0434\u043D\u0456\u0439 \u0432\u0443\u0437\u043E\u043B \u043F\u0440\u0430\u0432\u043E\u0440\u0443\u0447",
   "Switch between map and Markdown": "\u041F\u0435\u0440\u0435\u043C\u043A\u043D\u0443\u0442\u0438 \u043C\u0456\u0436 \u043A\u0430\u0440\u0442\u043E\u044E \u0456 Markdown",
   "Select branches with the same parent.": "\u0412\u0438\u0431\u0435\u0440\u0438 \u0433\u0456\u043B\u043A\u0438 \u0437\u0456 \u0441\u043F\u0456\u043B\u044C\u043D\u0438\u043C \u0431\u0430\u0442\u044C\u043A\u0456\u0432\u0441\u044C\u043A\u0438\u043C \u0432\u0443\u0437\u043B\u043E\u043C.",
   "Copy selected nodes without children": "\u041A\u043E\u043F\u0456\u044E\u0432\u0430\u0442\u0438 \u0432\u0438\u0431\u0440\u0430\u043D\u0456 \u0432\u0443\u0437\u043B\u0438 \u0431\u0435\u0437 \u0434\u0456\u0442\u0435\u0439",
@@ -1022,6 +1030,10 @@ var uk_default = {
 
 // src/locales/pl.json
 var pl_default = {
+  "Edit embedded node note": "Edytuj osadzon\u0105 notatk\u0119 w\u0119z\u0142a",
+  "Vertical tree": "Drzewo pionowe",
+  "Sibling to the left": "W\u0119ze\u0142 siostrzany po lewej",
+  "Sibling to the right": "W\u0119ze\u0142 siostrzany po prawej",
   "Switch between map and Markdown": "Prze\u0142\u0105cz mi\u0119dzy map\u0105 a Markdown",
   "Select branches with the same parent.": "Wybierz ga\u0142\u0119zie o wsp\xF3lnym w\u0119\u017Ale nadrz\u0119dnym.",
   "Copy selected nodes without children": "Kopiuj wybrane w\u0119z\u0142y bez potomk\xF3w",
@@ -1354,6 +1366,10 @@ var pl_default = {
 
 // src/locales/de.json
 var de_default = {
+  "Edit embedded node note": "Eingebettete Knotennotiz bearbeiten",
+  "Vertical tree": "Vertikaler Baum",
+  "Sibling to the left": "Nachbarknoten links",
+  "Sibling to the right": "Nachbarknoten rechts",
   "Switch between map and Markdown": "Zwischen Karte und Markdown wechseln",
   "Select branches with the same parent.": "W\xE4hle Zweige mit demselben Elternknoten aus.",
   "Copy selected nodes without children": "Ausgew\xE4hlte Knoten ohne Kinder kopieren",
@@ -1686,6 +1702,10 @@ var de_default = {
 
 // src/locales/es.json
 var es_default = {
+  "Edit embedded node note": "Editar la nota incrustada del nodo",
+  "Vertical tree": "\xC1rbol vertical",
+  "Sibling to the left": "Nodo hermano a la izquierda",
+  "Sibling to the right": "Nodo hermano a la derecha",
   "Switch between map and Markdown": "Alternar entre mapa y Markdown",
   "Select branches with the same parent.": "Selecciona ramas con el mismo nodo padre.",
   "Copy selected nodes without children": "Copiar los nodos seleccionados sin sus hijos",
@@ -2018,6 +2038,10 @@ var es_default = {
 
 // src/locales/fr.json
 var fr_default = {
+  "Edit embedded node note": "Modifier la note int\xE9gr\xE9e du n\u0153ud",
+  "Vertical tree": "Arbre vertical",
+  "Sibling to the left": "N\u0153ud fr\xE8re \xE0 gauche",
+  "Sibling to the right": "N\u0153ud fr\xE8re \xE0 droite",
   "Switch between map and Markdown": "Basculer entre la carte et Markdown",
   "Select branches with the same parent.": "S\xE9lectionnez des branches ayant le m\xEAme parent.",
   "Copy selected nodes without children": "Copier les n\u0153uds s\xE9lectionn\xE9s sans leurs enfants",
@@ -2350,6 +2374,10 @@ var fr_default = {
 
 // src/locales/pt-BR.json
 var pt_BR_default = {
+  "Edit embedded node note": "Editar a nota incorporada do n\xF3",
+  "Vertical tree": "\xC1rvore vertical",
+  "Sibling to the left": "N\xF3 irm\xE3o \xE0 esquerda",
+  "Sibling to the right": "N\xF3 irm\xE3o \xE0 direita",
   "Switch between map and Markdown": "Alternar entre mapa e Markdown",
   "Select branches with the same parent.": "Selecione ramos com o mesmo n\xF3 pai.",
   "Copy selected nodes without children": "Copiar n\xF3s selecionados sem os filhos",
@@ -2682,6 +2710,10 @@ var pt_BR_default = {
 
 // src/locales/zh-CN.json
 var zh_CN_default = {
+  "Edit embedded node note": "\u7F16\u8F91\u8282\u70B9\u7684\u5D4C\u5165\u7B14\u8BB0",
+  "Vertical tree": "\u5782\u76F4\u6811",
+  "Sibling to the left": "\u5DE6\u4FA7\u540C\u7EA7\u8282\u70B9",
+  "Sibling to the right": "\u53F3\u4FA7\u540C\u7EA7\u8282\u70B9",
   "Switch between map and Markdown": "\u5728\u5730\u56FE\u4E0E Markdown \u4E4B\u95F4\u5207\u6362",
   "Select branches with the same parent.": "\u8BF7\u9009\u62E9\u5177\u6709\u76F8\u540C\u7236\u8282\u70B9\u7684\u5206\u652F\u3002",
   "Copy selected nodes without children": "\u590D\u5236\u6240\u9009\u8282\u70B9\uFF08\u4E0D\u542B\u5B50\u8282\u70B9\uFF09",
@@ -3014,6 +3046,10 @@ var zh_CN_default = {
 
 // src/locales/ja.json
 var ja_default = {
+  "Edit embedded node note": "\u30CE\u30FC\u30C9\u306B\u57CB\u3081\u8FBC\u307E\u308C\u305F\u30CE\u30FC\u30C8\u3092\u7DE8\u96C6",
+  "Vertical tree": "\u7E26\u5411\u304D\u30C4\u30EA\u30FC",
+  "Sibling to the left": "\u5DE6\u306E\u5144\u5F1F\u30CE\u30FC\u30C9",
+  "Sibling to the right": "\u53F3\u306E\u5144\u5F1F\u30CE\u30FC\u30C9",
   "Switch between map and Markdown": "\u30DE\u30C3\u30D7\u3068Markdown\u3092\u5207\u308A\u66FF\u3048\u308B",
   "Select branches with the same parent.": "\u540C\u3058\u89AA\u3092\u6301\u3064\u679D\u3092\u9078\u629E\u3057\u3066\u304F\u3060\u3055\u3044\u3002",
   "Copy selected nodes without children": "\u9078\u629E\u3057\u305F\u30CE\u30FC\u30C9\u3092\u5B50\u306A\u3057\u3067\u30B3\u30D4\u30FC",
@@ -3346,6 +3382,10 @@ var ja_default = {
 
 // src/locales/ko.json
 var ko_default = {
+  "Edit embedded node note": "\uB178\uB4DC\uC758 \uC784\uBCA0\uB4DC \uB178\uD2B8 \uD3B8\uC9D1",
+  "Vertical tree": "\uC138\uB85C \uD2B8\uB9AC",
+  "Sibling to the left": "\uC67C\uCABD \uD615\uC81C \uB178\uB4DC",
+  "Sibling to the right": "\uC624\uB978\uCABD \uD615\uC81C \uB178\uB4DC",
   "Switch between map and Markdown": "\uC9C0\uB3C4\uC640 Markdown \uC804\uD658",
   "Select branches with the same parent.": "\uBD80\uBAA8 \uB178\uB4DC\uAC00 \uAC19\uC740 \uAC00\uC9C0\uB97C \uC120\uD0DD\uD558\uC138\uC694.",
   "Copy selected nodes without children": "\uD558\uC704 \uB178\uB4DC \uC5C6\uC774 \uC120\uD0DD\uD55C \uB178\uB4DC \uBCF5\uC0AC",
@@ -3678,6 +3718,10 @@ var ko_default = {
 
 // src/locales/ru.json
 var ru_default = {
+  "Edit embedded node note": "\u0420\u0435\u0434\u0430\u043A\u0442\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u0432\u0441\u0442\u0440\u043E\u0435\u043D\u043D\u0443\u044E \u0437\u0430\u043C\u0435\u0442\u043A\u0443 \u0443\u0437\u043B\u0430",
+  "Vertical tree": "\u0412\u0435\u0440\u0442\u0438\u043A\u0430\u043B\u044C\u043D\u043E\u0435 \u0434\u0435\u0440\u0435\u0432\u043E",
+  "Sibling to the left": "\u0421\u043E\u0441\u0435\u0434\u043D\u0438\u0439 \u0443\u0437\u0435\u043B \u0441\u043B\u0435\u0432\u0430",
+  "Sibling to the right": "\u0421\u043E\u0441\u0435\u0434\u043D\u0438\u0439 \u0443\u0437\u0435\u043B \u0441\u043F\u0440\u0430\u0432\u0430",
   "Switch between map and Markdown": "\u041F\u0435\u0440\u0435\u043A\u043B\u044E\u0447\u0438\u0442\u044C \u043A\u0430\u0440\u0442\u0443 \u0438 Markdown",
   "Select branches with the same parent.": "\u0412\u044B\u0431\u0435\u0440\u0438\u0442\u0435 \u0432\u0435\u0442\u0432\u0438 \u0441 \u043E\u0431\u0449\u0438\u043C \u0440\u043E\u0434\u0438\u0442\u0435\u043B\u044C\u0441\u043A\u0438\u043C \u0443\u0437\u043B\u043E\u043C.",
   "Copy selected nodes without children": "\u041A\u043E\u043F\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u0432\u044B\u0431\u0440\u0430\u043D\u043D\u044B\u0435 \u0443\u0437\u043B\u044B \u0431\u0435\u0437 \u043F\u043E\u0442\u043E\u043C\u043A\u043E\u0432",
@@ -5140,13 +5184,15 @@ var CreationHandles = class {
     this.id = null;
     this.buttons = [];
     this.hovered = -1;
+    this.vertical = false;
     this.hover = (event) => {
       if (this.coarse || this.gesture || !this.node || this.host.hidden) return;
       if (event.target.closest(".tvm-create-handles button")) return;
       const rect = this.nodeRect;
       if (!rect) return;
       const inside = event.clientX >= rect.left - 10 && event.clientX <= rect.right + 10 && event.clientY >= rect.top - 10 && event.clientY <= rect.bottom + 10;
-      const distances = [Math.abs(event.clientY - rect.top), Math.abs(event.clientY - rect.bottom), Math.abs(event.clientX - rect.right), Math.abs(event.clientX - rect.left)];
+      const horizontal = [Math.abs(event.clientY - rect.top), Math.abs(event.clientY - rect.bottom), Math.abs(event.clientX - rect.right), Math.abs(event.clientX - rect.left)];
+      const distances = this.vertical ? [horizontal[3], horizontal[2], horizontal[1], horizontal[0]] : horizontal;
       const distance = Math.min(...distances);
       this.hovered = inside && distance <= 10 ? distances.indexOf(distance) : -1;
       this.visibility();
@@ -5200,7 +5246,8 @@ var CreationHandles = class {
         event.stopPropagation();
         this.cancel();
         this.viewport.focus({ preventScroll: true });
-        this.gesture = { button: button2, pointer: event.pointerId, x: event.clientX, y: event.clientY, dx: direction.x, dy: direction.y, id: this.id, action: direction.action, ready: false };
+        const { x, y } = direction;
+        this.gesture = { button: button2, pointer: event.pointerId, x: event.clientX, y: event.clientY, dx: this.vertical ? y : x, dy: this.vertical ? x : y, id: this.id, action: direction.action, ready: false };
         try {
           button2.setPointerCapture(event.pointerId);
         } catch {
@@ -5263,10 +5310,15 @@ var CreationHandles = class {
     this.preview.classList.toggle("is-ready", gesture.ready);
     this.path.setAttribute("d", `M ${sx} ${sy} C ${sx + gesture.dx * bend} ${sy + gesture.dy * bend}, ${ex - gesture.dx * bend} ${ey - gesture.dy * bend}, ${ex} ${ey}`);
   }
-  place(node, id, geometry) {
-    if (id !== this.id) {
+  place(node, id, geometry, vertical = false) {
+    if (id !== this.id || vertical !== this.vertical) {
       this.cancel();
       this.hovered = -1;
+    }
+    if (vertical !== this.vertical) {
+      this.vertical = vertical;
+      this.buttons[0].setAttribute("aria-label", t(vertical ? "Sibling to the left" : "Sibling above"));
+      this.buttons[1].setAttribute("aria-label", t(vertical ? "Sibling to the right" : "Sibling below"));
     }
     this.id = id;
     this.node = node;
@@ -5282,7 +5334,8 @@ var CreationHandles = class {
       return;
     }
     const gap = 0;
-    const points = [[rect.left + rect.width / 2, rect.top - gap], [rect.left + rect.width / 2, rect.bottom + gap], [rect.right + gap, rect.top + rect.height / 2], [rect.left - gap, rect.top + rect.height / 2]];
+    const horizontal = [[rect.left + rect.width / 2, rect.top - gap], [rect.left + rect.width / 2, rect.bottom + gap], [rect.right + gap, rect.top + rect.height / 2], [rect.left - gap, rect.top + rect.height / 2]];
+    const points = vertical ? [horizontal[3], horizontal[2], horizontal[1], horizontal[0]] : horizontal;
     this.buttons.forEach((button2, index) => {
       const x = points[index][0] - view.left, y = points[index][1] - view.top;
       button2.dataset.clipped = String(x < 0 || x > view.width || y < 0 || y > view.height);
@@ -5544,6 +5597,16 @@ var ROW_GAP = 18;
 var ROOT_GAP = 44;
 var MIN_WIDTH = 84;
 var EDITOR_VIEWPORT_PADDING = 12;
+var VERTICAL_NAVIGATION = {
+  parent: "previous",
+  child: "next",
+  previous: "parent",
+  next: "child",
+  "select-parent": "select-previous",
+  "select-child": "select-next",
+  "select-previous": "select-parent",
+  "select-next": "select-child"
+};
 var MapSurface = class {
   constructor(container, options) {
     this.container = container;
@@ -6225,7 +6288,8 @@ var MapSurface = class {
     const widths = /* @__PURE__ */ new Map();
     const levels = /* @__PURE__ */ new Map();
     const columns = /* @__PURE__ */ new Map();
-    const widthMode = this.mode === "map" ? this.options.getWidthMode?.() ?? "fixed" : "fixed";
+    const vertical = this.mode === "vertical";
+    const widthMode = this.mode === "map" || vertical ? this.options.getWidthMode?.() ?? "fixed" : "fixed";
     for (const id of this.visible) {
       const el = this.elements.get(id);
       el.style.height = "";
@@ -6286,7 +6350,7 @@ var MapSurface = class {
       const id = this.visible[i];
       const children = this.doc.byId.get(id).children.filter((child) => visible.has(child));
       const total = children.reduce((sum, child) => sum + (branchHeight.get(child) ?? 0), 0) + Math.max(0, children.length - 1) * rowGap;
-      branchHeight.set(id, Math.max(height.get(id), total));
+      branchHeight.set(id, Math.max((vertical ? widths : height).get(id), total));
     }
     let rootY = 0;
     const stack = [];
@@ -6303,7 +6367,7 @@ var MapSurface = class {
       const ownHeight = height.get(item.id);
       const branch = branchHeight.get(item.id);
       const ownWidth = widths.get(item.id);
-      const pos = this.mode === "table" ? { x: item.x, y: item.y, width: WIDTH, height: branch } : { x: item.x, y: item.y + (branch - ownHeight) / 2, width: ownWidth, height: ownHeight };
+      const pos = this.mode === "table" ? { x: item.x, y: item.y, width: WIDTH, height: branch } : vertical ? { x: item.y + (branch - ownWidth) / 2, y: item.x, width: ownWidth, height: ownHeight } : { x: item.x, y: item.y + (branch - ownHeight) / 2, width: ownWidth, height: ownHeight };
       this.positions.set(item.id, pos);
       const el = this.elements.get(item.id);
       if (this.mode === "table") el.style.height = `${pos.height}px`;
@@ -6315,7 +6379,7 @@ var MapSurface = class {
       const childTotal = children.reduce((sum, id) => sum + branchHeight.get(id), 0) + Math.max(0, children.length - 1) * rowGap;
       let y = item.y + (branch - childTotal) / 2;
       for (const id of children) {
-        stack.push({ id, x: item.x + pos.width + columnGap, y, level: item.level + 1 });
+        stack.push({ id, x: item.x + (vertical ? ownHeight : ownWidth) + columnGap, y, level: item.level + 1 });
         y += branchHeight.get(id) + rowGap;
       }
     }
@@ -6336,14 +6400,20 @@ var MapSurface = class {
       const x2 = to.x;
       const y2 = to.y + to.height / 2;
       const path = this.container.ownerDocument.createElementNS("http://www.w3.org/2000/svg", "path");
-      path.setAttribute("d", `M ${x1} ${y1} C ${x1 + COLUMN_GAP / 2} ${y1}, ${x2 - COLUMN_GAP / 2} ${y2}, ${x2} ${y2}`);
+      if (vertical) {
+        const startX = from.x + from.width / 2, startY = from.y + from.height;
+        const endX = to.x + to.width / 2, endY = to.y;
+        path.setAttribute("d", `M ${startX} ${startY} C ${startX} ${startY + COLUMN_GAP / 2}, ${endX} ${endY - COLUMN_GAP / 2}, ${endX} ${endY}`);
+      } else {
+        path.setAttribute("d", `M ${x1} ${y1} C ${x1 + COLUMN_GAP / 2} ${y1}, ${x2 - COLUMN_GAP / 2} ${y2}, ${x2} ${y2}`);
+      }
       fragment.append(path);
     }
     this.edges.replaceChildren(fragment);
     this.paintEdges(this.viewportSize());
   }
   paintEdges(size) {
-    if (this.mode !== "map") return;
+    if (this.mode !== "map" && this.mode !== "vertical") return;
     const { x, y, scale } = this.state.camera;
     this.edges.setAttribute("viewBox", `${-x / scale} ${-y / scale} ${size.width / scale} ${size.height / scale}`);
   }
@@ -6369,7 +6439,7 @@ var MapSurface = class {
       width: pos.width * c.scale,
       height: pos.height * c.scale
     } } : void 0;
-    this.handles?.place(id ? this.elements.get(id) : void 0, id, geometry);
+    this.handles?.place(id ? this.elements.get(id) : void 0, id, geometry, this.mode === "vertical");
   }
   applyCamera(fast = false) {
     const win = this.container.ownerDocument.defaultView;
@@ -6633,7 +6703,11 @@ var MapSurface = class {
       event.stopPropagation();
       return true;
     }
-    const action = resolveHotkey(event, this.options.getHotkeys?.());
+    const bindings = this.options.getHotkeys?.();
+    let action = resolveHotkey(event, bindings);
+    if (this.mode === "vertical" && action && event.key.startsWith("Arrow") && bindings?.[action] === void 0) {
+      action = VERTICAL_NAVIGATION[action] ?? action;
+    }
     if (event.repeat && action && ["delete", "cut", "add-child", "add-sibling", "add-sibling-before", "add-parent", "edit", "paste", "paste-after"].includes(action)) {
       event.preventDefault();
       event.stopPropagation();
@@ -6899,7 +6973,9 @@ var MapSurface = class {
     if (!target) {
       for (const [id, element] of this.elements) {
         const rect = element.getBoundingClientRect();
-        if (x >= rect.left && x <= rect.right && y >= rect.top - 12 && y <= rect.bottom + 12) {
+        const vertical = this.mode === "vertical";
+        const xInset = vertical ? 12 : 0, yInset = vertical ? 0 : 12;
+        if (x >= rect.left - xInset && x <= rect.right + xInset && y >= rect.top - yInset && y <= rect.bottom + yInset) {
           target = id;
           break;
         }
@@ -6908,8 +6984,10 @@ var MapSurface = class {
     let position = "child";
     if (target) {
       const rect = this.elements.get(target).getBoundingClientRect();
-      const relative = (y - rect.top) / Math.max(1, rect.height);
-      position = rect.height > 0 ? relative < 0.25 ? "before" : relative > 0.75 ? "after" : "child" : "child";
+      const vertical = this.mode === "vertical";
+      const span = vertical ? rect.width : rect.height;
+      const relative = (vertical ? x - rect.left : y - rect.top) / Math.max(1, span);
+      position = span > 0 ? relative < 0.25 ? "before" : relative > 0.75 ? "after" : "child" : "child";
       if (!this.doc || !canDropBranches(this.doc, drag.ids, target, position)) target = null;
     }
     drag.target = target;
@@ -7062,6 +7140,7 @@ var MapSurface = class {
       { label: t("Mark as question"), action: "make-question" },
       { label: t("Copy link to node"), action: "copy-node-link" },
       { label: t("Copy branch"), action: "copy" },
+      { label: t("Edit embedded node note"), action: "node-note" },
       { label: t("Copy selected nodes without children"), action: "copy-node-labels" },
       { label: t("Cut branch"), action: "cut" },
       { label: t("Paste as child branch"), action: "paste" },
@@ -7081,7 +7160,7 @@ var MapSurface = class {
       button2.setAttribute("role", "menuitem");
       const label2 = this.container.ownerDocument.createElement("span");
       label2.textContent = this.selection.size > 1 && ["delete", "copy", "cut"].includes(entry.action) ? t(entry.action === "copy" ? "Copy selection" : entry.action === "cut" ? "Cut selection" : "Delete selection") : entry.label;
-      if (this.selection.size > 1 && ["edit", "add-child", "add-sibling", "add-parent", "insert-template", "paste", "paste-after", "indent", "outdent"].includes(entry.action)) button2.disabled = true;
+      if (this.selection.size > 1 && ["edit", "node-note", "add-child", "add-sibling", "add-parent", "insert-template", "paste", "paste-after", "indent", "outdent"].includes(entry.action)) button2.disabled = true;
       button2.append(label2);
       const binding = this.options.getHotkeys?.()[entry.action] ?? DEFAULT_HOTKEYS[entry.action];
       if (binding) {
@@ -8632,6 +8711,7 @@ var TraceViewMindmap = class extends import_obsidian5.Plugin {
       ["insert-template", t("Insert template at selected node\u2026"), "insert-template"],
       ["copy-node-link", t("Copy link to node"), "copy-node-link"],
       ["edit-node", t("Edit node"), "edit"],
+      ["node-note", t("Edit embedded node note"), "node-note"],
       ["make-step", t("Mark as atomic step"), "make-step"],
       ["make-dated", t("Add step deadline"), "make-dated"],
       ["make-question", t("Mark as QA"), "make-question"],
@@ -9332,7 +9412,7 @@ var MapView = class extends import_obsidian5.EditableFileView {
   }
   layoutMenu(anchor2) {
     const menu = new import_obsidian5.Menu();
-    for (const [mode, label2] of [["map", t("Map")], ["outline", t("Outline")], ["table", t("Table")]]) {
+    for (const [mode, label2] of [["map", t("Map")], ["vertical", t("Vertical tree")], ["outline", t("Outline")], ["table", t("Table")]]) {
       menu.addItem((item) => item.setTitle(label2).setChecked(this.layoutMode === mode).onClick(() => {
         this.layoutMode = mode;
         this.surface?.setLayout(mode);
@@ -9462,7 +9542,7 @@ var MapView = class extends import_obsidian5.EditableFileView {
       if (saved) {
         try {
           const mode = JSON.parse(saved).layout;
-          if (["map", "outline", "table"].includes(mode)) this.layoutMode = mode;
+          if (["map", "vertical", "outline", "table"].includes(mode)) this.layoutMode = mode;
         } catch {
         }
       }
@@ -9593,6 +9673,10 @@ var MapView = class extends import_obsidian5.EditableFileView {
         if (!file || this.path !== path) throw new Error(t("The map was closed or renamed. Copy the address again."));
         await this.plugin.copy("[[" + this.app.metadataCache.fileToLinktext(file, "", true) + "#^" + address.blockId + "]]");
         new import_obsidian5.Notice(t("Node link copied."));
+        return;
+      }
+      if (action === "node-note") {
+        await this.editNodeNote(doc, node);
         return;
       }
       if (action === "insert-template" && this.file) {
@@ -9726,6 +9810,35 @@ var MapView = class extends import_obsidian5.EditableFileView {
       this.refreshDraftButton();
     }));
     if (recovered) this.refreshDraftButton();
+  }
+  async editNodeNote(doc, node) {
+    const map = this.file;
+    if (!map) return;
+    const embeds = [...node.text.matchAll(/!\[\[([^\]#|]+)(?:\|[^\]]*)?\]\]/g)];
+    const notes = embeds.map((match) => this.app.metadataCache.getFirstLinkpathDest(match[1], map.path)).filter((file) => file !== null && file !== map && file.extension === "md");
+    const note = notes.at(-1);
+    const original = note ? await this.app.vault.read(note) : "";
+    let created;
+    let savedText = "";
+    new TextDialog(this.app, t("Edit embedded node note"), original, async (text) => {
+      if (note) {
+        await this.plugin.write(note, original, text);
+        this.surface?.invalidateMarkdown();
+        return;
+      }
+      if (!text.trim()) throw new Error(t("A node cannot be empty."));
+      if (this.file !== map || this.doc !== doc) throw new Error(t("The note changed. Open it again at the current line."));
+      if (created) await this.plugin.write(created, savedText, text);
+      else {
+        const folder = this.app.fileManager.getNewFileParent(map.path);
+        const name = map.basename.replace(/\.mindmap$/, "").replace(/[\\/:*?"<>|#\[\]^]/g, " ").slice(0, 40).trim() || "Map";
+        const suffix = globalThis.crypto.randomUUID().slice(0, 8);
+        created = await this.app.vault.create((0, import_obsidian5.normalizePath)(`${folder.path}/${name} - note ${suffix}.md`), text);
+      }
+      savedText = text;
+      const link = this.app.metadataCache.fileToLinktext(created, map.path, true);
+      await this.apply(doc, editNode(doc, node.id, `${node.text} ![[${link}]]`));
+    }, map.path, false).open();
   }
   menu(anchor2) {
     const menu = new import_obsidian5.Menu();

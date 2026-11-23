@@ -1,4 +1,8 @@
 {
+  "Edit embedded node note": "编辑节点的嵌入笔记",
+  "Vertical tree": "垂直树",
+  "Sibling to the left": "左侧同级节点",
+  "Sibling to the right": "右侧同级节点",
   "Switch between map and Markdown": "在地图与 Markdown 之间切换",
   "Select branches with the same parent.": "请选择具有相同父节点的分支。",
   "Copy selected nodes without children": "复制所选节点（不含子节点）",

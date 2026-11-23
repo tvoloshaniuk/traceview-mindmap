@@ -4,7 +4,7 @@
  * See LICENSE, LICENSING.md and OBSIDIAN-HOST-PERMISSION.md.
  */
 import { t } from './i18n';
-import type { Camera, MapDocument, MapNode, MapSurfaceOptions, MapViewState, NodeAction, DropPosition } from './types';
+import type { Camera, MapDocument, MapLayout, MapNode, MapSurfaceOptions, MapViewState, NodeAction, DropPosition } from './types';
 import { canDropBranches } from './core';
 import { MIN_SCALE, MAX_SCALE } from './types';
 import { DEFAULT_HOTKEYS, resolveHotkey, type HotkeyAction } from './hotkeys';
@@ -22,6 +22,11 @@ const ROW_GAP = 18;
 const ROOT_GAP = 44;
 const MIN_WIDTH = 84;
 const EDITOR_VIEWPORT_PADDING = 12;
+const VERTICAL_NAVIGATION: Partial<Record<HotkeyAction, HotkeyAction>> = {
+  parent: 'previous', child: 'next', previous: 'parent', next: 'child',
+  'select-parent': 'select-previous', 'select-child': 'select-next',
+  'select-previous': 'select-parent', 'select-next': 'select-child',
+};
 
 /** A read-only document surface: every source mutation is an explicit action. */
 export class MapSurface {
@@ -59,7 +64,7 @@ export class MapSurface {
   private pinch: { distance: number; scale: number; worldX: number; worldY: number } | null = null;
   private suppressClickUntil = 0;
   private bounds = { width: 0, height: 0 };
-  private mode: 'map' | 'outline' | 'table' = 'map';
+  private mode: MapLayout = 'map';
   private editing?: { id: string; editor: InlineEditor; original: MapDocument; state: MapViewState; latest?: MapDocument; latestState?: MapViewState };
   private touchHold?: { pointer: number; x: number; y: number; timer: number };
   private lastPress?: { id: string; time: number; x: number; y: number };
@@ -229,7 +234,7 @@ export class MapSurface {
     else { this.viewport.focus({ preventScroll: true }); this.emitState(); }
   }
 
-  setLayout(mode: 'map' | 'outline' | 'table'): void {
+  setLayout(mode: MapLayout): void {
     if (this.destroyed || this.mode === mode) return;
     this.mode = mode;
     this.viewport.dataset.layout = mode;
@@ -674,7 +679,8 @@ export class MapSurface {
     const widths = new Map<string, number>();
     const levels = new Map<string, number>();
     const columns = new Map<number, number>();
-    const widthMode = this.mode === 'map' ? this.options.getWidthMode?.() ?? 'fixed' : 'fixed';
+    const vertical = this.mode === 'vertical';
+    const widthMode = this.mode === 'map' || vertical ? this.options.getWidthMode?.() ?? 'fixed' : 'fixed';
     for (const id of this.visible) {
       const el = this.elements.get(id)!;
       el.style.height = '';
@@ -737,7 +743,7 @@ export class MapSurface {
       const id = this.visible[i];
       const children = this.doc.byId.get(id)!.children.filter((child) => visible.has(child));
       const total = children.reduce((sum, child) => sum + (branchHeight.get(child) ?? 0), 0) + Math.max(0, children.length - 1) * rowGap;
-      branchHeight.set(id, Math.max(height.get(id)!, total));
+      branchHeight.set(id, Math.max((vertical ? widths : height).get(id)!, total));
     }
     let rootY = 0;
     const stack: { id: string; x: number; y: number; level: number }[] = [];
@@ -756,7 +762,9 @@ export class MapSurface {
       const ownWidth = widths.get(item.id)!;
       const pos = this.mode === 'table'
         ? { x: item.x, y: item.y, width: WIDTH, height: branch }
-        : { x: item.x, y: item.y + (branch - ownHeight) / 2, width: ownWidth, height: ownHeight };
+        : vertical
+          ? { x: item.y + (branch - ownWidth) / 2, y: item.x, width: ownWidth, height: ownHeight }
+          : { x: item.x, y: item.y + (branch - ownHeight) / 2, width: ownWidth, height: ownHeight };
       this.positions.set(item.id, pos);
       const el = this.elements.get(item.id)!;
       if (this.mode === 'table') el.style.height = `${pos.height}px`;
@@ -768,7 +776,7 @@ export class MapSurface {
       const childTotal = children.reduce((sum, id) => sum + branchHeight.get(id)!, 0) + Math.max(0, children.length - 1) * rowGap;
       let y = item.y + (branch - childTotal) / 2;
       for (const id of children) {
-        stack.push({ id, x: item.x + pos.width + columnGap, y, level: item.level + 1 });
+        stack.push({ id, x: item.x + (vertical ? ownHeight : ownWidth) + columnGap, y, level: item.level + 1 });
         y += branchHeight.get(id)! + rowGap;
       }
     }
@@ -789,7 +797,13 @@ export class MapSurface {
       const x2 = to.x;
       const y2 = to.y + to.height / 2;
       const path = this.container.ownerDocument.createElementNS('http://www.w3.org/2000/svg', 'path');
-      path.setAttribute('d', `M ${x1} ${y1} C ${x1 + COLUMN_GAP / 2} ${y1}, ${x2 - COLUMN_GAP / 2} ${y2}, ${x2} ${y2}`);
+      if (vertical) {
+        const startX = from.x + from.width / 2, startY = from.y + from.height;
+        const endX = to.x + to.width / 2, endY = to.y;
+        path.setAttribute('d', `M ${startX} ${startY} C ${startX} ${startY + COLUMN_GAP / 2}, ${endX} ${endY - COLUMN_GAP / 2}, ${endX} ${endY}`);
+      } else {
+        path.setAttribute('d', `M ${x1} ${y1} C ${x1 + COLUMN_GAP / 2} ${y1}, ${x2 - COLUMN_GAP / 2} ${y2}, ${x2} ${y2}`);
+      }
       fragment.append(path);
     }
     this.edges.replaceChildren(fragment);
@@ -797,7 +811,7 @@ export class MapSurface {
   }
 
   private paintEdges(size: { width: number; height: number }): void {
-    if (this.mode !== 'map') return;
+    if (this.mode !== 'map' && this.mode !== 'vertical') return;
     const { x, y, scale } = this.state.camera;
     this.edges.setAttribute('viewBox', `${-x / scale} ${-y / scale} ${size.width / scale} ${size.height / scale}`);
   }
@@ -824,7 +838,7 @@ export class MapSurface {
       right: viewportRect.left + (pos.x + pos.width) * c.scale + c.x, bottom: viewportRect.top + (pos.y + pos.height) * c.scale + c.y,
       width: pos.width * c.scale, height: pos.height * c.scale,
     } } : undefined;
-    this.handles?.place(id ? this.elements.get(id) : undefined, id, geometry);
+    this.handles?.place(id ? this.elements.get(id) : undefined, id, geometry, this.mode === 'vertical');
   }
 
   private applyCamera(fast = false): void {
@@ -1058,7 +1072,11 @@ export class MapSurface {
       this.selectionMode = false; this.viewport.classList.remove('is-selecting'); this.deselect();
       event.preventDefault(); event.stopPropagation(); return true;
     }
-    const action = resolveHotkey(event, this.options.getHotkeys?.());
+    const bindings = this.options.getHotkeys?.();
+    let action = resolveHotkey(event, bindings);
+    if (this.mode === 'vertical' && action && event.key.startsWith('Arrow') && bindings?.[action] === undefined) {
+      action = VERTICAL_NAVIGATION[action] ?? action;
+    }
     if (event.repeat && action && ['delete', 'cut', 'add-child', 'add-sibling', 'add-sibling-before', 'add-parent', 'edit', 'paste', 'paste-after'].includes(action)) {
       event.preventDefault(); event.stopPropagation(); return true;
     }
@@ -1289,14 +1307,18 @@ export class MapSurface {
       // The narrow space immediately above/below a node is also a sibling target.
       for (const [id, element] of this.elements) {
         const rect = element.getBoundingClientRect();
-        if (x >= rect.left && x <= rect.right && y >= rect.top - 12 && y <= rect.bottom + 12) { target = id; break; }
+        const vertical = this.mode === 'vertical';
+        const xInset = vertical ? 12 : 0, yInset = vertical ? 0 : 12;
+        if (x >= rect.left - xInset && x <= rect.right + xInset && y >= rect.top - yInset && y <= rect.bottom + yInset) { target = id; break; }
       }
     }
     let position: DropPosition = 'child';
     if (target) {
       const rect = this.elements.get(target)!.getBoundingClientRect();
-      const relative = (y - rect.top) / Math.max(1, rect.height);
-      position = rect.height > 0 ? (relative < 0.25 ? 'before' : relative > 0.75 ? 'after' : 'child') : 'child';
+      const vertical = this.mode === 'vertical';
+      const span = vertical ? rect.width : rect.height;
+      const relative = (vertical ? x - rect.left : y - rect.top) / Math.max(1, span);
+      position = span > 0 ? (relative < 0.25 ? 'before' : relative > 0.75 ? 'after' : 'child') : 'child';
       if (!this.doc || !canDropBranches(this.doc, drag.ids, target, position)) target = null;
     }
     drag.target = target; drag.position = position;
@@ -1424,6 +1446,7 @@ export class MapSurface {
       { label: t("Mark as question"), action: 'make-question' },
       { label: t("Copy link to node"), action: 'copy-node-link' },
       { label: t("Copy branch"), action: 'copy' },
+      { label: t("Edit embedded node note"), action: 'node-note' },
       { label: t("Copy selected nodes without children"), action: 'copy-node-labels' },
       { label: t("Cut branch"), action: 'cut' },
       { label: t("Paste as child branch"), action: 'paste' },
@@ -1443,7 +1466,7 @@ export class MapSurface {
       button.setAttribute('role', 'menuitem');
       const label = this.container.ownerDocument.createElement('span');
       label.textContent = this.selection.size > 1 && ['delete', 'copy', 'cut'].includes(entry.action) ? t(entry.action === "copy" ? "Copy selection" : entry.action === "cut" ? "Cut selection" : "Delete selection") : entry.label;
-      if (this.selection.size > 1 && ['edit', 'add-child', 'add-sibling', 'add-parent', 'insert-template', 'paste', 'paste-after', 'indent', 'outdent'].includes(entry.action)) button.disabled = true;
+      if (this.selection.size > 1 && ['edit', 'node-note', 'add-child', 'add-sibling', 'add-parent', 'insert-template', 'paste', 'paste-after', 'indent', 'outdent'].includes(entry.action)) button.disabled = true;
       button.append(label);
       const binding = this.options.getHotkeys?.()[entry.action] ?? DEFAULT_HOTKEYS[entry.action];
       if (binding) {

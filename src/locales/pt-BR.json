@@ -1,4 +1,8 @@
 {
+  "Edit embedded node note": "Editar a nota incorporada do nó",
+  "Vertical tree": "Árvore vertical",
+  "Sibling to the left": "Nó irmão à esquerda",
+  "Sibling to the right": "Nó irmão à direita",
   "Switch between map and Markdown": "Alternar entre mapa e Markdown",
   "Select branches with the same parent.": "Selecione ramos com o mesmo nó pai.",
   "Copy selected nodes without children": "Copiar nós selecionados sem os filhos",

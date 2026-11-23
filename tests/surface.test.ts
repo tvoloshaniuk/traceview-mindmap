@@ -193,6 +193,22 @@ test('Space and horizontal arrows fold without losing nested collapse state', t 
   assert.equal(f.actions.length, 0);
 });
 
+test('vertical tree keeps selection and uses the same tree operations along the rotated axes', t => {
+  const f = fixture(t, '- root\n  - first\n    - grandchild\n  - second\n');
+  f.surface.reveal(f.id('first'));
+  f.surface.setLayout('vertical');
+  assert.equal(f.surface.getState().selected, f.id('first'));
+  const coordinates = (label: string) => /translate\(([-\d.]+)px, ([-\d.]+)px\)/.exec(f.element(label).style.transform)!.slice(1).map(Number);
+  assert.ok(coordinates('first')[1] > coordinates('root')[1]);
+  assert.ok(coordinates('second')[0] > coordinates('first')[0]);
+  f.key('ArrowRight');
+  assert.equal(f.surface.getState().selected, f.id('second'));
+  f.key('ArrowUp');
+  assert.equal(f.surface.getState().selected, f.id('root'));
+  f.key('ArrowDown');
+  assert.equal(f.surface.getState().selected, f.id('second'));
+});
+
 test('Alt+Shift+digits change descendant depth only inside the selected branch', t => {
   const f = fixture(t, '- root\n  - branch\n    - one\n      - two\n        - three\n          - four\n            - five\n              - six\n  - other\n    - outside\n');
   f.surface.reveal(f.id('branch'));

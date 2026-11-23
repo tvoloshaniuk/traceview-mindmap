@@ -22,6 +22,7 @@ export class CreationHandles {
   private path: SVGPathElement;
   private coarse: boolean;
   private hovered = -1;
+  private vertical = false;
   private nodeRect?: ScreenRect;
   private gesture?: { button: HTMLButtonElement; pointer: number; x: number; y: number; dx: number; dy: number; id: string; action: NodeAction; ready: boolean };
   private hover = (event: PointerEvent) => {
@@ -29,7 +30,8 @@ export class CreationHandles {
     if ((event.target as Element).closest('.tvm-create-handles button')) return;
     const rect = this.nodeRect; if (!rect) return;
     const inside = event.clientX >= rect.left - 10 && event.clientX <= rect.right + 10 && event.clientY >= rect.top - 10 && event.clientY <= rect.bottom + 10;
-    const distances = [Math.abs(event.clientY - rect.top), Math.abs(event.clientY - rect.bottom), Math.abs(event.clientX - rect.right), Math.abs(event.clientX - rect.left)];
+    const horizontal = [Math.abs(event.clientY - rect.top), Math.abs(event.clientY - rect.bottom), Math.abs(event.clientX - rect.right), Math.abs(event.clientX - rect.left)];
+    const distances = this.vertical ? [horizontal[3], horizontal[2], horizontal[1], horizontal[0]] : horizontal;
     const distance = Math.min(...distances);
     this.hovered = inside && distance <= 10 ? distances.indexOf(distance) : -1;
     this.visibility();
@@ -55,7 +57,8 @@ export class CreationHandles {
       button.addEventListener('pointerdown', event => {
         if (event.button !== 0 || !this.id) return;
         event.preventDefault(); event.stopPropagation(); this.cancel(); this.viewport.focus({ preventScroll: true });
-        this.gesture = { button, pointer: event.pointerId, x: event.clientX, y: event.clientY, dx: direction.x, dy: direction.y, id: this.id, action: direction.action, ready: false };
+        const { x, y } = direction;
+        this.gesture = { button, pointer: event.pointerId, x: event.clientX, y: event.clientY, dx: this.vertical ? y : x, dy: this.vertical ? x : y, id: this.id, action: direction.action, ready: false };
         try { button.setPointerCapture(event.pointerId); } catch { /* Synthetic pointer. */ }
         this.drawPreview(event.clientX, event.clientY);
       });
@@ -90,15 +93,21 @@ export class CreationHandles {
     this.preview.style.display = ''; this.preview.classList.toggle('is-ready', gesture.ready);
     this.path.setAttribute('d', `M ${sx} ${sy} C ${sx + gesture.dx * bend} ${sy + gesture.dy * bend}, ${ex - gesture.dx * bend} ${ey - gesture.dy * bend}, ${ex} ${ey}`);
   }
-  place(node: HTMLElement | undefined, id: string | null, geometry?: { node: ScreenRect; viewport: ScreenRect }): void {
-    if (id !== this.id) { this.cancel(); this.hovered = -1; }
+  place(node: HTMLElement | undefined, id: string | null, geometry?: { node: ScreenRect; viewport: ScreenRect }, vertical = false): void {
+    if (id !== this.id || vertical !== this.vertical) { this.cancel(); this.hovered = -1; }
+    if (vertical !== this.vertical) {
+      this.vertical = vertical;
+      this.buttons[0].setAttribute('aria-label', t(vertical ? "Sibling to the left" : "Sibling above"));
+      this.buttons[1].setAttribute('aria-label', t(vertical ? "Sibling to the right" : "Sibling below"));
+    }
     this.id = id; this.node = node; this.host.hidden = !node || !id;
     if (!node || !id) { this.nodeRect = undefined; return; }
     const rect = geometry?.node ?? node.getBoundingClientRect(), view = geometry?.viewport ?? this.viewport.getBoundingClientRect();
     this.nodeRect = rect;
     if (rect.bottom < view.top || rect.top > view.bottom || rect.right < view.left || rect.left > view.right) { this.host.hidden = true; return; }
     const gap = 0;
-    const points = [[rect.left + rect.width / 2, rect.top - gap], [rect.left + rect.width / 2, rect.bottom + gap], [rect.right + gap, rect.top + rect.height / 2], [rect.left - gap, rect.top + rect.height / 2]];
+    const horizontal = [[rect.left + rect.width / 2, rect.top - gap], [rect.left + rect.width / 2, rect.bottom + gap], [rect.right + gap, rect.top + rect.height / 2], [rect.left - gap, rect.top + rect.height / 2]];
+    const points = vertical ? [horizontal[3], horizontal[2], horizontal[1], horizontal[0]] : horizontal;
     this.buttons.forEach((button, index) => {
       const x = points[index][0] - view.left, y = points[index][1] - view.top;
       button.dataset.clipped = String(x < 0 || x > view.width || y < 0 || y > view.height);

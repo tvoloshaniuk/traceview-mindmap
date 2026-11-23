@@ -1,4 +1,8 @@
 {
+  "Edit embedded node note": "Edit embedded node note",
+  "Vertical tree": "Vertical tree",
+  "Sibling to the left": "Sibling to the left",
+  "Sibling to the right": "Sibling to the right",
   "Switch between map and Markdown": "Switch between map and Markdown",
   "Select branches with the same parent.": "Select branches with the same parent.",
   "Copy selected nodes without children": "Copy selected nodes without children",

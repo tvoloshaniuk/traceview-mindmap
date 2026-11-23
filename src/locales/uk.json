@@ -1,4 +1,8 @@
 {
+  "Edit embedded node note": "Редагувати вкладену нотатку вузла",
+  "Vertical tree": "Вертикальне дерево",
+  "Sibling to the left": "Сусідній вузол ліворуч",
+  "Sibling to the right": "Сусідній вузол праворуч",
   "Switch between map and Markdown": "Перемкнути між картою і Markdown",
   "Select branches with the same parent.": "Вибери гілки зі спільним батьківським вузлом.",
   "Copy selected nodes without children": "Копіювати вибрані вузли без дітей",

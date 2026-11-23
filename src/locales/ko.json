@@ -1,4 +1,8 @@
 {
+  "Edit embedded node note": "노드의 임베드 노트 편집",
+  "Vertical tree": "세로 트리",
+  "Sibling to the left": "왼쪽 형제 노드",
+  "Sibling to the right": "오른쪽 형제 노드",
   "Switch between map and Markdown": "지도와 Markdown 전환",
   "Select branches with the same parent.": "부모 노드가 같은 가지를 선택하세요.",
   "Copy selected nodes without children": "하위 노드 없이 선택한 노드 복사",

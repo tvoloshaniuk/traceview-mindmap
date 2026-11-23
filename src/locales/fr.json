@@ -1,4 +1,8 @@
 {
+  "Edit embedded node note": "Modifier la note intégrée du nœud",
+  "Vertical tree": "Arbre vertical",
+  "Sibling to the left": "Nœud frère à gauche",
+  "Sibling to the right": "Nœud frère à droite",
   "Switch between map and Markdown": "Basculer entre la carte et Markdown",
   "Select branches with the same parent.": "Sélectionnez des branches ayant le même parent.",
   "Copy selected nodes without children": "Copier les nœuds sélectionnés sans leurs enfants",
