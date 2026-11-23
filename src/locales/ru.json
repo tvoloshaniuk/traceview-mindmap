@@ -1,4 +1,9 @@
 {
+  "Exclude maps from planning": "Исключить карты из планирования",
+  "Exclude branches from planning": "Исключить ветви из планирования",
+  "One term per line. Leave blank to show all.": "Одно выражение на строку. Пустое поле показывает всё.",
+  "Open node": "Открыть узел",
+  "Remove step number": "Убрать номер шага",
   "This map has no nodes.": "На этой карте пока нет узлов.",
   "Add first node": "Добавить первый узел",
   "Recover local draft": "Восстановить локальный черновик",

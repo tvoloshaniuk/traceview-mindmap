@@ -358,6 +358,11 @@ module.exports = __toCommonJS(main_exports);
 
 // src/locales/en.json
 var en_default = {
+  "Exclude maps from planning": "Exclude maps from planning",
+  "Exclude branches from planning": "Exclude branches from planning",
+  "One term per line. Leave blank to show all.": "One term per line. Leave blank to show all.",
+  "Open node": "Open node",
+  "Remove step number": "Remove step number",
   "This map has no nodes.": "This map has no nodes.",
   "Add first node": "Add first node",
   "Recover local draft": "Recover local draft",
@@ -681,6 +686,11 @@ var en_default = {
 
 // src/locales/uk.json
 var uk_default = {
+  "Exclude maps from planning": "\u0412\u0438\u043A\u043B\u044E\u0447\u0438\u0442\u0438 \u043A\u0430\u0440\u0442\u0438 \u0437\u0456 \u0441\u043F\u0438\u0441\u043A\u0456\u0432 \u043F\u043B\u0430\u043D\u0443\u0432\u0430\u043D\u043D\u044F",
+  "Exclude branches from planning": "\u0412\u0438\u043A\u043B\u044E\u0447\u0438\u0442\u0438 \u0433\u0456\u043B\u043A\u0438 \u0437\u0456 \u0441\u043F\u0438\u0441\u043A\u0456\u0432 \u043F\u043B\u0430\u043D\u0443\u0432\u0430\u043D\u043D\u044F",
+  "One term per line. Leave blank to show all.": "\u041E\u0434\u0438\u043D \u0432\u0438\u0440\u0430\u0437 \u043D\u0430 \u0440\u044F\u0434\u043E\u043A. \u041F\u043E\u0440\u043E\u0436\u043D\u0454 \u043F\u043E\u043B\u0435 \u043F\u043E\u043A\u0430\u0437\u0443\u0454 \u0432\u0441\u0435.",
+  "Open node": "\u0412\u0456\u0434\u043A\u0440\u0438\u0442\u0438 \u0432\u0443\u0437\u043E\u043B",
+  "Remove step number": "\u0417\u043D\u044F\u0442\u0438 \u043D\u043E\u043C\u0435\u0440 \u043A\u0440\u043E\u043A\u0443",
   "This map has no nodes.": "\u0423 \u0446\u0456\u0439 \u043A\u0430\u0440\u0442\u0456 \u0449\u0435 \u043D\u0435\u043C\u0430\u0454 \u0432\u0443\u0437\u043B\u0456\u0432.",
   "Add first node": "\u0414\u043E\u0434\u0430\u0442\u0438 \u043F\u0435\u0440\u0448\u0438\u0439 \u0432\u0443\u0437\u043E\u043B",
   "Recover local draft": "\u0412\u0456\u0434\u043D\u043E\u0432\u0438\u0442\u0438 \u043B\u043E\u043A\u0430\u043B\u044C\u043D\u0443 \u0447\u0435\u0440\u043D\u0435\u0442\u043A\u0443",
@@ -1004,6 +1014,11 @@ var uk_default = {
 
 // src/locales/pl.json
 var pl_default = {
+  "Exclude maps from planning": "Wyklucz mapy z planowania",
+  "Exclude branches from planning": "Wyklucz ga\u0142\u0119zie z planowania",
+  "One term per line. Leave blank to show all.": "Jedno wyra\u017Cenie w wierszu. Pozostaw puste, aby wy\u015Bwietli\u0107 wszystko.",
+  "Open node": "Otw\xF3rz w\u0119ze\u0142",
+  "Remove step number": "Usu\u0144 numer kroku",
   "This map has no nodes.": "Ta mapa nie ma jeszcze w\u0119z\u0142\xF3w.",
   "Add first node": "Dodaj pierwszy w\u0119ze\u0142",
   "Recover local draft": "Przywr\xF3\u0107 lokalny szkic",
@@ -1327,6 +1342,11 @@ var pl_default = {
 
 // src/locales/de.json
 var de_default = {
+  "Exclude maps from planning": "Karten aus der Planung ausschlie\xDFen",
+  "Exclude branches from planning": "Zweige aus der Planung ausschlie\xDFen",
+  "One term per line. Leave blank to show all.": "Ein Begriff pro Zeile. Leer lassen, um alles anzuzeigen.",
+  "Open node": "Knoten \xF6ffnen",
+  "Remove step number": "Schrittnummer entfernen",
   "This map has no nodes.": "Diese Karte enth\xE4lt noch keine Knoten.",
   "Add first node": "Ersten Knoten hinzuf\xFCgen",
   "Recover local draft": "Lokalen Entwurf wiederherstellen",
@@ -1650,6 +1670,11 @@ var de_default = {
 
 // src/locales/es.json
 var es_default = {
+  "Exclude maps from planning": "Excluir mapas de la planificaci\xF3n",
+  "Exclude branches from planning": "Excluir ramas de la planificaci\xF3n",
+  "One term per line. Leave blank to show all.": "Un t\xE9rmino por l\xEDnea. Deja el campo vac\xEDo para mostrar todo.",
+  "Open node": "Abrir nodo",
+  "Remove step number": "Quitar n\xFAmero del paso",
   "This map has no nodes.": "Este mapa todav\xEDa no tiene nodos.",
   "Add first node": "A\xF1adir primer nodo",
   "Recover local draft": "Recuperar borrador local",
@@ -1973,6 +1998,11 @@ var es_default = {
 
 // src/locales/fr.json
 var fr_default = {
+  "Exclude maps from planning": "Exclure des cartes de la planification",
+  "Exclude branches from planning": "Exclure des branches de la planification",
+  "One term per line. Leave blank to show all.": "Un terme par ligne. Laissez vide pour tout afficher.",
+  "Open node": "Ouvrir le n\u0153ud",
+  "Remove step number": "Retirer le num\xE9ro de l\u2019\xE9tape",
   "This map has no nodes.": "Cette carte ne contient encore aucun n\u0153ud.",
   "Add first node": "Ajouter le premier n\u0153ud",
   "Recover local draft": "R\xE9cup\xE9rer le brouillon local",
@@ -2296,6 +2326,11 @@ var fr_default = {
 
 // src/locales/pt-BR.json
 var pt_BR_default = {
+  "Exclude maps from planning": "Excluir mapas do planejamento",
+  "Exclude branches from planning": "Excluir ramos do planejamento",
+  "One term per line. Leave blank to show all.": "Um termo por linha. Deixe em branco para mostrar tudo.",
+  "Open node": "Abrir n\xF3",
+  "Remove step number": "Remover n\xFAmero da etapa",
   "This map has no nodes.": "Este mapa ainda n\xE3o tem n\xF3s.",
   "Add first node": "Adicionar primeiro n\xF3",
   "Recover local draft": "Recuperar rascunho local",
@@ -2619,6 +2654,11 @@ var pt_BR_default = {
 
 // src/locales/zh-CN.json
 var zh_CN_default = {
+  "Exclude maps from planning": "\u4ECE\u8BA1\u5212\u4E2D\u6392\u9664\u5730\u56FE",
+  "Exclude branches from planning": "\u4ECE\u8BA1\u5212\u4E2D\u6392\u9664\u5206\u652F",
+  "One term per line. Leave blank to show all.": "\u6BCF\u884C\u4E00\u4E2A\u8BCD\u3002\u7559\u7A7A\u5219\u663E\u793A\u5168\u90E8\u3002",
+  "Open node": "\u6253\u5F00\u8282\u70B9",
+  "Remove step number": "\u79FB\u9664\u6B65\u9AA4\u7F16\u53F7",
   "This map has no nodes.": "\u6B64\u5730\u56FE\u8FD8\u6CA1\u6709\u8282\u70B9\u3002",
   "Add first node": "\u6DFB\u52A0\u7B2C\u4E00\u4E2A\u8282\u70B9",
   "Recover local draft": "\u6062\u590D\u672C\u5730\u8349\u7A3F",
@@ -2942,6 +2982,11 @@ var zh_CN_default = {
 
 // src/locales/ja.json
 var ja_default = {
+  "Exclude maps from planning": "\u8A08\u753B\u304B\u3089\u30DE\u30C3\u30D7\u3092\u9664\u5916",
+  "Exclude branches from planning": "\u8A08\u753B\u304B\u3089\u679D\u3092\u9664\u5916",
+  "One term per line. Leave blank to show all.": "1\u884C\u306B1\u8A9E\u3092\u5165\u529B\u3057\u307E\u3059\u3002\u7A7A\u6B04\u306B\u3059\u308B\u3068\u3059\u3079\u3066\u8868\u793A\u3057\u307E\u3059\u3002",
+  "Open node": "\u30CE\u30FC\u30C9\u3092\u958B\u304F",
+  "Remove step number": "\u30B9\u30C6\u30C3\u30D7\u756A\u53F7\u3092\u524A\u9664",
   "This map has no nodes.": "\u3053\u306E\u30DE\u30C3\u30D7\u306B\u306F\u307E\u3060\u30CE\u30FC\u30C9\u304C\u3042\u308A\u307E\u305B\u3093\u3002",
   "Add first node": "\u6700\u521D\u306E\u30CE\u30FC\u30C9\u3092\u8FFD\u52A0",
   "Recover local draft": "\u30ED\u30FC\u30AB\u30EB\u306E\u4E0B\u66F8\u304D\u3092\u5FA9\u5143",
@@ -3265,6 +3310,11 @@ var ja_default = {
 
 // src/locales/ko.json
 var ko_default = {
+  "Exclude maps from planning": "\uACC4\uD68D\uC5D0\uC11C \uC9C0\uB3C4 \uC81C\uC678",
+  "Exclude branches from planning": "\uACC4\uD68D\uC5D0\uC11C \uAC00\uC9C0 \uC81C\uC678",
+  "One term per line. Leave blank to show all.": "\uD55C \uC904\uC5D0 \uD55C \uD56D\uBAA9\uC744 \uC785\uB825\uD558\uC138\uC694. \uBE44\uC6CC \uB450\uBA74 \uBAA8\uB450 \uD45C\uC2DC\uB429\uB2C8\uB2E4.",
+  "Open node": "\uB178\uB4DC \uC5F4\uAE30",
+  "Remove step number": "\uB2E8\uACC4 \uBC88\uD638 \uC0AD\uC81C",
   "This map has no nodes.": "\uC774 \uC9C0\uB3C4\uC5D0\uB294 \uC544\uC9C1 \uB178\uB4DC\uAC00 \uC5C6\uC2B5\uB2C8\uB2E4.",
   "Add first node": "\uCCAB \uB178\uB4DC \uCD94\uAC00",
   "Recover local draft": "\uB85C\uCEEC \uCD08\uC548 \uBCF5\uC6D0",
@@ -3588,6 +3638,11 @@ var ko_default = {
 
 // src/locales/ru.json
 var ru_default = {
+  "Exclude maps from planning": "\u0418\u0441\u043A\u043B\u044E\u0447\u0438\u0442\u044C \u043A\u0430\u0440\u0442\u044B \u0438\u0437 \u043F\u043B\u0430\u043D\u0438\u0440\u043E\u0432\u0430\u043D\u0438\u044F",
+  "Exclude branches from planning": "\u0418\u0441\u043A\u043B\u044E\u0447\u0438\u0442\u044C \u0432\u0435\u0442\u0432\u0438 \u0438\u0437 \u043F\u043B\u0430\u043D\u0438\u0440\u043E\u0432\u0430\u043D\u0438\u044F",
+  "One term per line. Leave blank to show all.": "\u041E\u0434\u043D\u043E \u0432\u044B\u0440\u0430\u0436\u0435\u043D\u0438\u0435 \u043D\u0430 \u0441\u0442\u0440\u043E\u043A\u0443. \u041F\u0443\u0441\u0442\u043E\u0435 \u043F\u043E\u043B\u0435 \u043F\u043E\u043A\u0430\u0437\u044B\u0432\u0430\u0435\u0442 \u0432\u0441\u0451.",
+  "Open node": "\u041E\u0442\u043A\u0440\u044B\u0442\u044C \u0443\u0437\u0435\u043B",
+  "Remove step number": "\u0423\u0431\u0440\u0430\u0442\u044C \u043D\u043E\u043C\u0435\u0440 \u0448\u0430\u0433\u0430",
   "This map has no nodes.": "\u041D\u0430 \u044D\u0442\u043E\u0439 \u043A\u0430\u0440\u0442\u0435 \u043F\u043E\u043A\u0430 \u043D\u0435\u0442 \u0443\u0437\u043B\u043E\u0432.",
   "Add first node": "\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u043F\u0435\u0440\u0432\u044B\u0439 \u0443\u0437\u0435\u043B",
   "Recover local draft": "\u0412\u043E\u0441\u0441\u0442\u0430\u043D\u043E\u0432\u0438\u0442\u044C \u043B\u043E\u043A\u0430\u043B\u044C\u043D\u044B\u0439 \u0447\u0435\u0440\u043D\u043E\u0432\u0438\u043A",
@@ -4488,6 +4543,8 @@ function stepParts(text) {
   const dateStart = dated ? bodyStart + orderLength + 2 + dated[1].length : -1;
   return {
     number: orderParts[0] ?? null,
+    numberStart: bodyStart + (trailingNumber ? dated[0].length : 0),
+    numberLength: order?.[1].length ? order[1].length + order[2].length : 0,
     order: orderParts,
     suffix: order?.[2]?.toLowerCase() ?? "",
     date: dated ? dated[3] ?? dated[4] ?? null : null,
@@ -4556,13 +4613,19 @@ function setDated(doc, id, date) {
   const label2 = check ? node.text.slice(check[0].length) : node.text;
   return editNode(doc, id, `${prefix}#step \u0434\u043E ${deadline}${label2 ? " " + label2 : ""}`);
 }
+function unnumberStep(doc, id) {
+  const node = required(doc, id), parts = stepParts(node.text);
+  if (!parts?.numberLength) return doc.source;
+  const end = parts.numberStart + parts.numberLength + 1;
+  return editNode(doc, id, node.text.slice(0, parts.numberStart) + node.text.slice(end).trimStart());
+}
 function setQuestion(doc, id) {
   const node = required(doc, id);
   if (/^(?:==)?\/\/todo\s+Q:/i.test(node.text)) return doc.source;
   return editNode(doc, id, `==//todo Q: ${taskLabel(node.text).label}==`);
 }
-function renumberSteps(doc, orderedNodeIds) {
-  const numbered = getSteps(doc).filter((step) => step.number !== null && !step.date && !step.unknownDate);
+function renumberSteps(doc, orderedNodeIds, includeDated = false) {
+  const numbered = getSteps(doc).filter((step) => step.number !== null && (includeDated || !step.date && !step.unknownDate));
   numbered.sort(compareSteps);
   let ordered = numbered;
   if (orderedNodeIds) {
@@ -4581,7 +4644,9 @@ function renumberSteps(doc, orderedNodeIds) {
   const info = sourceLines(doc.source);
   const replacements = ordered.map((step, index) => {
     const node = required(doc, step.nodeId), line = info[node.line];
-    const text = line.text.replace(/(#step[ \t]+)\d+(?:\.\d+)*[a-z]*(?=\))/i, (_match, prefix) => prefix + (index + 1));
+    const parts = stepParts(node.text);
+    const start = node.prefix.length + parts.numberStart;
+    const text = line.text.slice(0, start) + (index + 1) + line.text.slice(start + parts.numberLength);
     return { start: line.start, end: line.end, text };
   }).sort((a, b) => b.start - a.start);
   let source = doc.source;
@@ -5359,7 +5424,8 @@ var InlineEditor = class {
   }
   async submit() {
     if (this.saving || this.disposed || this.input.readOnly || this.confirmation) return;
-    const text = singleLine2(this.input.value);
+    const input = singleLine2(this.input.value);
+    const text = input.trim() ? input : this.options.emptyFallback ?? "";
     if (!text.trim()) {
       this.error.textContent = t("A node cannot be empty.");
       this.resize();
@@ -5400,6 +5466,7 @@ var MapSurface = class {
   constructor(container, options) {
     this.container = container;
     this.options = options;
+    this.lastChildByParent = /* @__PURE__ */ new Map();
     this.doc = null;
     this.state = { collapsed: [], selected: null, camera: { x: 36, y: 36, scale: 1 }, focusRoot: null };
     this.collapsed = /* @__PURE__ */ new Set();
@@ -5589,6 +5656,7 @@ var MapSurface = class {
     }
     const original = this.doc, state = this.getState();
     const editor = new InlineEditor(this.container.ownerDocument, initial, {
+      emptyFallback: original.byId.get(id)?.children.length ? t("Untitled") : void 0,
       save: async (text) => {
         const selected = await save(text);
         onFinish?.();
@@ -5791,6 +5859,7 @@ var MapSurface = class {
   render() {
     if (!this.doc || this.destroyed) return;
     const key = this.options.getRenderKey?.() ?? "";
+    if (key !== this.renderKey) this.lastChildByParent.clear();
     for (const [id, value] of this.rendered) {
       if (key !== this.renderKey || !this.doc.byId.has(id)) {
         this.options.releaseMarkdown?.(value.content);
@@ -6487,9 +6556,11 @@ var MapSurface = class {
       this.options.onAction(action, id);
       return true;
     }
+    const siblings = node?.parentId ? this.doc.byId.get(node.parentId)?.children ?? [] : this.doc.roots;
+    const peers = this.state.focusRoot === id && id ? [id] : siblings;
     let next;
-    if (action === "first") next = this.visible[0];
-    else if (action === "last") next = this.visible[this.visible.length - 1];
+    if (action === "first") next = node ? peers[0] : this.visible[0];
+    else if (action === "last") next = node ? peers.at(-1) : this.visible[0];
     else if (!id || !node) next = this.visible[0];
     else if (action === "parent") {
       if (this.options.getCollapseOnLeft?.() && node.children.length && !this.collapsed.has(id)) {
@@ -6497,16 +6568,17 @@ var MapSurface = class {
         return true;
       }
       next = node.parentId ?? void 0;
+      if (next && this.elements.has(next)) this.lastChildByParent.set(next, id);
     } else if (action === "child") {
       if (this.collapsed.has(id)) {
         this.toggleFold(id);
         return true;
       }
-      next = node.children[0];
+      const lastChild = this.lastChildByParent.get(id);
+      next = lastChild && this.doc.byId.get(lastChild)?.parentId === id ? lastChild : node.children[0];
     } else {
-      const siblings = node.parentId ? this.doc.byId.get(node.parentId)?.children ?? [] : this.doc.roots;
-      const index = siblings.indexOf(id);
-      next = siblings[index + (action === "previous" ? -1 : 1)];
+      const index = peers.indexOf(id);
+      next = peers[index + (action === "previous" ? -1 : 1)];
     }
     if (next) this.select(next, true);
     return true;
@@ -6881,6 +6953,19 @@ var MapSurface = class {
 };
 
 // src/queue-controls.ts
+function queueExclusions(value) {
+  return value.split(/\r?\n/).map((term) => term.trim().toLocaleLowerCase()).filter(Boolean);
+}
+function excludedQueueNodes(doc, terms) {
+  const excluded = /* @__PURE__ */ new Set();
+  if (!terms.length) return excluded;
+  for (const node of doc.nodes) {
+    if (node.parentId && excluded.has(node.parentId) || terms.some((term) => node.text.toLocaleLowerCase().includes(term))) {
+      excluded.add(node.id);
+    }
+  }
+  return excluded;
+}
 function queueLabel(text, showTask = true, showStep = true) {
   const match = /^(\[[^\]]\][ \t]*)?(#step(?:[ \t]+|$))?(.*)$/i.exec(text);
   const label2 = (showTask ? match[1] ?? "" : "") + (showStep ? match[2] ?? "" : "") + match[3];
@@ -8213,7 +8298,7 @@ function hasLargeVisibleTree(doc, state) {
   }
   return false;
 }
-var DEFAULT_SETTINGS = { patternMode: "glob", mapPatterns: "*.mindmap.md\n\u{1F3AF}*.md", language: "auto", nodeEditor: "native", autoOpen: false, autoRestoreLargeMaps: true, hideFrozen: true, queueTaskMarker: true, queueStepTag: true, collapseOnLeft: false, hotkeys: {}, widthMode: "fixed" };
+var DEFAULT_SETTINGS = { patternMode: "glob", mapPatterns: "*.mindmap.md\n\u{1F3AF}*.md", language: "auto", nodeEditor: "native", autoOpen: false, autoRestoreLargeMaps: true, queueExcludedMaps: "\u0430\u0440\u0445\u0456\u0432 \u0442\u0438\u0436\u043D\u0456\u0432\nold", queueExcludedBranches: "\u{1F9CA}\n\u274C", queueTaskMarker: true, queueStepTag: true, collapseOnLeft: false, hotkeys: {}, widthMode: "fixed" };
 var widthModes = () => [["fixed", t("Fixed width")], ["content", t("Fit node content")], ["column", t("Fit visible column")]];
 var message = (error) => error instanceof Error ? error.message : String(error);
 var createsNode = (action) => action === "add-child" || action === "add-parent" || action === "add-sibling" || action === "add-sibling-before";
@@ -8249,6 +8334,8 @@ var TraceViewMindmap = class extends import_obsidian5.Plugin {
       this.autoTimers.clear();
     });
     this.settings = { ...DEFAULT_SETTINGS, ...saved, hotkeys: {} };
+    if (typeof saved?.queueExcludedMaps !== "string") this.settings.queueExcludedMaps = DEFAULT_SETTINGS.queueExcludedMaps;
+    if (typeof saved?.queueExcludedBranches !== "string") this.settings.queueExcludedBranches = saved?.hideFrozen === false ? "" : DEFAULT_SETTINGS.queueExcludedBranches;
     if (typeof this.settings.previousPluginId !== "string" || !/^[a-z0-9][a-z0-9-]*$/.test(this.settings.previousPluginId) || this.settings.previousPluginId === "traceview-mindmap") delete this.settings.previousPluginId;
     try {
       let paths = this.app.loadLocalStorage("traceview-mindmap:source-preferences");
@@ -9515,6 +9602,9 @@ var QueueView = class extends import_obsidian5.ItemView {
   constructor(leaf, plugin) {
     super(leaf);
     this.plugin = plugin;
+    this.undoChanges = [];
+    this.redoChanges = [];
+    this.writing = false;
     this.cache = /* @__PURE__ */ new Map();
     this.mode = "steps";
     this.collapsed = /* @__PURE__ */ new Set();
@@ -9542,11 +9632,17 @@ var QueueView = class extends import_obsidian5.ItemView {
       this.mode = value;
       this.draw();
     });
+    this.undoButton = iconButton(toolbar, "undo-2", t("Undo"), () => {
+      void this.history("undo");
+    });
+    this.redoButton = iconButton(toolbar, "redo-2", t("Redo"), () => {
+      void this.history("redo");
+    });
     button(toolbar, t("Refresh"), () => {
       this.cache.clear();
       void this.reload();
     });
-    attachMapFilter(toolbar, () => this.app.vault.getMarkdownFiles().filter((file) => this.plugin.isMap(file)), (path) => {
+    attachMapFilter(toolbar, () => this.queueFiles(), (path) => {
       this.filter = path;
       this.draw();
     });
@@ -9564,7 +9660,6 @@ var QueueView = class extends import_obsidian5.ItemView {
       this.query = search.value.toLocaleLowerCase();
       this.draw();
     };
-    this.contentEl.createEl("p", { cls: "tvm-status", text: t("Reordering changes only step numbers within one file. Branches stay in place. Dated and unnumbered steps have separate ordering.") });
     this.host = this.contentEl.createDiv("tvm-panel");
     await this.reload();
   }
@@ -9574,10 +9669,15 @@ var QueueView = class extends import_obsidian5.ItemView {
       void this.reload();
     }, 250);
   }
+  queueFiles() {
+    const terms = queueExclusions(this.plugin.settings.queueExcludedMaps);
+    return this.app.vault.getMarkdownFiles().filter((file) => this.plugin.isMap(file) && !terms.some((term) => file.basename.toLocaleLowerCase().includes(term)));
+  }
   async reload() {
     const generation = ++this.generation;
-    const files = this.app.vault.getMarkdownFiles().filter((file) => this.plugin.isMap(file));
+    const files = this.queueFiles();
     const paths = new Set(files.map((file) => file.path));
+    if (this.filter && !paths.has(this.filter)) this.filter = "";
     for (const path of this.cache.keys()) if (!paths.has(path)) this.cache.delete(path);
     for (let offset = 0; offset < files.length; offset += 8) {
       if (this.closed || generation !== this.generation) return;
@@ -9601,20 +9701,26 @@ var QueueView = class extends import_obsidian5.ItemView {
   }
   draw() {
     if (!this.host) return;
+    this.refreshHistoryButtons();
+    if (this.renderer) this.removeChild(this.renderer);
+    this.renderer = this.addChild(new import_obsidian5.Component());
     this.host.empty();
     if (this.foldControls) this.foldControls.hidden = this.mode === "dates";
     let count = 0;
     const maps = [...this.cache.values()].filter((map) => !this.filter || map.file.path === this.filter).sort((a, b) => a.file.path.localeCompare(b.file.path));
+    const terms = queueExclusions(this.plugin.settings.queueExcludedBranches);
+    const excluded = new Map(maps.map((map) => [map, excludedQueueNodes(map.doc, terms)]));
     if (this.mode === "dates") {
-      const rows = maps.flatMap((map) => getSteps(map.doc).filter((step) => !step.completed && (step.date || step.unknownDate) && (!this.plugin.settings.hideFrozen || !step.frozen)).map((step) => ({ map, step })));
+      const rows = maps.flatMap((map) => getSteps(map.doc).filter((step) => !step.completed && (step.date || step.unknownDate) && !excluded.get(map).has(step.nodeId)).map((step) => ({ map, step })));
       rows.sort((a, b) => (a.step.unknownDate ? "" : a.step.date).localeCompare(b.step.unknownDate ? "" : b.step.date));
       for (const { map, step } of rows) if (!this.query || step.text.toLocaleLowerCase().includes(this.query)) {
         this.stepRow(this.host, map, step, false);
         count++;
       }
     } else for (const map of maps) {
-      const steps = getSteps(map.doc).filter((step) => !step.completed && (!this.plugin.settings.hideFrozen || !step.frozen) && (!this.query || step.text.toLocaleLowerCase().includes(this.query)));
-      const questions = map.doc.nodes.filter((node) => /\[\[QA ❓(?:\||\]\])|\/\/todo\s+Q\s*:/i.test(node.text) && !node.text.includes("\u2705") && (!this.query || node.text.toLocaleLowerCase().includes(this.query)));
+      const hidden = excluded.get(map);
+      const steps = getSteps(map.doc).filter((step) => !step.completed && !hidden.has(step.nodeId) && (!this.query || step.text.toLocaleLowerCase().includes(this.query)));
+      const questions = map.doc.nodes.filter((node) => !hidden.has(node.id) && /\[\[QA ❓(?:\||\]\])|\/\/todo\s+Q\s*:/i.test(node.text) && !node.text.includes("\u2705") && (!this.query || node.text.toLocaleLowerCase().includes(this.query)));
       if (!(this.mode === "qa" ? questions.length : steps.length)) continue;
       const section = this.host.createDiv("tvm-queue-group");
       const header = section.createDiv("tvm-queue-heading");
@@ -9638,29 +9744,34 @@ var QueueView = class extends import_obsidian5.ItemView {
       }
       if (this.mode === "qa") for (const node of questions) {
         const row = section.createDiv("tvm-step-row");
-        button(row, this.label(node.text), () => {
-          void this.plugin.openMap(map.file, void 0, node.id);
-        }).addClass("tvm-step-text");
+        this.renderLabel(row, map, node.id, queueLabel(node.text, this.plugin.settings.queueTaskMarker, this.plugin.settings.queueStepTag));
         count++;
       }
       else {
         steps.sort(compareSteps);
         for (const step of steps) {
-          this.stepRow(section, map, step, step.number !== null && !step.date && !step.unknownDate);
+          this.stepRow(section, map, step, step.number !== null);
           count++;
         }
       }
     }
     if (!count) this.host.createDiv({ cls: "tvm-empty", text: t("No open items match this filter.") });
   }
-  label(text) {
-    return queueLabel(text, this.plugin.settings.queueTaskMarker, this.plugin.settings.queueStepTag);
+  renderLabel(parent, map, id, text) {
+    const label2 = parent.createDiv("tvm-step-text");
+    label2.textContent = text;
+    button(parent, "\u2197", () => {
+      void this.plugin.openMap(map.file, void 0, id);
+    }, t("Open node"));
+    void import_obsidian5.MarkdownRenderer.render(this.app, text, label2, map.file.path, this.renderer).catch(() => {
+      label2.textContent = text;
+    });
   }
   stepRow(parent, map, step, reorder) {
     const row = parent.createDiv("tvm-step-row");
     const checkbox = row.createEl("input", { type: "checkbox", attr: { "aria-label": t("Mark completed") } });
     checkbox.onchange = () => {
-      void this.change(map, toggleTask(map.doc, step.nodeId));
+      this.queueWrite(map, toggleTask(map.doc, step.nodeId));
     };
     if (reorder) {
       const controls = row.createDiv("tvm-step-controls");
@@ -9693,34 +9804,74 @@ var QueueView = class extends import_obsidian5.ItemView {
       metadata.createSpan({ cls: "tvm-badge", text: step.unknownDate ? t("Deadline ?") : step.date });
       metadata.createSpan({ cls: "tvm-badge tvm-step-map", text: map.file.basename });
     }
-    button(content, this.label(step.text), () => {
-      void this.plugin.openMap(map.file, void 0, step.nodeId);
-    }).addClass("tvm-step-text");
+    const commands = row.createDiv("tvm-step-controls");
+    iconButton(commands, "calendar", t("Step deadline"), () => {
+      new DateDialog(this.app, step.unknownDate ? "?" : step.date ?? "", (value) => this.change(map, setDated(map.doc, step.nodeId, value))).open();
+    });
+    if (step.number !== null) iconButton(commands, "list-minus", t("Remove step number"), () => {
+      this.queueWrite(map, unnumberStep(map.doc, step.nodeId));
+    });
+    this.renderLabel(content, map, step.nodeId, queueLabel(step.text, false, this.plugin.settings.queueStepTag));
   }
   async reorder(map, id, target) {
-    const numbered = getSteps(map.doc).filter((step) => step.number !== null && !step.date && !step.unknownDate).sort(compareSteps);
+    const numbered = getSteps(map.doc).filter((step) => step.number !== null).sort(compareSteps);
     const ids = numbered.map((step) => step.nodeId), from = ids.indexOf(id);
     if (from < 0) return;
     let to;
     if (typeof target === "string") to = ids.indexOf(target);
     else {
-      const visible = numbered.filter((step) => !step.completed && (!this.plugin.settings.hideFrozen || !step.frozen) && (!this.query || step.text.toLocaleLowerCase().includes(this.query)));
+      const excluded = excludedQueueNodes(map.doc, queueExclusions(this.plugin.settings.queueExcludedBranches));
+      const visible = numbered.filter((step) => !step.completed && !excluded.has(step.nodeId) && (!this.query || step.text.toLocaleLowerCase().includes(this.query)));
       const position = visible.findIndex((step) => step.nodeId === id);
       to = ids.indexOf(visible[position + target]?.nodeId ?? "");
     }
     if (to < 0 || to === from) return;
     ids.splice(from, 1);
     ids.splice(to, 0, id);
-    await this.change(map, renumberSteps(map.doc, ids));
+    this.queueWrite(map, renumberSteps(map.doc, ids, true));
+  }
+  queueWrite(map, next) {
+    void this.change(map, next).catch((error) => new import_obsidian5.Notice(message(error), 8e3));
   }
   async change(map, next) {
+    if (this.writing || next === map.doc.source) return;
+    await this.writeQueueChange(map.file, map.doc.source, next, () => {
+      this.undoChanges.push({ file: map.file, before: map.doc.source, after: next });
+      if (this.undoChanges.length > 50) this.undoChanges.shift();
+      this.redoChanges.length = 0;
+    });
+  }
+  refreshHistoryButtons() {
+    if (this.undoButton) this.undoButton.disabled = this.writing || !this.undoChanges.length;
+    if (this.redoButton) this.redoButton.disabled = this.writing || !this.redoChanges.length;
+  }
+  async history(direction) {
+    const undo = direction === "undo";
+    const from = undo ? this.undoChanges : this.redoChanges;
+    const to = undo ? this.redoChanges : this.undoChanges;
+    const edit = from.at(-1);
+    if (!edit || this.writing) return;
     try {
-      await this.plugin.write(map.file, map.doc.source, next);
+      await this.writeQueueChange(edit.file, undo ? edit.after : edit.before, undo ? edit.before : edit.after, () => {
+        from.pop();
+        to.push(edit);
+      });
     } catch (error) {
       new import_obsidian5.Notice(message(error), 8e3);
     }
-    this.cache.delete(map.file.path);
-    await this.reload();
+  }
+  async writeQueueChange(file, expected, next, record) {
+    this.writing = true;
+    this.refreshHistoryButtons();
+    try {
+      await this.plugin.write(file, expected, next);
+      record();
+    } finally {
+      this.writing = false;
+      this.cache.delete(file.path);
+      this.refreshHistoryButtons();
+      if (!this.closed) await this.reload();
+    }
   }
   async onClose() {
     this.closed = true;
@@ -9832,11 +9983,16 @@ var SettingsTab = class extends import_obsidian5.PluginSettingTab {
       for (const leaf of this.app.workspace.getLeavesOfType(VIEW)) leaf.view.refreshRestoreWait();
       await this.plugin.saveData(this.plugin.settings);
     }));
-    new import_obsidian5.Setting(this.containerEl).setName(t("Hide frozen steps")).setDesc(t("Skip \u{1F9CA} branches in step and deadline lists. Maps display all text.")).addToggle((toggle) => toggle.setValue(this.plugin.settings.hideFrozen).onChange(async (value) => {
-      this.plugin.settings.hideFrozen = value;
-      await this.plugin.saveData(this.plugin.settings);
-      this.plugin.refreshQueues();
-    }));
+    for (const [key, label2] of [
+      ["queueExcludedMaps", t("Exclude maps from planning")],
+      ["queueExcludedBranches", t("Exclude branches from planning")]
+    ]) {
+      new import_obsidian5.Setting(this.containerEl).setName(label2).setDesc(t("One term per line. Leave blank to show all.")).addTextArea((input) => input.setValue(this.plugin.settings[key]).onChange(async (value) => {
+        this.plugin.settings[key] = value;
+        await this.plugin.saveData(this.plugin.settings);
+        this.plugin.refreshQueues();
+      }));
+    }
     new import_obsidian5.Setting(this.containerEl).setName(t("Left arrow collapses the branch first")).setDesc(t("Off: go straight to the parent. On: collapse the open branch first, then press again to select the parent.")).addToggle((toggle) => toggle.setValue(this.plugin.settings.collapseOnLeft).onChange(async (value) => {
       this.plugin.settings.collapseOnLeft = value;
       await this.plugin.saveData(this.plugin.settings);

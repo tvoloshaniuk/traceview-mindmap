@@ -5,13 +5,13 @@
  */
 import { t, LANGUAGES, isLanguageSetting, setLanguage, type LanguageSetting } from './i18n';
 import { getLanguage, App, Component, EditableFileView, ItemView, MarkdownRenderer, MarkdownView, Menu, Notice, Platform, Plugin, PluginSettingTab, Scope, Setting, TFile, WorkspaceLeaf, normalizePath, parseLinktext, setIcon, type HoverPopover } from 'obsidian';
-import { moveBranches, changeNodes, copyBranches, deleteNodes, parseMap, restoreTemplateLineEndings, editNode, addFirstNode, addNode, addParent, deleteNode, moveNode, copyBranch, pasteBranch, toggleTask, setStep, setDated, setQuestion, getSteps, compareSteps, renumberSteps } from './core';
+import { moveBranches, changeNodes, copyBranches, deleteNodes, parseMap, restoreTemplateLineEndings, editNode, addFirstNode, addNode, addParent, deleteNode, moveNode, copyBranch, pasteBranch, toggleTask, setStep, setDated, setQuestion, getSteps, compareSteps, renumberSteps, unnumberStep } from './core';
 import { addressNode, onlyAddedBlockIds } from './block-links';
 import { captureHotkey, DEFAULT_HOTKEYS, HOTKEY_DEFINITIONS, resolveHotkey, validateHotkeys } from './hotkeys';
 import { compileMapPatterns, PatternError, type MapRules, type PatternMode } from './map-patterns';
 import { MapSearch } from './map-search';
 import { MapSurface } from './surface';
-import { attachMapFilter, queueLabel } from './queue-controls';
+import { attachMapFilter, excludedQueueNodes, queueExclusions, queueLabel } from './queue-controls';
 import { mountNativeEditor, prepareNativeEditor, type NativeConstructor } from './native-editor';
 import type { InlineEditor, InlineDriver } from './inline';
 import type { Editor } from 'obsidian';
@@ -41,8 +41,8 @@ function hasLargeVisibleTree(doc: MapDocument, state?: MapViewState): boolean {
   }
   return false;
 }
-interface Settings extends MapRules { previousPluginId?: string; language: LanguageSetting; nodeEditor: 'native' | 'text'; autoOpen: boolean; autoRestoreLargeMaps: boolean; hideFrozen: boolean; queueTaskMarker: boolean; queueStepTag: boolean; collapseOnLeft: boolean; hotkeys: Record<string, string>; widthMode: WidthMode; }
-const DEFAULT_SETTINGS: Settings = { patternMode: 'glob', mapPatterns: '*.mindmap.md\n🎯*.md', language: 'auto', nodeEditor: 'native', autoOpen: false, autoRestoreLargeMaps: true, hideFrozen: true, queueTaskMarker: true, queueStepTag: true, collapseOnLeft: false, hotkeys: {}, widthMode: 'fixed' };
+interface Settings extends MapRules { previousPluginId?: string; language: LanguageSetting; nodeEditor: 'native' | 'text'; autoOpen: boolean; autoRestoreLargeMaps: boolean; queueExcludedMaps: string; queueExcludedBranches: string; queueTaskMarker: boolean; queueStepTag: boolean; collapseOnLeft: boolean; hotkeys: Record<string, string>; widthMode: WidthMode; }
+const DEFAULT_SETTINGS: Settings = { patternMode: 'glob', mapPatterns: '*.mindmap.md\n🎯*.md', language: 'auto', nodeEditor: 'native', autoOpen: false, autoRestoreLargeMaps: true, queueExcludedMaps: 'архів тижнів\nold', queueExcludedBranches: '🧊\n❌', queueTaskMarker: true, queueStepTag: true, collapseOnLeft: false, hotkeys: {}, widthMode: 'fixed' };
 const widthModes = (): [WidthMode, string][] => [['fixed', t("Fixed width")], ['content', t("Fit node content")], ['column', t("Fit visible column")]];
 const message = (error: unknown) => error instanceof Error ? error.message : String(error);
 const createsNode = (action: NodeAction) => action === 'add-child' || action === 'add-parent' || action === 'add-sibling' || action === 'add-sibling-before';
@@ -75,6 +75,8 @@ export default class TraceViewMindmap extends Plugin {
     const saved = await this.loadData();
     this.register(() => { for (const timer of this.autoTimers.values()) window.clearTimeout(timer); this.autoTimers.clear(); });
     this.settings = { ...DEFAULT_SETTINGS, ...saved, hotkeys: {} };
+    if (typeof saved?.queueExcludedMaps !== 'string') this.settings.queueExcludedMaps = DEFAULT_SETTINGS.queueExcludedMaps;
+    if (typeof saved?.queueExcludedBranches !== 'string') this.settings.queueExcludedBranches = saved?.hideFrozen === false ? '' : DEFAULT_SETTINGS.queueExcludedBranches;
     if (typeof this.settings.previousPluginId !== 'string' || !/^[a-z0-9][a-z0-9-]*$/.test(this.settings.previousPluginId) || this.settings.previousPluginId === 'traceview-mindmap') delete this.settings.previousPluginId;
     try {
       let paths = this.app.loadLocalStorage('traceview-mindmap:source-preferences');
@@ -1073,7 +1075,14 @@ class MapView extends EditableFileView {
 }
 
 interface IndexedMap { file: TFile; doc: MapDocument; mtime: number; }
+interface QueueChange { file: TFile; before: string; after: string; }
 class QueueView extends ItemView {
+  private renderer?: Component;
+  private undoChanges: QueueChange[] = [];
+  private redoChanges: QueueChange[] = [];
+  private undoButton?: HTMLButtonElement;
+  private redoButton?: HTMLButtonElement;
+  private writing = false;
   private cache = new Map<string, IndexedMap>();
   private host?: HTMLElement;
   private mode = 'steps';
@@ -1093,8 +1102,10 @@ class QueueView extends ItemView {
     this.closed = false; this.contentEl.empty(); this.contentEl.addClass('tvm-view', 'tvm-queue-view');
     const toolbar = this.contentEl.createDiv('tvm-toolbar');
     for (const [value, label] of [['steps', t("Steps")], ['dates', t("Deadlines")], ['qa', t("Open QA")]]) button(toolbar, label, () => { this.mode = value; this.draw(); });
+    this.undoButton = iconButton(toolbar, 'undo-2', t("Undo"), () => { void this.history('undo'); });
+    this.redoButton = iconButton(toolbar, 'redo-2', t("Redo"), () => { void this.history('redo'); });
     button(toolbar, t("Refresh"), () => { this.cache.clear(); void this.reload(); });
-    attachMapFilter(toolbar, () => this.app.vault.getMarkdownFiles().filter(file => this.plugin.isMap(file)), path => { this.filter = path; this.draw(); });
+    attachMapFilter(toolbar, () => this.queueFiles(), path => { this.filter = path; this.draw(); });
     this.foldControls = toolbar.createDiv('tvm-queue-fold-controls');
     button(this.foldControls, t("Collapse all"), () => {
       for (const path of this.cache.keys()) if (!this.filter || path === this.filter) this.collapsed.add(path);
@@ -1106,15 +1117,20 @@ class QueueView extends ItemView {
     });
     const search = toolbar.createEl('input', { type: 'search', attr: { 'aria-label': t("Search steps"), placeholder: t("Find…") } });
     search.oninput = () => { this.query = search.value.toLocaleLowerCase(); this.draw(); };
-    this.contentEl.createEl('p', { cls: 'tvm-status', text: t("Reordering changes only step numbers within one file. Branches stay in place. Dated and unnumbered steps have separate ordering.") });
     this.host = this.contentEl.createDiv('tvm-panel');
     await this.reload();
   }
   scheduleReload(): void { window.clearTimeout(this.timer); this.timer = window.setTimeout(() => { void this.reload(); }, 250); }
+  private queueFiles(): TFile[] {
+    const terms = queueExclusions(this.plugin.settings.queueExcludedMaps);
+    return this.app.vault.getMarkdownFiles().filter(file => this.plugin.isMap(file)
+      && !terms.some(term => file.basename.toLocaleLowerCase().includes(term)));
+  }
   private async reload(): Promise<void> {
     const generation = ++this.generation;
-    const files = this.app.vault.getMarkdownFiles().filter(file => this.plugin.isMap(file));
+    const files = this.queueFiles();
     const paths = new Set(files.map(file => file.path));
+    if (this.filter && !paths.has(this.filter)) this.filter = '';
     for (const path of this.cache.keys()) if (!paths.has(path)) this.cache.delete(path);
     for (let offset = 0; offset < files.length; offset += 8) {
       if (this.closed || generation !== this.generation) return;
@@ -1136,17 +1152,23 @@ class QueueView extends ItemView {
   }
   private draw(): void {
     if (!this.host) return;
+    this.refreshHistoryButtons();
+    if (this.renderer) this.removeChild(this.renderer);
+    this.renderer = this.addChild(new Component());
     this.host.empty();
     if (this.foldControls) this.foldControls.hidden = this.mode === 'dates';
     let count = 0;
     const maps = [...this.cache.values()].filter(map => !this.filter || map.file.path === this.filter).sort((a, b) => a.file.path.localeCompare(b.file.path));
+    const terms = queueExclusions(this.plugin.settings.queueExcludedBranches);
+    const excluded = new Map(maps.map(map => [map, excludedQueueNodes(map.doc, terms)]));
     if (this.mode === 'dates') {
-      const rows = maps.flatMap(map => getSteps(map.doc).filter(step => !step.completed && (step.date || step.unknownDate) && (!this.plugin.settings.hideFrozen || !step.frozen)).map(step => ({ map, step })));
+      const rows = maps.flatMap(map => getSteps(map.doc).filter(step => !step.completed && (step.date || step.unknownDate) && !excluded.get(map)!.has(step.nodeId)).map(step => ({ map, step })));
       rows.sort((a, b) => (a.step.unknownDate ? '' : a.step.date!).localeCompare(b.step.unknownDate ? '' : b.step.date!));
       for (const { map, step } of rows) if (!this.query || step.text.toLocaleLowerCase().includes(this.query)) { this.stepRow(this.host, map, step, false); count++; }
     } else for (const map of maps) {
-      const steps = getSteps(map.doc).filter(step => !step.completed && (!this.plugin.settings.hideFrozen || !step.frozen) && (!this.query || step.text.toLocaleLowerCase().includes(this.query)));
-      const questions = map.doc.nodes.filter(node => /\[\[QA ❓(?:\||\]\])|\/\/todo\s+Q\s*:/i.test(node.text) && !node.text.includes('✅') && (!this.query || node.text.toLocaleLowerCase().includes(this.query)));
+      const hidden = excluded.get(map)!;
+      const steps = getSteps(map.doc).filter(step => !step.completed && !hidden.has(step.nodeId) && (!this.query || step.text.toLocaleLowerCase().includes(this.query)));
+      const questions = map.doc.nodes.filter(node => !hidden.has(node.id) && /\[\[QA ❓(?:\||\]\])|\/\/todo\s+Q\s*:/i.test(node.text) && !node.text.includes('✅') && (!this.query || node.text.toLocaleLowerCase().includes(this.query)));
       if (!(this.mode === 'qa' ? questions.length : steps.length)) continue;
       const section = this.host.createDiv('tvm-queue-group');
       const header = section.createDiv('tvm-queue-heading');
@@ -1164,22 +1186,27 @@ class QueueView extends ItemView {
       if (collapsed) { count += this.mode === 'qa' ? questions.length : steps.length; continue; }
       if (this.mode === 'qa') for (const node of questions) {
         const row = section.createDiv('tvm-step-row');
-        button(row, this.label(node.text), () => { void this.plugin.openMap(map.file, undefined, node.id); }).addClass('tvm-step-text');
+        this.renderLabel(row, map, node.id, queueLabel(node.text, this.plugin.settings.queueTaskMarker, this.plugin.settings.queueStepTag));
         count++;
       } else {
         steps.sort(compareSteps);
-        for (const step of steps) { this.stepRow(section, map, step, step.number !== null && !step.date && !step.unknownDate); count++; }
+        for (const step of steps) { this.stepRow(section, map, step, step.number !== null); count++; }
       }
     }
     if (!count) this.host.createDiv({ cls: 'tvm-empty', text: t("No open items match this filter.") });
   }
-  private label(text: string): string {
-    return queueLabel(text, this.plugin.settings.queueTaskMarker, this.plugin.settings.queueStepTag);
+  private renderLabel(parent: HTMLElement, map: IndexedMap, id: string, text: string): void {
+    const label = parent.createDiv('tvm-step-text');
+    label.textContent = text;
+    button(parent, '↗', () => { void this.plugin.openMap(map.file, undefined, id); }, t("Open node"));
+    void MarkdownRenderer.render(this.app, text, label, map.file.path, this.renderer!).catch(() => {
+      label.textContent = text;
+    });
   }
   private stepRow(parent: HTMLElement, map: IndexedMap, step: Step, reorder: boolean): void {
     const row = parent.createDiv('tvm-step-row');
     const checkbox = row.createEl('input', { type: 'checkbox', attr: { 'aria-label': t("Mark completed") } });
-    checkbox.onchange = () => { void this.change(map, toggleTask(map.doc, step.nodeId)); };
+    checkbox.onchange = () => { this.queueWrite(map, toggleTask(map.doc, step.nodeId)); };
     if (reorder) {
       const controls = row.createDiv('tvm-step-controls');
       button(controls, '↑', () => { void this.reorder(map, step.nodeId, -1); }, t("Move earlier in execution order"));
@@ -1200,27 +1227,71 @@ class QueueView extends ItemView {
       metadata.createSpan({ cls: 'tvm-badge', text: step.unknownDate ? t("Deadline ?") : step.date! });
       metadata.createSpan({ cls: 'tvm-badge tvm-step-map', text: map.file.basename });
     }
-    button(content, this.label(step.text), () => { void this.plugin.openMap(map.file, undefined, step.nodeId); }).addClass('tvm-step-text');
+    const commands = row.createDiv('tvm-step-controls');
+    iconButton(commands, 'calendar', t("Step deadline"), () => {
+      new DateDialog(this.app, step.unknownDate ? '?' : step.date ?? '', value => this.change(map, setDated(map.doc, step.nodeId, value))).open();
+    });
+    if (step.number !== null) iconButton(commands, 'list-minus', t("Remove step number"), () => {
+      this.queueWrite(map, unnumberStep(map.doc, step.nodeId));
+    });
+    this.renderLabel(content, map, step.nodeId, queueLabel(step.text, false, this.plugin.settings.queueStepTag));
   }
   private async reorder(map: IndexedMap, id: string, target: number | string): Promise<void> {
-    const numbered = getSteps(map.doc).filter(step => step.number !== null && !step.date && !step.unknownDate).sort(compareSteps);
+    const numbered = getSteps(map.doc).filter(step => step.number !== null).sort(compareSteps);
     const ids = numbered.map(step => step.nodeId), from = ids.indexOf(id);
     if (from < 0) return;
     let to: number;
     if (typeof target === 'string') to = ids.indexOf(target);
     else {
-      const visible = numbered.filter(step => !step.completed && (!this.plugin.settings.hideFrozen || !step.frozen) && (!this.query || step.text.toLocaleLowerCase().includes(this.query)));
+      const excluded = excludedQueueNodes(map.doc, queueExclusions(this.plugin.settings.queueExcludedBranches));
+      const visible = numbered.filter(step => !step.completed && !excluded.has(step.nodeId) && (!this.query || step.text.toLocaleLowerCase().includes(this.query)));
       const position = visible.findIndex(step => step.nodeId === id);
       to = ids.indexOf(visible[position + target]?.nodeId ?? '');
     }
     if (to < 0 || to === from) return;
     ids.splice(from, 1); ids.splice(to, 0, id);
-    await this.change(map, renumberSteps(map.doc, ids));
+    this.queueWrite(map, renumberSteps(map.doc, ids, true));
+  }
+  private queueWrite(map: IndexedMap, next: string): void {
+    void this.change(map, next).catch(error => new Notice(message(error), 8000));
   }
   private async change(map: IndexedMap, next: string): Promise<void> {
-    try { await this.plugin.write(map.file, map.doc.source, next); }
-    catch (error) { new Notice(message(error), 8000); }
-    this.cache.delete(map.file.path); await this.reload();
+    if (this.writing || next === map.doc.source) return;
+    await this.writeQueueChange(map.file, map.doc.source, next, () => {
+      this.undoChanges.push({ file: map.file, before: map.doc.source, after: next });
+      if (this.undoChanges.length > 50) this.undoChanges.shift();
+      this.redoChanges.length = 0;
+    });
+  }
+  private refreshHistoryButtons(): void {
+    if (this.undoButton) this.undoButton.disabled = this.writing || !this.undoChanges.length;
+    if (this.redoButton) this.redoButton.disabled = this.writing || !this.redoChanges.length;
+  }
+  private async history(direction: 'undo' | 'redo'): Promise<void> {
+    const undo = direction === 'undo';
+    const from = undo ? this.undoChanges : this.redoChanges;
+    const to = undo ? this.redoChanges : this.undoChanges;
+    const edit = from.at(-1);
+    if (!edit || this.writing) return;
+    try {
+      await this.writeQueueChange(edit.file, undo ? edit.after : edit.before, undo ? edit.before : edit.after, () => {
+        from.pop();
+        to.push(edit);
+      });
+    } catch (error) { new Notice(message(error), 8000); }
+  }
+  private async writeQueueChange(file: TFile, expected: string, next: string, record: () => void): Promise<void> {
+    this.writing = true;
+    this.refreshHistoryButtons();
+    try {
+      await this.plugin.write(file, expected, next);
+      record();
+    } finally {
+      this.writing = false;
+      this.cache.delete(file.path);
+      this.refreshHistoryButtons();
+      if (!this.closed) await this.reload();
+    }
   }
   async onClose(): Promise<void> { this.closed = true; this.generation++; window.clearTimeout(this.timer); this.cache.clear(); this.contentEl.empty(); }
 }
@@ -1305,7 +1376,15 @@ class SettingsTab extends PluginSettingTab {
       for (const leaf of this.app.workspace.getLeavesOfType(VIEW)) (leaf.view as MapView).refreshRestoreWait();
       await this.plugin.saveData(this.plugin.settings);
     }));
-    new Setting(this.containerEl).setName(t("Hide frozen steps")).setDesc(t("Skip 🧊 branches in step and deadline lists. Maps display all text.")).addToggle(toggle => toggle.setValue(this.plugin.settings.hideFrozen).onChange(async value => { this.plugin.settings.hideFrozen = value; await this.plugin.saveData(this.plugin.settings); this.plugin.refreshQueues(); }));
+    for (const [key, label] of [['queueExcludedMaps', t("Exclude maps from planning")],
+      ['queueExcludedBranches', t("Exclude branches from planning")]] as const) {
+      new Setting(this.containerEl).setName(label).setDesc(t("One term per line. Leave blank to show all."))
+        .addTextArea(input => input.setValue(this.plugin.settings[key]).onChange(async value => {
+          this.plugin.settings[key] = value;
+          await this.plugin.saveData(this.plugin.settings);
+          this.plugin.refreshQueues();
+        }));
+    }
     new Setting(this.containerEl).setName(t("Left arrow collapses the branch first")).setDesc(t("Off: go straight to the parent. On: collapse the open branch first, then press again to select the parent.")).addToggle(toggle => toggle.setValue(this.plugin.settings.collapseOnLeft).onChange(async value => { this.plugin.settings.collapseOnLeft = value; await this.plugin.saveData(this.plugin.settings); }));
     for (const [key, label] of [['queueTaskMarker', t("Show [ ] in list text")], ['queueStepTag', t("Show #step in list text")]] as const) {
       new Setting(this.containerEl).setName(label).setDesc(t("Affects only Steps · Deadlines · QA display. Note text and completion controls are preserved.")).addToggle(toggle => toggle.setValue(this.plugin.settings[key]).onChange(async value => {

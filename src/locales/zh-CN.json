@@ -1,4 +1,9 @@
 {
+  "Exclude maps from planning": "从计划中排除地图",
+  "Exclude branches from planning": "从计划中排除分支",
+  "One term per line. Leave blank to show all.": "每行一个词。留空则显示全部。",
+  "Open node": "打开节点",
+  "Remove step number": "移除步骤编号",
   "This map has no nodes.": "此地图还没有节点。",
   "Add first node": "添加第一个节点",
   "Recover local draft": "恢复本地草稿",

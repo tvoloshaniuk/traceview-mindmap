@@ -14,6 +14,7 @@ export interface InlineDriver {
 }
 
 export interface InlineOptions {
+  emptyFallback?: string;
   createAbove?: (event: KeyboardEvent) => boolean;
   save: (text: string) => Promise<void>;
   cancel: () => void;
@@ -167,7 +168,8 @@ export class InlineEditor {
   dispose(): void { this.disposed = true; this.unmount?.(); this.host.remove(); }
   async submit(): Promise<void> {
     if (this.saving || this.disposed || this.input.readOnly || this.confirmation) return;
-    const text = singleLine(this.input.value);
+    const input = singleLine(this.input.value);
+    const text = input.trim() ? input : this.options.emptyFallback ?? '';
     if (!text.trim()) { this.error.textContent = t("A node cannot be empty."); this.resize(); return; }
     this.saving = true; this.input.readOnly = true; this.driver?.setReadOnly(true); this.error.textContent = '';
     for (const button of this.host.querySelectorAll('button')) button.disabled = true;

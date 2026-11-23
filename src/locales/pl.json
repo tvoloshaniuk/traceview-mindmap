@@ -1,4 +1,9 @@
 {
+  "Exclude maps from planning": "Wyklucz mapy z planowania",
+  "Exclude branches from planning": "Wyklucz gałęzie z planowania",
+  "One term per line. Leave blank to show all.": "Jedno wyrażenie w wierszu. Pozostaw puste, aby wyświetlić wszystko.",
+  "Open node": "Otwórz węzeł",
+  "Remove step number": "Usuń numer kroku",
   "This map has no nodes.": "Ta mapa nie ma jeszcze węzłów.",
   "Add first node": "Dodaj pierwszy węzeł",
   "Recover local draft": "Przywróć lokalny szkic",

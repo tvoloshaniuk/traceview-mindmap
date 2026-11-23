@@ -1,4 +1,9 @@
 {
+  "Exclude maps from planning": "Exclude maps from planning",
+  "Exclude branches from planning": "Exclude branches from planning",
+  "One term per line. Leave blank to show all.": "One term per line. Leave blank to show all.",
+  "Open node": "Open node",
+  "Remove step number": "Remove step number",
   "This map has no nodes.": "This map has no nodes.",
   "Add first node": "Add first node",
   "Recover local draft": "Recover local draft",

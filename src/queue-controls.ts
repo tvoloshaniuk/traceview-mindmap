@@ -4,6 +4,22 @@
  * See LICENSE, LICENSING.md and OBSIDIAN-HOST-PERMISSION.md.
  */
 import { t } from './i18n';
+import type { MapDocument } from './types';
+
+export function queueExclusions(value: string): string[] {
+  return value.split(/\r?\n/).map(term => term.trim().toLocaleLowerCase()).filter(Boolean);
+}
+
+export function excludedQueueNodes(doc: MapDocument, terms: readonly string[]): Set<string> {
+  const excluded = new Set<string>();
+  if (!terms.length) return excluded;
+  for (const node of doc.nodes) {
+    if ((node.parentId && excluded.has(node.parentId)) || terms.some(term => node.text.toLocaleLowerCase().includes(term))) {
+      excluded.add(node.id);
+    }
+  }
+  return excluded;
+}
 /** Presentation only: consume the same leading markers as the step parser. */
 export function queueLabel(text: string, showTask = true, showStep = true): string {
   const match = /^(\[[^\]]\][ \t]*)?(#step(?:[ \t]+|$))?(.*)$/i.exec(text)!;

@@ -1,4 +1,9 @@
 {
+  "Exclude maps from planning": "Exclure des cartes de la planification",
+  "Exclude branches from planning": "Exclure des branches de la planification",
+  "One term per line. Leave blank to show all.": "Un terme par ligne. Laissez vide pour tout afficher.",
+  "Open node": "Ouvrir le nœud",
+  "Remove step number": "Retirer le numéro de l’étape",
   "This map has no nodes.": "Cette carte ne contient encore aucun nœud.",
   "Add first node": "Ajouter le premier nœud",
   "Recover local draft": "Récupérer le brouillon local",

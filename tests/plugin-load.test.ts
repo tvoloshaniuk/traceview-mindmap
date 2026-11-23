@@ -98,7 +98,11 @@ async function loadBundle(savedSettings: unknown, window?: JSDOM['window'], loca
 test('distributed main.js evaluates and enables with the Obsidian API', async () => {
   const loaded = await loadBundle(null);
   assert.equal(loaded.plugin.settings.autoOpen, false);
-  assert.equal(loaded.plugin.settings.hideFrozen, true);
+  assert.equal(loaded.plugin.settings.queueExcludedMaps, 'архів тижнів\nold');
+  assert.equal(loaded.plugin.settings.queueExcludedBranches, '🧊\n❌');
+  const previous = await loadBundle({ hideFrozen: false, queueExcludedMaps: '' });
+  assert.equal(previous.plugin.settings.queueExcludedMaps, '');
+  assert.equal(previous.plugin.settings.queueExcludedBranches, '');
   assert.deepEqual([...loaded.views.keys()], ['traceview-mindmap-map', 'traceview-mindmap-queue']);
   const ids = loaded.commands.map(command => command.id);
   assert.equal(new Set(ids).size, ids.length, 'Command IDs must be unique');

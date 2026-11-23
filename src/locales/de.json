@@ -1,4 +1,9 @@
 {
+  "Exclude maps from planning": "Karten aus der Planung ausschließen",
+  "Exclude branches from planning": "Zweige aus der Planung ausschließen",
+  "One term per line. Leave blank to show all.": "Ein Begriff pro Zeile. Leer lassen, um alles anzuzeigen.",
+  "Open node": "Knoten öffnen",
+  "Remove step number": "Schrittnummer entfernen",
   "This map has no nodes.": "Diese Karte enthält noch keine Knoten.",
   "Add first node": "Ersten Knoten hinzufügen",
   "Recover local draft": "Lokalen Entwurf wiederherstellen",

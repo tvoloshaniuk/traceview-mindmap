@@ -1,5 +1,19 @@
 # Changelog
 
+## 1.0.9
+
+### Added
+
+- Editable map and branch exclusions for Steps, Deadlines and QA.
+- Markdown labels, a deadline calendar, step number removal, and Undo/Redo in the planning queue.
+- Reorder numbered steps with deadlines while preserving their dates.
+- Use Home and End to select the first or last sibling. Press Right to return to the child you last left with Left.
+
+### Fixed
+
+- Saving a parent node with an empty title keeps its children and gives it a placeholder title.
+- Step rows show a single completion checkbox.
+
 ## 1.0.8 — 2026-11-23
 
 ### Bug fixes

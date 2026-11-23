@@ -153,8 +153,11 @@ test('arrow navigation follows the selected node into view on a long branch', t 
   assert.equal(f.surface.getState().selected, f.id('task 2'));
   f.key('ArrowUp');
   assert.equal(f.surface.getState().selected, f.id('task 1'));
+  f.key('ArrowDown');
   f.key('ArrowLeft');
   assert.equal(f.surface.getState().selected, f.id('root'));
+  f.key('ArrowRight');
+  assert.equal(f.surface.getState().selected, f.id('task 2'));
   f.key('End');
   assert.equal(f.surface.getState().selected, f.id('task 24'));
   const camera = f.surface.getState().camera;
@@ -166,7 +169,7 @@ test('arrow navigation follows the selected node into view on a long branch', t 
   assert.ok(Number(y) * camera.scale + camera.y + 45 * camera.scale <= 556);
   assert.equal(f.viewport.getAttribute('aria-activedescendant'), f.element('task 24').id);
   f.key('Home');
-  assert.equal(f.surface.getState().selected, f.id('root'));
+  assert.equal(f.surface.getState().selected, f.id('task 1'));
 });
 
 test('Space and horizontal arrows fold without losing nested collapse state', t => {

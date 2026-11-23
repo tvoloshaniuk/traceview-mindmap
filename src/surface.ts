@@ -25,6 +25,7 @@ const EDITOR_VIEWPORT_PADDING = 12;
 
 /** A read-only document surface: every source mutation is an explicit action. */
 export class MapSurface {
+  private readonly lastChildByParent = new Map<string, string>();
   private readonly viewport: HTMLDivElement;
   private readonly world: HTMLDivElement;
   private readonly edges: SVGSVGElement;
@@ -199,6 +200,7 @@ export class MapSurface {
     if (this.editing || !this.doc || this.destroyed) { this.focusEditor(); return; }
     const original = this.doc, state = this.getState();
     const editor = new InlineEditor(this.container.ownerDocument, initial, {
+      emptyFallback: original.byId.get(id)?.children.length ? t("Untitled") : undefined,
       save: async text => { const selected = await save(text); onFinish?.(); if (this.editing?.editor === editor) this.finishEdit(selected); },
       cancel: () => { onFinish?.(); this.finishEdit(); }, resize: () => this.scheduleLayout(true), mount,
       createAbove: event => {
@@ -390,6 +392,7 @@ export class MapSurface {
   private render(): void {
     if (!this.doc || this.destroyed) return;
     const key = this.options.getRenderKey?.() ?? '';
+    if (key !== this.renderKey) this.lastChildByParent.clear();
     for (const [id, value] of this.rendered) {
       if (key !== this.renderKey || !this.doc.byId.has(id)) { this.options.releaseMarkdown?.(value.content); this.rendered.delete(id); }
     }
@@ -1041,22 +1044,25 @@ export class MapSurface {
       this.options.onAction(action as NodeAction, id);
       return true;
     }
+    const siblings = node?.parentId ? this.doc.byId.get(node.parentId)?.children ?? [] : this.doc.roots;
+    const peers = this.state.focusRoot === id && id ? [id] : siblings;
     let next: string | undefined;
-    if (action === 'first') next = this.visible[0];
-    else if (action === 'last') next = this.visible[this.visible.length - 1];
+    if (action === 'first') next = node ? peers[0] : this.visible[0];
+    else if (action === 'last') next = node ? peers.at(-1) : this.visible[0];
     else if (!id || !node) next = this.visible[0];
     else if (action === 'parent') {
       if (this.options.getCollapseOnLeft?.() && node.children.length && !this.collapsed.has(id)) {
         this.toggleFold(id); return true;
       }
       next = node.parentId ?? undefined;
+      if (next && this.elements.has(next)) this.lastChildByParent.set(next, id);
     } else if (action === 'child') {
       if (this.collapsed.has(id)) { this.toggleFold(id); return true; }
-      next = node.children[0];
+      const lastChild = this.lastChildByParent.get(id);
+      next = lastChild && this.doc.byId.get(lastChild)?.parentId === id ? lastChild : node.children[0];
     } else {
-      const siblings = node.parentId ? this.doc.byId.get(node.parentId)?.children ?? [] : this.doc.roots;
-      const index = siblings.indexOf(id);
-      next = siblings[index + (action === 'previous' ? -1 : 1)];
+      const index = peers.indexOf(id);
+      next = peers[index + (action === 'previous' ? -1 : 1)];
     }
     if (next) this.select(next, true);
     return true;

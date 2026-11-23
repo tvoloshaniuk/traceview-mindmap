@@ -1,4 +1,9 @@
 {
+  "Exclude maps from planning": "計画からマップを除外",
+  "Exclude branches from planning": "計画から枝を除外",
+  "One term per line. Leave blank to show all.": "1行に1語を入力します。空欄にするとすべて表示します。",
+  "Open node": "ノードを開く",
+  "Remove step number": "ステップ番号を削除",
   "This map has no nodes.": "このマップにはまだノードがありません。",
   "Add first node": "最初のノードを追加",
   "Recover local draft": "ローカルの下書きを復元",

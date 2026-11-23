@@ -571,6 +571,8 @@ export function toggleTask(doc: MapDocument, id: string): string {
 
 interface StepParts {
   number: number | null;
+  numberStart: number;
+  numberLength: number;
   order: number[];
   suffix: string;
   date: string | null;
@@ -599,6 +601,8 @@ function stepParts(text: string): StepParts | null {
   const dateStart = dated ? bodyStart + orderLength + 2 + dated[1].length : -1;
   return {
     number: orderParts[0] ?? null,
+    numberStart: bodyStart + (trailingNumber ? dated![0].length : 0),
+    numberLength: order?.[1].length ? order[1].length + order[2].length : 0,
     order: orderParts,
     suffix: order?.[2]?.toLowerCase() ?? '',
     date: dated ? dated[3] ?? dated[4] ?? null : null,
@@ -673,14 +677,21 @@ export function setDated(doc: MapDocument, id: string, date: string): string {
   return editNode(doc, id, `${prefix}#step до ${deadline}${label ? ' ' + label : ''}`);
 }
 
+export function unnumberStep(doc: MapDocument, id: string): string {
+  const node = required(doc, id), parts = stepParts(node.text);
+  if (!parts?.numberLength) return doc.source;
+  const end = parts.numberStart + parts.numberLength + 1;
+  return editNode(doc, id, node.text.slice(0, parts.numberStart) + node.text.slice(end).trimStart());
+}
+
 export function setQuestion(doc: MapDocument, id: string): string {
   const node = required(doc, id);
   if (/^(?:==)?\/\/todo\s+Q:/i.test(node.text)) return doc.source;
   return editNode(doc, id, `==//todo Q: ${taskLabel(node.text).label}==`);
 }
 
-export function renumberSteps(doc: MapDocument, orderedNodeIds?: string[]): string {
-  const numbered = getSteps(doc).filter(step => step.number !== null && !step.date && !step.unknownDate);
+export function renumberSteps(doc: MapDocument, orderedNodeIds?: string[], includeDated = false): string {
+  const numbered = getSteps(doc).filter(step => step.number !== null && (includeDated || !step.date && !step.unknownDate));
   numbered.sort(compareSteps);
   let ordered = numbered;
   if (orderedNodeIds) {
@@ -699,7 +710,9 @@ export function renumberSteps(doc: MapDocument, orderedNodeIds?: string[]): stri
   const info = sourceLines(doc.source);
   const replacements = ordered.map((step, index) => {
     const node = required(doc, step.nodeId), line = info[node.line];
-    const text = line.text.replace(/(#step[ \t]+)\d+(?:\.\d+)*[a-z]*(?=\))/i, (_match, prefix: string) => prefix + (index + 1));
+    const parts = stepParts(node.text)!;
+    const start = node.prefix.length + parts.numberStart;
+    const text = line.text.slice(0, start) + (index + 1) + line.text.slice(start + parts.numberLength);
     return { start: line.start, end: line.end, text };
   }).sort((a, b) => b.start - a.start);
   let source = doc.source;

@@ -1,4 +1,9 @@
 {
+  "Exclude maps from planning": "Виключити карти зі списків планування",
+  "Exclude branches from planning": "Виключити гілки зі списків планування",
+  "One term per line. Leave blank to show all.": "Один вираз на рядок. Порожнє поле показує все.",
+  "Open node": "Відкрити вузол",
+  "Remove step number": "Зняти номер кроку",
   "This map has no nodes.": "У цій карті ще немає вузлів.",
   "Add first node": "Додати перший вузол",
   "Recover local draft": "Відновити локальну чернетку",

@@ -1,4 +1,9 @@
 {
+  "Exclude maps from planning": "Excluir mapas de la planificación",
+  "Exclude branches from planning": "Excluir ramas de la planificación",
+  "One term per line. Leave blank to show all.": "Un término por línea. Deja el campo vacío para mostrar todo.",
+  "Open node": "Abrir nodo",
+  "Remove step number": "Quitar número del paso",
   "This map has no nodes.": "Este mapa todavía no tiene nodos.",
   "Add first node": "Añadir primer nodo",
   "Recover local draft": "Recuperar borrador local",

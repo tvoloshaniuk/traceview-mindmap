@@ -1,4 +1,9 @@
 {
+  "Exclude maps from planning": "계획에서 지도 제외",
+  "Exclude branches from planning": "계획에서 가지 제외",
+  "One term per line. Leave blank to show all.": "한 줄에 한 항목을 입력하세요. 비워 두면 모두 표시됩니다.",
+  "Open node": "노드 열기",
+  "Remove step number": "단계 번호 삭제",
   "This map has no nodes.": "이 지도에는 아직 노드가 없습니다.",
   "Add first node": "첫 노드 추가",
   "Recover local draft": "로컬 초안 복원",
