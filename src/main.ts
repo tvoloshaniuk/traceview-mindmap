@@ -5,7 +5,7 @@
  */
 import { t, LANGUAGES, isLanguageSetting, setLanguage, type LanguageSetting } from './i18n';
 import { getLanguage, App, Component, EditableFileView, ItemView, MarkdownRenderer, MarkdownView, Menu, Notice, Platform, Plugin, PluginSettingTab, Scope, Setting, TFile, WorkspaceLeaf, normalizePath, parseLinktext, setIcon, type HoverPopover } from 'obsidian';
-import { moveBranches, changeNodes, copyBranches, copyNodeLabels, deleteNodes, parseMap, restoreTemplateLineEndings, editNode, addFirstNode, addNode, addParent, deleteNode, moveNode, copyBranch, pasteBranch, toggleTask, setStep, setDated, setQuestion, getSteps, compareSteps, renumberSteps, shiftSelectedBranches, unnumberStep } from './core';
+import { moveBranches, changeNodes, copyBranches, copyNodeLabels, deleteNodes, parseMap, restoreTemplateLineEndings, editNode, addFirstNode, addNode, addParent, deleteNode, moveNode, copyBranch, pasteBranch, toggleTask, setStep, setDated, setQuestion, getSteps, compareSteps, renumberSteps, moveCompletedChildrenToBottom, shiftSelectedBranches, unnumberStep } from './core';
 import { addressNode, onlyAddedBlockIds } from './block-links';
 import { captureHotkey, DEFAULT_HOTKEYS, HOTKEY_DEFINITIONS, resolveHotkey, validateHotkeys } from './hotkeys';
 import { compileMapPatterns, PatternError, type MapRules, type PatternMode } from './map-patterns';
@@ -41,9 +41,16 @@ function hasLargeVisibleTree(doc: MapDocument, state?: MapViewState): boolean {
   }
   return false;
 }
-interface Settings extends MapRules { previousPluginId?: string; language: LanguageSetting; nodeEditor: 'native' | 'text'; autoOpen: boolean; autoRestoreLargeMaps: boolean; queueExcludedMaps: string; queueExcludedBranches: string; queueTaskMarker: boolean; queueStepTag: boolean; collapseOnLeft: boolean; collapsePastedBranches: boolean; hotkeys: Record<string, string>; widthMode: WidthMode; }
-const DEFAULT_SETTINGS: Settings = { patternMode: 'glob', mapPatterns: '*.mindmap.md\n🎯*.md', language: 'auto', nodeEditor: 'native', autoOpen: false, autoRestoreLargeMaps: true, queueExcludedMaps: 'архів тижнів\nold', queueExcludedBranches: '🧊\n❌', queueTaskMarker: true, queueStepTag: true, collapseOnLeft: false, collapsePastedBranches: true, hotkeys: {}, widthMode: 'fixed' };
+interface Settings extends MapRules { previousPluginId?: string; language: LanguageSetting; nodeEditor: 'native' | 'text'; autoOpen: boolean; autoRestoreLargeMaps: boolean; queueExcludedMaps: string; queueExcludedBranches: string; queueTaskMarker: boolean; queueStepTag: boolean; collapseOnLeft: boolean; arrowAcrossBranches: boolean; toolbarMode: ToolbarMode; showMapPreviews: boolean; collapsePastedBranches: boolean; hotkeys: Record<string, string>; widthMode: WidthMode; }
+const DEFAULT_SETTINGS: Settings = { patternMode: 'glob', mapPatterns: '*.mindmap.md\n🎯*.md', language: 'auto', nodeEditor: 'native', autoOpen: false, autoRestoreLargeMaps: true, queueExcludedMaps: 'архів тижнів\nold', queueExcludedBranches: '🧊\n❌', queueTaskMarker: true, queueStepTag: true, collapseOnLeft: false, arrowAcrossBranches: false, toolbarMode: 'visible', showMapPreviews: true, collapsePastedBranches: true, hotkeys: {}, widthMode: 'fixed' };
 const widthModes = (): [WidthMode, string][] => [['fixed', t("Fixed width")], ['content', t("Fit node content")], ['column', t("Fit visible column")]];
+type ToolbarMode = 'visible' | 'hover' | 'hidden';
+const toolbarModes = (): [ToolbarMode, string][] => [
+  ['visible', t("Always show toolbar")], ['hover', t("Show toolbar on hover")], ['hidden', t("Hide toolbar buttons")],
+];
+const highlightColors: Record<string, string> = {
+  '🔴': 'red', '🟠': 'orange', '🟡': 'yellow', '🟢': 'green', '🔵': 'blue', '🟣': 'purple',
+};
 const message = (error: unknown) => error instanceof Error ? error.message : String(error);
 const createsNode = (action: NodeAction) => action === 'add-child' || action === 'add-parent' || action === 'add-sibling' || action === 'add-sibling-before';
 const button = (parent: HTMLElement, label: string, action: () => void, title = label) => {
@@ -151,7 +158,7 @@ export default class TraceViewMindmap extends Plugin {
       ['add-parent', t("Add parent node"), 'add-parent'], ['insert-template', t("Insert template at selected node…"), 'insert-template'],
       ['copy-node-link', t("Copy link to node"), 'copy-node-link'], ['edit-node', t("Edit node"), 'edit'], ['node-note', t("Edit embedded node note"), 'node-note'], ['make-step', t("Mark as atomic step"), 'make-step'],
       ['make-dated', t("Add step deadline"), 'make-dated'], ['make-question', t("Mark as QA"), 'make-question'],
-      ['toggle-task', t("Toggle step completion"), 'toggle-task'], ['copy-node-labels', t("Copy selected nodes without children"), 'copy-node-labels'], ['copy-branch', t("Copy branch"), 'copy'], ['cut-branch', t("Cut branch"), 'cut'],
+      ['toggle-task', t("Toggle step completion"), 'toggle-task'], ['completed-bottom', t("Move completed children to bottom"), 'completed-bottom'], ['copy-node-labels', t("Copy selected nodes without children"), 'copy-node-labels'], ['copy-branch', t("Copy branch"), 'copy'], ['cut-branch', t("Cut branch"), 'cut'],
       ['paste-branch', t("Paste as child branch"), 'paste'], ['paste-after', t("Paste as sibling branch"), 'paste-after'], ['undo', t("Undo map change"), 'undo'], ['redo', t("Redo map change"), 'redo']
     ];
     for (const [id, name, action] of commands) this.addCommand({ id, name, checkCallback: checking => {
@@ -355,6 +362,11 @@ export default class TraceViewMindmap extends Plugin {
     for (const leaf of this.app.workspace.getLeavesOfType(VIEW)) (leaf.view as MapView).surface?.refreshLayout();
     await this.saveData(this.settings);
   }
+  async setToolbarMode(mode: ToolbarMode): Promise<void> {
+    this.settings.toolbarMode = mode;
+    for (const leaf of this.app.workspace.getLeavesOfType(VIEW)) (leaf.view as MapView).refreshToolbarMode();
+    await this.saveData(this.settings);
+  }
   async source(file: TFile, line = 0, target?: WorkspaceLeaf): Promise<void> {
     const leaf = target ?? this.app.workspace.getLeaf(false);
     this.sourceLeaves.set(leaf, file.path); this.sourcePreferences.add(file.path); this.rememberSource();
@@ -516,6 +528,7 @@ class MapView extends EditableFileView {
   private showSearch?: () => void;
   private undoButton?: HTMLButtonElement;
   private redoButton?: HTMLButtonElement;
+  private toolbar?: HTMLDivElement;
   private deleteButton?: HTMLButtonElement;
   constructor(leaf: WorkspaceLeaf, private plugin: TraceViewMindmap) {
     super(leaf);
@@ -622,7 +635,7 @@ class MapView extends EditableFileView {
     this.pendingSubpath = undefined;
     const nodes = subpath.startsWith('#^') ? this.doc.nodes.filter(node => node.blockId === subpath.slice(2))
       : this.doc.nodes.filter(node => node.kind === 'heading' && node.text.toLocaleLowerCase() === subpath.slice(1).toLocaleLowerCase());
-    if (nodes.length === 1) this.surface.reveal(nodes[0].id);
+    if (nodes.length === 1) this.surface.jumpTo(nodes[0].id);
     else new Notice(nodes.length ? t("This address is duplicated. Fix the block ID in Markdown.") : t("The linked node was not found."));
   }
   async onOpen(): Promise<void> {
@@ -631,6 +644,8 @@ class MapView extends EditableFileView {
     this.contentEl.empty(); this.contentEl.addClass('tvm-view', 'tvm-map-view');
     this.addChild(this.renderer);
     const toolbar = this.contentEl.createDiv('tvm-toolbar');
+    this.toolbar = toolbar;
+    this.refreshToolbarMode();
     this.title = this.containerEl.querySelector<HTMLElement>('.view-header-title') ?? undefined;
     const actions = toolbar.createDiv('tvm-actions');
     this.undoButton = iconButton(actions, 'undo-2', t("Undo"), () => { void this.action('undo', null); });
@@ -662,7 +677,7 @@ class MapView extends EditableFileView {
         return text.trim() && draft.toLocaleLowerCase().includes(text.trim().toLocaleLowerCase()) ? [{ id: 'draft', text: draft }] : [];
       },
       reveal: id => {
-        if (!searchDraft) { this.surface?.reveal(id); return; }
+        if (!searchDraft) { this.surface?.jumpTo(id); return; }
         const editor = this.editor;
         const query = search.input.value.trim();
         const offset = editor?.getValue().toLocaleLowerCase().indexOf(query.toLocaleLowerCase()) ?? -1;
@@ -686,6 +701,7 @@ class MapView extends EditableFileView {
       useTransformPan: () => Platform.isMobile,
       getHotkeys: () => this.plugin.settings.hotkeys,
       getCollapseOnLeft: () => this.plugin.settings.collapseOnLeft,
+      getArrowAcrossBranches: () => this.plugin.settings.arrowAcrossBranches,
       onFind: () => this.showSearch?.(),
       getRenderKey: () => this.path,
       releaseMarkdown: element => {
@@ -703,7 +719,26 @@ class MapView extends EditableFileView {
         window.clearTimeout(this.stateTimer); this.stateTimer = window.setTimeout(() => this.persist(), 180); },
       renderMarkdown: async (text, element) => {
         const component = this.renderer.addChild(new Component()); this.renderedNodes.set(element, component);
-        await MarkdownRenderer.render(this.app, text, element, this.path, component);
+        const embeddedMaps = new Map<string, TFile>();
+        const content = text.replace(/`+[^`]*`+|(?<!\\)!\[\[([^\]\n]+)\]\]/g, (embed, link?: string) => {
+          if (!link) return embed;
+          const target = link.split('|', 1)[0];
+          const { path } = parseLinktext(target);
+          const file = path ? this.app.metadataCache.getFirstLinkpathDest(path, this.path) : this.file;
+          if (!file || !this.plugin.isMap(file)) return embed;
+          if (file !== this.file) embeddedMaps.set(target, file);
+          return embed.slice(1);
+        });
+        await MarkdownRenderer.render(this.app, content, element, this.path, component);
+        if (text.includes('==')) for (const mark of element.querySelectorAll<HTMLElement>('mark')) {
+          const color = mark.dataset.highlight ?? highlightColors[Array.from(mark.textContent?.trimStart() ?? '')[0]];
+          if (color && Object.values(highlightColors).includes(color)) mark.dataset.tvmHighlight = color;
+        }
+        if (this.plugin.settings.showMapPreviews) for (const [target, file] of embeddedMaps) {
+          if (element.querySelectorAll('a.internal-link').length && this.renderedNodes.get(element) === component) {
+            await this.appendMapPreview(element, file, target);
+          }
+        }
       },
       onOpenLink: (link, event) => { void this.plugin.openMapLink(link, this, event).catch(error => new Notice(message(error))); },
       onHoverLink: (event, targetEl, linktext) => this.app.workspace.trigger('hover-link', { event, source: 'traceview-mindmap', hoverParent: this, targetEl, linktext, sourcePath: this.path }),
@@ -927,6 +962,8 @@ class MapView extends EditableFileView {
         await this.plugin.copy('[[' + this.app.metadataCache.fileToLinktext(file, '', true) + '#^' + address.blockId + ']]');
         new Notice(t("Node link copied.")); return;
       }
+      if (action === 'copy-node-text') { await this.plugin.copy(node.text); return; }
+      if (action === 'completed-bottom') { await this.apply(doc, moveCompletedChildrenToBottom(doc, id)); return; }
       if (action === 'node-note') { await this.editNodeNote(doc, node); return; }
       if (action === 'insert-template' && this.file) {
         const file = this.file;
@@ -1041,7 +1078,7 @@ class MapView extends EditableFileView {
     const embeds = [...node.text.matchAll(/!\[\[([^\]#|]+)(?:\|[^\]]*)?\]\]/g)];
     const notes = embeds.map(match => this.app.metadataCache.getFirstLinkpathDest(match[1], map.path))
       .filter((file): file is TFile => file !== null && file !== map && file.extension === 'md');
-    const note = notes.at(-1);
+    const note = notes.reverse().find(file => !this.plugin.isMap(file) || / - note [a-f\d]{8}$/.test(file.basename));
     const original = note ? await this.app.vault.read(note) : '';
     let created: TFile | undefined;
     let savedText = '';
@@ -1067,6 +1104,16 @@ class MapView extends EditableFileView {
   }
   private menu(anchor: HTMLElement): void {
     const menu = new Menu();
+    if (!Platform.isMobile) {
+      for (const [mode, label] of toolbarModes()) menu.addItem(item => item.setTitle(label)
+        .setChecked(this.plugin.settings.toolbarMode === mode)
+        .onClick(() => { void this.plugin.setToolbarMode(mode).catch(error => new Notice(message(error))); }));
+      menu.addSeparator();
+    }
+    for (const [direction, label] of [['back', t("Previous map location")], ['forward', t("Next map location")]] as const) {
+      menu.addItem(item => item.setTitle(label).setDisabled(!this.surface?.canNavigateHistory(direction))
+        .onClick(() => this.surface?.navigateHistory(direction)));
+    }
     menu.addItem(item => item.setTitle(t("Find a map…")).setIcon('git-fork').onClick(() => this.plugin.pickMap()));
     menu.addItem(item => item.setTitle(t("Steps · Deadlines · QA")).setIcon('list-checks').onClick(() => { void this.plugin.openQueue(); }));
     menu.addSeparator();
@@ -1083,6 +1130,48 @@ class MapView extends EditableFileView {
       if (this.doc) void this.apply(this.doc, renumberSteps(this.doc)).catch(error => new Notice(message(error)));
     }));
     const rect = anchor.getBoundingClientRect(); menu.showAtPosition({ x: rect.left, y: rect.bottom });
+  }
+  refreshToolbarMode(): void {
+    if (this.toolbar) this.toolbar.dataset.mode = Platform.isMobile ? 'visible' : this.plugin.settings.toolbarMode;
+  }
+  private async appendMapPreview(container: HTMLElement, file: TFile, target: string): Promise<void> {
+    if (file.stat.size > 256_000) return;
+    const component = this.renderedNodes.get(container);
+    const doc = parseMap(await this.app.vault.cachedRead(file));
+    if (this.renderedNodes.get(container) !== component || !this.plugin.settings.showMapPreviews) return;
+    const preview = container.createDiv('tvm-embedded-map');
+    const link = (parent: HTMLElement, linktext: string, label: string) => {
+      const anchor = parent.createEl('a', { cls: 'internal-link', text: label, attr: { href: linktext, 'data-href': linktext } });
+      return anchor;
+    };
+    const nestedLink = (value: string) => {
+      const { path, subpath } = parseLinktext(value);
+      const nested = path ? this.app.metadataCache.getFirstLinkpathDest(path, file.path) : file;
+      return nested ? this.app.metadataCache.fileToLinktext(nested, this.path, true) + subpath : null;
+    };
+    let remaining = 24;
+    const draw = (parent: HTMLElement, ids: string[], depth: number) => {
+      for (const id of ids) {
+        if (remaining <= 0) break;
+        const node = doc.byId.get(id);
+        if (!node) continue;
+        remaining--;
+        const branch = parent.createDiv('tvm-embedded-map-branch');
+        const label = branch.createDiv('tvm-embedded-map-label');
+        let offset = 0;
+        for (const match of node.text.matchAll(/!?\[\[([^\]#|]+(?:#[^\]|]+)?)(?:\|([^\]]+))?\]\]/g)) {
+          label.append(node.text.slice(offset, match.index));
+          const linktext = nestedLink(match[1]);
+          if (linktext) link(label, linktext, match[2] ?? match[1]);
+          else label.append(match[2] ?? match[1]);
+          offset = match.index! + match[0].length;
+        }
+        label.append(node.text.slice(offset) || (offset ? '' : t("Untitled")));
+        if (depth < 3 && node.children.length && remaining > 0) draw(branch.createDiv('tvm-embedded-map-children'), node.children, depth + 1);
+      }
+    };
+    draw(preview, doc.roots, 0);
+    if (doc.nodes.length > 24) link(preview, target, '…');
   }
   private async nativeAddress(file: TFile, line: number, expected: string): Promise<string | undefined> {
     if (!this.plugin.isMap(file)) return undefined;
@@ -1478,6 +1567,23 @@ class SettingsTab extends PluginSettingTab {
           this.plugin.refreshQueues();
         }));
     }
+    if (!Platform.isMobile) {
+      new Setting(this.containerEl).setName(t("Map toolbar")).addDropdown(dropdown => {
+        for (const [mode, label] of toolbarModes()) dropdown.addOption(mode, label);
+        dropdown.setValue(this.plugin.settings.toolbarMode).onChange(value => this.plugin.setToolbarMode(value as ToolbarMode));
+      });
+    }
+    new Setting(this.containerEl).setName(t("Show embedded map previews")).addToggle(toggle =>
+      toggle.setValue(this.plugin.settings.showMapPreviews).onChange(async value => {
+        this.plugin.settings.showMapPreviews = value;
+        for (const leaf of this.app.workspace.getLeavesOfType(VIEW)) (leaf.view as MapView).surface?.invalidateMarkdown();
+        await this.plugin.saveData(this.plugin.settings);
+      }));
+    new Setting(this.containerEl).setName(t("Navigate across branches with arrow keys")).addToggle(toggle =>
+      toggle.setValue(this.plugin.settings.arrowAcrossBranches).onChange(async value => {
+        this.plugin.settings.arrowAcrossBranches = value;
+        await this.plugin.saveData(this.plugin.settings);
+      }));
     new Setting(this.containerEl).setName(t("Collapse pasted branches")).addToggle(toggle =>
       toggle.setValue(this.plugin.settings.collapsePastedBranches).onChange(async value => {
         this.plugin.settings.collapsePastedBranches = value;

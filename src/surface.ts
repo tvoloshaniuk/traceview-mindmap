@@ -13,6 +13,7 @@ import { InlineEditor, type InlineOptions } from './inline';
 
 interface Position { x: number; y: number; width: number; height: number }
 interface TouchPoint { x: number; y: number }
+interface NavigationStop { view: MapViewState; selection: string[] }
 interface RenderedNode { label: string; content: HTMLDivElement; started: boolean }
 const MARKDOWN_BATCH_SIZE = 8;
 const MARKDOWN_LOADING_THRESHOLD = 128;
@@ -31,6 +32,8 @@ const VERTICAL_NAVIGATION: Partial<Record<HotkeyAction, HotkeyAction>> = {
 /** A read-only document surface: every source mutation is an explicit action. */
 export class MapSurface {
   private readonly lastChildByParent = new Map<string, string>();
+  private readonly backStops: NavigationStop[] = [];
+  private readonly forwardStops: NavigationStop[] = [];
   private readonly viewport: HTMLDivElement;
   private readonly world: HTMLDivElement;
   private readonly edges: SVGSVGElement;
@@ -60,7 +63,10 @@ export class MapSurface {
   private observer: ResizeObserver | null = null;
   private menu: HTMLDivElement | null = null;
   private readonly touches = new Map<number, TouchPoint>();
-  private pan: { pointer: number; x: number; y: number; camera: Camera; moved: boolean } | null = null;
+  private pan: { pointer: number; x: number; y: number; camera: Camera; moved: boolean;
+    sample?: { x: number; y: number; time: number; vx: number; vy: number };
+    table?: { element: HTMLElement; x: number; y: number } } | null = null;
+  private coastFrame: number | null = null;
   private pinch: { distance: number; scale: number; worldX: number; worldY: number } | null = null;
   private suppressClickUntil = 0;
   private bounds = { width: 0, height: 0 };
@@ -285,6 +291,33 @@ export class MapSurface {
     this.emitState();
   }
 
+  jumpTo(id: string): void {
+    if (!this.doc?.byId.has(id) || this.editing) return;
+    if (id !== this.state.selected) {
+      this.backStops.push({ view: this.getState(), selection: this.getSelection() });
+      if (this.backStops.length > 30) this.backStops.shift();
+      this.forwardStops.length = 0;
+    }
+    this.reveal(id);
+  }
+
+  canNavigateHistory(direction: 'back' | 'forward'): boolean {
+    return !this.editing && (direction === 'back' ? this.backStops : this.forwardStops).length > 0;
+  }
+
+  navigateHistory(direction: 'back' | 'forward'): void {
+    if (!this.doc || !this.canNavigateHistory(direction)) return;
+    const from = direction === 'back' ? this.backStops : this.forwardStops;
+    const to = direction === 'back' ? this.forwardStops : this.backStops;
+    const stop = from.pop()!;
+    to.push({ view: this.getState(), selection: this.getSelection() });
+    this.update(this.doc, stop.view);
+    this.selection = new Set(stop.selection.filter(id => this.elements.has(id)));
+    this.paintSelection();
+    this.viewport.focus({ preventScroll: true });
+    this.emitState();
+  }
+
   search(query: string, alphabetical = false, scope?: ReadonlySet<string>): MapNode[] {
     this.query = query.trim();
     this.searchScope = scope;
@@ -371,6 +404,7 @@ export class MapSurface {
   }
 
   destroy(): void {
+    this.stopCoasting();
     if (this.destroyed) return;
     this.destroyed = true;
     this.cancelMarkdownFrame?.();
@@ -450,7 +484,11 @@ export class MapSurface {
   private render(): void {
     if (!this.doc || this.destroyed) return;
     const key = this.options.getRenderKey?.() ?? '';
-    if (key !== this.renderKey) this.lastChildByParent.clear();
+    if (key !== this.renderKey) {
+      this.lastChildByParent.clear();
+      this.backStops.length = 0;
+      this.forwardStops.length = 0;
+    }
     for (const [id, value] of this.rendered) {
       if (key !== this.renderKey || !this.doc.byId.has(id)) { this.options.releaseMarkdown?.(value.content); this.rendered.delete(id); }
     }
@@ -1016,6 +1054,14 @@ export class MapSurface {
       if (internal && link && this.options.onOpenLink) { event.preventDefault(); event.stopPropagation(); this.options.onOpenLink(link, event); }
       return;
     }
+    const image = target.closest('img')?.closest('.internal-embed');
+    const imageLink = image?.getAttribute('src');
+    if (imageLink && this.options.onOpenLink) {
+      if (id) this.select(id);
+      event.preventDefault(); event.stopPropagation();
+      this.options.onOpenLink(imageLink, event);
+      return;
+    }
     if (id) {
       this.select(id);
       if (target.closest('input[type="checkbox"]')) { event.preventDefault(); this.options.onAction('toggle-task', id); }
@@ -1142,16 +1188,22 @@ export class MapSurface {
       const lastChild = this.lastChildByParent.get(id);
       next = lastChild && this.doc.byId.get(lastChild)?.parentId === id ? lastChild : node.children[0];
     } else {
+      const delta = action === 'previous' ? -1 : 1;
       const index = peers.indexOf(id);
-      next = peers[index + (action === 'previous' ? -1 : 1)];
+      next = peers[index + delta];
+      if (!next && this.options.getArrowAcrossBranches?.()) next = this.visible[this.visible.indexOf(id) + delta];
     }
     if (next) this.select(next, true);
     return true;
   }
 
   private wheel(event: WheelEvent): void {
+    this.stopCoasting();
     if ((event.target as Element).closest('.tvm-inline-editor')) return;
     if (this.menu?.contains(event.target as Node)) return;
+    const table = (event.target as Element).closest<HTMLElement>('.tvm-node-content table');
+    if (table && !event.ctrlKey && !event.metaKey &&
+      (table.scrollWidth > table.clientWidth || table.scrollHeight > table.clientHeight)) return;
     event.preventDefault();
     const multiplier = event.deltaMode === 1 ? 18 : event.deltaMode === 2 ? this.viewportSize().height : 1;
     if (event.ctrlKey || event.metaKey) {
@@ -1175,6 +1227,7 @@ export class MapSurface {
   }
 
   private pointerDown(event: PointerEvent): void {
+    this.stopCoasting();
     if ((event.target as Element).closest('.tvm-create-handles, .tvm-create-first')) return;
     if (this.editing && (event.target as Element).closest('.tvm-inline-editor')) return;
     if (this.editing) event.preventDefault();
@@ -1217,9 +1270,13 @@ export class MapSurface {
     if (event.button !== 0 && event.button !== 1) return;
     if (this.touches.size < 2 && (this.editing || event.pointerType === 'touch' || event.button === 1 || !(event.target as Element).closest('.tvm-node'))) {
       this.pan = { pointer: event.pointerId, x: event.clientX, y: event.clientY, camera: { ...this.state.camera }, moved: false };
+      const table = (event.target as Element).closest<HTMLElement>('.tvm-node-content table');
+      if (event.pointerType === 'touch' && table && (table.scrollWidth > table.clientWidth || table.scrollHeight > table.clientHeight)) {
+        this.pan.table = { element: table, x: table.scrollLeft, y: table.scrollTop };
+      }
       if (event.button === 1) event.preventDefault();
     }
-    if (!this.editing && event.pointerType === 'touch' && this.touches.size === 1 && id && !(event.target as Element).closest('a, button, input, textarea')) {
+    if (!this.editing && !this.pan?.table && event.pointerType === 'touch' && this.touches.size === 1 && id && !(event.target as Element).closest('a, button, input, textarea')) {
       this.cancelTouchHold();
       const pointer = event.pointerId, x = event.clientX, y = event.clientY;
       const timer = this.container.ownerDocument.defaultView!.setTimeout(() => {
@@ -1289,6 +1346,24 @@ export class MapSurface {
     const dy = event.clientY - this.pan.y;
     if (Math.hypot(dx, dy) > 4) this.pan.moved = true;
     if (!this.pan.moved) return;
+    if (this.pan.table) {
+      const { element, x, y } = this.pan.table;
+      element.scrollLeft = x - dx / this.state.camera.scale;
+      element.scrollTop = y - dy / this.state.camera.scale;
+      this.suppressClickUntil = Date.now() + 350;
+      event.preventDefault();
+      return;
+    }
+    if (event.pointerType === 'touch' && !this.editing) {
+      const prior = this.pan.sample;
+      const elapsed = Math.max(8, event.timeStamp - (prior?.time ?? event.timeStamp - 16));
+      const mix = (speed: number, delta: number) => speed * 0.35 + Math.max(-2.5, Math.min(2.5, delta / elapsed)) * 0.65;
+      this.pan.sample = {
+        x: event.clientX, y: event.clientY, time: event.timeStamp,
+        vx: mix(prior?.vx ?? 0, event.clientX - (prior?.x ?? this.pan.x)),
+        vy: mix(prior?.vy ?? 0, event.clientY - (prior?.y ?? this.pan.y)),
+      };
+    }
     try { this.viewport.setPointerCapture(event.pointerId); } catch { /* A detached or synthetic pointer has no capture. */ }
     this.state.camera.x = this.pan.camera.x + dx;
     this.state.camera.y = this.pan.camera.y + dy;
@@ -1409,7 +1484,13 @@ export class MapSurface {
     const wasPinching = !!this.pinch;
     const changed = wasPinching || this.pan?.moved;
     this.touches.delete(event.pointerId);
-    if (this.pan?.pointer === event.pointerId) this.pan = null;
+    if (this.pan?.pointer === event.pointerId) {
+      const sample = this.pan.sample;
+      this.pan = null;
+      if (event.type === 'pointerup' && !wasPinching && !this.editing && sample && event.timeStamp - sample.time < 90) {
+        this.coast(sample.vx, sample.vy);
+      }
+    }
     if (this.touches.size < 2) this.pinch = null;
     if (wasPinching && this.touches.size === 1) {
       const [id, point] = [...this.touches.entries()][0];
@@ -1418,6 +1499,33 @@ export class MapSurface {
     this.viewport.classList.remove('is-panning');
     try { if (this.viewport.hasPointerCapture(event.pointerId)) this.viewport.releasePointerCapture(event.pointerId); } catch { /* Capture may already have ended. */ }
     if (changed) this.emitState();
+  }
+
+  private stopCoasting(): void {
+    if (this.coastFrame === null) return;
+    this.viewport.ownerDocument.defaultView?.cancelAnimationFrame(this.coastFrame);
+    this.coastFrame = null;
+  }
+
+  private coast(vx: number, vy: number): void {
+    const win = this.viewport.ownerDocument.defaultView;
+    if (!win || win.matchMedia?.('(prefers-reduced-motion: reduce)').matches || Math.hypot(vx, vy) < 0.18) return;
+    let last: number | undefined;
+    const step = (now: number) => {
+      this.coastFrame = null;
+      if (this.destroyed || this.editing) return;
+      const elapsed = Math.min(34, now - (last ?? now - 16));
+      last = now;
+      const decay = Math.exp(-elapsed / 115);
+      this.state.camera.x += vx * 115 * (1 - decay);
+      this.state.camera.y += vy * 115 * (1 - decay);
+      vx *= decay;
+      vy *= decay;
+      this.paintCamera(true);
+      if (Math.hypot(vx, vy) >= 0.05) this.coastFrame = win.requestAnimationFrame(step);
+      else this.emitState();
+    };
+    this.coastFrame = win.requestAnimationFrame(step);
   }
 
   private contextMenu(event: MouseEvent): void {
@@ -1446,7 +1554,9 @@ export class MapSurface {
       { label: t("Mark as question"), action: 'make-question' },
       { label: t("Copy link to node"), action: 'copy-node-link' },
       { label: t("Copy branch"), action: 'copy' },
+      { label: t("Copy node text"), action: 'copy-node-text' },
       { label: t("Edit embedded node note"), action: 'node-note' },
+      { label: t("Move completed children to bottom"), action: 'completed-bottom' },
       { label: t("Copy selected nodes without children"), action: 'copy-node-labels' },
       { label: t("Cut branch"), action: 'cut' },
       { label: t("Paste as child branch"), action: 'paste' },
@@ -1466,7 +1576,7 @@ export class MapSurface {
       button.setAttribute('role', 'menuitem');
       const label = this.container.ownerDocument.createElement('span');
       label.textContent = this.selection.size > 1 && ['delete', 'copy', 'cut'].includes(entry.action) ? t(entry.action === "copy" ? "Copy selection" : entry.action === "cut" ? "Cut selection" : "Delete selection") : entry.label;
-      if (this.selection.size > 1 && ['edit', 'node-note', 'add-child', 'add-sibling', 'add-parent', 'insert-template', 'paste', 'paste-after', 'indent', 'outdent'].includes(entry.action)) button.disabled = true;
+      if (this.selection.size > 1 && ['edit', 'copy-node-text', 'node-note', 'completed-bottom', 'add-child', 'add-sibling', 'add-parent', 'insert-template', 'paste', 'paste-after', 'indent', 'outdent'].includes(entry.action)) button.disabled = true;
       button.append(label);
       const binding = this.options.getHotkeys?.()[entry.action] ?? DEFAULT_HOTKEYS[entry.action];
       if (binding) {

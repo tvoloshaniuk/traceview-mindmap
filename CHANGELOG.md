@@ -1,5 +1,16 @@
 # Changelog
 
+## 1.0.13
+
+### Added
+
+- Return to previous or next locations after following a node link or search result. Restore selection and collapsed branches.
+- Optionally use arrow keys to continue across branches.
+- Copy a node's text from its menu, or move completed child branches to the bottom.
+- Show a compact preview of embedded maps one level deep. Nested maps appear as links. Turn previews off in settings.
+- Open image attachments directly from the map. Large embedded tables scroll within the node.
+- Add touch momentum, colored highlights and desktop toolbar visibility modes.
+
 ## 1.0.12
 
 ### Added

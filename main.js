@@ -358,6 +358,16 @@ module.exports = __toCommonJS(main_exports);
 
 // src/locales/en.json
 var en_default = {
+  "Show embedded map previews": "Show embedded map previews",
+  "Always show toolbar": "Always show toolbar",
+  "Show toolbar on hover": "Show toolbar on hover",
+  "Hide toolbar buttons": "Hide toolbar buttons",
+  "Map toolbar": "Map toolbar",
+  "Move completed children to bottom": "Move completed children to bottom",
+  "Previous map location": "Previous map location",
+  "Next map location": "Next map location",
+  "Navigate across branches with arrow keys": "Navigate across branches with arrow keys",
+  "Copy node text": "Copy node text",
   "Edit embedded node note": "Edit embedded node note",
   "Vertical tree": "Vertical tree",
   "Sibling to the left": "Sibling to the left",
@@ -694,6 +704,16 @@ var en_default = {
 
 // src/locales/uk.json
 var uk_default = {
+  "Show embedded map previews": "\u041F\u043E\u043A\u0430\u0437\u0443\u0432\u0430\u0442\u0438 \u043F\u0435\u0440\u0435\u0433\u043B\u044F\u0434\u0438 \u0432\u043A\u043B\u0430\u0434\u0435\u043D\u0438\u0445 \u043A\u0430\u0440\u0442",
+  "Always show toolbar": "\u0417\u0430\u0432\u0436\u0434\u0438 \u043F\u043E\u043A\u0430\u0437\u0443\u0432\u0430\u0442\u0438 \u043F\u0430\u043D\u0435\u043B\u044C",
+  "Show toolbar on hover": "\u041F\u043E\u043A\u0430\u0437\u0443\u0432\u0430\u0442\u0438 \u043F\u0430\u043D\u0435\u043B\u044C \u043F\u0440\u0438 \u043D\u0430\u0432\u0435\u0434\u0435\u043D\u043D\u0456",
+  "Hide toolbar buttons": "\u041F\u0440\u0438\u0445\u043E\u0432\u0430\u0442\u0438 \u043A\u043D\u043E\u043F\u043A\u0438 \u043F\u0430\u043D\u0435\u043B\u0456",
+  "Map toolbar": "\u041F\u0430\u043D\u0435\u043B\u044C \u043A\u0430\u0440\u0442\u0438",
+  "Move completed children to bottom": "\u041F\u0435\u0440\u0435\u043C\u0456\u0441\u0442\u0438\u0442\u0438 \u0432\u0438\u043A\u043E\u043D\u0430\u043D\u0456 \u0434\u043E\u0447\u0456\u0440\u043D\u0456 \u0433\u0456\u043B\u043A\u0438 \u0432\u043D\u0438\u0437",
+  "Previous map location": "\u041F\u043E\u043F\u0435\u0440\u0435\u0434\u043D\u0454 \u043C\u0456\u0441\u0446\u0435 \u043D\u0430 \u043A\u0430\u0440\u0442\u0456",
+  "Next map location": "\u041D\u0430\u0441\u0442\u0443\u043F\u043D\u0435 \u043C\u0456\u0441\u0446\u0435 \u043D\u0430 \u043A\u0430\u0440\u0442\u0456",
+  "Navigate across branches with arrow keys": "\u041F\u0435\u0440\u0435\u0445\u043E\u0434\u0438\u0442\u0438 \u043C\u0456\u0436 \u0433\u0456\u043B\u043A\u0430\u043C\u0438 \u0441\u0442\u0440\u0456\u043B\u043A\u0430\u043C\u0438",
+  "Copy node text": "\u041A\u043E\u043F\u0456\u044E\u0432\u0430\u0442\u0438 \u0442\u0435\u043A\u0441\u0442 \u0432\u0443\u0437\u043B\u0430",
   "Edit embedded node note": "\u0420\u0435\u0434\u0430\u0433\u0443\u0432\u0430\u0442\u0438 \u0432\u043A\u043B\u0430\u0434\u0435\u043D\u0443 \u043D\u043E\u0442\u0430\u0442\u043A\u0443 \u0432\u0443\u0437\u043B\u0430",
   "Vertical tree": "\u0412\u0435\u0440\u0442\u0438\u043A\u0430\u043B\u044C\u043D\u0435 \u0434\u0435\u0440\u0435\u0432\u043E",
   "Sibling to the left": "\u0421\u0443\u0441\u0456\u0434\u043D\u0456\u0439 \u0432\u0443\u0437\u043E\u043B \u043B\u0456\u0432\u043E\u0440\u0443\u0447",
@@ -1030,6 +1050,16 @@ var uk_default = {
 
 // src/locales/pl.json
 var pl_default = {
+  "Show embedded map previews": "Wy\u015Bwietlaj podgl\u0105d osadzonych map",
+  "Always show toolbar": "Zawsze pokazuj pasek",
+  "Show toolbar on hover": "Pokazuj pasek po najechaniu",
+  "Hide toolbar buttons": "Ukryj przyciski paska",
+  "Map toolbar": "Pasek narz\u0119dzi mapy",
+  "Move completed children to bottom": "Przenie\u015B uko\u0144czone ga\u0142\u0119zie potomne na d\xF3\u0142",
+  "Previous map location": "Poprzednie miejsce na mapie",
+  "Next map location": "Nast\u0119pne miejsce na mapie",
+  "Navigate across branches with arrow keys": "Przechod\u017A mi\u0119dzy ga\u0142\u0119ziami za pomoc\u0105 strza\u0142ek",
+  "Copy node text": "Kopiuj tekst w\u0119z\u0142a",
   "Edit embedded node note": "Edytuj osadzon\u0105 notatk\u0119 w\u0119z\u0142a",
   "Vertical tree": "Drzewo pionowe",
   "Sibling to the left": "W\u0119ze\u0142 siostrzany po lewej",
@@ -1366,6 +1396,16 @@ var pl_default = {
 
 // src/locales/de.json
 var de_default = {
+  "Show embedded map previews": "Vorschau eingebetteter Karten anzeigen",
+  "Always show toolbar": "Symbolleiste immer anzeigen",
+  "Show toolbar on hover": "Symbolleiste beim \xDCberfahren anzeigen",
+  "Hide toolbar buttons": "Schaltfl\xE4chen ausblenden",
+  "Map toolbar": "Karten-Symbolleiste",
+  "Move completed children to bottom": "Erledigte Unterzweige nach unten verschieben",
+  "Previous map location": "Vorherige Position in der Karte",
+  "Next map location": "N\xE4chste Position in der Karte",
+  "Navigate across branches with arrow keys": "Mit Pfeiltasten zwischen Zweigen wechseln",
+  "Copy node text": "Knotentext kopieren",
   "Edit embedded node note": "Eingebettete Knotennotiz bearbeiten",
   "Vertical tree": "Vertikaler Baum",
   "Sibling to the left": "Nachbarknoten links",
@@ -1702,6 +1742,16 @@ var de_default = {
 
 // src/locales/es.json
 var es_default = {
+  "Show embedded map previews": "Mostrar vistas previas de mapas incrustados",
+  "Always show toolbar": "Mostrar siempre la barra",
+  "Show toolbar on hover": "Mostrar la barra al pasar el cursor",
+  "Hide toolbar buttons": "Ocultar botones de la barra",
+  "Map toolbar": "Barra del mapa",
+  "Move completed children to bottom": "Mover las ramas hijas completadas al final",
+  "Previous map location": "Ubicaci\xF3n anterior del mapa",
+  "Next map location": "Ubicaci\xF3n siguiente del mapa",
+  "Navigate across branches with arrow keys": "Navegar entre ramas con las flechas",
+  "Copy node text": "Copiar texto del nodo",
   "Edit embedded node note": "Editar la nota incrustada del nodo",
   "Vertical tree": "\xC1rbol vertical",
   "Sibling to the left": "Nodo hermano a la izquierda",
@@ -2038,6 +2088,16 @@ var es_default = {
 
 // src/locales/fr.json
 var fr_default = {
+  "Show embedded map previews": "Afficher les aper\xE7us des cartes int\xE9gr\xE9es",
+  "Always show toolbar": "Toujours afficher la barre",
+  "Show toolbar on hover": "Afficher la barre au survol",
+  "Hide toolbar buttons": "Masquer les boutons de la barre",
+  "Map toolbar": "Barre de la carte",
+  "Move completed children to bottom": "D\xE9placer les branches enfants termin\xE9es en bas",
+  "Previous map location": "Emplacement pr\xE9c\xE9dent sur la carte",
+  "Next map location": "Emplacement suivant sur la carte",
+  "Navigate across branches with arrow keys": "Naviguer entre les branches avec les fl\xE8ches",
+  "Copy node text": "Copier le texte du n\u0153ud",
   "Edit embedded node note": "Modifier la note int\xE9gr\xE9e du n\u0153ud",
   "Vertical tree": "Arbre vertical",
   "Sibling to the left": "N\u0153ud fr\xE8re \xE0 gauche",
@@ -2374,6 +2434,16 @@ var fr_default = {
 
 // src/locales/pt-BR.json
 var pt_BR_default = {
+  "Show embedded map previews": "Mostrar pr\xE9vias de mapas incorporados",
+  "Always show toolbar": "Sempre mostrar a barra",
+  "Show toolbar on hover": "Mostrar a barra ao passar o cursor",
+  "Hide toolbar buttons": "Ocultar bot\xF5es da barra",
+  "Map toolbar": "Barra de ferramentas do mapa",
+  "Move completed children to bottom": "Mover ramos filhos conclu\xEDdos para o fim",
+  "Previous map location": "Local anterior no mapa",
+  "Next map location": "Pr\xF3ximo local no mapa",
+  "Navigate across branches with arrow keys": "Navegar entre ramos com as setas",
+  "Copy node text": "Copiar texto do n\xF3",
   "Edit embedded node note": "Editar a nota incorporada do n\xF3",
   "Vertical tree": "\xC1rvore vertical",
   "Sibling to the left": "N\xF3 irm\xE3o \xE0 esquerda",
@@ -2710,6 +2780,16 @@ var pt_BR_default = {
 
 // src/locales/zh-CN.json
 var zh_CN_default = {
+  "Show embedded map previews": "\u663E\u793A\u5D4C\u5165\u5730\u56FE\u9884\u89C8",
+  "Always show toolbar": "\u59CB\u7EC8\u663E\u793A\u5DE5\u5177\u680F",
+  "Show toolbar on hover": "\u60AC\u505C\u65F6\u663E\u793A\u5DE5\u5177\u680F",
+  "Hide toolbar buttons": "\u9690\u85CF\u5DE5\u5177\u680F\u6309\u94AE",
+  "Map toolbar": "\u5730\u56FE\u5DE5\u5177\u680F",
+  "Move completed children to bottom": "\u5C06\u5DF2\u5B8C\u6210\u7684\u5B50\u5206\u652F\u79FB\u81F3\u5E95\u90E8",
+  "Previous map location": "\u5730\u56FE\u4E0A\u7684\u4E0A\u4E00\u4E2A\u4F4D\u7F6E",
+  "Next map location": "\u5730\u56FE\u4E0A\u7684\u4E0B\u4E00\u4E2A\u4F4D\u7F6E",
+  "Navigate across branches with arrow keys": "\u7528\u65B9\u5411\u952E\u5728\u5206\u652F\u4E4B\u95F4\u5BFC\u822A",
+  "Copy node text": "\u590D\u5236\u8282\u70B9\u6587\u672C",
   "Edit embedded node note": "\u7F16\u8F91\u8282\u70B9\u7684\u5D4C\u5165\u7B14\u8BB0",
   "Vertical tree": "\u5782\u76F4\u6811",
   "Sibling to the left": "\u5DE6\u4FA7\u540C\u7EA7\u8282\u70B9",
@@ -3046,6 +3126,16 @@ var zh_CN_default = {
 
 // src/locales/ja.json
 var ja_default = {
+  "Show embedded map previews": "\u57CB\u3081\u8FBC\u307F\u30DE\u30C3\u30D7\u306E\u30D7\u30EC\u30D3\u30E5\u30FC\u3092\u8868\u793A",
+  "Always show toolbar": "\u30C4\u30FC\u30EB\u30D0\u30FC\u3092\u5E38\u306B\u8868\u793A",
+  "Show toolbar on hover": "\u30DB\u30D0\u30FC\u6642\u306B\u30C4\u30FC\u30EB\u30D0\u30FC\u3092\u8868\u793A",
+  "Hide toolbar buttons": "\u30C4\u30FC\u30EB\u30D0\u30FC\u30DC\u30BF\u30F3\u3092\u975E\u8868\u793A",
+  "Map toolbar": "\u30DE\u30C3\u30D7\u306E\u30C4\u30FC\u30EB\u30D0\u30FC",
+  "Move completed children to bottom": "\u5B8C\u4E86\u3057\u305F\u5B50\u306E\u679D\u3092\u672B\u5C3E\u306B\u79FB\u52D5",
+  "Previous map location": "\u30DE\u30C3\u30D7\u4E0A\u306E\u524D\u306E\u4F4D\u7F6E",
+  "Next map location": "\u30DE\u30C3\u30D7\u4E0A\u306E\u6B21\u306E\u4F4D\u7F6E",
+  "Navigate across branches with arrow keys": "\u77E2\u5370\u30AD\u30FC\u3067\u679D\u3092\u307E\u305F\u3044\u3067\u79FB\u52D5",
+  "Copy node text": "\u30CE\u30FC\u30C9\u306E\u30C6\u30AD\u30B9\u30C8\u3092\u30B3\u30D4\u30FC",
   "Edit embedded node note": "\u30CE\u30FC\u30C9\u306B\u57CB\u3081\u8FBC\u307E\u308C\u305F\u30CE\u30FC\u30C8\u3092\u7DE8\u96C6",
   "Vertical tree": "\u7E26\u5411\u304D\u30C4\u30EA\u30FC",
   "Sibling to the left": "\u5DE6\u306E\u5144\u5F1F\u30CE\u30FC\u30C9",
@@ -3382,6 +3472,16 @@ var ja_default = {
 
 // src/locales/ko.json
 var ko_default = {
+  "Show embedded map previews": "\uC784\uBCA0\uB4DC \uC9C0\uB3C4 \uBBF8\uB9AC\uBCF4\uAE30 \uD45C\uC2DC",
+  "Always show toolbar": "\uB3C4\uAD6C \uBAA8\uC74C \uD56D\uC0C1 \uD45C\uC2DC",
+  "Show toolbar on hover": "\uB9C8\uC6B0\uC2A4\uB97C \uC62C\uB9AC\uBA74 \uB3C4\uAD6C \uBAA8\uC74C \uD45C\uC2DC",
+  "Hide toolbar buttons": "\uB3C4\uAD6C \uBAA8\uC74C \uBC84\uD2BC \uC228\uAE30\uAE30",
+  "Map toolbar": "\uC9C0\uB3C4 \uB3C4\uAD6C \uBAA8\uC74C",
+  "Move completed children to bottom": "\uC644\uB8CC\uD55C \uD558\uC704 \uAC00\uC9C0\uB97C \uB9E8 \uC544\uB798\uB85C \uC774\uB3D9",
+  "Previous map location": "\uC774\uC804 \uC9C0\uB3C4 \uC704\uCE58",
+  "Next map location": "\uB2E4\uC74C \uC9C0\uB3C4 \uC704\uCE58",
+  "Navigate across branches with arrow keys": "\uD654\uC0B4\uD45C \uD0A4\uB85C \uAC00\uC9C0 \uC0AC\uC774 \uC774\uB3D9",
+  "Copy node text": "\uB178\uB4DC \uD14D\uC2A4\uD2B8 \uBCF5\uC0AC",
   "Edit embedded node note": "\uB178\uB4DC\uC758 \uC784\uBCA0\uB4DC \uB178\uD2B8 \uD3B8\uC9D1",
   "Vertical tree": "\uC138\uB85C \uD2B8\uB9AC",
   "Sibling to the left": "\uC67C\uCABD \uD615\uC81C \uB178\uB4DC",
@@ -3718,6 +3818,16 @@ var ko_default = {
 
 // src/locales/ru.json
 var ru_default = {
+  "Show embedded map previews": "\u041F\u043E\u043A\u0430\u0437\u044B\u0432\u0430\u0442\u044C \u043F\u0440\u0435\u0434\u043F\u0440\u043E\u0441\u043C\u043E\u0442\u0440 \u0432\u043B\u043E\u0436\u0435\u043D\u043D\u044B\u0445 \u043A\u0430\u0440\u0442",
+  "Always show toolbar": "\u0412\u0441\u0435\u0433\u0434\u0430 \u043F\u043E\u043A\u0430\u0437\u044B\u0432\u0430\u0442\u044C \u043F\u0430\u043D\u0435\u043B\u044C",
+  "Show toolbar on hover": "\u041F\u043E\u043A\u0430\u0437\u044B\u0432\u0430\u0442\u044C \u043F\u0430\u043D\u0435\u043B\u044C \u043F\u0440\u0438 \u043D\u0430\u0432\u0435\u0434\u0435\u043D\u0438\u0438",
+  "Hide toolbar buttons": "\u0421\u043A\u0440\u044B\u0442\u044C \u043A\u043D\u043E\u043F\u043A\u0438 \u043F\u0430\u043D\u0435\u043B\u0438",
+  "Map toolbar": "\u041F\u0430\u043D\u0435\u043B\u044C \u043A\u0430\u0440\u0442\u044B",
+  "Move completed children to bottom": "\u041F\u0435\u0440\u0435\u043C\u0435\u0441\u0442\u0438\u0442\u044C \u0437\u0430\u0432\u0435\u0440\u0448\u0451\u043D\u043D\u044B\u0435 \u0434\u043E\u0447\u0435\u0440\u043D\u0438\u0435 \u0432\u0435\u0442\u0432\u0438 \u0432\u043D\u0438\u0437",
+  "Previous map location": "\u041F\u0440\u0435\u0434\u044B\u0434\u0443\u0449\u0435\u0435 \u043C\u0435\u0441\u0442\u043E \u043D\u0430 \u043A\u0430\u0440\u0442\u0435",
+  "Next map location": "\u0421\u043B\u0435\u0434\u0443\u044E\u0449\u0435\u0435 \u043C\u0435\u0441\u0442\u043E \u043D\u0430 \u043A\u0430\u0440\u0442\u0435",
+  "Navigate across branches with arrow keys": "\u041F\u0435\u0440\u0435\u0445\u043E\u0434\u0438\u0442\u044C \u043C\u0435\u0436\u0434\u0443 \u0432\u0435\u0442\u0432\u044F\u043C\u0438 \u0441\u0442\u0440\u0435\u043B\u043A\u0430\u043C\u0438",
+  "Copy node text": "\u041A\u043E\u043F\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u0442\u0435\u043A\u0441\u0442 \u0443\u0437\u043B\u0430",
   "Edit embedded node note": "\u0420\u0435\u0434\u0430\u043A\u0442\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u0432\u0441\u0442\u0440\u043E\u0435\u043D\u043D\u0443\u044E \u0437\u0430\u043C\u0435\u0442\u043A\u0443 \u0443\u0437\u043B\u0430",
   "Vertical tree": "\u0412\u0435\u0440\u0442\u0438\u043A\u0430\u043B\u044C\u043D\u043E\u0435 \u0434\u0435\u0440\u0435\u0432\u043E",
   "Sibling to the left": "\u0421\u043E\u0441\u0435\u0434\u043D\u0438\u0439 \u0443\u0437\u0435\u043B \u0441\u043B\u0435\u0432\u0430",
@@ -4477,6 +4587,24 @@ function shiftSelectedBranches(doc, ids, direction) {
     assertStructural(doc, adjacent);
     [reordered[index], reordered[other]] = [reordered[other], reordered[index]];
   }
+  return reorderSiblingBlocks(doc, siblings, reordered);
+}
+function moveCompletedChildrenToBottom(doc, id) {
+  const siblings = required(doc, id).children;
+  const completed = siblings.filter((child) => /^\[[xX]\]/.test(required(doc, child).text));
+  const marked = new Set(completed);
+  const reordered = [...siblings.filter((child) => !marked.has(child)), ...completed];
+  for (let index = 0; index < siblings.length; index++) {
+    if (siblings[index] === reordered[index]) continue;
+    const from = required(doc, siblings[index]), to = required(doc, reordered[index]);
+    if (from.kind !== to.kind || from.indent !== to.indent) {
+      throw new Error(t("Moving between a heading and a bullet changes their meaning. Make this structural change in source view."));
+    }
+    assertStructural(doc, from);
+  }
+  return reorderSiblingBlocks(doc, siblings, reordered);
+}
+function reorderSiblingBlocks(doc, siblings, reordered) {
   const ranges = new Map(siblings.map((id) => [id, range(doc, required(doc, id))]));
   let source = doc.source;
   for (let index = siblings.length - 1; index >= 0; index--) {
@@ -5612,6 +5740,8 @@ var MapSurface = class {
     this.container = container;
     this.options = options;
     this.lastChildByParent = /* @__PURE__ */ new Map();
+    this.backStops = [];
+    this.forwardStops = [];
     this.doc = null;
     this.state = { collapsed: [], selected: null, camera: { x: 36, y: 36, scale: 1 }, focusRoot: null };
     this.collapsed = /* @__PURE__ */ new Set();
@@ -5633,6 +5763,7 @@ var MapSurface = class {
     this.menu = null;
     this.touches = /* @__PURE__ */ new Map();
     this.pan = null;
+    this.coastFrame = null;
     this.pinch = null;
     this.suppressClickUntil = 0;
     this.bounds = { width: 0, height: 0 };
@@ -5898,6 +6029,30 @@ var MapSurface = class {
     this.viewport.focus({ preventScroll: true });
     this.emitState();
   }
+  jumpTo(id) {
+    if (!this.doc?.byId.has(id) || this.editing) return;
+    if (id !== this.state.selected) {
+      this.backStops.push({ view: this.getState(), selection: this.getSelection() });
+      if (this.backStops.length > 30) this.backStops.shift();
+      this.forwardStops.length = 0;
+    }
+    this.reveal(id);
+  }
+  canNavigateHistory(direction) {
+    return !this.editing && (direction === "back" ? this.backStops : this.forwardStops).length > 0;
+  }
+  navigateHistory(direction) {
+    if (!this.doc || !this.canNavigateHistory(direction)) return;
+    const from = direction === "back" ? this.backStops : this.forwardStops;
+    const to = direction === "back" ? this.forwardStops : this.backStops;
+    const stop = from.pop();
+    to.push({ view: this.getState(), selection: this.getSelection() });
+    this.update(this.doc, stop.view);
+    this.selection = new Set(stop.selection.filter((id) => this.elements.has(id)));
+    this.paintSelection();
+    this.viewport.focus({ preventScroll: true });
+    this.emitState();
+  }
   search(query, alphabetical = false, scope) {
     this.query = query.trim();
     this.searchScope = scope;
@@ -5980,6 +6135,7 @@ var MapSurface = class {
     this.emitState();
   }
   destroy() {
+    this.stopCoasting();
     if (this.destroyed) return;
     this.destroyed = true;
     this.cancelMarkdownFrame?.();
@@ -6056,7 +6212,11 @@ var MapSurface = class {
   render() {
     if (!this.doc || this.destroyed) return;
     const key = this.options.getRenderKey?.() ?? "";
-    if (key !== this.renderKey) this.lastChildByParent.clear();
+    if (key !== this.renderKey) {
+      this.lastChildByParent.clear();
+      this.backStops.length = 0;
+      this.forwardStops.length = 0;
+    }
     for (const [id, value] of this.rendered) {
       if (key !== this.renderKey || !this.doc.byId.has(id)) {
         this.options.releaseMarkdown?.(value.content);
@@ -6628,6 +6788,15 @@ var MapSurface = class {
       }
       return;
     }
+    const image = target.closest("img")?.closest(".internal-embed");
+    const imageLink = image?.getAttribute("src");
+    if (imageLink && this.options.onOpenLink) {
+      if (id) this.select(id);
+      event.preventDefault();
+      event.stopPropagation();
+      this.options.onOpenLink(imageLink, event);
+      return;
+    }
     if (id) {
       this.select(id);
       if (target.closest('input[type="checkbox"]')) {
@@ -6795,15 +6964,20 @@ var MapSurface = class {
       const lastChild = this.lastChildByParent.get(id);
       next = lastChild && this.doc.byId.get(lastChild)?.parentId === id ? lastChild : node.children[0];
     } else {
+      const delta = action === "previous" ? -1 : 1;
       const index = peers.indexOf(id);
-      next = peers[index + (action === "previous" ? -1 : 1)];
+      next = peers[index + delta];
+      if (!next && this.options.getArrowAcrossBranches?.()) next = this.visible[this.visible.indexOf(id) + delta];
     }
     if (next) this.select(next, true);
     return true;
   }
   wheel(event) {
+    this.stopCoasting();
     if (event.target.closest(".tvm-inline-editor")) return;
     if (this.menu?.contains(event.target)) return;
+    const table = event.target.closest(".tvm-node-content table");
+    if (table && !event.ctrlKey && !event.metaKey && (table.scrollWidth > table.clientWidth || table.scrollHeight > table.clientHeight)) return;
     event.preventDefault();
     const multiplier = event.deltaMode === 1 ? 18 : event.deltaMode === 2 ? this.viewportSize().height : 1;
     if (event.ctrlKey || event.metaKey) {
@@ -6825,6 +6999,7 @@ var MapSurface = class {
     this.applyCamera(true);
   }
   pointerDown(event) {
+    this.stopCoasting();
     if (event.target.closest(".tvm-create-handles, .tvm-create-first")) return;
     if (this.editing && event.target.closest(".tvm-inline-editor")) return;
     if (this.editing) event.preventDefault();
@@ -6872,9 +7047,13 @@ var MapSurface = class {
     if (event.button !== 0 && event.button !== 1) return;
     if (this.touches.size < 2 && (this.editing || event.pointerType === "touch" || event.button === 1 || !event.target.closest(".tvm-node"))) {
       this.pan = { pointer: event.pointerId, x: event.clientX, y: event.clientY, camera: { ...this.state.camera }, moved: false };
+      const table = event.target.closest(".tvm-node-content table");
+      if (event.pointerType === "touch" && table && (table.scrollWidth > table.clientWidth || table.scrollHeight > table.clientHeight)) {
+        this.pan.table = { element: table, x: table.scrollLeft, y: table.scrollTop };
+      }
       if (event.button === 1) event.preventDefault();
     }
-    if (!this.editing && event.pointerType === "touch" && this.touches.size === 1 && id && !event.target.closest("a, button, input, textarea")) {
+    if (!this.editing && !this.pan?.table && event.pointerType === "touch" && this.touches.size === 1 && id && !event.target.closest("a, button, input, textarea")) {
       this.cancelTouchHold();
       const pointer = event.pointerId, x = event.clientX, y = event.clientY;
       const timer = this.container.ownerDocument.defaultView.setTimeout(() => {
@@ -6954,6 +7133,26 @@ var MapSurface = class {
     const dy = event.clientY - this.pan.y;
     if (Math.hypot(dx, dy) > 4) this.pan.moved = true;
     if (!this.pan.moved) return;
+    if (this.pan.table) {
+      const { element, x, y } = this.pan.table;
+      element.scrollLeft = x - dx / this.state.camera.scale;
+      element.scrollTop = y - dy / this.state.camera.scale;
+      this.suppressClickUntil = Date.now() + 350;
+      event.preventDefault();
+      return;
+    }
+    if (event.pointerType === "touch" && !this.editing) {
+      const prior = this.pan.sample;
+      const elapsed = Math.max(8, event.timeStamp - (prior?.time ?? event.timeStamp - 16));
+      const mix = (speed, delta) => speed * 0.35 + Math.max(-2.5, Math.min(2.5, delta / elapsed)) * 0.65;
+      this.pan.sample = {
+        x: event.clientX,
+        y: event.clientY,
+        time: event.timeStamp,
+        vx: mix(prior?.vx ?? 0, event.clientX - (prior?.x ?? this.pan.x)),
+        vy: mix(prior?.vy ?? 0, event.clientY - (prior?.y ?? this.pan.y))
+      };
+    }
     try {
       this.viewport.setPointerCapture(event.pointerId);
     } catch {
@@ -7093,7 +7292,13 @@ var MapSurface = class {
     const wasPinching = !!this.pinch;
     const changed = wasPinching || this.pan?.moved;
     this.touches.delete(event.pointerId);
-    if (this.pan?.pointer === event.pointerId) this.pan = null;
+    if (this.pan?.pointer === event.pointerId) {
+      const sample = this.pan.sample;
+      this.pan = null;
+      if (event.type === "pointerup" && !wasPinching && !this.editing && sample && event.timeStamp - sample.time < 90) {
+        this.coast(sample.vx, sample.vy);
+      }
+    }
     if (this.touches.size < 2) this.pinch = null;
     if (wasPinching && this.touches.size === 1) {
       const [id, point] = [...this.touches.entries()][0];
@@ -7105,6 +7310,31 @@ var MapSurface = class {
     } catch {
     }
     if (changed) this.emitState();
+  }
+  stopCoasting() {
+    if (this.coastFrame === null) return;
+    this.viewport.ownerDocument.defaultView?.cancelAnimationFrame(this.coastFrame);
+    this.coastFrame = null;
+  }
+  coast(vx, vy) {
+    const win = this.viewport.ownerDocument.defaultView;
+    if (!win || win.matchMedia?.("(prefers-reduced-motion: reduce)").matches || Math.hypot(vx, vy) < 0.18) return;
+    let last;
+    const step = (now) => {
+      this.coastFrame = null;
+      if (this.destroyed || this.editing) return;
+      const elapsed = Math.min(34, now - (last ?? now - 16));
+      last = now;
+      const decay = Math.exp(-elapsed / 115);
+      this.state.camera.x += vx * 115 * (1 - decay);
+      this.state.camera.y += vy * 115 * (1 - decay);
+      vx *= decay;
+      vy *= decay;
+      this.paintCamera(true);
+      if (Math.hypot(vx, vy) >= 0.05) this.coastFrame = win.requestAnimationFrame(step);
+      else this.emitState();
+    };
+    this.coastFrame = win.requestAnimationFrame(step);
   }
   contextMenu(event) {
     if (this.drag?.active) {
@@ -7140,7 +7370,9 @@ var MapSurface = class {
       { label: t("Mark as question"), action: "make-question" },
       { label: t("Copy link to node"), action: "copy-node-link" },
       { label: t("Copy branch"), action: "copy" },
+      { label: t("Copy node text"), action: "copy-node-text" },
       { label: t("Edit embedded node note"), action: "node-note" },
+      { label: t("Move completed children to bottom"), action: "completed-bottom" },
       { label: t("Copy selected nodes without children"), action: "copy-node-labels" },
       { label: t("Cut branch"), action: "cut" },
       { label: t("Paste as child branch"), action: "paste" },
@@ -7160,7 +7392,7 @@ var MapSurface = class {
       button2.setAttribute("role", "menuitem");
       const label2 = this.container.ownerDocument.createElement("span");
       label2.textContent = this.selection.size > 1 && ["delete", "copy", "cut"].includes(entry.action) ? t(entry.action === "copy" ? "Copy selection" : entry.action === "cut" ? "Cut selection" : "Delete selection") : entry.label;
-      if (this.selection.size > 1 && ["edit", "node-note", "add-child", "add-sibling", "add-parent", "insert-template", "paste", "paste-after", "indent", "outdent"].includes(entry.action)) button2.disabled = true;
+      if (this.selection.size > 1 && ["edit", "copy-node-text", "node-note", "completed-bottom", "add-child", "add-sibling", "add-parent", "insert-template", "paste", "paste-after", "indent", "outdent"].includes(entry.action)) button2.disabled = true;
       button2.append(label2);
       const binding = this.options.getHotkeys?.()[entry.action] ?? DEFAULT_HOTKEYS[entry.action];
       if (binding) {
@@ -8586,8 +8818,21 @@ function hasLargeVisibleTree(doc, state) {
   }
   return false;
 }
-var DEFAULT_SETTINGS = { patternMode: "glob", mapPatterns: "*.mindmap.md\n\u{1F3AF}*.md", language: "auto", nodeEditor: "native", autoOpen: false, autoRestoreLargeMaps: true, queueExcludedMaps: "\u0430\u0440\u0445\u0456\u0432 \u0442\u0438\u0436\u043D\u0456\u0432\nold", queueExcludedBranches: "\u{1F9CA}\n\u274C", queueTaskMarker: true, queueStepTag: true, collapseOnLeft: false, collapsePastedBranches: true, hotkeys: {}, widthMode: "fixed" };
+var DEFAULT_SETTINGS = { patternMode: "glob", mapPatterns: "*.mindmap.md\n\u{1F3AF}*.md", language: "auto", nodeEditor: "native", autoOpen: false, autoRestoreLargeMaps: true, queueExcludedMaps: "\u0430\u0440\u0445\u0456\u0432 \u0442\u0438\u0436\u043D\u0456\u0432\nold", queueExcludedBranches: "\u{1F9CA}\n\u274C", queueTaskMarker: true, queueStepTag: true, collapseOnLeft: false, arrowAcrossBranches: false, toolbarMode: "visible", showMapPreviews: true, collapsePastedBranches: true, hotkeys: {}, widthMode: "fixed" };
 var widthModes = () => [["fixed", t("Fixed width")], ["content", t("Fit node content")], ["column", t("Fit visible column")]];
+var toolbarModes = () => [
+  ["visible", t("Always show toolbar")],
+  ["hover", t("Show toolbar on hover")],
+  ["hidden", t("Hide toolbar buttons")]
+];
+var highlightColors = {
+  "\u{1F534}": "red",
+  "\u{1F7E0}": "orange",
+  "\u{1F7E1}": "yellow",
+  "\u{1F7E2}": "green",
+  "\u{1F535}": "blue",
+  "\u{1F7E3}": "purple"
+};
 var message = (error) => error instanceof Error ? error.message : String(error);
 var createsNode = (action) => action === "add-child" || action === "add-parent" || action === "add-sibling" || action === "add-sibling-before";
 var button = (parent, label2, action, title = label2) => {
@@ -8716,6 +8961,7 @@ var TraceViewMindmap = class extends import_obsidian5.Plugin {
       ["make-dated", t("Add step deadline"), "make-dated"],
       ["make-question", t("Mark as QA"), "make-question"],
       ["toggle-task", t("Toggle step completion"), "toggle-task"],
+      ["completed-bottom", t("Move completed children to bottom"), "completed-bottom"],
       ["copy-node-labels", t("Copy selected nodes without children"), "copy-node-labels"],
       ["copy-branch", t("Copy branch"), "copy"],
       ["cut-branch", t("Cut branch"), "cut"],
@@ -8961,6 +9207,11 @@ var TraceViewMindmap = class extends import_obsidian5.Plugin {
   async setWidthMode(mode) {
     this.settings.widthMode = mode;
     for (const leaf of this.app.workspace.getLeavesOfType(VIEW)) leaf.view.surface?.refreshLayout();
+    await this.saveData(this.settings);
+  }
+  async setToolbarMode(mode) {
+    this.settings.toolbarMode = mode;
+    for (const leaf of this.app.workspace.getLeavesOfType(VIEW)) leaf.view.refreshToolbarMode();
     await this.saveData(this.settings);
   }
   async source(file, line = 0, target) {
@@ -9267,7 +9518,7 @@ var MapView = class extends import_obsidian5.EditableFileView {
     }
     this.pendingSubpath = void 0;
     const nodes = subpath.startsWith("#^") ? this.doc.nodes.filter((node) => node.blockId === subpath.slice(2)) : this.doc.nodes.filter((node) => node.kind === "heading" && node.text.toLocaleLowerCase() === subpath.slice(1).toLocaleLowerCase());
-    if (nodes.length === 1) this.surface.reveal(nodes[0].id);
+    if (nodes.length === 1) this.surface.jumpTo(nodes[0].id);
     else new import_obsidian5.Notice(nodes.length ? t("This address is duplicated. Fix the block ID in Markdown.") : t("The linked node was not found."));
   }
   async onOpen() {
@@ -9277,6 +9528,8 @@ var MapView = class extends import_obsidian5.EditableFileView {
     this.contentEl.addClass("tvm-view", "tvm-map-view");
     this.addChild(this.renderer);
     const toolbar = this.contentEl.createDiv("tvm-toolbar");
+    this.toolbar = toolbar;
+    this.refreshToolbarMode();
     this.title = this.containerEl.querySelector(".view-header-title") ?? void 0;
     const actions = toolbar.createDiv("tvm-actions");
     this.undoButton = iconButton(actions, "undo-2", t("Undo"), () => {
@@ -9327,7 +9580,7 @@ var MapView = class extends import_obsidian5.EditableFileView {
       },
       reveal: (id) => {
         if (!searchDraft) {
-          this.surface?.reveal(id);
+          this.surface?.jumpTo(id);
           return;
         }
         const editor = this.editor;
@@ -9353,6 +9606,7 @@ var MapView = class extends import_obsidian5.EditableFileView {
       useTransformPan: () => import_obsidian5.Platform.isMobile,
       getHotkeys: () => this.plugin.settings.hotkeys,
       getCollapseOnLeft: () => this.plugin.settings.collapseOnLeft,
+      getArrowAcrossBranches: () => this.plugin.settings.arrowAcrossBranches,
       onFind: () => this.showSearch?.(),
       getRenderKey: () => this.path,
       releaseMarkdown: (element) => {
@@ -9380,7 +9634,26 @@ var MapView = class extends import_obsidian5.EditableFileView {
       renderMarkdown: async (text, element) => {
         const component = this.renderer.addChild(new import_obsidian5.Component());
         this.renderedNodes.set(element, component);
-        await import_obsidian5.MarkdownRenderer.render(this.app, text, element, this.path, component);
+        const embeddedMaps = /* @__PURE__ */ new Map();
+        const content = text.replace(/`+[^`]*`+|(?<!\\)!\[\[([^\]\n]+)\]\]/g, (embed, link) => {
+          if (!link) return embed;
+          const target = link.split("|", 1)[0];
+          const { path } = (0, import_obsidian5.parseLinktext)(target);
+          const file = path ? this.app.metadataCache.getFirstLinkpathDest(path, this.path) : this.file;
+          if (!file || !this.plugin.isMap(file)) return embed;
+          if (file !== this.file) embeddedMaps.set(target, file);
+          return embed.slice(1);
+        });
+        await import_obsidian5.MarkdownRenderer.render(this.app, content, element, this.path, component);
+        if (text.includes("==")) for (const mark of element.querySelectorAll("mark")) {
+          const color = mark.dataset.highlight ?? highlightColors[Array.from(mark.textContent?.trimStart() ?? "")[0]];
+          if (color && Object.values(highlightColors).includes(color)) mark.dataset.tvmHighlight = color;
+        }
+        if (this.plugin.settings.showMapPreviews) for (const [target, file] of embeddedMaps) {
+          if (element.querySelectorAll("a.internal-link").length && this.renderedNodes.get(element) === component) {
+            await this.appendMapPreview(element, file, target);
+          }
+        }
       },
       onOpenLink: (link, event) => {
         void this.plugin.openMapLink(link, this, event).catch((error) => new import_obsidian5.Notice(message(error)));
@@ -9675,6 +9948,14 @@ var MapView = class extends import_obsidian5.EditableFileView {
         new import_obsidian5.Notice(t("Node link copied."));
         return;
       }
+      if (action === "copy-node-text") {
+        await this.plugin.copy(node.text);
+        return;
+      }
+      if (action === "completed-bottom") {
+        await this.apply(doc, moveCompletedChildrenToBottom(doc, id));
+        return;
+      }
       if (action === "node-note") {
         await this.editNodeNote(doc, node);
         return;
@@ -9816,7 +10097,7 @@ var MapView = class extends import_obsidian5.EditableFileView {
     if (!map) return;
     const embeds = [...node.text.matchAll(/!\[\[([^\]#|]+)(?:\|[^\]]*)?\]\]/g)];
     const notes = embeds.map((match) => this.app.metadataCache.getFirstLinkpathDest(match[1], map.path)).filter((file) => file !== null && file !== map && file.extension === "md");
-    const note = notes.at(-1);
+    const note = notes.reverse().find((file) => !this.plugin.isMap(file) || / - note [a-f\d]{8}$/.test(file.basename));
     const original = note ? await this.app.vault.read(note) : "";
     let created;
     let savedText = "";
@@ -9842,6 +10123,15 @@ var MapView = class extends import_obsidian5.EditableFileView {
   }
   menu(anchor2) {
     const menu = new import_obsidian5.Menu();
+    if (!import_obsidian5.Platform.isMobile) {
+      for (const [mode, label2] of toolbarModes()) menu.addItem((item) => item.setTitle(label2).setChecked(this.plugin.settings.toolbarMode === mode).onClick(() => {
+        void this.plugin.setToolbarMode(mode).catch((error) => new import_obsidian5.Notice(message(error)));
+      }));
+      menu.addSeparator();
+    }
+    for (const [direction, label2] of [["back", t("Previous map location")], ["forward", t("Next map location")]]) {
+      menu.addItem((item) => item.setTitle(label2).setDisabled(!this.surface?.canNavigateHistory(direction)).onClick(() => this.surface?.navigateHistory(direction)));
+    }
     menu.addItem((item) => item.setTitle(t("Find a map\u2026")).setIcon("git-fork").onClick(() => this.plugin.pickMap()));
     menu.addItem((item) => item.setTitle(t("Steps \xB7 Deadlines \xB7 QA")).setIcon("list-checks").onClick(() => {
       void this.plugin.openQueue();
@@ -9863,6 +10153,48 @@ var MapView = class extends import_obsidian5.EditableFileView {
     }));
     const rect = anchor2.getBoundingClientRect();
     menu.showAtPosition({ x: rect.left, y: rect.bottom });
+  }
+  refreshToolbarMode() {
+    if (this.toolbar) this.toolbar.dataset.mode = import_obsidian5.Platform.isMobile ? "visible" : this.plugin.settings.toolbarMode;
+  }
+  async appendMapPreview(container, file, target) {
+    if (file.stat.size > 256e3) return;
+    const component = this.renderedNodes.get(container);
+    const doc = parseMap(await this.app.vault.cachedRead(file));
+    if (this.renderedNodes.get(container) !== component || !this.plugin.settings.showMapPreviews) return;
+    const preview = container.createDiv("tvm-embedded-map");
+    const link = (parent, linktext, label2) => {
+      const anchor2 = parent.createEl("a", { cls: "internal-link", text: label2, attr: { href: linktext, "data-href": linktext } });
+      return anchor2;
+    };
+    const nestedLink = (value) => {
+      const { path, subpath } = (0, import_obsidian5.parseLinktext)(value);
+      const nested = path ? this.app.metadataCache.getFirstLinkpathDest(path, file.path) : file;
+      return nested ? this.app.metadataCache.fileToLinktext(nested, this.path, true) + subpath : null;
+    };
+    let remaining = 24;
+    const draw = (parent, ids, depth) => {
+      for (const id of ids) {
+        if (remaining <= 0) break;
+        const node = doc.byId.get(id);
+        if (!node) continue;
+        remaining--;
+        const branch = parent.createDiv("tvm-embedded-map-branch");
+        const label2 = branch.createDiv("tvm-embedded-map-label");
+        let offset = 0;
+        for (const match of node.text.matchAll(/!?\[\[([^\]#|]+(?:#[^\]|]+)?)(?:\|([^\]]+))?\]\]/g)) {
+          label2.append(node.text.slice(offset, match.index));
+          const linktext = nestedLink(match[1]);
+          if (linktext) link(label2, linktext, match[2] ?? match[1]);
+          else label2.append(match[2] ?? match[1]);
+          offset = match.index + match[0].length;
+        }
+        label2.append(node.text.slice(offset) || (offset ? "" : t("Untitled")));
+        if (depth < 3 && node.children.length && remaining > 0) draw(branch.createDiv("tvm-embedded-map-children"), node.children, depth + 1);
+      }
+    };
+    draw(preview, doc.roots, 0);
+    if (doc.nodes.length > 24) link(preview, target, "\u2026");
   }
   async nativeAddress(file, line, expected) {
     if (!this.plugin.isMap(file)) return void 0;
@@ -10382,6 +10714,21 @@ var SettingsTab = class extends import_obsidian5.PluginSettingTab {
         this.plugin.refreshQueues();
       }));
     }
+    if (!import_obsidian5.Platform.isMobile) {
+      new import_obsidian5.Setting(this.containerEl).setName(t("Map toolbar")).addDropdown((dropdown) => {
+        for (const [mode, label2] of toolbarModes()) dropdown.addOption(mode, label2);
+        dropdown.setValue(this.plugin.settings.toolbarMode).onChange((value) => this.plugin.setToolbarMode(value));
+      });
+    }
+    new import_obsidian5.Setting(this.containerEl).setName(t("Show embedded map previews")).addToggle((toggle) => toggle.setValue(this.plugin.settings.showMapPreviews).onChange(async (value) => {
+      this.plugin.settings.showMapPreviews = value;
+      for (const leaf of this.app.workspace.getLeavesOfType(VIEW)) leaf.view.surface?.invalidateMarkdown();
+      await this.plugin.saveData(this.plugin.settings);
+    }));
+    new import_obsidian5.Setting(this.containerEl).setName(t("Navigate across branches with arrow keys")).addToggle((toggle) => toggle.setValue(this.plugin.settings.arrowAcrossBranches).onChange(async (value) => {
+      this.plugin.settings.arrowAcrossBranches = value;
+      await this.plugin.saveData(this.plugin.settings);
+    }));
     new import_obsidian5.Setting(this.containerEl).setName(t("Collapse pasted branches")).addToggle((toggle) => toggle.setValue(this.plugin.settings.collapsePastedBranches).onChange(async (value) => {
       this.plugin.settings.collapsePastedBranches = value;
       await this.plugin.saveData(this.plugin.settings);

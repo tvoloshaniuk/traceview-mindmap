@@ -36,12 +36,13 @@ export interface MapViewState {
   camera: Camera;
   focusRoot: string | null;
 }
-export type NodeAction = 'copy-node-link' | 'node-note' | 'edit' | 'add-child' | 'add-sibling' | 'add-sibling-before' | 'add-parent' | 'delete' | 'move-up' | 'move-down' | 'indent' | 'outdent' | 'copy' | 'copy-node-labels' | 'cut' | 'paste' | 'paste-after' | 'toggle-task' | 'make-step' | 'make-dated' | 'make-question' | 'source' | 'insert-template' | 'undo' | 'redo';
+export type NodeAction = 'copy-node-link' | 'copy-node-text' | 'completed-bottom' | 'node-note' | 'edit' | 'add-child' | 'add-sibling' | 'add-sibling-before' | 'add-parent' | 'delete' | 'move-up' | 'move-down' | 'indent' | 'outdent' | 'copy' | 'copy-node-labels' | 'cut' | 'paste' | 'paste-after' | 'toggle-task' | 'make-step' | 'make-dated' | 'make-question' | 'source' | 'insert-template' | 'undo' | 'redo';
 export interface MapSurfaceOptions {
   useTransformPan?: () => boolean;
   getWidthMode?: () => WidthMode;
   getHotkeys?: () => Record<string, string>;
   getCollapseOnLeft?: () => boolean;
+  getArrowAcrossBranches?: () => boolean;
   onFind?: () => void;
   getRenderKey?: () => string;
   releaseMarkdown?: (el: HTMLElement) => void;

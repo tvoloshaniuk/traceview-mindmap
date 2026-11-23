@@ -130,6 +130,26 @@
   z-index: 2;
 }
 .tvm-search-match { background: var(--text-highlight-bg, #fff0a9); color: inherit; }
+.tvm-map-view { position: relative; }
+.tvm-map-view > .tvm-toolbar[data-mode="hover"],
+.tvm-map-view > .tvm-toolbar[data-mode="hidden"] { position: absolute; inset: 0 0 auto; z-index: 10; background: transparent; border-color: transparent; }
+.tvm-map-view > .tvm-toolbar[data-mode="hover"]:is(:hover, :focus-within) { background: var(--background-primary); }
+.tvm-map-view > .tvm-toolbar[data-mode="hover"]:not(:hover):not(:focus-within) > .tvm-actions,
+.tvm-map-view > .tvm-toolbar[data-mode="hidden"] > .tvm-actions { visibility: hidden; }
+.tvm-map-view > .tvm-toolbar[data-mode="hidden"] { pointer-events: none; }
+.tvm-map-view > .tvm-toolbar[data-mode="hidden"] > button { pointer-events: auto; }
+.tvm-node-content mark[data-tvm-highlight] { color: var(--text-normal); background: color-mix(in srgb, var(--tvm-mark-color) 35%, var(--background-primary)); }
+.tvm-node-content mark[data-tvm-highlight="red"] { --tvm-mark-color: var(--color-red, #e35d65); }
+.tvm-node-content mark[data-tvm-highlight="orange"] { --tvm-mark-color: var(--color-orange, #eb914a); }
+.tvm-node-content mark[data-tvm-highlight="yellow"] { --tvm-mark-color: var(--color-yellow, #e5bc47); }
+.tvm-node-content mark[data-tvm-highlight="green"] { --tvm-mark-color: var(--color-green, #5faa6c); }
+.tvm-node-content mark[data-tvm-highlight="blue"] { --tvm-mark-color: var(--color-blue, #5099db); }
+.tvm-node-content mark[data-tvm-highlight="purple"] { --tvm-mark-color: var(--color-purple, #a07ae0); }
+.tvm-embedded-map { display: block; max-height: 9em; overflow: hidden; padding: 6px; border: 1px solid var(--background-modifier-border); border-radius: 5px; font-size: .78em; }
+.tvm-embedded-map-branch { display: flex; align-items: center; gap: 5px; margin: 2px 0; min-width: 0; }
+.tvm-embedded-map-children { border-inline-start: 1px solid var(--background-modifier-border); padding-inline-start: 4px; min-width: 0; }
+.tvm-embedded-map-label { max-width: 9em; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; padding: 1px 4px; border: 1px solid var(--background-modifier-border); border-radius: 3px; }
+.tvm-node-content table { display: block; max-width: 100%; overflow: auto; max-height: 12em; font-size: .88em; }
 .tvm-node.is-complete .tvm-node-content { color: var(--text-muted, #777780); opacity: 0.78; }
 .tvm-node.is-task { display: flex; align-items: flex-start; gap: 8px; }
 .tvm-task-checkbox { flex-shrink: 0; margin: 4px 0 0; cursor: pointer; }

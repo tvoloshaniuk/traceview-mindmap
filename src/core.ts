@@ -397,6 +397,26 @@ export function shiftSelectedBranches(doc: MapDocument, ids: string[], direction
     assertStructural(doc, adjacent);
     [reordered[index], reordered[other]] = [reordered[other], reordered[index]];
   }
+  return reorderSiblingBlocks(doc, siblings, reordered);
+}
+
+export function moveCompletedChildrenToBottom(doc: MapDocument, id: string): string {
+  const siblings = required(doc, id).children;
+  const completed = siblings.filter(child => /^\[[xX]\]/.test(required(doc, child).text));
+  const marked = new Set(completed);
+  const reordered = [...siblings.filter(child => !marked.has(child)), ...completed];
+  for (let index = 0; index < siblings.length; index++) {
+    if (siblings[index] === reordered[index]) continue;
+    const from = required(doc, siblings[index]), to = required(doc, reordered[index]);
+    if (from.kind !== to.kind || from.indent !== to.indent) {
+      throw new Error(t("Moving between a heading and a bullet changes their meaning. Make this structural change in source view."));
+    }
+    assertStructural(doc, from);
+  }
+  return reorderSiblingBlocks(doc, siblings, reordered);
+}
+
+function reorderSiblingBlocks(doc: MapDocument, siblings: string[], reordered: string[]): string {
   const ranges = new Map(siblings.map(id => [id, range(doc, required(doc, id))]));
   let source = doc.source;
   for (let index = siblings.length - 1; index >= 0; index--) {

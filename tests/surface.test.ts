@@ -285,6 +285,20 @@ test('search includes hidden descendants; revealing a result unfolds only its an
   assert.equal(f.host.querySelector('.tvm-search-match'), null);
 });
 
+test('back and forward restore the folds and selection around a navigation jump', t => {
+  const f = fixture(t, '- Root\n  - Branch\n    - Hidden\n  - Sibling\n');
+  f.surface.reveal(f.id('Branch'));
+  f.key(' ');
+  f.surface.jumpTo(f.id('Hidden'));
+  assert.equal(f.surface.getState().selected, f.id('Hidden'));
+  f.surface.navigateHistory('back');
+  assert.equal(f.surface.getState().selected, f.id('Branch'));
+  assert.deepEqual(f.visible(), ['Root', 'Branch', 'Sibling']);
+  f.surface.navigateHistory('forward');
+  assert.equal(f.surface.getState().selected, f.id('Hidden'));
+  assert.ok(f.visible().includes('Hidden'));
+});
+
 test('folds and camera survive source updates and a complete destroy/recreate cycle', t => {
   const f = fixture(t, '- root\n  - branch\n    - hidden\n  - sibling\n');
   f.surface.reveal(f.id('branch'));
