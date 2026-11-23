@@ -369,6 +369,46 @@ export function copyBranches(doc: MapDocument, ids: string[]): string {
   return selectedBranches(doc, ids).map(node => transformBranch(doc, node, node.kind === 'heading' ? 1 : '').replace(/(?:\r\n|\n|\r)+$/, '')).join(doc.eol) + doc.eol;
 }
 
+export function copyNodeLabels(doc: MapDocument, ids: string[]): string {
+  const selected = new Set(ids);
+  return doc.nodes.filter(node => selected.has(node.id)).map(node => '- ' + node.text).join(doc.eol) + doc.eol;
+}
+
+export function shiftSelectedBranches(doc: MapDocument, ids: string[], direction: 'up' | 'down'): string {
+  const selected = new Set(selectedBranches(doc, ids).map(node => node.id));
+  const first = doc.nodes.find(node => selected.has(node.id));
+  if (!first) return doc.source;
+  const siblings = first.parentId ? required(doc, first.parentId).children : doc.roots;
+  if (siblings.filter(id => selected.has(id)).length !== selected.size) {
+    throw new Error(t("Select branches with the same parent."));
+  }
+  const reordered = [...siblings];
+  const delta = direction === 'up' ? -1 : 1;
+  const indices = siblings.map((_, index) => index);
+  if (direction === 'down') indices.reverse();
+  for (const index of indices) {
+    const other = index + delta;
+    if (other < 0 || other >= siblings.length || !selected.has(reordered[index]) || selected.has(reordered[other])) continue;
+    const moving = required(doc, reordered[index]), adjacent = required(doc, reordered[other]);
+    if (moving.kind !== adjacent.kind || (moving.kind === 'heading' && moving.indent !== adjacent.indent)) {
+      throw new Error(t("Moving between a heading and a bullet changes their meaning. Make this structural change in source view."));
+    }
+    assertStructural(doc, moving);
+    assertStructural(doc, adjacent);
+    [reordered[index], reordered[other]] = [reordered[other], reordered[index]];
+  }
+  const ranges = new Map(siblings.map(id => [id, range(doc, required(doc, id))]));
+  let source = doc.source;
+  for (let index = siblings.length - 1; index >= 0; index--) {
+    if (siblings[index] === reordered[index]) continue;
+    const slot = ranges.get(siblings[index])!, replacement = ranges.get(reordered[index])!;
+    const ending = /(?:\r\n|\r|\n)$/.exec(doc.source.slice(slot.start, slot.end))?.[0] ?? '';
+    const block = doc.source.slice(replacement.start, replacement.end).replace(/(?:\r\n|\r|\n)$/, '');
+    source = source.slice(0, slot.start) + block + ending + source.slice(slot.end);
+  }
+  return source;
+}
+
 /** Label commands preserve line positions; build one complete change before writing. */
 export function changeNodes(doc: MapDocument, ids: string[], change: (doc: MapDocument, id: string) => string): string {
   const selected = new Set(ids);

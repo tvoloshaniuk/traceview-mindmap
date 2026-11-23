@@ -1,4 +1,7 @@
 {
+  "Select branches with the same parent.": "请选择具有相同父节点的分支。",
+  "Copy selected nodes without children": "复制所选节点（不含子节点）",
+  "Collapse pasted branches": "折叠粘贴的分支",
   "Exclude maps from planning": "从计划中排除地图",
   "Exclude branches from planning": "从计划中排除分支",
   "One term per line. Leave blank to show all.": "每行一个词。留空则显示全部。",

@@ -1,4 +1,7 @@
 {
+  "Select branches with the same parent.": "Wähle Zweige mit demselben Elternknoten aus.",
+  "Copy selected nodes without children": "Ausgewählte Knoten ohne Kinder kopieren",
+  "Collapse pasted branches": "Eingefügte Zweige einklappen",
   "Exclude maps from planning": "Karten aus der Planung ausschließen",
   "Exclude branches from planning": "Zweige aus der Planung ausschließen",
   "One term per line. Leave blank to show all.": "Ein Begriff pro Zeile. Leer lassen, um alles anzuzeigen.",

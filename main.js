@@ -358,6 +358,9 @@ module.exports = __toCommonJS(main_exports);
 
 // src/locales/en.json
 var en_default = {
+  "Select branches with the same parent.": "Select branches with the same parent.",
+  "Copy selected nodes without children": "Copy selected nodes without children",
+  "Collapse pasted branches": "Collapse pasted branches",
   "Exclude maps from planning": "Exclude maps from planning",
   "Exclude branches from planning": "Exclude branches from planning",
   "One term per line. Leave blank to show all.": "One term per line. Leave blank to show all.",
@@ -686,6 +689,9 @@ var en_default = {
 
 // src/locales/uk.json
 var uk_default = {
+  "Select branches with the same parent.": "\u0412\u0438\u0431\u0435\u0440\u0438 \u0433\u0456\u043B\u043A\u0438 \u0437\u0456 \u0441\u043F\u0456\u043B\u044C\u043D\u0438\u043C \u0431\u0430\u0442\u044C\u043A\u0456\u0432\u0441\u044C\u043A\u0438\u043C \u0432\u0443\u0437\u043B\u043E\u043C.",
+  "Copy selected nodes without children": "\u041A\u043E\u043F\u0456\u044E\u0432\u0430\u0442\u0438 \u0432\u0438\u0431\u0440\u0430\u043D\u0456 \u0432\u0443\u0437\u043B\u0438 \u0431\u0435\u0437 \u0434\u0456\u0442\u0435\u0439",
+  "Collapse pasted branches": "\u0417\u0433\u043E\u0440\u0442\u0430\u0442\u0438 \u0432\u0441\u0442\u0430\u0432\u043B\u0435\u043D\u0456 \u0433\u0456\u043B\u043A\u0438",
   "Exclude maps from planning": "\u0412\u0438\u043A\u043B\u044E\u0447\u0438\u0442\u0438 \u043A\u0430\u0440\u0442\u0438 \u0437\u0456 \u0441\u043F\u0438\u0441\u043A\u0456\u0432 \u043F\u043B\u0430\u043D\u0443\u0432\u0430\u043D\u043D\u044F",
   "Exclude branches from planning": "\u0412\u0438\u043A\u043B\u044E\u0447\u0438\u0442\u0438 \u0433\u0456\u043B\u043A\u0438 \u0437\u0456 \u0441\u043F\u0438\u0441\u043A\u0456\u0432 \u043F\u043B\u0430\u043D\u0443\u0432\u0430\u043D\u043D\u044F",
   "One term per line. Leave blank to show all.": "\u041E\u0434\u0438\u043D \u0432\u0438\u0440\u0430\u0437 \u043D\u0430 \u0440\u044F\u0434\u043E\u043A. \u041F\u043E\u0440\u043E\u0436\u043D\u0454 \u043F\u043E\u043B\u0435 \u043F\u043E\u043A\u0430\u0437\u0443\u0454 \u0432\u0441\u0435.",
@@ -1014,6 +1020,9 @@ var uk_default = {
 
 // src/locales/pl.json
 var pl_default = {
+  "Select branches with the same parent.": "Wybierz ga\u0142\u0119zie o wsp\xF3lnym w\u0119\u017Ale nadrz\u0119dnym.",
+  "Copy selected nodes without children": "Kopiuj wybrane w\u0119z\u0142y bez potomk\xF3w",
+  "Collapse pasted branches": "Zwijaj wklejone ga\u0142\u0119zie",
   "Exclude maps from planning": "Wyklucz mapy z planowania",
   "Exclude branches from planning": "Wyklucz ga\u0142\u0119zie z planowania",
   "One term per line. Leave blank to show all.": "Jedno wyra\u017Cenie w wierszu. Pozostaw puste, aby wy\u015Bwietli\u0107 wszystko.",
@@ -1342,6 +1351,9 @@ var pl_default = {
 
 // src/locales/de.json
 var de_default = {
+  "Select branches with the same parent.": "W\xE4hle Zweige mit demselben Elternknoten aus.",
+  "Copy selected nodes without children": "Ausgew\xE4hlte Knoten ohne Kinder kopieren",
+  "Collapse pasted branches": "Eingef\xFCgte Zweige einklappen",
   "Exclude maps from planning": "Karten aus der Planung ausschlie\xDFen",
   "Exclude branches from planning": "Zweige aus der Planung ausschlie\xDFen",
   "One term per line. Leave blank to show all.": "Ein Begriff pro Zeile. Leer lassen, um alles anzuzeigen.",
@@ -1670,6 +1682,9 @@ var de_default = {
 
 // src/locales/es.json
 var es_default = {
+  "Select branches with the same parent.": "Selecciona ramas con el mismo nodo padre.",
+  "Copy selected nodes without children": "Copiar los nodos seleccionados sin sus hijos",
+  "Collapse pasted branches": "Plegar las ramas pegadas",
   "Exclude maps from planning": "Excluir mapas de la planificaci\xF3n",
   "Exclude branches from planning": "Excluir ramas de la planificaci\xF3n",
   "One term per line. Leave blank to show all.": "Un t\xE9rmino por l\xEDnea. Deja el campo vac\xEDo para mostrar todo.",
@@ -1998,6 +2013,9 @@ var es_default = {
 
 // src/locales/fr.json
 var fr_default = {
+  "Select branches with the same parent.": "S\xE9lectionnez des branches ayant le m\xEAme parent.",
+  "Copy selected nodes without children": "Copier les n\u0153uds s\xE9lectionn\xE9s sans leurs enfants",
+  "Collapse pasted branches": "Replier les branches coll\xE9es",
   "Exclude maps from planning": "Exclure des cartes de la planification",
   "Exclude branches from planning": "Exclure des branches de la planification",
   "One term per line. Leave blank to show all.": "Un terme par ligne. Laissez vide pour tout afficher.",
@@ -2326,6 +2344,9 @@ var fr_default = {
 
 // src/locales/pt-BR.json
 var pt_BR_default = {
+  "Select branches with the same parent.": "Selecione ramos com o mesmo n\xF3 pai.",
+  "Copy selected nodes without children": "Copiar n\xF3s selecionados sem os filhos",
+  "Collapse pasted branches": "Recolher os ramos colados",
   "Exclude maps from planning": "Excluir mapas do planejamento",
   "Exclude branches from planning": "Excluir ramos do planejamento",
   "One term per line. Leave blank to show all.": "Um termo por linha. Deixe em branco para mostrar tudo.",
@@ -2654,6 +2675,9 @@ var pt_BR_default = {
 
 // src/locales/zh-CN.json
 var zh_CN_default = {
+  "Select branches with the same parent.": "\u8BF7\u9009\u62E9\u5177\u6709\u76F8\u540C\u7236\u8282\u70B9\u7684\u5206\u652F\u3002",
+  "Copy selected nodes without children": "\u590D\u5236\u6240\u9009\u8282\u70B9\uFF08\u4E0D\u542B\u5B50\u8282\u70B9\uFF09",
+  "Collapse pasted branches": "\u6298\u53E0\u7C98\u8D34\u7684\u5206\u652F",
   "Exclude maps from planning": "\u4ECE\u8BA1\u5212\u4E2D\u6392\u9664\u5730\u56FE",
   "Exclude branches from planning": "\u4ECE\u8BA1\u5212\u4E2D\u6392\u9664\u5206\u652F",
   "One term per line. Leave blank to show all.": "\u6BCF\u884C\u4E00\u4E2A\u8BCD\u3002\u7559\u7A7A\u5219\u663E\u793A\u5168\u90E8\u3002",
@@ -2982,6 +3006,9 @@ var zh_CN_default = {
 
 // src/locales/ja.json
 var ja_default = {
+  "Select branches with the same parent.": "\u540C\u3058\u89AA\u3092\u6301\u3064\u679D\u3092\u9078\u629E\u3057\u3066\u304F\u3060\u3055\u3044\u3002",
+  "Copy selected nodes without children": "\u9078\u629E\u3057\u305F\u30CE\u30FC\u30C9\u3092\u5B50\u306A\u3057\u3067\u30B3\u30D4\u30FC",
+  "Collapse pasted branches": "\u8CBC\u308A\u4ED8\u3051\u305F\u679D\u3092\u6298\u308A\u305F\u305F\u3080",
   "Exclude maps from planning": "\u8A08\u753B\u304B\u3089\u30DE\u30C3\u30D7\u3092\u9664\u5916",
   "Exclude branches from planning": "\u8A08\u753B\u304B\u3089\u679D\u3092\u9664\u5916",
   "One term per line. Leave blank to show all.": "1\u884C\u306B1\u8A9E\u3092\u5165\u529B\u3057\u307E\u3059\u3002\u7A7A\u6B04\u306B\u3059\u308B\u3068\u3059\u3079\u3066\u8868\u793A\u3057\u307E\u3059\u3002",
@@ -3310,6 +3337,9 @@ var ja_default = {
 
 // src/locales/ko.json
 var ko_default = {
+  "Select branches with the same parent.": "\uBD80\uBAA8 \uB178\uB4DC\uAC00 \uAC19\uC740 \uAC00\uC9C0\uB97C \uC120\uD0DD\uD558\uC138\uC694.",
+  "Copy selected nodes without children": "\uD558\uC704 \uB178\uB4DC \uC5C6\uC774 \uC120\uD0DD\uD55C \uB178\uB4DC \uBCF5\uC0AC",
+  "Collapse pasted branches": "\uBD99\uC5EC\uB123\uC740 \uAC00\uC9C0 \uC811\uAE30",
   "Exclude maps from planning": "\uACC4\uD68D\uC5D0\uC11C \uC9C0\uB3C4 \uC81C\uC678",
   "Exclude branches from planning": "\uACC4\uD68D\uC5D0\uC11C \uAC00\uC9C0 \uC81C\uC678",
   "One term per line. Leave blank to show all.": "\uD55C \uC904\uC5D0 \uD55C \uD56D\uBAA9\uC744 \uC785\uB825\uD558\uC138\uC694. \uBE44\uC6CC \uB450\uBA74 \uBAA8\uB450 \uD45C\uC2DC\uB429\uB2C8\uB2E4.",
@@ -3638,6 +3668,9 @@ var ko_default = {
 
 // src/locales/ru.json
 var ru_default = {
+  "Select branches with the same parent.": "\u0412\u044B\u0431\u0435\u0440\u0438\u0442\u0435 \u0432\u0435\u0442\u0432\u0438 \u0441 \u043E\u0431\u0449\u0438\u043C \u0440\u043E\u0434\u0438\u0442\u0435\u043B\u044C\u0441\u043A\u0438\u043C \u0443\u0437\u043B\u043E\u043C.",
+  "Copy selected nodes without children": "\u041A\u043E\u043F\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u0432\u044B\u0431\u0440\u0430\u043D\u043D\u044B\u0435 \u0443\u0437\u043B\u044B \u0431\u0435\u0437 \u043F\u043E\u0442\u043E\u043C\u043A\u043E\u0432",
+  "Collapse pasted branches": "\u0421\u0432\u043E\u0440\u0430\u0447\u0438\u0432\u0430\u0442\u044C \u0432\u0441\u0442\u0430\u0432\u043B\u0435\u043D\u043D\u044B\u0435 \u0432\u0435\u0442\u0432\u0438",
   "Exclude maps from planning": "\u0418\u0441\u043A\u043B\u044E\u0447\u0438\u0442\u044C \u043A\u0430\u0440\u0442\u044B \u0438\u0437 \u043F\u043B\u0430\u043D\u0438\u0440\u043E\u0432\u0430\u043D\u0438\u044F",
   "Exclude branches from planning": "\u0418\u0441\u043A\u043B\u044E\u0447\u0438\u0442\u044C \u0432\u0435\u0442\u0432\u0438 \u0438\u0437 \u043F\u043B\u0430\u043D\u0438\u0440\u043E\u0432\u0430\u043D\u0438\u044F",
   "One term per line. Leave blank to show all.": "\u041E\u0434\u043D\u043E \u0432\u044B\u0440\u0430\u0436\u0435\u043D\u0438\u0435 \u043D\u0430 \u0441\u0442\u0440\u043E\u043A\u0443. \u041F\u0443\u0441\u0442\u043E\u0435 \u043F\u043E\u043B\u0435 \u043F\u043E\u043A\u0430\u0437\u044B\u0432\u0430\u0435\u0442 \u0432\u0441\u0451.",
@@ -4361,6 +4394,44 @@ function deleteNodes(doc, ids) {
 }
 function copyBranches(doc, ids) {
   return selectedBranches(doc, ids).map((node) => transformBranch(doc, node, node.kind === "heading" ? 1 : "").replace(/(?:\r\n|\n|\r)+$/, "")).join(doc.eol) + doc.eol;
+}
+function copyNodeLabels(doc, ids) {
+  const selected = new Set(ids);
+  return doc.nodes.filter((node) => selected.has(node.id)).map((node) => "- " + node.text).join(doc.eol) + doc.eol;
+}
+function shiftSelectedBranches(doc, ids, direction) {
+  const selected = new Set(selectedBranches(doc, ids).map((node) => node.id));
+  const first = doc.nodes.find((node) => selected.has(node.id));
+  if (!first) return doc.source;
+  const siblings = first.parentId ? required(doc, first.parentId).children : doc.roots;
+  if (siblings.filter((id) => selected.has(id)).length !== selected.size) {
+    throw new Error(t("Select branches with the same parent."));
+  }
+  const reordered = [...siblings];
+  const delta = direction === "up" ? -1 : 1;
+  const indices = siblings.map((_, index) => index);
+  if (direction === "down") indices.reverse();
+  for (const index of indices) {
+    const other = index + delta;
+    if (other < 0 || other >= siblings.length || !selected.has(reordered[index]) || selected.has(reordered[other])) continue;
+    const moving = required(doc, reordered[index]), adjacent = required(doc, reordered[other]);
+    if (moving.kind !== adjacent.kind || moving.kind === "heading" && moving.indent !== adjacent.indent) {
+      throw new Error(t("Moving between a heading and a bullet changes their meaning. Make this structural change in source view."));
+    }
+    assertStructural(doc, moving);
+    assertStructural(doc, adjacent);
+    [reordered[index], reordered[other]] = [reordered[other], reordered[index]];
+  }
+  const ranges = new Map(siblings.map((id) => [id, range(doc, required(doc, id))]));
+  let source = doc.source;
+  for (let index = siblings.length - 1; index >= 0; index--) {
+    if (siblings[index] === reordered[index]) continue;
+    const slot = ranges.get(siblings[index]), replacement = ranges.get(reordered[index]);
+    const ending = /(?:\r\n|\r|\n)$/.exec(doc.source.slice(slot.start, slot.end))?.[0] ?? "";
+    const block = doc.source.slice(replacement.start, replacement.end).replace(/(?:\r\n|\r|\n)$/, "");
+    source = source.slice(0, slot.start) + block + ending + source.slice(slot.end);
+  }
+  return source;
 }
 function changeNodes(doc, ids, change) {
   const selected = new Set(ids);
@@ -5473,6 +5544,7 @@ var MapSurface = class {
     this.selection = /* @__PURE__ */ new Set();
     this.selectionAnchor = null;
     this.selectionMode = false;
+    this.hasTouchMarqueeSelection = false;
     this.elements = /* @__PURE__ */ new Map();
     this.positions = /* @__PURE__ */ new Map();
     this.visible = [];
@@ -5593,7 +5665,10 @@ var MapSurface = class {
     this.clearDrag();
     this.cancelMarquee();
     const previous = this.doc;
-    if (state) this.selection.clear();
+    if (state) {
+      this.selection.clear();
+      this.hasTouchMarqueeSelection = false;
+    }
     this.doc = doc;
     if (state) {
       this.state = {
@@ -5748,11 +5823,17 @@ var MapSurface = class {
     this.viewport.focus({ preventScroll: true });
     this.emitState();
   }
-  search(query, alphabetical = false) {
+  search(query, alphabetical = false, scope) {
     this.query = query.trim();
+    this.searchScope = scope;
+    const words = this.query.split(/\s+/).sort((a, b) => b.length - a.length);
+    this.searchMatcher = this.query ? new RegExp(words.map((word) => word.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")).join("|"), "giu") : void 0;
     const result = this.matchNodes(this.query);
     this.matches = new Set(result.map((node) => node.id));
-    for (const [id, el] of this.elements) el.classList.toggle("is-search-match", this.matches.has(id));
+    for (const [id, el] of this.elements) {
+      const content = el.querySelector(".tvm-node-content");
+      if (content) this.paintSearchMatch(content, this.matches.has(id));
+    }
     if (alphabetical) result.sort((a, b) => a.text.localeCompare(b.text, void 0, { numeric: true, sensitivity: "base" }));
     return result;
   }
@@ -5797,6 +5878,19 @@ var MapSurface = class {
     this.render();
     if (this.state.selected) this.ensureVisible(this.state.selected);
     this.emitState();
+  }
+  collapseBranches(ids) {
+    let changed = false;
+    for (const id of ids) {
+      if (this.doc?.byId.get(id)?.children.length && !this.collapsed.has(id)) {
+        this.collapsed.add(id);
+        changed = true;
+      }
+    }
+    if (changed) {
+      this.render();
+      this.emitState();
+    }
   }
   fit() {
     if (!this.positions.size) return;
@@ -5854,7 +5948,35 @@ var MapSurface = class {
   matchNodes(query) {
     if (!this.doc || !query) return [];
     const words = query.toLocaleLowerCase().split(/\s+/).filter(Boolean);
-    return this.doc.nodes.filter((node) => words.every((word) => node.text.toLocaleLowerCase().includes(word)));
+    return this.doc.nodes.filter((node) => {
+      if (this.searchScope && !this.searchScope.has(node.id)) return false;
+      const label2 = node.text.toLocaleLowerCase();
+      return words.every((word) => label2.includes(word));
+    });
+  }
+  paintSearchMatch(content, matched) {
+    for (const mark of content.querySelectorAll("mark.tvm-search-match")) {
+      const parent = mark.parentNode;
+      mark.replaceWith(...mark.childNodes);
+      parent?.normalize();
+    }
+    const matcher = this.searchMatcher;
+    if (!matched || !matcher) return;
+    const doc = content.ownerDocument;
+    const walker = doc.createTreeWalker(content, 4);
+    const textNodes = [];
+    while (walker.nextNode()) textNodes.push(walker.currentNode);
+    for (const node of textNodes) {
+      const matches = [...node.data.matchAll(matcher)];
+      for (const match of matches.reverse()) {
+        const tail = node.splitText(match.index);
+        tail.splitText(match[0].length);
+        const mark = doc.createElement("mark");
+        mark.className = "tvm-search-match";
+        tail.replaceWith(mark);
+        mark.append(tail);
+      }
+    }
   }
   render() {
     if (!this.doc || this.destroyed) return;
@@ -5904,7 +6026,6 @@ var MapSurface = class {
       el.setAttribute("role", "treeitem");
       el.setAttribute("aria-selected", String(this.selection.has(id)));
       el.classList.toggle("is-selected", this.selection.has(id));
-      el.classList.toggle("is-search-match", this.matches.has(id));
       el.classList.toggle("is-root", rootSet.has(id));
       el.classList.toggle("is-complete", /^\s*\[[xX]\]/.test(node.text));
       el.classList.toggle("is-task", /^\s*\[[ xX]\]/.test(node.text));
@@ -5931,6 +6052,7 @@ var MapSurface = class {
         this.rendered.set(id, entry);
       }
       if (!entry.started) this.markdownQueue.push(entry);
+      if (this.query || content.querySelector(".tvm-search-match")) this.paintSearchMatch(content, this.matches.has(id));
       el.append(content);
       if (node.blockId) {
         const marker = this.container.ownerDocument.createElement("span");
@@ -6001,10 +6123,11 @@ var MapSurface = class {
             if (!this.destroyed) content.textContent = label2;
           }).finally(() => {
             this.markdownInFlight--;
+            if (this.query && !this.destroyed) this.paintSearchMatch(content, this.matches.has(content.parentElement?.dataset.nodeId ?? ""));
             if (this.loadingMarkdown || this.nodeLayer.contains(content)) this.scheduleContentLayout();
             this.scheduleMarkdownBatch();
           });
-        }
+        } else if (this.query) this.paintSearchMatch(content, this.matches.has(content.parentElement?.dataset.nodeId ?? ""));
       } catch {
         content.textContent = label2;
       }
@@ -6347,8 +6470,10 @@ var MapSurface = class {
       this.selection = new Set(from < 0 ? [id] : this.visible.slice(Math.min(from, to), Math.max(from, to) + 1));
     } else {
       this.selectionAnchor = id;
-      if (mode === "single") this.selection = /* @__PURE__ */ new Set([id]);
-      else if (this.selection.has(id)) this.selection.delete(id);
+      if (mode === "single") {
+        this.selection = /* @__PURE__ */ new Set([id]);
+        this.hasTouchMarqueeSelection = false;
+      } else if (this.selection.has(id)) this.selection.delete(id);
       else this.selection.add(id);
     }
     this.state.selected = this.selection.has(id) ? id : [...this.selection].at(-1) ?? null;
@@ -6431,6 +6556,7 @@ var MapSurface = class {
     this.viewport.focus({ preventScroll: true });
   }
   deselect() {
+    this.hasTouchMarqueeSelection = false;
     this.state.selected = null;
     this.selection.clear();
     this.selectionAnchor = null;
@@ -6466,7 +6592,13 @@ var MapSurface = class {
       event.stopPropagation();
       return true;
     }
-    if (this.editing) return this.editing.editor.handleKeydown(event);
+    if (this.editing) {
+      if (resolveHotkey(event, this.options.getHotkeys?.()) !== "find") return this.editing.editor.handleKeydown(event);
+      event.preventDefault();
+      event.stopPropagation();
+      this.options.onFind?.();
+      return true;
+    }
     if (event.key === "Escape" && this.marquee) {
       this.cancelMarquee();
       event.preventDefault();
@@ -6625,11 +6757,12 @@ var MapSurface = class {
         this.lastPress = void 0;
       } else this.lastPress = { id, time: Date.now(), x: event.clientX, y: event.clientY };
     }
-    if (!this.editing && !id && event.button === 0 && (this.selectionMode || event.shiftKey) && this.touches.size === 0) {
+    if (!this.marquee && !this.editing && !id && event.button === 0 && (this.selectionMode || event.shiftKey) && this.touches.size === 0) {
       const element = this.container.ownerDocument.createElement("div");
       element.className = "tvm-selection-box";
       this.viewport.append(element);
-      this.marquee = { pointer: event.pointerId, x: event.clientX, y: event.clientY, moved: false, base: event.ctrlKey || event.metaKey ? [...this.selection] : [], before: [...this.selection], element };
+      const extend = event.ctrlKey || event.metaKey || event.pointerType === "touch" && this.hasTouchMarqueeSelection;
+      this.marquee = { pointer: event.pointerId, x: event.clientX, y: event.clientY, moved: false, base: extend ? [...this.selection] : [], before: [...this.selection], element };
       try {
         this.viewport.setPointerCapture(event.pointerId);
       } catch {
@@ -6695,7 +6828,9 @@ var MapSurface = class {
       this.selection = new Set(box.base);
       for (const [id, element] of this.elements) {
         const bounds = element.getBoundingClientRect();
-        if (bounds.right >= left && bounds.left <= right && bounds.bottom >= top && bounds.top <= bottom) this.selection.add(id);
+        if (bounds.right < left || bounds.left > right || bounds.bottom < top || bounds.top > bottom) continue;
+        if (event.pointerType === "touch" && this.selection.has(id)) this.selection.delete(id);
+        else this.selection.add(id);
       }
       this.state.selected = [...this.selection].at(-1) ?? null;
       this.selectionAnchor = this.state.selected;
@@ -6795,7 +6930,13 @@ var MapSurface = class {
       const box = this.marquee;
       box.element.remove();
       this.marquee = void 0;
-      if (box.moved) this.suppressClickUntil = Date.now() + 350;
+      if (box.moved) {
+        this.suppressClickUntil = Date.now() + 350;
+        if (event.pointerType === "touch" && this.selectionMode) {
+          this.hasTouchMarqueeSelection = this.selection.size > 0;
+          this.toggleSelectionMode();
+        }
+      }
       try {
         if (this.viewport.hasPointerCapture(event.pointerId)) this.viewport.releasePointerCapture(event.pointerId);
       } catch {
@@ -6864,6 +7005,7 @@ var MapSurface = class {
       { label: t("Mark as question"), action: "make-question" },
       { label: t("Copy link to node"), action: "copy-node-link" },
       { label: t("Copy branch"), action: "copy" },
+      { label: t("Copy selected nodes without children"), action: "copy-node-labels" },
       { label: t("Cut branch"), action: "cut" },
       { label: t("Paste as child branch"), action: "paste" },
       { label: t("Paste after node"), action: "paste-after" },
@@ -6882,7 +7024,7 @@ var MapSurface = class {
       button2.setAttribute("role", "menuitem");
       const label2 = this.container.ownerDocument.createElement("span");
       label2.textContent = this.selection.size > 1 && ["delete", "copy", "cut"].includes(entry.action) ? t(entry.action === "copy" ? "Copy selection" : entry.action === "cut" ? "Cut selection" : "Delete selection") : entry.label;
-      if (this.selection.size > 1 && ["edit", "add-child", "add-sibling", "add-parent", "insert-template", "paste", "paste-after", "move-up", "move-down", "indent", "outdent"].includes(entry.action)) button2.disabled = true;
+      if (this.selection.size > 1 && ["edit", "add-child", "add-sibling", "add-parent", "insert-template", "paste", "paste-after", "indent", "outdent"].includes(entry.action)) button2.disabled = true;
       button2.append(label2);
       const binding = this.options.getHotkeys?.()[entry.action] ?? DEFAULT_HOTKEYS[entry.action];
       if (binding) {
@@ -8298,7 +8440,7 @@ function hasLargeVisibleTree(doc, state) {
   }
   return false;
 }
-var DEFAULT_SETTINGS = { patternMode: "glob", mapPatterns: "*.mindmap.md\n\u{1F3AF}*.md", language: "auto", nodeEditor: "native", autoOpen: false, autoRestoreLargeMaps: true, queueExcludedMaps: "\u0430\u0440\u0445\u0456\u0432 \u0442\u0438\u0436\u043D\u0456\u0432\nold", queueExcludedBranches: "\u{1F9CA}\n\u274C", queueTaskMarker: true, queueStepTag: true, collapseOnLeft: false, hotkeys: {}, widthMode: "fixed" };
+var DEFAULT_SETTINGS = { patternMode: "glob", mapPatterns: "*.mindmap.md\n\u{1F3AF}*.md", language: "auto", nodeEditor: "native", autoOpen: false, autoRestoreLargeMaps: true, queueExcludedMaps: "\u0430\u0440\u0445\u0456\u0432 \u0442\u0438\u0436\u043D\u0456\u0432\nold", queueExcludedBranches: "\u{1F9CA}\n\u274C", queueTaskMarker: true, queueStepTag: true, collapseOnLeft: false, collapsePastedBranches: true, hotkeys: {}, widthMode: "fixed" };
 var widthModes = () => [["fixed", t("Fixed width")], ["content", t("Fit node content")], ["column", t("Fit visible column")]];
 var message = (error) => error instanceof Error ? error.message : String(error);
 var createsNode = (action) => action === "add-child" || action === "add-parent" || action === "add-sibling" || action === "add-sibling-before";
@@ -8420,6 +8562,7 @@ var TraceViewMindmap = class extends import_obsidian5.Plugin {
       ["make-dated", t("Add step deadline"), "make-dated"],
       ["make-question", t("Mark as QA"), "make-question"],
       ["toggle-task", t("Toggle step completion"), "toggle-task"],
+      ["copy-node-labels", t("Copy selected nodes without children"), "copy-node-labels"],
       ["copy-branch", t("Copy branch"), "copy"],
       ["cut-branch", t("Cut branch"), "cut"],
       ["paste-branch", t("Paste as child branch"), "paste"],
@@ -8997,12 +9140,37 @@ var MapView = class extends import_obsidian5.EditableFileView {
     const layout = iconButton(actions, "panels-top-left", t("Layout and node width"), () => this.layoutMenu(layout));
     const more = iconButton(toolbar, "ellipsis", t("Map actions"), () => this.menu(more));
     this.host = this.contentEl.createDiv("tvm-map-host");
+    let searchSelection;
+    let searchDraft = false;
     const search = new MapSearch(this.host, {
-      search: (text, alpha) => this.surface?.search(text, alpha) ?? [],
-      reveal: (id) => this.surface?.reveal(id),
-      focusMap: () => this.host?.querySelector(".tvm-surface")?.focus({ preventScroll: true })
+      search: (text, alpha) => {
+        if (!searchDraft) return this.surface?.search(text, alpha, searchSelection) ?? [];
+        const draft = this.editor?.getValue() ?? "";
+        return text.trim() && draft.toLocaleLowerCase().includes(text.trim().toLocaleLowerCase()) ? [{ id: "draft", text: draft }] : [];
+      },
+      reveal: (id) => {
+        if (!searchDraft) {
+          this.surface?.reveal(id);
+          return;
+        }
+        const editor = this.editor;
+        const query = search.input.value.trim();
+        const offset = editor?.getValue().toLocaleLowerCase().indexOf(query.toLocaleLowerCase()) ?? -1;
+        if (editor && offset >= 0) editor.setSelection({ line: 0, ch: offset }, { line: 0, ch: offset + query.length });
+      },
+      focusMap: () => {
+        if (searchDraft) this.surface?.focusEditor();
+        else this.host?.querySelector(".tvm-surface")?.focus({ preventScroll: true });
+      }
     });
-    this.showSearch = () => search.show();
+    this.showSearch = () => {
+      if (search.overlay.hidden) {
+        searchDraft = this.surface?.isEditing() ?? false;
+        const selected = this.surface?.getSelection() ?? [];
+        searchSelection = selected.length > 1 ? new Set(selected) : void 0;
+      }
+      search.show();
+    };
     this.surface = new MapSurface(this.host, {
       getWidthMode: () => this.plugin.settings.widthMode,
       useTransformPan: () => import_obsidian5.Platform.isMobile,
@@ -9277,7 +9445,16 @@ var MapView = class extends import_obsidian5.EditableFileView {
       if (!node) return;
       const selection = this.surface?.getSelection() ?? [];
       const ids = selection.includes(id) ? selection : [id];
+      if (action === "copy-node-labels") {
+        await this.plugin.copy(copyNodeLabels(doc, ids));
+        return;
+      }
       if (ids.length > 1) {
+        if (action === "move-up" || action === "move-down") {
+          await this.apply(doc, shiftSelectedBranches(doc, ids, action === "move-up" ? "up" : "down"));
+          this.surface?.revealSelection(ids);
+          return;
+        }
         if (action === "copy") {
           await this.plugin.copy(copyBranches(doc, ids));
           return;
@@ -9369,8 +9546,9 @@ var MapView = class extends import_obsidian5.EditableFileView {
       if (action === "paste" || action === "paste-after") {
         await this.apply(doc, pasteBranch(doc, id, await this.plugin.paste(), action === "paste" ? "child" : "after"));
         if (this.path === path) {
-          const created = this.doc?.nodes.find((candidate) => !doc.byId.has(candidate.id));
-          if (created) this.surface?.reveal(created.id);
+          const roots = this.doc?.nodes.filter((candidate) => !doc.byId.has(candidate.id) && (!candidate.parentId || doc.byId.has(candidate.parentId))) ?? [];
+          if (this.plugin.settings.collapsePastedBranches) this.surface?.collapseBranches(roots.map((root) => root.id));
+          if (roots[0]) this.surface?.reveal(roots[0].id);
         }
         return;
       }
@@ -9993,6 +10171,10 @@ var SettingsTab = class extends import_obsidian5.PluginSettingTab {
         this.plugin.refreshQueues();
       }));
     }
+    new import_obsidian5.Setting(this.containerEl).setName(t("Collapse pasted branches")).addToggle((toggle) => toggle.setValue(this.plugin.settings.collapsePastedBranches).onChange(async (value) => {
+      this.plugin.settings.collapsePastedBranches = value;
+      await this.plugin.saveData(this.plugin.settings);
+    }));
     new import_obsidian5.Setting(this.containerEl).setName(t("Left arrow collapses the branch first")).setDesc(t("Off: go straight to the parent. On: collapse the open branch first, then press again to select the parent.")).addToggle((toggle) => toggle.setValue(this.plugin.settings.collapseOnLeft).onChange(async (value) => {
       this.plugin.settings.collapseOnLeft = value;
       await this.plugin.saveData(this.plugin.settings);

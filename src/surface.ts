@@ -39,6 +39,7 @@ export class MapSurface {
   private selection = new Set<string>();
   private selectionAnchor: string | null = null;
   private selectionMode = false;
+  private hasTouchMarqueeSelection = false;
   private marquee?: { pointer: number; x: number; y: number; moved: boolean; base: string[]; before: string[]; element: HTMLDivElement };
 
   private readonly elements = new Map<string, HTMLDivElement>();
@@ -147,7 +148,7 @@ export class MapSurface {
     if (this.editing) { this.editing.latest = doc; if (state) this.editing.latestState = state; return; }
     this.clearDrag(); this.cancelMarquee();
     const previous = this.doc;
-    if (state) this.selection.clear();
+    if (state) { this.selection.clear(); this.hasTouchMarqueeSelection = false; }
     this.doc = doc;
     if (state) {
       this.state = {
@@ -277,11 +278,19 @@ export class MapSurface {
     this.emitState();
   }
 
-  search(query: string, alphabetical = false): MapNode[] {
+  search(query: string, alphabetical = false, scope?: ReadonlySet<string>): MapNode[] {
     this.query = query.trim();
+    this.searchScope = scope;
+    const words = this.query.split(/\s+/).sort((a, b) => b.length - a.length);
+    this.searchMatcher = this.query
+      ? new RegExp(words.map(word => word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|'), 'giu')
+      : undefined;
     const result = this.matchNodes(this.query);
     this.matches = new Set(result.map((node) => node.id));
-    for (const [id, el] of this.elements) el.classList.toggle('is-search-match', this.matches.has(id));
+    for (const [id, el] of this.elements) {
+      const content = el.querySelector('.tvm-node-content');
+      if (content) this.paintSearchMatch(content, this.matches.has(id));
+    }
     if (alphabetical) result.sort((a, b) => a.text.localeCompare(b.text, undefined, { numeric: true, sensitivity: 'base' }));
     return result;
   }
@@ -328,6 +337,17 @@ export class MapSurface {
     this.render();
     if (this.state.selected) this.ensureVisible(this.state.selected);
     this.emitState();
+  }
+
+  collapseBranches(ids: string[]): void {
+    let changed = false;
+    for (const id of ids) {
+      if (this.doc?.byId.get(id)?.children.length && !this.collapsed.has(id)) {
+        this.collapsed.add(id);
+        changed = true;
+      }
+    }
+    if (changed) { this.render(); this.emitState(); }
   }
 
   fit(): void {
@@ -383,10 +403,41 @@ export class MapSurface {
     if (!this.destroyed) { this.updateHandles(); this.options.onState(this.getState()); }
   }
 
+  private searchScope?: ReadonlySet<string>;
+  private searchMatcher?: RegExp;
   private matchNodes(query: string): MapNode[] {
     if (!this.doc || !query) return [];
     const words = query.toLocaleLowerCase().split(/\s+/).filter(Boolean);
-    return this.doc.nodes.filter((node) => words.every((word) => node.text.toLocaleLowerCase().includes(word)));
+    return this.doc.nodes.filter(node => {
+      if (this.searchScope && !this.searchScope.has(node.id)) return false;
+      const label = node.text.toLocaleLowerCase();
+      return words.every(word => label.includes(word));
+    });
+  }
+
+  private paintSearchMatch(content: Element, matched: boolean): void {
+    for (const mark of content.querySelectorAll('mark.tvm-search-match')) {
+      const parent = mark.parentNode;
+      mark.replaceWith(...mark.childNodes);
+      parent?.normalize();
+    }
+    const matcher = this.searchMatcher;
+    if (!matched || !matcher) return;
+    const doc = content.ownerDocument;
+    const walker = doc.createTreeWalker(content, 4);
+    const textNodes: Text[] = [];
+    while (walker.nextNode()) textNodes.push(walker.currentNode as Text);
+    for (const node of textNodes) {
+      const matches = [...node.data.matchAll(matcher)];
+      for (const match of matches.reverse()) {
+        const tail = node.splitText(match.index!);
+        tail.splitText(match[0].length);
+        const mark = doc.createElement('mark');
+        mark.className = 'tvm-search-match';
+        tail.replaceWith(mark);
+        mark.append(tail);
+      }
+    }
   }
 
   private render(): void {
@@ -435,7 +486,6 @@ export class MapSurface {
       el.setAttribute('role', 'treeitem');
       el.setAttribute('aria-selected', String(this.selection.has(id)));
       el.classList.toggle('is-selected', this.selection.has(id));
-      el.classList.toggle('is-search-match', this.matches.has(id));
       el.classList.toggle('is-root', rootSet.has(id));
       el.classList.toggle('is-complete', /^\s*\[[xX]\]/.test(node.text));
       el.classList.toggle('is-task', /^\s*\[[ xX]\]/.test(node.text));
@@ -459,6 +509,7 @@ export class MapSurface {
       const entry = reuse ? cached! : { label, content, started: false };
       if (!reuse) { content.textContent = label || t("Untitled"); this.rendered.set(id, entry); }
       if (!entry.started) this.markdownQueue.push(entry);
+      if (this.query || content.querySelector('.tvm-search-match')) this.paintSearchMatch(content, this.matches.has(id));
       el.append(content);
       if (node.blockId) {
         const marker = this.container.ownerDocument.createElement('span');
@@ -521,10 +572,11 @@ export class MapSurface {
             if (!this.destroyed) content.textContent = label;
           }).finally(() => {
             this.markdownInFlight--;
+            if (this.query && !this.destroyed) this.paintSearchMatch(content, this.matches.has(content.parentElement?.dataset.nodeId ?? ''));
             if (this.loadingMarkdown || this.nodeLayer.contains(content)) this.scheduleContentLayout();
             this.scheduleMarkdownBatch();
           });
-        }
+        } else if (this.query) this.paintSearchMatch(content, this.matches.has(content.parentElement?.dataset.nodeId ?? ''));
       } catch {
         content.textContent = label;
       }
@@ -887,7 +939,10 @@ export class MapSurface {
       this.selection = new Set(from < 0 ? [id] : this.visible.slice(Math.min(from, to), Math.max(from, to) + 1));
     } else {
       this.selectionAnchor = id;
-      if (mode === 'single') this.selection = new Set([id]);
+      if (mode === 'single') {
+        this.selection = new Set([id]);
+        this.hasTouchMarqueeSelection = false;
+      }
       else if (this.selection.has(id)) this.selection.delete(id); else this.selection.add(id);
     }
     this.state.selected = this.selection.has(id) ? id : [...this.selection].at(-1) ?? null;
@@ -953,6 +1008,7 @@ export class MapSurface {
   }
 
   private deselect(): void {
+    this.hasTouchMarqueeSelection = false;
     this.state.selected = null;
     this.selection.clear(); this.selectionAnchor = null;
     for (const element of this.elements.values()) {
@@ -986,7 +1042,12 @@ export class MapSurface {
   handleKeydown(event: KeyboardEvent): boolean {
     if (this.destroyed || event.defaultPrevented) return false;
     if (event.key === 'Escape' && this.handles.cancelIfActive()) { event.preventDefault(); event.stopPropagation(); return true; }
-    if (this.editing) return this.editing.editor.handleKeydown(event);
+    if (this.editing) {
+      if (resolveHotkey(event, this.options.getHotkeys?.()) !== 'find') return this.editing.editor.handleKeydown(event);
+      event.preventDefault(); event.stopPropagation();
+      this.options.onFind?.();
+      return true;
+    }
     if (event.key === 'Escape' && this.marquee) { this.cancelMarquee(); event.preventDefault(); event.stopPropagation(); return true; }
     if (event.key === 'Escape' && this.drag) { this.clearDrag(); event.preventDefault(); event.stopPropagation(); return true; }
     const target = event.target as HTMLElement | null;
@@ -1112,9 +1173,10 @@ export class MapSurface {
         this.lastPress = undefined;
       } else this.lastPress = { id, time: Date.now(), x: event.clientX, y: event.clientY };
     }
-    if (!this.editing && !id && event.button === 0 && (this.selectionMode || event.shiftKey) && this.touches.size === 0) {
+    if (!this.marquee && !this.editing && !id && event.button === 0 && (this.selectionMode || event.shiftKey) && this.touches.size === 0) {
       const element = this.container.ownerDocument.createElement('div'); element.className = 'tvm-selection-box'; this.viewport.append(element);
-      this.marquee = { pointer: event.pointerId, x: event.clientX, y: event.clientY, moved: false, base: event.ctrlKey || event.metaKey ? [...this.selection] : [], before: [...this.selection], element };
+      const extend = event.ctrlKey || event.metaKey || (event.pointerType === 'touch' && this.hasTouchMarqueeSelection);
+      this.marquee = { pointer: event.pointerId, x: event.clientX, y: event.clientY, moved: false, base: extend ? [...this.selection] : [], before: [...this.selection], element };
       try { this.viewport.setPointerCapture(event.pointerId); } catch { /* Synthetic pointer. */ }
       return;
     }
@@ -1173,7 +1235,9 @@ export class MapSurface {
       this.selection = new Set(box.base);
       for (const [id, element] of this.elements) {
         const bounds = element.getBoundingClientRect();
-        if (bounds.right >= left && bounds.left <= right && bounds.bottom >= top && bounds.top <= bottom) this.selection.add(id);
+        if (bounds.right < left || bounds.left > right || bounds.bottom < top || bounds.top > bottom) continue;
+        if (event.pointerType === 'touch' && this.selection.has(id)) this.selection.delete(id);
+        else this.selection.add(id);
       }
       this.state.selected = [...this.selection].at(-1) ?? null;
       this.selectionAnchor = this.state.selected;
@@ -1249,7 +1313,13 @@ export class MapSurface {
     if (event.type === 'pointercancel' && this.marquee?.pointer === event.pointerId) { this.cancelMarquee(); return; }
     if (this.marquee?.pointer === event.pointerId) {
       const box = this.marquee; box.element.remove(); this.marquee = undefined;
-      if (box.moved) this.suppressClickUntil = Date.now() + 350;
+      if (box.moved) {
+        this.suppressClickUntil = Date.now() + 350;
+        if (event.pointerType === 'touch' && this.selectionMode) {
+          this.hasTouchMarqueeSelection = this.selection.size > 0;
+          this.toggleSelectionMode();
+        }
+      }
       try { if (this.viewport.hasPointerCapture(event.pointerId)) this.viewport.releasePointerCapture(event.pointerId); } catch { /* Pointer already ended. */ }
       this.viewport.focus({ preventScroll: true }); return;
     }
@@ -1305,6 +1375,7 @@ export class MapSurface {
       { label: t("Mark as question"), action: 'make-question' },
       { label: t("Copy link to node"), action: 'copy-node-link' },
       { label: t("Copy branch"), action: 'copy' },
+      { label: t("Copy selected nodes without children"), action: 'copy-node-labels' },
       { label: t("Cut branch"), action: 'cut' },
       { label: t("Paste as child branch"), action: 'paste' },
       { label: t("Paste after node"), action: 'paste-after' },
@@ -1323,7 +1394,7 @@ export class MapSurface {
       button.setAttribute('role', 'menuitem');
       const label = this.container.ownerDocument.createElement('span');
       label.textContent = this.selection.size > 1 && ['delete', 'copy', 'cut'].includes(entry.action) ? t(entry.action === "copy" ? "Copy selection" : entry.action === "cut" ? "Cut selection" : "Delete selection") : entry.label;
-      if (this.selection.size > 1 && ['edit', 'add-child', 'add-sibling', 'add-parent', 'insert-template', 'paste', 'paste-after', 'move-up', 'move-down', 'indent', 'outdent'].includes(entry.action)) button.disabled = true;
+      if (this.selection.size > 1 && ['edit', 'add-child', 'add-sibling', 'add-parent', 'insert-template', 'paste', 'paste-after', 'indent', 'outdent'].includes(entry.action)) button.disabled = true;
       button.append(label);
       const binding = this.options.getHotkeys?.()[entry.action] ?? DEFAULT_HOTKEYS[entry.action];
       if (binding) {

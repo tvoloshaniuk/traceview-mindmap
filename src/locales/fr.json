@@ -1,4 +1,7 @@
 {
+  "Select branches with the same parent.": "Sélectionnez des branches ayant le même parent.",
+  "Copy selected nodes without children": "Copier les nœuds sélectionnés sans leurs enfants",
+  "Collapse pasted branches": "Replier les branches collées",
   "Exclude maps from planning": "Exclure des cartes de la planification",
   "Exclude branches from planning": "Exclure des branches de la planification",
   "One term per line. Leave blank to show all.": "Un terme par ligne. Laissez vide pour tout afficher.",

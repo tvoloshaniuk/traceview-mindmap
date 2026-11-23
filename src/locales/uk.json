@@ -1,4 +1,7 @@
 {
+  "Select branches with the same parent.": "Вибери гілки зі спільним батьківським вузлом.",
+  "Copy selected nodes without children": "Копіювати вибрані вузли без дітей",
+  "Collapse pasted branches": "Згортати вставлені гілки",
   "Exclude maps from planning": "Виключити карти зі списків планування",
   "Exclude branches from planning": "Виключити гілки зі списків планування",
   "One term per line. Leave blank to show all.": "Один вираз на рядок. Порожнє поле показує все.",

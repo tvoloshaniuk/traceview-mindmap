@@ -1,4 +1,7 @@
 {
+  "Select branches with the same parent.": "Wybierz gałęzie o wspólnym węźle nadrzędnym.",
+  "Copy selected nodes without children": "Kopiuj wybrane węzły bez potomków",
+  "Collapse pasted branches": "Zwijaj wklejone gałęzie",
   "Exclude maps from planning": "Wyklucz mapy z planowania",
   "Exclude branches from planning": "Wyklucz gałęzie z planowania",
   "One term per line. Leave blank to show all.": "Jedno wyrażenie w wierszu. Pozostaw puste, aby wyświetlić wszystko.",

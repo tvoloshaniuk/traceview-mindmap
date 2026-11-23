@@ -1,4 +1,7 @@
 {
+  "Select branches with the same parent.": "Select branches with the same parent.",
+  "Copy selected nodes without children": "Copy selected nodes without children",
+  "Collapse pasted branches": "Collapse pasted branches",
   "Exclude maps from planning": "Exclude maps from planning",
   "Exclude branches from planning": "Exclude branches from planning",
   "One term per line. Leave blank to show all.": "One term per line. Leave blank to show all.",

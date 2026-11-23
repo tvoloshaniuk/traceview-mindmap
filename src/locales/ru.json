@@ -1,4 +1,7 @@
 {
+  "Select branches with the same parent.": "Выберите ветви с общим родительским узлом.",
+  "Copy selected nodes without children": "Копировать выбранные узлы без потомков",
+  "Collapse pasted branches": "Сворачивать вставленные ветви",
   "Exclude maps from planning": "Исключить карты из планирования",
   "Exclude branches from planning": "Исключить ветви из планирования",
   "One term per line. Leave blank to show all.": "Одно выражение на строку. Пустое поле показывает всё.",

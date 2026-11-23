@@ -5,7 +5,7 @@
  */
 import { t, LANGUAGES, isLanguageSetting, setLanguage, type LanguageSetting } from './i18n';
 import { getLanguage, App, Component, EditableFileView, ItemView, MarkdownRenderer, MarkdownView, Menu, Notice, Platform, Plugin, PluginSettingTab, Scope, Setting, TFile, WorkspaceLeaf, normalizePath, parseLinktext, setIcon, type HoverPopover } from 'obsidian';
-import { moveBranches, changeNodes, copyBranches, deleteNodes, parseMap, restoreTemplateLineEndings, editNode, addFirstNode, addNode, addParent, deleteNode, moveNode, copyBranch, pasteBranch, toggleTask, setStep, setDated, setQuestion, getSteps, compareSteps, renumberSteps, unnumberStep } from './core';
+import { moveBranches, changeNodes, copyBranches, copyNodeLabels, deleteNodes, parseMap, restoreTemplateLineEndings, editNode, addFirstNode, addNode, addParent, deleteNode, moveNode, copyBranch, pasteBranch, toggleTask, setStep, setDated, setQuestion, getSteps, compareSteps, renumberSteps, shiftSelectedBranches, unnumberStep } from './core';
 import { addressNode, onlyAddedBlockIds } from './block-links';
 import { captureHotkey, DEFAULT_HOTKEYS, HOTKEY_DEFINITIONS, resolveHotkey, validateHotkeys } from './hotkeys';
 import { compileMapPatterns, PatternError, type MapRules, type PatternMode } from './map-patterns';
@@ -41,8 +41,8 @@ function hasLargeVisibleTree(doc: MapDocument, state?: MapViewState): boolean {
   }
   return false;
 }
-interface Settings extends MapRules { previousPluginId?: string; language: LanguageSetting; nodeEditor: 'native' | 'text'; autoOpen: boolean; autoRestoreLargeMaps: boolean; queueExcludedMaps: string; queueExcludedBranches: string; queueTaskMarker: boolean; queueStepTag: boolean; collapseOnLeft: boolean; hotkeys: Record<string, string>; widthMode: WidthMode; }
-const DEFAULT_SETTINGS: Settings = { patternMode: 'glob', mapPatterns: '*.mindmap.md\n🎯*.md', language: 'auto', nodeEditor: 'native', autoOpen: false, autoRestoreLargeMaps: true, queueExcludedMaps: 'архів тижнів\nold', queueExcludedBranches: '🧊\n❌', queueTaskMarker: true, queueStepTag: true, collapseOnLeft: false, hotkeys: {}, widthMode: 'fixed' };
+interface Settings extends MapRules { previousPluginId?: string; language: LanguageSetting; nodeEditor: 'native' | 'text'; autoOpen: boolean; autoRestoreLargeMaps: boolean; queueExcludedMaps: string; queueExcludedBranches: string; queueTaskMarker: boolean; queueStepTag: boolean; collapseOnLeft: boolean; collapsePastedBranches: boolean; hotkeys: Record<string, string>; widthMode: WidthMode; }
+const DEFAULT_SETTINGS: Settings = { patternMode: 'glob', mapPatterns: '*.mindmap.md\n🎯*.md', language: 'auto', nodeEditor: 'native', autoOpen: false, autoRestoreLargeMaps: true, queueExcludedMaps: 'архів тижнів\nold', queueExcludedBranches: '🧊\n❌', queueTaskMarker: true, queueStepTag: true, collapseOnLeft: false, collapsePastedBranches: true, hotkeys: {}, widthMode: 'fixed' };
 const widthModes = (): [WidthMode, string][] => [['fixed', t("Fixed width")], ['content', t("Fit node content")], ['column', t("Fit visible column")]];
 const message = (error: unknown) => error instanceof Error ? error.message : String(error);
 const createsNode = (action: NodeAction) => action === 'add-child' || action === 'add-parent' || action === 'add-sibling' || action === 'add-sibling-before';
@@ -144,7 +144,7 @@ export default class TraceViewMindmap extends Plugin {
       ['add-parent', t("Add parent node"), 'add-parent'], ['insert-template', t("Insert template at selected node…"), 'insert-template'],
       ['copy-node-link', t("Copy link to node"), 'copy-node-link'], ['edit-node', t("Edit node"), 'edit'], ['make-step', t("Mark as atomic step"), 'make-step'],
       ['make-dated', t("Add step deadline"), 'make-dated'], ['make-question', t("Mark as QA"), 'make-question'],
-      ['toggle-task', t("Toggle step completion"), 'toggle-task'], ['copy-branch', t("Copy branch"), 'copy'], ['cut-branch', t("Cut branch"), 'cut'],
+      ['toggle-task', t("Toggle step completion"), 'toggle-task'], ['copy-node-labels', t("Copy selected nodes without children"), 'copy-node-labels'], ['copy-branch', t("Copy branch"), 'copy'], ['cut-branch', t("Cut branch"), 'cut'],
       ['paste-branch', t("Paste as child branch"), 'paste'], ['paste-after', t("Paste as sibling branch"), 'paste-after'], ['undo', t("Undo map change"), 'undo'], ['redo', t("Redo map change"), 'redo']
     ];
     for (const [id, name, action] of commands) this.addCommand({ id, name, checkCallback: checking => {
@@ -626,12 +626,34 @@ class MapView extends EditableFileView {
     const layout = iconButton(actions, 'panels-top-left', t("Layout and node width"), () => this.layoutMenu(layout));
     const more = iconButton(toolbar, 'ellipsis', t("Map actions"), () => this.menu(more));
     this.host = this.contentEl.createDiv('tvm-map-host');
+    let searchSelection: Set<string> | undefined;
+    let searchDraft = false;
     const search = new MapSearch(this.host, {
-      search: (text, alpha) => this.surface?.search(text, alpha) ?? [],
-      reveal: id => this.surface?.reveal(id),
-      focusMap: () => this.host?.querySelector<HTMLElement>('.tvm-surface')?.focus({ preventScroll: true }),
+      search: (text, alpha) => {
+        if (!searchDraft) return this.surface?.search(text, alpha, searchSelection) ?? [];
+        const draft = this.editor?.getValue() ?? '';
+        return text.trim() && draft.toLocaleLowerCase().includes(text.trim().toLocaleLowerCase()) ? [{ id: 'draft', text: draft }] : [];
+      },
+      reveal: id => {
+        if (!searchDraft) { this.surface?.reveal(id); return; }
+        const editor = this.editor;
+        const query = search.input.value.trim();
+        const offset = editor?.getValue().toLocaleLowerCase().indexOf(query.toLocaleLowerCase()) ?? -1;
+        if (editor && offset >= 0) editor.setSelection({ line: 0, ch: offset }, { line: 0, ch: offset + query.length });
+      },
+      focusMap: () => {
+        if (searchDraft) this.surface?.focusEditor();
+        else this.host?.querySelector<HTMLElement>('.tvm-surface')?.focus({ preventScroll: true });
+      },
     });
-    this.showSearch = () => search.show();
+    this.showSearch = () => {
+      if (search.overlay.hidden) {
+        searchDraft = this.surface?.isEditing() ?? false;
+        const selected = this.surface?.getSelection() ?? [];
+        searchSelection = selected.length > 1 ? new Set(selected) : undefined;
+      }
+      search.show();
+    };
     this.surface = new MapSurface(this.host, {
       getWidthMode: () => this.plugin.settings.widthMode,
       useTransformPan: () => Platform.isMobile,
@@ -838,7 +860,13 @@ class MapView extends EditableFileView {
       if (!node) return;
       const selection = this.surface?.getSelection() ?? [];
       const ids = selection.includes(id) ? selection : [id];
+      if (action === 'copy-node-labels') { await this.plugin.copy(copyNodeLabels(doc, ids)); return; }
       if (ids.length > 1) {
+        if (action === 'move-up' || action === 'move-down') {
+          await this.apply(doc, shiftSelectedBranches(doc, ids, action === 'move-up' ? 'up' : 'down'));
+          this.surface?.revealSelection(ids);
+          return;
+        }
         if (action === 'copy') { await this.plugin.copy(copyBranches(doc, ids)); return; }
         if (action === 'delete' || action === 'cut') {
           const next = deleteNodes(doc, ids);
@@ -905,8 +933,10 @@ class MapView extends EditableFileView {
       if (action === 'paste' || action === 'paste-after') {
         await this.apply(doc, pasteBranch(doc, id, await this.plugin.paste(), action === 'paste' ? 'child' : 'after'));
         if (this.path === path) {
-          const created = this.doc?.nodes.find(candidate => !doc.byId.has(candidate.id));
-          if (created) this.surface?.reveal(created.id);
+          const roots = this.doc?.nodes.filter(candidate => !doc.byId.has(candidate.id)
+            && (!candidate.parentId || doc.byId.has(candidate.parentId))) ?? [];
+          if (this.plugin.settings.collapsePastedBranches) this.surface?.collapseBranches(roots.map(root => root.id));
+          if (roots[0]) this.surface?.reveal(roots[0].id);
         }
         return;
       }
@@ -1385,6 +1415,11 @@ class SettingsTab extends PluginSettingTab {
           this.plugin.refreshQueues();
         }));
     }
+    new Setting(this.containerEl).setName(t("Collapse pasted branches")).addToggle(toggle =>
+      toggle.setValue(this.plugin.settings.collapsePastedBranches).onChange(async value => {
+        this.plugin.settings.collapsePastedBranches = value;
+        await this.plugin.saveData(this.plugin.settings);
+      }));
     new Setting(this.containerEl).setName(t("Left arrow collapses the branch first")).setDesc(t("Off: go straight to the parent. On: collapse the open branch first, then press again to select the parent.")).addToggle(toggle => toggle.setValue(this.plugin.settings.collapseOnLeft).onChange(async value => { this.plugin.settings.collapseOnLeft = value; await this.plugin.saveData(this.plugin.settings); }));
     for (const [key, label] of [['queueTaskMarker', t("Show [ ] in list text")], ['queueStepTag', t("Show #step in list text")]] as const) {
       new Setting(this.containerEl).setName(label).setDesc(t("Affects only Steps · Deadlines · QA display. Note text and completion controls are preserved.")).addToggle(toggle => toggle.setValue(this.plugin.settings[key]).onChange(async value => {

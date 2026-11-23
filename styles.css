@@ -129,7 +129,7 @@
   box-shadow: 0 0 0 2px var(--interactive-accent, #705dcf), 0 3px 12px #0000000c;
   z-index: 2;
 }
-.tvm-node.is-search-match { background: var(--text-highlight-bg, #fff0a9); }
+.tvm-search-match { background: var(--text-highlight-bg, #fff0a9); color: inherit; }
 .tvm-node.is-complete .tvm-node-content { color: var(--text-muted, #777780); }
 .tvm-node.is-task { display: flex; align-items: flex-start; gap: 8px; }
 .tvm-task-checkbox { flex-shrink: 0; margin: 4px 0 0; cursor: pointer; }

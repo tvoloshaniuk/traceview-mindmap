@@ -262,10 +262,11 @@ test('search includes hidden descendants; revealing a result unfolds only its an
   assert.deepEqual(f.visible(), ['root', 'branch', 'Zebra target', 'apple target', 'other']);
   assert.ok(f.surface.getState().collapsed.includes(f.id('other')));
   assert.equal(f.surface.getState().selected, f.id('apple target'));
-  assert.equal(f.element('apple target').classList.contains('is-search-match'), true);
+  assert.equal(f.element('apple target').querySelector('.tvm-search-match')?.textContent, 'target');
+  assert.deepEqual(f.surface.search('target', true, new Set([f.id('Zebra target')])).map(node => node.text), ['Zebra target']);
   assert.equal(f.dom.window.document.activeElement, f.viewport);
   f.surface.search('');
-  assert.equal(f.host.querySelector('.is-search-match'), null);
+  assert.equal(f.host.querySelector('.tvm-search-match'), null);
 });
 
 test('folds and camera survive source updates and a complete destroy/recreate cycle', t => {
@@ -574,8 +575,14 @@ test('touch selection rectangle uses screen geometry without panning and cancel 
   f.surface.toggleSelectionMode();const camera=f.surface.getState().camera;
   f.pointer('pointerdown',f.viewport,1,80,190);f.pointer('pointermove',f.viewport,1,190,360);f.pointer('pointerup',f.viewport,1,190,360);
   assert.deepEqual(f.surface.getSelection(),[f.id('A'),f.id('B')]);assert.deepEqual(f.surface.getState().camera,camera);
+  assert.equal(f.surface.isSelectionMode(), false);
+  f.surface.toggleSelectionMode();
   f.pointer('pointerdown',f.viewport,2,80,90);f.pointer('pointermove',f.viewport,2,190,160);f.pointer('pointercancel',f.viewport,2,190,160);
   assert.deepEqual(f.surface.getSelection(),[f.id('A'),f.id('B')]);assert.equal(f.host.querySelector('.tvm-selection-box'),null);
+  assert.equal(f.surface.isSelectionMode(), true);
+  f.pointer('pointerdown',f.viewport,3,80,190);f.pointer('pointermove',f.viewport,3,190,260);f.pointer('pointerup',f.viewport,3,190,260);
+  assert.deepEqual(f.surface.getSelection(), [f.id('B')]);
+  assert.equal(f.surface.isSelectionMode(), false);
 });
 
 test('touch hold starts group drag after delay; early motion, release and second finger cancel it', async t=>{

@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.0.10
+
+### Added
+
+- Find text in the active draft, selected nodes, or the whole map. Highlight matching text within nodes.
+- Use one touch selection rectangle at a time and keep the resulting selection. A second rectangle can add or remove nodes.
+- Copy selected nodes without their descendants. Paste branches collapsed by default, with a setting to keep them expanded.
+- Move selected sibling branches one place up or down while preserving their children and relative order.
+
 ## 1.0.9
 
 ### Added

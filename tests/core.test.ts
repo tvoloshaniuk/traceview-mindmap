@@ -5,6 +5,15 @@
  */
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
+import { copyNodeLabels, shiftSelectedBranches } from '../src/core';
+
+test('group shift preserves unselected gaps, children, anchors and file endings', () => {
+  const source = '- A\r\n- B ^b\r\n  - Child\r\n- C\r\n- D ^d';
+  const doc = parseMap(source);
+  const ids = [doc.nodes[1].id, doc.nodes[4].id];
+  assert.equal(copyNodeLabels(doc, ids), '- B\r\n- D\r\n');
+  assert.equal(shiftSelectedBranches(doc, ids, 'up'), '- B ^b\r\n  - Child\r\n- A\r\n- D ^d\r\n- C');
+});
 import { parseMap, restoreTemplateLineEndings, editNode, addNode, addParent, deleteNode, moveNode, reparentNode, copyBranch, pasteBranch, toggleTask, setStep, setDated, setQuestion, getSteps, compareSteps, renumberSteps } from '../src/core';
 import type { MapDocument } from '../src/types';
 

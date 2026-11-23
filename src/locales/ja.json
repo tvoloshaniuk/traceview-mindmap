@@ -1,4 +1,7 @@
 {
+  "Select branches with the same parent.": "同じ親を持つ枝を選択してください。",
+  "Copy selected nodes without children": "選択したノードを子なしでコピー",
+  "Collapse pasted branches": "貼り付けた枝を折りたたむ",
   "Exclude maps from planning": "計画からマップを除外",
   "Exclude branches from planning": "計画から枝を除外",
   "One term per line. Leave blank to show all.": "1行に1語を入力します。空欄にするとすべて表示します。",
