@@ -358,6 +358,7 @@ module.exports = __toCommonJS(main_exports);
 
 // src/locales/en.json
 var en_default = {
+  "Switch between map and Markdown": "Switch between map and Markdown",
   "Select branches with the same parent.": "Select branches with the same parent.",
   "Copy selected nodes without children": "Copy selected nodes without children",
   "Collapse pasted branches": "Collapse pasted branches",
@@ -689,6 +690,7 @@ var en_default = {
 
 // src/locales/uk.json
 var uk_default = {
+  "Switch between map and Markdown": "\u041F\u0435\u0440\u0435\u043C\u043A\u043D\u0443\u0442\u0438 \u043C\u0456\u0436 \u043A\u0430\u0440\u0442\u043E\u044E \u0456 Markdown",
   "Select branches with the same parent.": "\u0412\u0438\u0431\u0435\u0440\u0438 \u0433\u0456\u043B\u043A\u0438 \u0437\u0456 \u0441\u043F\u0456\u043B\u044C\u043D\u0438\u043C \u0431\u0430\u0442\u044C\u043A\u0456\u0432\u0441\u044C\u043A\u0438\u043C \u0432\u0443\u0437\u043B\u043E\u043C.",
   "Copy selected nodes without children": "\u041A\u043E\u043F\u0456\u044E\u0432\u0430\u0442\u0438 \u0432\u0438\u0431\u0440\u0430\u043D\u0456 \u0432\u0443\u0437\u043B\u0438 \u0431\u0435\u0437 \u0434\u0456\u0442\u0435\u0439",
   "Collapse pasted branches": "\u0417\u0433\u043E\u0440\u0442\u0430\u0442\u0438 \u0432\u0441\u0442\u0430\u0432\u043B\u0435\u043D\u0456 \u0433\u0456\u043B\u043A\u0438",
@@ -1020,6 +1022,7 @@ var uk_default = {
 
 // src/locales/pl.json
 var pl_default = {
+  "Switch between map and Markdown": "Prze\u0142\u0105cz mi\u0119dzy map\u0105 a Markdown",
   "Select branches with the same parent.": "Wybierz ga\u0142\u0119zie o wsp\xF3lnym w\u0119\u017Ale nadrz\u0119dnym.",
   "Copy selected nodes without children": "Kopiuj wybrane w\u0119z\u0142y bez potomk\xF3w",
   "Collapse pasted branches": "Zwijaj wklejone ga\u0142\u0119zie",
@@ -1351,6 +1354,7 @@ var pl_default = {
 
 // src/locales/de.json
 var de_default = {
+  "Switch between map and Markdown": "Zwischen Karte und Markdown wechseln",
   "Select branches with the same parent.": "W\xE4hle Zweige mit demselben Elternknoten aus.",
   "Copy selected nodes without children": "Ausgew\xE4hlte Knoten ohne Kinder kopieren",
   "Collapse pasted branches": "Eingef\xFCgte Zweige einklappen",
@@ -1682,6 +1686,7 @@ var de_default = {
 
 // src/locales/es.json
 var es_default = {
+  "Switch between map and Markdown": "Alternar entre mapa y Markdown",
   "Select branches with the same parent.": "Selecciona ramas con el mismo nodo padre.",
   "Copy selected nodes without children": "Copiar los nodos seleccionados sin sus hijos",
   "Collapse pasted branches": "Plegar las ramas pegadas",
@@ -2013,6 +2018,7 @@ var es_default = {
 
 // src/locales/fr.json
 var fr_default = {
+  "Switch between map and Markdown": "Basculer entre la carte et Markdown",
   "Select branches with the same parent.": "S\xE9lectionnez des branches ayant le m\xEAme parent.",
   "Copy selected nodes without children": "Copier les n\u0153uds s\xE9lectionn\xE9s sans leurs enfants",
   "Collapse pasted branches": "Replier les branches coll\xE9es",
@@ -2344,6 +2350,7 @@ var fr_default = {
 
 // src/locales/pt-BR.json
 var pt_BR_default = {
+  "Switch between map and Markdown": "Alternar entre mapa e Markdown",
   "Select branches with the same parent.": "Selecione ramos com o mesmo n\xF3 pai.",
   "Copy selected nodes without children": "Copiar n\xF3s selecionados sem os filhos",
   "Collapse pasted branches": "Recolher os ramos colados",
@@ -2675,6 +2682,7 @@ var pt_BR_default = {
 
 // src/locales/zh-CN.json
 var zh_CN_default = {
+  "Switch between map and Markdown": "\u5728\u5730\u56FE\u4E0E Markdown \u4E4B\u95F4\u5207\u6362",
   "Select branches with the same parent.": "\u8BF7\u9009\u62E9\u5177\u6709\u76F8\u540C\u7236\u8282\u70B9\u7684\u5206\u652F\u3002",
   "Copy selected nodes without children": "\u590D\u5236\u6240\u9009\u8282\u70B9\uFF08\u4E0D\u542B\u5B50\u8282\u70B9\uFF09",
   "Collapse pasted branches": "\u6298\u53E0\u7C98\u8D34\u7684\u5206\u652F",
@@ -3006,6 +3014,7 @@ var zh_CN_default = {
 
 // src/locales/ja.json
 var ja_default = {
+  "Switch between map and Markdown": "\u30DE\u30C3\u30D7\u3068Markdown\u3092\u5207\u308A\u66FF\u3048\u308B",
   "Select branches with the same parent.": "\u540C\u3058\u89AA\u3092\u6301\u3064\u679D\u3092\u9078\u629E\u3057\u3066\u304F\u3060\u3055\u3044\u3002",
   "Copy selected nodes without children": "\u9078\u629E\u3057\u305F\u30CE\u30FC\u30C9\u3092\u5B50\u306A\u3057\u3067\u30B3\u30D4\u30FC",
   "Collapse pasted branches": "\u8CBC\u308A\u4ED8\u3051\u305F\u679D\u3092\u6298\u308A\u305F\u305F\u3080",
@@ -3337,6 +3346,7 @@ var ja_default = {
 
 // src/locales/ko.json
 var ko_default = {
+  "Switch between map and Markdown": "\uC9C0\uB3C4\uC640 Markdown \uC804\uD658",
   "Select branches with the same parent.": "\uBD80\uBAA8 \uB178\uB4DC\uAC00 \uAC19\uC740 \uAC00\uC9C0\uB97C \uC120\uD0DD\uD558\uC138\uC694.",
   "Copy selected nodes without children": "\uD558\uC704 \uB178\uB4DC \uC5C6\uC774 \uC120\uD0DD\uD55C \uB178\uB4DC \uBCF5\uC0AC",
   "Collapse pasted branches": "\uBD99\uC5EC\uB123\uC740 \uAC00\uC9C0 \uC811\uAE30",
@@ -3668,6 +3678,7 @@ var ko_default = {
 
 // src/locales/ru.json
 var ru_default = {
+  "Switch between map and Markdown": "\u041F\u0435\u0440\u0435\u043A\u043B\u044E\u0447\u0438\u0442\u044C \u043A\u0430\u0440\u0442\u0443 \u0438 Markdown",
   "Select branches with the same parent.": "\u0412\u044B\u0431\u0435\u0440\u0438\u0442\u0435 \u0432\u0435\u0442\u0432\u0438 \u0441 \u043E\u0431\u0449\u0438\u043C \u0440\u043E\u0434\u0438\u0442\u0435\u043B\u044C\u0441\u043A\u0438\u043C \u0443\u0437\u043B\u043E\u043C.",
   "Copy selected nodes without children": "\u041A\u043E\u043F\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u0432\u044B\u0431\u0440\u0430\u043D\u043D\u044B\u0435 \u0443\u0437\u043B\u044B \u0431\u0435\u0437 \u043F\u043E\u0442\u043E\u043C\u043A\u043E\u0432",
   "Collapse pasted branches": "\u0421\u0432\u043E\u0440\u0430\u0447\u0438\u0432\u0430\u0442\u044C \u0432\u0441\u0442\u0430\u0432\u043B\u0435\u043D\u043D\u044B\u0435 \u0432\u0435\u0442\u0432\u0438",
@@ -5563,6 +5574,7 @@ var MapSurface = class {
     this.suppressClickUntil = 0;
     this.bounds = { width: 0, height: 0 };
     this.mode = "map";
+    this.dragScrollFrame = null;
     this.rendered = /* @__PURE__ */ new Map();
     this.markdownQueue = [];
     this.markdownInFlight = 0;
@@ -6849,35 +6861,8 @@ var MapSurface = class {
       }
       this.viewport.classList.add("is-dragging");
       for (const id of drag.ids) this.elements.get(id)?.classList.add("is-drag-source");
-      const previous = this.elements.get(drag.target ?? "");
-      previous?.classList.remove("is-drop-target");
-      previous?.removeAttribute("data-drop-position");
-      const hit = this.container.ownerDocument.elementFromPoint(event.clientX, event.clientY);
-      let target = this.nodeFrom(hit);
-      if (!target) {
-        for (const [id, element] of this.elements) {
-          const rect = element.getBoundingClientRect();
-          if (event.clientX >= rect.left && event.clientX <= rect.right && event.clientY >= rect.top - 12 && event.clientY <= rect.bottom + 12) {
-            target = id;
-            break;
-          }
-        }
-      }
-      let position = "child";
-      if (target) {
-        const rect = this.elements.get(target).getBoundingClientRect();
-        const relative = (event.clientY - rect.top) / Math.max(1, rect.height);
-        position = rect.height > 0 ? relative < 0.25 ? "before" : relative > 0.75 ? "after" : "child" : "child";
-        if (!this.doc || !canDropBranches(this.doc, drag.ids, target, position)) target = null;
-      }
-      drag.target = target;
-      drag.position = position;
-      if (target) {
-        const element = this.elements.get(target);
-        element.classList.add("is-drop-target");
-        element.dataset.dropPosition = position;
-        this.live.textContent = (position === "before" ? t("Before: ") : position === "after" ? t("After: ") : t("As children: ")) + this.doc.byId.get(target).text;
-      }
+      this.updateDropTarget(drag, event.clientX, event.clientY);
+      this.trackDragEdge(event.clientX, event.clientY);
       event.preventDefault();
       return;
     }
@@ -6904,6 +6889,78 @@ var MapSurface = class {
     this.viewport.classList.add("is-panning");
     this.suppressClickUntil = Date.now() + 350;
     this.applyCamera(true);
+  }
+  updateDropTarget(drag, x, y) {
+    const previous = this.elements.get(drag.target ?? "");
+    previous?.classList.remove("is-drop-target");
+    previous?.removeAttribute("data-drop-position");
+    const hit = this.container.ownerDocument.elementFromPoint(x, y);
+    let target = this.nodeFrom(hit);
+    if (!target) {
+      for (const [id, element] of this.elements) {
+        const rect = element.getBoundingClientRect();
+        if (x >= rect.left && x <= rect.right && y >= rect.top - 12 && y <= rect.bottom + 12) {
+          target = id;
+          break;
+        }
+      }
+    }
+    let position = "child";
+    if (target) {
+      const rect = this.elements.get(target).getBoundingClientRect();
+      const relative = (y - rect.top) / Math.max(1, rect.height);
+      position = rect.height > 0 ? relative < 0.25 ? "before" : relative > 0.75 ? "after" : "child" : "child";
+      if (!this.doc || !canDropBranches(this.doc, drag.ids, target, position)) target = null;
+    }
+    drag.target = target;
+    drag.position = position;
+    if (target) {
+      const element = this.elements.get(target);
+      element.classList.add("is-drop-target");
+      element.dataset.dropPosition = position;
+      this.live.textContent = (position === "before" ? t("Before: ") : position === "after" ? t("After: ") : t("As children: ")) + this.doc.byId.get(target).text;
+    }
+  }
+  trackDragEdge(x, y) {
+    const win = this.viewport.ownerDocument.defaultView;
+    if (!win) return;
+    this.dragPoint = { x, y };
+    if (this.dragScrollFrame !== null) return;
+    let start;
+    let previous;
+    const advance = (time) => {
+      this.dragScrollFrame = null;
+      const drag = this.drag, point = this.dragPoint;
+      if (!drag?.active || !point) return;
+      const rect = this.viewport.getBoundingClientRect();
+      const band = 44;
+      const edge = (offset, size) => {
+        if (offset < -band || offset > size + band || size <= 0) return 0;
+        const threshold = Math.min(band, size / 4);
+        if (offset < threshold) return Math.min(1, (threshold - offset) / threshold);
+        if (offset > size - threshold) return -Math.min(1, (offset + threshold - size) / threshold);
+        return 0;
+      };
+      const vx = edge(point.x - rect.left, rect.width), vy = edge(point.y - rect.top, rect.height);
+      if (!vx && !vy) return;
+      start ?? (start = time);
+      const elapsed = Math.min(36, Math.max(0, time - (previous ?? time - 16)));
+      previous = time;
+      const speed = 0.08 + 0.9 * Math.min(1, (time - start) / 650);
+      const camera = this.state.camera;
+      const xLimit = Math.min(44, rect.width - this.bounds.width * camera.scale - 44);
+      const yLimit = Math.min(44, rect.height - this.bounds.height * camera.scale - 44);
+      const x2 = Math.max(Math.min(camera.x, xLimit), Math.min(Math.max(camera.x, 44), camera.x + vx * speed * elapsed));
+      const y2 = Math.max(Math.min(camera.y, yLimit), Math.min(Math.max(camera.y, 44), camera.y + vy * speed * elapsed));
+      if (x2 === camera.x && y2 === camera.y) return;
+      camera.x = x2;
+      camera.y = y2;
+      this.applyCamera();
+      this.updateDropTarget(drag, point.x, point.y);
+      this.emitState();
+      this.dragScrollFrame = win.requestAnimationFrame(advance);
+    };
+    this.dragScrollFrame = win.requestAnimationFrame(advance);
   }
   cancelMarquee() {
     if (!this.marquee) return;
@@ -7076,6 +7133,9 @@ var MapSurface = class {
   }
   clearDrag() {
     this.cancelTouchHold();
+    if (this.dragScrollFrame !== null) this.viewport.ownerDocument.defaultView?.cancelAnimationFrame(this.dragScrollFrame);
+    this.dragScrollFrame = null;
+    this.dragPoint = void 0;
     if (!this.drag) return;
     const drag = this.drag;
     this.drag = void 0;
@@ -7416,7 +7476,14 @@ function mountNativeEditor(owner, input, tools, inline, Native, ensureAddress) {
       tools.append(button2);
     };
     add("[[\u2026]]", t("Native Obsidian link"), () => native?.editor.triggerWikilink?.());
-    add("==", t("Highlight text"), () => native?.editor.replaceSelection("==" + native.editor.getSelection() + "=="));
+    add("==", t("Highlight text"), () => {
+      const editor = native?.editor;
+      if (!editor) return;
+      const selected = editor.getSelection();
+      const start = editor.posToOffset(editor.getCursor("from"));
+      editor.replaceSelection("==" + selected + "==");
+      if (!selected) editor.setCursor(editor.offsetToPos(start + 2));
+    });
     add("QA", t("Mark as question"), () => native?.editor.replaceSelection("==//todo Q: =="));
     return {
       element: host,
@@ -8537,6 +8604,13 @@ var TraceViewMindmap = class extends import_obsidian5.Plugin {
       if (file?.extension === "md") void this.openMap(file, this.app.workspace.getMostRecentLeaf() ?? void 0);
       else this.pickMap();
     } });
+    this.addCommand({ id: "toggle-map-source", name: t("Switch between map and Markdown"), checkCallback: (checking) => {
+      const view = this.app.workspace.getActiveViewOfType(MapView) ?? this.app.workspace.getActiveViewOfType(import_obsidian5.MarkdownView);
+      if (!view?.file) return false;
+      if (view instanceof MapView && view.surface?.isEditing()) return false;
+      if (!checking) void this.toggleMapSource(view).catch((error) => new import_obsidian5.Notice(message(error), 8e3));
+      return true;
+    } });
     this.addCommand({ id: "open-node-at-cursor", name: t("Open map at the Markdown cursor"), editorCheckCallback: (checking, editor, context) => {
       if (!(context instanceof import_obsidian5.MarkdownView) || !context.file) return false;
       const doc = parseMap(editor.getValue()), line = editor.getCursor().line;
@@ -8690,6 +8764,21 @@ var TraceViewMindmap = class extends import_obsidian5.Plugin {
     await view.save();
     if (view.file !== file || view.editor.getValue() !== source) throw new Error(t("The note changed. Open it again at the current line."));
     await this.openMap(file, view.leaf, node.id);
+  }
+  async toggleMapSource(view) {
+    const { file, leaf } = view;
+    if (!file) return;
+    if (view instanceof MapView) {
+      const selected = view.selected();
+      await this.source(file, selected ? view.doc?.byId.get(selected)?.line ?? 0 : 0, leaf);
+      return;
+    }
+    const text = view.editor.getValue();
+    const line = view.editor.getCursor().line;
+    await view.save();
+    if (leaf.view !== view || view.file !== file || view.editor.getValue() !== text) return;
+    const id = parseMap(text).nodes.find((node) => node.line === line)?.id;
+    await this.openMap(file, leaf, id);
   }
   pickMap() {
     new MapPicker(this.app, (file) => this.isMap(file), (file) => {
@@ -9133,7 +9222,15 @@ var MapView = class extends import_obsidian5.EditableFileView {
     iconButton(actions, "pencil", t("Edit"), () => {
       void this.action("edit", this.selected());
     }).dataset.tvmAction = "edit";
-    const selectionButton = iconButton(actions, "scan", t("Multiple selection: taps or rectangle"), () => this.surface?.toggleSelectionMode());
+    if (import_obsidian5.Platform.isMobile) {
+      iconButton(actions, "check-square", t("Toggle step completion"), () => {
+        void this.action("toggle-task", this.selected());
+      });
+      iconButton(actions, "calendar", t("Step deadline"), () => {
+        void this.action("make-dated", this.selected());
+      });
+    }
+    const selectionButton = iconButton(actions, "box-select", t("Multiple selection: taps or rectangle"), () => this.surface?.toggleSelectionMode());
     selectionButton.setAttribute("aria-pressed", "false");
     iconButton(actions, "search", t("Search"), () => this.showSearch?.()).dataset.tvmAction = "find";
     iconButton(actions, "maximize", t("Fit map"), () => this.surface?.fit()).dataset.tvmAction = "fit";
@@ -9407,9 +9504,10 @@ var MapView = class extends import_obsidian5.EditableFileView {
   async reparent(ids, target, position) {
     const doc = this.doc;
     if (!doc || this.changing || this.cutting || this.surface?.isEditing()) return;
+    const keepFolded = position === "child" && this.surface?.getState().collapsed.includes(target);
     try {
       await this.apply(doc, moveBranches(doc, ids, target, position));
-      this.surface?.revealSelection(ids);
+      if (!keepFolded) this.surface?.revealSelection(ids);
     } catch (error) {
       new import_obsidian5.Notice(message(error), 8e3);
     }

@@ -1,5 +1,19 @@
 # Changelog
 
+## 1.0.11
+
+### Added
+
+- Pan the map when dragging a branch near the viewport edge.
+- Add task completion and deadline buttons to the mobile toolbar.
+- Switch between the map and its Markdown in the same tab, following the selected node or cursor.
+
+### Fixed
+
+- Dropping onto a collapsed parent keeps it collapsed and avoids jumping to the moved branch.
+- Place the caret inside a new highlight in the native node editor.
+- Dim completed node text, including formatted content.
+
 ## 1.0.10
 
 ### Added

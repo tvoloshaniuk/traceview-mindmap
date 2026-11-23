@@ -600,6 +600,22 @@ test('touch hold starts group drag after delay; early motion, release and second
  f.pointer('pointerdown',f.element('A'),4,10,10);f.pointer('pointerdown',f.viewport,5,20,20);await new Promise(r=>setTimeout(r,480));assert.equal(f.viewport.classList.contains('is-dragging'),false);
 });
 
+test('holding a dragged branch at the lower edge pans until release', async t => {
+  const f = fixture(t, '- Root\n' + Array.from({ length: 24 }, (_, index) => `  - Item ${index}\n`).join(''));
+  f.viewport.getBoundingClientRect = () => ({ x: 0, y: 0, left: 0, top: 0, width: 800, height: 600, right: 800, bottom: 600, toJSON() {} });
+  f.dom.window.document.elementFromPoint = () => null;
+  const initial = f.surface.getState().camera.y;
+  f.pointer('pointerdown', f.element('Item 0'), 1, 450, 120);
+  await new Promise(resolve => setTimeout(resolve, 480));
+  f.pointer('pointermove', f.viewport, 1, 450, 599);
+  f.flush();
+  assert.ok(f.surface.getState().camera.y < initial);
+  f.pointer('pointerup', f.viewport, 1, 450, 599);
+  const after = f.surface.getState().camera.y;
+  f.flush();
+  assert.equal(f.surface.getState().camera.y, after);
+});
+
 test('blank click cancels unchanged existing and new drafts but retains changed or busy drafts', t=>{
  const f=fixture(t,'- Root\n  - Child\n');let writes=0;
  f.surface.beginEdit(f.id('Root'),'Root',async()=>{writes++;return undefined;});f.viewport.click();assert.equal(f.surface.isEditing(),false);

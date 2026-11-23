@@ -130,7 +130,7 @@
   z-index: 2;
 }
 .tvm-search-match { background: var(--text-highlight-bg, #fff0a9); color: inherit; }
-.tvm-node.is-complete .tvm-node-content { color: var(--text-muted, #777780); }
+.tvm-node.is-complete .tvm-node-content { color: var(--text-muted, #777780); opacity: 0.78; }
 .tvm-node.is-task { display: flex; align-items: flex-start; gap: 8px; }
 .tvm-task-checkbox { flex-shrink: 0; margin: 4px 0 0; cursor: pointer; }
 .tvm-node.is-task .tvm-node-content { min-width: 0; flex: 1; }

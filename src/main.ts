@@ -127,6 +127,13 @@ export default class TraceViewMindmap extends Plugin {
       const file = this.activeFile();
       if (file?.extension === 'md') void this.openMap(file, this.app.workspace.getMostRecentLeaf() ?? undefined); else this.pickMap();
     } });
+    this.addCommand({ id: 'toggle-map-source', name: t("Switch between map and Markdown"), checkCallback: checking => {
+      const view = this.app.workspace.getActiveViewOfType(MapView) ?? this.app.workspace.getActiveViewOfType(MarkdownView);
+      if (!view?.file) return false;
+      if (view instanceof MapView && view.surface?.isEditing()) return false;
+      if (!checking) void this.toggleMapSource(view).catch(error => new Notice(message(error), 8000));
+      return true;
+    } });
     this.addCommand({ id: 'open-node-at-cursor', name: t("Open map at the Markdown cursor"), editorCheckCallback: (checking, editor, context) => {
       if (!(context instanceof MarkdownView) || !context.file) return false;
       const doc = parseMap(editor.getValue()), line = editor.getCursor().line;
@@ -246,6 +253,22 @@ export default class TraceViewMindmap extends Plugin {
     await view.save();
     if (view.file !== file || view.editor.getValue() !== source) throw new Error(t("The note changed. Open it again at the current line."));
     await this.openMap(file, view.leaf, node.id);
+  }
+
+  private async toggleMapSource(view: MapView | MarkdownView): Promise<void> {
+    const { file, leaf } = view;
+    if (!file) return;
+    if (view instanceof MapView) {
+      const selected = view.selected();
+      await this.source(file, selected ? view.doc?.byId.get(selected)?.line ?? 0 : 0, leaf);
+      return;
+    }
+    const text = view.editor.getValue();
+    const line = view.editor.getCursor().line;
+    await view.save();
+    if (leaf.view !== view || view.file !== file || view.editor.getValue() !== text) return;
+    const id = parseMap(text).nodes.find(node => node.line === line)?.id;
+    await this.openMap(file, leaf, id);
   }
 
   pickMap(): void { new MapPicker(this.app, file => this.isMap(file), file => { void this.openMap(file); }).open(); }
@@ -619,7 +642,11 @@ class MapView extends EditableFileView {
     iconButton(actions, 'git-branch-plus', t("Child node"), () => { void this.action('add-child', this.selected()); }).dataset.tvmAction = 'add-child';
     iconButton(actions, 'plus', t("Sibling node"), () => { void this.action('add-sibling', this.selected()); }).dataset.tvmAction = 'add-sibling';
     iconButton(actions, 'pencil', t("Edit"), () => { void this.action('edit', this.selected()); }).dataset.tvmAction = 'edit';
-    const selectionButton = iconButton(actions, 'scan', t("Multiple selection: taps or rectangle"), () => this.surface?.toggleSelectionMode());
+    if (Platform.isMobile) {
+      iconButton(actions, 'check-square', t("Toggle step completion"), () => { void this.action('toggle-task', this.selected()); });
+      iconButton(actions, 'calendar', t("Step deadline"), () => { void this.action('make-dated', this.selected()); });
+    }
+    const selectionButton = iconButton(actions, 'box-select', t("Multiple selection: taps or rectangle"), () => this.surface?.toggleSelectionMode());
     selectionButton.setAttribute('aria-pressed', 'false');
     iconButton(actions, 'search', t("Search"), () => this.showSearch?.()).dataset.tvmAction = 'find';
     iconButton(actions, 'maximize', t("Fit map"), () => this.surface?.fit()).dataset.tvmAction = 'fit';
@@ -835,7 +862,11 @@ class MapView extends EditableFileView {
   private async reparent(ids: string[], target: string, position: DropPosition): Promise<void> {
     const doc = this.doc;
     if (!doc || this.changing || this.cutting || this.surface?.isEditing()) return;
-    try { await this.apply(doc, moveBranches(doc, ids, target, position)); this.surface?.revealSelection(ids); }
+    const keepFolded = position === 'child' && this.surface?.getState().collapsed.includes(target);
+    try {
+      await this.apply(doc, moveBranches(doc, ids, target, position));
+      if (!keepFolded) this.surface?.revealSelection(ids);
+    }
     catch (error) { new Notice(message(error), 8000); }
   }
   async action(action: NodeAction, id: string | null, recovered?: LocalDraft): Promise<void> {

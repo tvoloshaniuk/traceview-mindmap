@@ -332,8 +332,13 @@ test('batch label and cut commands are single undoable changes and clipboard fai
 
 test('moving a selection is one guarded write and one Undo; concurrent source edits are retained',async()=>{
  const f=await cutFixture();let ids=[f.id('Source'),f.id('Descendant')];
- f.view.surface={isEditing:()=>false,revealSelection(){},getSelection:()=>ids};
+ let reveals=0;
+ f.view.surface={isEditing:()=>false,revealSelection(){reveals++;},getSelection:()=>ids,getState:()=>({collapsed:[f.id('Target')]})};
  await f.view.reparent(ids,f.id('Target'),'after');assert.match(f.source(),/  - Target\n  - Source \[\[Ghost\|Alias\]\]\n    - Descendant/);
+ await f.view.action('undo',null);assert.equal(f.source(),f.original);
+ await f.view.reparent(ids,f.id('Target'),'child');
+ assert.match(f.source(),/  - Target\n    - Source/);
+ assert.equal(reveals,1);
  await f.view.action('undo',null);assert.equal(f.source(),f.original);
  ids=[f.id('Source')];f.external(f.original+'  - External\n');await f.view.reparent(ids,f.id('Target'),'child');assert.equal(f.source(),f.original+'  - External\n');
 });

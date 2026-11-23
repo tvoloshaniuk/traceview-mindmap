@@ -171,7 +171,14 @@ export function mountNativeEditor(owner: NativeOwner, input: HTMLTextAreaElement
       button.onclick = () => { if (!input.readOnly && active) { action(); native?.editor.focus(); } }; tools.append(button);
     };
     add('[[…]]', t("Native Obsidian link"), () => native?.editor.triggerWikilink?.());
-    add('==', t("Highlight text"), () => native?.editor.replaceSelection('==' + native.editor.getSelection() + '=='));
+    add('==', t("Highlight text"), () => {
+      const editor = native?.editor;
+      if (!editor) return;
+      const selected = editor.getSelection();
+      const start = editor.posToOffset(editor.getCursor('from'));
+      editor.replaceSelection('==' + selected + '==');
+      if (!selected) editor.setCursor(editor.offsetToPos(start + 2));
+    });
     add('QA', t("Mark as question"), () => native?.editor.replaceSelection('==//todo Q: =='));
     return {
       element: host,

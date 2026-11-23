@@ -1,4 +1,5 @@
 {
+  "Switch between map and Markdown": "지도와 Markdown 전환",
   "Select branches with the same parent.": "부모 노드가 같은 가지를 선택하세요.",
   "Copy selected nodes without children": "하위 노드 없이 선택한 노드 복사",
   "Collapse pasted branches": "붙여넣은 가지 접기",

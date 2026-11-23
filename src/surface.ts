@@ -63,6 +63,8 @@ export class MapSurface {
   private editing?: { id: string; editor: InlineEditor; original: MapDocument; state: MapViewState; latest?: MapDocument; latestState?: MapViewState };
   private touchHold?: { pointer: number; x: number; y: number; timer: number };
   private lastPress?: { id: string; time: number; x: number; y: number };
+  private dragScrollFrame: number | null = null;
+  private dragPoint?: TouchPoint;
   private drag?: { id: string; ids: string[]; position: DropPosition; pointer: number; x: number; y: number; active: boolean; target: string | null };
   private rendered = new Map<string, RenderedNode>();
   private markdownQueue: RenderedNode[] = [];
@@ -1251,30 +1253,8 @@ export class MapSurface {
       try { this.viewport.setPointerCapture(event.pointerId); } catch { /* Detached pointer. */ }
       this.viewport.classList.add('is-dragging');
       for (const id of drag.ids) this.elements.get(id)?.classList.add('is-drag-source');
-      const previous = this.elements.get(drag.target ?? '');
-      previous?.classList.remove('is-drop-target'); previous?.removeAttribute('data-drop-position');
-      const hit = this.container.ownerDocument.elementFromPoint(event.clientX, event.clientY);
-      let target = this.nodeFrom(hit);
-      if (!target) {
-        // The narrow space immediately above/below a node is also a sibling target.
-        for (const [id, element] of this.elements) {
-          const rect = element.getBoundingClientRect();
-          if (event.clientX >= rect.left && event.clientX <= rect.right && event.clientY >= rect.top - 12 && event.clientY <= rect.bottom + 12) { target = id; break; }
-        }
-      }
-      let position: DropPosition = 'child';
-      if (target) {
-        const rect = this.elements.get(target)!.getBoundingClientRect();
-        const relative = (event.clientY - rect.top) / Math.max(1, rect.height);
-        position = rect.height > 0 ? (relative < 0.25 ? 'before' : relative > 0.75 ? 'after' : 'child') : 'child';
-        if (!this.doc || !canDropBranches(this.doc, drag.ids, target, position)) target = null;
-      }
-      drag.target = target; drag.position = position;
-      if (target) {
-        const element = this.elements.get(target)!;
-        element.classList.add('is-drop-target'); element.dataset.dropPosition = position;
-        this.live.textContent = (position === 'before' ? t("Before: ") : position === 'after' ? t("After: ") : t("As children: ")) + this.doc!.byId.get(target)!.text;
-      }
+      this.updateDropTarget(drag, event.clientX, event.clientY);
+      this.trackDragEdge(event.clientX, event.clientY);
       event.preventDefault(); return;
     }
     if (this.pinch && this.touches.size >= 2) {
@@ -1297,6 +1277,75 @@ export class MapSurface {
     this.viewport.classList.add('is-panning');
     this.suppressClickUntil = Date.now() + 350;
     this.applyCamera(true);
+  }
+
+
+  private updateDropTarget(drag: NonNullable<MapSurface['drag']>, x: number, y: number): void {
+    const previous = this.elements.get(drag.target ?? '');
+    previous?.classList.remove('is-drop-target'); previous?.removeAttribute('data-drop-position');
+    const hit = this.container.ownerDocument.elementFromPoint(x, y);
+    let target = this.nodeFrom(hit);
+    if (!target) {
+      // The narrow space immediately above/below a node is also a sibling target.
+      for (const [id, element] of this.elements) {
+        const rect = element.getBoundingClientRect();
+        if (x >= rect.left && x <= rect.right && y >= rect.top - 12 && y <= rect.bottom + 12) { target = id; break; }
+      }
+    }
+    let position: DropPosition = 'child';
+    if (target) {
+      const rect = this.elements.get(target)!.getBoundingClientRect();
+      const relative = (y - rect.top) / Math.max(1, rect.height);
+      position = rect.height > 0 ? (relative < 0.25 ? 'before' : relative > 0.75 ? 'after' : 'child') : 'child';
+      if (!this.doc || !canDropBranches(this.doc, drag.ids, target, position)) target = null;
+    }
+    drag.target = target; drag.position = position;
+    if (target) {
+      const element = this.elements.get(target)!;
+      element.classList.add('is-drop-target'); element.dataset.dropPosition = position;
+      this.live.textContent = (position === 'before' ? t("Before: ") : position === 'after' ? t("After: ") : t("As children: ")) + this.doc!.byId.get(target)!.text;
+    }
+  }
+
+  private trackDragEdge(x: number, y: number): void {
+    const win = this.viewport.ownerDocument.defaultView;
+    if (!win) return;
+    this.dragPoint = { x, y };
+    if (this.dragScrollFrame !== null) return;
+    let start: number | undefined;
+    let previous: number | undefined;
+    const advance = (time: number) => {
+      this.dragScrollFrame = null;
+      const drag = this.drag, point = this.dragPoint;
+      if (!drag?.active || !point) return;
+      const rect = this.viewport.getBoundingClientRect();
+      const band = 44;
+      const edge = (offset: number, size: number) => {
+        if (offset < -band || offset > size + band || size <= 0) return 0;
+        const threshold = Math.min(band, size / 4);
+        if (offset < threshold) return Math.min(1, (threshold - offset) / threshold);
+        if (offset > size - threshold) return -Math.min(1, (offset + threshold - size) / threshold);
+        return 0;
+      };
+      const vx = edge(point.x - rect.left, rect.width), vy = edge(point.y - rect.top, rect.height);
+      if (!vx && !vy) return;
+      start ??= time;
+      const elapsed = Math.min(36, Math.max(0, time - (previous ?? time - 16)));
+      previous = time;
+      const speed = 0.08 + 0.9 * Math.min(1, (time - start) / 650);
+      const camera = this.state.camera;
+      const xLimit = Math.min(44, rect.width - this.bounds.width * camera.scale - 44);
+      const yLimit = Math.min(44, rect.height - this.bounds.height * camera.scale - 44);
+      const x = Math.max(Math.min(camera.x, xLimit), Math.min(Math.max(camera.x, 44), camera.x + vx * speed * elapsed));
+      const y = Math.max(Math.min(camera.y, yLimit), Math.min(Math.max(camera.y, 44), camera.y + vy * speed * elapsed));
+      if (x === camera.x && y === camera.y) return;
+      camera.x = x; camera.y = y;
+      this.applyCamera();
+      this.updateDropTarget(drag, point.x, point.y);
+      this.emitState();
+      this.dragScrollFrame = win.requestAnimationFrame(advance);
+    };
+    this.dragScrollFrame = win.requestAnimationFrame(advance);
   }
 
   private cancelMarquee(): void {
@@ -1439,6 +1488,9 @@ export class MapSurface {
 
   private clearDrag(): void {
     this.cancelTouchHold();
+    if (this.dragScrollFrame !== null) this.viewport.ownerDocument.defaultView?.cancelAnimationFrame(this.dragScrollFrame);
+    this.dragScrollFrame = null;
+    this.dragPoint = undefined;
     if (!this.drag) return;
     const drag = this.drag; this.drag = undefined;
     if (drag.active) this.suppressClickUntil = Date.now() + 400;
