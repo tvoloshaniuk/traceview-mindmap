@@ -5,7 +5,7 @@
  */
 import { t, LANGUAGES, isLanguageSetting, setLanguage, type LanguageSetting } from './i18n';
 import { getLanguage, App, Component, EditableFileView, ItemView, MarkdownRenderer, MarkdownView, Menu, Notice, Platform, Plugin, PluginSettingTab, Scope, Setting, TFile, WorkspaceLeaf, normalizePath, parseLinktext, setIcon, type HoverPopover } from 'obsidian';
-import { moveBranches, changeNodes, copyBranches, deleteNodes, parseMap, restoreTemplateLineEndings, editNode, addNode, addParent, deleteNode, moveNode, copyBranch, pasteBranch, toggleTask, setStep, setDated, setQuestion, getSteps, compareSteps, renumberSteps } from './core';
+import { moveBranches, changeNodes, copyBranches, deleteNodes, parseMap, restoreTemplateLineEndings, editNode, addFirstNode, addNode, addParent, deleteNode, moveNode, copyBranch, pasteBranch, toggleTask, setStep, setDated, setQuestion, getSteps, compareSteps, renumberSteps } from './core';
 import { addressNode, onlyAddedBlockIds } from './block-links';
 import { captureHotkey, DEFAULT_HOTKEYS, HOTKEY_DEFINITIONS, resolveHotkey, validateHotkeys } from './hotkeys';
 import { compileMapPatterns, PatternError, type MapRules, type PatternMode } from './map-patterns';
@@ -45,6 +45,7 @@ interface Settings extends MapRules { previousPluginId?: string; language: Langu
 const DEFAULT_SETTINGS: Settings = { patternMode: 'glob', mapPatterns: '*.mindmap.md\n🎯*.md', language: 'auto', nodeEditor: 'native', autoOpen: false, autoRestoreLargeMaps: true, hideFrozen: true, queueTaskMarker: true, queueStepTag: true, collapseOnLeft: false, hotkeys: {}, widthMode: 'fixed' };
 const widthModes = (): [WidthMode, string][] => [['fixed', t("Fixed width")], ['content', t("Fit node content")], ['column', t("Fit visible column")]];
 const message = (error: unknown) => error instanceof Error ? error.message : String(error);
+const createsNode = (action: NodeAction) => action === 'add-child' || action === 'add-parent' || action === 'add-sibling' || action === 'add-sibling-before';
 const button = (parent: HTMLElement, label: string, action: () => void, title = label) => {
   const element = parent.createEl('button', { text: label, attr: { title, 'aria-label': title, type: 'button' } });
   element.onclick = action;
@@ -137,6 +138,7 @@ export default class TraceViewMindmap extends Plugin {
     this.addCommand({ id: 'open-queue', name: t("Steps, deadlines and QA"), callback: () => { void this.openQueue(); } });
     const commands: [string, string, NodeAction][] = [
       ['add-child', t("Add child node"), 'add-child'], ['add-sibling', t("Add sibling node"), 'add-sibling'],
+      ['add-sibling-before', t("Add sibling above"), 'add-sibling-before'],
       ['add-parent', t("Add parent node"), 'add-parent'], ['insert-template', t("Insert template at selected node…"), 'insert-template'],
       ['copy-node-link', t("Copy link to node"), 'copy-node-link'], ['edit-node', t("Edit node"), 'edit'], ['make-step', t("Mark as atomic step"), 'make-step'],
       ['make-dated', t("Add step deadline"), 'make-dated'], ['make-question', t("Mark as QA"), 'make-question'],
@@ -260,10 +262,11 @@ export default class TraceViewMindmap extends Plugin {
         await this.openMap(file);
         const view = this.app.workspace.getActiveViewOfType(MapView);
         const node = view?.doc?.byId.get(draft.nodeId);
-        if (view?.file !== file || !node || node.text !== draft.original || view.surface?.isEditing() || this.liveDrafts.has(draft.key))
+        const matches = draft.nodeId ? node?.text === draft.original : view?.doc?.nodes.length === 0;
+        if (view?.file !== file || !matches || view.surface?.isEditing() || this.liveDrafts.has(draft.key))
           throw new Error(t("The note changed. Open it again at the current line."));
         modal.close();
-        await view.action(draft.action, node.id, draft);
+        await view.action(draft.action, node?.id ?? null, draft);
       })().catch(error => new Notice(message(error))); });
       button(modal.contentEl, t("Discard changes"), () => new ConfirmDialog(this.app, t("Discard changes"), draft.text, async () => {
         if (!this.liveDrafts.has(draft.key)) this.drafts?.remove(draft.key);
@@ -816,8 +819,13 @@ class MapView extends EditableFileView {
     const path = this.path;
     if (!doc) return;
     if (this.changing || this.cutting) return;
-    if (this.surface?.isEditing()) { this.surface.focusEditor(); return; }
+    if (this.surface?.isEditing()) {
+      if (!createsNode(action)) { this.surface.focusEditor(); return; }
+      if (!await this.surface.saveForCreation() || this.path !== path) return;
+      return this.action(action, this.selected());
+    }
     try {
+      if (!id && !doc.nodes.length && action === 'add-sibling') { await this.beginNodeEdit(doc, action, undefined, recovered); return; }
       if (action === 'undo' || action === 'redo') {
         const next = this.history.peek(action, doc.source);
         if (next !== null) await this.apply(doc, next, action);
@@ -900,51 +908,7 @@ class MapView extends EditableFileView {
         }
         return;
       }
-      if (action === 'edit' || action === 'add-child' || action === 'add-sibling' || action === 'add-sibling-before' || action === 'add-parent') {
-        if (this.plugin.settings.nodeEditor === 'native') {
-          try { this.nativeConstructor = await prepareNativeEditor(this.app); }
-          catch (error) { this.nativeConstructor = undefined; console.warn('TraceView Mindmap: preparing native editor failed', error); }
-          if (this.path !== path || this.doc !== doc || this.surface?.isEditing()) return;
-        }
-        const transformOn = (base: MapDocument, selected: string, text: string) => action === 'edit' ? editNode(base, selected, text) : action === 'add-parent' ? addParent(base, selected, text) : addNode(base, selected, action === 'add-child' ? 'child' : action === 'add-sibling-before' ? 'before' : 'sibling', text);
-        const transform = (text: string) => transformOn(doc, id, text);
-        const placeholder = `tvm-draft-${Date.now()}-${Math.random().toString(36).slice(2)}`;
-        const draft = action === 'edit' ? doc : parseMap(transform(placeholder), doc);
-        const draftId = action === 'edit' ? id : draft.nodes.find(candidate => candidate.text === placeholder)!.id;
-        const initial = action === 'edit' ? node.text : '';
-        const storage = this.plugin.drafts;
-        const record = storage ? recovered ?? {key: crypto.randomUUID(), path, nodeId:id, original:node.text, action, text:initial} : undefined;
-        this.surface?.beginEdit(draftId, initial, async text => {
-          if (this.path !== path) throw new Error(t("The note was renamed. Copy the draft and reopen the editor."));
-          await this.reload();
-          const base = this.doc;
-          if (!base || (base !== doc && !onlyAddedBlockIds(doc, base))) throw new Error(t("The map changed externally. Your draft is preserved. Copy it before editing again."));
-          const selected = base.nodes.find(candidate => candidate.line === node.line)?.id;
-          if (!selected) throw new Error(t("The node no longer exists. Your draft is preserved."));
-          await this.apply(base, transformOn(base, selected, text));
-          return action === 'edit' ? selected : action === 'add-parent' ? this.doc?.nodes.find(candidate => candidate.line === node.line)?.id
-            : this.doc?.nodes.find(candidate => !base.byId.has(candidate.id))?.id;
-        }, (input, tools, inline) => {
-          const driver = this.mountEditor(input, tools, path, inline);
-          if (storage && record) {
-            this.activeDraftKey = record.key; this.plugin.liveDrafts.add(record.key);
-            if (recovered) { input.value = recovered.text; input.dispatchEvent(new input.ownerDocument.defaultView!.Event('input', { bubbles:true })); }
-            let warned = false;
-            input.addEventListener('input', () => {
-              try {
-                if (input.value === initial) storage.remove(record.key);
-                else storage.save({ ...record, text: input.value });
-              } catch (error) { if (!warned) new Notice(message(error)); warned = true; }
-            });
-          }
-          return driver;
-        }, draft, record && (() => {
-          this.plugin.liveDrafts.delete(record.key); this.activeDraftKey = undefined;
-          storage!.remove(record.key); this.refreshDraftButton();
-        }));
-        if (recovered) this.refreshDraftButton();
-        return;
-      }
+      if (action === 'edit' || createsNode(action)) { await this.beginNodeEdit(doc, action, node, recovered); return; }
       if (action === 'delete') {
         await this.apply(doc, deleteNode(doc, id));
         return;
@@ -959,6 +923,52 @@ class MapView extends EditableFileView {
         : moveNode(doc, id, action === 'move-up' ? 'up' : action === 'move-down' ? 'down' : action === 'indent' ? 'indent' : 'outdent');
       await this.apply(doc, next);
     } catch (error) { new Notice(message(error), 8000); }
+  }
+  private async beginNodeEdit(doc: MapDocument, action: NodeAction, node?: MapNode, recovered?: LocalDraft): Promise<void> {
+    const path = this.path;
+    if (this.plugin.settings.nodeEditor === 'native') {
+      try { this.nativeConstructor = await prepareNativeEditor(this.app); }
+      catch (error) { this.nativeConstructor = undefined; console.warn('TraceView Mindmap: preparing native editor failed', error); }
+      if (this.path !== path || this.doc !== doc || this.surface?.isEditing()) return;
+    }
+    const transformOn = (base: MapDocument, selected: string, text: string) => !node ? addFirstNode(base, text) : action === 'edit' ? editNode(base, selected, text) : action === 'add-parent' ? addParent(base, selected, text) : addNode(base, selected, action === 'add-child' ? 'child' : action === 'add-sibling-before' ? 'before' : 'sibling', text);
+    const id = node?.id ?? '';
+    const transform = (text: string) => transformOn(doc, id, text);
+    const placeholder = `tvm-draft-${Date.now()}-${Math.random().toString(36).slice(2)}`;
+    const draft = action === 'edit' ? doc : parseMap(transform(placeholder), doc);
+    const draftNode = action === 'edit' ? node : draft.nodes.find(candidate => candidate.text === placeholder);
+    if (!draftNode) throw new Error(t("The note changed. Open it again at the current line."));
+    const initial = action === 'edit' ? node!.text : '';
+    const storage = this.plugin.drafts;
+    const record = storage ? recovered ?? {key: crypto.randomUUID(), path, nodeId:id, original:node?.text ?? '', action, text:initial} : undefined;
+    this.surface?.beginEdit(draftNode.id, initial, async text => {
+      if (this.path !== path) throw new Error(t("The note was renamed. Copy the draft and reopen the editor."));
+      await this.reload();
+      const base = this.doc;
+      if (!base || (base !== doc && !onlyAddedBlockIds(doc, base))) throw new Error(t("The map changed externally. Your draft is preserved. Copy it before editing again."));
+      const selected = node ? base.nodes.find(candidate => candidate.line === node.line)?.id : '';
+      if (selected === undefined) throw new Error(t("The node no longer exists. Your draft is preserved."));
+      await this.apply(base, transformOn(base, selected, text));
+      return this.doc?.nodes.find(candidate => candidate.line === draftNode.line)?.id;
+    }, (input, tools, inline) => {
+      const driver = this.mountEditor(input, tools, path, inline);
+      if (storage && record) {
+        this.activeDraftKey = record.key; this.plugin.liveDrafts.add(record.key);
+        if (recovered) { input.value = recovered.text; input.dispatchEvent(new input.ownerDocument.defaultView!.Event('input', { bubbles:true })); }
+        let warned = false;
+        input.addEventListener('input', () => {
+          try {
+            if (input.value === initial) storage.remove(record.key);
+            else storage.save({ ...record, text: input.value });
+          } catch (error) { if (!warned) new Notice(message(error)); warned = true; }
+        });
+      }
+      return driver;
+    }, draft, record && (() => {
+      this.plugin.liveDrafts.delete(record.key); this.activeDraftKey = undefined;
+      storage!.remove(record.key); this.refreshDraftButton();
+    }));
+    if (recovered) this.refreshDraftButton();
   }
   private menu(anchor: HTMLElement): void {
     const menu = new Menu();

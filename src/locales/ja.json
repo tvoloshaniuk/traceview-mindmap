@@ -1,4 +1,6 @@
 {
+  "This map has no nodes.": "このマップにはまだノードがありません。",
+  "Add first node": "最初のノードを追加",
   "Recover local draft": "ローカルの下書きを復元",
   "No saved drafts": "保存された下書きはありません",
   "Insert template at selected node…": "選択したノードの位置にテンプレートを挿入…",

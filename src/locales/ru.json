@@ -1,4 +1,6 @@
 {
+  "This map has no nodes.": "На этой карте пока нет узлов.",
+  "Add first node": "Добавить первый узел",
   "Recover local draft": "Восстановить локальный черновик",
   "No saved drafts": "Нет сохранённых черновиков",
   "Insert template at selected node…": "Вставить шаблон в файле у выбранного узла…",

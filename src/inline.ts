@@ -14,6 +14,7 @@ export interface InlineDriver {
 }
 
 export interface InlineOptions {
+  createAbove?: (event: KeyboardEvent) => boolean;
   save: (text: string) => Promise<void>;
   cancel: () => void;
   resize: () => void;
@@ -107,6 +108,10 @@ export class InlineEditor {
       return true;
     }
     if (event.key !== 'Enter' || (event.target as HTMLElement | null)?.closest('button')) return false;
+    if (event.shiftKey && this.options.createAbove?.(event)) {
+      event.preventDefault(); event.stopPropagation();
+      return true;
+    }
     event.preventDefault(); event.stopPropagation();
     if (!event.repeat && !event.shiftKey && !event.altKey) void this.submit();
     return true;
@@ -156,7 +161,7 @@ export class InlineEditor {
     this.resize(); this.focus();
   }
   dispose(): void { this.disposed = true; this.unmount?.(); this.host.remove(); }
-  private async submit(): Promise<void> {
+  async submit(): Promise<void> {
     if (this.saving || this.disposed || this.input.readOnly || this.confirmation) return;
     const text = singleLine(this.input.value);
     if (!text.trim()) { this.error.textContent = t("A node cannot be empty."); this.resize(); return; }

@@ -26,7 +26,7 @@ export const HOTKEY_DEFINITIONS: HotkeyDefinition[] = [
   { id: 'edit', get label() { return t("Edit node"); }, defaults: ['F2'] },
   { id: 'add-child', get label() { return t("Add child node"); }, defaults: ['Tab'] },
   { id: 'add-parent', get label() { return t("Add parent node"); }, defaults: ['Mod+Tab'] },
-  { id: 'add-sibling-before', get label() { return t("Add sibling above"); }, defaults: [] },
+  { id: 'add-sibling-before', get label() { return t("Add sibling above"); }, defaults: ['Shift+Enter'] },
   { id: 'add-sibling', get label() { return t("Add sibling node"); }, defaults: ['Enter'] },
   { id: 'delete', get label() { return t("Delete branch"); }, defaults: ['Delete'] },
   { id: 'move-up', get label() { return t("Move branch up"); }, defaults: ['Mod+Shift+ArrowUp'] },

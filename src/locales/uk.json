@@ -1,4 +1,6 @@
 {
+  "This map has no nodes.": "У цій карті ще немає вузлів.",
+  "Add first node": "Додати перший вузол",
   "Recover local draft": "Відновити локальну чернетку",
   "No saved drafts": "Немає збережених чернеток",
   "Insert template at selected node…": "Вставити шаблон у файлі біля вибраного вузла…",

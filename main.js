@@ -358,6 +358,8 @@ module.exports = __toCommonJS(main_exports);
 
 // src/locales/en.json
 var en_default = {
+  "This map has no nodes.": "This map has no nodes.",
+  "Add first node": "Add first node",
   "Recover local draft": "Recover local draft",
   "No saved drafts": "No saved drafts",
   "Insert template at selected node\u2026": "Insert template at selected node\u2026",
@@ -679,6 +681,8 @@ var en_default = {
 
 // src/locales/uk.json
 var uk_default = {
+  "This map has no nodes.": "\u0423 \u0446\u0456\u0439 \u043A\u0430\u0440\u0442\u0456 \u0449\u0435 \u043D\u0435\u043C\u0430\u0454 \u0432\u0443\u0437\u043B\u0456\u0432.",
+  "Add first node": "\u0414\u043E\u0434\u0430\u0442\u0438 \u043F\u0435\u0440\u0448\u0438\u0439 \u0432\u0443\u0437\u043E\u043B",
   "Recover local draft": "\u0412\u0456\u0434\u043D\u043E\u0432\u0438\u0442\u0438 \u043B\u043E\u043A\u0430\u043B\u044C\u043D\u0443 \u0447\u0435\u0440\u043D\u0435\u0442\u043A\u0443",
   "No saved drafts": "\u041D\u0435\u043C\u0430\u0454 \u0437\u0431\u0435\u0440\u0435\u0436\u0435\u043D\u0438\u0445 \u0447\u0435\u0440\u043D\u0435\u0442\u043E\u043A",
   "Insert template at selected node\u2026": "\u0412\u0441\u0442\u0430\u0432\u0438\u0442\u0438 \u0448\u0430\u0431\u043B\u043E\u043D \u0443 \u0444\u0430\u0439\u043B\u0456 \u0431\u0456\u043B\u044F \u0432\u0438\u0431\u0440\u0430\u043D\u043E\u0433\u043E \u0432\u0443\u0437\u043B\u0430\u2026",
@@ -1000,6 +1004,8 @@ var uk_default = {
 
 // src/locales/pl.json
 var pl_default = {
+  "This map has no nodes.": "Ta mapa nie ma jeszcze w\u0119z\u0142\xF3w.",
+  "Add first node": "Dodaj pierwszy w\u0119ze\u0142",
   "Recover local draft": "Przywr\xF3\u0107 lokalny szkic",
   "No saved drafts": "Brak zapisanych szkic\xF3w",
   "Insert template at selected node\u2026": "Wstaw szablon przy wybranym w\u0119\u017Ale\u2026",
@@ -1321,6 +1327,8 @@ var pl_default = {
 
 // src/locales/de.json
 var de_default = {
+  "This map has no nodes.": "Diese Karte enth\xE4lt noch keine Knoten.",
+  "Add first node": "Ersten Knoten hinzuf\xFCgen",
   "Recover local draft": "Lokalen Entwurf wiederherstellen",
   "No saved drafts": "Keine gespeicherten Entw\xFCrfe",
   "Insert template at selected node\u2026": "Vorlage am ausgew\xE4hlten Knoten einf\xFCgen\u2026",
@@ -1642,6 +1650,8 @@ var de_default = {
 
 // src/locales/es.json
 var es_default = {
+  "This map has no nodes.": "Este mapa todav\xEDa no tiene nodos.",
+  "Add first node": "A\xF1adir primer nodo",
   "Recover local draft": "Recuperar borrador local",
   "No saved drafts": "No hay borradores guardados",
   "Insert template at selected node\u2026": "Insertar plantilla en el nodo seleccionado\u2026",
@@ -1963,6 +1973,8 @@ var es_default = {
 
 // src/locales/fr.json
 var fr_default = {
+  "This map has no nodes.": "Cette carte ne contient encore aucun n\u0153ud.",
+  "Add first node": "Ajouter le premier n\u0153ud",
   "Recover local draft": "R\xE9cup\xE9rer le brouillon local",
   "No saved drafts": "Aucun brouillon enregistr\xE9",
   "Insert template at selected node\u2026": "Ins\xE9rer un mod\xE8le au niveau du n\u0153ud s\xE9lectionn\xE9\u2026",
@@ -2284,6 +2296,8 @@ var fr_default = {
 
 // src/locales/pt-BR.json
 var pt_BR_default = {
+  "This map has no nodes.": "Este mapa ainda n\xE3o tem n\xF3s.",
+  "Add first node": "Adicionar primeiro n\xF3",
   "Recover local draft": "Recuperar rascunho local",
   "No saved drafts": "Nenhum rascunho salvo",
   "Insert template at selected node\u2026": "Inserir modelo no n\xF3 selecionado\u2026",
@@ -2605,6 +2619,8 @@ var pt_BR_default = {
 
 // src/locales/zh-CN.json
 var zh_CN_default = {
+  "This map has no nodes.": "\u6B64\u5730\u56FE\u8FD8\u6CA1\u6709\u8282\u70B9\u3002",
+  "Add first node": "\u6DFB\u52A0\u7B2C\u4E00\u4E2A\u8282\u70B9",
   "Recover local draft": "\u6062\u590D\u672C\u5730\u8349\u7A3F",
   "No saved drafts": "\u6CA1\u6709\u5DF2\u4FDD\u5B58\u7684\u8349\u7A3F",
   "Insert template at selected node\u2026": "\u5728\u6240\u9009\u8282\u70B9\u5904\u63D2\u5165\u6A21\u677F\u2026",
@@ -2926,6 +2942,8 @@ var zh_CN_default = {
 
 // src/locales/ja.json
 var ja_default = {
+  "This map has no nodes.": "\u3053\u306E\u30DE\u30C3\u30D7\u306B\u306F\u307E\u3060\u30CE\u30FC\u30C9\u304C\u3042\u308A\u307E\u305B\u3093\u3002",
+  "Add first node": "\u6700\u521D\u306E\u30CE\u30FC\u30C9\u3092\u8FFD\u52A0",
   "Recover local draft": "\u30ED\u30FC\u30AB\u30EB\u306E\u4E0B\u66F8\u304D\u3092\u5FA9\u5143",
   "No saved drafts": "\u4FDD\u5B58\u3055\u308C\u305F\u4E0B\u66F8\u304D\u306F\u3042\u308A\u307E\u305B\u3093",
   "Insert template at selected node\u2026": "\u9078\u629E\u3057\u305F\u30CE\u30FC\u30C9\u306E\u4F4D\u7F6E\u306B\u30C6\u30F3\u30D7\u30EC\u30FC\u30C8\u3092\u633F\u5165\u2026",
@@ -3247,6 +3265,8 @@ var ja_default = {
 
 // src/locales/ko.json
 var ko_default = {
+  "This map has no nodes.": "\uC774 \uC9C0\uB3C4\uC5D0\uB294 \uC544\uC9C1 \uB178\uB4DC\uAC00 \uC5C6\uC2B5\uB2C8\uB2E4.",
+  "Add first node": "\uCCAB \uB178\uB4DC \uCD94\uAC00",
   "Recover local draft": "\uB85C\uCEEC \uCD08\uC548 \uBCF5\uC6D0",
   "No saved drafts": "\uC800\uC7A5\uB41C \uCD08\uC548 \uC5C6\uC74C",
   "Insert template at selected node\u2026": "\uC120\uD0DD\uD55C \uB178\uB4DC \uC704\uCE58\uC5D0 \uD15C\uD50C\uB9BF \uC0BD\uC785\u2026",
@@ -3568,6 +3588,8 @@ var ko_default = {
 
 // src/locales/ru.json
 var ru_default = {
+  "This map has no nodes.": "\u041D\u0430 \u044D\u0442\u043E\u0439 \u043A\u0430\u0440\u0442\u0435 \u043F\u043E\u043A\u0430 \u043D\u0435\u0442 \u0443\u0437\u043B\u043E\u0432.",
+  "Add first node": "\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u043F\u0435\u0440\u0432\u044B\u0439 \u0443\u0437\u0435\u043B",
   "Recover local draft": "\u0412\u043E\u0441\u0441\u0442\u0430\u043D\u043E\u0432\u0438\u0442\u044C \u043B\u043E\u043A\u0430\u043B\u044C\u043D\u044B\u0439 \u0447\u0435\u0440\u043D\u043E\u0432\u0438\u043A",
   "No saved drafts": "\u041D\u0435\u0442 \u0441\u043E\u0445\u0440\u0430\u043D\u0451\u043D\u043D\u044B\u0445 \u0447\u0435\u0440\u043D\u043E\u0432\u0438\u043A\u043E\u0432",
   "Insert template at selected node\u2026": "\u0412\u0441\u0442\u0430\u0432\u0438\u0442\u044C \u0448\u0430\u0431\u043B\u043E\u043D \u0432 \u0444\u0430\u0439\u043B\u0435 \u0443 \u0432\u044B\u0431\u0440\u0430\u043D\u043D\u043E\u0433\u043E \u0443\u0437\u043B\u0430\u2026",
@@ -4223,6 +4245,13 @@ function addNode(doc, id, relation, text) {
   }
   return insertAfter(doc, node.endLine, prefix + text);
 }
+function addFirstNode(doc, text) {
+  singleLine(text);
+  assertNodeLine("- ", text);
+  if (!doc.source) return "- " + text;
+  const separator = /[\r\n]$/.test(doc.source) ? "" : doc.eol;
+  return doc.source + separator + "- " + text;
+}
 function addParent(doc, id, text) {
   singleLine(text);
   const node = required(doc, id);
@@ -4633,7 +4662,7 @@ var HOTKEY_DEFINITIONS = [
   }, defaults: ["Mod+Tab"] },
   { id: "add-sibling-before", get label() {
     return t("Add sibling above");
-  }, defaults: [] },
+  }, defaults: ["Shift+Enter"] },
   { id: "add-sibling", get label() {
     return t("Add sibling node");
   }, defaults: ["Enter"] },
@@ -5242,6 +5271,11 @@ var InlineEditor = class {
       return true;
     }
     if (event.key !== "Enter" || event.target?.closest("button")) return false;
+    if (event.shiftKey && this.options.createAbove?.(event)) {
+      event.preventDefault();
+      event.stopPropagation();
+      return true;
+    }
     event.preventDefault();
     event.stopPropagation();
     if (!event.repeat && !event.shiftKey && !event.altKey) void this.submit();
@@ -5530,6 +5564,12 @@ var MapSurface = class {
   isEditing() {
     return !!this.editing;
   }
+  async saveForCreation() {
+    const editing = this.editing;
+    if (!editing) return true;
+    await editing.editor.submit();
+    return !this.editing;
+  }
   focusEditor() {
     this.editing?.editor.focus();
   }
@@ -5556,13 +5596,18 @@ var MapSurface = class {
         this.finishEdit();
       },
       resize: () => this.scheduleLayout(true),
-      mount
+      mount,
+      createAbove: (event) => {
+        if (resolveHotkey(event, this.options.getHotkeys?.()) !== "add-sibling-before") return false;
+        if (!event.repeat) this.options.onAction("add-sibling-before", id);
+        return true;
+      }
     });
     this.editing = { id, editor, original, state };
     this.doc = draft ?? original;
     this.reveal(id);
-    this.followEditorViewport();
     editor.focus();
+    this.followEditorViewport();
     editor.input.setSelectionRange(editor.input.value.length, editor.input.value.length);
   }
   finishEdit(selected) {
@@ -5854,7 +5899,13 @@ var MapSurface = class {
     if (!this.visible.length) {
       const empty = this.container.ownerDocument.createElement("div");
       empty.className = "tvm-empty";
-      empty.textContent = t("This map has no nodes. Open the source and add a heading or bullet to begin.");
+      empty.textContent = t("This map has no nodes.");
+      const create = this.container.ownerDocument.createElement("button");
+      create.type = "button";
+      create.className = "tvm-create-first";
+      create.textContent = t("Add first node");
+      create.onclick = () => this.options.onAction("add-sibling", null);
+      empty.append(" ", create);
       this.nodeLayer.append(empty);
     }
     this.updateActiveDescendant();
@@ -6099,7 +6150,7 @@ var MapSurface = class {
     return { width: this.viewport.clientWidth || rect.width || 800, height: this.viewport.clientHeight || rect.height || 600 };
   }
   updateHandles(viewportRect) {
-    const id = !this.editing && this.selection.size === 1 && !this.selectionMode ? this.state.selected : null;
+    const id = this.editing?.id ?? (this.selection.size === 1 && !this.selectionMode ? this.state.selected : null);
     const pos = id ? this.positions.get(id) : void 0, c = this.state.camera;
     const geometry = viewportRect && pos ? { viewport: viewportRect, node: {
       left: viewportRect.left + pos.x * c.scale + c.x,
@@ -6244,7 +6295,7 @@ var MapSurface = class {
     return element?.closest?.(".tvm-node")?.dataset.nodeId ?? null;
   }
   click(event) {
-    if (event.target.closest(".tvm-create-handles")) return;
+    if (event.target.closest(".tvm-create-handles, .tvm-create-first")) return;
     if (this.editing) {
       if (Date.now() < this.suppressClickUntil) {
         event.preventDefault();
@@ -6423,7 +6474,7 @@ var MapSurface = class {
     }
     const navigation = ["parent", "child", "previous", "next", "first", "last"].includes(action);
     if (!navigation) {
-      if (!id && action !== "undo" && action !== "redo" && action !== "paste") return false;
+      if (!id && action !== "undo" && action !== "redo" && action !== "paste" && (this.doc.nodes.length || action !== "add-sibling")) return false;
       this.options.onAction(action, id);
       return true;
     }
@@ -6475,7 +6526,7 @@ var MapSurface = class {
     this.applyCamera(true);
   }
   pointerDown(event) {
-    if (event.target.closest(".tvm-create-handles")) return;
+    if (event.target.closest(".tvm-create-handles, .tvm-create-first")) return;
     if (this.editing && event.target.closest(".tvm-inline-editor")) return;
     if (this.editing) event.preventDefault();
     if (this.menu?.contains(event.target)) return;
@@ -8156,6 +8207,7 @@ function hasLargeVisibleTree(doc, state) {
 var DEFAULT_SETTINGS = { patternMode: "glob", mapPatterns: "*.mindmap.md\n\u{1F3AF}*.md", language: "auto", nodeEditor: "native", autoOpen: false, autoRestoreLargeMaps: true, hideFrozen: true, queueTaskMarker: true, queueStepTag: true, collapseOnLeft: false, hotkeys: {}, widthMode: "fixed" };
 var widthModes = () => [["fixed", t("Fixed width")], ["content", t("Fit node content")], ["column", t("Fit visible column")]];
 var message = (error) => error instanceof Error ? error.message : String(error);
+var createsNode = (action) => action === "add-child" || action === "add-parent" || action === "add-sibling" || action === "add-sibling-before";
 var button = (parent, label2, action, title = label2) => {
   const element = parent.createEl("button", { text: label2, attr: { title, "aria-label": title, type: "button" } });
   element.onclick = action;
@@ -8263,6 +8315,7 @@ var TraceViewMindmap = class extends import_obsidian5.Plugin {
     const commands = [
       ["add-child", t("Add child node"), "add-child"],
       ["add-sibling", t("Add sibling node"), "add-sibling"],
+      ["add-sibling-before", t("Add sibling above"), "add-sibling-before"],
       ["add-parent", t("Add parent node"), "add-parent"],
       ["insert-template", t("Insert template at selected node\u2026"), "insert-template"],
       ["copy-node-link", t("Copy link to node"), "copy-node-link"],
@@ -8421,10 +8474,11 @@ var TraceViewMindmap = class extends import_obsidian5.Plugin {
           await this.openMap(file);
           const view = this.app.workspace.getActiveViewOfType(MapView);
           const node = view?.doc?.byId.get(draft.nodeId);
-          if (view?.file !== file || !node || node.text !== draft.original || view.surface?.isEditing() || this.liveDrafts.has(draft.key))
+          const matches = draft.nodeId ? node?.text === draft.original : view?.doc?.nodes.length === 0;
+          if (view?.file !== file || !matches || view.surface?.isEditing() || this.liveDrafts.has(draft.key))
             throw new Error(t("The note changed. Open it again at the current line."));
           modal.close();
-          await view.action(draft.action, node.id, draft);
+          await view.action(draft.action, node?.id ?? null, draft);
         })().catch((error) => new import_obsidian5.Notice(message(error)));
       });
       button(modal.contentEl, t("Discard changes"), () => new ConfirmDialog(this.app, t("Discard changes"), draft.text, async () => {
@@ -9102,10 +9156,18 @@ var MapView = class extends import_obsidian5.EditableFileView {
     if (!doc) return;
     if (this.changing || this.cutting) return;
     if (this.surface?.isEditing()) {
-      this.surface.focusEditor();
-      return;
+      if (!createsNode(action)) {
+        this.surface.focusEditor();
+        return;
+      }
+      if (!await this.surface.saveForCreation() || this.path !== path) return;
+      return this.action(action, this.selected());
     }
     try {
+      if (!id && !doc.nodes.length && action === "add-sibling") {
+        await this.beginNodeEdit(doc, action, void 0, recovered);
+        return;
+      }
       if (action === "undo" || action === "redo") {
         const next2 = this.history.peek(action, doc.source);
         if (next2 !== null) await this.apply(doc, next2, action);
@@ -9216,61 +9278,8 @@ var MapView = class extends import_obsidian5.EditableFileView {
         }
         return;
       }
-      if (action === "edit" || action === "add-child" || action === "add-sibling" || action === "add-sibling-before" || action === "add-parent") {
-        if (this.plugin.settings.nodeEditor === "native") {
-          try {
-            this.nativeConstructor = await prepareNativeEditor(this.app);
-          } catch (error) {
-            this.nativeConstructor = void 0;
-            console.warn("TraceView Mindmap: preparing native editor failed", error);
-          }
-          if (this.path !== path || this.doc !== doc || this.surface?.isEditing()) return;
-        }
-        const transformOn = (base, selected, text) => action === "edit" ? editNode(base, selected, text) : action === "add-parent" ? addParent(base, selected, text) : addNode(base, selected, action === "add-child" ? "child" : action === "add-sibling-before" ? "before" : "sibling", text);
-        const transform = (text) => transformOn(doc, id, text);
-        const placeholder = `tvm-draft-${Date.now()}-${Math.random().toString(36).slice(2)}`;
-        const draft = action === "edit" ? doc : parseMap(transform(placeholder), doc);
-        const draftId = action === "edit" ? id : draft.nodes.find((candidate) => candidate.text === placeholder).id;
-        const initial = action === "edit" ? node.text : "";
-        const storage = this.plugin.drafts;
-        const record = storage ? recovered ?? { key: crypto.randomUUID(), path, nodeId: id, original: node.text, action, text: initial } : void 0;
-        this.surface?.beginEdit(draftId, initial, async (text) => {
-          if (this.path !== path) throw new Error(t("The note was renamed. Copy the draft and reopen the editor."));
-          await this.reload();
-          const base = this.doc;
-          if (!base || base !== doc && !onlyAddedBlockIds(doc, base)) throw new Error(t("The map changed externally. Your draft is preserved. Copy it before editing again."));
-          const selected = base.nodes.find((candidate) => candidate.line === node.line)?.id;
-          if (!selected) throw new Error(t("The node no longer exists. Your draft is preserved."));
-          await this.apply(base, transformOn(base, selected, text));
-          return action === "edit" ? selected : action === "add-parent" ? this.doc?.nodes.find((candidate) => candidate.line === node.line)?.id : this.doc?.nodes.find((candidate) => !base.byId.has(candidate.id))?.id;
-        }, (input, tools, inline) => {
-          const driver = this.mountEditor(input, tools, path, inline);
-          if (storage && record) {
-            this.activeDraftKey = record.key;
-            this.plugin.liveDrafts.add(record.key);
-            if (recovered) {
-              input.value = recovered.text;
-              input.dispatchEvent(new input.ownerDocument.defaultView.Event("input", { bubbles: true }));
-            }
-            let warned = false;
-            input.addEventListener("input", () => {
-              try {
-                if (input.value === initial) storage.remove(record.key);
-                else storage.save({ ...record, text: input.value });
-              } catch (error) {
-                if (!warned) new import_obsidian5.Notice(message(error));
-                warned = true;
-              }
-            });
-          }
-          return driver;
-        }, draft, record && (() => {
-          this.plugin.liveDrafts.delete(record.key);
-          this.activeDraftKey = void 0;
-          storage.remove(record.key);
-          this.refreshDraftButton();
-        }));
-        if (recovered) this.refreshDraftButton();
+      if (action === "edit" || createsNode(action)) {
+        await this.beginNodeEdit(doc, action, node, recovered);
         return;
       }
       if (action === "delete") {
@@ -9286,6 +9295,65 @@ var MapView = class extends import_obsidian5.EditableFileView {
     } catch (error) {
       new import_obsidian5.Notice(message(error), 8e3);
     }
+  }
+  async beginNodeEdit(doc, action, node, recovered) {
+    const path = this.path;
+    if (this.plugin.settings.nodeEditor === "native") {
+      try {
+        this.nativeConstructor = await prepareNativeEditor(this.app);
+      } catch (error) {
+        this.nativeConstructor = void 0;
+        console.warn("TraceView Mindmap: preparing native editor failed", error);
+      }
+      if (this.path !== path || this.doc !== doc || this.surface?.isEditing()) return;
+    }
+    const transformOn = (base, selected, text) => !node ? addFirstNode(base, text) : action === "edit" ? editNode(base, selected, text) : action === "add-parent" ? addParent(base, selected, text) : addNode(base, selected, action === "add-child" ? "child" : action === "add-sibling-before" ? "before" : "sibling", text);
+    const id = node?.id ?? "";
+    const transform = (text) => transformOn(doc, id, text);
+    const placeholder = `tvm-draft-${Date.now()}-${Math.random().toString(36).slice(2)}`;
+    const draft = action === "edit" ? doc : parseMap(transform(placeholder), doc);
+    const draftNode = action === "edit" ? node : draft.nodes.find((candidate) => candidate.text === placeholder);
+    if (!draftNode) throw new Error(t("The note changed. Open it again at the current line."));
+    const initial = action === "edit" ? node.text : "";
+    const storage = this.plugin.drafts;
+    const record = storage ? recovered ?? { key: crypto.randomUUID(), path, nodeId: id, original: node?.text ?? "", action, text: initial } : void 0;
+    this.surface?.beginEdit(draftNode.id, initial, async (text) => {
+      if (this.path !== path) throw new Error(t("The note was renamed. Copy the draft and reopen the editor."));
+      await this.reload();
+      const base = this.doc;
+      if (!base || base !== doc && !onlyAddedBlockIds(doc, base)) throw new Error(t("The map changed externally. Your draft is preserved. Copy it before editing again."));
+      const selected = node ? base.nodes.find((candidate) => candidate.line === node.line)?.id : "";
+      if (selected === void 0) throw new Error(t("The node no longer exists. Your draft is preserved."));
+      await this.apply(base, transformOn(base, selected, text));
+      return this.doc?.nodes.find((candidate) => candidate.line === draftNode.line)?.id;
+    }, (input, tools, inline) => {
+      const driver = this.mountEditor(input, tools, path, inline);
+      if (storage && record) {
+        this.activeDraftKey = record.key;
+        this.plugin.liveDrafts.add(record.key);
+        if (recovered) {
+          input.value = recovered.text;
+          input.dispatchEvent(new input.ownerDocument.defaultView.Event("input", { bubbles: true }));
+        }
+        let warned = false;
+        input.addEventListener("input", () => {
+          try {
+            if (input.value === initial) storage.remove(record.key);
+            else storage.save({ ...record, text: input.value });
+          } catch (error) {
+            if (!warned) new import_obsidian5.Notice(message(error));
+            warned = true;
+          }
+        });
+      }
+      return driver;
+    }, draft, record && (() => {
+      this.plugin.liveDrafts.delete(record.key);
+      this.activeDraftKey = void 0;
+      storage.remove(record.key);
+      this.refreshDraftButton();
+    }));
+    if (recovered) this.refreshDraftButton();
   }
   menu(anchor2) {
     const menu = new import_obsidian5.Menu();

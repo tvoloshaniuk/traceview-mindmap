@@ -1,4 +1,6 @@
 {
+  "This map has no nodes.": "Diese Karte enthält noch keine Knoten.",
+  "Add first node": "Ersten Knoten hinzufügen",
   "Recover local draft": "Lokalen Entwurf wiederherstellen",
   "No saved drafts": "Keine gespeicherten Entwürfe",
   "Insert template at selected node…": "Vorlage am ausgewählten Knoten einfügen…",

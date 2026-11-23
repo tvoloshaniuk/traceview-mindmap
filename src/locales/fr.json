@@ -1,4 +1,6 @@
 {
+  "This map has no nodes.": "Cette carte ne contient encore aucun nœud.",
+  "Add first node": "Ajouter le premier nœud",
   "Recover local draft": "Récupérer le brouillon local",
   "No saved drafts": "Aucun brouillon enregistré",
   "Insert template at selected node…": "Insérer un modèle au niveau du nœud sélectionné…",

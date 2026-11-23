@@ -181,6 +181,12 @@ export class MapSurface {
   }
 
   isEditing(): boolean { return !!this.editing; }
+  async saveForCreation(): Promise<boolean> {
+    const editing = this.editing;
+    if (!editing) return true;
+    await editing.editor.submit();
+    return !this.editing;
+  }
   focusEditor(): void { this.editing?.editor.focus(); }
   invalidateMarkdown(): void {
     this.markdownQueue = [];
@@ -194,11 +200,16 @@ export class MapSurface {
     const editor = new InlineEditor(this.container.ownerDocument, initial, {
       save: async text => { const selected = await save(text); onFinish?.(); if (this.editing?.editor === editor) this.finishEdit(selected); },
       cancel: () => { onFinish?.(); this.finishEdit(); }, resize: () => this.scheduleLayout(true), mount,
+      createAbove: event => {
+        if (resolveHotkey(event, this.options.getHotkeys?.()) !== 'add-sibling-before') return false;
+        if (!event.repeat) this.options.onAction('add-sibling-before', id);
+        return true;
+      },
     });
     this.editing = { id, editor, original, state };
     this.doc = draft ?? original;
     this.reveal(id);
-    this.followEditorViewport(); editor.focus();
+    editor.focus(); this.followEditorViewport();
     editor.input.setSelectionRange(editor.input.value.length, editor.input.value.length);
   }
   private finishEdit(selected?: string): void {
@@ -477,7 +488,11 @@ export class MapSurface {
     if (!this.visible.length) {
       const empty = this.container.ownerDocument.createElement('div');
       empty.className = 'tvm-empty';
-      empty.textContent = t("This map has no nodes. Open the source and add a heading or bullet to begin.");
+      empty.textContent = t("This map has no nodes.");
+      const create = this.container.ownerDocument.createElement('button');
+      create.type = 'button'; create.className = 'tvm-create-first'; create.textContent = t("Add first node");
+      create.onclick = () => this.options.onAction('add-sibling', null);
+      empty.append(' ', create);
       this.nodeLayer.append(empty);
     }
     this.updateActiveDescendant();
@@ -742,7 +757,7 @@ export class MapSurface {
   }
 
   private updateHandles(viewportRect?: DOMRect): void {
-    const id = !this.editing && this.selection.size === 1 && !this.selectionMode ? this.state.selected : null;
+    const id = this.editing?.id ?? (this.selection.size === 1 && !this.selectionMode ? this.state.selected : null);
     const pos = id ? this.positions.get(id) : undefined, c = this.state.camera;
     const geometry = viewportRect && pos ? { viewport: viewportRect, node: {
       left: viewportRect.left + pos.x * c.scale + c.x, top: viewportRect.top + pos.y * c.scale + c.y,
@@ -890,7 +905,7 @@ export class MapSurface {
   }
 
   private click(event: MouseEvent): void {
-    if ((event.target as Element).closest('.tvm-create-handles')) return;
+    if ((event.target as Element).closest('.tvm-create-handles, .tvm-create-first')) return;
     if (this.editing) {
       if (Date.now() < this.suppressClickUntil) { event.preventDefault(); return; }
       const target = event.target as Element;
@@ -1014,7 +1029,7 @@ export class MapSurface {
     }
     const navigation = ['parent', 'child', 'previous', 'next', 'first', 'last'].includes(action);
     if (!navigation) {
-      if (!id && action !== 'undo' && action !== 'redo' && action !== 'paste') return false;
+      if (!id && action !== 'undo' && action !== 'redo' && action !== 'paste' && (this.doc.nodes.length || action !== 'add-sibling')) return false;
       this.options.onAction(action as NodeAction, id);
       return true;
     }
@@ -1065,7 +1080,7 @@ export class MapSurface {
   }
 
   private pointerDown(event: PointerEvent): void {
-    if ((event.target as Element).closest('.tvm-create-handles')) return;
+    if ((event.target as Element).closest('.tvm-create-handles, .tvm-create-first')) return;
     if (this.editing && (event.target as Element).closest('.tvm-inline-editor')) return;
     if (this.editing) event.preventDefault();
     if (this.menu?.contains(event.target as Node)) return;

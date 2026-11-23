@@ -1,4 +1,6 @@
 {
+  "This map has no nodes.": "이 지도에는 아직 노드가 없습니다.",
+  "Add first node": "첫 노드 추가",
   "Recover local draft": "로컬 초안 복원",
   "No saved drafts": "저장된 초안 없음",
   "Insert template at selected node…": "선택한 노드 위치에 템플릿 삽입…",

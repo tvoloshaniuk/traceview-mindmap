@@ -298,6 +298,14 @@ export function addNode(doc: MapDocument, id: string, relation: 'child' | 'sibli
   return insertAfter(doc, node.endLine, prefix + text);
 }
 
+export function addFirstNode(doc: MapDocument, text: string): string {
+  singleLine(text);
+  assertNodeLine('- ', text);
+  if (!doc.source) return '- ' + text;
+  const separator = /[\r\n]$/.test(doc.source) ? '' : doc.eol;
+  return doc.source + separator + '- ' + text;
+}
+
 export function addParent(doc: MapDocument, id: string, text: string): string {
   singleLine(text);
   const node = required(doc, id);
