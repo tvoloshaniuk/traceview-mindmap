@@ -1284,6 +1284,7 @@ export class MapSurface {
       { label: t("Make child of previous node"), action: 'indent' },
       { label: t("Move up one level"), action: 'outdent' },
       { label: t("Open source Markdown"), action: 'source' },
+      { label: t("Insert template at selected node…"), action: 'insert-template' },
       { label: t("Delete branch"), action: 'delete' },
     ];
     for (const entry of entries) {
@@ -1293,7 +1294,7 @@ export class MapSurface {
       button.setAttribute('role', 'menuitem');
       const label = this.container.ownerDocument.createElement('span');
       label.textContent = this.selection.size > 1 && ['delete', 'copy', 'cut'].includes(entry.action) ? t(entry.action === "copy" ? "Copy selection" : entry.action === "cut" ? "Cut selection" : "Delete selection") : entry.label;
-      if (this.selection.size > 1 && ['edit', 'add-child', 'add-sibling', 'add-parent', 'paste', 'paste-after', 'move-up', 'move-down', 'indent', 'outdent'].includes(entry.action)) button.disabled = true;
+      if (this.selection.size > 1 && ['edit', 'add-child', 'add-sibling', 'add-parent', 'insert-template', 'paste', 'paste-after', 'move-up', 'move-down', 'indent', 'outdent'].includes(entry.action)) button.disabled = true;
       button.append(label);
       const binding = this.options.getHotkeys?.()[entry.action] ?? DEFAULT_HOTKEYS[entry.action];
       if (binding) {

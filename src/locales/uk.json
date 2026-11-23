@@ -1,4 +1,6 @@
 {
+  "Insert template at selected node…": "Вставити шаблон у файлі біля вибраного вузла…",
+  "Enable Templater or Templates and configure a template folder.": "Увімкни Templater або Templates і вкажи папку шаблонів.",
   "A node with its own Markdown line is required.": "Потрібен вузол із власним Markdown-рядком.",
   "This block ID is duplicated. Fix it in the source Markdown before copying the address.": "Цей block ID повторюється у карті. Усунь дубль у вихідному Markdown перед копіюванням адреси.",
   "A unique block ID is required.": "Потрібен унікальний block ID.",

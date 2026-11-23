@@ -1,4 +1,6 @@
 {
+  "Insert template at selected node…": "Insérer un modèle au niveau du nœud sélectionné…",
+  "Enable Templater or Templates and configure a template folder.": "Activez Templater ou Templates et configurez un dossier de modèles.",
   "A node with its own Markdown line is required.": "Un nœud avec sa propre ligne Markdown est requis.",
   "This block ID is duplicated. Fix it in the source Markdown before copying the address.": "ID de bloc dupliqué. Corrigez-le dans le Markdown avant de copier l’adresse.",
   "A unique block ID is required.": "Un ID de bloc unique est requis.",

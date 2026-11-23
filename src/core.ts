@@ -21,6 +21,23 @@ function sourceLines(source: string): LineInfo[] {
   return result;
 }
 
+/** The Markdown editor returns LF. Retain the file's original separators around a template edit. */
+export function restoreTemplateLineEndings(doc: MapDocument, saved: string): string {
+  if (!doc.source.includes('\r') || saved === doc.source) return saved;
+  const before = sourceLines(doc.source), after = saved.split(/\r\n|\n|\r/);
+  let first = 0, oldEnd = before.length, newEnd = after.length;
+  while (first < oldEnd && first < newEnd && before[first].text === after[first]) first++;
+  while (oldEnd > first && newEnd > first && before[oldEnd - 1].text === after[newEnd - 1]) { oldEnd--; newEnd--; }
+  const separator = (i: number) => doc.source.slice(before[i].end, before[i].after) || doc.eol;
+  const insertedEol = separator(Math.max(0, first - 1));
+  return after.map((text, i) => {
+    if (i === after.length - 1) return text;
+    if (i < first) return text + separator(i);
+    if (i >= newEnd) return text + separator(oldEnd + i - newEnd);
+    return text + insertedEol;
+  }).join('');
+}
+
 function width(indent: string): number {
   let columns = 0;
   for (const ch of indent) columns += ch === '\t' ? 4 - columns % 4 : 1;

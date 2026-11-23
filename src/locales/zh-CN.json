@@ -1,4 +1,6 @@
 {
+  "Insert template at selected node…": "在所选节点处插入模板…",
+  "Enable Templater or Templates and configure a template folder.": "请启用 Templater 或 Templates 并设置模板文件夹。",
   "A node with its own Markdown line is required.": "需要具有独立 Markdown 行的节点。",
   "This block ID is duplicated. Fix it in the source Markdown before copying the address.": "块 ID 重复。请先在 Markdown 中修正，再复制地址。",
   "A unique block ID is required.": "需要唯一的块 ID。",

@@ -358,6 +358,8 @@ module.exports = __toCommonJS(main_exports);
 
 // src/locales/en.json
 var en_default = {
+  "Insert template at selected node\u2026": "Insert template at selected node\u2026",
+  "Enable Templater or Templates and configure a template folder.": "Enable Templater or Templates and configure a template folder.",
   "A node with its own Markdown line is required.": "A node with its own Markdown line is required.",
   "This block ID is duplicated. Fix it in the source Markdown before copying the address.": "This block ID is duplicated. Fix it in the source Markdown before copying the address.",
   "A unique block ID is required.": "A unique block ID is required.",
@@ -675,6 +677,8 @@ var en_default = {
 
 // src/locales/uk.json
 var uk_default = {
+  "Insert template at selected node\u2026": "\u0412\u0441\u0442\u0430\u0432\u0438\u0442\u0438 \u0448\u0430\u0431\u043B\u043E\u043D \u0443 \u0444\u0430\u0439\u043B\u0456 \u0431\u0456\u043B\u044F \u0432\u0438\u0431\u0440\u0430\u043D\u043E\u0433\u043E \u0432\u0443\u0437\u043B\u0430\u2026",
+  "Enable Templater or Templates and configure a template folder.": "\u0423\u0432\u0456\u043C\u043A\u043D\u0438 Templater \u0430\u0431\u043E Templates \u0456 \u0432\u043A\u0430\u0436\u0438 \u043F\u0430\u043F\u043A\u0443 \u0448\u0430\u0431\u043B\u043E\u043D\u0456\u0432.",
   "A node with its own Markdown line is required.": "\u041F\u043E\u0442\u0440\u0456\u0431\u0435\u043D \u0432\u0443\u0437\u043E\u043B \u0456\u0437 \u0432\u043B\u0430\u0441\u043D\u0438\u043C Markdown-\u0440\u044F\u0434\u043A\u043E\u043C.",
   "This block ID is duplicated. Fix it in the source Markdown before copying the address.": "\u0426\u0435\u0439 block ID \u043F\u043E\u0432\u0442\u043E\u0440\u044E\u0454\u0442\u044C\u0441\u044F \u0443 \u043A\u0430\u0440\u0442\u0456. \u0423\u0441\u0443\u043D\u044C \u0434\u0443\u0431\u043B\u044C \u0443 \u0432\u0438\u0445\u0456\u0434\u043D\u043E\u043C\u0443 Markdown \u043F\u0435\u0440\u0435\u0434 \u043A\u043E\u043F\u0456\u044E\u0432\u0430\u043D\u043D\u044F\u043C \u0430\u0434\u0440\u0435\u0441\u0438.",
   "A unique block ID is required.": "\u041F\u043E\u0442\u0440\u0456\u0431\u0435\u043D \u0443\u043D\u0456\u043A\u0430\u043B\u044C\u043D\u0438\u0439 block ID.",
@@ -992,6 +996,8 @@ var uk_default = {
 
 // src/locales/pl.json
 var pl_default = {
+  "Insert template at selected node\u2026": "Wstaw szablon przy wybranym w\u0119\u017Ale\u2026",
+  "Enable Templater or Templates and configure a template folder.": "W\u0142\u0105cz Templater lub Templates i wska\u017C folder szablon\xF3w.",
   "A node with its own Markdown line is required.": "Wymagany jest w\u0119ze\u0142 z w\u0142asnym wierszem Markdown.",
   "This block ID is duplicated. Fix it in the source Markdown before copying the address.": "Powielone ID bloku. Popraw je w Markdown przed skopiowaniem adresu.",
   "A unique block ID is required.": "Wymagane jest unikalne ID bloku.",
@@ -1309,6 +1315,8 @@ var pl_default = {
 
 // src/locales/de.json
 var de_default = {
+  "Insert template at selected node\u2026": "Vorlage am ausgew\xE4hlten Knoten einf\xFCgen\u2026",
+  "Enable Templater or Templates and configure a template folder.": "Aktiviere Templater oder Templates und lege einen Vorlagenordner fest.",
   "A node with its own Markdown line is required.": "Ein Knoten mit eigener Markdown-Zeile ist erforderlich.",
   "This block ID is duplicated. Fix it in the source Markdown before copying the address.": "Doppelte Block-ID. Vor dem Kopieren im Markdown korrigieren.",
   "A unique block ID is required.": "Eine eindeutige Block-ID ist erforderlich.",
@@ -1626,6 +1634,8 @@ var de_default = {
 
 // src/locales/es.json
 var es_default = {
+  "Insert template at selected node\u2026": "Insertar plantilla en el nodo seleccionado\u2026",
+  "Enable Templater or Templates and configure a template folder.": "Activa Templater o Templates y configura una carpeta de plantillas.",
   "A node with its own Markdown line is required.": "Se necesita un nodo con su propia l\xEDnea Markdown.",
   "This block ID is duplicated. Fix it in the source Markdown before copying the address.": "ID de bloque duplicado. Corr\xEDgelo en Markdown antes de copiar la direcci\xF3n.",
   "A unique block ID is required.": "Se necesita un ID de bloque \xFAnico.",
@@ -1943,6 +1953,8 @@ var es_default = {
 
 // src/locales/fr.json
 var fr_default = {
+  "Insert template at selected node\u2026": "Ins\xE9rer un mod\xE8le au niveau du n\u0153ud s\xE9lectionn\xE9\u2026",
+  "Enable Templater or Templates and configure a template folder.": "Activez Templater ou Templates et configurez un dossier de mod\xE8les.",
   "A node with its own Markdown line is required.": "Un n\u0153ud avec sa propre ligne Markdown est requis.",
   "This block ID is duplicated. Fix it in the source Markdown before copying the address.": "ID de bloc dupliqu\xE9. Corrigez-le dans le Markdown avant de copier l\u2019adresse.",
   "A unique block ID is required.": "Un ID de bloc unique est requis.",
@@ -2260,6 +2272,8 @@ var fr_default = {
 
 // src/locales/pt-BR.json
 var pt_BR_default = {
+  "Insert template at selected node\u2026": "Inserir modelo no n\xF3 selecionado\u2026",
+  "Enable Templater or Templates and configure a template folder.": "Ative o Templater ou Templates e configure uma pasta de modelos.",
   "A node with its own Markdown line is required.": "\xC9 necess\xE1rio um n\xF3 com sua pr\xF3pria linha Markdown.",
   "This block ID is duplicated. Fix it in the source Markdown before copying the address.": "ID de bloco duplicado. Corrija no Markdown antes de copiar o endere\xE7o.",
   "A unique block ID is required.": "\xC9 necess\xE1rio um ID de bloco \xFAnico.",
@@ -2577,6 +2591,8 @@ var pt_BR_default = {
 
 // src/locales/zh-CN.json
 var zh_CN_default = {
+  "Insert template at selected node\u2026": "\u5728\u6240\u9009\u8282\u70B9\u5904\u63D2\u5165\u6A21\u677F\u2026",
+  "Enable Templater or Templates and configure a template folder.": "\u8BF7\u542F\u7528 Templater \u6216 Templates \u5E76\u8BBE\u7F6E\u6A21\u677F\u6587\u4EF6\u5939\u3002",
   "A node with its own Markdown line is required.": "\u9700\u8981\u5177\u6709\u72EC\u7ACB Markdown \u884C\u7684\u8282\u70B9\u3002",
   "This block ID is duplicated. Fix it in the source Markdown before copying the address.": "\u5757 ID \u91CD\u590D\u3002\u8BF7\u5148\u5728 Markdown \u4E2D\u4FEE\u6B63\uFF0C\u518D\u590D\u5236\u5730\u5740\u3002",
   "A unique block ID is required.": "\u9700\u8981\u552F\u4E00\u7684\u5757 ID\u3002",
@@ -2894,6 +2910,8 @@ var zh_CN_default = {
 
 // src/locales/ja.json
 var ja_default = {
+  "Insert template at selected node\u2026": "\u9078\u629E\u3057\u305F\u30CE\u30FC\u30C9\u306E\u4F4D\u7F6E\u306B\u30C6\u30F3\u30D7\u30EC\u30FC\u30C8\u3092\u633F\u5165\u2026",
+  "Enable Templater or Templates and configure a template folder.": "Templater \u307E\u305F\u306F Templates \u3092\u6709\u52B9\u306B\u3057\u3001\u30C6\u30F3\u30D7\u30EC\u30FC\u30C8\u30D5\u30A9\u30EB\u30C0\u3092\u8A2D\u5B9A\u3057\u3066\u304F\u3060\u3055\u3044\u3002",
   "A node with its own Markdown line is required.": "\u72EC\u7ACB\u3057\u305F Markdown \u884C\u3092\u6301\u3064\u30CE\u30FC\u30C9\u304C\u5FC5\u8981\u3067\u3059\u3002",
   "This block ID is duplicated. Fix it in the source Markdown before copying the address.": "\u30D6\u30ED\u30C3\u30AF ID \u304C\u91CD\u8907\u3057\u3066\u3044\u307E\u3059\u3002Markdown \u3067\u4FEE\u6B63\u3057\u3066\u304B\u3089\u30A2\u30C9\u30EC\u30B9\u3092\u30B3\u30D4\u30FC\u3057\u3066\u304F\u3060\u3055\u3044\u3002",
   "A unique block ID is required.": "\u4E00\u610F\u306E\u30D6\u30ED\u30C3\u30AF ID \u304C\u5FC5\u8981\u3067\u3059\u3002",
@@ -3211,6 +3229,8 @@ var ja_default = {
 
 // src/locales/ko.json
 var ko_default = {
+  "Insert template at selected node\u2026": "\uC120\uD0DD\uD55C \uB178\uB4DC \uC704\uCE58\uC5D0 \uD15C\uD50C\uB9BF \uC0BD\uC785\u2026",
+  "Enable Templater or Templates and configure a template folder.": "Templater \uB610\uB294 Templates\uB97C \uD65C\uC131\uD654\uD558\uACE0 \uD15C\uD50C\uB9BF \uD3F4\uB354\uB97C \uC9C0\uC815\uD558\uC138\uC694.",
   "A node with its own Markdown line is required.": "\uB3C5\uB9BD\uB41C Markdown \uC904\uC774 \uC788\uB294 \uB178\uB4DC\uAC00 \uD544\uC694\uD569\uB2C8\uB2E4.",
   "This block ID is duplicated. Fix it in the source Markdown before copying the address.": "\uBE14\uB85D ID\uAC00 \uC911\uBCF5\uB429\uB2C8\uB2E4. Markdown\uC5D0\uC11C \uC218\uC815\uD55C \uD6C4 \uC8FC\uC18C\uB97C \uBCF5\uC0AC\uD558\uC138\uC694.",
   "A unique block ID is required.": "\uACE0\uC720\uD55C \uBE14\uB85D ID\uAC00 \uD544\uC694\uD569\uB2C8\uB2E4.",
@@ -3528,6 +3548,8 @@ var ko_default = {
 
 // src/locales/ru.json
 var ru_default = {
+  "Insert template at selected node\u2026": "\u0412\u0441\u0442\u0430\u0432\u0438\u0442\u044C \u0448\u0430\u0431\u043B\u043E\u043D \u0432 \u0444\u0430\u0439\u043B\u0435 \u0443 \u0432\u044B\u0431\u0440\u0430\u043D\u043D\u043E\u0433\u043E \u0443\u0437\u043B\u0430\u2026",
+  "Enable Templater or Templates and configure a template folder.": "\u0412\u043A\u043B\u044E\u0447\u0438\u0442\u0435 Templater \u0438\u043B\u0438 Templates \u0438 \u0443\u043A\u0430\u0436\u0438\u0442\u0435 \u043F\u0430\u043F\u043A\u0443 \u0448\u0430\u0431\u043B\u043E\u043D\u043E\u0432.",
   "A node with its own Markdown line is required.": "\u041D\u0443\u0436\u0435\u043D \u0443\u0437\u0435\u043B \u0441 \u0441\u043E\u0431\u0441\u0442\u0432\u0435\u043D\u043D\u043E\u0439 \u0441\u0442\u0440\u043E\u043A\u043E\u0439 Markdown.",
   "This block ID is duplicated. Fix it in the source Markdown before copying the address.": "\u042D\u0442\u043E\u0442 ID \u0431\u043B\u043E\u043A\u0430 \u043F\u043E\u0432\u0442\u043E\u0440\u044F\u0435\u0442\u0441\u044F. \u0418\u0441\u043F\u0440\u0430\u0432\u044C\u0442\u0435 \u0435\u0433\u043E \u0432 \u0438\u0441\u0445\u043E\u0434\u043D\u043E\u043C Markdown \u043F\u0435\u0440\u0435\u0434 \u043A\u043E\u043F\u0438\u0440\u043E\u0432\u0430\u043D\u0438\u0435\u043C \u0430\u0434\u0440\u0435\u0441\u0430.",
   "A unique block ID is required.": "\u041D\u0443\u0436\u0435\u043D \u0443\u043D\u0438\u043A\u0430\u043B\u044C\u043D\u044B\u0439 ID \u0431\u043B\u043E\u043A\u0430.",
@@ -3883,7 +3905,7 @@ function t(key, values = {}) {
 }
 
 // src/main.ts
-var import_obsidian4 = require("obsidian");
+var import_obsidian5 = require("obsidian");
 
 // src/core.ts
 function sourceLines(source) {
@@ -3897,6 +3919,24 @@ function sourceLines(source) {
   }
   result.push({ start, end: source.length, after: source.length, text: source.slice(start) });
   return result;
+}
+function restoreTemplateLineEndings(doc, saved) {
+  if (!doc.source.includes("\r") || saved === doc.source) return saved;
+  const before = sourceLines(doc.source), after = saved.split(/\r\n|\n|\r/);
+  let first = 0, oldEnd = before.length, newEnd = after.length;
+  while (first < oldEnd && first < newEnd && before[first].text === after[first]) first++;
+  while (oldEnd > first && newEnd > first && before[oldEnd - 1].text === after[newEnd - 1]) {
+    oldEnd--;
+    newEnd--;
+  }
+  const separator = (i) => doc.source.slice(before[i].end, before[i].after) || doc.eol;
+  const insertedEol = separator(Math.max(0, first - 1));
+  return after.map((text, i) => {
+    if (i === after.length - 1) return text;
+    if (i < first) return text + separator(i);
+    if (i >= newEnd) return text + separator(oldEnd + i - newEnd);
+    return text + insertedEol;
+  }).join("");
 }
 function width(indent) {
   let columns = 0;
@@ -4604,6 +4644,9 @@ var HOTKEY_DEFINITIONS = [
   }, defaults: [] },
   { id: "source", get label() {
     return t("Open source Markdown");
+  }, defaults: [] },
+  { id: "insert-template", get label() {
+    return t("Insert template at selected node\u2026");
   }, defaults: [] },
   { id: "parent", get label() {
     return t("Select parent node");
@@ -6671,6 +6714,7 @@ var MapSurface = class {
       { label: t("Make child of previous node"), action: "indent" },
       { label: t("Move up one level"), action: "outdent" },
       { label: t("Open source Markdown"), action: "source" },
+      { label: t("Insert template at selected node\u2026"), action: "insert-template" },
       { label: t("Delete branch"), action: "delete" }
     ];
     for (const entry of entries) {
@@ -6680,7 +6724,7 @@ var MapSurface = class {
       button2.setAttribute("role", "menuitem");
       const label2 = this.container.ownerDocument.createElement("span");
       label2.textContent = this.selection.size > 1 && ["delete", "copy", "cut"].includes(entry.action) ? t(entry.action === "copy" ? "Copy selection" : entry.action === "cut" ? "Cut selection" : "Delete selection") : entry.label;
-      if (this.selection.size > 1 && ["edit", "add-child", "add-sibling", "add-parent", "paste", "paste-after", "move-up", "move-down", "indent", "outdent"].includes(entry.action)) button2.disabled = true;
+      if (this.selection.size > 1 && ["edit", "add-child", "add-sibling", "add-parent", "insert-template", "paste", "paste-after", "move-up", "move-down", "indent", "outdent"].includes(entry.action)) button2.disabled = true;
       button2.append(label2);
       const binding = this.options.getHotkeys?.()[entry.action] ?? DEFAULT_HOTKEYS[entry.action];
       if (binding) {
@@ -7229,6 +7273,49 @@ var InputEditor = class extends import_obsidian2.Editor {
   }
 };
 
+// src/node-templates.ts
+var import_obsidian3 = require("obsidian");
+var NodeTemplatePicker = class extends import_obsidian3.FuzzySuggestModal {
+  constructor(app, choose) {
+    super(app);
+    this.choose = choose;
+    this.setPlaceholder(t("Insert template at selected node\u2026"));
+    this.items = this.listTemplates();
+    if (!this.items.length) this.emptyStateText = t("Enable Templater or Templates and configure a template folder.");
+  }
+  listTemplates() {
+    const host = this.app;
+    const items = [];
+    const tp = host.plugins?.getPlugin("templater-obsidian");
+    if (tp?.fuzzy_suggester?.getItems && tp.templater?.append_template_to_active_file) {
+      for (const file of tp.fuzzy_suggester.getItems()) items.push({
+        label: tp.fuzzy_suggester.getItemText(file) + " \xB7 Templater",
+        insert: () => tp.templater.append_template_to_active_file(file)
+      });
+    }
+    const core = host.internalPlugins?.getEnabledPluginById("templates");
+    const folder = core?.options?.folder && this.app.vault.getAbstractFileByPath(core.options.folder);
+    if (core?.insertTemplate && folder instanceof import_obsidian3.TFolder && !folder.isRoot()) {
+      import_obsidian3.Vault.recurseChildren(folder, (file) => {
+        if (file instanceof import_obsidian3.TFile && file.extension === "md") items.push({
+          label: file.path.slice(folder.path.length + 1, -3) + " \xB7 Templates",
+          insert: () => core.insertTemplate(file)
+        });
+      });
+    }
+    return items;
+  }
+  getItems() {
+    return this.items;
+  }
+  getItemText(item) {
+    return item.label;
+  }
+  onChooseItem(item) {
+    void this.choose(item).catch((error) => new import_obsidian3.Notice(error instanceof Error ? error.message : String(error), 8e3));
+  }
+};
+
 // src/image-paste.ts
 var extensions = { "image/png": "png", "image/x-png": "png", "image/jpeg": "jpg", "image/gif": "gif", "image/webp": "webp", "image/bmp": "bmp", "image/avif": "avif", "image/svg+xml": "svg" };
 function extension(file) {
@@ -7307,7 +7394,7 @@ function attachImagePaste(input, options) {
 }
 
 // src/editor.ts
-var import_obsidian3 = require("obsidian");
+var import_obsidian4 = require("obsidian");
 
 // src/link-search.ts
 function normalizeLinkQuery(value) {
@@ -7402,7 +7489,7 @@ function primaryEnter(modal, submit, multiline = false) {
     return false;
   });
 }
-var MapPicker = class extends import_obsidian3.FuzzySuggestModal {
+var MapPicker = class extends import_obsidian4.FuzzySuggestModal {
   constructor(app, matches, choose) {
     super(app);
     this.matches = matches;
@@ -7419,7 +7506,7 @@ var MapPicker = class extends import_obsidian3.FuzzySuggestModal {
     this.choose(file);
   }
 };
-var LinkPicker = class extends import_obsidian3.SuggestModal {
+var LinkPicker = class extends import_obsidian4.SuggestModal {
   constructor(app, sourcePath, choose, afterClose = () => {
   }) {
     super(app);
@@ -7432,7 +7519,7 @@ var LinkPicker = class extends import_obsidian3.SuggestModal {
     const files = this.app.vault.getFiles().map((file) => ({
       path: file.path,
       basename: file.extension === "md" ? file.basename : file.name,
-      aliases: (0, import_obsidian3.parseFrontMatterAliases)(this.app.metadataCache.getFileCache(file)?.frontmatter) ?? []
+      aliases: (0, import_obsidian4.parseFrontMatterAliases)(this.app.metadataCache.getFileCache(file)?.frontmatter) ?? []
     }));
     const unresolved = /* @__PURE__ */ Object.create(null);
     for (const links of Object.values(this.app.metadataCache.unresolvedLinks ?? {})) {
@@ -7454,8 +7541,8 @@ var LinkPicker = class extends import_obsidian3.SuggestModal {
   onChooseSuggestion(target) {
     if (target.kind === "file") {
       const file = this.app.vault.getAbstractFileByPath(target.path);
-      if (!(file instanceof import_obsidian3.TFile)) {
-        new import_obsidian3.Notice(t("The file changed or was deleted. Search again."));
+      if (!(file instanceof import_obsidian4.TFile)) {
+        new import_obsidian4.Notice(t("The file changed or was deleted. Search again."));
         return;
       }
       this.choose(this.app.fileManager.generateMarkdownLink(file, this.sourcePath, "", target.alias));
@@ -7536,7 +7623,7 @@ function attachNodeTools(app, sourcePath, input, toolbar) {
     picker?.close();
   };
 }
-var DateDialog = class extends import_obsidian3.Modal {
+var DateDialog = class extends import_obsidian4.Modal {
   constructor(app, initial, saveDate) {
     super(app);
     this.initial = initial;
@@ -7597,12 +7684,12 @@ var DateDialog = class extends import_obsidian3.Modal {
         await this.saveDate(unknown.checked ? "?" : input.value);
         this.close();
       } catch (error) {
-        new import_obsidian3.Notice(error instanceof Error ? error.message : String(error));
+        new import_obsidian4.Notice(error instanceof Error ? error.message : String(error));
       } finally {
         this.saving = false;
       }
     };
-    new import_obsidian3.Setting(this.contentEl).addButton((button2) => button2.setButtonText(t("Cancel")).onClick(() => this.close())).addButton((button2) => button2.setButtonText(t("Save")).setCta().onClick(() => {
+    new import_obsidian4.Setting(this.contentEl).addButton((button2) => button2.setButtonText(t("Cancel")).onClick(() => this.close())).addButton((button2) => button2.setButtonText(t("Save")).setCta().onClick(() => {
       void submit();
     }));
     primaryEnter(this, () => {
@@ -7612,7 +7699,7 @@ var DateDialog = class extends import_obsidian3.Modal {
     input.focus();
   }
 };
-var TextDialog = class extends import_obsidian3.Modal {
+var TextDialog = class extends import_obsidian4.Modal {
   constructor(app, title, initial, saveText, sourcePath = "", nodeEditor = true) {
     super(app);
     this.title = title;
@@ -7660,7 +7747,7 @@ var TextDialog = class extends import_obsidian3.Modal {
     if (this.nodeEditor === true) this.unmount = attachNodeTools(this.app, this.sourcePath, this.input, this.contentEl.createDiv("tvm-editor-tools"));
     const note = this.contentEl.createEl("p", { text: this.nodeEditor ? t("Enter to save, Esc to cancel.") : t("Ctrl+Enter to confirm, Esc to cancel.") });
     note.addClass("setting-item-description");
-    new import_obsidian3.Setting(this.contentEl).addButton((button2) => button2.setButtonText(t("Cancel")).onClick(() => this.close())).addButton((button2) => button2.setButtonText(t("Save")).setCta().onClick(() => {
+    new import_obsidian4.Setting(this.contentEl).addButton((button2) => button2.setButtonText(t("Cancel")).onClick(() => this.close())).addButton((button2) => button2.setButtonText(t("Save")).setCta().onClick(() => {
       void this.submit();
     }));
     primaryEnter(this, () => {
@@ -7690,7 +7777,7 @@ var TextDialog = class extends import_obsidian3.Modal {
       await this.saveText(this.nodeEditor ? this.input.value.replace(/[\r\n\u2028\u2029]+/g, " ") : this.input.value);
       this.close();
     } catch (error) {
-      new import_obsidian3.Notice(error instanceof Error ? error.message : String(error), 8e3);
+      new import_obsidian4.Notice(error instanceof Error ? error.message : String(error), 8e3);
     } finally {
       this.saving = false;
     }
@@ -7700,7 +7787,7 @@ var TextDialog = class extends import_obsidian3.Modal {
     this.contentEl.empty();
   }
 };
-var ConfirmDialog = class extends import_obsidian3.Modal {
+var ConfirmDialog = class extends import_obsidian4.Modal {
   constructor(app, title, detail, confirm, options = {}) {
     super(app);
     this.title = title;
@@ -7712,7 +7799,7 @@ var ConfirmDialog = class extends import_obsidian3.Modal {
   onOpen() {
     this.titleEl.setText(this.title);
     this.contentEl.createEl("p", { text: this.detail });
-    new import_obsidian3.Setting(this.contentEl).addButton((button2) => {
+    new import_obsidian4.Setting(this.contentEl).addButton((button2) => {
       button2.setButtonText(t("Cancel")).onClick(() => this.close());
       if (this.options.focusConfirm === false) {
         button2.buttonEl.focus();
@@ -7745,7 +7832,7 @@ var ConfirmDialog = class extends import_obsidian3.Modal {
       await this.confirm();
       this.close();
     } catch (error) {
-      new import_obsidian3.Notice(String(error));
+      new import_obsidian4.Notice(String(error));
     } finally {
       this.saving = false;
     }
@@ -8025,10 +8112,10 @@ var button = (parent, label2, action, title = label2) => {
 var iconButton = (parent, icon, label2, action) => {
   const element = button(parent, "", action, label2);
   element.addClass("tvm-icon-button");
-  (0, import_obsidian4.setIcon)(element, icon);
+  (0, import_obsidian5.setIcon)(element, icon);
   return element;
 };
-var TraceViewMindmap = class extends import_obsidian4.Plugin {
+var TraceViewMindmap = class extends import_obsidian5.Plugin {
   constructor() {
     super(...arguments);
     this.settings = { ...DEFAULT_SETTINGS };
@@ -8060,7 +8147,7 @@ var TraceViewMindmap = class extends import_obsidian4.Plugin {
     }
     if (this.settings.nodeEditor !== "native" && this.settings.nodeEditor !== "text") this.settings.nodeEditor = "native";
     if (!isLanguageSetting(this.settings.language)) this.settings.language = "auto";
-    setLanguage(this.settings.language, typeof import_obsidian4.getLanguage === "function" ? (0, import_obsidian4.getLanguage)() : "en");
+    setLanguage(this.settings.language, typeof import_obsidian5.getLanguage === "function" ? (0, import_obsidian5.getLanguage)() : "en");
     if (this.settings.patternMode !== "regex") this.settings.patternMode = "glob";
     if (typeof this.settings.mapPatterns !== "string") this.settings.mapPatterns = DEFAULT_SETTINGS.mapPatterns;
     try {
@@ -8068,14 +8155,14 @@ var TraceViewMindmap = class extends import_obsidian4.Plugin {
     } catch {
       this.settings.patternMode = DEFAULT_SETTINGS.patternMode;
       this.settings.mapPatterns = DEFAULT_SETTINGS.mapPatterns;
-      new import_obsidian4.Notice(t("Invalid saved map patterns. Default patterns are active."));
+      new import_obsidian5.Notice(t("Invalid saved map patterns. Default patterns are active."));
     }
     if (!widthModes().some(([mode]) => mode === this.settings.widthMode)) this.settings.widthMode = "fixed";
     for (const definition of HOTKEY_DEFINITIONS) {
       const binding = saved?.hotkeys?.[definition.id];
       if (typeof binding === "string" && !validateHotkeys(binding)) this.settings.hotkeys[definition.id] = binding;
     }
-    const originalEphemeral = import_obsidian4.MarkdownView.prototype.setEphemeralState;
+    const originalEphemeral = import_obsidian5.MarkdownView.prototype.setEphemeralState;
     let observeLinks = true;
     const plugin = this;
     const receiveEphemeral = function(state) {
@@ -8084,10 +8171,10 @@ var TraceViewMindmap = class extends import_obsidian4.Plugin {
       }
       return originalEphemeral.call(this, state);
     };
-    import_obsidian4.MarkdownView.prototype.setEphemeralState = receiveEphemeral;
+    import_obsidian5.MarkdownView.prototype.setEphemeralState = receiveEphemeral;
     this.register(() => {
       observeLinks = false;
-      if (import_obsidian4.MarkdownView.prototype.setEphemeralState === receiveEphemeral) import_obsidian4.MarkdownView.prototype.setEphemeralState = originalEphemeral;
+      if (import_obsidian5.MarkdownView.prototype.setEphemeralState === receiveEphemeral) import_obsidian5.MarkdownView.prototype.setEphemeralState = originalEphemeral;
     });
     this.registerView(VIEW, (leaf) => new MapView(leaf, this));
     this.registerView(QUEUE, (leaf) => new QueueView(leaf, this));
@@ -8104,10 +8191,10 @@ var TraceViewMindmap = class extends import_obsidian4.Plugin {
       else this.pickMap();
     } });
     this.addCommand({ id: "open-node-at-cursor", name: t("Open map at the Markdown cursor"), editorCheckCallback: (checking, editor, context) => {
-      if (!(context instanceof import_obsidian4.MarkdownView) || !context.file) return false;
+      if (!(context instanceof import_obsidian5.MarkdownView) || !context.file) return false;
       const doc = parseMap(editor.getValue()), line = editor.getCursor().line;
       if (!doc.nodes.some((node) => node.line === line)) return false;
-      if (!checking) void this.openAtCursor(context).catch((error) => new import_obsidian4.Notice(message(error), 8e3));
+      if (!checking) void this.openAtCursor(context).catch((error) => new import_obsidian5.Notice(message(error), 8e3));
       return true;
     } });
     this.addCommand({ id: "find-map", name: t("Find a map"), callback: () => this.pickMap() });
@@ -8120,6 +8207,7 @@ var TraceViewMindmap = class extends import_obsidian4.Plugin {
       ["add-child", t("Add child node"), "add-child"],
       ["add-sibling", t("Add sibling node"), "add-sibling"],
       ["add-parent", t("Add parent node"), "add-parent"],
+      ["insert-template", t("Insert template at selected node\u2026"), "insert-template"],
       ["copy-node-link", t("Copy link to node"), "copy-node-link"],
       ["edit-node", t("Edit node"), "edit"],
       ["make-step", t("Mark as atomic step"), "make-step"],
@@ -8136,6 +8224,7 @@ var TraceViewMindmap = class extends import_obsidian4.Plugin {
     for (const [id, name, action] of commands) this.addCommand({ id, name, checkCallback: (checking) => {
       const view = this.app.workspace.getActiveViewOfType(MapView);
       if (!view) return false;
+      if (action === "insert-template" && (view.surface?.isEditing() || view.surface?.getSelection().length !== 1)) return false;
       if (!checking) void view.action(action, view.surface?.getState().selected ?? null);
       return true;
     } });
@@ -8150,14 +8239,14 @@ var TraceViewMindmap = class extends import_obsidian4.Plugin {
     this.addCommand({ id: "insert-question-editor", name: t("Insert QA in Markdown editor"), editorCallback: (editor) => editor.replaceSelection("==//todo Q: ==") });
     this.addCommand({ id: "insert-step-editor", name: t("Insert unnumbered step in Markdown editor"), editorCallback: (editor) => editor.replaceSelection("[ ] #step ) ") });
     this.registerEvent(this.app.workspace.on("editor-menu", (menu, editor, context) => {
-      if (context instanceof import_obsidian4.MarkdownView && context.file && parseMap(editor.getValue()).nodes.some((node) => node.line === editor.getCursor().line)) {
+      if (context instanceof import_obsidian5.MarkdownView && context.file && parseMap(editor.getValue()).nodes.some((node) => node.line === editor.getCursor().line)) {
         menu.addItem((item) => item.setTitle(t("Open map at this node")).setIcon("git-fork").onClick(() => {
-          void this.openAtCursor(context).catch((error) => new import_obsidian4.Notice(message(error), 8e3));
+          void this.openAtCursor(context).catch((error) => new import_obsidian5.Notice(message(error), 8e3));
         }));
       }
     }));
     this.registerEvent(this.app.workspace.on("file-menu", (menu, file, _source, leaf) => {
-      if (!(file instanceof import_obsidian4.TFile) || file.extension !== "md") return;
+      if (!(file instanceof import_obsidian5.TFile) || file.extension !== "md") return;
       const current = leaf ?? this.app.workspace.getMostRecentLeaf();
       if (current?.view instanceof MapView && current.view.path === file.path) {
         menu.addItem((item) => item.setTitle(t("Open source Markdown")).setIcon("file-code").onClick(() => {
@@ -8168,7 +8257,7 @@ var TraceViewMindmap = class extends import_obsidian4.Plugin {
       }));
     }));
     this.registerEvent(this.app.vault.on("modify", (file) => {
-      if (!(file instanceof import_obsidian4.TFile)) return;
+      if (!(file instanceof import_obsidian5.TFile)) return;
       for (const leaf of this.app.workspace.getLeavesOfType(VIEW)) {
         const view = leaf.view;
         if (view.path === file.path) view.scheduleReload();
@@ -8195,7 +8284,7 @@ var TraceViewMindmap = class extends import_obsidian4.Plugin {
       this.refreshQueues();
     }));
     this.registerEvent(this.app.vault.on("create", (file) => {
-      if (file instanceof import_obsidian4.TFile && this.isMap(file)) this.refreshQueues();
+      if (file instanceof import_obsidian5.TFile && this.isMap(file)) this.refreshQueues();
     }));
     this.registerEvent(this.app.workspace.on("file-open", (file) => {
       const leaf = this.app.workspace.getMostRecentLeaf();
@@ -8221,7 +8310,7 @@ var TraceViewMindmap = class extends import_obsidian4.Plugin {
     this.autoTimers.set(leaf, window.setTimeout(() => {
       this.autoTimers.delete(leaf);
       const view = leaf.view;
-      if (!(view instanceof import_obsidian4.MarkdownView) || !view.file || expectedPath && view.file.path !== expectedPath) return;
+      if (!(view instanceof import_obsidian5.MarkdownView) || !view.file || expectedPath && view.file.path !== expectedPath) return;
       if (this.sourceLeaves.get(leaf) !== view.file.path) this.sourceLeaves.delete(leaf);
       if (!this.settings.autoOpen || !this.isMap(view.file) || this.sourceLeaves.get(leaf) === view.file.path || this.sourcePreferences.has(view.file.path)) return;
       this.opening.add(leaf);
@@ -8236,7 +8325,7 @@ var TraceViewMindmap = class extends import_obsidian4.Plugin {
             if (linkState?.path === file.path && linkState.subpath && leaf.view instanceof MapView) leaf.view.revealSubpath(linkState.subpath);
           }
         } catch (error) {
-          new import_obsidian4.Notice(message(error), 8e3);
+          new import_obsidian5.Notice(message(error), 8e3);
         } finally {
           this.opening.delete(leaf);
         }
@@ -8262,7 +8351,7 @@ var TraceViewMindmap = class extends import_obsidian4.Plugin {
     const view = this.app.workspace.getActiveViewOfType(MapView);
     if (view?.path) {
       const file = this.app.vault.getAbstractFileByPath(view.path);
-      if (file instanceof import_obsidian4.TFile) return file;
+      if (file instanceof import_obsidian5.TFile) return file;
     }
     return this.app.workspace.getActiveFile();
   }
@@ -8270,7 +8359,7 @@ var TraceViewMindmap = class extends import_obsidian4.Plugin {
     const existing = this.app.workspace.getLeavesOfType(VIEW).find((leaf2) => leaf2.view.path === file.path);
     const leaf = target ?? existing ?? this.app.workspace.getLeaf("tab");
     if (leaf.view instanceof MapView && leaf.view.surface?.isEditing()) {
-      new import_obsidian4.Notice(t("Save or cancel the node draft."));
+      new import_obsidian5.Notice(t("Save or cancel the node draft."));
       leaf.view.surface.focusEditor();
       return;
     }
@@ -8331,10 +8420,59 @@ var TraceViewMindmap = class extends import_obsidian4.Plugin {
     this.rememberSource();
     await leaf.setViewState({ type: "markdown", state: { file: file.path, mode: "source" }, active: true });
     await this.app.workspace.revealLeaf(leaf);
-    if (leaf.view instanceof import_obsidian4.MarkdownView) {
+    if (leaf.view instanceof import_obsidian5.MarkdownView) {
       leaf.view.editor.setCursor({ line, ch: 0 });
       leaf.view.editor.scrollIntoView({ from: { line, ch: 0 }, to: { line, ch: 0 } }, true);
       leaf.view.editor.focus();
+    }
+  }
+  async insertNodeTemplate(map, file, doc, node, template) {
+    const workspace = this.app.workspace;
+    const expected = doc.lines.join("\n");
+    const conflict = () => new Error(t("The note changed. Open it again at the current line."));
+    if (workspace.getMostRecentLeaf() !== map.leaf || map.file !== file) throw conflict();
+    for (const leaf of workspace.getLeavesOfType("markdown")) {
+      const view = leaf.view;
+      if (view instanceof import_obsidian5.MarkdownView && view.file === file && view.getMode() === "source" && view.editor.getValue().replace(/\r\n?/g, "\n") !== expected) throw conflict();
+    }
+    const tab = workspace.getLeaf("tab");
+    this.sourceLeaves.set(tab, file.path);
+    let editorView;
+    let keepOpen = false;
+    try {
+      await tab.setViewState({ type: "markdown", state: { file: file.path, mode: "source" }, active: true });
+      if (!(tab.view instanceof import_obsidian5.MarkdownView) || tab.view.file !== file) throw conflict();
+      editorView = tab.view;
+      const editor = editorView.editor;
+      if (workspace.getMostRecentLeaf() !== tab || editor.getValue().replace(/\r\n?/g, "\n") !== expected) throw conflict();
+      const line = node.line, original = editor.getLine(line);
+      const pos = { line, ch: original.length };
+      editor.setCursor(pos);
+      editor.focus();
+      if (workspace.activeEditor?.editor !== editor) throw conflict();
+      keepOpen = true;
+      await template.insert();
+      if (tab.view !== editorView || editorView.file !== file) return;
+      const updated = editor.getLine(line);
+      if (node.blockId && updated?.startsWith(original) && updated.length > original.length) {
+        const labelEnd = node.prefix.length + node.text.length;
+        editor.replaceRange(
+          updated.slice(original.length) + original.slice(labelEnd),
+          { line, ch: labelEnd },
+          { line, ch: updated.length }
+        );
+      }
+      const result = editor.getValue();
+      await editorView.save();
+      keepOpen = false;
+      const saved = await this.app.vault.read(file);
+      return saved.replace(/\r\n?/g, "\n") === result.replace(/\r\n?/g, "\n") ? saved : void 0;
+    } finally {
+      if (!keepOpen && (tab.view === editorView && editorView?.file === file || tab.view.getViewType() === "empty")) {
+        const restore = workspace.getMostRecentLeaf() === tab && map.leaf.view === map && map.file === file;
+        if (restore) workspace.setActiveLeaf(map.leaf, { focus: true });
+        tab.detach();
+      }
     }
   }
   async openMapLink(link, view, event) {
@@ -8342,7 +8480,7 @@ var TraceViewMindmap = class extends import_obsidian4.Plugin {
       view.surface.focusEditor();
       return;
     }
-    const parts = (0, import_obsidian4.parseLinktext)(link);
+    const parts = (0, import_obsidian5.parseLinktext)(link);
     const file = parts.path ? this.app.metadataCache.getFirstLinkpathDest(parts.path, view.path) : view.file;
     const newTab = event.ctrlKey || event.metaKey || event.button === 1;
     if (file && this.isMap(file)) {
@@ -8362,7 +8500,7 @@ var TraceViewMindmap = class extends import_obsidian4.Plugin {
       const name = value.trim().replace(/\.mindmap(?:\.md)?$/i, "");
       if (!name || /[\\/:*?"<>|\r\n]/.test(name) || name === "." || name === "..") throw new Error(t("Use a name without path characters."));
       const parent = this.activeFile()?.parent?.path ?? "";
-      const path = (0, import_obsidian4.normalizePath)(`${parent}/${name}.mindmap.md`);
+      const path = (0, import_obsidian5.normalizePath)(`${parent}/${name}.mindmap.md`);
       if (this.app.vault.getAbstractFileByPath(path)) throw new Error(t("A file with this name already exists."));
       const body = vector ? `- ${name}
   - \u25B6\uFE0F ${t("Next action")}
@@ -8388,7 +8526,7 @@ ${body}`);
     const operation = previous.catch(() => void 0).then(async () => {
       for (const leaf of this.app.workspace.getLeavesOfType("markdown")) {
         const view = leaf.view;
-        if (view instanceof import_obsidian4.MarkdownView && view.file?.path === file.path && view.editor.getValue() !== expected) throw new Error(t("The Markdown editor has newer text. Wait for it to save and try again."));
+        if (view instanceof import_obsidian5.MarkdownView && view.file?.path === file.path && view.editor.getValue() !== expected) throw new Error(t("The Markdown editor has newer text. Wait for it to save and try again."));
       }
       await this.app.vault.process(file, (current) => guardedChange(current, expected, next));
     });
@@ -8403,9 +8541,9 @@ ${body}`);
     this.clipboard = text;
     try {
       await navigator.clipboard.writeText(text);
-      new import_obsidian4.Notice(t("Branch copied"));
+      new import_obsidian5.Notice(t("Branch copied"));
     } catch {
-      new import_obsidian4.Notice(t("Branch saved to the plugin clipboard"));
+      new import_obsidian5.Notice(t("Branch saved to the plugin clipboard"));
     }
   }
   async copyForCut(text) {
@@ -8426,7 +8564,7 @@ ${body}`);
     throw new Error(t("Clipboard unavailable. Use \u201CPaste branch text\u201D in the \u22EF menu."));
   }
 };
-var MapView = class extends import_obsidian4.EditableFileView {
+var MapView = class extends import_obsidian5.EditableFileView {
   constructor(leaf, plugin) {
     super(leaf);
     this.plugin = plugin;
@@ -8434,7 +8572,7 @@ var MapView = class extends import_obsidian4.EditableFileView {
     this.hoverPopover = null;
     this.nativeWarning = false;
     this.history = new History();
-    this.renderer = new import_obsidian4.Component();
+    this.renderer = new import_obsidian5.Component();
     this.renderedNodes = /* @__PURE__ */ new Map();
     this.refreshTimer = 0;
     this.stateTimer = 0;
@@ -8445,7 +8583,7 @@ var MapView = class extends import_obsidian4.EditableFileView {
     this.changing = false;
     this.cutting = false;
     this.layoutMode = "map";
-    this.scope = new import_obsidian4.Scope(this.app.scope);
+    this.scope = new import_obsidian5.Scope(this.app.scope);
     this.scope.register(null, null, (event) => {
       if (event.defaultPrevented) return;
       const target = event.target;
@@ -8480,11 +8618,11 @@ var MapView = class extends import_obsidian4.EditableFileView {
   async setState(state, result) {
     if (state.file && this.path !== state.file) {
       if (this.surface?.isEditing()) {
-        new import_obsidian4.Notice(t("Save or cancel the node draft before navigating."));
+        new import_obsidian5.Notice(t("Save or cancel the node draft before navigating."));
         this.surface.focusEditor();
         return;
       }
-      this.restoredRender = import_obsidian4.Platform?.isWin && !state.openNow ? "inspect" : "allowed";
+      this.restoredRender = import_obsidian5.Platform?.isWin && !state.openNow ? "inspect" : "allowed";
     }
     const activate = state.openNow && state.file === this.path && this.restoredRender !== "allowed";
     await super.setState(state, result);
@@ -8576,7 +8714,7 @@ var MapView = class extends import_obsidian4.EditableFileView {
     this.pendingSubpath = void 0;
     const nodes = subpath.startsWith("#^") ? this.doc.nodes.filter((node) => node.blockId === subpath.slice(2)) : this.doc.nodes.filter((node) => node.kind === "heading" && node.text.toLocaleLowerCase() === subpath.slice(1).toLocaleLowerCase());
     if (nodes.length === 1) this.surface.reveal(nodes[0].id);
-    else new import_obsidian4.Notice(nodes.length ? t("This address is duplicated. Fix the block ID in Markdown.") : t("The linked node was not found."));
+    else new import_obsidian5.Notice(nodes.length ? t("This address is duplicated. Fix the block ID in Markdown.") : t("The linked node was not found."));
   }
   async onOpen() {
     await super.onOpen();
@@ -8625,7 +8763,7 @@ var MapView = class extends import_obsidian4.EditableFileView {
     this.showSearch = () => search.show();
     this.surface = new MapSurface(this.host, {
       getWidthMode: () => this.plugin.settings.widthMode,
-      useTransformPan: () => import_obsidian4.Platform.isMobile,
+      useTransformPan: () => import_obsidian5.Platform.isMobile,
       getHotkeys: () => this.plugin.settings.hotkeys,
       getCollapseOnLeft: () => this.plugin.settings.collapseOnLeft,
       onFind: () => this.showSearch?.(),
@@ -8653,12 +8791,12 @@ var MapView = class extends import_obsidian4.EditableFileView {
         this.stateTimer = window.setTimeout(() => this.persist(), 180);
       },
       renderMarkdown: async (text, element) => {
-        const component = this.renderer.addChild(new import_obsidian4.Component());
+        const component = this.renderer.addChild(new import_obsidian5.Component());
         this.renderedNodes.set(element, component);
-        await import_obsidian4.MarkdownRenderer.render(this.app, text, element, this.path, component);
+        await import_obsidian5.MarkdownRenderer.render(this.app, text, element, this.path, component);
       },
       onOpenLink: (link, event) => {
-        void this.plugin.openMapLink(link, this, event).catch((error) => new import_obsidian4.Notice(message(error)));
+        void this.plugin.openMapLink(link, this, event).catch((error) => new import_obsidian5.Notice(message(error)));
       },
       onHoverLink: (event, targetEl, linktext) => this.app.workspace.trigger("hover-link", { event, source: "traceview-mindmap", hoverParent: this, targetEl, linktext, sourcePath: this.path })
     });
@@ -8674,14 +8812,15 @@ var MapView = class extends import_obsidian4.EditableFileView {
     await this.reload();
   }
   refreshTitle() {
-    this.title?.setText(this.getDisplayText());
+    if (!this.file || !this.title || this.title.ownerDocument.activeElement === this.title) return;
+    this.title.setText(this.file.basename);
   }
   showMenu(menu, anchor2) {
     const rect = anchor2.getBoundingClientRect();
     menu.showAtPosition({ x: rect.left, y: rect.bottom });
   }
   layoutMenu(anchor2) {
-    const menu = new import_obsidian4.Menu();
+    const menu = new import_obsidian5.Menu();
     for (const [mode, label2] of [["map", t("Map")], ["outline", t("Outline")], ["table", t("Table")]]) {
       menu.addItem((item) => item.setTitle(label2).setChecked(this.layoutMode === mode).onClick(() => {
         this.layoutMode = mode;
@@ -8691,12 +8830,12 @@ var MapView = class extends import_obsidian4.EditableFileView {
     }
     menu.addSeparator();
     for (const [mode, label2] of widthModes()) menu.addItem((item) => item.setTitle(label2).setChecked(this.plugin.settings.widthMode === mode).onClick(() => {
-      void this.plugin.setWidthMode(mode).catch((error) => new import_obsidian4.Notice(message(error)));
+      void this.plugin.setWidthMode(mode).catch((error) => new import_obsidian5.Notice(message(error)));
     }));
     this.showMenu(menu, anchor2);
   }
   levelMenu(anchor2) {
-    const menu = new import_obsidian4.Menu();
+    const menu = new import_obsidian5.Menu();
     const id = this.selected();
     menu.addItem((item) => item.setTitle(this.commandLabel(t("Collapse all roots"), "collapse-all")).onClick(() => this.surface?.runHotkey("collapse-all")));
     menu.addItem((item) => item.setTitle(t("Expand entire map")).onClick(() => this.surface?.setDepth(Infinity)));
@@ -8780,7 +8919,7 @@ var MapView = class extends import_obsidian4.EditableFileView {
       return;
     }
     const file = this.app.vault.getAbstractFileByPath(this.path);
-    if (!(file instanceof import_obsidian4.TFile)) {
+    if (!(file instanceof import_obsidian5.TFile)) {
       this.status?.setText(t("File missing or deleted. Open another map."));
       this.doc = void 0;
       this.surface.update(parseMap(""));
@@ -8833,7 +8972,7 @@ var MapView = class extends import_obsidian4.EditableFileView {
     if (this.doc !== expected || this.closed || this.changing) throw new Error(t("The map changed or is being saved. Your draft is still in the field. Copy it before cancelling and retry on the current map."));
     const path = this.path;
     const file = this.app.vault.getAbstractFileByPath(this.path);
-    if (!(file instanceof import_obsidian4.TFile)) throw new Error(t("The file no longer exists."));
+    if (!(file instanceof import_obsidian5.TFile)) throw new Error(t("The file no longer exists."));
     this.changing = true;
     this.refreshDeleteButton();
     try {
@@ -8858,7 +8997,7 @@ var MapView = class extends import_obsidian4.EditableFileView {
       await this.apply(doc, moveBranches(doc, ids, target, position));
       this.surface?.revealSelection(ids);
     } catch (error) {
-      new import_obsidian4.Notice(message(error), 8e3);
+      new import_obsidian5.Notice(message(error), 8e3);
     }
   }
   async action(action, id) {
@@ -8877,7 +9016,7 @@ var MapView = class extends import_obsidian4.EditableFileView {
         return;
       }
       if (!id) {
-        new import_obsidian4.Notice(t("Select a map node first"));
+        new import_obsidian5.Notice(t("Select a map node first"));
         return;
       }
       const node = doc.byId.get(id);
@@ -8913,7 +9052,7 @@ var MapView = class extends import_obsidian4.EditableFileView {
           return;
         }
         if (action !== "source") {
-          new import_obsidian4.Notice(t("This command requires one selected node."));
+          new import_obsidian5.Notice(t("This command requires one selected node."));
           return;
         }
       }
@@ -8924,12 +9063,36 @@ var MapView = class extends import_obsidian4.EditableFileView {
         const file = this.file;
         if (!file || this.path !== path) throw new Error(t("The map was closed or renamed. Copy the address again."));
         await this.plugin.copy("[[" + this.app.metadataCache.fileToLinktext(file, "", true) + "#^" + address.blockId + "]]");
-        new import_obsidian4.Notice(t("Node link copied."));
+        new import_obsidian5.Notice(t("Node link copied."));
+        return;
+      }
+      if (action === "insert-template" && this.file) {
+        const file = this.file;
+        new NodeTemplatePicker(this.app, async (item) => {
+          if (this.closed || this.changing || this.cutting || this.surface?.isEditing() || this.doc !== doc || this.file !== file) {
+            throw new Error(t("The note changed. Open it again at the current line."));
+          }
+          this.changing = true;
+          try {
+            const saved = await this.plugin.insertNodeTemplate(this, file, doc, node, item);
+            if (saved !== void 0) {
+              const next2 = restoreTemplateLineEndings(doc, saved);
+              if (next2 !== saved) await this.plugin.write(file, saved, next2);
+              if (!this.closed && this.file === file) this.history.push(doc.source, next2);
+            }
+          } finally {
+            this.changing = false;
+            if (!this.closed && this.file === file) {
+              await this.reload();
+              this.refreshHistory();
+            }
+          }
+        }).open();
         return;
       }
       if (action === "source") {
         const file = this.app.vault.getAbstractFileByPath(this.path);
-        if (file instanceof import_obsidian4.TFile) await this.plugin.source(file, node.line, this.leaf);
+        if (file instanceof import_obsidian5.TFile) await this.plugin.source(file, node.line, this.leaf);
         return;
       }
       if (action === "copy") {
@@ -8943,7 +9106,7 @@ var MapView = class extends import_obsidian4.EditableFileView {
           await this.plugin.copyForCut(copyBranch(doc, id));
           if (this.path !== path) throw new Error(t("Another map is open. The branch was copied, but not cut."));
           await this.apply(doc, next2);
-          new import_obsidian4.Notice(t("Branch cut. Ctrl+V to paste, Undo to restore."));
+          new import_obsidian5.Notice(t("Branch cut. Ctrl+V to paste, Undo to restore."));
         } finally {
           this.cutting = false;
         }
@@ -8995,11 +9158,11 @@ var MapView = class extends import_obsidian4.EditableFileView {
       const next = action === "toggle-task" ? toggleTask(doc, id) : action === "make-step" ? setStep(doc, id) : action === "make-question" ? setQuestion(doc, id) : moveNode(doc, id, action === "move-up" ? "up" : action === "move-down" ? "down" : action === "indent" ? "indent" : "outdent");
       await this.apply(doc, next);
     } catch (error) {
-      new import_obsidian4.Notice(message(error), 8e3);
+      new import_obsidian5.Notice(message(error), 8e3);
     }
   }
   menu(anchor2) {
-    const menu = new import_obsidian4.Menu();
+    const menu = new import_obsidian5.Menu();
     menu.addItem((item) => item.setTitle(t("Find a map\u2026")).setIcon("git-fork").onClick(() => this.plugin.pickMap()));
     menu.addItem((item) => item.setTitle(t("Steps \xB7 Deadlines \xB7 QA")).setIcon("list-checks").onClick(() => {
       void this.plugin.openQueue();
@@ -9017,7 +9180,7 @@ var MapView = class extends import_obsidian4.EditableFileView {
       if (doc && id) new TextDialog(this.app, t("Paste child Markdown branch"), "", async (text) => this.apply(doc, pasteBranch(doc, id, text, "child")), this.path, false).open();
     }));
     menu.addItem((item) => item.setTitle(t("Renumber steps")).onClick(() => {
-      if (this.doc) void this.apply(this.doc, renumberSteps(this.doc)).catch((error) => new import_obsidian4.Notice(message(error)));
+      if (this.doc) void this.apply(this.doc, renumberSteps(this.doc)).catch((error) => new import_obsidian5.Notice(message(error)));
     }));
     const rect = anchor2.getBoundingClientRect();
     menu.showAtPosition({ x: rect.left, y: rect.bottom });
@@ -9046,7 +9209,7 @@ var MapView = class extends import_obsidian4.EditableFileView {
       } catch (error) {
         if (!this.nativeWarning) {
           console.warn("TraceView Mindmap: native editor unavailable", error);
-          new import_obsidian4.Notice(t("Native editor unavailable. Using text input. ") + message(error), 8e3);
+          new import_obsidian5.Notice(t("Native editor unavailable. Using text input. ") + message(error), 8e3);
           this.nativeWarning = true;
         }
       }
@@ -9063,7 +9226,7 @@ var MapView = class extends import_obsidian4.EditableFileView {
         this.surface?.refreshLayout();
       },
       report: (text) => {
-        new import_obsidian4.Notice(text, 8e3);
+        new import_obsidian5.Notice(text, 8e3);
       }
     });
     const editor = new InputEditor(input);
@@ -9072,7 +9235,7 @@ var MapView = class extends import_obsidian4.EditableFileView {
       this.app.mobileToolbar?.update?.();
     };
     let scoped = false;
-    const scope = new import_obsidian4.Scope(this.app.scope);
+    const scope = new import_obsidian5.Scope(this.app.scope);
     for (const key of ["Enter", "Escape"]) scope.register([], key, (event) => {
       if (inline.handleKeydown(event)) return false;
     });
@@ -9125,11 +9288,11 @@ var MapView = class extends import_obsidian4.EditableFileView {
       const clean = name.trim().replace(new RegExp(`\\.${format}$`, "i"), "");
       if (!clean || /[\\/:*?"<>|\r\n]/.test(clean) || clean === "." || clean === "..") throw new Error(t("Use a name without path characters."));
       const source = this.app.vault.getAbstractFileByPath(this.path);
-      if (!(source instanceof import_obsidian4.TFile)) throw new Error(t("The note does not exist."));
-      const target = (0, import_obsidian4.normalizePath)(`${source.parent?.path ?? ""}/${clean}.${format}`);
+      if (!(source instanceof import_obsidian5.TFile)) throw new Error(t("The note does not exist."));
+      const target = (0, import_obsidian5.normalizePath)(`${source.parent?.path ?? ""}/${clean}.${format}`);
       if (this.app.vault.getAbstractFileByPath(target)) throw new Error(t("File already exists. Choose another name."));
       await this.app.vault.create(target, format === "html" ? exportHtml(doc, clean) : exportSvg(doc, clean));
-      new import_obsidian4.Notice(t("Saved {path}", { path: target }));
+      new import_obsidian5.Notice(t("Saved {path}", { path: target }));
     }, this.path, "single-line").open();
   }
   async onClose() {
@@ -9144,7 +9307,7 @@ var MapView = class extends import_obsidian4.EditableFileView {
     this.contentEl.empty();
   }
 };
-var QueueView = class extends import_obsidian4.ItemView {
+var QueueView = class extends import_obsidian5.ItemView {
   constructor(leaf, plugin) {
     super(leaf);
     this.plugin = plugin;
@@ -9350,7 +9513,7 @@ var QueueView = class extends import_obsidian4.ItemView {
     try {
       await this.plugin.write(map.file, map.doc.source, next);
     } catch (error) {
-      new import_obsidian4.Notice(message(error), 8e3);
+      new import_obsidian5.Notice(message(error), 8e3);
     }
     this.cache.delete(map.file.path);
     await this.reload();
@@ -9363,7 +9526,7 @@ var QueueView = class extends import_obsidian4.ItemView {
     this.contentEl.empty();
   }
 };
-var SettingsTab = class extends import_obsidian4.PluginSettingTab {
+var SettingsTab = class extends import_obsidian5.PluginSettingTab {
   constructor(plugin) {
     super(plugin.app, plugin);
     this.plugin = plugin;
@@ -9388,27 +9551,27 @@ var SettingsTab = class extends import_obsidian4.PluginSettingTab {
         await this.savingPatterns;
         await this.plugin.resetSettings();
         this.display();
-        new import_obsidian4.Notice(t("Default settings restored. Restart Obsidian to apply the language."));
+        new import_obsidian5.Notice(t("Default settings restored. Restart Obsidian to apply the language."));
       }, { label: t("Restore defaults"), focusConfirm: false }).open();
     });
-    new import_obsidian4.Setting(this.containerEl).setName(t("Language")).setDesc(t("Automatic follows Obsidian. Restart Obsidian to apply a language change.")).addDropdown((dropdown) => {
+    new import_obsidian5.Setting(this.containerEl).setName(t("Language")).setDesc(t("Automatic follows Obsidian. Restart Obsidian to apply a language change.")).addDropdown((dropdown) => {
       dropdown.addOption("auto", t("Automatic (Obsidian)"));
       for (const [code, name] of Object.entries(LANGUAGES)) dropdown.addOption(code, name);
       dropdown.setValue(this.plugin.settings.language).onChange(async (value) => {
         if (!isLanguageSetting(value)) return;
         this.plugin.settings.language = value;
         await this.plugin.saveData(this.plugin.settings);
-        new import_obsidian4.Notice(t("Language saved. Restart Obsidian to apply it."));
+        new import_obsidian5.Notice(t("Language saved. Restart Obsidian to apply it."));
       });
     });
-    new import_obsidian4.Setting(this.containerEl).setName(t("Node editor")).setDesc(t("Applies next time you edit. Native uses Obsidian Live Preview and suggestions, with text input as a fallback.")).addDropdown((dropdown) => {
+    new import_obsidian5.Setting(this.containerEl).setName(t("Node editor")).setDesc(t("Applies next time you edit. Native uses Obsidian Live Preview and suggestions, with text input as a fallback.")).addDropdown((dropdown) => {
       dropdown.addOption("native", t("Native Obsidian")).addOption("text", t("Text input"));
       dropdown.setValue(this.plugin.settings.nodeEditor).onChange(async (value) => {
         this.plugin.settings.nodeEditor = value === "text" ? "text" : "native";
         await this.plugin.saveData(this.plugin.settings);
       });
     });
-    new import_obsidian4.Setting(this.containerEl).setName(t("Automatically open matching notes as maps")).setDesc(t("Applies to notes matching the patterns below. Opening source Markdown explicitly keeps that note in Markdown mode.")).addToggle((toggle) => toggle.setValue(this.plugin.settings.autoOpen).onChange(async (value) => {
+    new import_obsidian5.Setting(this.containerEl).setName(t("Automatically open matching notes as maps")).setDesc(t("Applies to notes matching the patterns below. Opening source Markdown explicitly keeps that note in Markdown mode.")).addToggle((toggle) => toggle.setValue(this.plugin.settings.autoOpen).onChange(async (value) => {
       this.plugin.settings.autoOpen = value;
       await this.plugin.saveData(this.plugin.settings);
     }));
@@ -9434,7 +9597,7 @@ var SettingsTab = class extends import_obsidian4.PluginSettingTab {
       });
     };
     let syntaxInput, patternsInput;
-    new import_obsidian4.Setting(this.containerEl).setName(t("Pattern syntax")).addDropdown((dropdown) => {
+    new import_obsidian5.Setting(this.containerEl).setName(t("Pattern syntax")).addDropdown((dropdown) => {
       syntaxInput = dropdown.selectEl;
       dropdown.addOption("glob", t("Glob (wildcards)")).addOption("regex", t("Regular expressions"));
       dropdown.setValue(patternMode).onChange((value) => {
@@ -9442,7 +9605,7 @@ var SettingsTab = class extends import_obsidian4.PluginSettingTab {
         savePatterns();
       });
     });
-    const patternsSetting = new import_obsidian4.Setting(this.containerEl).setName(t("Map file patterns")).setDesc(t("One pattern per line; any match is enough. Glob without a slash matches file names in any folder. With a slash it matches vault-relative paths. Use *, ** and ?. Regex matches vault-relative paths, without / delimiters. Matching ignores case. Only Markdown files qualify.")).addTextArea((text) => {
+    const patternsSetting = new import_obsidian5.Setting(this.containerEl).setName(t("Map file patterns")).setDesc(t("One pattern per line; any match is enough. Glob without a slash matches file names in any folder. With a slash it matches vault-relative paths. Use *, ** and ?. Regex matches vault-relative paths, without / delimiters. Matching ignores case. Only Markdown files qualify.")).addTextArea((text) => {
       patternsInput = text.inputEl;
       text.setValue(mapPatterns).setPlaceholder("*.mindmap.md\n\u{1F3AF}*.md").onChange((value) => {
         mapPatterns = value;
@@ -9460,31 +9623,31 @@ var SettingsTab = class extends import_obsidian4.PluginSettingTab {
     }));
     patternsSetting.settingEl.addClass("tvm-pattern-setting");
     this.containerEl.createEl("p", { cls: "setting-item-description", text: t("The mindmap: true property also identifies a map. Invalid input keeps the last saved rules active. Patterns are shared by automatic opening, map search and step lists.") });
-    if (import_obsidian4.Platform?.isWin) new import_obsidian4.Setting(this.containerEl).setName(t("Automatically restore large maps")).setDesc(t("At startup the active map waits for Obsidian to respond steadily. \u201COpen now\u201D skips the wait.")).addToggle((toggle) => toggle.setValue(this.plugin.settings.autoRestoreLargeMaps).onChange(async (value) => {
+    if (import_obsidian5.Platform?.isWin) new import_obsidian5.Setting(this.containerEl).setName(t("Automatically restore large maps")).setDesc(t("At startup the active map waits for Obsidian to respond steadily. \u201COpen now\u201D skips the wait.")).addToggle((toggle) => toggle.setValue(this.plugin.settings.autoRestoreLargeMaps).onChange(async (value) => {
       this.plugin.settings.autoRestoreLargeMaps = value;
       for (const leaf of this.app.workspace.getLeavesOfType(VIEW)) leaf.view.refreshRestoreWait();
       await this.plugin.saveData(this.plugin.settings);
     }));
-    new import_obsidian4.Setting(this.containerEl).setName(t("Hide frozen steps")).setDesc(t("Skip \u{1F9CA} branches in step and deadline lists. Maps display all text.")).addToggle((toggle) => toggle.setValue(this.plugin.settings.hideFrozen).onChange(async (value) => {
+    new import_obsidian5.Setting(this.containerEl).setName(t("Hide frozen steps")).setDesc(t("Skip \u{1F9CA} branches in step and deadline lists. Maps display all text.")).addToggle((toggle) => toggle.setValue(this.plugin.settings.hideFrozen).onChange(async (value) => {
       this.plugin.settings.hideFrozen = value;
       await this.plugin.saveData(this.plugin.settings);
       this.plugin.refreshQueues();
     }));
-    new import_obsidian4.Setting(this.containerEl).setName(t("Left arrow collapses the branch first")).setDesc(t("Off: go straight to the parent. On: collapse the open branch first, then press again to select the parent.")).addToggle((toggle) => toggle.setValue(this.plugin.settings.collapseOnLeft).onChange(async (value) => {
+    new import_obsidian5.Setting(this.containerEl).setName(t("Left arrow collapses the branch first")).setDesc(t("Off: go straight to the parent. On: collapse the open branch first, then press again to select the parent.")).addToggle((toggle) => toggle.setValue(this.plugin.settings.collapseOnLeft).onChange(async (value) => {
       this.plugin.settings.collapseOnLeft = value;
       await this.plugin.saveData(this.plugin.settings);
     }));
     for (const [key, label2] of [["queueTaskMarker", t("Show [ ] in list text")], ["queueStepTag", t("Show #step in list text")]]) {
-      new import_obsidian4.Setting(this.containerEl).setName(label2).setDesc(t("Affects only Steps \xB7 Deadlines \xB7 QA display. Note text and completion controls are preserved.")).addToggle((toggle) => toggle.setValue(this.plugin.settings[key]).onChange(async (value) => {
+      new import_obsidian5.Setting(this.containerEl).setName(label2).setDesc(t("Affects only Steps \xB7 Deadlines \xB7 QA display. Note text and completion controls are preserved.")).addToggle((toggle) => toggle.setValue(this.plugin.settings[key]).onChange(async (value) => {
         this.plugin.settings[key] = value;
         await this.plugin.saveData(this.plugin.settings);
         this.plugin.refreshQueues();
       }));
     }
-    new import_obsidian4.Setting(this.containerEl).setName(t("Map node width")).setDesc(t("Applies immediately to all open maps. Outline and Table keep their own widths.")).addDropdown((dropdown) => {
+    new import_obsidian5.Setting(this.containerEl).setName(t("Map node width")).setDesc(t("Applies immediately to all open maps. Outline and Table keep their own widths.")).addDropdown((dropdown) => {
       for (const [mode, label2] of widthModes()) dropdown.addOption(mode, label2);
       dropdown.setValue(this.plugin.settings.widthMode).onChange((value) => {
-        void this.plugin.setWidthMode(value).catch((error) => new import_obsidian4.Notice(message(error)));
+        void this.plugin.setWidthMode(value).catch((error) => new import_obsidian5.Notice(message(error)));
       });
     });
     this.containerEl.createEl("p", { text: t("Folds and camera are saved on this device. Viewing does not rewrite Markdown or add hidden IDs. Windows and Android can keep different view states.") });
@@ -9508,7 +9671,7 @@ var SettingsTab = class extends import_obsidian4.PluginSettingTab {
       conflicts.hidden = !duplicate.size;
     };
     for (const definition of HOTKEY_DEFINITIONS) {
-      const row = new import_obsidian4.Setting(this.containerEl).setName(definition.label);
+      const row = new import_obsidian5.Setting(this.containerEl).setName(definition.label);
       let input;
       let recording = false;
       const save = (value) => {
@@ -9519,7 +9682,7 @@ var SettingsTab = class extends import_obsidian4.PluginSettingTab {
         this.plugin.settings.hotkeys[definition.id] = value.trim();
         this.plugin.refreshBindings();
         updateConflicts();
-        void this.plugin.saveData(this.plugin.settings).catch((error2) => new import_obsidian4.Notice(message(error2)));
+        void this.plugin.saveData(this.plugin.settings).catch((error2) => new import_obsidian5.Notice(message(error2)));
       };
       row.addText((text) => {
         input = text.inputEl;
@@ -9531,7 +9694,7 @@ var SettingsTab = class extends import_obsidian4.PluginSettingTab {
       });
       row.addExtraButton((button2) => button2.setIcon("keyboard").setTooltip(t("Record shortcut")).onClick(() => {
         this.stopRecording();
-        const scope = new import_obsidian4.Scope();
+        const scope = new import_obsidian5.Scope();
         scope.register(null, null, (event) => {
           event.preventDefault();
           event.stopPropagation();

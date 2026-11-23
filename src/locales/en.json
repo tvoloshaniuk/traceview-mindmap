@@ -1,4 +1,6 @@
 {
+  "Insert template at selected node…": "Insert template at selected node…",
+  "Enable Templater or Templates and configure a template folder.": "Enable Templater or Templates and configure a template folder.",
   "A node with its own Markdown line is required.": "A node with its own Markdown line is required.",
   "This block ID is duplicated. Fix it in the source Markdown before copying the address.": "This block ID is duplicated. Fix it in the source Markdown before copying the address.",
   "A unique block ID is required.": "A unique block ID is required.",

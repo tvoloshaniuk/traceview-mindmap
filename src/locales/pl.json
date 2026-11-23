@@ -1,4 +1,6 @@
 {
+  "Insert template at selected node…": "Wstaw szablon przy wybranym węźle…",
+  "Enable Templater or Templates and configure a template folder.": "Włącz Templater lub Templates i wskaż folder szablonów.",
   "A node with its own Markdown line is required.": "Wymagany jest węzeł z własnym wierszem Markdown.",
   "This block ID is duplicated. Fix it in the source Markdown before copying the address.": "Powielone ID bloku. Popraw je w Markdown przed skopiowaniem adresu.",
   "A unique block ID is required.": "Wymagane jest unikalne ID bloku.",

@@ -5,7 +5,7 @@
  */
 import { t, LANGUAGES, isLanguageSetting, setLanguage, type LanguageSetting } from './i18n';
 import { getLanguage, App, Component, EditableFileView, ItemView, MarkdownRenderer, MarkdownView, Menu, Notice, Platform, Plugin, PluginSettingTab, Scope, Setting, TFile, WorkspaceLeaf, normalizePath, parseLinktext, setIcon, type HoverPopover } from 'obsidian';
-import { moveBranches, changeNodes, copyBranches, deleteNodes, parseMap, editNode, addNode, addParent, deleteNode, moveNode, copyBranch, pasteBranch, toggleTask, setStep, setDated, setQuestion, getSteps, compareSteps, renumberSteps } from './core';
+import { moveBranches, changeNodes, copyBranches, deleteNodes, parseMap, restoreTemplateLineEndings, editNode, addNode, addParent, deleteNode, moveNode, copyBranch, pasteBranch, toggleTask, setStep, setDated, setQuestion, getSteps, compareSteps, renumberSteps } from './core';
 import { addressNode, onlyAddedBlockIds } from './block-links';
 import { captureHotkey, DEFAULT_HOTKEYS, HOTKEY_DEFINITIONS, resolveHotkey, validateHotkeys } from './hotkeys';
 import { compileMapPatterns, PatternError, type MapRules, type PatternMode } from './map-patterns';
@@ -16,11 +16,12 @@ import { mountNativeEditor, prepareNativeEditor, type NativeConstructor } from '
 import type { InlineEditor, InlineDriver } from './inline';
 import type { Editor } from 'obsidian';
 import { InputEditor } from './input-editor';
+import { NodeTemplatePicker, type NodeTemplate } from './node-templates';
 import { attachImagePaste, saveClipboardImage } from './image-paste';
 import { attachNodeTools, ConfirmDialog, DateDialog, MapPicker, TextDialog } from './editor';
 import { exportHtml, exportSvg } from './export';
 import { guardedChange, History, restoreViewState, serializeViewState } from './session';
-import type { MapDocument, MapViewState, NodeAction, Step, WidthMode, DropPosition } from './types';
+import type { MapDocument, MapNode, MapViewState, NodeAction, Step, WidthMode, DropPosition } from './types';
 
 const VIEW = 'traceview-mindmap-map';
 const QUEUE = 'traceview-mindmap-queue';
@@ -128,7 +129,7 @@ export default class TraceViewMindmap extends Plugin {
     this.addCommand({ id: 'open-queue', name: t("Steps, deadlines and QA"), callback: () => { void this.openQueue(); } });
     const commands: [string, string, NodeAction][] = [
       ['add-child', t("Add child node"), 'add-child'], ['add-sibling', t("Add sibling node"), 'add-sibling'],
-      ['add-parent', t("Add parent node"), 'add-parent'],
+      ['add-parent', t("Add parent node"), 'add-parent'], ['insert-template', t("Insert template at selected node…"), 'insert-template'],
       ['copy-node-link', t("Copy link to node"), 'copy-node-link'], ['edit-node', t("Edit node"), 'edit'], ['make-step', t("Mark as atomic step"), 'make-step'],
       ['make-dated', t("Add step deadline"), 'make-dated'], ['make-question', t("Mark as QA"), 'make-question'],
       ['toggle-task', t("Toggle step completion"), 'toggle-task'], ['copy-branch', t("Copy branch"), 'copy'], ['cut-branch', t("Cut branch"), 'cut'],
@@ -137,6 +138,7 @@ export default class TraceViewMindmap extends Plugin {
     for (const [id, name, action] of commands) this.addCommand({ id, name, checkCallback: checking => {
       const view = this.app.workspace.getActiveViewOfType(MapView);
       if (!view) return false;
+      if (action === 'insert-template' && (view.surface?.isEditing() || view.surface?.getSelection().length !== 1)) return false;
       if (!checking) void view.action(action, view.surface?.getState().selected ?? null);
       return true;
     } });
@@ -299,6 +301,57 @@ export default class TraceViewMindmap extends Plugin {
       leaf.view.editor.setCursor({ line, ch: 0 });
       leaf.view.editor.scrollIntoView({ from: { line, ch: 0 }, to: { line, ch: 0 } }, true);
       leaf.view.editor.focus();
+    }
+  }
+  async insertNodeTemplate(map: MapView, file: TFile, doc: MapDocument, node: MapNode, template: NodeTemplate): Promise<string | undefined> {
+    const workspace = this.app.workspace;
+    const expected = doc.lines.join('\n');
+    const conflict = () => new Error(t("The note changed. Open it again at the current line."));
+    if (workspace.getMostRecentLeaf() !== map.leaf || map.file !== file) throw conflict();
+    for (const leaf of workspace.getLeavesOfType('markdown')) {
+      const view = leaf.view;
+      if (view instanceof MarkdownView && view.file === file && view.getMode() === 'source' && view.editor.getValue().replace(/\r\n?/g, '\n') !== expected) throw conflict();
+    }
+
+    const tab = workspace.getLeaf('tab');
+    this.sourceLeaves.set(tab, file.path);
+    let editorView: MarkdownView | undefined;
+    let keepOpen = false;
+    try {
+      await tab.setViewState({ type: 'markdown', state: { file: file.path, mode: 'source' }, active: true });
+      if (!(tab.view instanceof MarkdownView) || tab.view.file !== file) throw conflict();
+      editorView = tab.view;
+      const editor = editorView.editor;
+      if (workspace.getMostRecentLeaf() !== tab || editor.getValue().replace(/\r\n?/g, '\n') !== expected) throw conflict();
+      const line = node.line, original = editor.getLine(line);
+      const pos = { line, ch: original.length };
+      editor.setCursor(pos);
+      editor.focus();
+      if (workspace.activeEditor?.editor !== editor) throw conflict();
+      // A provider can prompt, navigate or change frontmatter. Keep its real editor
+      // alive until it completes, and leave it open if the save fails.
+      keepOpen = true;
+      await template.insert();
+      if (tab.view !== editorView || editorView.file !== file) return;
+      // Plain templates may append text on the same line. Keep the parent's
+      // existing block link at the end of its line when that happens.
+      const updated = editor.getLine(line);
+      if (node.blockId && updated?.startsWith(original) && updated.length > original.length) {
+        const labelEnd = node.prefix.length + node.text.length;
+        editor.replaceRange(updated.slice(original.length) + original.slice(labelEnd),
+          { line, ch: labelEnd }, { line, ch: updated.length });
+      }
+      const result = editor.getValue();
+      await editorView.save();
+      keepOpen = false;
+      const saved = await this.app.vault.read(file);
+      return saved.replace(/\r\n?/g, '\n') === result.replace(/\r\n?/g, '\n') ? saved : undefined;
+    } finally {
+      if (!keepOpen && (tab.view === editorView && editorView?.file === file || tab.view.getViewType() === 'empty')) {
+        const restore = workspace.getMostRecentLeaf() === tab && map.leaf.view === map && map.file === file;
+        if (restore) workspace.setActiveLeaf(map.leaf, { focus: true });
+        tab.detach();
+      }
     }
   }
   async openMapLink(link: string, view: MapView, event: MouseEvent): Promise<void> {
@@ -568,7 +621,10 @@ class MapView extends EditableFileView {
     this.refreshHistory();
     await this.reload();
   }
-  private refreshTitle(): void { this.title?.setText(this.getDisplayText()); }
+  private refreshTitle(): void {
+    if (!this.file || !this.title || this.title.ownerDocument.activeElement === this.title) return;
+    this.title.setText(this.file.basename);
+  }
   private showMenu(menu: Menu, anchor: HTMLElement): void {
     const rect = anchor.getBoundingClientRect(); menu.showAtPosition({ x: rect.left, y: rect.bottom });
   }
@@ -755,6 +811,27 @@ class MapView extends EditableFileView {
         if (!file || this.path !== path) throw new Error(t("The map was closed or renamed. Copy the address again."));
         await this.plugin.copy('[[' + this.app.metadataCache.fileToLinktext(file, '', true) + '#^' + address.blockId + ']]');
         new Notice(t("Node link copied.")); return;
+      }
+      if (action === 'insert-template' && this.file) {
+        const file = this.file;
+        new NodeTemplatePicker(this.app, async item => {
+          if (this.closed || this.changing || this.cutting || this.surface?.isEditing() || this.doc !== doc || this.file !== file) {
+            throw new Error(t("The note changed. Open it again at the current line."));
+          }
+          this.changing = true;
+          try {
+            const saved = await this.plugin.insertNodeTemplate(this, file, doc, node, item);
+            if (saved !== undefined) {
+              const next = restoreTemplateLineEndings(doc, saved);
+              if (next !== saved) await this.plugin.write(file, saved, next);
+              if (!this.closed && this.file === file) this.history.push(doc.source, next);
+            }
+          } finally {
+            this.changing = false;
+            if (!this.closed && this.file === file) { await this.reload(); this.refreshHistory(); }
+          }
+        }).open();
+        return;
       }
       if (action === 'source') { const file = this.app.vault.getAbstractFileByPath(this.path); if (file instanceof TFile) await this.plugin.source(file, node.line, this.leaf); return; }
       if (action === 'copy') { await this.plugin.copy(copyBranch(doc, id)); return; }

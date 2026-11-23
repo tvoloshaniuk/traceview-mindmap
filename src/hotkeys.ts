@@ -38,6 +38,7 @@ export const HOTKEY_DEFINITIONS: HotkeyDefinition[] = [
   { id: 'make-dated', get label() { return t("Set date"); }, defaults: [] },
   { id: 'make-question', get label() { return t("Mark as question"); }, defaults: [] },
   { id: 'source', get label() { return t("Open source Markdown"); }, defaults: [] },
+  { id: 'insert-template', get label() { return t("Insert template at selected node…"); }, defaults: [] },
   { id: 'parent', get label() { return t("Select parent node"); }, defaults: ['ArrowLeft'] },
   { id: 'child', get label() { return t("Select child node"); }, defaults: ['ArrowRight'] },
   { id: 'previous', get label() { return t("Select previous sibling"); }, defaults: ['ArrowUp'] },

@@ -1,4 +1,6 @@
 {
+  "Insert template at selected node…": "Vorlage am ausgewählten Knoten einfügen…",
+  "Enable Templater or Templates and configure a template folder.": "Aktiviere Templater oder Templates und lege einen Vorlagenordner fest.",
   "A node with its own Markdown line is required.": "Ein Knoten mit eigener Markdown-Zeile ist erforderlich.",
   "This block ID is duplicated. Fix it in the source Markdown before copying the address.": "Doppelte Block-ID. Vor dem Kopieren im Markdown korrigieren.",
   "A unique block ID is required.": "Eine eindeutige Block-ID ist erforderlich.",

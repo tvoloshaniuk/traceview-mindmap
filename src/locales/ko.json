@@ -1,4 +1,6 @@
 {
+  "Insert template at selected node…": "선택한 노드 위치에 템플릿 삽입…",
+  "Enable Templater or Templates and configure a template folder.": "Templater 또는 Templates를 활성화하고 템플릿 폴더를 지정하세요.",
   "A node with its own Markdown line is required.": "독립된 Markdown 줄이 있는 노드가 필요합니다.",
   "This block ID is duplicated. Fix it in the source Markdown before copying the address.": "블록 ID가 중복됩니다. Markdown에서 수정한 후 주소를 복사하세요.",
   "A unique block ID is required.": "고유한 블록 ID가 필요합니다.",

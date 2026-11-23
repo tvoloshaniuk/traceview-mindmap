@@ -5,8 +5,17 @@
  */
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { parseMap, editNode, addNode, addParent, deleteNode, moveNode, reparentNode, copyBranch, pasteBranch, toggleTask, setStep, setDated, setQuestion, getSteps, compareSteps, renumberSteps } from '../src/core';
+import { parseMap, restoreTemplateLineEndings, editNode, addNode, addParent, deleteNode, moveNode, reparentNode, copyBranch, pasteBranch, toggleTask, setStep, setDated, setQuestion, getSteps, compareSteps, renumberSteps } from '../src/core';
 import type { MapDocument } from '../src/types';
+
+test('template insertion preserves the surrounding source line endings, including on a repeat', () => {
+  const original = '# Map\n- Week ^week\r\n- Next\n- Last';
+  const doc = parseMap(original);
+  const normalized = doc.lines.join('\n');
+  assert.equal(restoreTemplateLineEndings(doc, normalized), original);
+  assert.equal(restoreTemplateLineEndings(doc, normalized.replace('^week', '^week\n  - Day')),
+    original.replace('^week', '^week\r\n  - Day'));
+});
 
 const node = (doc: MapDocument, text: string) => {
   const result = doc.nodes.find(item => item.text === text);
