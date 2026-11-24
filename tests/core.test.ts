@@ -14,7 +14,7 @@ test('group shift preserves unselected gaps, children, anchors and file endings'
   assert.equal(copyNodeLabels(doc, ids), '- B\r\n- D\r\n');
   assert.equal(shiftSelectedBranches(doc, ids, 'up'), '- B ^b\r\n  - Child\r\n- A\r\n- D ^d\r\n- C');
 });
-import { parseMap, restoreTemplateLineEndings, editNode, addNode, addParent, deleteNode, moveNode, reparentNode, copyBranch, pasteBranch, toggleTask, setStep, toggleStepNumber, setDated, setQuestion, getSteps, compareSteps, renumberSteps } from '../src/core';
+import { nodeNoteContent, nodeNoteLabel, parseMap, restoreTemplateLineEndings, editNode, addNode, addParent, deleteNode, moveNode, reparentNode, copyBranch, pasteBranch, toggleTask, setStep, toggleStepNumber, setDated, setQuestion, getSteps, compareSteps, renumberSteps } from '../src/core';
 import type { MapDocument } from '../src/types';
 
 test('template insertion preserves the surrounding source line endings, including on a repeat', () => {
@@ -481,4 +481,24 @@ test('step numbering toggles while retaining task status, deadline, aliases, anc
   assert.equal(numbered, source.replace('3)', '9)'));
   const bare = parseMap('- [ ] #step ) Text\n');
   assert.match(toggleStepNumber(bare, bare.nodes[0].id), /#step 1\) Text/);
+});
+
+
+test('note conversion separates the title from checkbox, step number and deadline metadata', () => {
+  for(const [text,prefix,body] of [
+    ['Ordinary text','','Ordinary text'],
+    ['[x] Completed','[x] ','Completed'],
+    ['[ ] #step 2.1a) до [[2026-12-01]] Plan','[ ] #step 2.1a) до [[2026-12-01]] ','Plan'],
+    ['[ ] #step до ? 3) Plan','[ ] #step до ? 3) ','Plan'],
+  ]) assert.deepEqual(nodeNoteLabel(text),{prefix,body});
+  const source='- [x] #step 2) Plan ^parent\r\n\t- Child ^child\r\n';
+  const doc=parseMap(source),node=doc.nodes[0];
+  const {prefix}=nodeNoteLabel(node.text);
+  const next=editNode(doc,node.id,prefix+'Short ![[Detail]]');
+  assert.equal(next,'- [x] #step 2) Short ![[Detail]] ^parent\r\n\t- Child ^child\r\n');
+});
+
+
+test('moved note self-links still target the source map; code and other links stay literal', () => {
+  assert.equal(nodeNoteContent('[[#^node|Alias]] [[Relative]] [heading](#Section) `[[#Code]]`\\[[#Escaped]]', 'Map Name.mindmap', 'Map Name.mindmap.md'), '[[Map Name.mindmap#^node|Alias]] [[Relative]] [heading](<Map%20Name.mindmap.md#Section>) `[[#Code]]`\\[[#Escaped]]');
 });

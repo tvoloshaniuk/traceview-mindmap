@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.0.28
+
+### Added
+
+- Convert a node into an embedded multiline note from its context menu or the command palette. Ask for a short title above the embed and move the original node text into a Markdown file next to the map.
+- Keep children, block addresses, checkbox state, step numbers and deadlines in the map. Cancelling the title prompt creates no file; conflicting map edits prevent conversion.
+
+
 ## 1.0.27
 
 ### Changed

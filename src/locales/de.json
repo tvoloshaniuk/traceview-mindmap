@@ -351,5 +351,7 @@
   "Planning lists": "Aufgabenlisten",
   "Map appearance": "Kartendarstellung",
   "Navigation": "Navigation",
-  "Save (Ctrl/Cmd+Enter)": "Speichern (Strg/Cmd+Enter)"
+  "Save (Ctrl/Cmd+Enter)": "Speichern (Strg/Cmd+Enter)",
+  "Convert to multiline note…": "In mehrzeilige Notiz umwandeln…",
+  "Short node title": "Kurzer Knotentitel"
 }

@@ -1594,6 +1594,7 @@ export class MapSurface {
       { label: t("Copy branch"), action: 'copy' },
       { label: t("Copy node text"), action: 'copy-node-text' },
       { label: t("Edit embedded node note"), action: 'node-note' },
+      { label: t("Convert to multiline note…"), action: 'convert-node-note' },
       { label: t("Move completed children to bottom"), action: 'completed-bottom' },
       { label: t("Copy selected nodes without children"), action: 'copy-node-labels' },
       { label: t("Cut branch"), action: 'cut' },
@@ -1614,7 +1615,7 @@ export class MapSurface {
       button.setAttribute('role', 'menuitem');
       const label = this.container.ownerDocument.createElement('span');
       label.textContent = this.selection.size > 1 && ['delete', 'copy', 'cut'].includes(entry.action) ? t(entry.action === "copy" ? "Copy selection" : entry.action === "cut" ? "Cut selection" : "Delete selection") : entry.label;
-      if (this.selection.size > 1 && ['edit', 'copy-node-text', 'node-note', 'completed-bottom', 'add-child', 'add-sibling', 'add-parent', 'insert-template', 'paste', 'paste-after', 'indent', 'outdent'].includes(entry.action)) button.disabled = true;
+      if (this.selection.size > 1 && ['edit', 'copy-node-text', 'node-note', 'convert-node-note', 'completed-bottom', 'add-child', 'add-sibling', 'add-parent', 'insert-template', 'paste', 'paste-after', 'indent', 'outdent'].includes(entry.action)) button.disabled = true;
       button.append(label);
       const binding = this.options.getHotkeys?.()[entry.action] ?? DEFAULT_HOTKEYS[entry.action];
       if (binding) {

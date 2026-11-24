@@ -351,5 +351,7 @@
   "Planning lists": "Listes de tâches",
   "Map appearance": "Apparence de la carte",
   "Navigation": "Navigation",
-  "Save (Ctrl/Cmd+Enter)": "Enregistrer (Ctrl/Cmd+Entrée)"
+  "Save (Ctrl/Cmd+Enter)": "Enregistrer (Ctrl/Cmd+Entrée)",
+  "Convert to multiline note…": "Convertir en note multiligne…",
+  "Short node title": "Titre court du nœud"
 }

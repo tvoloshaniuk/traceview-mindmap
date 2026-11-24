@@ -5,7 +5,7 @@
  */
 import { t, LANGUAGES, isLanguageSetting, setLanguage, type LanguageSetting } from './i18n';
 import { getLanguage, App, Component, EditableFileView, ItemView, MarkdownRenderer, MarkdownView, Menu, Notice, Platform, Plugin, PluginSettingTab, Scope, Setting, TFile, WorkspaceLeaf, normalizePath, parseLinktext, setIcon, type HoverPopover } from 'obsidian';
-import { moveBranches, changeNodes, copyBranches, copyNodeLabels, deleteNodes, parseMap, restoreTemplateLineEndings, editNode, addFirstNode, addNode, addParent, deleteNode, moveNode, copyBranch, pasteBranch, toggleTask, toggleStepNumber, setDated, setQuestion, getSteps, compareSteps, renumberSteps, moveCompletedChildrenToBottom, shiftSelectedBranches, unnumberStep } from './core';
+import { moveBranches, changeNodes, copyBranches, copyNodeLabels, deleteNodes, parseMap, restoreTemplateLineEndings, nodeNoteContent, nodeNoteLabel, editNode, addFirstNode, addNode, addParent, deleteNode, moveNode, copyBranch, pasteBranch, toggleTask, toggleStepNumber, setDated, setQuestion, getSteps, compareSteps, renumberSteps, moveCompletedChildrenToBottom, shiftSelectedBranches, unnumberStep } from './core';
 import { addressNode, onlyAddedBlockIds, removeNodeAddress, nodeBacklinks } from './block-links';
 import { captureHotkey, DEFAULT_HOTKEYS, HOTKEY_DEFINITIONS, resolveHotkey, validateHotkeys } from './hotkeys';
 import { compileMapPatterns, PatternError, type MapRules, type PatternMode } from './map-patterns';
@@ -162,7 +162,7 @@ export default class TraceViewMindmap extends Plugin {
       ['add-child', t("Add child node"), 'add-child'], ['add-sibling', t("Add sibling node"), 'add-sibling'],
       ['add-sibling-before', t("Add sibling above"), 'add-sibling-before'],
       ['add-parent', t("Add parent node"), 'add-parent'], ['insert-template', t("Insert template at selected node…"), 'insert-template'],
-      ['copy-node-link', t("Copy link to node"), 'copy-node-link'], ['remove-node-address', t("Remove node address"), 'remove-node-address'], ['edit-node', t("Edit node"), 'edit'], ['node-note', t("Edit embedded node note"), 'node-note'], ['make-step', t("Mark as atomic step"), 'make-step'],
+      ['copy-node-link', t("Copy link to node"), 'copy-node-link'], ['remove-node-address', t("Remove node address"), 'remove-node-address'], ['edit-node', t("Edit node"), 'edit'], ['node-note', t("Edit embedded node note"), 'node-note'], ['convert-node-note', t("Convert to multiline note…"), 'convert-node-note'], ['make-step', t("Mark as atomic step"), 'make-step'],
       ['make-dated', t("Add step deadline"), 'make-dated'], ['make-question', t("Mark as QA"), 'make-question'],
       ['toggle-task', t("Toggle step completion"), 'toggle-task'], ['completed-bottom', t("Move completed children to bottom"), 'completed-bottom'], ['copy-node-labels', t("Copy selected nodes without children"), 'copy-node-labels'], ['copy-branch', t("Copy branch"), 'copy'], ['cut-branch', t("Cut branch"), 'cut'],
       ['paste-branch', t("Paste as child branch"), 'paste'], ['paste-after', t("Paste as sibling branch"), 'paste-after'], ['undo', t("Undo map change"), 'undo'], ['redo', t("Redo map change"), 'redo']
@@ -1006,6 +1006,7 @@ class MapView extends EditableFileView {
       }
       if (action === 'copy-node-text') { await this.plugin.copy(node.text); return; }
       if (action === 'completed-bottom') { await this.apply(doc, moveCompletedChildrenToBottom(doc, id)); return; }
+      if (action === 'convert-node-note') { this.convertNodeNote(doc, node); return; }
       if (action === 'node-note') { await this.editNodeNote(doc, node); return; }
       if (action === 'insert-template' && this.file) {
         const file = this.file;
@@ -1139,6 +1140,34 @@ class MapView extends EditableFileView {
     menu.addItem(item => item.setTitle(t("Remove node address")).setIcon('unlink').onClick(() => { void this.action('remove-node-address', node.id); }));
     const anchor = this.contentEl.querySelector<HTMLElement>('.tvm-node.is-selected .tvm-node-address');
     this.showMenu(menu, anchor ?? this.contentEl);
+  }
+  private convertNodeNote(doc: MapDocument, node: MapNode): void {
+    const map = this.file;
+    if (!map) return;
+    const { prefix, body } = nodeNoteLabel(node.text);
+    new TextDialog(this.app, t("Short node title"), body.slice(0, 80), async value => {
+      const title = value.trim();
+      if (!title) throw new Error(t("A node cannot be empty."));
+      if (this.file !== map || this.doc !== doc || this.surface?.isEditing() || await this.app.vault.read(map) !== doc.source) {
+        throw new Error(t("The note changed. Open it again at the current line."));
+      }
+      const name = map.basename.replace(/\.mindmap$/, '').replace(/[\\/:*?"<>|#\[\]^]/g, ' ').slice(0, 40).trim() || 'Map';
+      // Keep relative links in the moved text valid in the new file.
+      const destination = map.parent?.path ?? '';
+      const suffix = globalThis.crypto.randomUUID().slice(0, 8);
+      const path = normalizePath((destination ? destination + '/' : '') + name + ' - note ' + suffix + '.md');
+      const content = nodeNoteContent(node.text, this.app.metadataCache.fileToLinktext(map, path, true), map.name);
+      const created = await this.app.vault.create(path, content);
+      const link = this.app.metadataCache.fileToLinktext(created, map.path, true);
+      try {
+        await this.apply(doc, editNode(doc, node.id, prefix + title + ' ![[' + link + ']]'));
+      } catch (error) {
+        // A second file cannot participate in vault.process; roll back only our untouched note.
+        const current = await this.app.vault.read(map);
+        if (!current.includes('![[' + link + ']]') && await this.app.vault.read(created) === content) await this.app.vault.trash(created, true);
+        throw error;
+      }
+    }, map.path, 'single-line').open();
   }
   private async editNodeNote(doc: MapDocument, node: MapNode, targetNote?: TFile): Promise<void> {
     const map = this.file;

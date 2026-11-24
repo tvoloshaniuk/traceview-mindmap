@@ -351,5 +351,7 @@
   "Planning lists": "タスクリスト",
   "Map appearance": "マップの表示",
   "Navigation": "ナビゲーション",
-  "Save (Ctrl/Cmd+Enter)": "保存 (Ctrl/Cmd+Enter)"
+  "Save (Ctrl/Cmd+Enter)": "保存 (Ctrl/Cmd+Enter)",
+  "Convert to multiline note…": "複数行ノートに変換…",
+  "Short node title": "短いノード名"
 }

@@ -351,5 +351,7 @@
   "Planning lists": "Списки задач",
   "Map appearance": "Вид карты",
   "Navigation": "Навигация",
-  "Save (Ctrl/Cmd+Enter)": "Сохранить (Ctrl/Cmd+Enter)"
+  "Save (Ctrl/Cmd+Enter)": "Сохранить (Ctrl/Cmd+Enter)",
+  "Convert to multiline note…": "Преобразовать в многострочную заметку…",
+  "Short node title": "Краткое название узла"
 }

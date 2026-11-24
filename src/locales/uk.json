@@ -351,5 +351,7 @@
   "Planning lists": "Списки задач",
   "Map appearance": "Вигляд карти",
   "Navigation": "Навігація",
-  "Save (Ctrl/Cmd+Enter)": "Зберегти (Ctrl/Cmd+Enter)"
+  "Save (Ctrl/Cmd+Enter)": "Зберегти (Ctrl/Cmd+Enter)",
+  "Convert to multiline note…": "Перетворити на багаторядкову нотатку…",
+  "Short node title": "Коротка назва ноди"
 }

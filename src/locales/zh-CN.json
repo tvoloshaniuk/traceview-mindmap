@@ -351,5 +351,7 @@
   "Planning lists": "任务列表",
   "Map appearance": "地图外观",
   "Navigation": "导航",
-  "Save (Ctrl/Cmd+Enter)": "保存 (Ctrl/Cmd+Enter)"
+  "Save (Ctrl/Cmd+Enter)": "保存 (Ctrl/Cmd+Enter)",
+  "Convert to multiline note…": "转换为多行笔记…",
+  "Short node title": "节点短标题"
 }

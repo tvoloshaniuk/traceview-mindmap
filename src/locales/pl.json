@@ -351,5 +351,7 @@
   "Planning lists": "Listy zadań",
   "Map appearance": "Wygląd mapy",
   "Navigation": "Nawigacja",
-  "Save (Ctrl/Cmd+Enter)": "Zapisz (Ctrl/Cmd+Enter)"
+  "Save (Ctrl/Cmd+Enter)": "Zapisz (Ctrl/Cmd+Enter)",
+  "Convert to multiline note…": "Przekształć w notatkę wielowierszową…",
+  "Short node title": "Krótki tytuł węzła"
 }

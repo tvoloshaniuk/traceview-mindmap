@@ -237,6 +237,21 @@ function assertNodeLine(prefix: string, text: string): void {
   }
 }
 
+export function nodeNoteContent(text: string, wikiPath: string, markdownName: string): string {
+  return text.replace(/(`+)[\s\S]*?\1|(?<!\\)\[\[(#[^\]\n]+)\]\]|(?<!\\)(\[[^\]\n]*\]\()(<#[^>\n]+>|#[^\s)]+)(\))/g,
+    (match, code: string | undefined, wiki: string | undefined, markdown: string | undefined, target: string | undefined, end: string | undefined) => {
+      if (code) return match;
+      if (wiki) return '[[' + wikiPath + wiki + ']]';
+      const subpath = target!.startsWith('<') ? target!.slice(1, -1) : target!;
+      return markdown + '<' + encodeURI(markdownName) + subpath + '>' + end;
+    });
+}
+
+export function nodeNoteLabel(text: string): { prefix: string; body: string } {
+  const body = stepParts(text)?.label ?? text.replace(/^\[[^\]]\][ \t]*/, '');
+  return { prefix: text.slice(0, text.length - body.length), body };
+}
+
 export function editNode(doc: MapDocument, id: string, text: string): string {
   singleLine(text);
   const node = required(doc, id);

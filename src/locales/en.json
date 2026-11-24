@@ -351,5 +351,7 @@
   "Planning lists": "Planning lists",
   "Map appearance": "Map appearance",
   "Navigation": "Navigation",
-  "Save (Ctrl/Cmd+Enter)": "Save (Ctrl/Cmd+Enter)"
+  "Save (Ctrl/Cmd+Enter)": "Save (Ctrl/Cmd+Enter)",
+  "Convert to multiline note…": "Convert to multiline note…",
+  "Short node title": "Short node title"
 }
