@@ -703,7 +703,7 @@ class MapView extends EditableFileView {
         const editor = this.editor;
         const query = search.input.value.trim();
         const offset = editor?.getValue().toLocaleLowerCase().indexOf(query.toLocaleLowerCase()) ?? -1;
-        if (editor && offset >= 0) editor.setSelection({ line: 0, ch: offset }, { line: 0, ch: offset + query.length });
+        if (editor && offset >= 0) editor.setSelection(editor.offsetToPos(offset), editor.offsetToPos(offset + query.length));
       },
       focusMap: () => {
         if (searchDraft) this.surface?.focusEditor();
@@ -761,6 +761,14 @@ class MapView extends EditableFileView {
             await this.appendMapPreview(element, file, target);
           }
         }
+      },
+      onEditEmbed: (id, link) => {
+        const doc = this.doc, node = doc?.byId.get(id);
+        const { path } = parseLinktext(link);
+        const file = path ? this.app.metadataCache.getFirstLinkpathDest(path, this.path) : this.file;
+        if (!doc || !node || !file || file === this.file || file.extension !== 'md' || this.plugin.isMap(file)) return false;
+        void this.editNodeNote(doc, node, file).catch(error => new Notice(message(error), 8000));
+        return true;
       },
       onOpenLink: (link, event) => { void this.plugin.openMapLink(link, this, event).catch(error => new Notice(message(error))); },
       onHoverLink: (event, targetEl, linktext) => this.app.workspace.trigger('hover-link', { event, source: 'traceview-mindmap', hoverParent: this, targetEl, linktext, sourcePath: this.path }),
@@ -1132,21 +1140,23 @@ class MapView extends EditableFileView {
     const anchor = this.contentEl.querySelector<HTMLElement>('.tvm-node.is-selected .tvm-node-address');
     this.showMenu(menu, anchor ?? this.contentEl);
   }
-  private async editNodeNote(doc: MapDocument, node: MapNode): Promise<void> {
+  private async editNodeNote(doc: MapDocument, node: MapNode, targetNote?: TFile): Promise<void> {
     const map = this.file;
     if (!map) return;
     const embeds = [...node.text.matchAll(/!\[\[([^\]#|]+)(?:\|[^\]]*)?\]\]/g)];
     const notes = embeds.map(match => this.app.metadataCache.getFirstLinkpathDest(match[1], map.path))
       .filter((file): file is TFile => file !== null && file !== map && file.extension === 'md');
-    const note = notes.reverse().find(file => !this.plugin.isMap(file) || / - note [a-f\d]{8}$/.test(file.basename));
+    const note = targetNote ?? notes.reverse().find(file => !this.plugin.isMap(file) || / - note [a-f\d]{8}$/.test(file.basename));
     const original = note ? await this.app.vault.read(note) : '';
+    const Native = await prepareNativeEditor(this.app);
+    if (this.file !== map || this.doc !== doc || !this.surface || this.surface.isEditing()) return;
     let created: TFile | undefined;
     let savedText = '';
-    new TextDialog(this.app, t("Edit embedded node note"), original, async text => {
+    this.surface.beginEdit(node.id, original, async text => {
       if (note) {
-        await this.plugin.write(note, original, text);
+        await this.plugin.write(note, original, original.includes("\r\n") ? text.replace(/\n/g, "\r\n") : text);
         this.surface?.invalidateMarkdown();
-        return;
+        return node.id;
       }
       if (!text.trim()) throw new Error(t("A node cannot be empty."));
       if (this.file !== map || this.doc !== doc) throw new Error(t("The note changed. Open it again at the current line."));
@@ -1160,7 +1170,21 @@ class MapView extends EditableFileView {
       savedText = text;
       const link = this.app.metadataCache.fileToLinktext(created, map.path, true);
       await this.apply(doc, editNode(doc, node.id, `${node.text} ![[${link}]]`));
-    }, map.path, false).open();
+      return this.doc?.nodes.find(candidate => candidate.line === node.line)?.id;
+    }, (input, tools, inline) => {
+      const owner = Object.assign(new Component(), { app: this.app, file: note ?? map, getMode: () => 'source' as const, hoverPopover: null as HoverPopover | null, editor: undefined as Editor | undefined, editMode: undefined as unknown });
+      this.addChild(owner);
+      const previousEditor = this.editor;
+      try {
+        const driver = mountNativeEditor(owner, input, tools, inline, Native, (file, line, expected) => this.nativeAddress(file, line, expected));
+        this.editor = owner.editor;
+        return { ...driver, dispose: () => {
+          const editor = owner.editor;
+          driver.dispose(); this.removeChild(owner);
+          if (this.editor === editor) this.editor = previousEditor;
+        } };
+      } catch (error) { this.removeChild(owner); throw error; }
+    }, undefined, undefined, true);
   }
   private menu(anchor: HTMLElement): void {
     const menu = new Menu();

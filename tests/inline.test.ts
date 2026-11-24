@@ -55,3 +55,24 @@ test('node text field is named by a hidden localized label, not a tooltip attrib
   }
   editor.dispose(); other.dispose(); dom.window.close();
 });
+
+
+test('multiline drafts preserve paragraphs, allow Enter, and save only on explicit confirmation', async () => {
+  const dom = new JSDOM('<body></body>');
+  const saved: string[] = [];
+  const editor = new InlineEditor(dom.window.document, 'First\r\n\r\nSecond', {
+    multiline: true, allowEmpty: true, save: async text => { saved.push(text); }, cancel: () => {}, resize: () => {},
+  });
+  dom.window.document.body.append(editor.host);
+  assert.equal(editor.input.value, 'First\n\nSecond');
+  const key = (modifiers: KeyboardEventInit = {}) => new dom.window.KeyboardEvent('keydown', {key:'Enter', bubbles:true, cancelable:true, ...modifiers});
+  const enter = key(); editor.input.dispatchEvent(enter);
+  assert.equal(enter.defaultPrevented, false); assert.equal(saved.length, 0);
+  const newline = new dom.window.InputEvent('beforeinput', {inputType:'insertParagraph', bubbles:true, cancelable:true});
+  editor.input.dispatchEvent(newline); assert.equal(newline.defaultPrevented, false);
+  editor.input.value += '\n- [ ] Task'; editor.input.dispatchEvent(new dom.window.Event('input'));
+  editor.input.dispatchEvent(key({ctrlKey:true})); await Promise.resolve();
+  assert.deepEqual(saved, ['First\n\nSecond\n- [ ] Task']);
+  editor.input.value = ''; await editor.submit(); assert.equal(saved[1], '');
+  editor.dispose(); dom.window.close();
+});

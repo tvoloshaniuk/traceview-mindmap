@@ -709,7 +709,8 @@ var en_default = {
   "Opening notes": "Opening notes",
   "Planning lists": "Planning lists",
   "Map appearance": "Map appearance",
-  Navigation: "Navigation"
+  Navigation: "Navigation",
+  "Save (Ctrl/Cmd+Enter)": "Save (Ctrl/Cmd+Enter)"
 };
 
 // src/locales/uk.json
@@ -1065,7 +1066,8 @@ var uk_default = {
   "Opening notes": "\u0412\u0456\u0434\u043A\u0440\u0438\u0442\u0442\u044F \u043D\u043E\u0442\u0430\u0442\u043E\u043A",
   "Planning lists": "\u0421\u043F\u0438\u0441\u043A\u0438 \u0437\u0430\u0434\u0430\u0447",
   "Map appearance": "\u0412\u0438\u0433\u043B\u044F\u0434 \u043A\u0430\u0440\u0442\u0438",
-  Navigation: "\u041D\u0430\u0432\u0456\u0433\u0430\u0446\u0456\u044F"
+  Navigation: "\u041D\u0430\u0432\u0456\u0433\u0430\u0446\u0456\u044F",
+  "Save (Ctrl/Cmd+Enter)": "\u0417\u0431\u0435\u0440\u0435\u0433\u0442\u0438 (Ctrl/Cmd+Enter)"
 };
 
 // src/locales/pl.json
@@ -1421,7 +1423,8 @@ var pl_default = {
   "Opening notes": "Otwieranie notatek",
   "Planning lists": "Listy zada\u0144",
   "Map appearance": "Wygl\u0105d mapy",
-  Navigation: "Nawigacja"
+  Navigation: "Nawigacja",
+  "Save (Ctrl/Cmd+Enter)": "Zapisz (Ctrl/Cmd+Enter)"
 };
 
 // src/locales/de.json
@@ -1777,7 +1780,8 @@ var de_default = {
   "Opening notes": "Notizen \xF6ffnen",
   "Planning lists": "Aufgabenlisten",
   "Map appearance": "Kartendarstellung",
-  Navigation: "Navigation"
+  Navigation: "Navigation",
+  "Save (Ctrl/Cmd+Enter)": "Speichern (Strg/Cmd+Enter)"
 };
 
 // src/locales/es.json
@@ -2133,7 +2137,8 @@ var es_default = {
   "Opening notes": "Apertura de notas",
   "Planning lists": "Listas de tareas",
   "Map appearance": "Apariencia del mapa",
-  Navigation: "Navegaci\xF3n"
+  Navigation: "Navegaci\xF3n",
+  "Save (Ctrl/Cmd+Enter)": "Guardar (Ctrl/Cmd+Enter)"
 };
 
 // src/locales/fr.json
@@ -2489,7 +2494,8 @@ var fr_default = {
   "Opening notes": "Ouverture des notes",
   "Planning lists": "Listes de t\xE2ches",
   "Map appearance": "Apparence de la carte",
-  Navigation: "Navigation"
+  Navigation: "Navigation",
+  "Save (Ctrl/Cmd+Enter)": "Enregistrer (Ctrl/Cmd+Entr\xE9e)"
 };
 
 // src/locales/pt-BR.json
@@ -2845,7 +2851,8 @@ var pt_BR_default = {
   "Opening notes": "Abertura de notas",
   "Planning lists": "Listas de tarefas",
   "Map appearance": "Apar\xEAncia do mapa",
-  Navigation: "Navega\xE7\xE3o"
+  Navigation: "Navega\xE7\xE3o",
+  "Save (Ctrl/Cmd+Enter)": "Salvar (Ctrl/Cmd+Enter)"
 };
 
 // src/locales/zh-CN.json
@@ -3201,7 +3208,8 @@ var zh_CN_default = {
   "Opening notes": "\u6253\u5F00\u7B14\u8BB0",
   "Planning lists": "\u4EFB\u52A1\u5217\u8868",
   "Map appearance": "\u5730\u56FE\u5916\u89C2",
-  Navigation: "\u5BFC\u822A"
+  Navigation: "\u5BFC\u822A",
+  "Save (Ctrl/Cmd+Enter)": "\u4FDD\u5B58 (Ctrl/Cmd+Enter)"
 };
 
 // src/locales/ja.json
@@ -3557,7 +3565,8 @@ var ja_default = {
   "Opening notes": "\u30CE\u30FC\u30C8\u3092\u958B\u304F",
   "Planning lists": "\u30BF\u30B9\u30AF\u30EA\u30B9\u30C8",
   "Map appearance": "\u30DE\u30C3\u30D7\u306E\u8868\u793A",
-  Navigation: "\u30CA\u30D3\u30B2\u30FC\u30B7\u30E7\u30F3"
+  Navigation: "\u30CA\u30D3\u30B2\u30FC\u30B7\u30E7\u30F3",
+  "Save (Ctrl/Cmd+Enter)": "\u4FDD\u5B58 (Ctrl/Cmd+Enter)"
 };
 
 // src/locales/ko.json
@@ -3913,7 +3922,8 @@ var ko_default = {
   "Opening notes": "\uB178\uD2B8 \uC5F4\uAE30",
   "Planning lists": "\uC791\uC5C5 \uBAA9\uB85D",
   "Map appearance": "\uC9C0\uB3C4 \uD45C\uC2DC",
-  Navigation: "\uD0D0\uC0C9"
+  Navigation: "\uD0D0\uC0C9",
+  "Save (Ctrl/Cmd+Enter)": "\uC800\uC7A5 (Ctrl/Cmd+Enter)"
 };
 
 // src/locales/ru.json
@@ -4269,7 +4279,8 @@ var ru_default = {
   "Opening notes": "\u041E\u0442\u043A\u0440\u044B\u0442\u0438\u0435 \u0437\u0430\u043C\u0435\u0442\u043E\u043A",
   "Planning lists": "\u0421\u043F\u0438\u0441\u043A\u0438 \u0437\u0430\u0434\u0430\u0447",
   "Map appearance": "\u0412\u0438\u0434 \u043A\u0430\u0440\u0442\u044B",
-  Navigation: "\u041D\u0430\u0432\u0438\u0433\u0430\u0446\u0438\u044F"
+  Navigation: "\u041D\u0430\u0432\u0438\u0433\u0430\u0446\u0438\u044F",
+  "Save (Ctrl/Cmd+Enter)": "\u0421\u043E\u0445\u0440\u0430\u043D\u0438\u0442\u044C (Ctrl/Cmd+Enter)"
 };
 
 // src/i18n.ts
@@ -5665,14 +5676,14 @@ var InlineEditor = class {
     this.host.className = "tvm-inline-editor";
     this.input = document.createElement("textarea");
     this.input.className = "tvm-inline-input";
-    this.input.rows = 1;
+    this.input.rows = this.multiline ? 5 : 1;
     const label2 = document.createElement("span");
     label2.id = "tvm-node-text-label-" + ++nextLabelId;
     label2.hidden = true;
     label2.textContent = t("Node text");
     this.input.setAttribute("aria-labelledby", label2.id);
-    this.input.setAttribute("enterkeyhint", "done");
-    this.initial = singleLine2(initial);
+    this.input.setAttribute("enterkeyhint", this.multiline ? "enter" : "done");
+    this.initial = this.normalize(initial);
     this.input.value = this.initial;
     this.host.append(this.input, label2);
     const tools = document.createElement("div");
@@ -5694,7 +5705,7 @@ var InlineEditor = class {
       tools.append(el);
       return el;
     };
-    button2("\u2713", t("Save (Enter)"), () => {
+    button2("\u2713", t(this.multiline ? "Save (Ctrl/Cmd+Enter)" : "Save (Enter)"), () => {
       void this.submit();
     }).classList.add("mod-cta");
     button2("\xD7", t("Cancel (Escape)"), () => this.cancel());
@@ -5703,15 +5714,15 @@ var InlineEditor = class {
     this.error.setAttribute("role", "alert");
     this.host.append(this.error);
     this.input.addEventListener("beforeinput", (event) => {
-      if (event.inputType === "insertParagraph" || event.inputType === "insertLineBreak") event.preventDefault();
+      if (!this.multiline && (event.inputType === "insertParagraph" || event.inputType === "insertLineBreak")) event.preventDefault();
     });
     const normalize = () => {
       this.dismissConfirmation();
       const value = this.input.value;
-      const start = singleLine2(value.slice(0, this.input.selectionStart)).length;
-      const end = singleLine2(value.slice(0, this.input.selectionEnd)).length;
-      if (value !== singleLine2(value)) {
-        this.input.value = singleLine2(value);
+      const start = this.normalize(value.slice(0, this.input.selectionStart)).length;
+      const end = this.normalize(value.slice(0, this.input.selectionEnd)).length;
+      if (value !== this.normalize(value)) {
+        this.input.value = this.normalize(value);
         this.input.setSelectionRange(start, end);
       }
       this.resize();
@@ -5721,7 +5732,7 @@ var InlineEditor = class {
     });
     this.input.addEventListener("compositionend", normalize);
     this.input.addEventListener("paste", (event) => {
-      if (event.defaultPrevented || this.input.readOnly) return;
+      if (event.defaultPrevented || this.input.readOnly || this.multiline) return;
       const text = event.clipboardData?.getData("text/plain");
       if (text === void 0 || !/[\r\n\u2028\u2029]/.test(text)) return;
       event.preventDefault();
@@ -5729,6 +5740,12 @@ var InlineEditor = class {
       this.input.dispatchEvent(new document.defaultView.Event("input", { bubbles: true }));
     });
     this.host.addEventListener("keydown", (event) => this.handleKeydown(event));
+  }
+  get multiline() {
+    return !!this.options.multiline;
+  }
+  normalize(text) {
+    return this.multiline ? text.replace(/\r\n?/g, "\n") : singleLine2(text);
   }
   handleKeydown(event) {
     if (event.defaultPrevented || event.isComposing || this.driver?.suggestionActive()) return false;
@@ -5753,7 +5770,8 @@ var InlineEditor = class {
       return true;
     }
     if (event.key !== "Enter" || event.target?.closest("button")) return false;
-    if (event.shiftKey && this.options.createAbove?.(event)) {
+    if (this.multiline && !(event.ctrlKey || event.metaKey)) return false;
+    if (!this.multiline && event.shiftKey && this.options.createAbove?.(event)) {
       event.preventDefault();
       event.stopPropagation();
       return true;
@@ -5788,7 +5806,7 @@ var InlineEditor = class {
     this.focus();
   }
   cancelIfUnchanged() {
-    if (this.saving || this.disposed || this.input.readOnly || this.input.getAttribute("aria-busy") === "true" || singleLine2(this.input.value) !== this.initial) return false;
+    if (this.saving || this.disposed || this.input.readOnly || this.input.getAttribute("aria-busy") === "true" || this.normalize(this.input.value) !== this.initial) return false;
     this.options.cancel();
     return true;
   }
@@ -5798,7 +5816,7 @@ var InlineEditor = class {
       this.focus();
       return;
     }
-    if (singleLine2(this.input.value) === this.initial && this.input.getAttribute("aria-busy") !== "true") {
+    if (this.normalize(this.input.value) === this.initial && this.input.getAttribute("aria-busy") !== "true") {
       this.options.cancel();
       return;
     }
@@ -5841,7 +5859,7 @@ var InlineEditor = class {
   }
   async submit() {
     if (this.saving || this.disposed || this.input.readOnly || this.confirmation) return;
-    const input = singleLine2(this.input.value);
+    const input = this.normalize(this.input.value);
     const text = input.trim() ? input : this.options.emptyFallback ?? "";
     if (!text.trim() && !this.options.allowEmpty) {
       this.error.textContent = t("A node cannot be empty.");
@@ -6084,7 +6102,7 @@ var MapSurface = class {
     this.rendered.clear();
     if (!this.editing) this.render();
   }
-  beginEdit(id, initial, save, mount, draft, onFinish) {
+  beginEdit(id, initial, save, mount, draft, onFinish, multiline = false) {
     if (this.editing || !this.doc || this.destroyed) {
       this.focusEditor();
       return;
@@ -6092,7 +6110,8 @@ var MapSurface = class {
     const original = this.doc, state = this.getState();
     const editor = new InlineEditor(this.container.ownerDocument, initial, {
       allowEmpty: true,
-      emptyFallback: original.byId.get(id)?.children.length ? t("Untitled") : void 0,
+      multiline,
+      emptyFallback: !multiline && original.byId.get(id)?.children.length ? t("Untitled") : void 0,
       save: async (text) => {
         const selected = await save(text);
         onFinish?.();
@@ -6975,6 +6994,14 @@ var MapSurface = class {
       }
       return;
     }
+    const embed = target.closest(".markdown-embed.internal-embed");
+    const embedLink = embed?.getAttribute("src");
+    if (id && embedLink && !target.closest('button, input, textarea, [contenteditable="true"]') && this.options.onEditEmbed?.(id, embedLink)) {
+      event.preventDefault();
+      event.stopPropagation();
+      this.select(id);
+      return;
+    }
     const image = target.closest("img")?.closest(".internal-embed");
     const imageLink = image?.getAttribute("src");
     if (imageLink && this.options.onOpenLink) {
@@ -7832,6 +7859,7 @@ function prepareNativeEditor(app) {
 function mountNativeEditor(owner, input, tools, inline, Native, ensureAddress) {
   if (!Native) throw new Error(t("Could not prepare the native editor."));
   const document = input.ownerDocument;
+  const normalize = (text) => inline.multiline ? text : singleLine2(text);
   const host = document.createElement("div");
   host.className = "tvm-native-editor";
   input.before(host);
@@ -7840,6 +7868,9 @@ function mountNativeEditor(owner, input, tools, inline, Native, ensureAddress) {
   const scope = new import_obsidian.Scope(owner.app.scope);
   for (const key of ["Enter", "Escape"]) scope.register([], key, (event) => {
     if (!native?.editorSuggest.isShowingSuggestion() && inline.handleKeydown(event)) return false;
+  });
+  if (inline.multiline) scope.register(["Mod"], "Enter", (event) => {
+    if (inline.handleKeydown(event)) return false;
   });
   const focus = () => {
     if (!active) return;
@@ -7882,7 +7913,7 @@ function mountNativeEditor(owner, input, tools, inline, Native, ensureAddress) {
     if (!active || syncing || !native) return;
     syncing = true;
     try {
-      input.value = singleLine2(native.get());
+      input.value = normalize(native.get());
       const selection = native.editor.listSelections()[0];
       if (selection) input.setSelectionRange(native.editor.posToOffset(selection.anchor), native.editor.posToOffset(selection.head));
       input.dispatchEvent(new document.defaultView.Event("input", { bubbles: true }));
@@ -7903,7 +7934,7 @@ function mountNativeEditor(owner, input, tools, inline, Native, ensureAddress) {
       extensions2.push(filter.of((transaction) => {
         if (!transaction.docChanged) return transaction;
         if (input.readOnly && !syncing) return [];
-        const text = transaction.newDoc.toString(), normalized = singleLine2(text);
+        const text = transaction.newDoc.toString(), normalized = normalize(text);
         if (text === normalized) return transaction;
         return {
           changes: { from: 0, to: transaction.startState.doc.length, insert: normalized },
@@ -7925,7 +7956,7 @@ function mountNativeEditor(owner, input, tools, inline, Native, ensureAddress) {
     if (!active || syncing || !native || native.get() === input.value) return;
     syncing = true;
     try {
-      native.set(singleLine2(input.value), false);
+      native.set(normalize(input.value), false);
     } finally {
       syncing = false;
     }
@@ -7935,7 +7966,7 @@ function mountNativeEditor(owner, input, tools, inline, Native, ensureAddress) {
     if (event.key === "Enter" || event.key === "Escape") inline.handleKeydown(event);
   };
   const beforeinput = (event) => {
-    if (event.inputType === "insertParagraph" || event.inputType === "insertLineBreak") event.preventDefault();
+    if (!inline.multiline && (event.inputType === "insertParagraph" || event.inputType === "insertLineBreak")) event.preventDefault();
   };
   const dispose = () => {
     if (!active) return;
@@ -7971,7 +8002,7 @@ function mountNativeEditor(owner, input, tools, inline, Native, ensureAddress) {
     owner.addChild(native);
     native.set(input.value, true);
     initializing = false;
-    native.editor.setCursor({ line: 0, ch: input.value.length });
+    native.editor.setCursor(inline.multiline ? native.editor.offsetToPos(input.value.length) : { line: 0, ch: input.value.length });
     if (ensureAddress) for (const suggestion of native.editorSuggest.suggests ?? []) {
       if (!suggestion.suggestManager || typeof suggestion.selectSuggestion !== "function") continue;
       const original = suggestion.selectSuggestion;
@@ -8010,7 +8041,7 @@ function mountNativeEditor(owner, input, tools, inline, Native, ensureAddress) {
     const labelledBy = input.getAttribute("aria-labelledby");
     if (labelledBy) native.cm.contentDOM.setAttribute("aria-labelledby", labelledBy);
     else native.cm.contentDOM.setAttribute("aria-label", t("Node text"));
-    native.cm.contentDOM.setAttribute("enterkeyhint", "done");
+    native.cm.contentDOM.setAttribute("enterkeyhint", inline.multiline ? "enter" : "done");
     input.hidden = true;
     input.addEventListener("input", pull);
     host.addEventListener("keydown", keydown, true);
@@ -9857,7 +9888,7 @@ var MapView = class extends import_obsidian5.EditableFileView {
         const editor = this.editor;
         const query = search.input.value.trim();
         const offset = editor?.getValue().toLocaleLowerCase().indexOf(query.toLocaleLowerCase()) ?? -1;
-        if (editor && offset >= 0) editor.setSelection({ line: 0, ch: offset }, { line: 0, ch: offset + query.length });
+        if (editor && offset >= 0) editor.setSelection(editor.offsetToPos(offset), editor.offsetToPos(offset + query.length));
       },
       focusMap: () => {
         if (searchDraft) this.surface?.focusEditor();
@@ -9925,6 +9956,14 @@ var MapView = class extends import_obsidian5.EditableFileView {
             await this.appendMapPreview(element, file, target);
           }
         }
+      },
+      onEditEmbed: (id, link) => {
+        const doc = this.doc, node = doc?.byId.get(id);
+        const { path } = (0, import_obsidian5.parseLinktext)(link);
+        const file = path ? this.app.metadataCache.getFirstLinkpathDest(path, this.path) : this.file;
+        if (!doc || !node || !file || file === this.file || file.extension !== "md" || this.plugin.isMap(file)) return false;
+        void this.editNodeNote(doc, node, file).catch((error) => new import_obsidian5.Notice(message(error), 8e3));
+        return true;
       },
       onOpenLink: (link, event) => {
         void this.plugin.openMapLink(link, this, event).catch((error) => new import_obsidian5.Notice(message(error)));
@@ -10403,20 +10442,22 @@ var MapView = class extends import_obsidian5.EditableFileView {
     const anchor2 = this.contentEl.querySelector(".tvm-node.is-selected .tvm-node-address");
     this.showMenu(menu, anchor2 ?? this.contentEl);
   }
-  async editNodeNote(doc, node) {
+  async editNodeNote(doc, node, targetNote) {
     const map = this.file;
     if (!map) return;
     const embeds = [...node.text.matchAll(/!\[\[([^\]#|]+)(?:\|[^\]]*)?\]\]/g)];
     const notes = embeds.map((match) => this.app.metadataCache.getFirstLinkpathDest(match[1], map.path)).filter((file) => file !== null && file !== map && file.extension === "md");
-    const note = notes.reverse().find((file) => !this.plugin.isMap(file) || / - note [a-f\d]{8}$/.test(file.basename));
+    const note = targetNote ?? notes.reverse().find((file) => !this.plugin.isMap(file) || / - note [a-f\d]{8}$/.test(file.basename));
     const original = note ? await this.app.vault.read(note) : "";
+    const Native = await prepareNativeEditor(this.app);
+    if (this.file !== map || this.doc !== doc || !this.surface || this.surface.isEditing()) return;
     let created;
     let savedText = "";
-    new TextDialog(this.app, t("Edit embedded node note"), original, async (text) => {
+    this.surface.beginEdit(node.id, original, async (text) => {
       if (note) {
-        await this.plugin.write(note, original, text);
+        await this.plugin.write(note, original, original.includes("\r\n") ? text.replace(/\n/g, "\r\n") : text);
         this.surface?.invalidateMarkdown();
-        return;
+        return node.id;
       }
       if (!text.trim()) throw new Error(t("A node cannot be empty."));
       if (this.file !== map || this.doc !== doc) throw new Error(t("The note changed. Open it again at the current line."));
@@ -10430,7 +10471,25 @@ var MapView = class extends import_obsidian5.EditableFileView {
       savedText = text;
       const link = this.app.metadataCache.fileToLinktext(created, map.path, true);
       await this.apply(doc, editNode(doc, node.id, `${node.text} ![[${link}]]`));
-    }, map.path, false).open();
+      return this.doc?.nodes.find((candidate) => candidate.line === node.line)?.id;
+    }, (input, tools, inline) => {
+      const owner = Object.assign(new import_obsidian5.Component(), { app: this.app, file: note ?? map, getMode: () => "source", hoverPopover: null, editor: void 0, editMode: void 0 });
+      this.addChild(owner);
+      const previousEditor = this.editor;
+      try {
+        const driver = mountNativeEditor(owner, input, tools, inline, Native, (file, line, expected) => this.nativeAddress(file, line, expected));
+        this.editor = owner.editor;
+        return { ...driver, dispose: () => {
+          const editor = owner.editor;
+          driver.dispose();
+          this.removeChild(owner);
+          if (this.editor === editor) this.editor = previousEditor;
+        } };
+      } catch (error) {
+        this.removeChild(owner);
+        throw error;
+      }
+    }, void 0, void 0, true);
   }
   menu(anchor2) {
     const menu = new import_obsidian5.Menu();

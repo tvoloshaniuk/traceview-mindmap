@@ -210,12 +210,12 @@ export class MapSurface {
     this.rendered.clear();
     if (!this.editing) this.render();
   }
-  beginEdit(id: string, initial: string, save: (text: string) => Promise<string | undefined>, mount?: InlineOptions['mount'], draft?: MapDocument, onFinish?: () => void): void {
+  beginEdit(id: string, initial: string, save: (text: string) => Promise<string | undefined>, mount?: InlineOptions['mount'], draft?: MapDocument, onFinish?: () => void, multiline = false): void {
     if (this.editing || !this.doc || this.destroyed) { this.focusEditor(); return; }
     const original = this.doc, state = this.getState();
     const editor = new InlineEditor(this.container.ownerDocument, initial, {
-      allowEmpty: true,
-      emptyFallback: original.byId.get(id)?.children.length ? t("Untitled") : undefined,
+      allowEmpty: true, multiline,
+      emptyFallback: !multiline && original.byId.get(id)?.children.length ? t("Untitled") : undefined,
       save: async text => { const selected = await save(text); onFinish?.(); if (this.editing?.editor === editor) this.finishEdit(selected); },
       cancel: () => { onFinish?.(); this.finishEdit(); }, resize: () => this.scheduleLayout(true), mount,
       createAbove: event => {
@@ -1081,6 +1081,11 @@ export class MapSurface {
       const internal = anchor.classList.contains('internal-link') || (anchor.hasAttribute('data-href') && !!link && !/^(?:[a-z][a-z\d+.-]*:|\/\/)/i.test(link));
       if (internal && link && this.options.onOpenLink) { event.preventDefault(); event.stopPropagation(); this.options.onOpenLink(link, event); }
       return;
+    }
+    const embed = target.closest<HTMLElement>('.markdown-embed.internal-embed');
+    const embedLink = embed?.getAttribute('src');
+    if (id && embedLink && !target.closest('button, input, textarea, [contenteditable="true"]') && this.options.onEditEmbed?.(id, embedLink)) {
+      event.preventDefault(); event.stopPropagation(); this.select(id); return;
     }
     const image = target.closest('img')?.closest('.internal-embed');
     const imageLink = image?.getAttribute('src');

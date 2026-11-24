@@ -58,6 +58,7 @@ export function prepareNativeEditor(app: App): Promise<NativeConstructor> {
 export function mountNativeEditor(owner: NativeOwner, input: HTMLTextAreaElement, tools: HTMLElement, inline: InlineEditor, Native?: NativeConstructor, ensureAddress?: (file: TFile, line: number, expected: string) => Promise<string | undefined>): InlineDriver {
   if (!Native) throw new Error(t("Could not prepare the native editor."));
   const document = input.ownerDocument;
+  const normalize = (text: string) => inline.multiline ? text : singleLine(text);
   const host = document.createElement('div'); host.className = 'tvm-native-editor';
   input.before(host);
   const previousEditor = owner.editor, previousMode = owner.editMode;
@@ -66,6 +67,7 @@ export function mountNativeEditor(owner: NativeOwner, input: HTMLTextAreaElement
   for (const key of ['Enter', 'Escape']) scope.register([], key, event => {
     if (!native?.editorSuggest.isShowingSuggestion() && inline.handleKeydown(event)) return false;
   });
+  if (inline.multiline) scope.register(['Mod'], 'Enter', event => { if (inline.handleKeydown(event)) return false; });
   const focus = () => {
     if (!active) return;
     owner.app.workspace.activeEditor = owner;
@@ -100,7 +102,7 @@ export function mountNativeEditor(owner: NativeOwner, input: HTMLTextAreaElement
     if (!active || syncing || !native) return;
     syncing = true;
     try {
-      input.value = singleLine(native.get());
+      input.value = normalize(native.get());
       const selection = native.editor.listSelections()[0];
       if (selection) input.setSelectionRange(native.editor.posToOffset(selection.anchor), native.editor.posToOffset(selection.head));
       input.dispatchEvent(new document.defaultView!.Event('input', { bubbles: true }));
@@ -116,7 +118,7 @@ export function mountNativeEditor(owner: NativeOwner, input: HTMLTextAreaElement
       extensions.push(filter.of((transaction: any) => {
         if (!transaction.docChanged) return transaction;
         if (input.readOnly && !syncing) return [];
-        const text = transaction.newDoc.toString(), normalized = singleLine(text);
+        const text = transaction.newDoc.toString(), normalized = normalize(text);
         if (text === normalized) return transaction;
         return { changes: { from: 0, to: transaction.startState.doc.length, insert: normalized },
           selection: { anchor: singleLine(text.slice(0, transaction.newSelection.main.anchor)).length,
@@ -132,14 +134,14 @@ export function mountNativeEditor(owner: NativeOwner, input: HTMLTextAreaElement
   const pull = () => {
     if (!active || syncing || !native || native.get() === input.value) return;
     syncing = true;
-    try { native.set(singleLine(input.value), false); } finally { syncing = false; }
+    try { native.set(normalize(input.value), false); } finally { syncing = false; }
   };
   const keydown = (event: KeyboardEvent) => {
     if (native?.editorSuggest.isShowingSuggestion()) return;
     if (event.key === 'Enter' || event.key === 'Escape') inline.handleKeydown(event);
   };
   const beforeinput = (event: InputEvent) => {
-    if (event.inputType === 'insertParagraph' || event.inputType === 'insertLineBreak') event.preventDefault();
+    if (!inline.multiline && (event.inputType === 'insertParagraph' || event.inputType === 'insertLineBreak')) event.preventDefault();
   };
   const dispose = () => {
     if (!active) return; active = false; cancelResize?.(); cancelResize = undefined; blur(); for (const release of releaseSuggestions) release();
@@ -158,7 +160,7 @@ export function mountNativeEditor(owner: NativeOwner, input: HTMLTextAreaElement
     owner.editMode = native; owner.editor = native.editor;
     owner.addChild(native);
     native.set(input.value, true); initializing = false;
-    native.editor.setCursor({ line: 0, ch: input.value.length });
+    native.editor.setCursor(inline.multiline ? native.editor.offsetToPos(input.value.length) : { line: 0, ch: input.value.length });
     if (ensureAddress) for (const suggestion of (native.editorSuggest as any).suggests ?? []) {
       if (!suggestion.suggestManager || typeof suggestion.selectSuggestion !== 'function') continue;
       const original = suggestion.selectSuggestion;
@@ -185,7 +187,7 @@ export function mountNativeEditor(owner: NativeOwner, input: HTMLTextAreaElement
     const labelledBy = input.getAttribute('aria-labelledby');
     if (labelledBy) native.cm.contentDOM.setAttribute('aria-labelledby', labelledBy);
     else native.cm.contentDOM.setAttribute('aria-label', t("Node text"));
-    native.cm.contentDOM.setAttribute('enterkeyhint', 'done');
+    native.cm.contentDOM.setAttribute('enterkeyhint', inline.multiline ? 'enter' : 'done');
     input.hidden = true;
     input.addEventListener('input', pull); host.addEventListener('keydown', keydown, true); host.addEventListener('beforeinput', beforeinput); host.addEventListener('focusin', focus); host.addEventListener('focusout', blur);
     const add = (label: string, title: string, action: () => void) => {

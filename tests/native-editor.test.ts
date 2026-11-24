@@ -114,3 +114,35 @@ test('native resize waits for the editor update, coalesces requests and closes s
     driver.resize();driver.dispose();assert.equal(frames.size,0);flush();assert.equal(resizes,2);
   } finally {dom.window.close();}
 });
+
+
+test('native multiline transactions preserve paragraphs while ordinary node drafts remain single line', () => {
+  const dom = new JSDOM('<body></body>');
+  try {
+    const document = dom.window.document;
+    const app:any = {scope:{},workspace:{},keymap:{pushScope(){},popScope(){}}};
+    class Native {
+      editor:any; cm:any; value=''; editorSuggest={isShowingSuggestion:()=>false,close(){}};
+      constructor(_app:any,host:HTMLElement) {
+        const content=document.createElement('div');host.append(content);
+        this.cm={contentDOM:content,state:{constructor:{transactionFilter:{of:(filter:unknown)=>filter}}}};
+        this.editor={focus(){},setCursor(){},offsetToPos:()=>({line:0,ch:0})};
+      }
+      set(value:string){this.value=value;} get(){return this.value;} destroy(){} onResize(){} onUpdate(){} buildLocalExtensions(){return [];}
+    }
+    const source=ts.transpileModule(readFileSync('src/native-editor.ts','utf8'),{compilerOptions:{module:ts.ModuleKind.CommonJS,target:ts.ScriptTarget.ES2020}}).outputText;
+    const exports:any={};
+    runInNewContext(source,{exports,require:(name:string)=>name==='obsidian'?{Scope:class {register(){}},MarkdownView:class {}}:name==='./inline'?{singleLine}:i18n});
+    for (const multiline of [false,true]) {
+      const input=document.createElement('textarea'),tools=document.createElement('div'); document.body.append(input,tools);
+      const owner:any={app,file:{path:'Note.md'},addChild(){},removeChild(){}};
+      const driver=exports.mountNativeEditor(owner,input,tools,{multiline,handleKeydown:()=>false},Native);
+      const filter=owner.editMode.buildLocalExtensions()[0];
+      const transaction={docChanged:true,newDoc:{toString:()=> 'First\n\nSecond'},startState:{doc:{length:0}},newSelection:{main:{anchor:13,head:13}}};
+      const result=filter(transaction);
+      if(multiline)assert.equal(result,transaction);else assert.equal(result.changes.insert,'First Second');
+      input.readOnly=true;assert.equal(filter(transaction).length,0,'Saving locks both editor modes');
+      driver.dispose();input.remove();tools.remove();
+    }
+  } finally {dom.window.close();}
+});

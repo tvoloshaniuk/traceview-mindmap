@@ -14,6 +14,7 @@ export interface InlineDriver {
 }
 
 export interface InlineOptions {
+  multiline?: boolean;
   emptyFallback?: string;
   allowEmpty?: boolean;
   createAbove?: (event: KeyboardEvent) => boolean;
@@ -30,6 +31,8 @@ let nextLabelId = 0;
 export class InlineEditor {
   readonly host: HTMLDivElement;
   readonly input: HTMLTextAreaElement;
+  get multiline(): boolean { return !!this.options.multiline; }
+  private normalize(text: string): string { return this.multiline ? text.replace(/\r\n?/g, "\n") : singleLine(text); }
   private error: HTMLDivElement;
   private saving = false;
   private disposed = false;
@@ -42,13 +45,13 @@ export class InlineEditor {
     this.host.className = 'tvm-inline-editor';
     this.input = document.createElement('textarea');
     this.input.className = 'tvm-inline-input';
-    this.input.rows = 1;
+    this.input.rows = this.multiline ? 5 : 1;
     // Obsidian shows every aria-label as a hover tooltip, so name the field through a hidden label instead.
     const label = document.createElement('span');
     label.id = 'tvm-node-text-label-' + (++nextLabelId); label.hidden = true; label.textContent = t("Node text");
     this.input.setAttribute('aria-labelledby', label.id);
-    this.input.setAttribute('enterkeyhint', 'done');
-    this.initial = singleLine(initial);
+    this.input.setAttribute('enterkeyhint', this.multiline ? 'enter' : 'done');
+    this.initial = this.normalize(initial);
     this.input.value = this.initial;
     this.host.append(this.input, label);
     const tools = document.createElement('div');
@@ -62,26 +65,26 @@ export class InlineEditor {
       el.textContent = label; el.title = title; el.setAttribute('aria-label', title);
       el.onclick = action; tools.append(el); return el;
     };
-    button('✓', t("Save (Enter)"), () => { void this.submit(); }).classList.add('mod-cta');
+    button('✓', t(this.multiline ? "Save (Ctrl/Cmd+Enter)" : "Save (Enter)"), () => { void this.submit(); }).classList.add('mod-cta');
     button('×', t("Cancel (Escape)"), () => this.cancel());
     this.error = document.createElement('div');
     this.error.className = 'tvm-inline-error'; this.error.setAttribute('role', 'alert');
     this.host.append(this.error);
     this.input.addEventListener('beforeinput', event => {
-      if (event.inputType === 'insertParagraph' || event.inputType === 'insertLineBreak') event.preventDefault();
+      if (!this.multiline && (event.inputType === 'insertParagraph' || event.inputType === 'insertLineBreak')) event.preventDefault();
     });
     const normalize = () => {
       this.dismissConfirmation();
       const value = this.input.value;
-      const start = singleLine(value.slice(0, this.input.selectionStart)).length;
-      const end = singleLine(value.slice(0, this.input.selectionEnd)).length;
-      if (value !== singleLine(value)) { this.input.value = singleLine(value); this.input.setSelectionRange(start, end); }
+      const start = this.normalize(value.slice(0, this.input.selectionStart)).length;
+      const end = this.normalize(value.slice(0, this.input.selectionEnd)).length;
+      if (value !== this.normalize(value)) { this.input.value = this.normalize(value); this.input.setSelectionRange(start, end); }
       this.resize();
     };
     this.input.addEventListener('input', event => { if (!(event as InputEvent).isComposing) normalize(); });
     this.input.addEventListener('compositionend', normalize);
     this.input.addEventListener('paste', event => {
-      if (event.defaultPrevented || this.input.readOnly) return;
+      if (event.defaultPrevented || this.input.readOnly || this.multiline) return;
       const text = event.clipboardData?.getData('text/plain');
       if (text === undefined || !/[\r\n\u2028\u2029]/.test(text)) return;
       event.preventDefault();
@@ -110,7 +113,8 @@ export class InlineEditor {
       return true;
     }
     if (event.key !== 'Enter' || (event.target as HTMLElement | null)?.closest('button')) return false;
-    if (event.shiftKey && this.options.createAbove?.(event)) {
+    if (this.multiline && !(event.ctrlKey || event.metaKey)) return false;
+    if (!this.multiline && event.shiftKey && this.options.createAbove?.(event)) {
       event.preventDefault(); event.stopPropagation();
       return true;
     }
@@ -138,13 +142,13 @@ export class InlineEditor {
     this.error.textContent = error instanceof Error ? error.message : String(error); this.resize(); this.focus();
   }
   cancelIfUnchanged(): boolean {
-    if (this.saving || this.disposed || this.input.readOnly || this.input.getAttribute('aria-busy') === 'true' || singleLine(this.input.value) !== this.initial) return false;
+    if (this.saving || this.disposed || this.input.readOnly || this.input.getAttribute('aria-busy') === 'true' || this.normalize(this.input.value) !== this.initial) return false;
     this.options.cancel(); return true;
   }
   cancel(): void {
     if (this.saving || this.disposed) return;
     if (this.confirmation) { this.focus(); return; }
-    if (singleLine(this.input.value) === this.initial && this.input.getAttribute('aria-busy') !== 'true') {
+    if (this.normalize(this.input.value) === this.initial && this.input.getAttribute('aria-busy') !== 'true') {
       this.options.cancel(); return;
     }
     const document = this.host.ownerDocument;
@@ -169,7 +173,7 @@ export class InlineEditor {
   dispose(): void { this.disposed = true; this.unmount?.(); this.host.remove(); }
   async submit(): Promise<void> {
     if (this.saving || this.disposed || this.input.readOnly || this.confirmation) return;
-    const input = singleLine(this.input.value);
+    const input = this.normalize(this.input.value);
     const text = input.trim() ? input : this.options.emptyFallback ?? '';
     if (!text.trim() && !this.options.allowEmpty) { this.error.textContent = t("A node cannot be empty."); this.resize(); return; }
     this.saving = true; this.input.readOnly = true; this.driver?.setReadOnly(true); this.error.textContent = '';

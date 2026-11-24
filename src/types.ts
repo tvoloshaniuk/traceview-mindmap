@@ -51,6 +51,7 @@ export interface MapSurfaceOptions {
   onMoveBranches?: (nodeIds: string[], targetId: string, position: DropPosition) => void;
   onState: (state: MapViewState) => void;
   renderMarkdown: (text: string, el: HTMLElement) => void | Promise<void>;
+  onEditEmbed?: (nodeId: string, link: string) => boolean;
   onOpenLink?: (link: string, event: MouseEvent) => void;
   onHoverLink?: (event: MouseEvent, target: HTMLElement, link: string) => void;
 }

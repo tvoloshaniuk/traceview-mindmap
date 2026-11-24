@@ -826,3 +826,34 @@ test('navigation history includes arrow selection and temporary depth changes wi
   f.key('ArrowRight');
   assert.equal(f.surface.canNavigateHistory('forward'),false);
 });
+
+
+test('embedded note drafts keep multiline content and preserve parent title and children on save', async t => {
+  const f = fixture(t, '- Parent\n\t- Child\n');
+  let saved = '';
+  f.surface.beginEdit(f.id('Parent'), 'Paragraph one\n\nParagraph two', async text => { saved = text; return f.id('Parent'); }, undefined, undefined, undefined, true);
+  const input = f.host.querySelector<HTMLTextAreaElement>('textarea')!;
+  assert.equal(input.value, 'Paragraph one\n\nParagraph two');
+  input.value = ''; f.host.querySelector<HTMLButtonElement>('.tvm-inline-tools .mod-cta')!.click();
+  await Promise.resolve(); await Promise.resolve();
+  assert.equal(saved, '', 'Clearing the note must not replace it with the parent placeholder');
+  assert.equal(f.doc.source, '- Parent\n\t- Child\n');
+  assert.equal(f.surface.isEditing(), false);
+});
+
+
+test('embedded frame clicks edit the exact note while links and controls keep their actions', t => {
+  const f = fixture(t, '- root\n');
+  const edited: string[] = [], opened: string[] = [];
+  f.options.onEditEmbed = (_id,link) => { edited.push(link); return true; };
+  f.options.onOpenLink = link => opened.push(link);
+  for(const link of ['First','Second']) {
+    const frame=f.dom.window.document.createElement('div');frame.className='markdown-embed internal-embed';frame.setAttribute('src',link);
+    frame.innerHTML='<p>Note text</p><a class="internal-link" data-href="Target">Link</a><button>Native control</button>';
+    f.element('root').append(frame);
+    const click=(el:Element)=>{const event=new f.dom.window.MouseEvent('click',{bubbles:true,cancelable:true});el.dispatchEvent(event);return event;};
+    assert.equal(click(frame.querySelector('p')!).defaultPrevented,true);
+    click(frame.querySelector('a')!);click(frame.querySelector('button')!);
+  }
+  assert.deepEqual(edited,['First','Second']);assert.deepEqual(opened,['Target','Target']);
+});

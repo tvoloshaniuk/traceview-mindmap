@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.0.26
+
+### Added
+
+- Edit embedded Markdown notes directly inside a map node with native Obsidian Live Preview. Enter inserts a new line; Ctrl/Cmd+Enter or the save button commits the note.
+- Click an embedded note frame to edit that specific note, including nodes containing several embeds. Links and embedded controls retain their own actions.
+- Preserve the parent map and its children, keep existing note line endings, and reject conflicting external edits. Cancelling a new note creates no file.
+
 ## 1.0.25
 
 ### Changed
