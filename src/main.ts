@@ -5,7 +5,7 @@
  */
 import { t, LANGUAGES, isLanguageSetting, setLanguage, type LanguageSetting } from './i18n';
 import { getLanguage, App, Component, EditableFileView, ItemView, MarkdownRenderer, MarkdownView, Menu, Notice, Platform, Plugin, PluginSettingTab, Scope, Setting, TFile, WorkspaceLeaf, normalizePath, parseLinktext, setIcon, type HoverPopover } from 'obsidian';
-import { moveBranches, changeNodes, copyBranches, copyNodeLabels, deleteNodes, parseMap, restoreTemplateLineEndings, editNode, addFirstNode, addNode, addParent, deleteNode, moveNode, copyBranch, pasteBranch, toggleTask, setStep, setDated, setQuestion, getSteps, compareSteps, renumberSteps, moveCompletedChildrenToBottom, shiftSelectedBranches, unnumberStep } from './core';
+import { moveBranches, changeNodes, copyBranches, copyNodeLabels, deleteNodes, parseMap, restoreTemplateLineEndings, editNode, addFirstNode, addNode, addParent, deleteNode, moveNode, copyBranch, pasteBranch, toggleTask, toggleStepNumber, setDated, setQuestion, getSteps, compareSteps, renumberSteps, moveCompletedChildrenToBottom, shiftSelectedBranches, unnumberStep } from './core';
 import { addressNode, onlyAddedBlockIds } from './block-links';
 import { captureHotkey, DEFAULT_HOTKEYS, HOTKEY_DEFINITIONS, resolveHotkey, validateHotkeys } from './hotkeys';
 import { compileMapPatterns, PatternError, type MapRules, type PatternMode } from './map-patterns';
@@ -971,7 +971,7 @@ class MapView extends EditableFileView {
         if (action === 'make-dated') {
           new DateDialog(this.app, '?', async value => this.apply(doc, changeNodes(doc, ids, (current, target) => setDated(current, target, value)))).open(); return;
         }
-        const change = action === 'toggle-task' ? toggleTask : action === 'make-step' ? setStep : action === 'make-question' ? setQuestion : null;
+        const change = action === 'toggle-task' ? toggleTask : action === 'make-step' ? toggleStepNumber : action === 'make-question' ? setQuestion : null;
         if (change) { await this.apply(doc, changeNodes(doc, ids, change)); return; }
         if (action !== 'source') { new Notice(t("This command requires one selected node.")); return; }
       }
@@ -1041,7 +1041,7 @@ class MapView extends EditableFileView {
         return;
       }
       const next = action === 'toggle-task' ? toggleTask(doc, id)
-        : action === 'make-step' ? setStep(doc, id)
+        : action === 'make-step' ? toggleStepNumber(doc, id)
         : action === 'make-question' ? setQuestion(doc, id)
         : moveNode(doc, id, action === 'move-up' ? 'up' : action === 'move-down' ? 'down' : action === 'indent' ? 'indent' : 'outdent');
       await this.apply(doc, next);

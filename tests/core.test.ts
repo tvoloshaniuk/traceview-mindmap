@@ -14,7 +14,7 @@ test('group shift preserves unselected gaps, children, anchors and file endings'
   assert.equal(copyNodeLabels(doc, ids), '- B\r\n- D\r\n');
   assert.equal(shiftSelectedBranches(doc, ids, 'up'), '- B ^b\r\n  - Child\r\n- A\r\n- D ^d\r\n- C');
 });
-import { parseMap, restoreTemplateLineEndings, editNode, addNode, addParent, deleteNode, moveNode, reparentNode, copyBranch, pasteBranch, toggleTask, setStep, setDated, setQuestion, getSteps, compareSteps, renumberSteps } from '../src/core';
+import { parseMap, restoreTemplateLineEndings, editNode, addNode, addParent, deleteNode, moveNode, reparentNode, copyBranch, pasteBranch, toggleTask, setStep, toggleStepNumber, setDated, setQuestion, getSteps, compareSteps, renumberSteps } from '../src/core';
 import type { MapDocument } from '../src/types';
 
 test('template insertion preserves the surrounding source line endings, including on a repeat', () => {
@@ -469,4 +469,16 @@ test('decimal markers survive date edits and are removed with the step marker fo
   assert.deepEqual(getSteps(dated)[0].order, [1, 2]);
   assert.equal(getSteps(dated)[0].suffix, 'a');
   assert.equal(renumberSteps(dated), dated.source);
+});
+
+test('step numbering toggles while retaining task status, deadline, aliases, anchors and children', () => {
+  const source = '- [x] #step 3) до [[2026-12-01|Deadline]] [[Task|Alias]] ^task\r\n  - Child\r\n- [ ] #step 8) Other';
+  const doc = parseMap(source), id = doc.nodes[0].id;
+  const unnumbered = toggleStepNumber(doc, id);
+  assert.equal(unnumbered, source.replace('3) ', ''));
+  const next = parseMap(unnumbered, doc);
+  const numbered = toggleStepNumber(next, next.nodes[0].id);
+  assert.equal(numbered, source.replace('3)', '9)'));
+  const bare = parseMap('- [ ] #step ) Text\n');
+  assert.match(toggleStepNumber(bare, bare.nodes[0].id), /#step 1\) Text/);
 });

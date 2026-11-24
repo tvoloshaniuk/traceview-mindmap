@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.0.19
+
+### Fixed
+
+- Repeat the numbered-step command to remove a step number while keeping the task status, deadline, label and children. Repeat again to assign a new number.
+- Apply the same numbering toggle to a selection in one undoable change.
+
 ## 1.0.18
 
 ### Fixed

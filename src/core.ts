@@ -744,6 +744,14 @@ export function unnumberStep(doc: MapDocument, id: string): string {
   return editNode(doc, id, node.text.slice(0, parts.numberStart) + node.text.slice(end).trimStart());
 }
 
+export function toggleStepNumber(doc: MapDocument, id: string): string {
+  const node = required(doc, id), parts = stepParts(node.text);
+  if (!parts) return setStep(doc, id);
+  if (parts.number !== null) return unnumberStep(doc, id);
+  const next = Math.max(0, ...getSteps(doc).map(step => step.number ?? 0)) + 1;
+  return editNode(doc, id, node.text.slice(0, parts.bodyStart) + next + ') ' + node.text.slice(parts.bodyStart + parts.bareLength));
+}
+
 export function setQuestion(doc: MapDocument, id: string): string {
   const node = required(doc, id);
   if (/^(?:==)?\/\/todo\s+Q:/i.test(node.text)) return doc.source;

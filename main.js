@@ -4895,6 +4895,13 @@ function unnumberStep(doc, id) {
   const end = parts.numberStart + parts.numberLength + 1;
   return editNode(doc, id, node.text.slice(0, parts.numberStart) + node.text.slice(end).trimStart());
 }
+function toggleStepNumber(doc, id) {
+  const node = required(doc, id), parts = stepParts(node.text);
+  if (!parts) return setStep(doc, id);
+  if (parts.number !== null) return unnumberStep(doc, id);
+  const next = Math.max(0, ...getSteps(doc).map((step) => step.number ?? 0)) + 1;
+  return editNode(doc, id, node.text.slice(0, parts.bodyStart) + next + ") " + node.text.slice(parts.bodyStart + parts.bareLength));
+}
 function setQuestion(doc, id) {
   const node = required(doc, id);
   if (/^(?:==)?\/\/todo\s+Q:/i.test(node.text)) return doc.source;
@@ -10014,7 +10021,7 @@ var MapView = class extends import_obsidian5.EditableFileView {
           new DateDialog(this.app, "?", async (value) => this.apply(doc, changeNodes(doc, ids, (current, target) => setDated(current, target, value)))).open();
           return;
         }
-        const change = action === "toggle-task" ? toggleTask : action === "make-step" ? setStep : action === "make-question" ? setQuestion : null;
+        const change = action === "toggle-task" ? toggleTask : action === "make-step" ? toggleStepNumber : action === "make-question" ? setQuestion : null;
         if (change) {
           await this.apply(doc, changeNodes(doc, ids, change));
           return;
@@ -10113,7 +10120,7 @@ var MapView = class extends import_obsidian5.EditableFileView {
         new DateDialog(this.app, getSteps(doc).find((step) => step.nodeId === id)?.date ?? "?", async (value) => this.apply(doc, setDated(doc, id, value))).open();
         return;
       }
-      const next = action === "toggle-task" ? toggleTask(doc, id) : action === "make-step" ? setStep(doc, id) : action === "make-question" ? setQuestion(doc, id) : moveNode(doc, id, action === "move-up" ? "up" : action === "move-down" ? "down" : action === "indent" ? "indent" : "outdent");
+      const next = action === "toggle-task" ? toggleTask(doc, id) : action === "make-step" ? toggleStepNumber(doc, id) : action === "make-question" ? setQuestion(doc, id) : moveNode(doc, id, action === "move-up" ? "up" : action === "move-down" ? "down" : action === "indent" ? "indent" : "outdent");
       await this.apply(doc, next);
     } catch (error) {
       new import_obsidian5.Notice(message(error), 8e3);
