@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.24
+
+### Fixed
+
+- Leave the new navigation-history shortcuts unassigned so they do not override existing branch collapse and expand shortcuts. History actions remain available in the map menu, command palette and map shortcut settings.
+
 ## 1.0.23
 
 ### Added

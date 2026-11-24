@@ -11,8 +11,8 @@ export type HotkeyAction = NodeAction | 'parent' | 'child' | 'previous' | 'next'
 export interface HotkeyDefinition { id: HotkeyAction; label: string; defaults: string[] }
 
 export const HOTKEY_DEFINITIONS: HotkeyDefinition[] = [
-  { id: 'history-back', get label() { return t("Previous map location"); }, defaults: ['Mod+Alt+ArrowLeft'] },
-  { id: 'history-forward', get label() { return t("Next map location"); }, defaults: ['Mod+Alt+ArrowRight'] },
+  { id: 'history-back', get label() { return t("Previous map location"); }, defaults: [] },
+  { id: 'history-forward', get label() { return t("Next map location"); }, defaults: [] },
   { id: 'select-previous', get label() { return t("Extend selection up"); }, defaults: ['Shift+ArrowUp'] },
   { id: 'select-next', get label() { return t("Extend selection down"); }, defaults: ['Shift+ArrowDown'] },
   { id: 'select-parent', get label() { return t("Extend selection to parent"); }, defaults: ['Shift+ArrowLeft'] },

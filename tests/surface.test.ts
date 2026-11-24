@@ -805,6 +805,7 @@ test('node address marker opens backlinks by click and keyboard without entering
 
 test('navigation history includes arrow selection and temporary depth changes without editing Markdown', t => {
   const f=fixture(t,'- Root\n  - A\n    - Hidden\n  - B\n');
+  f.options.getHotkeys = () => ({'history-back':'Mod+Alt+ArrowLeft','history-forward':'Mod+Alt+ArrowRight'});
   f.surface.reveal(f.id('A'));
   f.key('ArrowDown');
   assert.equal(f.surface.getState().selected,f.id('B'));
