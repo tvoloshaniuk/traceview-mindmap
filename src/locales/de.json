@@ -10,7 +10,7 @@
   "Navigate across branches with arrow keys": "Mit Pfeiltasten zwischen Zweigen wechseln",
   "Copy node text": "Knotentext kopieren",
   "Edit embedded node note": "Eingebettete Knotennotiz bearbeiten",
-  "Vertical tree": "Vertikaler Baum",
+  "Tree": "Baum",
   "Sibling to the left": "Nachbarknoten links",
   "Sibling to the right": "Nachbarknoten rechts",
   "Switch between map and Markdown": "Zwischen Karte und Markdown wechseln",

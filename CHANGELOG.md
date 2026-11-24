@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.0.16
+
+### Fixed
+
+- Fit individual node widths in the vertical tree's column mode and align each generation below its tallest node.
+- Rename the vertical layout to Tree.
+
 ## 1.0.15
 
 ### Fixed

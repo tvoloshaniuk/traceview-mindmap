@@ -10,7 +10,7 @@
   "Navigate across branches with arrow keys": "Navegar entre ramas con las flechas",
   "Copy node text": "Copiar texto del nodo",
   "Edit embedded node note": "Editar la nota incrustada del nodo",
-  "Vertical tree": "Árbol vertical",
+  "Tree": "Árbol",
   "Sibling to the left": "Nodo hermano a la izquierda",
   "Sibling to the right": "Nodo hermano a la derecha",
   "Switch between map and Markdown": "Alternar entre mapa y Markdown",

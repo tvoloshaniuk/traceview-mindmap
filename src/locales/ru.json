@@ -10,7 +10,7 @@
   "Navigate across branches with arrow keys": "Переходить между ветвями стрелками",
   "Copy node text": "Копировать текст узла",
   "Edit embedded node note": "Редактировать встроенную заметку узла",
-  "Vertical tree": "Вертикальное дерево",
+  "Tree": "Дерево",
   "Sibling to the left": "Соседний узел слева",
   "Sibling to the right": "Соседний узел справа",
   "Switch between map and Markdown": "Переключить карту и Markdown",

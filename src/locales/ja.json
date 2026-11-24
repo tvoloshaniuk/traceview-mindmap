@@ -10,7 +10,7 @@
   "Navigate across branches with arrow keys": "矢印キーで枝をまたいで移動",
   "Copy node text": "ノードのテキストをコピー",
   "Edit embedded node note": "ノードに埋め込まれたノートを編集",
-  "Vertical tree": "縦向きツリー",
+  "Tree": "ツリー",
   "Sibling to the left": "左の兄弟ノード",
   "Sibling to the right": "右の兄弟ノード",
   "Switch between map and Markdown": "マップとMarkdownを切り替える",

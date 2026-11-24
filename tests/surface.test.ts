@@ -762,3 +762,20 @@ test('map and node text keep localized accessible names without tooltip attribut
   assert.equal(inputLabel.textContent, 'Текст вузла'); assert.equal(inputLabel.hidden, true);
   assert.notEqual(inputLabel, mapLabel);
 });
+
+test('vertical column mode fits individual labels and aligns grandchildren below the tallest parent', t => {
+  const f = fixture(t, '- root\n  - short\n    - child one\n  - a longer parent label\n    - child two\n');
+  f.options.getWidthMode = () => 'column';
+  for (const name of ['root','short','child one','a longer parent label','child two']) {
+    Object.defineProperty(f.element(name), 'offsetWidth', {configurable:true, get: () => name.length * 7 + 34});
+    Object.defineProperty(f.element(name), 'offsetHeight', {configurable:true, get: () => name === 'a longer parent label' ? 120 : 44});
+  }
+  f.surface.setLayout('vertical');
+  const coordinates = (name: string) => /translate\(([-\d.]+)px, ([-\d.]+)px\)/.exec(f.element(name).style.transform)!.slice(1).map(Number);
+  assert.ok(parseFloat(f.element('short').style.width) < parseFloat(f.element('a longer parent label').style.width));
+  assert.equal(coordinates('short')[1], coordinates('a longer parent label')[1]);
+  assert.equal(coordinates('child one')[1], coordinates('child two')[1]);
+  assert.ok(coordinates('child one')[1] >= coordinates('short')[1] + 120);
+  f.surface.setLayout('map');
+  assert.equal(f.element('short').style.width, f.element('a longer parent label').style.width);
+});

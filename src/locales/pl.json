@@ -10,7 +10,7 @@
   "Navigate across branches with arrow keys": "Przechodź między gałęziami za pomocą strzałek",
   "Copy node text": "Kopiuj tekst węzła",
   "Edit embedded node note": "Edytuj osadzoną notatkę węzła",
-  "Vertical tree": "Drzewo pionowe",
+  "Tree": "Drzewo",
   "Sibling to the left": "Węzeł siostrzany po lewej",
   "Sibling to the right": "Węzeł siostrzany po prawej",
   "Switch between map and Markdown": "Przełącz między mapą a Markdown",

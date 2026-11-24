@@ -766,7 +766,7 @@ class MapView extends EditableFileView {
   }
   private layoutMenu(anchor: HTMLElement): void {
     const menu = new Menu();
-    for (const [mode, label] of [['map', t("Map")], ['vertical', t("Vertical tree")], ['outline', t("Outline")], ['table', t("Table")]] as const) {
+    for (const [mode, label] of [['map', t("Map")], ['vertical', t("Tree")], ['outline', t("Outline")], ['table', t("Table")]] as const) {
       menu.addItem(item => item.setTitle(label).setChecked(this.layoutMode === mode).onClick(() => {
         this.layoutMode = mode; this.surface?.setLayout(mode); this.persist();
       }));

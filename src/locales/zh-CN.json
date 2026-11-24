@@ -10,7 +10,7 @@
   "Navigate across branches with arrow keys": "用方向键在分支之间导航",
   "Copy node text": "复制节点文本",
   "Edit embedded node note": "编辑节点的嵌入笔记",
-  "Vertical tree": "垂直树",
+  "Tree": "树形",
   "Sibling to the left": "左侧同级节点",
   "Sibling to the right": "右侧同级节点",
   "Switch between map and Markdown": "在地图与 Markdown 之间切换",

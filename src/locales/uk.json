@@ -10,7 +10,7 @@
   "Navigate across branches with arrow keys": "Переходити між гілками стрілками",
   "Copy node text": "Копіювати текст вузла",
   "Edit embedded node note": "Редагувати вкладену нотатку вузла",
-  "Vertical tree": "Вертикальне дерево",
+  "Tree": "Дерево",
   "Sibling to the left": "Сусідній вузол ліворуч",
   "Sibling to the right": "Сусідній вузол праворуч",
   "Switch between map and Markdown": "Перемкнути між картою і Markdown",

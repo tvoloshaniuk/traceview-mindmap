@@ -369,7 +369,7 @@ var en_default = {
   "Navigate across branches with arrow keys": "Navigate across branches with arrow keys",
   "Copy node text": "Copy node text",
   "Edit embedded node note": "Edit embedded node note",
-  "Vertical tree": "Vertical tree",
+  Tree: "Tree",
   "Sibling to the left": "Sibling to the left",
   "Sibling to the right": "Sibling to the right",
   "Switch between map and Markdown": "Switch between map and Markdown",
@@ -715,7 +715,7 @@ var uk_default = {
   "Navigate across branches with arrow keys": "\u041F\u0435\u0440\u0435\u0445\u043E\u0434\u0438\u0442\u0438 \u043C\u0456\u0436 \u0433\u0456\u043B\u043A\u0430\u043C\u0438 \u0441\u0442\u0440\u0456\u043B\u043A\u0430\u043C\u0438",
   "Copy node text": "\u041A\u043E\u043F\u0456\u044E\u0432\u0430\u0442\u0438 \u0442\u0435\u043A\u0441\u0442 \u0432\u0443\u0437\u043B\u0430",
   "Edit embedded node note": "\u0420\u0435\u0434\u0430\u0433\u0443\u0432\u0430\u0442\u0438 \u0432\u043A\u043B\u0430\u0434\u0435\u043D\u0443 \u043D\u043E\u0442\u0430\u0442\u043A\u0443 \u0432\u0443\u0437\u043B\u0430",
-  "Vertical tree": "\u0412\u0435\u0440\u0442\u0438\u043A\u0430\u043B\u044C\u043D\u0435 \u0434\u0435\u0440\u0435\u0432\u043E",
+  Tree: "\u0414\u0435\u0440\u0435\u0432\u043E",
   "Sibling to the left": "\u0421\u0443\u0441\u0456\u0434\u043D\u0456\u0439 \u0432\u0443\u0437\u043E\u043B \u043B\u0456\u0432\u043E\u0440\u0443\u0447",
   "Sibling to the right": "\u0421\u0443\u0441\u0456\u0434\u043D\u0456\u0439 \u0432\u0443\u0437\u043E\u043B \u043F\u0440\u0430\u0432\u043E\u0440\u0443\u0447",
   "Switch between map and Markdown": "\u041F\u0435\u0440\u0435\u043C\u043A\u043D\u0443\u0442\u0438 \u043C\u0456\u0436 \u043A\u0430\u0440\u0442\u043E\u044E \u0456 Markdown",
@@ -1061,7 +1061,7 @@ var pl_default = {
   "Navigate across branches with arrow keys": "Przechod\u017A mi\u0119dzy ga\u0142\u0119ziami za pomoc\u0105 strza\u0142ek",
   "Copy node text": "Kopiuj tekst w\u0119z\u0142a",
   "Edit embedded node note": "Edytuj osadzon\u0105 notatk\u0119 w\u0119z\u0142a",
-  "Vertical tree": "Drzewo pionowe",
+  Tree: "Drzewo",
   "Sibling to the left": "W\u0119ze\u0142 siostrzany po lewej",
   "Sibling to the right": "W\u0119ze\u0142 siostrzany po prawej",
   "Switch between map and Markdown": "Prze\u0142\u0105cz mi\u0119dzy map\u0105 a Markdown",
@@ -1407,7 +1407,7 @@ var de_default = {
   "Navigate across branches with arrow keys": "Mit Pfeiltasten zwischen Zweigen wechseln",
   "Copy node text": "Knotentext kopieren",
   "Edit embedded node note": "Eingebettete Knotennotiz bearbeiten",
-  "Vertical tree": "Vertikaler Baum",
+  Tree: "Baum",
   "Sibling to the left": "Nachbarknoten links",
   "Sibling to the right": "Nachbarknoten rechts",
   "Switch between map and Markdown": "Zwischen Karte und Markdown wechseln",
@@ -1753,7 +1753,7 @@ var es_default = {
   "Navigate across branches with arrow keys": "Navegar entre ramas con las flechas",
   "Copy node text": "Copiar texto del nodo",
   "Edit embedded node note": "Editar la nota incrustada del nodo",
-  "Vertical tree": "\xC1rbol vertical",
+  Tree: "\xC1rbol",
   "Sibling to the left": "Nodo hermano a la izquierda",
   "Sibling to the right": "Nodo hermano a la derecha",
   "Switch between map and Markdown": "Alternar entre mapa y Markdown",
@@ -2099,7 +2099,7 @@ var fr_default = {
   "Navigate across branches with arrow keys": "Naviguer entre les branches avec les fl\xE8ches",
   "Copy node text": "Copier le texte du n\u0153ud",
   "Edit embedded node note": "Modifier la note int\xE9gr\xE9e du n\u0153ud",
-  "Vertical tree": "Arbre vertical",
+  Tree: "Arbre",
   "Sibling to the left": "N\u0153ud fr\xE8re \xE0 gauche",
   "Sibling to the right": "N\u0153ud fr\xE8re \xE0 droite",
   "Switch between map and Markdown": "Basculer entre la carte et Markdown",
@@ -2445,7 +2445,7 @@ var pt_BR_default = {
   "Navigate across branches with arrow keys": "Navegar entre ramos com as setas",
   "Copy node text": "Copiar texto do n\xF3",
   "Edit embedded node note": "Editar a nota incorporada do n\xF3",
-  "Vertical tree": "\xC1rvore vertical",
+  Tree: "\xC1rvore",
   "Sibling to the left": "N\xF3 irm\xE3o \xE0 esquerda",
   "Sibling to the right": "N\xF3 irm\xE3o \xE0 direita",
   "Switch between map and Markdown": "Alternar entre mapa e Markdown",
@@ -2791,7 +2791,7 @@ var zh_CN_default = {
   "Navigate across branches with arrow keys": "\u7528\u65B9\u5411\u952E\u5728\u5206\u652F\u4E4B\u95F4\u5BFC\u822A",
   "Copy node text": "\u590D\u5236\u8282\u70B9\u6587\u672C",
   "Edit embedded node note": "\u7F16\u8F91\u8282\u70B9\u7684\u5D4C\u5165\u7B14\u8BB0",
-  "Vertical tree": "\u5782\u76F4\u6811",
+  Tree: "\u6811\u5F62",
   "Sibling to the left": "\u5DE6\u4FA7\u540C\u7EA7\u8282\u70B9",
   "Sibling to the right": "\u53F3\u4FA7\u540C\u7EA7\u8282\u70B9",
   "Switch between map and Markdown": "\u5728\u5730\u56FE\u4E0E Markdown \u4E4B\u95F4\u5207\u6362",
@@ -3137,7 +3137,7 @@ var ja_default = {
   "Navigate across branches with arrow keys": "\u77E2\u5370\u30AD\u30FC\u3067\u679D\u3092\u307E\u305F\u3044\u3067\u79FB\u52D5",
   "Copy node text": "\u30CE\u30FC\u30C9\u306E\u30C6\u30AD\u30B9\u30C8\u3092\u30B3\u30D4\u30FC",
   "Edit embedded node note": "\u30CE\u30FC\u30C9\u306B\u57CB\u3081\u8FBC\u307E\u308C\u305F\u30CE\u30FC\u30C8\u3092\u7DE8\u96C6",
-  "Vertical tree": "\u7E26\u5411\u304D\u30C4\u30EA\u30FC",
+  Tree: "\u30C4\u30EA\u30FC",
   "Sibling to the left": "\u5DE6\u306E\u5144\u5F1F\u30CE\u30FC\u30C9",
   "Sibling to the right": "\u53F3\u306E\u5144\u5F1F\u30CE\u30FC\u30C9",
   "Switch between map and Markdown": "\u30DE\u30C3\u30D7\u3068Markdown\u3092\u5207\u308A\u66FF\u3048\u308B",
@@ -3483,7 +3483,7 @@ var ko_default = {
   "Navigate across branches with arrow keys": "\uD654\uC0B4\uD45C \uD0A4\uB85C \uAC00\uC9C0 \uC0AC\uC774 \uC774\uB3D9",
   "Copy node text": "\uB178\uB4DC \uD14D\uC2A4\uD2B8 \uBCF5\uC0AC",
   "Edit embedded node note": "\uB178\uB4DC\uC758 \uC784\uBCA0\uB4DC \uB178\uD2B8 \uD3B8\uC9D1",
-  "Vertical tree": "\uC138\uB85C \uD2B8\uB9AC",
+  Tree: "\uD2B8\uB9AC",
   "Sibling to the left": "\uC67C\uCABD \uD615\uC81C \uB178\uB4DC",
   "Sibling to the right": "\uC624\uB978\uCABD \uD615\uC81C \uB178\uB4DC",
   "Switch between map and Markdown": "\uC9C0\uB3C4\uC640 Markdown \uC804\uD658",
@@ -3829,7 +3829,7 @@ var ru_default = {
   "Navigate across branches with arrow keys": "\u041F\u0435\u0440\u0435\u0445\u043E\u0434\u0438\u0442\u044C \u043C\u0435\u0436\u0434\u0443 \u0432\u0435\u0442\u0432\u044F\u043C\u0438 \u0441\u0442\u0440\u0435\u043B\u043A\u0430\u043C\u0438",
   "Copy node text": "\u041A\u043E\u043F\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u0442\u0435\u043A\u0441\u0442 \u0443\u0437\u043B\u0430",
   "Edit embedded node note": "\u0420\u0435\u0434\u0430\u043A\u0442\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u0432\u0441\u0442\u0440\u043E\u0435\u043D\u043D\u0443\u044E \u0437\u0430\u043C\u0435\u0442\u043A\u0443 \u0443\u0437\u043B\u0430",
-  "Vertical tree": "\u0412\u0435\u0440\u0442\u0438\u043A\u0430\u043B\u044C\u043D\u043E\u0435 \u0434\u0435\u0440\u0435\u0432\u043E",
+  Tree: "\u0414\u0435\u0440\u0435\u0432\u043E",
   "Sibling to the left": "\u0421\u043E\u0441\u0435\u0434\u043D\u0438\u0439 \u0443\u0437\u0435\u043B \u0441\u043B\u0435\u0432\u0430",
   "Sibling to the right": "\u0421\u043E\u0441\u0435\u0434\u043D\u0438\u0439 \u0443\u0437\u0435\u043B \u0441\u043F\u0440\u0430\u0432\u0430",
   "Switch between map and Markdown": "\u041F\u0435\u0440\u0435\u043A\u043B\u044E\u0447\u0438\u0442\u044C \u043A\u0430\u0440\u0442\u0443 \u0438 Markdown",
@@ -6467,7 +6467,7 @@ var MapSurface = class {
       columns.set(level, Math.max(columns.get(level) ?? 0, width2));
     }
     for (const id of this.visible) {
-      const width2 = widthMode === "column" ? columns.get(levels.get(id)) : widths.get(id);
+      const width2 = widthMode === "column" && !vertical ? columns.get(levels.get(id)) : widths.get(id);
       widths.set(id, width2);
       const el = this.elements.get(id);
       el.style.width = `${width2}px`;
@@ -6477,6 +6477,13 @@ var MapSurface = class {
     for (const id of this.visible) {
       const el = this.elements.get(id);
       height.set(id, el.offsetHeight || this.estimateHeight(this.doc.byId.get(id).text));
+    }
+    if (vertical && widthMode === "column") {
+      columns.clear();
+      for (const id of this.visible) {
+        const level = levels.get(id);
+        columns.set(level, Math.max(columns.get(level) ?? 0, height.get(id)));
+      }
     }
     if (this.mode === "outline") {
       this.positions.clear();
@@ -6539,7 +6546,7 @@ var MapSurface = class {
       const childTotal = children.reduce((sum, id) => sum + branchHeight.get(id), 0) + Math.max(0, children.length - 1) * rowGap;
       let y = item.y + (branch - childTotal) / 2;
       for (const id of children) {
-        stack.push({ id, x: item.x + (vertical ? ownHeight : ownWidth) + columnGap, y, level: item.level + 1 });
+        stack.push({ id, x: item.x + (vertical ? widthMode === "column" ? columns.get(levels.get(item.id)) : ownHeight : ownWidth) + columnGap, y, level: item.level + 1 });
         y += branchHeight.get(id) + rowGap;
       }
     }
@@ -9715,7 +9722,7 @@ var MapView = class extends import_obsidian5.EditableFileView {
   }
   layoutMenu(anchor2) {
     const menu = new import_obsidian5.Menu();
-    for (const [mode, label2] of [["map", t("Map")], ["vertical", t("Vertical tree")], ["outline", t("Outline")], ["table", t("Table")]]) {
+    for (const [mode, label2] of [["map", t("Map")], ["vertical", t("Tree")], ["outline", t("Outline")], ["table", t("Table")]]) {
       menu.addItem((item) => item.setTitle(label2).setChecked(this.layoutMode === mode).onClick(() => {
         this.layoutMode = mode;
         this.surface?.setLayout(mode);

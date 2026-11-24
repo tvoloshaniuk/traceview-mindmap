@@ -738,7 +738,7 @@ export class MapSurface {
       columns.set(level, Math.max(columns.get(level) ?? 0, width));
     }
     for (const id of this.visible) {
-      const width = widthMode === 'column' ? columns.get(levels.get(id)!)! : widths.get(id)!;
+      const width = widthMode === 'column' && !vertical ? columns.get(levels.get(id)!)! : widths.get(id)!;
       widths.set(id, width);
       const el = this.elements.get(id)!;
       el.style.width = `${width}px`;
@@ -748,6 +748,13 @@ export class MapSurface {
     for (const id of this.visible) {
       const el = this.elements.get(id)!;
       height.set(id, el.offsetHeight || this.estimateHeight(this.doc.byId.get(id)!.text));
+    }
+    if (vertical && widthMode === 'column') {
+      columns.clear();
+      for (const id of this.visible) {
+        const level = levels.get(id)!;
+        columns.set(level, Math.max(columns.get(level) ?? 0, height.get(id)!));
+      }
     }
     if (this.mode === 'outline') {
       this.positions.clear();
@@ -814,7 +821,7 @@ export class MapSurface {
       const childTotal = children.reduce((sum, id) => sum + branchHeight.get(id)!, 0) + Math.max(0, children.length - 1) * rowGap;
       let y = item.y + (branch - childTotal) / 2;
       for (const id of children) {
-        stack.push({ id, x: item.x + (vertical ? ownHeight : ownWidth) + columnGap, y, level: item.level + 1 });
+        stack.push({ id, x: item.x + (vertical ? widthMode === 'column' ? columns.get(levels.get(item.id)!)! : ownHeight : ownWidth) + columnGap, y, level: item.level + 1 });
         y += branchHeight.get(id)! + rowGap;
       }
     }
