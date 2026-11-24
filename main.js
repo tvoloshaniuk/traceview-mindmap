@@ -7484,6 +7484,16 @@ function queueLabel(text, showTask = true, showStep = true) {
   const label2 = (showTask ? match[1] ?? "" : "") + (showStep ? match[2] ?? "" : "") + match[3];
   return label2.trim() || text;
 }
+function queueMapMatcher(filter) {
+  const query = filter.trim();
+  if (!query) return () => true;
+  if (query.startsWith("/") && query.endsWith("/") && query.length > 1) {
+    const expression = new RegExp(query.slice(1, -1), "i");
+    return (path) => expression.test(path);
+  }
+  if (query.includes("*") || query.includes("?")) return compileMapPatterns({ patternMode: "glob", mapPatterns: query });
+  return (path) => path.toLocaleLowerCase().includes(query.toLocaleLowerCase());
+}
 var nextFilterId = 0;
 function attachMapFilter(parent, getMaps, onSelect) {
   const host = parent.createDiv("tvm-map-filter");
@@ -7497,6 +7507,7 @@ function attachMapFilter(parent, getMaps, onSelect) {
   let selected = { path: "", basename: t("All maps") };
   let choices = [];
   let active = -1;
+  let edited = false;
   const close = () => {
     list.hidden = true;
     input.setAttribute("aria-expanded", "false");
@@ -7505,6 +7516,7 @@ function attachMapFilter(parent, getMaps, onSelect) {
   };
   const choose = (choice) => {
     selected = choice;
+    edited = false;
     close();
     onSelect(choice.path);
   };
@@ -7537,6 +7549,7 @@ function attachMapFilter(parent, getMaps, onSelect) {
     input.removeAttribute("aria-activedescendant");
   };
   input.onfocus = () => {
+    edited = false;
     input.value = "";
     draw();
   };
@@ -7546,7 +7559,10 @@ function attachMapFilter(parent, getMaps, onSelect) {
       draw();
     }
   };
-  input.oninput = draw;
+  input.oninput = () => {
+    edited = true;
+    draw();
+  };
   input.onkeydown = (event) => {
     if (event.key === "Escape" && !list.hidden) {
       event.preventDefault();
@@ -7562,11 +7578,24 @@ function attachMapFilter(parent, getMaps, onSelect) {
       highlight();
     } else if (event.key === "Enter" && !list.hidden) {
       event.preventDefault();
-      if (active < 0 && input.value.trim() && choices.length === 1) return;
-      choose(choices[active >= 0 ? active : choices.length > 1 && input.value.trim() ? 1 : 0]);
+      if (active >= 0) choose(choices[active]);
+      else {
+        const value = input.value.trim();
+        choose({ path: value, basename: value });
+      }
     }
   };
-  input.onblur = () => close();
+  input.onblur = () => {
+    if (edited) {
+      const value = input.value.trim();
+      choose({ path: value, basename: value });
+    } else close();
+  };
+  return { set(value) {
+    selected = getMaps().find((map) => map.path === value) ?? { path: value, basename: value };
+    edited = false;
+    close();
+  } };
 }
 
 // src/native-editor.ts
@@ -9170,8 +9199,9 @@ var TraceViewMindmap = class extends import_obsidian5.Plugin {
     }
   }
   async openQueue() {
+    const file = this.activeFile();
     const leaf = this.app.workspace.getLeavesOfType(QUEUE)[0] ?? this.app.workspace.getLeaf("tab");
-    await leaf.setViewState({ type: QUEUE, active: true });
+    await leaf.setViewState({ type: QUEUE, state: { filter: file?.path ?? "" }, active: true });
     await this.app.workspace.revealLeaf(leaf);
   }
   isMap(file) {
@@ -10363,13 +10393,20 @@ var QueueView = class extends import_obsidian5.ItemView {
       this.cache.clear();
       void this.reload();
     });
-    attachMapFilter(toolbar, () => this.queueFiles(), (path) => {
+    this.mapFilter = attachMapFilter(toolbar, () => this.queueFiles(), (path) => {
+      try {
+        queueMapMatcher(path);
+      } catch (error) {
+        new import_obsidian5.Notice(message(error));
+        this.mapFilter?.set(this.filter);
+        return;
+      }
       this.filter = path;
-      this.draw();
+      void this.reload();
     });
     this.foldControls = toolbar.createDiv("tvm-queue-fold-controls");
     button(this.foldControls, t("Collapse all"), () => {
-      for (const path of this.cache.keys()) if (!this.filter || path === this.filter) this.collapsed.add(path);
+      for (const path of this.cache.keys()) if (queueMapMatcher(this.filter)(path)) this.collapsed.add(path);
       this.draw();
     });
     button(this.foldControls, t("Expand all"), () => {
@@ -10382,7 +10419,21 @@ var QueueView = class extends import_obsidian5.ItemView {
       this.draw();
     };
     this.host = this.contentEl.createDiv("tvm-panel");
+  }
+  getState() {
+    return { filter: this.filter };
+  }
+  async setState(state, result) {
+    const filter = typeof state.filter === "string" ? state.filter : "";
+    try {
+      queueMapMatcher(filter);
+      this.filter = filter;
+    } catch {
+      this.filter = "";
+    }
+    this.mapFilter?.set(this.filter);
     await this.reload();
+    await super.setState(state, result);
   }
   scheduleReload() {
     window.clearTimeout(this.timer);
@@ -10392,13 +10443,13 @@ var QueueView = class extends import_obsidian5.ItemView {
   }
   queueFiles() {
     const terms = queueExclusions(this.plugin.settings.queueExcludedMaps);
-    return this.app.vault.getMarkdownFiles().filter((file) => this.plugin.isMap(file) && !terms.some((term) => file.basename.toLocaleLowerCase().includes(term)));
+    return this.app.vault.getMarkdownFiles().filter((file) => (this.plugin.isMap(file) || file.path === this.filter) && !terms.some((term) => file.basename.toLocaleLowerCase().includes(term)));
   }
   async reload() {
     const generation = ++this.generation;
-    const files = this.queueFiles();
+    const matches = queueMapMatcher(this.filter);
+    const files = this.queueFiles().filter((file) => matches(file.path));
     const paths = new Set(files.map((file) => file.path));
-    if (this.filter && !paths.has(this.filter)) this.filter = "";
     for (const path of this.cache.keys()) if (!paths.has(path)) this.cache.delete(path);
     for (let offset = 0; offset < files.length; offset += 8) {
       if (this.closed || generation !== this.generation) return;
@@ -10428,7 +10479,8 @@ var QueueView = class extends import_obsidian5.ItemView {
     this.host.empty();
     if (this.foldControls) this.foldControls.hidden = this.mode === "dates";
     let count = 0;
-    const maps = [...this.cache.values()].filter((map) => !this.filter || map.file.path === this.filter).sort((a, b) => a.file.path.localeCompare(b.file.path));
+    const matches = queueMapMatcher(this.filter);
+    const maps = [...this.cache.values()].filter((map) => matches(map.file.path)).sort((a, b) => a.file.path.localeCompare(b.file.path));
     const terms = queueExclusions(this.plugin.settings.queueExcludedBranches);
     const excluded = new Map(maps.map((map) => [map, excludedQueueNodes(map.doc, terms)]));
     if (this.mode === "dates") {

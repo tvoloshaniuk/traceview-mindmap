@@ -51,6 +51,7 @@ async function loadBundle(savedSettings: unknown, window?: JSDOM['window'], loca
   class ItemView {
     app: MockApp;
     constructor(public leaf: { app: MockApp }) { this.app = leaf.app; }
+    async setState(_state: unknown, _result: unknown) {}
   }
   class TFile { extension = 'md'; constructor(public path: string) {} }
   class FileView extends ItemView {
@@ -543,5 +544,33 @@ test('queue labels render once, open internal links and retain selectable text o
   view.renderLabel(parent, map, 'other', 'Fallback **text**');
   await Promise.resolve();
   assert.equal(parent.querySelectorAll('.tvm-step-text')[1].textContent, 'Fallback **text**');
+  dom.window.close();
+});
+test('queue reads only selected files and ignores an older load after switching maps', async () => {
+  const dom = new JSDOM('<!doctype html><body></body>');
+  const loaded = await loadBundle(null, dom.window);
+  const app = loaded.app as any;
+  const files = ['A.mindmap.md', 'B.mindmap.md', 'Ordinary.md'].map(path => ({path, basename:path.replace(/\.md$/, ''), stat:{mtime:1}}));
+  app.vault.getMarkdownFiles = () => files;
+  (loaded.plugin as any).isMap = (file: any) => file.path.endsWith('.mindmap.md');
+  const reads: string[] = [];
+  app.vault.read = async (file: any) => { reads.push(file.path); return '- Root\n'; };
+  const view = loaded.views.get('traceview-mindmap-queue')!({app}) as any;
+  await view.setState({filter: files[0].path}, {});
+  assert.deepEqual(reads, [files[0].path]);
+  await view.setState({filter: 'Ordinary.md'}, {});
+  assert.deepEqual(reads, [files[0].path, 'Ordinary.md']);
+  reads.length = 0;
+  await view.setState({filter: '*.mindmap.md'}, {});
+  assert.deepEqual(reads.sort(), [files[0].path, files[1].path]);
+  let release!: (text: string) => void;
+  view.cache.clear();
+  app.vault.read = (file: any) => file === files[0] ? new Promise(resolve => { release = resolve; }) : Promise.resolve('- New root\n');
+  const pending = view.setState({filter: files[0].path}, {});
+  await view.setState({filter: files[1].path}, {});
+  release('- Old root\n');
+  await pending;
+  assert.deepEqual([...view.cache.keys()], [files[1].path]);
+  assert.equal(view.getState().filter, files[1].path);
   dom.window.close();
 });

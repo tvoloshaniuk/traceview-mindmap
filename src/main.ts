@@ -11,7 +11,7 @@ import { captureHotkey, DEFAULT_HOTKEYS, HOTKEY_DEFINITIONS, resolveHotkey, vali
 import { compileMapPatterns, PatternError, type MapRules, type PatternMode } from './map-patterns';
 import { MapSearch } from './map-search';
 import { MapSurface } from './surface';
-import { attachMapFilter, excludedQueueNodes, queueExclusions, queueLabel } from './queue-controls';
+import { attachMapFilter, excludedQueueNodes, queueExclusions, queueLabel, queueMapMatcher } from './queue-controls';
 import { mountNativeEditor, prepareNativeEditor, type NativeConstructor } from './native-editor';
 import type { InlineEditor, InlineDriver } from './inline';
 import type { Editor } from 'obsidian';
@@ -323,8 +323,9 @@ export default class TraceViewMindmap extends Plugin {
     if (nodeId && leaf.view instanceof MapView) { await leaf.view.reload(); leaf.view.surface?.reveal(nodeId); }
   }
   async openQueue(): Promise<void> {
+    const file = this.activeFile();
     const leaf = this.app.workspace.getLeavesOfType(QUEUE)[0] ?? this.app.workspace.getLeaf('tab');
-    await leaf.setViewState({ type: QUEUE, active: true });
+    await leaf.setViewState({ type: QUEUE, state: { filter: file?.path ?? '' }, active: true });
     await this.app.workspace.revealLeaf(leaf);
   }
   isMap(file: TFile): boolean {
@@ -1271,6 +1272,7 @@ class QueueView extends ItemView {
   private collapsed = new Set<string>();
   private foldControls?: HTMLElement;
   private filter = '';
+  private mapFilter?: ReturnType<typeof attachMapFilter>;
   private query = '';
   private timer = 0;
   private generation = 0;
@@ -1287,10 +1289,15 @@ class QueueView extends ItemView {
     this.undoButton = iconButton(toolbar, 'undo-2', t("Undo"), () => { void this.history('undo'); });
     this.redoButton = iconButton(toolbar, 'redo-2', t("Redo"), () => { void this.history('redo'); });
     button(toolbar, t("Refresh"), () => { this.cache.clear(); void this.reload(); });
-    attachMapFilter(toolbar, () => this.queueFiles(), path => { this.filter = path; this.draw(); });
+    this.mapFilter = attachMapFilter(toolbar, () => this.queueFiles(), path => {
+      try { queueMapMatcher(path); }
+      catch (error) { new Notice(message(error)); this.mapFilter?.set(this.filter); return; }
+      this.filter = path;
+      void this.reload();
+    });
     this.foldControls = toolbar.createDiv('tvm-queue-fold-controls');
     button(this.foldControls, t("Collapse all"), () => {
-      for (const path of this.cache.keys()) if (!this.filter || path === this.filter) this.collapsed.add(path);
+      for (const path of this.cache.keys()) if (queueMapMatcher(this.filter)(path)) this.collapsed.add(path);
       this.draw();
     });
     button(this.foldControls, t("Expand all"), () => {
@@ -1300,19 +1307,27 @@ class QueueView extends ItemView {
     const search = toolbar.createEl('input', { type: 'search', attr: { 'aria-label': t("Search steps"), placeholder: t("Find…") } });
     search.oninput = () => { this.query = search.value.toLocaleLowerCase(); this.draw(); };
     this.host = this.contentEl.createDiv('tvm-panel');
+  }
+  getState(): Record<string, unknown> { return { filter: this.filter }; }
+  async setState(state: Record<string, unknown>, result: any): Promise<void> {
+    const filter = typeof state.filter === 'string' ? state.filter : '';
+    try { queueMapMatcher(filter); this.filter = filter; }
+    catch { this.filter = ''; }
+    this.mapFilter?.set(this.filter);
     await this.reload();
+    await super.setState(state, result);
   }
   scheduleReload(): void { window.clearTimeout(this.timer); this.timer = window.setTimeout(() => { void this.reload(); }, 250); }
   private queueFiles(): TFile[] {
     const terms = queueExclusions(this.plugin.settings.queueExcludedMaps);
-    return this.app.vault.getMarkdownFiles().filter(file => this.plugin.isMap(file)
+    return this.app.vault.getMarkdownFiles().filter(file => (this.plugin.isMap(file) || file.path === this.filter)
       && !terms.some(term => file.basename.toLocaleLowerCase().includes(term)));
   }
   private async reload(): Promise<void> {
     const generation = ++this.generation;
-    const files = this.queueFiles();
+    const matches = queueMapMatcher(this.filter);
+    const files = this.queueFiles().filter(file => matches(file.path));
     const paths = new Set(files.map(file => file.path));
-    if (this.filter && !paths.has(this.filter)) this.filter = '';
     for (const path of this.cache.keys()) if (!paths.has(path)) this.cache.delete(path);
     for (let offset = 0; offset < files.length; offset += 8) {
       if (this.closed || generation !== this.generation) return;
@@ -1340,7 +1355,8 @@ class QueueView extends ItemView {
     this.host.empty();
     if (this.foldControls) this.foldControls.hidden = this.mode === 'dates';
     let count = 0;
-    const maps = [...this.cache.values()].filter(map => !this.filter || map.file.path === this.filter).sort((a, b) => a.file.path.localeCompare(b.file.path));
+    const matches = queueMapMatcher(this.filter);
+    const maps = [...this.cache.values()].filter(map => matches(map.file.path)).sort((a, b) => a.file.path.localeCompare(b.file.path));
     const terms = queueExclusions(this.plugin.settings.queueExcludedBranches);
     const excluded = new Map(maps.map(map => [map, excludedQueueNodes(map.doc, terms)]));
     if (this.mode === 'dates') {

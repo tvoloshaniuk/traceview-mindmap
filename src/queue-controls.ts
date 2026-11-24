@@ -3,6 +3,7 @@
  * GPL-3.0-only with the Obsidian Host Additional Permission.
  * See LICENSE, LICENSING.md and OBSIDIAN-HOST-PERMISSION.md.
  */
+import { compileMapPatterns } from './map-patterns';
 import { t } from './i18n';
 import type { MapDocument } from './types';
 
@@ -27,10 +28,21 @@ export function queueLabel(text: string, showTask = true, showStep = true): stri
   return label.trim() || text;
 }
 
+export function queueMapMatcher(filter: string): (path: string) => boolean {
+  const query = filter.trim();
+  if (!query) return () => true;
+  if (query.startsWith('/') && query.endsWith('/') && query.length > 1) {
+    const expression = new RegExp(query.slice(1, -1), 'i');
+    return path => expression.test(path);
+  }
+  if (query.includes('*') || query.includes('?')) return compileMapPatterns({ patternMode: 'glob', mapPatterns: query });
+  return path => path.toLocaleLowerCase().includes(query.toLocaleLowerCase());
+}
+
 interface MapChoice { path: string; basename: string; }
 let nextFilterId = 0;
 
-export function attachMapFilter(parent: HTMLElement, getMaps: () => MapChoice[], onSelect: (path: string) => void): void {
+export function attachMapFilter(parent: HTMLElement, getMaps: () => MapChoice[], onSelect: (path: string) => void): { set: (value: string) => void } {
   const host = parent.createDiv('tvm-map-filter');
   const input = host.createEl('input', { type: 'text', attr: { role: 'combobox', 'aria-label': t("Map filter"), 'aria-autocomplete': 'list', 'aria-expanded': 'false', autocomplete: 'off', placeholder: t("All maps") } });
   const list = host.createDiv('tvm-map-options');
@@ -42,11 +54,12 @@ export function attachMapFilter(parent: HTMLElement, getMaps: () => MapChoice[],
   let selected: MapChoice = { path: '', basename: t("All maps") };
   let choices: MapChoice[] = [];
   let active = -1;
+  let edited = false;
   const close = () => {
     list.hidden = true; input.setAttribute('aria-expanded', 'false'); input.removeAttribute('aria-activedescendant');
     input.value = selected.path ? selected.basename : '';
   };
-  const choose = (choice: MapChoice) => { selected = choice; close(); onSelect(choice.path); };
+  const choose = (choice: MapChoice) => { selected = choice; edited = false; close(); onSelect(choice.path); };
   const highlight = () => {
     Array.from(list.children).forEach((element, index) => element.setAttribute('aria-selected', String(index === active)));
     const option = list.children[active] as HTMLElement | undefined;
@@ -70,9 +83,9 @@ export function attachMapFilter(parent: HTMLElement, getMaps: () => MapChoice[],
     if (query && choices.length === 1) list.createDiv({ cls: 'tvm-map-option-path tvm-map-no-results', text: t("No maps match this search.") });
     list.hidden = false; input.setAttribute('aria-expanded', 'true'); input.removeAttribute('aria-activedescendant');
   };
-  input.onfocus = () => { input.value = ''; draw(); };
+  input.onfocus = () => { edited = false; input.value = ''; draw(); };
   input.onclick = () => { if (list.hidden) { input.value = ''; draw(); } };
-  input.oninput = draw;
+  input.oninput = () => { edited = true; draw(); };
   input.onkeydown = event => {
     if (event.key === 'Escape' && !list.hidden) { event.preventDefault(); event.stopPropagation(); close(); }
     else if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
@@ -81,9 +94,17 @@ export function attachMapFilter(parent: HTMLElement, getMaps: () => MapChoice[],
       highlight();
     } else if (event.key === 'Enter' && !list.hidden) {
       event.preventDefault();
-      if (active < 0 && input.value.trim() && choices.length === 1) return;
-      choose(choices[active >= 0 ? active : (choices.length > 1 && input.value.trim() ? 1 : 0)]);
+      if (active >= 0) choose(choices[active]);
+      else { const value = input.value.trim(); choose({ path: value, basename: value }); }
     }
   };
-  input.onblur = () => close();
+  input.onblur = () => {
+    if (edited) { const value = input.value.trim(); choose({ path: value, basename: value }); }
+    else close();
+  };
+  return { set(value) {
+    selected = getMaps().find(map => map.path === value) ?? { path: value, basename: value };
+    edited = false;
+    close();
+  } };
 }

@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.0.15
+
+### Fixed
+
+- Start the planning queue with the current note and read only matching files.
+- Apply map filters on Enter or when leaving the field. Clear the field for all maps, use glob patterns or /regular expressions/ to select groups.
+- Ignore stale file reads when the queue filter changes.
+
 ## 1.0.14
 
 ### Fixed
