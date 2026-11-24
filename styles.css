@@ -44,7 +44,7 @@
 .tvm-panel h2 { margin: 0 0 12px; font-size: 18px; }
 .tvm-step-row { display: flex; align-items: flex-start; gap: 10px; padding: 11px 4px; border-bottom: 1px solid var(--background-modifier-border, #dedee3); }
 .tvm-step-row input[type="checkbox"] { flex-shrink: 0; margin-top: 5px; }
-.tvm-step-text { flex: 1; min-width: 0; overflow-wrap: anywhere; line-height: 1.5; }
+.tvm-step-text { user-select: text; -webkit-user-select: text; flex: 1; min-width: 0; overflow-wrap: anywhere; line-height: 1.5; }
 .tvm-step-text p { margin: 0; }
 .tvm-queue-view { min-width: 0; }
 .tvm-queue-view .tvm-toolbar { flex-shrink: 0; }

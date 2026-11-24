@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.0.14
+
+### Fixed
+
+- Render planning queue labels once and open their internal Markdown links relative to the source note.
+- Allow selecting and copying queue text. Drag numbered steps using their reorder controls.
+- Open a node by clicking its queue row while preserving text selection and interactive controls.
 ## 1.0.13
 
 ### Added

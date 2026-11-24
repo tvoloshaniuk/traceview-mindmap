@@ -1379,8 +1379,21 @@ class QueueView extends ItemView {
   }
   private renderLabel(parent: HTMLElement, map: IndexedMap, id: string, text: string): void {
     const label = parent.createDiv('tvm-step-text');
-    label.textContent = text;
     button(parent, '↗', () => { void this.plugin.openMap(map.file, undefined, id); }, t("Open node"));
+    const row = parent.closest<HTMLElement>('.tvm-step-row');
+    if (row) row.addEventListener('click', event => {
+      if ((event.target as Element).closest('a, button, input, select, textarea')) return;
+      if (!row.ownerDocument.getSelection()?.isCollapsed) return;
+      void this.plugin.openMap(map.file, undefined, id);
+    });
+    label.addEventListener('click', event => {
+      const link = (event.target as Element).closest<HTMLAnchorElement>('a.internal-link');
+      const target = link?.dataset.href ?? link?.getAttribute('href');
+      if (!target) return;
+      event.preventDefault();
+      event.stopPropagation();
+      void this.app.workspace.openLinkText(target, map.file.path, event.ctrlKey || event.metaKey);
+    });
     void MarkdownRenderer.render(this.app, text, label, map.file.path, this.renderer!).catch(() => {
       label.textContent = text;
     });
@@ -1393,7 +1406,7 @@ class QueueView extends ItemView {
       const controls = row.createDiv('tvm-step-controls');
       button(controls, '↑', () => { void this.reorder(map, step.nodeId, -1); }, t("Move earlier in execution order"));
       button(controls, '↓', () => { void this.reorder(map, step.nodeId, 1); }, t("Move later in execution order"));
-      row.draggable = true;
+      controls.draggable = true;
       row.ondragstart = event => { this.dragged = { path: map.file.path, id: step.nodeId }; event.dataTransfer?.setData('text/plain', step.nodeId); };
       row.ondragend = () => { this.dragged = undefined; };
       row.ondragover = event => { if (this.dragged?.path === map.file.path) event.preventDefault(); };

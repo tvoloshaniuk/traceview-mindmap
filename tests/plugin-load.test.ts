@@ -92,7 +92,7 @@ async function loadBundle(savedSettings: unknown, window?: JSDOM['window'], loca
   assert.equal(typeof module.exports.default, 'function', 'main.js must export the Obsidian plugin class');
   const plugin = new module.exports.default!(app);
   await plugin.onload();
-  return { plugin, commands, views, events, registeredEvents, settingsTabs, ribbons, app, FileView, TFile, clipboard, notices, MarkdownView: obsidian.MarkdownView };
+  return { plugin, commands, views, events, registeredEvents, settingsTabs, ribbons, app, FileView, TFile, clipboard, notices, MarkdownView: obsidian.MarkdownView, MarkdownRenderer: obsidian.MarkdownRenderer };
 }
 
 test('distributed main.js evaluates and enables with the Obsidian API', async () => {
@@ -485,4 +485,63 @@ test('reset restores preferences only after saving and retains imported state ac
   assert.equal(storage.get('earlier-map-tool:v1:Tree.md'), 'saved-view-state');
   assert.equal(refreshed, 3);
   assert.equal(queues, 1);
+});
+
+test('queue labels render once, open internal links and retain selectable text on failure', async () => {
+  const dom = new JSDOM('<!doctype html><body></body>');
+  const prototype = dom.window.HTMLElement.prototype as any;
+  prototype.createDiv = function (cls: string) {
+    const element = this.ownerDocument.createElement('div');
+    element.className = cls;
+    this.append(element);
+    return element;
+  };
+  prototype.createEl = function (tag: string, options: any = {}) {
+    const element = this.ownerDocument.createElement(tag);
+    if (options.text) element.textContent = options.text;
+    for (const [key, value] of Object.entries(options.attr ?? {})) element.setAttribute(key, value);
+    this.append(element);
+    return element;
+  };
+  const loaded = await loadBundle(null, dom.window);
+  const app = loaded.app as any;
+  const opened: unknown[] = [];
+  app.workspace.openLinkText = (...args: unknown[]) => { opened.push(args); return Promise.resolve(); };
+  const view = loaded.views.get('traceview-mindmap-queue')!({app}) as any;
+  const parent = dom.window.document.createElement('div');
+  parent.className = 'tvm-step-row';
+  dom.window.document.body.append(parent);
+  const navigated: unknown[] = [];
+  (loaded.plugin as any).openMap = (...args: unknown[]) => { navigated.push(args); return Promise.resolve(); };
+  const map = {file: {path: 'Folder/Plan.mindmap.md'}};
+  loaded.MarkdownRenderer.render = async (_app: any, _text: string, element: HTMLElement) => {
+    const paragraph = element.ownerDocument.createElement('p');
+    paragraph.innerHTML = '<a class="internal-link" data-href="Target#^block" href="Target">Alias</a> rendered';
+    element.append(paragraph);
+  };
+  view.renderLabel(parent, map, 'node', '[[Target#^block|Alias]] rendered');
+  await Promise.resolve();
+  const label = parent.querySelector('.tvm-step-text')!;
+  assert.equal(label.textContent, 'Alias rendered');
+  assert.equal(label.querySelectorAll('p').length, 1);
+  const click = new dom.window.MouseEvent('click', {bubbles: true, cancelable: true, ctrlKey: true});
+  label.querySelector('a')!.dispatchEvent(click);
+  assert.equal(click.defaultPrevented, true);
+  assert.deepEqual(opened, [['Target#^block', map.file.path, true]]);
+  assert.equal(navigated.length, 0);
+  const selection = dom.window.document.getSelection()!;
+  selection.selectAllChildren(label);
+  parent.dispatchEvent(new dom.window.MouseEvent('click', {bubbles: true}));
+  assert.equal(navigated.length, 0);
+  selection.removeAllRanges();
+  parent.dispatchEvent(new dom.window.MouseEvent('click', {bubbles: true}));
+  assert.equal(navigated.length, 1);
+  loaded.MarkdownRenderer.render = async (_app: any, _text: string, element: HTMLElement) => {
+    element.append('partial rendering');
+    throw new Error('Renderer failed');
+  };
+  view.renderLabel(parent, map, 'other', 'Fallback **text**');
+  await Promise.resolve();
+  assert.equal(parent.querySelectorAll('.tvm-step-text')[1].textContent, 'Fallback **text**');
+  dom.window.close();
 });

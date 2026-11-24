@@ -10480,10 +10480,23 @@ var QueueView = class extends import_obsidian5.ItemView {
   }
   renderLabel(parent, map, id, text) {
     const label2 = parent.createDiv("tvm-step-text");
-    label2.textContent = text;
     button(parent, "\u2197", () => {
       void this.plugin.openMap(map.file, void 0, id);
     }, t("Open node"));
+    const row = parent.closest(".tvm-step-row");
+    if (row) row.addEventListener("click", (event) => {
+      if (event.target.closest("a, button, input, select, textarea")) return;
+      if (!row.ownerDocument.getSelection()?.isCollapsed) return;
+      void this.plugin.openMap(map.file, void 0, id);
+    });
+    label2.addEventListener("click", (event) => {
+      const link = event.target.closest("a.internal-link");
+      const target = link?.dataset.href ?? link?.getAttribute("href");
+      if (!target) return;
+      event.preventDefault();
+      event.stopPropagation();
+      void this.app.workspace.openLinkText(target, map.file.path, event.ctrlKey || event.metaKey);
+    });
     void import_obsidian5.MarkdownRenderer.render(this.app, text, label2, map.file.path, this.renderer).catch(() => {
       label2.textContent = text;
     });
@@ -10502,7 +10515,7 @@ var QueueView = class extends import_obsidian5.ItemView {
       button(controls, "\u2193", () => {
         void this.reorder(map, step.nodeId, 1);
       }, t("Move later in execution order"));
-      row.draggable = true;
+      controls.draggable = true;
       row.ondragstart = (event) => {
         this.dragged = { path: map.file.path, id: step.nodeId };
         event.dataTransfer?.setData("text/plain", step.nodeId);
