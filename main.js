@@ -7780,6 +7780,27 @@ function mountNativeEditor(owner, input, tools, inline, Native, ensureAddress) {
     }
   };
   let native;
+  let cancelResize;
+  const resize = () => {
+    if (!active || !host.isConnected || cancelResize) return;
+    const win = document.defaultView;
+    const update = () => {
+      cancelResize = void 0;
+      if (!active || !host.isConnected || !native) return;
+      const context = native.editorSuggest.currentSuggest?.context;
+      if (context?.editor === native.editor && [context.start, context.end].some(
+        (position) => position.line < 0 || position.line >= native.editor.lineCount() || position.ch < 0 || position.ch > native.editor.getLine(position.line).length
+      )) native.editorSuggest.close();
+      native.onResize();
+    };
+    if (win.requestAnimationFrame) {
+      const frame = win.requestAnimationFrame(update);
+      cancelResize = () => win.cancelAnimationFrame(frame);
+    } else {
+      const timer = win.setTimeout(update, 0);
+      cancelResize = () => win.clearTimeout(timer);
+    }
+  };
   const releaseSuggestions = [];
   const mirror = () => {
     if (!active || syncing || !native) return;
@@ -7843,6 +7864,8 @@ function mountNativeEditor(owner, input, tools, inline, Native, ensureAddress) {
   const dispose = () => {
     if (!active) return;
     active = false;
+    cancelResize?.();
+    cancelResize = void 0;
     blur();
     for (const release of releaseSuggestions) release();
     input.removeEventListener("input", pull);
@@ -7950,9 +7973,7 @@ function mountNativeEditor(owner, input, tools, inline, Native, ensureAddress) {
           focus();
         }
       },
-      resize: () => {
-        if (active && host.isConnected) native?.onResize();
-      },
+      resize,
       setReadOnly: (value) => {
         if (native) native.cm.contentDOM.contentEditable = String(!value);
       },

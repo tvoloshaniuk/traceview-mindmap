@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.0.22
+
+### Fixed
+
+- Defer and coalesce native draft layout until the current editor update has finished.
+- Close stale autocomplete ranges before measuring the editor, preventing out-of-range position errors after text is shortened.
+- Cancel queued native layout when a draft closes.
+
 ## 1.0.21
 
 ### Added

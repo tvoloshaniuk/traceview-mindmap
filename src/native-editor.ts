@@ -4,7 +4,7 @@
  * See LICENSE, LICENSING.md and OBSIDIAN-HOST-PERMISSION.md.
  */
 import { t } from './i18n';
-import { Scope, MarkdownView, type App, type Component, type Editor, type MarkdownFileInfo, type TFile } from 'obsidian';
+import { Scope, MarkdownView, type App, type Component, type Editor, type MarkdownFileInfo, type TFile, type EditorPosition } from 'obsidian';
 import { singleLine, type InlineDriver, type InlineEditor } from './inline';
 
 // Obsidian does not expose its standalone Markdown editor as a public constructor.
@@ -21,7 +21,7 @@ type InternalEditor = Component & {
   onResize: () => void;
   buildLocalExtensions(): any[];
   onUpdate(update: any, changed: boolean): void;
-  editorSuggest: { isShowingSuggestion: () => boolean; close: () => void };
+  editorSuggest: { isShowingSuggestion: () => boolean; close: () => void; currentSuggest?: { context?: {editor: Editor; start: EditorPosition; end: EditorPosition} | null } };
 };
 
 export type NativeConstructor = new (app: App, host: HTMLElement, owner: NativeOwner) => InternalEditor;
@@ -73,6 +73,28 @@ export function mountNativeEditor(owner: NativeOwner, input: HTMLTextAreaElement
   };
   const blur = () => { if (scoped) { owner.app.keymap.popScope(scope); scoped = false; } };
   let native: InternalEditor | undefined;
+  let cancelResize: (() => void) | undefined;
+  const resize = () => {
+    if (!active || !host.isConnected || cancelResize) return;
+    const win = document.defaultView!;
+    const update = () => {
+      cancelResize = undefined;
+      if (!active || !host.isConnected || !native) return;
+      const context = native.editorSuggest.currentSuggest?.context;
+      if (context?.editor === native.editor && [context.start, context.end].some(position =>
+        position.line < 0 || position.line >= native!.editor.lineCount()
+        || position.ch < 0 || position.ch > native!.editor.getLine(position.line).length
+      )) native.editorSuggest.close();
+      native.onResize();
+    };
+    if (win.requestAnimationFrame) {
+      const frame = win.requestAnimationFrame(update);
+      cancelResize = () => win.cancelAnimationFrame(frame);
+    } else {
+      const timer = win.setTimeout(update, 0);
+      cancelResize = () => win.clearTimeout(timer);
+    }
+  };
   const releaseSuggestions: (() => void)[] = [];
   const mirror = () => {
     if (!active || syncing || !native) return;
@@ -120,7 +142,7 @@ export function mountNativeEditor(owner: NativeOwner, input: HTMLTextAreaElement
     if (event.inputType === 'insertParagraph' || event.inputType === 'insertLineBreak') event.preventDefault();
   };
   const dispose = () => {
-    if (!active) return; active = false; blur(); for (const release of releaseSuggestions) release();
+    if (!active) return; active = false; cancelResize?.(); cancelResize = undefined; blur(); for (const release of releaseSuggestions) release();
     input.removeEventListener('input', pull); host.removeEventListener('keydown', keydown, true); host.removeEventListener('beforeinput', beforeinput); host.removeEventListener('focusin', focus); host.removeEventListener('focusout', blur);
     if (native) {
       native.editorSuggest.close(); owner.removeChild(native); native.destroy();
@@ -183,7 +205,7 @@ export function mountNativeEditor(owner: NativeOwner, input: HTMLTextAreaElement
     return {
       element: host,
       focus: () => { if (active) { native?.editor.focus(); focus(); } },
-      resize: () => { if (active && host.isConnected) native?.onResize(); },
+      resize,
       setReadOnly: value => { if (native) native.cm.contentDOM.contentEditable = String(!value); },
       suggestionActive: () => !!native?.editorSuggest.isShowingSuggestion(),
       dispose,

@@ -73,3 +73,44 @@ test('native draft shares the textarea label instead of a tooltip attribute; unl
   labelled.driver.dispose();bare.driver.dispose();
  } finally {dom.window.close();}
 });
+
+test('native resize waits for the editor update, coalesces requests and closes stale suggestion ranges', () => {
+  const dom = new JSDOM('<textarea>abc</textarea><div id="tools"></div>');
+  try {
+    const document = dom.window.document, input = document.querySelector('textarea')!;
+    const frames = new Map<number, FrameRequestCallback>();
+    let serial = 0, updating = false, resizes = 0, closes = 0;
+    dom.window.requestAnimationFrame = callback => {frames.set(++serial, callback); return serial;};
+    dom.window.cancelAnimationFrame = id => {frames.delete(id);};
+    const app:any = {scope:{},workspace:{},keymap:{pushScope(){},popScope(){}}};
+    const owner:any = {app,file:{path:'Note.md'},addChild(){},removeChild(){}};
+    class Native {
+      editor:any; cm:any; value = '';
+      editorSuggest:any = {isShowingSuggestion:()=>true, close:()=>{closes++;this.editorSuggest.currentSuggest.context=null;}};
+      constructor(_app:any,host:HTMLElement) {
+        const content=document.createElement('div');host.append(content);this.cm={contentDOM:content};
+        this.editor={focus(){},setCursor(){},lineCount:()=>1,getLine:()=>this.value};
+      }
+      set(value:string){this.value=value;} get(){return this.value;} destroy(){} buildLocalExtensions(){return [];} onUpdate(){}
+      onResize(){
+        assert.equal(updating,false,'Layout must not reenter a running editor update');
+        const context=this.editorSuggest.currentSuggest?.context;
+        if(context && context.end.ch > this.value.length) throw new RangeError('Invalid document position');
+        resizes++;
+      }
+    }
+    const source=ts.transpileModule(readFileSync('src/native-editor.ts','utf8'),{compilerOptions:{module:ts.ModuleKind.CommonJS,target:ts.ScriptTarget.ES2020}}).outputText;
+    const exports:any={};
+    runInNewContext(source,{exports,require:(name:string)=>name==='obsidian'?{Scope:class {register(){}},MarkdownView:class {}}:name==='./inline'?{singleLine}:i18n});
+    const driver=exports.mountNativeEditor(owner,input,document.querySelector('#tools'),{handleKeydown:()=>false},Native);
+    const native=owner.editMode;
+    native.editorSuggest.currentSuggest={context:{editor:native.editor,start:{line:0,ch:0},end:{line:0,ch:4}}};
+    updating=true;driver.resize();driver.resize();assert.equal(resizes,0);assert.equal(frames.size,1);updating=false;
+    const flush=()=>{const pending=[...frames.values()];frames.clear();for(const frame of pending)frame(0);};
+    flush();
+    assert.equal(closes,1);assert.equal(resizes,1);
+    native.editorSuggest.currentSuggest.context={editor:native.editor,start:{line:0,ch:0},end:{line:0,ch:3}};
+    driver.resize();flush();assert.equal(closes,1);assert.equal(resizes,2);
+    driver.resize();driver.dispose();assert.equal(frames.size,0);flush();assert.equal(resizes,2);
+  } finally {dom.window.close();}
+});
