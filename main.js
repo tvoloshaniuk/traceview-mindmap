@@ -701,7 +701,9 @@ var en_default = {
   "Default settings restored. Restart Obsidian to apply the language.": "Default settings restored. Restart Obsidian to apply the language.",
   "Remember last note view": "Remember last note view",
   "Reopen notes in their last map or Markdown view. Automatic map opening takes priority. Stores up to 500 map paths on this device.": "Reopen notes in their last map or Markdown view. Automatic map opening takes priority. Stores up to 500 map paths on this device.",
-  "Matching notes reopen as maps, overriding remembered Markdown. Open as Markdown keeps the current tab in Markdown.": "Matching notes reopen as maps, overriding remembered Markdown. Open as Markdown keeps the current tab in Markdown."
+  "Matching notes reopen as maps, overriding remembered Markdown. Open as Markdown keeps the current tab in Markdown.": "Matching notes reopen as maps, overriding remembered Markdown. Open as Markdown keeps the current tab in Markdown.",
+  "Remove node address": "Remove node address",
+  "Links to this node may stop working. Remove its block ID? Undo can restore the address.": "Links to this node may stop working. Remove its block ID? Undo can restore the address."
 };
 
 // src/locales/uk.json
@@ -1049,7 +1051,9 @@ var uk_default = {
   "Default settings restored. Restart Obsidian to apply the language.": "\u041F\u043E\u0447\u0430\u0442\u043A\u043E\u0432\u0456 \u043D\u0430\u043B\u0430\u0448\u0442\u0443\u0432\u0430\u043D\u043D\u044F \u0432\u0456\u0434\u043D\u043E\u0432\u043B\u0435\u043D\u043E. \u041F\u0435\u0440\u0435\u0437\u0430\u043F\u0443\u0441\u0442\u0438 Obsidian, \u0449\u043E\u0431 \u0437\u0430\u0441\u0442\u043E\u0441\u0443\u0432\u0430\u0442\u0438 \u043C\u043E\u0432\u0443.",
   "Remember last note view": "\u041F\u0430\u043C\u2019\u044F\u0442\u0430\u0442\u0438 \u043E\u0441\u0442\u0430\u043D\u043D\u0456\u0439 \u0440\u0435\u0436\u0438\u043C \u043D\u043E\u0442\u0430\u0442\u043A\u0438",
   "Reopen notes in their last map or Markdown view. Automatic map opening takes priority. Stores up to 500 map paths on this device.": "\u0412\u0456\u0434\u043A\u0440\u0438\u0432\u0430\u0442\u0438 \u043D\u043E\u0442\u0430\u0442\u043A\u0438 \u0432 \u043E\u0441\u0442\u0430\u043D\u043D\u044C\u043E\u043C\u0443 \u0440\u0435\u0436\u0438\u043C\u0456 \u043A\u0430\u0440\u0442\u0438 \u0430\u0431\u043E Markdown. \u0410\u0432\u0442\u043E\u0432\u0456\u0434\u043A\u0440\u0438\u0442\u0442\u044F \u043A\u0430\u0440\u0442 \u043C\u0430\u0454 \u043F\u0440\u0456\u043E\u0440\u0438\u0442\u0435\u0442. \u0417\u0431\u0435\u0440\u0456\u0433\u0430\u0454 \u0434\u043E 500 \u0448\u043B\u044F\u0445\u0456\u0432 \u043A\u0430\u0440\u0442 \u043D\u0430 \u0446\u044C\u043E\u043C\u0443 \u043F\u0440\u0438\u0441\u0442\u0440\u043E\u0457.",
-  "Matching notes reopen as maps, overriding remembered Markdown. Open as Markdown keeps the current tab in Markdown.": "\u0412\u0456\u0434\u043F\u043E\u0432\u0456\u0434\u043D\u0456 \u043D\u043E\u0442\u0430\u0442\u043A\u0438 \u0437\u043D\u043E\u0432\u0443 \u0432\u0456\u0434\u043A\u0440\u0438\u0432\u0430\u044E\u0442\u044C\u0441\u044F \u043A\u0430\u0440\u0442\u043E\u044E, \u043F\u043E\u043F\u0440\u0438 \u0437\u0430\u043F\u0430\u043C\u2019\u044F\u0442\u043E\u0432\u0430\u043D\u0438\u0439 Markdown. \u041A\u043E\u043C\u0430\u043D\u0434\u0430 \u0432\u0456\u0434\u043A\u0440\u0438\u0442\u0442\u044F Markdown \u0437\u0431\u0435\u0440\u0456\u0433\u0430\u0454 \u043F\u043E\u0442\u043E\u0447\u043D\u0443 \u0432\u043A\u043B\u0430\u0434\u043A\u0443 \u0432 Markdown."
+  "Matching notes reopen as maps, overriding remembered Markdown. Open as Markdown keeps the current tab in Markdown.": "\u0412\u0456\u0434\u043F\u043E\u0432\u0456\u0434\u043D\u0456 \u043D\u043E\u0442\u0430\u0442\u043A\u0438 \u0437\u043D\u043E\u0432\u0443 \u0432\u0456\u0434\u043A\u0440\u0438\u0432\u0430\u044E\u0442\u044C\u0441\u044F \u043A\u0430\u0440\u0442\u043E\u044E, \u043F\u043E\u043F\u0440\u0438 \u0437\u0430\u043F\u0430\u043C\u2019\u044F\u0442\u043E\u0432\u0430\u043D\u0438\u0439 Markdown. \u041A\u043E\u043C\u0430\u043D\u0434\u0430 \u0432\u0456\u0434\u043A\u0440\u0438\u0442\u0442\u044F Markdown \u0437\u0431\u0435\u0440\u0456\u0433\u0430\u0454 \u043F\u043E\u0442\u043E\u0447\u043D\u0443 \u0432\u043A\u043B\u0430\u0434\u043A\u0443 \u0432 Markdown.",
+  "Remove node address": "\u041F\u0440\u0438\u0431\u0440\u0430\u0442\u0438 \u0430\u0434\u0440\u0435\u0441\u0443 \u0432\u0443\u0437\u043B\u0430",
+  "Links to this node may stop working. Remove its block ID? Undo can restore the address.": "\u041F\u043E\u0441\u0438\u043B\u0430\u043D\u043D\u044F \u043D\u0430 \u0446\u0435\u0439 \u0432\u0443\u0437\u043E\u043B \u043C\u043E\u0436\u0443\u0442\u044C \u043F\u0435\u0440\u0435\u0441\u0442\u0430\u0442\u0438 \u043F\u0440\u0430\u0446\u044E\u0432\u0430\u0442\u0438. \u0412\u0438\u0434\u0430\u043B\u0438\u0442\u0438 \u0439\u043E\u0433\u043E block ID? Undo \u0434\u043E\u0437\u0432\u043E\u043B\u044F\u0454 \u0432\u0456\u0434\u043D\u043E\u0432\u0438\u0442\u0438 \u0430\u0434\u0440\u0435\u0441\u0443."
 };
 
 // src/locales/pl.json
@@ -1397,7 +1401,9 @@ var pl_default = {
   "Default settings restored. Restart Obsidian to apply the language.": "Przywr\xF3cono ustawienia domy\u015Blne. Uruchom ponownie Obsidian, aby zastosowa\u0107 j\u0119zyk.",
   "Remember last note view": "Zapami\u0119taj ostatni widok notatki",
   "Reopen notes in their last map or Markdown view. Automatic map opening takes priority. Stores up to 500 map paths on this device.": "Otwieraj notatki w ostatnim widoku mapy lub Markdown. Automatyczne otwieranie map ma pierwsze\u0144stwo. Zapisuje do 500 \u015Bcie\u017Cek na tym urz\u0105dzeniu.",
-  "Matching notes reopen as maps, overriding remembered Markdown. Open as Markdown keeps the current tab in Markdown.": "Pasuj\u0105ce notatki ponownie otwieraj\u0105 si\u0119 jako mapy, pomimo zapami\u0119tanego Markdown. Otw\xF3rz jako Markdown zachowuje Markdown w bie\u017C\u0105cej karcie."
+  "Matching notes reopen as maps, overriding remembered Markdown. Open as Markdown keeps the current tab in Markdown.": "Pasuj\u0105ce notatki ponownie otwieraj\u0105 si\u0119 jako mapy, pomimo zapami\u0119tanego Markdown. Otw\xF3rz jako Markdown zachowuje Markdown w bie\u017C\u0105cej karcie.",
+  "Remove node address": "Usu\u0144 adres w\u0119z\u0142a",
+  "Links to this node may stop working. Remove its block ID? Undo can restore the address.": "Odno\u015Bniki do tego w\u0119z\u0142a mog\u0105 przesta\u0107 dzia\u0142a\u0107. Usun\u0105\u0107 identyfikator bloku? Cofnij pozwala przywr\xF3ci\u0107 adres."
 };
 
 // src/locales/de.json
@@ -1745,7 +1751,9 @@ var de_default = {
   "Default settings restored. Restart Obsidian to apply the language.": "Standardeinstellungen wiederhergestellt. Obsidian zum Anwenden der Sprache neu starten.",
   "Remember last note view": "Letzte Notizansicht merken",
   "Reopen notes in their last map or Markdown view. Automatic map opening takes priority. Stores up to 500 map paths on this device.": "Notizen in ihrer letzten Karten- oder Markdown-Ansicht \xF6ffnen. Automatisches \xD6ffnen hat Vorrang. Speichert bis zu 500 Kartenpfade auf diesem Ger\xE4t.",
-  "Matching notes reopen as maps, overriding remembered Markdown. Open as Markdown keeps the current tab in Markdown.": "Passende Notizen \xF6ffnen erneut als Karte, auch nach Markdown. Als Markdown \xF6ffnen beh\xE4lt Markdown im aktuellen Tab bei."
+  "Matching notes reopen as maps, overriding remembered Markdown. Open as Markdown keeps the current tab in Markdown.": "Passende Notizen \xF6ffnen erneut als Karte, auch nach Markdown. Als Markdown \xF6ffnen beh\xE4lt Markdown im aktuellen Tab bei.",
+  "Remove node address": "Knotenadresse entfernen",
+  "Links to this node may stop working. Remove its block ID? Undo can restore the address.": "Links zu diesem Knoten funktionieren m\xF6glicherweise nicht mehr. Block-ID entfernen? R\xFCckg\xE4ngig kann die Adresse wiederherstellen."
 };
 
 // src/locales/es.json
@@ -2093,7 +2101,9 @@ var es_default = {
   "Default settings restored. Restart Obsidian to apply the language.": "Ajustes predeterminados restaurados. Reinicia Obsidian para aplicar el idioma.",
   "Remember last note view": "Recordar la \xFAltima vista de las notas",
   "Reopen notes in their last map or Markdown view. Automatic map opening takes priority. Stores up to 500 map paths on this device.": "Reabrir notas en su \xFAltima vista de mapa o Markdown. La apertura autom\xE1tica tiene prioridad. Guarda hasta 500 rutas en este dispositivo.",
-  "Matching notes reopen as maps, overriding remembered Markdown. Open as Markdown keeps the current tab in Markdown.": "Las notas coincidentes vuelven a abrirse como mapas, incluso tras Markdown. Abrir como Markdown mantiene Markdown en la pesta\xF1a actual."
+  "Matching notes reopen as maps, overriding remembered Markdown. Open as Markdown keeps the current tab in Markdown.": "Las notas coincidentes vuelven a abrirse como mapas, incluso tras Markdown. Abrir como Markdown mantiene Markdown en la pesta\xF1a actual.",
+  "Remove node address": "Eliminar direcci\xF3n del nodo",
+  "Links to this node may stop working. Remove its block ID? Undo can restore the address.": "Los enlaces a este nodo podr\xEDan dejar de funcionar. \xBFEliminar su ID de bloque? Deshacer permite restaurar la direcci\xF3n."
 };
 
 // src/locales/fr.json
@@ -2441,7 +2451,9 @@ var fr_default = {
   "Default settings restored. Restart Obsidian to apply the language.": "Param\xE8tres par d\xE9faut r\xE9tablis. Red\xE9marrez Obsidian pour appliquer la langue.",
   "Remember last note view": "M\xE9moriser la derni\xE8re vue des notes",
   "Reopen notes in their last map or Markdown view. Automatic map opening takes priority. Stores up to 500 map paths on this device.": "Rouvrir les notes dans leur derni\xE8re vue carte ou Markdown. L\u2019ouverture automatique des cartes est prioritaire. Stocke jusqu\u2019\xE0 500 chemins sur cet appareil.",
-  "Matching notes reopen as maps, overriding remembered Markdown. Open as Markdown keeps the current tab in Markdown.": "Les notes correspondantes se rouvrent en carte, m\xEAme apr\xE8s Markdown. Ouvrir en Markdown conserve Markdown dans l\u2019onglet actuel."
+  "Matching notes reopen as maps, overriding remembered Markdown. Open as Markdown keeps the current tab in Markdown.": "Les notes correspondantes se rouvrent en carte, m\xEAme apr\xE8s Markdown. Ouvrir en Markdown conserve Markdown dans l\u2019onglet actuel.",
+  "Remove node address": "Supprimer l\u2019adresse du n\u0153ud",
+  "Links to this node may stop working. Remove its block ID? Undo can restore the address.": "Les liens vers ce n\u0153ud peuvent cesser de fonctionner. Supprimer son identifiant de bloc ? Annuler permet de restaurer l\u2019adresse."
 };
 
 // src/locales/pt-BR.json
@@ -2789,7 +2801,9 @@ var pt_BR_default = {
   "Default settings restored. Restart Obsidian to apply the language.": "Configura\xE7\xF5es padr\xE3o restauradas. Reinicie Obsidian para aplicar o idioma.",
   "Remember last note view": "Lembrar a \xFAltima visualiza\xE7\xE3o da nota",
   "Reopen notes in their last map or Markdown view. Automatic map opening takes priority. Stores up to 500 map paths on this device.": "Reabrir notas na \xFAltima visualiza\xE7\xE3o de mapa ou Markdown. A abertura autom\xE1tica tem prioridade. Armazena at\xE9 500 caminhos neste dispositivo.",
-  "Matching notes reopen as maps, overriding remembered Markdown. Open as Markdown keeps the current tab in Markdown.": "Notas correspondentes reabrem como mapas, mesmo ap\xF3s Markdown. Abrir como Markdown mant\xE9m Markdown na aba atual."
+  "Matching notes reopen as maps, overriding remembered Markdown. Open as Markdown keeps the current tab in Markdown.": "Notas correspondentes reabrem como mapas, mesmo ap\xF3s Markdown. Abrir como Markdown mant\xE9m Markdown na aba atual.",
+  "Remove node address": "Remover endere\xE7o do n\xF3",
+  "Links to this node may stop working. Remove its block ID? Undo can restore the address.": "Links para este n\xF3 podem parar de funcionar. Remover o ID do bloco? Desfazer permite restaurar o endere\xE7o."
 };
 
 // src/locales/zh-CN.json
@@ -3137,7 +3151,9 @@ var zh_CN_default = {
   "Default settings restored. Restart Obsidian to apply the language.": "\u5DF2\u6062\u590D\u9ED8\u8BA4\u8BBE\u7F6E\u3002\u8BF7\u91CD\u542F Obsidian \u4EE5\u5E94\u7528\u8BED\u8A00\u3002",
   "Remember last note view": "\u8BB0\u4F4F\u7B14\u8BB0\u7684\u4E0A\u6B21\u89C6\u56FE",
   "Reopen notes in their last map or Markdown view. Automatic map opening takes priority. Stores up to 500 map paths on this device.": "\u4EE5\u7B14\u8BB0\u4E0A\u6B21\u4F7F\u7528\u7684\u5730\u56FE\u6216Markdown\u89C6\u56FE\u91CD\u65B0\u6253\u5F00\u3002\u81EA\u52A8\u6253\u5F00\u5730\u56FE\u4F18\u5148\u3002\u6B64\u8BBE\u5907\u6700\u591A\u4FDD\u5B58500\u4E2A\u5730\u56FE\u8DEF\u5F84\u3002",
-  "Matching notes reopen as maps, overriding remembered Markdown. Open as Markdown keeps the current tab in Markdown.": "\u5339\u914D\u7684\u7B14\u8BB0\u4F1A\u91CD\u65B0\u4EE5\u5730\u56FE\u6253\u5F00\uFF0C\u4F18\u5148\u4E8E\u8BB0\u4F4F\u7684Markdown\u89C6\u56FE\u3002\u6253\u5F00\u4E3AMarkdown\u4F1A\u5728\u5F53\u524D\u6807\u7B7E\u9875\u4FDD\u7559Markdown\u3002"
+  "Matching notes reopen as maps, overriding remembered Markdown. Open as Markdown keeps the current tab in Markdown.": "\u5339\u914D\u7684\u7B14\u8BB0\u4F1A\u91CD\u65B0\u4EE5\u5730\u56FE\u6253\u5F00\uFF0C\u4F18\u5148\u4E8E\u8BB0\u4F4F\u7684Markdown\u89C6\u56FE\u3002\u6253\u5F00\u4E3AMarkdown\u4F1A\u5728\u5F53\u524D\u6807\u7B7E\u9875\u4FDD\u7559Markdown\u3002",
+  "Remove node address": "\u79FB\u9664\u8282\u70B9\u5730\u5740",
+  "Links to this node may stop working. Remove its block ID? Undo can restore the address.": "\u6307\u5411\u6B64\u8282\u70B9\u7684\u94FE\u63A5\u53EF\u80FD\u5931\u6548\u3002\u79FB\u9664\u5176\u5757ID\u5417\uFF1F\u53EF\u4EE5\u901A\u8FC7\u64A4\u9500\u6062\u590D\u5730\u5740\u3002"
 };
 
 // src/locales/ja.json
@@ -3485,7 +3501,9 @@ var ja_default = {
   "Default settings restored. Restart Obsidian to apply the language.": "\u521D\u671F\u8A2D\u5B9A\u306B\u623B\u3057\u307E\u3057\u305F\u3002\u8A00\u8A9E\u306E\u9069\u7528\u306B\u306F Obsidian \u3092\u518D\u8D77\u52D5\u3057\u3066\u304F\u3060\u3055\u3044\u3002",
   "Remember last note view": "\u30CE\u30FC\u30C8\u306E\u6700\u5F8C\u306E\u8868\u793A\u3092\u8A18\u61B6",
   "Reopen notes in their last map or Markdown view. Automatic map opening takes priority. Stores up to 500 map paths on this device.": "\u30CE\u30FC\u30C8\u3092\u6700\u5F8C\u306B\u4F7F\u7528\u3057\u305F\u30DE\u30C3\u30D7\u307E\u305F\u306FMarkdown\u8868\u793A\u3067\u958B\u304D\u307E\u3059\u3002\u30DE\u30C3\u30D7\u306E\u81EA\u52D5\u8868\u793A\u304C\u512A\u5148\u3055\u308C\u307E\u3059\u3002\u3053\u306E\u7AEF\u672B\u306B\u6700\u5927500\u4EF6\u306E\u30DE\u30C3\u30D7\u30D1\u30B9\u3092\u4FDD\u5B58\u3057\u307E\u3059\u3002",
-  "Matching notes reopen as maps, overriding remembered Markdown. Open as Markdown keeps the current tab in Markdown.": "\u4E00\u81F4\u3059\u308B\u30CE\u30FC\u30C8\u306F\u8A18\u61B6\u3055\u308C\u305FMarkdown\u8868\u793A\u3088\u308A\u512A\u5148\u3057\u3066\u30DE\u30C3\u30D7\u3067\u958B\u304D\u307E\u3059\u3002Markdown\u3067\u958B\u304F\u64CD\u4F5C\u306F\u73FE\u5728\u306E\u30BF\u30D6\u3067\u7DAD\u6301\u3055\u308C\u307E\u3059\u3002"
+  "Matching notes reopen as maps, overriding remembered Markdown. Open as Markdown keeps the current tab in Markdown.": "\u4E00\u81F4\u3059\u308B\u30CE\u30FC\u30C8\u306F\u8A18\u61B6\u3055\u308C\u305FMarkdown\u8868\u793A\u3088\u308A\u512A\u5148\u3057\u3066\u30DE\u30C3\u30D7\u3067\u958B\u304D\u307E\u3059\u3002Markdown\u3067\u958B\u304F\u64CD\u4F5C\u306F\u73FE\u5728\u306E\u30BF\u30D6\u3067\u7DAD\u6301\u3055\u308C\u307E\u3059\u3002",
+  "Remove node address": "\u30CE\u30FC\u30C9\u306E\u30A2\u30C9\u30EC\u30B9\u3092\u524A\u9664",
+  "Links to this node may stop working. Remove its block ID? Undo can restore the address.": "\u3053\u306E\u30CE\u30FC\u30C9\u3078\u306E\u30EA\u30F3\u30AF\u304C\u6A5F\u80FD\u3057\u306A\u304F\u306A\u308B\u53EF\u80FD\u6027\u304C\u3042\u308A\u307E\u3059\u3002\u30D6\u30ED\u30C3\u30AFID\u3092\u524A\u9664\u3057\u307E\u3059\u304B\uFF1F\u5143\u306B\u623B\u3059\u64CD\u4F5C\u3067\u30A2\u30C9\u30EC\u30B9\u3092\u5FA9\u5143\u3067\u304D\u307E\u3059\u3002"
 };
 
 // src/locales/ko.json
@@ -3833,7 +3851,9 @@ var ko_default = {
   "Default settings restored. Restart Obsidian to apply the language.": "\uAE30\uBCF8 \uC124\uC815\uC744 \uBCF5\uC6D0\uD588\uC2B5\uB2C8\uB2E4. \uC5B8\uC5B4\uB97C \uC801\uC6A9\uD558\uB824\uBA74 Obsidian\uC744 \uB2E4\uC2DC \uC2DC\uC791\uD558\uC138\uC694.",
   "Remember last note view": "\uB178\uD2B8\uC758 \uB9C8\uC9C0\uB9C9 \uBCF4\uAE30 \uAE30\uC5B5",
   "Reopen notes in their last map or Markdown view. Automatic map opening takes priority. Stores up to 500 map paths on this device.": "\uB178\uD2B8\uB97C \uB9C8\uC9C0\uB9C9 \uC9C0\uB3C4 \uB610\uB294 Markdown \uBCF4\uAE30\uB85C \uC5FD\uB2C8\uB2E4. \uC9C0\uB3C4 \uC790\uB3D9 \uC5F4\uAE30\uAC00 \uC6B0\uC120\uD569\uB2C8\uB2E4. \uC774 \uAE30\uAE30\uC5D0 \uC9C0\uB3C4 \uACBD\uB85C\uB97C \uCD5C\uB300 500\uAC1C \uC800\uC7A5\uD569\uB2C8\uB2E4.",
-  "Matching notes reopen as maps, overriding remembered Markdown. Open as Markdown keeps the current tab in Markdown.": "\uC77C\uCE58\uD558\uB294 \uB178\uD2B8\uB294 \uAE30\uC5B5\uB41C Markdown \uBCF4\uAE30\uBCF4\uB2E4 \uC9C0\uB3C4\uB85C \uC5F4\uAE30\uAC00 \uC6B0\uC120\uD569\uB2C8\uB2E4. Markdown\uC73C\uB85C \uC5F4\uBA74 \uD604\uC7AC \uD0ED\uC740 Markdown\uC73C\uB85C \uC720\uC9C0\uB429\uB2C8\uB2E4."
+  "Matching notes reopen as maps, overriding remembered Markdown. Open as Markdown keeps the current tab in Markdown.": "\uC77C\uCE58\uD558\uB294 \uB178\uD2B8\uB294 \uAE30\uC5B5\uB41C Markdown \uBCF4\uAE30\uBCF4\uB2E4 \uC9C0\uB3C4\uB85C \uC5F4\uAE30\uAC00 \uC6B0\uC120\uD569\uB2C8\uB2E4. Markdown\uC73C\uB85C \uC5F4\uBA74 \uD604\uC7AC \uD0ED\uC740 Markdown\uC73C\uB85C \uC720\uC9C0\uB429\uB2C8\uB2E4.",
+  "Remove node address": "\uB178\uB4DC \uC8FC\uC18C \uC81C\uAC70",
+  "Links to this node may stop working. Remove its block ID? Undo can restore the address.": "\uC774 \uB178\uB4DC\uB85C \uC5F0\uACB0\uB418\uB294 \uB9C1\uD06C\uAC00 \uC791\uB3D9\uD558\uC9C0 \uC54A\uC744 \uC218 \uC788\uC2B5\uB2C8\uB2E4. \uBE14\uB85D ID\uB97C \uC81C\uAC70\uD560\uAE4C\uC694? \uC2E4\uD589 \uCDE8\uC18C\uB85C \uC8FC\uC18C\uB97C \uBCF5\uC6D0\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4."
 };
 
 // src/locales/ru.json
@@ -4181,7 +4201,9 @@ var ru_default = {
   "Default settings restored. Restart Obsidian to apply the language.": "\u0418\u0441\u0445\u043E\u0434\u043D\u044B\u0435 \u043D\u0430\u0441\u0442\u0440\u043E\u0439\u043A\u0438 \u0432\u043E\u0441\u0441\u0442\u0430\u043D\u043E\u0432\u043B\u0435\u043D\u044B. \u041F\u0435\u0440\u0435\u0437\u0430\u043F\u0443\u0441\u0442\u0438\u0442\u0435 Obsidian \u0434\u043B\u044F \u043F\u0440\u0438\u043C\u0435\u043D\u0435\u043D\u0438\u044F \u044F\u0437\u044B\u043A\u0430.",
   "Remember last note view": "\u0417\u0430\u043F\u043E\u043C\u0438\u043D\u0430\u0442\u044C \u043F\u043E\u0441\u043B\u0435\u0434\u043D\u0438\u0439 \u0432\u0438\u0434 \u0437\u0430\u043C\u0435\u0442\u043A\u0438",
   "Reopen notes in their last map or Markdown view. Automatic map opening takes priority. Stores up to 500 map paths on this device.": "\u041E\u0442\u043A\u0440\u044B\u0432\u0430\u0442\u044C \u0437\u0430\u043C\u0435\u0442\u043A\u0438 \u0432 \u043F\u043E\u0441\u043B\u0435\u0434\u043D\u0435\u043C \u0432\u0438\u0434\u0435 \u043A\u0430\u0440\u0442\u044B \u0438\u043B\u0438 Markdown. \u0410\u0432\u0442\u043E\u043E\u0442\u043A\u0440\u044B\u0442\u0438\u0435 \u043A\u0430\u0440\u0442 \u0438\u043C\u0435\u0435\u0442 \u043F\u0440\u0438\u043E\u0440\u0438\u0442\u0435\u0442. \u0425\u0440\u0430\u043D\u0438\u0442 \u0434\u043E 500 \u043F\u0443\u0442\u0435\u0439 \u043A\u0430\u0440\u0442 \u043D\u0430 \u044D\u0442\u043E\u043C \u0443\u0441\u0442\u0440\u043E\u0439\u0441\u0442\u0432\u0435.",
-  "Matching notes reopen as maps, overriding remembered Markdown. Open as Markdown keeps the current tab in Markdown.": "\u041F\u043E\u0434\u0445\u043E\u0434\u044F\u0449\u0438\u0435 \u0437\u0430\u043C\u0435\u0442\u043A\u0438 \u0441\u043D\u043E\u0432\u0430 \u043E\u0442\u043A\u0440\u044B\u0432\u0430\u044E\u0442\u0441\u044F \u043A\u0430\u0440\u0442\u043E\u0439 \u043D\u0435\u0437\u0430\u0432\u0438\u0441\u0438\u043C\u043E \u043E\u0442 \u0441\u043E\u0445\u0440\u0430\u043D\u0451\u043D\u043D\u043E\u0433\u043E Markdown. \u041A\u043E\u043C\u0430\u043D\u0434\u0430 \u043E\u0442\u043A\u0440\u044B\u0442\u0438\u044F Markdown \u043E\u0441\u0442\u0430\u0432\u043B\u044F\u0435\u0442 \u0442\u0435\u043A\u0443\u0449\u0443\u044E \u0432\u043A\u043B\u0430\u0434\u043A\u0443 \u0432 Markdown."
+  "Matching notes reopen as maps, overriding remembered Markdown. Open as Markdown keeps the current tab in Markdown.": "\u041F\u043E\u0434\u0445\u043E\u0434\u044F\u0449\u0438\u0435 \u0437\u0430\u043C\u0435\u0442\u043A\u0438 \u0441\u043D\u043E\u0432\u0430 \u043E\u0442\u043A\u0440\u044B\u0432\u0430\u044E\u0442\u0441\u044F \u043A\u0430\u0440\u0442\u043E\u0439 \u043D\u0435\u0437\u0430\u0432\u0438\u0441\u0438\u043C\u043E \u043E\u0442 \u0441\u043E\u0445\u0440\u0430\u043D\u0451\u043D\u043D\u043E\u0433\u043E Markdown. \u041A\u043E\u043C\u0430\u043D\u0434\u0430 \u043E\u0442\u043A\u0440\u044B\u0442\u0438\u044F Markdown \u043E\u0441\u0442\u0430\u0432\u043B\u044F\u0435\u0442 \u0442\u0435\u043A\u0443\u0449\u0443\u044E \u0432\u043A\u043B\u0430\u0434\u043A\u0443 \u0432 Markdown.",
+  "Remove node address": "\u0423\u0431\u0440\u0430\u0442\u044C \u0430\u0434\u0440\u0435\u0441 \u0443\u0437\u043B\u0430",
+  "Links to this node may stop working. Remove its block ID? Undo can restore the address.": "\u0421\u0441\u044B\u043B\u043A\u0438 \u043D\u0430 \u044D\u0442\u043E\u0442 \u0443\u0437\u0435\u043B \u043C\u043E\u0433\u0443\u0442 \u043F\u0435\u0440\u0435\u0441\u0442\u0430\u0442\u044C \u0440\u0430\u0431\u043E\u0442\u0430\u0442\u044C. \u0423\u0434\u0430\u043B\u0438\u0442\u044C \u0435\u0433\u043E block ID? Undo \u043F\u043E\u0437\u0432\u043E\u043B\u044F\u0435\u0442 \u0432\u043E\u0441\u0441\u0442\u0430\u043D\u043E\u0432\u0438\u0442\u044C \u0430\u0434\u0440\u0435\u0441."
 };
 
 // src/i18n.ts
@@ -4959,6 +4981,15 @@ function onlyAddedBlockIds(before, after) {
     if (!old || !fresh || old.blockId || !fresh.blockId || old.kind !== fresh.kind || old.prefix !== fresh.prefix || old.text !== fresh.text) return false;
     return after.lines[index] === line + " ^" + fresh.blockId;
   });
+}
+function removeNodeAddress(doc, id) {
+  const node = doc.byId.get(id);
+  if (!node?.blockId) return doc.source;
+  const endings = [...doc.source.matchAll(/\r\n|\n|\r/g)];
+  const start = node.line ? endings[node.line - 1].index + endings[node.line - 1][0].length : 0;
+  const end = endings[node.line]?.index ?? doc.source.length;
+  const line = doc.source.slice(start, end).replace(/[ \t]+\^[A-Za-z0-9][A-Za-z0-9-]*[ \t]*$/, "");
+  return doc.source.slice(0, start) + line + doc.source.slice(end);
 }
 
 // src/hotkeys.ts
@@ -7406,6 +7437,7 @@ var MapSurface = class {
       { label: t("Set date"), action: "make-dated" },
       { label: t("Mark as question"), action: "make-question" },
       { label: t("Copy link to node"), action: "copy-node-link" },
+      ...this.doc?.byId.get(id)?.blockId ? [{ label: t("Remove node address"), action: "remove-node-address" }] : [],
       { label: t("Copy branch"), action: "copy" },
       { label: t("Copy node text"), action: "copy-node-text" },
       { label: t("Edit embedded node note"), action: "node-note" },
@@ -9028,6 +9060,7 @@ var TraceViewMindmap = class extends import_obsidian5.Plugin {
       ["add-parent", t("Add parent node"), "add-parent"],
       ["insert-template", t("Insert template at selected node\u2026"), "insert-template"],
       ["copy-node-link", t("Copy link to node"), "copy-node-link"],
+      ["remove-node-address", t("Remove node address"), "remove-node-address"],
       ["edit-node", t("Edit node"), "edit"],
       ["node-note", t("Edit embedded node note"), "node-note"],
       ["make-step", t("Mark as atomic step"), "make-step"],
@@ -9989,6 +10022,14 @@ var MapView = class extends import_obsidian5.EditableFileView {
       if (!node) return;
       const selection = this.surface?.getSelection() ?? [];
       const ids = selection.includes(id) ? selection : [id];
+      if (action === "remove-node-address") {
+        if (!node.blockId) return;
+        new ConfirmDialog(this.app, t("Remove node address"), t("Links to this node may stop working. Remove its block ID? Undo can restore the address."), async () => {
+          if (this.path !== path) throw new Error(t("The note changed. Open it again at the current line."));
+          await this.apply(doc, removeNodeAddress(doc, id));
+        }, { label: t("Remove node address"), focusConfirm: false }).open();
+        return;
+      }
       if (action === "copy-node-labels") {
         await this.plugin.copy(copyNodeLabels(doc, ids));
         return;

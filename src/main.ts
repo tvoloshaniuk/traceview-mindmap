@@ -6,7 +6,7 @@
 import { t, LANGUAGES, isLanguageSetting, setLanguage, type LanguageSetting } from './i18n';
 import { getLanguage, App, Component, EditableFileView, ItemView, MarkdownRenderer, MarkdownView, Menu, Notice, Platform, Plugin, PluginSettingTab, Scope, Setting, TFile, WorkspaceLeaf, normalizePath, parseLinktext, setIcon, type HoverPopover } from 'obsidian';
 import { moveBranches, changeNodes, copyBranches, copyNodeLabels, deleteNodes, parseMap, restoreTemplateLineEndings, editNode, addFirstNode, addNode, addParent, deleteNode, moveNode, copyBranch, pasteBranch, toggleTask, toggleStepNumber, setDated, setQuestion, getSteps, compareSteps, renumberSteps, moveCompletedChildrenToBottom, shiftSelectedBranches, unnumberStep } from './core';
-import { addressNode, onlyAddedBlockIds } from './block-links';
+import { addressNode, onlyAddedBlockIds, removeNodeAddress } from './block-links';
 import { captureHotkey, DEFAULT_HOTKEYS, HOTKEY_DEFINITIONS, resolveHotkey, validateHotkeys } from './hotkeys';
 import { compileMapPatterns, PatternError, type MapRules, type PatternMode } from './map-patterns';
 import { MapSearch } from './map-search';
@@ -162,7 +162,7 @@ export default class TraceViewMindmap extends Plugin {
       ['add-child', t("Add child node"), 'add-child'], ['add-sibling', t("Add sibling node"), 'add-sibling'],
       ['add-sibling-before', t("Add sibling above"), 'add-sibling-before'],
       ['add-parent', t("Add parent node"), 'add-parent'], ['insert-template', t("Insert template at selected node…"), 'insert-template'],
-      ['copy-node-link', t("Copy link to node"), 'copy-node-link'], ['edit-node', t("Edit node"), 'edit'], ['node-note', t("Edit embedded node note"), 'node-note'], ['make-step', t("Mark as atomic step"), 'make-step'],
+      ['copy-node-link', t("Copy link to node"), 'copy-node-link'], ['remove-node-address', t("Remove node address"), 'remove-node-address'], ['edit-node', t("Edit node"), 'edit'], ['node-note', t("Edit embedded node note"), 'node-note'], ['make-step', t("Mark as atomic step"), 'make-step'],
       ['make-dated', t("Add step deadline"), 'make-dated'], ['make-question', t("Mark as QA"), 'make-question'],
       ['toggle-task', t("Toggle step completion"), 'toggle-task'], ['completed-bottom', t("Move completed children to bottom"), 'completed-bottom'], ['copy-node-labels', t("Copy selected nodes without children"), 'copy-node-labels'], ['copy-branch', t("Copy branch"), 'copy'], ['cut-branch', t("Cut branch"), 'cut'],
       ['paste-branch', t("Paste as child branch"), 'paste'], ['paste-after', t("Paste as sibling branch"), 'paste-after'], ['undo', t("Undo map change"), 'undo'], ['redo', t("Redo map change"), 'redo']
@@ -948,6 +948,14 @@ class MapView extends EditableFileView {
       if (!node) return;
       const selection = this.surface?.getSelection() ?? [];
       const ids = selection.includes(id) ? selection : [id];
+      if (action === 'remove-node-address') {
+        if (!node.blockId) return;
+        new ConfirmDialog(this.app, t("Remove node address"), t("Links to this node may stop working. Remove its block ID? Undo can restore the address."), async () => {
+          if (this.path !== path) throw new Error(t("The note changed. Open it again at the current line."));
+          await this.apply(doc, removeNodeAddress(doc, id));
+        }, {label: t("Remove node address"), focusConfirm: false}).open();
+        return;
+      }
       if (action === 'copy-node-labels') { await this.plugin.copy(copyNodeLabels(doc, ids)); return; }
       if (ids.length > 1) {
         if (action === 'move-up' || action === 'move-down') {

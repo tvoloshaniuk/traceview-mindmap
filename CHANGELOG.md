@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.0.20
+
+### Added
+
+- Remove a selected node's block address from its context menu or command palette after a warning.
+- Restore the removed address with Undo. Confirmation defaults to Cancel and concurrent note changes prevent stale edits.
+
 ## 1.0.19
 
 ### Fixed

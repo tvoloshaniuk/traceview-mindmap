@@ -342,5 +342,7 @@
   "Default settings restored. Restart Obsidian to apply the language.": "Початкові налаштування відновлено. Перезапусти Obsidian, щоб застосувати мову.",
   "Remember last note view": "Пам’ятати останній режим нотатки",
   "Reopen notes in their last map or Markdown view. Automatic map opening takes priority. Stores up to 500 map paths on this device.": "Відкривати нотатки в останньому режимі карти або Markdown. Автовідкриття карт має пріоритет. Зберігає до 500 шляхів карт на цьому пристрої.",
-  "Matching notes reopen as maps, overriding remembered Markdown. Open as Markdown keeps the current tab in Markdown.": "Відповідні нотатки знову відкриваються картою, попри запам’ятований Markdown. Команда відкриття Markdown зберігає поточну вкладку в Markdown."
+  "Matching notes reopen as maps, overriding remembered Markdown. Open as Markdown keeps the current tab in Markdown.": "Відповідні нотатки знову відкриваються картою, попри запам’ятований Markdown. Команда відкриття Markdown зберігає поточну вкладку в Markdown.",
+  "Remove node address": "Прибрати адресу вузла",
+  "Links to this node may stop working. Remove its block ID? Undo can restore the address.": "Посилання на цей вузол можуть перестати працювати. Видалити його block ID? Undo дозволяє відновити адресу."
 }

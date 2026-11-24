@@ -342,5 +342,7 @@
   "Default settings restored. Restart Obsidian to apply the language.": "Przywrócono ustawienia domyślne. Uruchom ponownie Obsidian, aby zastosować język.",
   "Remember last note view": "Zapamiętaj ostatni widok notatki",
   "Reopen notes in their last map or Markdown view. Automatic map opening takes priority. Stores up to 500 map paths on this device.": "Otwieraj notatki w ostatnim widoku mapy lub Markdown. Automatyczne otwieranie map ma pierwszeństwo. Zapisuje do 500 ścieżek na tym urządzeniu.",
-  "Matching notes reopen as maps, overriding remembered Markdown. Open as Markdown keeps the current tab in Markdown.": "Pasujące notatki ponownie otwierają się jako mapy, pomimo zapamiętanego Markdown. Otwórz jako Markdown zachowuje Markdown w bieżącej karcie."
+  "Matching notes reopen as maps, overriding remembered Markdown. Open as Markdown keeps the current tab in Markdown.": "Pasujące notatki ponownie otwierają się jako mapy, pomimo zapamiętanego Markdown. Otwórz jako Markdown zachowuje Markdown w bieżącej karcie.",
+  "Remove node address": "Usuń adres węzła",
+  "Links to this node may stop working. Remove its block ID? Undo can restore the address.": "Odnośniki do tego węzła mogą przestać działać. Usunąć identyfikator bloku? Cofnij pozwala przywrócić adres."
 }

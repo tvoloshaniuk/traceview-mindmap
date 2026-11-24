@@ -17,6 +17,7 @@ interface View { getViewType(): string; getState?(): Record<string, unknown>; }
 
 async function loadBundle(savedSettings: unknown, window?: JSDOM['window'], localSourcePaths: string[] = [], storage?: Map<string, unknown>) {
   const notices: string[] = [];
+  const modals: any[] = [];
   const clipboard = {text:'', async writeText(text:string) { this.text=text; }, async readText() {return this.text;} };
   const commands: Command[] = [];
   const views = new Map<string, (leaf: unknown) => View>();
@@ -74,7 +75,7 @@ async function loadBundle(savedSettings: unknown, window?: JSDOM['window'], loca
     PluginSettingTab: class {},
     FuzzySuggestModal: class {},
     SuggestModal: class {},
-    Modal: class {},
+    Modal: class { open() {modals.push(this);} },
     MarkdownView: class {},
     Platform: { isWin: true },
     TFile,
@@ -93,7 +94,7 @@ async function loadBundle(savedSettings: unknown, window?: JSDOM['window'], loca
   assert.equal(typeof module.exports.default, 'function', 'main.js must export the Obsidian plugin class');
   const plugin = new module.exports.default!(app);
   await plugin.onload();
-  return { plugin, commands, views, events, registeredEvents, settingsTabs, ribbons, app, FileView, TFile, clipboard, notices, MarkdownView: obsidian.MarkdownView, MarkdownRenderer: obsidian.MarkdownRenderer };
+  return { plugin, commands, views, events, registeredEvents, settingsTabs, ribbons, app, FileView, TFile, clipboard, notices, MarkdownView: obsidian.MarkdownView, MarkdownRenderer: obsidian.MarkdownRenderer, modals };
 }
 
 test('distributed main.js evaluates and enables with the Obsidian API', async () => {
@@ -668,4 +669,24 @@ test('confirming an empty leaf deletes it with Undo; empty new nodes do not writ
   await assert.rejects(save(''));
   assert.match(f.source(), /Target/);
   assert.match(f.source(), /External/);
+});
+
+test('removing a node address requires confirmation, supports Undo and rejects concurrent changes', async () => {
+  const f = await cutFixture();
+  const source = f.original.replace('  - Target', '  - Target ^target');
+  f.external(source);
+  await f.view.reload();
+  await f.view.action('remove-node-address', f.id('Target'));
+  assert.equal(f.source(), source, 'Opening or dismissing the dialog must not write');
+  const dialog = f.modals.at(-1);
+  assert.equal(dialog.options.focusConfirm, false);
+  await dialog.confirm();
+  assert.equal(f.source(), f.original);
+  await f.view.action('undo', null);
+  assert.equal(f.source(), source);
+  await f.view.action('remove-node-address', f.id('Target'));
+  const pending = f.modals.at(-1);
+  f.external(source + '- External\n');
+  await assert.rejects(pending.confirm());
+  assert.equal(f.source(), source + '- External\n');
 });

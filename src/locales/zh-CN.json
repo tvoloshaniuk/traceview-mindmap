@@ -342,5 +342,7 @@
   "Default settings restored. Restart Obsidian to apply the language.": "已恢复默认设置。请重启 Obsidian 以应用语言。",
   "Remember last note view": "记住笔记的上次视图",
   "Reopen notes in their last map or Markdown view. Automatic map opening takes priority. Stores up to 500 map paths on this device.": "以笔记上次使用的地图或Markdown视图重新打开。自动打开地图优先。此设备最多保存500个地图路径。",
-  "Matching notes reopen as maps, overriding remembered Markdown. Open as Markdown keeps the current tab in Markdown.": "匹配的笔记会重新以地图打开，优先于记住的Markdown视图。打开为Markdown会在当前标签页保留Markdown。"
+  "Matching notes reopen as maps, overriding remembered Markdown. Open as Markdown keeps the current tab in Markdown.": "匹配的笔记会重新以地图打开，优先于记住的Markdown视图。打开为Markdown会在当前标签页保留Markdown。",
+  "Remove node address": "移除节点地址",
+  "Links to this node may stop working. Remove its block ID? Undo can restore the address.": "指向此节点的链接可能失效。移除其块ID吗？可以通过撤销恢复地址。"
 }

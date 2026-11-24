@@ -1561,6 +1561,7 @@ export class MapSurface {
       { label: t("Set date"), action: 'make-dated' },
       { label: t("Mark as question"), action: 'make-question' },
       { label: t("Copy link to node"), action: 'copy-node-link' },
+      ...(this.doc?.byId.get(id)?.blockId ? [{label: t("Remove node address"), action: 'remove-node-address' as const}] : []),
       { label: t("Copy branch"), action: 'copy' },
       { label: t("Copy node text"), action: 'copy-node-text' },
       { label: t("Edit embedded node note"), action: 'node-note' },

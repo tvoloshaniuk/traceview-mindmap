@@ -30,3 +30,13 @@ export function onlyAddedBlockIds(before: MapDocument, after: MapDocument): bool
     return after.lines[index] === line + ' ^' + fresh.blockId;
   });
 }
+
+export function removeNodeAddress(doc: MapDocument, id: string): string {
+  const node = doc.byId.get(id);
+  if (!node?.blockId) return doc.source;
+  const endings = [...doc.source.matchAll(/\r\n|\n|\r/g)];
+  const start = node.line ? endings[node.line - 1].index! + endings[node.line - 1][0].length : 0;
+  const end = endings[node.line]?.index ?? doc.source.length;
+  const line = doc.source.slice(start, end).replace(/[ \t]+\^[A-Za-z0-9][A-Za-z0-9-]*[ \t]*$/, '');
+  return doc.source.slice(0, start) + line + doc.source.slice(end);
+}
