@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.0.21
+
+### Added
+
+- Click a node address marker, or focus it and press Enter, to list incoming links and embedded references.
+- Resolve references from Obsidian's metadata cache on demand, including same-note references and relative paths.
+- Open a referring node in its map or source view and access address removal from the same menu.
+
 ## 1.0.20
 
 ### Added

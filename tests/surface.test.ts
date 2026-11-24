@@ -790,3 +790,15 @@ test('empty parent confirmation passes a placeholder and preserves the editing f
   assert.equal(saved, 'Без назви');
   assert.equal(f.surface.isEditing(), false);
 });
+
+test('node address marker opens backlinks by click and keyboard without entering node editing', t => {
+  const f = fixture(t, '- Root ^root\n');
+  const marker = f.element('Root').querySelector<HTMLElement>('.tvm-node-address')!;
+  assert.equal(marker.getAttribute('role'), 'button');
+  assert.equal(marker.tabIndex, 0);
+  marker.click();
+  assert.deepEqual(f.actions.at(-1), {action:'node-backlinks',id:f.id('Root')});
+  marker.dispatchEvent(new f.dom.window.KeyboardEvent('keydown',{key:'Enter',bubbles:true,cancelable:true}));
+  assert.equal(f.actions.length, 2);
+  assert.equal(f.surface.isEditing(), false);
+});

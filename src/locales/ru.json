@@ -344,5 +344,6 @@
   "Reopen notes in their last map or Markdown view. Automatic map opening takes priority. Stores up to 500 map paths on this device.": "Открывать заметки в последнем виде карты или Markdown. Автооткрытие карт имеет приоритет. Хранит до 500 путей карт на этом устройстве.",
   "Matching notes reopen as maps, overriding remembered Markdown. Open as Markdown keeps the current tab in Markdown.": "Подходящие заметки снова открываются картой независимо от сохранённого Markdown. Команда открытия Markdown оставляет текущую вкладку в Markdown.",
   "Remove node address": "Убрать адрес узла",
-  "Links to this node may stop working. Remove its block ID? Undo can restore the address.": "Ссылки на этот узел могут перестать работать. Удалить его block ID? Undo позволяет восстановить адрес."
+  "Links to this node may stop working. Remove its block ID? Undo can restore the address.": "Ссылки на этот узел могут перестать работать. Удалить его block ID? Undo позволяет восстановить адрес.",
+  "No cached links to this node": "В кэше нет ссылок на этот узел"
 }

@@ -344,5 +344,6 @@
   "Reopen notes in their last map or Markdown view. Automatic map opening takes priority. Stores up to 500 map paths on this device.": "ノートを最後に使用したマップまたはMarkdown表示で開きます。マップの自動表示が優先されます。この端末に最大500件のマップパスを保存します。",
   "Matching notes reopen as maps, overriding remembered Markdown. Open as Markdown keeps the current tab in Markdown.": "一致するノートは記憶されたMarkdown表示より優先してマップで開きます。Markdownで開く操作は現在のタブで維持されます。",
   "Remove node address": "ノードのアドレスを削除",
-  "Links to this node may stop working. Remove its block ID? Undo can restore the address.": "このノードへのリンクが機能しなくなる可能性があります。ブロックIDを削除しますか？元に戻す操作でアドレスを復元できます。"
+  "Links to this node may stop working. Remove its block ID? Undo can restore the address.": "このノードへのリンクが機能しなくなる可能性があります。ブロックIDを削除しますか？元に戻す操作でアドレスを復元できます。",
+  "No cached links to this node": "このノードへのリンクはキャッシュにありません"
 }

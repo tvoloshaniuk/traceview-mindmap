@@ -3,6 +3,7 @@
  * GPL-3.0-only with the Obsidian Host Additional Permission.
  * See LICENSE, LICENSING.md and OBSIDIAN-HOST-PERMISSION.md.
  */
+import type { App, TFile } from 'obsidian';
 import { t } from './i18n';
 import type { MapDocument } from './types';
 
@@ -39,4 +40,27 @@ export function removeNodeAddress(doc: MapDocument, id: string): string {
   const end = endings[node.line]?.index ?? doc.source.length;
   const line = doc.source.slice(start, end).replace(/[ \t]+\^[A-Za-z0-9][A-Za-z0-9-]*[ \t]*$/, '');
   return doc.source.slice(0, start) + line + doc.source.slice(end);
+}
+
+export function nodeBacklinks(app: App, target: TFile, blockId: string): {file: TFile; line: number}[] {
+  const candidates = new Set([target.path]);
+  for (const [source, links] of Object.entries(app.metadataCache.resolvedLinks)) {
+    if (links[target.path]) candidates.add(source);
+  }
+  const result: {file: TFile; line: number}[] = [];
+  for (const path of candidates) {
+    const file = app.vault.getFileByPath(path);
+    if (!file || file.extension !== 'md') continue;
+    const cache = app.metadataCache.getFileCache(file);
+    const lines = new Set<number>();
+    for (const ref of [...cache?.links ?? [], ...cache?.embeds ?? []]) {
+      const index = ref.link.lastIndexOf('#^');
+      if (index < 0 || ref.link.slice(index + 2) !== blockId) continue;
+      const destination = ref.link.slice(0, index);
+      const resolved = destination ? app.metadataCache.getFirstLinkpathDest(destination, file.path) : file;
+      if (resolved?.path === target.path) lines.add(ref.position.start.line);
+    }
+    for (const line of lines) result.push({file, line});
+  }
+  return result.sort((a, b) => a.file.path.localeCompare(b.file.path) || a.line - b.line);
 }

@@ -6,7 +6,7 @@
 import { t, LANGUAGES, isLanguageSetting, setLanguage, type LanguageSetting } from './i18n';
 import { getLanguage, App, Component, EditableFileView, ItemView, MarkdownRenderer, MarkdownView, Menu, Notice, Platform, Plugin, PluginSettingTab, Scope, Setting, TFile, WorkspaceLeaf, normalizePath, parseLinktext, setIcon, type HoverPopover } from 'obsidian';
 import { moveBranches, changeNodes, copyBranches, copyNodeLabels, deleteNodes, parseMap, restoreTemplateLineEndings, editNode, addFirstNode, addNode, addParent, deleteNode, moveNode, copyBranch, pasteBranch, toggleTask, toggleStepNumber, setDated, setQuestion, getSteps, compareSteps, renumberSteps, moveCompletedChildrenToBottom, shiftSelectedBranches, unnumberStep } from './core';
-import { addressNode, onlyAddedBlockIds, removeNodeAddress } from './block-links';
+import { addressNode, onlyAddedBlockIds, removeNodeAddress, nodeBacklinks } from './block-links';
 import { captureHotkey, DEFAULT_HOTKEYS, HOTKEY_DEFINITIONS, resolveHotkey, validateHotkeys } from './hotkeys';
 import { compileMapPatterns, PatternError, type MapRules, type PatternMode } from './map-patterns';
 import { MapSearch } from './map-search';
@@ -120,7 +120,7 @@ export default class TraceViewMindmap extends Plugin {
     let observeLinks = true;
     const plugin = this;
     const receiveEphemeral = function(this: MarkdownView, state: any) {
-      if (observeLinks && this.app === plugin.app && this.file && plugin.shouldOpenMap(this.file) && typeof state?.subpath === 'string') {
+      if (observeLinks && this.app === plugin.app && this.file && plugin.opensAsMap(this.file) && typeof state?.subpath === 'string') {
         plugin.nativeLinkTargets.set(this, { path: this.file.path, subpath: state.subpath });
       }
       return originalEphemeral.call(this, state);
@@ -240,7 +240,7 @@ export default class TraceViewMindmap extends Plugin {
   private rememberMaps(): void {
     try { this.app.saveLocalStorage('traceview-mindmap:map-preferences', [...this.mapPreferences]); } catch { /* Storage may be full. */ }
   }
-  private shouldOpenMap(file: TFile): boolean {
+  opensAsMap(file: TFile): boolean {
     return (this.settings.autoOpen && this.isMap(file))
       || (this.settings.rememberLastMode && this.mapPreferences.has(file.path) && !this.sourcePreferences.has(file.path));
   }
@@ -252,14 +252,14 @@ export default class TraceViewMindmap extends Plugin {
       const view = leaf.view;
       if (!(view instanceof MarkdownView) || !view.file || (expectedPath && view.file.path !== expectedPath)) return;
       if (this.sourceLeaves.get(leaf) !== view.file.path) this.sourceLeaves.delete(leaf);
-      if (!this.shouldOpenMap(view.file) || this.sourceLeaves.get(leaf) === view.file.path) return;
+      if (!this.opensAsMap(view.file) || this.sourceLeaves.get(leaf) === view.file.path) return;
       this.opening.add(leaf);
       const file = view.file;
       const linkState = this.nativeLinkTargets.get(view); this.nativeLinkTargets.delete(view);
       void (async () => {
         try {
           await view.save();
-          if (leaf.view === view && view.file === file && this.shouldOpenMap(file) && this.sourceLeaves.get(leaf) !== file.path) {
+          if (leaf.view === view && view.file === file && this.opensAsMap(file) && this.sourceLeaves.get(leaf) !== file.path) {
             await this.openMap(file, leaf);
             if (linkState?.path === file.path && linkState.subpath && leaf.view instanceof MapView) leaf.view.revealSubpath(linkState.subpath);
           }
@@ -457,7 +457,7 @@ export default class TraceViewMindmap extends Plugin {
     const parts = parseLinktext(link);
     const file = parts.path ? this.app.metadataCache.getFirstLinkpathDest(parts.path, view.path) : view.file;
     const newTab = event.ctrlKey || event.metaKey || event.button === 1;
-    if (file && (file === view.file || this.shouldOpenMap(file))) {
+    if (file && (file === view.file || this.opensAsMap(file))) {
       const leaf = newTab ? this.app.workspace.getLeaf('tab') : view.leaf;
       await this.openMap(file, leaf);
       if (leaf.view instanceof MapView) leaf.view.revealSubpath(parts.subpath);
@@ -948,6 +948,10 @@ class MapView extends EditableFileView {
       if (!node) return;
       const selection = this.surface?.getSelection() ?? [];
       const ids = selection.includes(id) ? selection : [id];
+      if (action === 'node-backlinks') {
+        if (node.blockId && this.file) this.nodeAddressMenu(node);
+        return;
+      }
       if (action === 'remove-node-address') {
         if (!node.blockId) return;
         new ConfirmDialog(this.app, t("Remove node address"), t("Links to this node may stop working. Remove its block ID? Undo can restore the address."), async () => {
@@ -1109,6 +1113,25 @@ class MapView extends EditableFileView {
     if (recovered) this.refreshDraftButton();
   }
 
+  private nodeAddressMenu(node: MapNode): void {
+    const file = this.file;
+    if (!file || !node.blockId) return;
+    const menu = new Menu();
+    const refs = nodeBacklinks(this.app, file, node.blockId);
+    if (!refs.length) menu.addItem(item => item.setTitle(t("No cached links to this node")).setDisabled(true));
+    for (const ref of refs) menu.addItem(item => item.setTitle(ref.file.basename + ' · ' + (ref.line + 1)).setIcon('link').onClick(() => {
+      void (async () => {
+        const doc = parseMap(await this.app.vault.read(ref.file));
+        const target = doc.nodes.find(node => node.line === ref.line);
+        if (target && this.plugin.opensAsMap(ref.file)) await this.plugin.openMap(ref.file, undefined, target.id);
+        else await this.plugin.source(ref.file, ref.line);
+      })().catch(error => new Notice(message(error)));
+    }));
+    menu.addSeparator();
+    menu.addItem(item => item.setTitle(t("Remove node address")).setIcon('unlink').onClick(() => { void this.action('remove-node-address', node.id); }));
+    const anchor = this.contentEl.querySelector<HTMLElement>('.tvm-node.is-selected .tvm-node-address');
+    this.showMenu(menu, anchor ?? this.contentEl);
+  }
   private async editNodeNote(doc: MapDocument, node: MapNode): Promise<void> {
     const map = this.file;
     if (!map) return;

@@ -560,7 +560,12 @@ export class MapSurface {
       if (node.blockId) {
         const marker = this.container.ownerDocument.createElement('span');
         marker.className = 'tvm-node-address'; marker.textContent = '🔗'; marker.title = t("Node address: ^") + node.blockId;
-        marker.setAttribute('aria-label', marker.title); marker.setAttribute('role', 'img'); el.append(marker);
+        marker.setAttribute('aria-label', marker.title); marker.setAttribute('role', 'button'); marker.tabIndex = 0;
+        marker.addEventListener('keydown', event => {
+          if (event.key !== 'Enter' && event.key !== ' ') return;
+          event.preventDefault(); event.stopPropagation(); this.select(id); this.options.onAction('node-backlinks', id);
+        });
+        el.append(marker);
       }
       if (node.children.length) {
         const folded = this.collapsed.has(id);
@@ -1051,6 +1056,9 @@ export class MapSurface {
       event.preventDefault(); event.stopPropagation();
       this.select(id, false, event.shiftKey ? 'range' : 'toggle');
       this.viewport.focus({ preventScroll: true }); return;
+    }
+    if (id && target.closest('.tvm-node-address')) {
+      event.preventDefault(); event.stopPropagation(); this.select(id); this.options.onAction('node-backlinks', id); return;
     }
     const fold = target.closest<HTMLElement>('[data-fold-id]');
     if (fold?.dataset.foldId) { event.preventDefault(); event.stopPropagation(); this.select(fold.dataset.foldId); this.toggleFold(fold.dataset.foldId); this.viewport.focus({ preventScroll: true }); return; }

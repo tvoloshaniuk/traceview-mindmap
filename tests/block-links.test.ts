@@ -6,7 +6,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { parseMap } from '../src/core';
-import { addressNode, onlyAddedBlockIds, removeNodeAddress } from '../src/block-links';
+import { addressNode, onlyAddedBlockIds, removeNodeAddress, nodeBacklinks } from '../src/block-links';
 
 test('addresses preserve CRLF, children, aliases and existing IDs; duplicates are rejected', () => {
   const source='---\r\ntags: mindmap\r\n---\r\n- Root\r\n  - [[Ghost|Alias]]\r\n    - Child ^child-id\r\n';
@@ -31,4 +31,27 @@ test('removing a block address changes only its suffix and preserves source endi
     const child = doc.nodes.find(node => node.blockId === 'child')!;
     assert.equal(removeNodeAddress(doc, child.id), source.replace(' ^child', ''));
   }
+});
+
+test('node backlinks use cached candidates, resolve relative targets and include local links and embeds once per line', () => {
+  const target = {path:'Folder/Target.md', extension:'md'};
+  const source = {path:'Other/Source.md', extension:'md'};
+  const unrelated = {path:'Other/Target.md', extension:'md'};
+  const files = new Map([target, source, unrelated].map(file => [file.path, file]));
+  const ref = (link:string, line:number) => ({link, position:{start:{line}}});
+  const reads:string[] = [];
+  const app:any = {
+    vault:{getFileByPath:(path:string) => files.get(path)},
+    metadataCache:{
+      resolvedLinks:{[source.path]:{[target.path]:4}, [unrelated.path]:{Elsewhere:1}},
+      getFileCache(file:any) {
+        reads.push(file.path);
+        return file === target ? {links:[ref('#^id',2)]} : {links:[ref('../Folder/Target#^id',7),ref('Target#^id',8),ref('../Folder/Target#^other',9)],embeds:[ref('../Folder/Target#^id',7)]};
+      },
+      getFirstLinkpathDest:(link:string) => link.startsWith('../') ? target : unrelated,
+    },
+  };
+  const result = nodeBacklinks(app,target as any,'id');
+  assert.deepEqual(result.map(ref => [ref.file.path,ref.line]), [[target.path,2],[source.path,7]]);
+  assert.deepEqual(reads, [target.path, source.path]);
 });

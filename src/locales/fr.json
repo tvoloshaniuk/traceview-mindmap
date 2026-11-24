@@ -344,5 +344,6 @@
   "Reopen notes in their last map or Markdown view. Automatic map opening takes priority. Stores up to 500 map paths on this device.": "Rouvrir les notes dans leur dernière vue carte ou Markdown. L’ouverture automatique des cartes est prioritaire. Stocke jusqu’à 500 chemins sur cet appareil.",
   "Matching notes reopen as maps, overriding remembered Markdown. Open as Markdown keeps the current tab in Markdown.": "Les notes correspondantes se rouvrent en carte, même après Markdown. Ouvrir en Markdown conserve Markdown dans l’onglet actuel.",
   "Remove node address": "Supprimer l’adresse du nœud",
-  "Links to this node may stop working. Remove its block ID? Undo can restore the address.": "Les liens vers ce nœud peuvent cesser de fonctionner. Supprimer son identifiant de bloc ? Annuler permet de restaurer l’adresse."
+  "Links to this node may stop working. Remove its block ID? Undo can restore the address.": "Les liens vers ce nœud peuvent cesser de fonctionner. Supprimer son identifiant de bloc ? Annuler permet de restaurer l’adresse.",
+  "No cached links to this node": "Aucun lien en cache vers ce nœud"
 }

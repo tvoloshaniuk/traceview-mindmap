@@ -344,5 +344,6 @@
   "Reopen notes in their last map or Markdown view. Automatic map opening takes priority. Stores up to 500 map paths on this device.": "Reopen notes in their last map or Markdown view. Automatic map opening takes priority. Stores up to 500 map paths on this device.",
   "Matching notes reopen as maps, overriding remembered Markdown. Open as Markdown keeps the current tab in Markdown.": "Matching notes reopen as maps, overriding remembered Markdown. Open as Markdown keeps the current tab in Markdown.",
   "Remove node address": "Remove node address",
-  "Links to this node may stop working. Remove its block ID? Undo can restore the address.": "Links to this node may stop working. Remove its block ID? Undo can restore the address."
+  "Links to this node may stop working. Remove its block ID? Undo can restore the address.": "Links to this node may stop working. Remove its block ID? Undo can restore the address.",
+  "No cached links to this node": "No cached links to this node"
 }

@@ -703,7 +703,8 @@ var en_default = {
   "Reopen notes in their last map or Markdown view. Automatic map opening takes priority. Stores up to 500 map paths on this device.": "Reopen notes in their last map or Markdown view. Automatic map opening takes priority. Stores up to 500 map paths on this device.",
   "Matching notes reopen as maps, overriding remembered Markdown. Open as Markdown keeps the current tab in Markdown.": "Matching notes reopen as maps, overriding remembered Markdown. Open as Markdown keeps the current tab in Markdown.",
   "Remove node address": "Remove node address",
-  "Links to this node may stop working. Remove its block ID? Undo can restore the address.": "Links to this node may stop working. Remove its block ID? Undo can restore the address."
+  "Links to this node may stop working. Remove its block ID? Undo can restore the address.": "Links to this node may stop working. Remove its block ID? Undo can restore the address.",
+  "No cached links to this node": "No cached links to this node"
 };
 
 // src/locales/uk.json
@@ -1053,7 +1054,8 @@ var uk_default = {
   "Reopen notes in their last map or Markdown view. Automatic map opening takes priority. Stores up to 500 map paths on this device.": "\u0412\u0456\u0434\u043A\u0440\u0438\u0432\u0430\u0442\u0438 \u043D\u043E\u0442\u0430\u0442\u043A\u0438 \u0432 \u043E\u0441\u0442\u0430\u043D\u043D\u044C\u043E\u043C\u0443 \u0440\u0435\u0436\u0438\u043C\u0456 \u043A\u0430\u0440\u0442\u0438 \u0430\u0431\u043E Markdown. \u0410\u0432\u0442\u043E\u0432\u0456\u0434\u043A\u0440\u0438\u0442\u0442\u044F \u043A\u0430\u0440\u0442 \u043C\u0430\u0454 \u043F\u0440\u0456\u043E\u0440\u0438\u0442\u0435\u0442. \u0417\u0431\u0435\u0440\u0456\u0433\u0430\u0454 \u0434\u043E 500 \u0448\u043B\u044F\u0445\u0456\u0432 \u043A\u0430\u0440\u0442 \u043D\u0430 \u0446\u044C\u043E\u043C\u0443 \u043F\u0440\u0438\u0441\u0442\u0440\u043E\u0457.",
   "Matching notes reopen as maps, overriding remembered Markdown. Open as Markdown keeps the current tab in Markdown.": "\u0412\u0456\u0434\u043F\u043E\u0432\u0456\u0434\u043D\u0456 \u043D\u043E\u0442\u0430\u0442\u043A\u0438 \u0437\u043D\u043E\u0432\u0443 \u0432\u0456\u0434\u043A\u0440\u0438\u0432\u0430\u044E\u0442\u044C\u0441\u044F \u043A\u0430\u0440\u0442\u043E\u044E, \u043F\u043E\u043F\u0440\u0438 \u0437\u0430\u043F\u0430\u043C\u2019\u044F\u0442\u043E\u0432\u0430\u043D\u0438\u0439 Markdown. \u041A\u043E\u043C\u0430\u043D\u0434\u0430 \u0432\u0456\u0434\u043A\u0440\u0438\u0442\u0442\u044F Markdown \u0437\u0431\u0435\u0440\u0456\u0433\u0430\u0454 \u043F\u043E\u0442\u043E\u0447\u043D\u0443 \u0432\u043A\u043B\u0430\u0434\u043A\u0443 \u0432 Markdown.",
   "Remove node address": "\u041F\u0440\u0438\u0431\u0440\u0430\u0442\u0438 \u0430\u0434\u0440\u0435\u0441\u0443 \u0432\u0443\u0437\u043B\u0430",
-  "Links to this node may stop working. Remove its block ID? Undo can restore the address.": "\u041F\u043E\u0441\u0438\u043B\u0430\u043D\u043D\u044F \u043D\u0430 \u0446\u0435\u0439 \u0432\u0443\u0437\u043E\u043B \u043C\u043E\u0436\u0443\u0442\u044C \u043F\u0435\u0440\u0435\u0441\u0442\u0430\u0442\u0438 \u043F\u0440\u0430\u0446\u044E\u0432\u0430\u0442\u0438. \u0412\u0438\u0434\u0430\u043B\u0438\u0442\u0438 \u0439\u043E\u0433\u043E block ID? Undo \u0434\u043E\u0437\u0432\u043E\u043B\u044F\u0454 \u0432\u0456\u0434\u043D\u043E\u0432\u0438\u0442\u0438 \u0430\u0434\u0440\u0435\u0441\u0443."
+  "Links to this node may stop working. Remove its block ID? Undo can restore the address.": "\u041F\u043E\u0441\u0438\u043B\u0430\u043D\u043D\u044F \u043D\u0430 \u0446\u0435\u0439 \u0432\u0443\u0437\u043E\u043B \u043C\u043E\u0436\u0443\u0442\u044C \u043F\u0435\u0440\u0435\u0441\u0442\u0430\u0442\u0438 \u043F\u0440\u0430\u0446\u044E\u0432\u0430\u0442\u0438. \u0412\u0438\u0434\u0430\u043B\u0438\u0442\u0438 \u0439\u043E\u0433\u043E block ID? Undo \u0434\u043E\u0437\u0432\u043E\u043B\u044F\u0454 \u0432\u0456\u0434\u043D\u043E\u0432\u0438\u0442\u0438 \u0430\u0434\u0440\u0435\u0441\u0443.",
+  "No cached links to this node": "\u0423 \u043A\u0435\u0448\u0456 \u043D\u0435\u043C\u0430\u0454 \u043F\u043E\u0441\u0438\u043B\u0430\u043D\u044C \u043D\u0430 \u0446\u0435\u0439 \u0432\u0443\u0437\u043E\u043B"
 };
 
 // src/locales/pl.json
@@ -1403,7 +1405,8 @@ var pl_default = {
   "Reopen notes in their last map or Markdown view. Automatic map opening takes priority. Stores up to 500 map paths on this device.": "Otwieraj notatki w ostatnim widoku mapy lub Markdown. Automatyczne otwieranie map ma pierwsze\u0144stwo. Zapisuje do 500 \u015Bcie\u017Cek na tym urz\u0105dzeniu.",
   "Matching notes reopen as maps, overriding remembered Markdown. Open as Markdown keeps the current tab in Markdown.": "Pasuj\u0105ce notatki ponownie otwieraj\u0105 si\u0119 jako mapy, pomimo zapami\u0119tanego Markdown. Otw\xF3rz jako Markdown zachowuje Markdown w bie\u017C\u0105cej karcie.",
   "Remove node address": "Usu\u0144 adres w\u0119z\u0142a",
-  "Links to this node may stop working. Remove its block ID? Undo can restore the address.": "Odno\u015Bniki do tego w\u0119z\u0142a mog\u0105 przesta\u0107 dzia\u0142a\u0107. Usun\u0105\u0107 identyfikator bloku? Cofnij pozwala przywr\xF3ci\u0107 adres."
+  "Links to this node may stop working. Remove its block ID? Undo can restore the address.": "Odno\u015Bniki do tego w\u0119z\u0142a mog\u0105 przesta\u0107 dzia\u0142a\u0107. Usun\u0105\u0107 identyfikator bloku? Cofnij pozwala przywr\xF3ci\u0107 adres.",
+  "No cached links to this node": "Brak odno\u015Bnik\xF3w do tego w\u0119z\u0142a w pami\u0119ci podr\u0119cznej"
 };
 
 // src/locales/de.json
@@ -1753,7 +1756,8 @@ var de_default = {
   "Reopen notes in their last map or Markdown view. Automatic map opening takes priority. Stores up to 500 map paths on this device.": "Notizen in ihrer letzten Karten- oder Markdown-Ansicht \xF6ffnen. Automatisches \xD6ffnen hat Vorrang. Speichert bis zu 500 Kartenpfade auf diesem Ger\xE4t.",
   "Matching notes reopen as maps, overriding remembered Markdown. Open as Markdown keeps the current tab in Markdown.": "Passende Notizen \xF6ffnen erneut als Karte, auch nach Markdown. Als Markdown \xF6ffnen beh\xE4lt Markdown im aktuellen Tab bei.",
   "Remove node address": "Knotenadresse entfernen",
-  "Links to this node may stop working. Remove its block ID? Undo can restore the address.": "Links zu diesem Knoten funktionieren m\xF6glicherweise nicht mehr. Block-ID entfernen? R\xFCckg\xE4ngig kann die Adresse wiederherstellen."
+  "Links to this node may stop working. Remove its block ID? Undo can restore the address.": "Links zu diesem Knoten funktionieren m\xF6glicherweise nicht mehr. Block-ID entfernen? R\xFCckg\xE4ngig kann die Adresse wiederherstellen.",
+  "No cached links to this node": "Keine zwischengespeicherten Links zu diesem Knoten"
 };
 
 // src/locales/es.json
@@ -2103,7 +2107,8 @@ var es_default = {
   "Reopen notes in their last map or Markdown view. Automatic map opening takes priority. Stores up to 500 map paths on this device.": "Reabrir notas en su \xFAltima vista de mapa o Markdown. La apertura autom\xE1tica tiene prioridad. Guarda hasta 500 rutas en este dispositivo.",
   "Matching notes reopen as maps, overriding remembered Markdown. Open as Markdown keeps the current tab in Markdown.": "Las notas coincidentes vuelven a abrirse como mapas, incluso tras Markdown. Abrir como Markdown mantiene Markdown en la pesta\xF1a actual.",
   "Remove node address": "Eliminar direcci\xF3n del nodo",
-  "Links to this node may stop working. Remove its block ID? Undo can restore the address.": "Los enlaces a este nodo podr\xEDan dejar de funcionar. \xBFEliminar su ID de bloque? Deshacer permite restaurar la direcci\xF3n."
+  "Links to this node may stop working. Remove its block ID? Undo can restore the address.": "Los enlaces a este nodo podr\xEDan dejar de funcionar. \xBFEliminar su ID de bloque? Deshacer permite restaurar la direcci\xF3n.",
+  "No cached links to this node": "No hay enlaces en cach\xE9 a este nodo"
 };
 
 // src/locales/fr.json
@@ -2453,7 +2458,8 @@ var fr_default = {
   "Reopen notes in their last map or Markdown view. Automatic map opening takes priority. Stores up to 500 map paths on this device.": "Rouvrir les notes dans leur derni\xE8re vue carte ou Markdown. L\u2019ouverture automatique des cartes est prioritaire. Stocke jusqu\u2019\xE0 500 chemins sur cet appareil.",
   "Matching notes reopen as maps, overriding remembered Markdown. Open as Markdown keeps the current tab in Markdown.": "Les notes correspondantes se rouvrent en carte, m\xEAme apr\xE8s Markdown. Ouvrir en Markdown conserve Markdown dans l\u2019onglet actuel.",
   "Remove node address": "Supprimer l\u2019adresse du n\u0153ud",
-  "Links to this node may stop working. Remove its block ID? Undo can restore the address.": "Les liens vers ce n\u0153ud peuvent cesser de fonctionner. Supprimer son identifiant de bloc ? Annuler permet de restaurer l\u2019adresse."
+  "Links to this node may stop working. Remove its block ID? Undo can restore the address.": "Les liens vers ce n\u0153ud peuvent cesser de fonctionner. Supprimer son identifiant de bloc ? Annuler permet de restaurer l\u2019adresse.",
+  "No cached links to this node": "Aucun lien en cache vers ce n\u0153ud"
 };
 
 // src/locales/pt-BR.json
@@ -2803,7 +2809,8 @@ var pt_BR_default = {
   "Reopen notes in their last map or Markdown view. Automatic map opening takes priority. Stores up to 500 map paths on this device.": "Reabrir notas na \xFAltima visualiza\xE7\xE3o de mapa ou Markdown. A abertura autom\xE1tica tem prioridade. Armazena at\xE9 500 caminhos neste dispositivo.",
   "Matching notes reopen as maps, overriding remembered Markdown. Open as Markdown keeps the current tab in Markdown.": "Notas correspondentes reabrem como mapas, mesmo ap\xF3s Markdown. Abrir como Markdown mant\xE9m Markdown na aba atual.",
   "Remove node address": "Remover endere\xE7o do n\xF3",
-  "Links to this node may stop working. Remove its block ID? Undo can restore the address.": "Links para este n\xF3 podem parar de funcionar. Remover o ID do bloco? Desfazer permite restaurar o endere\xE7o."
+  "Links to this node may stop working. Remove its block ID? Undo can restore the address.": "Links para este n\xF3 podem parar de funcionar. Remover o ID do bloco? Desfazer permite restaurar o endere\xE7o.",
+  "No cached links to this node": "Nenhum link em cache para este n\xF3"
 };
 
 // src/locales/zh-CN.json
@@ -3153,7 +3160,8 @@ var zh_CN_default = {
   "Reopen notes in their last map or Markdown view. Automatic map opening takes priority. Stores up to 500 map paths on this device.": "\u4EE5\u7B14\u8BB0\u4E0A\u6B21\u4F7F\u7528\u7684\u5730\u56FE\u6216Markdown\u89C6\u56FE\u91CD\u65B0\u6253\u5F00\u3002\u81EA\u52A8\u6253\u5F00\u5730\u56FE\u4F18\u5148\u3002\u6B64\u8BBE\u5907\u6700\u591A\u4FDD\u5B58500\u4E2A\u5730\u56FE\u8DEF\u5F84\u3002",
   "Matching notes reopen as maps, overriding remembered Markdown. Open as Markdown keeps the current tab in Markdown.": "\u5339\u914D\u7684\u7B14\u8BB0\u4F1A\u91CD\u65B0\u4EE5\u5730\u56FE\u6253\u5F00\uFF0C\u4F18\u5148\u4E8E\u8BB0\u4F4F\u7684Markdown\u89C6\u56FE\u3002\u6253\u5F00\u4E3AMarkdown\u4F1A\u5728\u5F53\u524D\u6807\u7B7E\u9875\u4FDD\u7559Markdown\u3002",
   "Remove node address": "\u79FB\u9664\u8282\u70B9\u5730\u5740",
-  "Links to this node may stop working. Remove its block ID? Undo can restore the address.": "\u6307\u5411\u6B64\u8282\u70B9\u7684\u94FE\u63A5\u53EF\u80FD\u5931\u6548\u3002\u79FB\u9664\u5176\u5757ID\u5417\uFF1F\u53EF\u4EE5\u901A\u8FC7\u64A4\u9500\u6062\u590D\u5730\u5740\u3002"
+  "Links to this node may stop working. Remove its block ID? Undo can restore the address.": "\u6307\u5411\u6B64\u8282\u70B9\u7684\u94FE\u63A5\u53EF\u80FD\u5931\u6548\u3002\u79FB\u9664\u5176\u5757ID\u5417\uFF1F\u53EF\u4EE5\u901A\u8FC7\u64A4\u9500\u6062\u590D\u5730\u5740\u3002",
+  "No cached links to this node": "\u7F13\u5B58\u4E2D\u6CA1\u6709\u6307\u5411\u6B64\u8282\u70B9\u7684\u94FE\u63A5"
 };
 
 // src/locales/ja.json
@@ -3503,7 +3511,8 @@ var ja_default = {
   "Reopen notes in their last map or Markdown view. Automatic map opening takes priority. Stores up to 500 map paths on this device.": "\u30CE\u30FC\u30C8\u3092\u6700\u5F8C\u306B\u4F7F\u7528\u3057\u305F\u30DE\u30C3\u30D7\u307E\u305F\u306FMarkdown\u8868\u793A\u3067\u958B\u304D\u307E\u3059\u3002\u30DE\u30C3\u30D7\u306E\u81EA\u52D5\u8868\u793A\u304C\u512A\u5148\u3055\u308C\u307E\u3059\u3002\u3053\u306E\u7AEF\u672B\u306B\u6700\u5927500\u4EF6\u306E\u30DE\u30C3\u30D7\u30D1\u30B9\u3092\u4FDD\u5B58\u3057\u307E\u3059\u3002",
   "Matching notes reopen as maps, overriding remembered Markdown. Open as Markdown keeps the current tab in Markdown.": "\u4E00\u81F4\u3059\u308B\u30CE\u30FC\u30C8\u306F\u8A18\u61B6\u3055\u308C\u305FMarkdown\u8868\u793A\u3088\u308A\u512A\u5148\u3057\u3066\u30DE\u30C3\u30D7\u3067\u958B\u304D\u307E\u3059\u3002Markdown\u3067\u958B\u304F\u64CD\u4F5C\u306F\u73FE\u5728\u306E\u30BF\u30D6\u3067\u7DAD\u6301\u3055\u308C\u307E\u3059\u3002",
   "Remove node address": "\u30CE\u30FC\u30C9\u306E\u30A2\u30C9\u30EC\u30B9\u3092\u524A\u9664",
-  "Links to this node may stop working. Remove its block ID? Undo can restore the address.": "\u3053\u306E\u30CE\u30FC\u30C9\u3078\u306E\u30EA\u30F3\u30AF\u304C\u6A5F\u80FD\u3057\u306A\u304F\u306A\u308B\u53EF\u80FD\u6027\u304C\u3042\u308A\u307E\u3059\u3002\u30D6\u30ED\u30C3\u30AFID\u3092\u524A\u9664\u3057\u307E\u3059\u304B\uFF1F\u5143\u306B\u623B\u3059\u64CD\u4F5C\u3067\u30A2\u30C9\u30EC\u30B9\u3092\u5FA9\u5143\u3067\u304D\u307E\u3059\u3002"
+  "Links to this node may stop working. Remove its block ID? Undo can restore the address.": "\u3053\u306E\u30CE\u30FC\u30C9\u3078\u306E\u30EA\u30F3\u30AF\u304C\u6A5F\u80FD\u3057\u306A\u304F\u306A\u308B\u53EF\u80FD\u6027\u304C\u3042\u308A\u307E\u3059\u3002\u30D6\u30ED\u30C3\u30AFID\u3092\u524A\u9664\u3057\u307E\u3059\u304B\uFF1F\u5143\u306B\u623B\u3059\u64CD\u4F5C\u3067\u30A2\u30C9\u30EC\u30B9\u3092\u5FA9\u5143\u3067\u304D\u307E\u3059\u3002",
+  "No cached links to this node": "\u3053\u306E\u30CE\u30FC\u30C9\u3078\u306E\u30EA\u30F3\u30AF\u306F\u30AD\u30E3\u30C3\u30B7\u30E5\u306B\u3042\u308A\u307E\u305B\u3093"
 };
 
 // src/locales/ko.json
@@ -3853,7 +3862,8 @@ var ko_default = {
   "Reopen notes in their last map or Markdown view. Automatic map opening takes priority. Stores up to 500 map paths on this device.": "\uB178\uD2B8\uB97C \uB9C8\uC9C0\uB9C9 \uC9C0\uB3C4 \uB610\uB294 Markdown \uBCF4\uAE30\uB85C \uC5FD\uB2C8\uB2E4. \uC9C0\uB3C4 \uC790\uB3D9 \uC5F4\uAE30\uAC00 \uC6B0\uC120\uD569\uB2C8\uB2E4. \uC774 \uAE30\uAE30\uC5D0 \uC9C0\uB3C4 \uACBD\uB85C\uB97C \uCD5C\uB300 500\uAC1C \uC800\uC7A5\uD569\uB2C8\uB2E4.",
   "Matching notes reopen as maps, overriding remembered Markdown. Open as Markdown keeps the current tab in Markdown.": "\uC77C\uCE58\uD558\uB294 \uB178\uD2B8\uB294 \uAE30\uC5B5\uB41C Markdown \uBCF4\uAE30\uBCF4\uB2E4 \uC9C0\uB3C4\uB85C \uC5F4\uAE30\uAC00 \uC6B0\uC120\uD569\uB2C8\uB2E4. Markdown\uC73C\uB85C \uC5F4\uBA74 \uD604\uC7AC \uD0ED\uC740 Markdown\uC73C\uB85C \uC720\uC9C0\uB429\uB2C8\uB2E4.",
   "Remove node address": "\uB178\uB4DC \uC8FC\uC18C \uC81C\uAC70",
-  "Links to this node may stop working. Remove its block ID? Undo can restore the address.": "\uC774 \uB178\uB4DC\uB85C \uC5F0\uACB0\uB418\uB294 \uB9C1\uD06C\uAC00 \uC791\uB3D9\uD558\uC9C0 \uC54A\uC744 \uC218 \uC788\uC2B5\uB2C8\uB2E4. \uBE14\uB85D ID\uB97C \uC81C\uAC70\uD560\uAE4C\uC694? \uC2E4\uD589 \uCDE8\uC18C\uB85C \uC8FC\uC18C\uB97C \uBCF5\uC6D0\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4."
+  "Links to this node may stop working. Remove its block ID? Undo can restore the address.": "\uC774 \uB178\uB4DC\uB85C \uC5F0\uACB0\uB418\uB294 \uB9C1\uD06C\uAC00 \uC791\uB3D9\uD558\uC9C0 \uC54A\uC744 \uC218 \uC788\uC2B5\uB2C8\uB2E4. \uBE14\uB85D ID\uB97C \uC81C\uAC70\uD560\uAE4C\uC694? \uC2E4\uD589 \uCDE8\uC18C\uB85C \uC8FC\uC18C\uB97C \uBCF5\uC6D0\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4.",
+  "No cached links to this node": "\uC774 \uB178\uB4DC\uB85C \uC5F0\uACB0\uB418\uB294 \uCE90\uC2DC\uB41C \uB9C1\uD06C\uAC00 \uC5C6\uC2B5\uB2C8\uB2E4"
 };
 
 // src/locales/ru.json
@@ -4203,7 +4213,8 @@ var ru_default = {
   "Reopen notes in their last map or Markdown view. Automatic map opening takes priority. Stores up to 500 map paths on this device.": "\u041E\u0442\u043A\u0440\u044B\u0432\u0430\u0442\u044C \u0437\u0430\u043C\u0435\u0442\u043A\u0438 \u0432 \u043F\u043E\u0441\u043B\u0435\u0434\u043D\u0435\u043C \u0432\u0438\u0434\u0435 \u043A\u0430\u0440\u0442\u044B \u0438\u043B\u0438 Markdown. \u0410\u0432\u0442\u043E\u043E\u0442\u043A\u0440\u044B\u0442\u0438\u0435 \u043A\u0430\u0440\u0442 \u0438\u043C\u0435\u0435\u0442 \u043F\u0440\u0438\u043E\u0440\u0438\u0442\u0435\u0442. \u0425\u0440\u0430\u043D\u0438\u0442 \u0434\u043E 500 \u043F\u0443\u0442\u0435\u0439 \u043A\u0430\u0440\u0442 \u043D\u0430 \u044D\u0442\u043E\u043C \u0443\u0441\u0442\u0440\u043E\u0439\u0441\u0442\u0432\u0435.",
   "Matching notes reopen as maps, overriding remembered Markdown. Open as Markdown keeps the current tab in Markdown.": "\u041F\u043E\u0434\u0445\u043E\u0434\u044F\u0449\u0438\u0435 \u0437\u0430\u043C\u0435\u0442\u043A\u0438 \u0441\u043D\u043E\u0432\u0430 \u043E\u0442\u043A\u0440\u044B\u0432\u0430\u044E\u0442\u0441\u044F \u043A\u0430\u0440\u0442\u043E\u0439 \u043D\u0435\u0437\u0430\u0432\u0438\u0441\u0438\u043C\u043E \u043E\u0442 \u0441\u043E\u0445\u0440\u0430\u043D\u0451\u043D\u043D\u043E\u0433\u043E Markdown. \u041A\u043E\u043C\u0430\u043D\u0434\u0430 \u043E\u0442\u043A\u0440\u044B\u0442\u0438\u044F Markdown \u043E\u0441\u0442\u0430\u0432\u043B\u044F\u0435\u0442 \u0442\u0435\u043A\u0443\u0449\u0443\u044E \u0432\u043A\u043B\u0430\u0434\u043A\u0443 \u0432 Markdown.",
   "Remove node address": "\u0423\u0431\u0440\u0430\u0442\u044C \u0430\u0434\u0440\u0435\u0441 \u0443\u0437\u043B\u0430",
-  "Links to this node may stop working. Remove its block ID? Undo can restore the address.": "\u0421\u0441\u044B\u043B\u043A\u0438 \u043D\u0430 \u044D\u0442\u043E\u0442 \u0443\u0437\u0435\u043B \u043C\u043E\u0433\u0443\u0442 \u043F\u0435\u0440\u0435\u0441\u0442\u0430\u0442\u044C \u0440\u0430\u0431\u043E\u0442\u0430\u0442\u044C. \u0423\u0434\u0430\u043B\u0438\u0442\u044C \u0435\u0433\u043E block ID? Undo \u043F\u043E\u0437\u0432\u043E\u043B\u044F\u0435\u0442 \u0432\u043E\u0441\u0441\u0442\u0430\u043D\u043E\u0432\u0438\u0442\u044C \u0430\u0434\u0440\u0435\u0441."
+  "Links to this node may stop working. Remove its block ID? Undo can restore the address.": "\u0421\u0441\u044B\u043B\u043A\u0438 \u043D\u0430 \u044D\u0442\u043E\u0442 \u0443\u0437\u0435\u043B \u043C\u043E\u0433\u0443\u0442 \u043F\u0435\u0440\u0435\u0441\u0442\u0430\u0442\u044C \u0440\u0430\u0431\u043E\u0442\u0430\u0442\u044C. \u0423\u0434\u0430\u043B\u0438\u0442\u044C \u0435\u0433\u043E block ID? Undo \u043F\u043E\u0437\u0432\u043E\u043B\u044F\u0435\u0442 \u0432\u043E\u0441\u0441\u0442\u0430\u043D\u043E\u0432\u0438\u0442\u044C \u0430\u0434\u0440\u0435\u0441.",
+  "No cached links to this node": "\u0412 \u043A\u044D\u0448\u0435 \u043D\u0435\u0442 \u0441\u0441\u044B\u043B\u043E\u043A \u043D\u0430 \u044D\u0442\u043E\u0442 \u0443\u0437\u0435\u043B"
 };
 
 // src/i18n.ts
@@ -4990,6 +5001,28 @@ function removeNodeAddress(doc, id) {
   const end = endings[node.line]?.index ?? doc.source.length;
   const line = doc.source.slice(start, end).replace(/[ \t]+\^[A-Za-z0-9][A-Za-z0-9-]*[ \t]*$/, "");
   return doc.source.slice(0, start) + line + doc.source.slice(end);
+}
+function nodeBacklinks(app, target, blockId) {
+  const candidates = /* @__PURE__ */ new Set([target.path]);
+  for (const [source, links] of Object.entries(app.metadataCache.resolvedLinks)) {
+    if (links[target.path]) candidates.add(source);
+  }
+  const result = [];
+  for (const path of candidates) {
+    const file = app.vault.getFileByPath(path);
+    if (!file || file.extension !== "md") continue;
+    const cache = app.metadataCache.getFileCache(file);
+    const lines = /* @__PURE__ */ new Set();
+    for (const ref of [...cache?.links ?? [], ...cache?.embeds ?? []]) {
+      const index = ref.link.lastIndexOf("#^");
+      if (index < 0 || ref.link.slice(index + 2) !== blockId) continue;
+      const destination = ref.link.slice(0, index);
+      const resolved = destination ? app.metadataCache.getFirstLinkpathDest(destination, file.path) : file;
+      if (resolved?.path === target.path) lines.add(ref.position.start.line);
+    }
+    for (const line of lines) result.push({ file, line });
+  }
+  return result.sort((a, b) => a.file.path.localeCompare(b.file.path) || a.line - b.line);
 }
 
 // src/hotkeys.ts
@@ -6356,7 +6389,15 @@ var MapSurface = class {
         marker.textContent = "\u{1F517}";
         marker.title = t("Node address: ^") + node.blockId;
         marker.setAttribute("aria-label", marker.title);
-        marker.setAttribute("role", "img");
+        marker.setAttribute("role", "button");
+        marker.tabIndex = 0;
+        marker.addEventListener("keydown", (event) => {
+          if (event.key !== "Enter" && event.key !== " ") return;
+          event.preventDefault();
+          event.stopPropagation();
+          this.select(id);
+          this.options.onAction("node-backlinks", id);
+        });
         el.append(marker);
       }
       if (node.children.length) {
@@ -6833,6 +6874,13 @@ var MapSurface = class {
       event.stopPropagation();
       this.select(id, false, event.shiftKey ? "range" : "toggle");
       this.viewport.focus({ preventScroll: true });
+      return;
+    }
+    if (id && target.closest(".tvm-node-address")) {
+      event.preventDefault();
+      event.stopPropagation();
+      this.select(id);
+      this.options.onAction("node-backlinks", id);
       return;
     }
     const fold2 = target.closest("[data-fold-id]");
@@ -9009,7 +9057,7 @@ var TraceViewMindmap = class extends import_obsidian5.Plugin {
     let observeLinks = true;
     const plugin = this;
     const receiveEphemeral = function(state) {
-      if (observeLinks && this.app === plugin.app && this.file && plugin.shouldOpenMap(this.file) && typeof state?.subpath === "string") {
+      if (observeLinks && this.app === plugin.app && this.file && plugin.opensAsMap(this.file) && typeof state?.subpath === "string") {
         plugin.nativeLinkTargets.set(this, { path: this.file.path, subpath: state.subpath });
       }
       return originalEphemeral.call(this, state);
@@ -9168,7 +9216,7 @@ var TraceViewMindmap = class extends import_obsidian5.Plugin {
     } catch {
     }
   }
-  shouldOpenMap(file) {
+  opensAsMap(file) {
     return this.settings.autoOpen && this.isMap(file) || this.settings.rememberLastMode && this.mapPreferences.has(file.path) && !this.sourcePreferences.has(file.path);
   }
   scheduleAutoOpen(leaf, expectedPath) {
@@ -9180,7 +9228,7 @@ var TraceViewMindmap = class extends import_obsidian5.Plugin {
       const view = leaf.view;
       if (!(view instanceof import_obsidian5.MarkdownView) || !view.file || expectedPath && view.file.path !== expectedPath) return;
       if (this.sourceLeaves.get(leaf) !== view.file.path) this.sourceLeaves.delete(leaf);
-      if (!this.shouldOpenMap(view.file) || this.sourceLeaves.get(leaf) === view.file.path) return;
+      if (!this.opensAsMap(view.file) || this.sourceLeaves.get(leaf) === view.file.path) return;
       this.opening.add(leaf);
       const file = view.file;
       const linkState = this.nativeLinkTargets.get(view);
@@ -9188,7 +9236,7 @@ var TraceViewMindmap = class extends import_obsidian5.Plugin {
       void (async () => {
         try {
           await view.save();
-          if (leaf.view === view && view.file === file && this.shouldOpenMap(file) && this.sourceLeaves.get(leaf) !== file.path) {
+          if (leaf.view === view && view.file === file && this.opensAsMap(file) && this.sourceLeaves.get(leaf) !== file.path) {
             await this.openMap(file, leaf);
             if (linkState?.path === file.path && linkState.subpath && leaf.view instanceof MapView) leaf.view.revealSubpath(linkState.subpath);
           }
@@ -9410,7 +9458,7 @@ var TraceViewMindmap = class extends import_obsidian5.Plugin {
     const parts = (0, import_obsidian5.parseLinktext)(link);
     const file = parts.path ? this.app.metadataCache.getFirstLinkpathDest(parts.path, view.path) : view.file;
     const newTab = event.ctrlKey || event.metaKey || event.button === 1;
-    if (file && (file === view.file || this.shouldOpenMap(file))) {
+    if (file && (file === view.file || this.opensAsMap(file))) {
       const leaf = newTab ? this.app.workspace.getLeaf("tab") : view.leaf;
       await this.openMap(file, leaf);
       if (leaf.view instanceof MapView) leaf.view.revealSubpath(parts.subpath);
@@ -10022,6 +10070,10 @@ var MapView = class extends import_obsidian5.EditableFileView {
       if (!node) return;
       const selection = this.surface?.getSelection() ?? [];
       const ids = selection.includes(id) ? selection : [id];
+      if (action === "node-backlinks") {
+        if (node.blockId && this.file) this.nodeAddressMenu(node);
+        return;
+      }
       if (action === "remove-node-address") {
         if (!node.blockId) return;
         new ConfirmDialog(this.app, t("Remove node address"), t("Links to this node may stop working. Remove its block ID? Undo can restore the address."), async () => {
@@ -10232,6 +10284,27 @@ var MapView = class extends import_obsidian5.EditableFileView {
       this.refreshDraftButton();
     }));
     if (recovered) this.refreshDraftButton();
+  }
+  nodeAddressMenu(node) {
+    const file = this.file;
+    if (!file || !node.blockId) return;
+    const menu = new import_obsidian5.Menu();
+    const refs = nodeBacklinks(this.app, file, node.blockId);
+    if (!refs.length) menu.addItem((item) => item.setTitle(t("No cached links to this node")).setDisabled(true));
+    for (const ref of refs) menu.addItem((item) => item.setTitle(ref.file.basename + " \xB7 " + (ref.line + 1)).setIcon("link").onClick(() => {
+      void (async () => {
+        const doc = parseMap(await this.app.vault.read(ref.file));
+        const target = doc.nodes.find((node2) => node2.line === ref.line);
+        if (target && this.plugin.opensAsMap(ref.file)) await this.plugin.openMap(ref.file, void 0, target.id);
+        else await this.plugin.source(ref.file, ref.line);
+      })().catch((error) => new import_obsidian5.Notice(message(error)));
+    }));
+    menu.addSeparator();
+    menu.addItem((item) => item.setTitle(t("Remove node address")).setIcon("unlink").onClick(() => {
+      void this.action("remove-node-address", node.id);
+    }));
+    const anchor2 = this.contentEl.querySelector(".tvm-node.is-selected .tvm-node-address");
+    this.showMenu(menu, anchor2 ?? this.contentEl);
   }
   async editNodeNote(doc, node) {
     const map = this.file;
