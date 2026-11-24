@@ -9573,7 +9573,7 @@ var TraceViewMindmap = class extends import_obsidian5.Plugin {
         try {
           await view.save();
           if (leaf.view === view && view.file === file && this.opensAsMap(file) && this.sourceLeaves.get(leaf) !== file.path) {
-            await this.openMap(file, leaf);
+            await this.openMap(file, leaf, void 0, true);
             if (linkState?.path === file.path && linkState.subpath && leaf.view instanceof MapView) leaf.view.revealSubpath(linkState.subpath);
           }
         } catch (error) {
@@ -9654,7 +9654,7 @@ var TraceViewMindmap = class extends import_obsidian5.Plugin {
     }
     return this.app.workspace.getActiveFile();
   }
-  async openMap(file, target, nodeId) {
+  async openMap(file, target, nodeId, replaceHistory = false) {
     const existing = this.app.workspace.getLeavesOfType(VIEW).find((leaf2) => leaf2.view.path === file.path);
     const leaf = target ?? existing ?? this.app.workspace.getLeaf("tab");
     if (leaf.view instanceof MapView && leaf.view.surface?.isEditing()) {
@@ -9670,7 +9670,8 @@ var TraceViewMindmap = class extends import_obsidian5.Plugin {
       if (this.mapPreferences.size > 500) this.mapPreferences.delete(this.mapPreferences.values().next().value);
       this.rememberMaps();
     }
-    await leaf.setViewState({ type: VIEW, state: { file: file.path, openNow: true }, active: true });
+    const state = { type: VIEW, state: { file: file.path, openNow: true }, active: true, ...replaceHistory ? { popstate: true } : {} };
+    await leaf.setViewState(state);
     await this.app.workspace.revealLeaf(leaf);
     if (nodeId && leaf.view instanceof MapView) {
       await leaf.view.reload();
@@ -10857,7 +10858,13 @@ var MapView = class extends import_obsidian5.EditableFileView {
     return address.blockId;
   }
   mountEditor(input, tools, path, inline) {
-    const notes = tools.createEl("button", { text: "\u25A4", cls: "tvm-node-note-options", attr: { type: "button", title: t("Multiline note\u2026"), "aria-label": t("Multiline note\u2026") } });
+    const notes = tools.ownerDocument.createElement("button");
+    notes.type = "button";
+    notes.className = "tvm-node-note-options";
+    notes.textContent = "\u25A4";
+    notes.title = t("Multiline note\u2026");
+    notes.setAttribute("aria-label", notes.title);
+    tools.append(notes);
     notes.onclick = () => {
       const rect = notes.getBoundingClientRect();
       void (async () => {

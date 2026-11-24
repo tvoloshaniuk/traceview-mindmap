@@ -690,3 +690,17 @@ test('removing a node address requires confirmation, supports Undo and rejects c
   await assert.rejects(pending.confirm());
   assert.equal(f.source(), source + '- External\n');
 });
+
+
+test('automatic map conversion replaces the current native visit while direct map opening records navigation', async () => {
+  const dom=new JSDOM('',{pretendToBeVisual:true});
+  const f=await loadBundle({autoOpen:true},dom.window),plugin=f.plugin as any,app=f.app as any;
+  app.metadataCache={getFileCache:()=>({})};app.workspace.getLeavesOfType=()=>[];app.workspace.revealLeaf=async()=>{};
+  const file=new f.TFile('Plan.mindmap.md');plugin.isMap=()=>true;
+  const markdown:any=new f.MarkdownView();markdown.file=file;markdown.save=async()=>{};
+  const states:any[]=[];const leaf:any={view:markdown,setViewState:async(state:any)=>states.push(state)};
+  plugin.scheduleAutoOpen(leaf);await new Promise(resolve=>dom.window.setTimeout(resolve,30));
+  assert.equal(states.length,1);assert.equal(states[0].popstate,true);assert.equal(states[0].state.file,file.path);
+  await plugin.openMap(file,leaf);assert.equal(states.length,2);assert.equal(states[1].popstate,undefined);
+  dom.window.close();
+});

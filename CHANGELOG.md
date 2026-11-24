@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.0.33
+
+### Fixed
+
+- Treat automatic conversion from Markdown to map as the same native navigation visit. Back now returns to the previous file instead of reopening the current map after a native embedded-link jump; forward navigation is preserved.
+
+
 ## 1.0.32
 
 ### Changed

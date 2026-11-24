@@ -260,7 +260,7 @@ export default class TraceViewMindmap extends Plugin {
         try {
           await view.save();
           if (leaf.view === view && view.file === file && this.opensAsMap(file) && this.sourceLeaves.get(leaf) !== file.path) {
-            await this.openMap(file, leaf);
+            await this.openMap(file, leaf, undefined, true);
             if (linkState?.path === file.path && linkState.subpath && leaf.view instanceof MapView) leaf.view.revealSubpath(linkState.subpath);
           }
         } catch (error) { new Notice(message(error), 8000); }
@@ -328,7 +328,7 @@ export default class TraceViewMindmap extends Plugin {
     if (view?.path) { const file = this.app.vault.getAbstractFileByPath(view.path); if (file instanceof TFile) return file; }
     return this.app.workspace.getActiveFile();
   }
-  async openMap(file: TFile, target?: WorkspaceLeaf, nodeId?: string): Promise<void> {
+  async openMap(file: TFile, target?: WorkspaceLeaf, nodeId?: string, replaceHistory = false): Promise<void> {
     const existing = this.app.workspace.getLeavesOfType(VIEW).find(leaf => (leaf.view as MapView).path === file.path);
     const leaf = target ?? existing ?? this.app.workspace.getLeaf('tab');
     if (leaf.view instanceof MapView && leaf.view.surface?.isEditing()) { new Notice(t("Save or cancel the node draft.")); leaf.view.surface.focusEditor(); return; }
@@ -338,7 +338,9 @@ export default class TraceViewMindmap extends Plugin {
       if (this.mapPreferences.size > 500) this.mapPreferences.delete(this.mapPreferences.values().next().value!);
       this.rememberMaps();
     }
-    await leaf.setViewState({ type: VIEW, state: { file: file.path, openNow: true }, active: true });
+    // Native link navigation already recorded the previous file. Converting its view is the same visit.
+    const state = { type: VIEW, state: { file: file.path, openNow: true }, active: true, ...(replaceHistory ? { popstate: true } : {}) };
+    await leaf.setViewState(state);
     await this.app.workspace.revealLeaf(leaf);
     if (nodeId && leaf.view instanceof MapView) { await leaf.view.reload(); leaf.view.surface?.reveal(nodeId); }
   }
@@ -1332,7 +1334,9 @@ class MapView extends EditableFileView {
     return address.blockId;
   }
   private mountEditor(input: HTMLTextAreaElement, tools: HTMLElement, path: string, inline: InlineEditor): (() => void) | InlineDriver {
-    const notes = tools.createEl('button', { text: '▤', cls: 'tvm-node-note-options', attr: { type: 'button', title: t("Multiline note…"), 'aria-label': t("Multiline note…") } });
+    const notes = tools.ownerDocument.createElement('button');
+    notes.type = 'button'; notes.className = 'tvm-node-note-options'; notes.textContent = '▤';
+    notes.title = t("Multiline note…"); notes.setAttribute('aria-label', notes.title); tools.append(notes);
     notes.onclick = () => {
       const rect = notes.getBoundingClientRect();
       void (async () => {
