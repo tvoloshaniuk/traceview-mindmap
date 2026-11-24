@@ -1,5 +1,16 @@
 # Changelog
 
+## 1.0.32
+
+### Changed
+
+- Highlight editable embedded-note frames on hover and edit the selected frame in place. Keep the rest of the node visible and muted until editing ends.
+
+### Fixed
+
+- Focus the embedded-note editor rather than the entire surrounding node. Preserve the edited node position through save and subsequent preview layout instead of jumping to the top of a tall node.
+
+
 ## 1.0.31
 
 ### Changed

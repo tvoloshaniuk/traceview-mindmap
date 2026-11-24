@@ -60,6 +60,7 @@ export class MapSurface {
   private destroyed = false;
   private frame: number | null = null;
   private followAfterLayout = false;
+  private preservedEditAnchor?: string;
   private observer: ResizeObserver | null = null;
   private menu: HTMLDivElement | null = null;
   private readonly touches = new Map<number, TouchPoint>();
@@ -71,7 +72,7 @@ export class MapSurface {
   private suppressClickUntil = 0;
   private bounds = { width: 0, height: 0 };
   private mode: MapLayout = 'map';
-  private editing?: { id: string; editor: InlineEditor; original: MapDocument; state: MapViewState; latest?: MapDocument; latestState?: MapViewState };
+  private editing?: { id: string; editor: InlineEditor; original: MapDocument; state: MapViewState; latest?: MapDocument; latestState?: MapViewState; embedded?: { slot: HTMLElement; restore: () => void } };
   private touchHold?: { pointer: number; x: number; y: number; timer: number };
   private lastPress?: { id: string; time: number; x: number; y: number };
   private dragScrollFrame: number | null = null;
@@ -210,8 +211,9 @@ export class MapSurface {
     this.rendered.clear();
     if (!this.editing) this.render();
   }
-  beginEdit(id: string, initial: string, save: (text: string) => Promise<string | undefined>, mount?: InlineOptions['mount'], draft?: MapDocument, onFinish?: () => void, multiline = false): void {
+  beginEdit(id: string, initial: string, save: (text: string) => Promise<string | undefined>, mount?: InlineOptions['mount'], draft?: MapDocument, onFinish?: () => void, multiline = false, embeddedFrame?: HTMLElement): void {
     if (this.editing || !this.doc || this.destroyed) { this.focusEditor(); return; }
+    this.preservedEditAnchor = undefined;
     const original = this.doc, state = this.getState();
     const editor = new InlineEditor(this.container.ownerDocument, initial, {
       allowEmpty: true, multiline,
@@ -224,8 +226,40 @@ export class MapSurface {
         return true;
       },
     });
-    this.editing = { id, editor, original, state };
+    let embedded: {slot: HTMLElement; restore: () => void} | undefined;
+    const content = this.elements.get(id)?.querySelector<HTMLElement>('.tvm-node-content');
+    if (embeddedFrame && content?.contains(embeddedFrame)) {
+      const slot = this.container.ownerDocument.createElement('div'); slot.className = 'tvm-embedded-note-editor';
+      embeddedFrame.before(slot); slot.append(editor.host);
+      const display = embeddedFrame.style.display; embeddedFrame.style.display = 'none';
+      const muted: HTMLElement[] = [], wrappers: HTMLElement[] = [];
+      const dim = (parent: Element) => {
+        for (const child of [...parent.childNodes]) {
+          if (child === slot || child === embeddedFrame) continue;
+          if (child.nodeType === 1) {
+            const element = child as HTMLElement;
+            if (element.contains(slot)) dim(element);
+            else { element.classList.add('tvm-embed-context-muted'); muted.push(element); }
+          } else if (child.nodeType === 3 && child.textContent?.trim()) {
+            const wrapper = this.container.ownerDocument.createElement('span'); wrapper.className = 'tvm-embed-context-muted';
+            child.replaceWith(wrapper); wrapper.append(child); wrappers.push(wrapper);
+          }
+        }
+      };
+      dim(content);
+      embedded = {slot, restore: () => {
+        slot.remove(); embeddedFrame.style.display = display;
+        if (!embeddedFrame.style.length) embeddedFrame.removeAttribute('style');
+        for (const element of muted) {
+          element.classList.remove('tvm-embed-context-muted');
+          if (!element.className) element.removeAttribute('class');
+        }
+        for (const wrapper of wrappers) wrapper.replaceWith(...wrapper.childNodes);
+      }};
+    }
+    this.editing = { id, editor, original, state, embedded };
     this.doc = draft ?? original;
+    if (embedded) this.render();
     this.reveal(id);
     editor.focus(); this.followEditorViewport();
     editor.input.setSelectionRange(editor.input.value.length, editor.input.value.length);
@@ -234,14 +268,17 @@ export class MapSurface {
     const edit = this.editing;
     if (!edit) return;
     this.editing = undefined;
-    edit.editor.dispose();
+    this.followAfterLayout = false;
+    if (edit.editor.multiline) this.preservedEditAnchor = selected ?? edit.id;
+    edit.editor.dispose(); edit.embedded?.restore();
     const state = { ...(edit.latestState ?? edit.state), camera: { ...this.state.camera } };
     this.update(edit.latest ?? edit.original, state);
-    if (selected) this.reveal(selected);
+    if (selected && !edit.editor.multiline) this.reveal(selected);
     else { this.viewport.focus({ preventScroll: true }); this.emitState(); }
   }
 
   setLayout(mode: MapLayout): void {
+    this.preservedEditAnchor = undefined;
     if (this.destroyed || this.mode === mode) return;
     this.mode = mode;
     this.viewport.dataset.layout = mode;
@@ -425,7 +462,7 @@ export class MapSurface {
     if (this.cameraFrame !== null) this.container.ownerDocument.defaultView?.cancelAnimationFrame(this.cameraFrame);
     for (const value of this.rendered.values()) this.options.releaseMarkdown?.(value.content);
     this.rendered.clear();
-    this.editing?.editor.dispose(); this.editing = undefined;
+    this.editing?.editor.dispose(); this.editing?.embedded?.restore(); this.editing = undefined;
     this.clearDrag(); this.cancelMarquee();
     for (const clean of this.cleanup) clean();
     this.cleanup.length = 0;
@@ -600,7 +637,11 @@ export class MapSurface {
     if (!this.cancelMarkdownFrame) this.renderMarkdownBatch();
     if (this.editing) {
       const el = this.elements.get(this.editing.id);
-      if (el) { el.classList.add('is-editing'); el.append(this.editing.editor.host); }
+      if (el) {
+        el.classList.add('is-editing');
+        if (this.editing.embedded) el.classList.add('is-editing-embed');
+        else el.append(this.editing.editor.host);
+      }
     }
     if (!this.visible.length) {
       const empty = this.container.ownerDocument.createElement('div');
@@ -727,6 +768,17 @@ export class MapSurface {
   }
 
   private layout(): void {
+    const id = this.preservedEditAnchor;
+    const before = id ? this.positions.get(id) : undefined;
+    this.layoutNodes();
+    const after = id ? this.positions.get(id) : undefined;
+    if (before && after) {
+      this.state.camera.x += (before.x - after.x) * this.state.camera.scale;
+      this.state.camera.y += (before.y - after.y) * this.state.camera.scale;
+      this.applyCamera();
+    }
+  }
+  private layoutNodes(): void {
     if (!this.doc || this.destroyed) return;
     const height = new Map<string, number>();
     const branchHeight = new Map<string, number>();
@@ -981,12 +1033,19 @@ export class MapSurface {
     const node = this.elements.get(this.editing.id);
     if (!node) return;
     const available = (this.editorArea().height - EDITOR_VIEWPORT_PADDING * 2) / this.state.camera.scale;
-    this.editing.editor.fitHeight(node, available);
+    this.editing.editor.fitHeight(this.editing.embedded?.slot ?? node, available);
   }
 
   private ensureVisible(id: string, center = false): void {
-    const pos = this.positions.get(id);
+    let pos = this.positions.get(id);
     if (!pos) return;
+    const embedded = this.editing?.id === id ? this.editing.embedded : undefined;
+    const node = this.elements.get(id);
+    if (embedded && node) {
+      const rect = embedded.slot.getBoundingClientRect(), parent = node.getBoundingClientRect();
+      pos = {x: pos.x + (rect.left - parent.left) / this.paintScale, y: pos.y + (rect.top - parent.top) / this.paintScale,
+        width: embedded.slot.offsetWidth, height: embedded.slot.offsetHeight};
+    }
     const c = this.state.camera;
     const area = this.editing?.id === id ? this.editorArea() : { left: 0, top: 0, ...this.viewportSize() };
     const size = { width: area.width, height: area.height };
@@ -1011,6 +1070,7 @@ export class MapSurface {
 
   private select(id: string, follow = false, mode: 'single' | 'toggle' | 'range' = 'single'): void {
     if (!this.elements.has(id)) return;
+    this.preservedEditAnchor = undefined;
     if (id !== this.state.selected || mode !== 'single') this.rememberNavigation();
     if (mode === 'range') {
       this.selectionAnchor ??= this.state.selected ?? id;
@@ -1084,7 +1144,7 @@ export class MapSurface {
     }
     const embed = target.closest<HTMLElement>('.markdown-embed.internal-embed');
     const embedLink = embed?.getAttribute('src');
-    if (id && embedLink && !target.closest('button, input, textarea, [contenteditable="true"]') && this.options.onEditEmbed?.(id, embedLink)) {
+    if (id && embedLink && !target.closest('button, input, textarea, [contenteditable="true"]') && this.options.onEditEmbed?.(id, embedLink, embed!)) {
       event.preventDefault(); event.stopPropagation(); this.select(id); return;
     }
     const image = target.closest('img')?.closest('.internal-embed');
@@ -1235,6 +1295,7 @@ export class MapSurface {
   }
 
   private wheel(event: WheelEvent): void {
+    this.preservedEditAnchor = undefined;
     this.stopCoasting();
     if ((event.target as Element).closest('.tvm-inline-editor')) return;
     if (this.menu?.contains(event.target as Node)) return;
@@ -1264,6 +1325,7 @@ export class MapSurface {
   }
 
   private pointerDown(event: PointerEvent): void {
+    this.preservedEditAnchor = undefined;
     this.stopCoasting();
     if ((event.target as Element).closest('.tvm-create-handles, .tvm-create-first')) return;
     if (this.editing && (event.target as Element).closest('.tvm-inline-editor')) return;

@@ -867,3 +867,18 @@ test('node note editing remains a command while the node context menu offers con
   assert.ok(text.includes(i18n.t("Convert to multiline note…")));
   assert.equal(f.host.querySelector('.tvm-node-note-options'),null);
 });
+
+
+test('editing an embedded note preserves and dims its surrounding node content, then restores it', async t => {
+  const f=fixture(t,'- Context ![[Note]] Tail\n',(_text,el)=>{el.innerHTML='<p>Before <span class="markdown-embed internal-embed" src="Note"><strong>Original note</strong></span> After <a>Other link</a></p>';});
+  const content=f.element('Context ![[Note]] Tail').querySelector<HTMLElement>('.tvm-node-content')!;
+  const frame=content.querySelector<HTMLElement>('.markdown-embed')!;const original=content.innerHTML;
+  const id=f.id('Context ![[Note]] Tail');
+  f.surface.beginEdit(id,'Paragraph\n\nSecond',async()=>id,undefined,undefined,undefined,true,frame);
+  assert.ok(f.element('Context ![[Note]] Tail').classList.contains('is-editing-embed'));
+  assert.equal(frame.style.display,'none');assert.ok(content.querySelector('.tvm-inline-editor'));
+  assert.ok(content.querySelector('.tvm-embed-context-muted'));assert.match(content.textContent!,/Before/);assert.match(content.textContent!,/After/);
+  f.host.querySelector<HTMLButtonElement>('.tvm-inline-tools .mod-cta')!.click();await Promise.resolve();await Promise.resolve();
+  assert.equal(f.surface.isEditing(),false);assert.equal(content.innerHTML,original);
+  assert.equal(f.host.querySelector('.tvm-embedded-note-editor'),null);
+});

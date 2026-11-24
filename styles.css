@@ -346,3 +346,8 @@
 .tvm-step-row.is-complete .tvm-step-text { color: var(--text-muted); opacity: .78; }
 .tvm-completed-tasks { margin-top: 12px; }
 .tvm-completed-tasks > summary { cursor: pointer; color: var(--text-muted); padding: 5px 0; }
+
+.tvm-node:not(.is-editing) .tvm-node-content .markdown-embed.internal-embed:hover { outline: 2px solid var(--interactive-accent); outline-offset: 2px; cursor: text; }
+.tvm-node.is-editing.is-editing-embed > .tvm-node-content { display: block; }
+.tvm-embed-context-muted { opacity: .45; pointer-events: none; }
+.tvm-embedded-note-editor { display: block; color: var(--text-normal); cursor: text; }

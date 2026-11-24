@@ -762,12 +762,12 @@ class MapView extends EditableFileView {
           }
         }
       },
-      onEditEmbed: (id, link) => {
+      onEditEmbed: (id, link, frame) => {
         const doc = this.doc, node = doc?.byId.get(id);
         const { path } = parseLinktext(link);
         const file = path ? this.app.metadataCache.getFirstLinkpathDest(path, this.path) : this.file;
         if (!doc || !node || !file || file === this.file || file.extension !== 'md' || this.plugin.isMap(file)) return false;
-        void this.editNodeNote(doc, node, file).catch(error => new Notice(message(error), 8000));
+        void this.editNodeNote(doc, node, file, frame).catch(error => new Notice(message(error), 8000));
         return true;
       },
       onOpenLink: (link, event) => { void this.plugin.openMapLink(link, this, event).catch(error => new Notice(message(error))); },
@@ -1193,13 +1193,18 @@ class MapView extends EditableFileView {
       }
     }, map.path, 'single-line').open();
   }
-  private async editNodeNote(doc: MapDocument, node: MapNode, targetNote?: TFile): Promise<void> {
+  private async editNodeNote(doc: MapDocument, node: MapNode, targetNote?: TFile, targetFrame?: HTMLElement): Promise<void> {
     const map = this.file;
     if (!map) return;
     const embeds = [...node.text.matchAll(/!\[\[([^\]#|]+)(?:\|[^\]]*)?\]\]/g)];
     const notes = embeds.map(match => this.app.metadataCache.getFirstLinkpathDest(match[1], map.path))
       .filter((file): file is TFile => file !== null && file !== map && file.extension === 'md');
     const note = targetNote ?? notes.reverse().find(file => !this.plugin.isMap(file) || / - note [a-f\d]{8}$/.test(file.basename));
+    const frame = targetFrame ?? (note ? [...this.contentEl.querySelectorAll<HTMLElement>('.tvm-node-content .markdown-embed[src]')].find(element => {
+      if (element.closest<HTMLElement>('.tvm-node')?.dataset.nodeId !== node.id) return false;
+      const {path} = parseLinktext(element.getAttribute('src')!);
+      return this.app.metadataCache.getFirstLinkpathDest(path, map.path) === note;
+    }) : undefined);
     const original = note ? await this.app.vault.read(note) : '';
     const Native = await prepareNativeEditor(this.app);
     if (this.file !== map || this.doc !== doc || !this.surface || this.surface.isEditing()) return;
@@ -1237,7 +1242,7 @@ class MapView extends EditableFileView {
           if (this.editor === editor) this.editor = previousEditor;
         } };
       } catch (error) { this.removeChild(owner); throw error; }
-    }, undefined, undefined, true);
+    }, undefined, undefined, true, frame);
   }
   private menu(anchor: HTMLElement): void {
     const menu = new Menu();

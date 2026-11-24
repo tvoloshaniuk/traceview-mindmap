@@ -6216,11 +6216,12 @@ var MapSurface = class {
     this.rendered.clear();
     if (!this.editing) this.render();
   }
-  beginEdit(id, initial, save, mount, draft, onFinish, multiline = false) {
+  beginEdit(id, initial, save, mount, draft, onFinish, multiline = false, embeddedFrame) {
     if (this.editing || !this.doc || this.destroyed) {
       this.focusEditor();
       return;
     }
+    this.preservedEditAnchor = void 0;
     const original = this.doc, state = this.getState();
     const editor = new InlineEditor(this.container.ownerDocument, initial, {
       allowEmpty: true,
@@ -6243,8 +6244,50 @@ var MapSurface = class {
         return true;
       }
     });
-    this.editing = { id, editor, original, state };
+    let embedded;
+    const content = this.elements.get(id)?.querySelector(".tvm-node-content");
+    if (embeddedFrame && content?.contains(embeddedFrame)) {
+      const slot = this.container.ownerDocument.createElement("div");
+      slot.className = "tvm-embedded-note-editor";
+      embeddedFrame.before(slot);
+      slot.append(editor.host);
+      const display = embeddedFrame.style.display;
+      embeddedFrame.style.display = "none";
+      const muted = [], wrappers = [];
+      const dim = (parent) => {
+        for (const child of [...parent.childNodes]) {
+          if (child === slot || child === embeddedFrame) continue;
+          if (child.nodeType === 1) {
+            const element = child;
+            if (element.contains(slot)) dim(element);
+            else {
+              element.classList.add("tvm-embed-context-muted");
+              muted.push(element);
+            }
+          } else if (child.nodeType === 3 && child.textContent?.trim()) {
+            const wrapper = this.container.ownerDocument.createElement("span");
+            wrapper.className = "tvm-embed-context-muted";
+            child.replaceWith(wrapper);
+            wrapper.append(child);
+            wrappers.push(wrapper);
+          }
+        }
+      };
+      dim(content);
+      embedded = { slot, restore: () => {
+        slot.remove();
+        embeddedFrame.style.display = display;
+        if (!embeddedFrame.style.length) embeddedFrame.removeAttribute("style");
+        for (const element of muted) {
+          element.classList.remove("tvm-embed-context-muted");
+          if (!element.className) element.removeAttribute("class");
+        }
+        for (const wrapper of wrappers) wrapper.replaceWith(...wrapper.childNodes);
+      } };
+    }
+    this.editing = { id, editor, original, state, embedded };
     this.doc = draft ?? original;
+    if (embedded) this.render();
     this.reveal(id);
     editor.focus();
     this.followEditorViewport();
@@ -6254,16 +6297,20 @@ var MapSurface = class {
     const edit = this.editing;
     if (!edit) return;
     this.editing = void 0;
+    this.followAfterLayout = false;
+    if (edit.editor.multiline) this.preservedEditAnchor = selected ?? edit.id;
     edit.editor.dispose();
+    edit.embedded?.restore();
     const state = { ...edit.latestState ?? edit.state, camera: { ...this.state.camera } };
     this.update(edit.latest ?? edit.original, state);
-    if (selected) this.reveal(selected);
+    if (selected && !edit.editor.multiline) this.reveal(selected);
     else {
       this.viewport.focus({ preventScroll: true });
       this.emitState();
     }
   }
   setLayout(mode) {
+    this.preservedEditAnchor = void 0;
     if (this.destroyed || this.mode === mode) return;
     this.mode = mode;
     this.viewport.dataset.layout = mode;
@@ -6442,6 +6489,7 @@ var MapSurface = class {
     for (const value of this.rendered.values()) this.options.releaseMarkdown?.(value.content);
     this.rendered.clear();
     this.editing?.editor.dispose();
+    this.editing?.embedded?.restore();
     this.editing = void 0;
     this.clearDrag();
     this.cancelMarquee();
@@ -6627,7 +6675,8 @@ var MapSurface = class {
       const el = this.elements.get(this.editing.id);
       if (el) {
         el.classList.add("is-editing");
-        el.append(this.editing.editor.host);
+        if (this.editing.embedded) el.classList.add("is-editing-embed");
+        else el.append(this.editing.editor.host);
       }
     }
     if (!this.visible.length) {
@@ -6746,6 +6795,17 @@ var MapSurface = class {
     });
   }
   layout() {
+    const id = this.preservedEditAnchor;
+    const before = id ? this.positions.get(id) : void 0;
+    this.layoutNodes();
+    const after = id ? this.positions.get(id) : void 0;
+    if (before && after) {
+      this.state.camera.x += (before.x - after.x) * this.state.camera.scale;
+      this.state.camera.y += (before.y - after.y) * this.state.camera.scale;
+      this.applyCamera();
+    }
+  }
+  layoutNodes() {
     if (!this.doc || this.destroyed) return;
     const height = /* @__PURE__ */ new Map();
     const branchHeight = /* @__PURE__ */ new Map();
@@ -6990,11 +7050,22 @@ var MapSurface = class {
     const node = this.elements.get(this.editing.id);
     if (!node) return;
     const available = (this.editorArea().height - EDITOR_VIEWPORT_PADDING * 2) / this.state.camera.scale;
-    this.editing.editor.fitHeight(node, available);
+    this.editing.editor.fitHeight(this.editing.embedded?.slot ?? node, available);
   }
   ensureVisible(id, center = false) {
-    const pos = this.positions.get(id);
+    let pos = this.positions.get(id);
     if (!pos) return;
+    const embedded = this.editing?.id === id ? this.editing.embedded : void 0;
+    const node = this.elements.get(id);
+    if (embedded && node) {
+      const rect = embedded.slot.getBoundingClientRect(), parent = node.getBoundingClientRect();
+      pos = {
+        x: pos.x + (rect.left - parent.left) / this.paintScale,
+        y: pos.y + (rect.top - parent.top) / this.paintScale,
+        width: embedded.slot.offsetWidth,
+        height: embedded.slot.offsetHeight
+      };
+    }
     const c = this.state.camera;
     const area = this.editing?.id === id ? this.editorArea() : { left: 0, top: 0, ...this.viewportSize() };
     const size = { width: area.width, height: area.height };
@@ -7018,6 +7089,7 @@ var MapSurface = class {
   }
   select(id, follow = false, mode = "single") {
     if (!this.elements.has(id)) return;
+    this.preservedEditAnchor = void 0;
     if (id !== this.state.selected || mode !== "single") this.rememberNavigation();
     if (mode === "range") {
       this.selectionAnchor ?? (this.selectionAnchor = this.state.selected ?? id);
@@ -7110,7 +7182,7 @@ var MapSurface = class {
     }
     const embed = target.closest(".markdown-embed.internal-embed");
     const embedLink = embed?.getAttribute("src");
-    if (id && embedLink && !target.closest('button, input, textarea, [contenteditable="true"]') && this.options.onEditEmbed?.(id, embedLink)) {
+    if (id && embedLink && !target.closest('button, input, textarea, [contenteditable="true"]') && this.options.onEditEmbed?.(id, embedLink, embed)) {
       event.preventDefault();
       event.stopPropagation();
       this.select(id);
@@ -7306,6 +7378,7 @@ var MapSurface = class {
     return true;
   }
   wheel(event) {
+    this.preservedEditAnchor = void 0;
     this.stopCoasting();
     if (event.target.closest(".tvm-inline-editor")) return;
     if (this.menu?.contains(event.target)) return;
@@ -7332,6 +7405,7 @@ var MapSurface = class {
     this.applyCamera(true);
   }
   pointerDown(event) {
+    this.preservedEditAnchor = void 0;
     this.stopCoasting();
     if (event.target.closest(".tvm-create-handles, .tvm-create-first")) return;
     if (this.editing && event.target.closest(".tvm-inline-editor")) return;
@@ -10091,12 +10165,12 @@ var MapView = class extends import_obsidian5.EditableFileView {
           }
         }
       },
-      onEditEmbed: (id, link) => {
+      onEditEmbed: (id, link, frame) => {
         const doc = this.doc, node = doc?.byId.get(id);
         const { path } = (0, import_obsidian5.parseLinktext)(link);
         const file = path ? this.app.metadataCache.getFirstLinkpathDest(path, this.path) : this.file;
         if (!doc || !node || !file || file === this.file || file.extension !== "md" || this.plugin.isMap(file)) return false;
-        void this.editNodeNote(doc, node, file).catch((error) => new import_obsidian5.Notice(message(error), 8e3));
+        void this.editNodeNote(doc, node, file, frame).catch((error) => new import_obsidian5.Notice(message(error), 8e3));
         return true;
       },
       onOpenLink: (link, event) => {
@@ -10636,12 +10710,17 @@ var MapView = class extends import_obsidian5.EditableFileView {
       }
     }, map.path, "single-line").open();
   }
-  async editNodeNote(doc, node, targetNote) {
+  async editNodeNote(doc, node, targetNote, targetFrame) {
     const map = this.file;
     if (!map) return;
     const embeds = [...node.text.matchAll(/!\[\[([^\]#|]+)(?:\|[^\]]*)?\]\]/g)];
     const notes = embeds.map((match) => this.app.metadataCache.getFirstLinkpathDest(match[1], map.path)).filter((file) => file !== null && file !== map && file.extension === "md");
     const note = targetNote ?? notes.reverse().find((file) => !this.plugin.isMap(file) || / - note [a-f\d]{8}$/.test(file.basename));
+    const frame = targetFrame ?? (note ? [...this.contentEl.querySelectorAll(".tvm-node-content .markdown-embed[src]")].find((element) => {
+      if (element.closest(".tvm-node")?.dataset.nodeId !== node.id) return false;
+      const { path } = (0, import_obsidian5.parseLinktext)(element.getAttribute("src"));
+      return this.app.metadataCache.getFirstLinkpathDest(path, map.path) === note;
+    }) : void 0);
     const original = note ? await this.app.vault.read(note) : "";
     const Native = await prepareNativeEditor(this.app);
     if (this.file !== map || this.doc !== doc || !this.surface || this.surface.isEditing()) return;
@@ -10683,7 +10762,7 @@ var MapView = class extends import_obsidian5.EditableFileView {
         this.removeChild(owner);
         throw error;
       }
-    }, void 0, void 0, true);
+    }, void 0, void 0, true, frame);
   }
   menu(anchor2) {
     const menu = new import_obsidian5.Menu();
