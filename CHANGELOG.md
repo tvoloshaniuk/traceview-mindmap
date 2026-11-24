@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.27
+
+### Changed
+
+- Disable pattern syntax, map file patterns and the reset button while automatic map opening is off. Keep the saved patterns and restore the controls immediately when it is enabled.
+
 ## 1.0.26
 
 ### Added

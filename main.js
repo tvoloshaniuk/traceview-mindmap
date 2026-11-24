@@ -11054,8 +11054,13 @@ var SettingsTab = class extends import_obsidian5.PluginSettingTab {
       });
     });
     this.containerEl.createEl("h3", { text: t("Opening notes") });
+    const patternSettings = [];
+    const updatePatternAvailability = () => {
+      for (const setting of patternSettings) setting.setDisabled(!this.plugin.settings.autoOpen);
+    };
     new import_obsidian5.Setting(this.containerEl).setName(t("Automatically open matching notes as maps")).setDesc(t("Matching notes reopen as maps, overriding remembered Markdown. Open as Markdown keeps the current tab in Markdown.")).addToggle((toggle) => toggle.setValue(this.plugin.settings.autoOpen).onChange(async (value) => {
       this.plugin.settings.autoOpen = value;
+      updatePatternAvailability();
       await this.plugin.saveData(this.plugin.settings);
     }));
     new import_obsidian5.Setting(this.containerEl).setName(t("Remember last note view")).setDesc(t("Reopen notes in their last map or Markdown view. Automatic map opening takes priority. Stores up to 500 map paths on this device.")).addToggle((toggle) => toggle.setValue(this.plugin.settings.rememberLastMode).onChange(async (value) => {
@@ -11084,7 +11089,7 @@ var SettingsTab = class extends import_obsidian5.PluginSettingTab {
       });
     };
     let syntaxInput, patternsInput;
-    new import_obsidian5.Setting(this.containerEl).setName(t("Pattern syntax")).addDropdown((dropdown) => {
+    const syntaxSetting = new import_obsidian5.Setting(this.containerEl).setName(t("Pattern syntax")).addDropdown((dropdown) => {
       syntaxInput = dropdown.selectEl;
       dropdown.addOption("glob", t("Glob (wildcards)")).addOption("regex", t("Regular expressions"));
       dropdown.setValue(patternMode).onChange((value) => {
@@ -11109,6 +11114,8 @@ var SettingsTab = class extends import_obsidian5.PluginSettingTab {
       savePatterns();
     }));
     patternsSetting.settingEl.addClass("tvm-pattern-setting");
+    patternSettings.push(syntaxSetting, patternsSetting);
+    updatePatternAvailability();
     this.containerEl.createEl("p", { cls: "setting-item-description", text: t("The mindmap: true property also identifies a map. Invalid input keeps the last saved rules active. Patterns are shared by automatic opening, map search and step lists.") });
     if (import_obsidian5.Platform?.isWin) new import_obsidian5.Setting(this.containerEl).setName(t("Automatically restore large maps")).setDesc(t("At startup the active map waits for Obsidian to respond steadily. \u201COpen now\u201D skips the wait.")).addToggle((toggle) => toggle.setValue(this.plugin.settings.autoRestoreLargeMaps).onChange(async (value) => {
       this.plugin.settings.autoRestoreLargeMaps = value;

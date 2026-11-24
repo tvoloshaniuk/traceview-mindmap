@@ -1630,7 +1630,9 @@ class SettingsTab extends PluginSettingTab {
       dropdown.setValue(this.plugin.settings.nodeEditor).onChange(async value => { this.plugin.settings.nodeEditor = value === 'text' ? 'text' : 'native'; await this.plugin.saveData(this.plugin.settings); });
     });
     this.containerEl.createEl('h3', {text: t("Opening notes")});
-    new Setting(this.containerEl).setName(t("Automatically open matching notes as maps")).setDesc(t("Matching notes reopen as maps, overriding remembered Markdown. Open as Markdown keeps the current tab in Markdown.")).addToggle(toggle => toggle.setValue(this.plugin.settings.autoOpen).onChange(async value => { this.plugin.settings.autoOpen = value; await this.plugin.saveData(this.plugin.settings); }));
+    const patternSettings: Setting[] = [];
+    const updatePatternAvailability = () => { for (const setting of patternSettings) setting.setDisabled(!this.plugin.settings.autoOpen); };
+    new Setting(this.containerEl).setName(t("Automatically open matching notes as maps")).setDesc(t("Matching notes reopen as maps, overriding remembered Markdown. Open as Markdown keeps the current tab in Markdown.")).addToggle(toggle => toggle.setValue(this.plugin.settings.autoOpen).onChange(async value => { this.plugin.settings.autoOpen = value; updatePatternAvailability(); await this.plugin.saveData(this.plugin.settings); }));
     new Setting(this.containerEl).setName(t("Remember last note view")).setDesc(t("Reopen notes in their last map or Markdown view. Automatic map opening takes priority. Stores up to 500 map paths on this device.")).addToggle(toggle => toggle.setValue(this.plugin.settings.rememberLastMode).onChange(async value => {
       this.plugin.settings.rememberLastMode = value;
       await this.plugin.saveData(this.plugin.settings);
@@ -1654,7 +1656,7 @@ class SettingsTab extends PluginSettingTab {
       });
     };
     let syntaxInput: HTMLSelectElement, patternsInput: HTMLTextAreaElement;
-    new Setting(this.containerEl).setName(t("Pattern syntax")).addDropdown(dropdown => {
+    const syntaxSetting = new Setting(this.containerEl).setName(t("Pattern syntax")).addDropdown(dropdown => {
       syntaxInput = dropdown.selectEl;
       dropdown.addOption('glob', t("Glob (wildcards)")).addOption('regex', t("Regular expressions"));
       dropdown.setValue(patternMode).onChange(value => { patternMode = value as PatternMode; savePatterns(); });
@@ -1670,6 +1672,8 @@ class SettingsTab extends PluginSettingTab {
       savePatterns();
     }));
     patternsSetting.settingEl.addClass('tvm-pattern-setting');
+    patternSettings.push(syntaxSetting, patternsSetting);
+    updatePatternAvailability();
     this.containerEl.createEl('p', { cls: 'setting-item-description', text: t("The mindmap: true property also identifies a map. Invalid input keeps the last saved rules active. Patterns are shared by automatic opening, map search and step lists.") });
     if (Platform?.isWin) new Setting(this.containerEl).setName(t("Automatically restore large maps")).setDesc(t("At startup the active map waits for Obsidian to respond steadily. “Open now” skips the wait.")).addToggle(toggle => toggle.setValue(this.plugin.settings.autoRestoreLargeMaps).onChange(async value => {
       this.plugin.settings.autoRestoreLargeMaps = value;
