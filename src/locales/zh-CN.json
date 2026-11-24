@@ -345,5 +345,10 @@
   "Matching notes reopen as maps, overriding remembered Markdown. Open as Markdown keeps the current tab in Markdown.": "匹配的笔记会重新以地图打开，优先于记住的Markdown视图。打开为Markdown会在当前标签页保留Markdown。",
   "Remove node address": "移除节点地址",
   "Links to this node may stop working. Remove its block ID? Undo can restore the address.": "指向此节点的链接可能失效。移除其块ID吗？可以通过撤销恢复地址。",
-  "No cached links to this node": "缓存中没有指向此节点的链接"
+  "No cached links to this node": "缓存中没有指向此节点的链接",
+  "General": "常规",
+  "Opening notes": "打开笔记",
+  "Planning lists": "任务列表",
+  "Map appearance": "地图外观",
+  "Navigation": "导航"
 }

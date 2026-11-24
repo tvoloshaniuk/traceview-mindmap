@@ -345,5 +345,10 @@
   "Matching notes reopen as maps, overriding remembered Markdown. Open as Markdown keeps the current tab in Markdown.": "Відповідні нотатки знову відкриваються картою, попри запам’ятований Markdown. Команда відкриття Markdown зберігає поточну вкладку в Markdown.",
   "Remove node address": "Прибрати адресу вузла",
   "Links to this node may stop working. Remove its block ID? Undo can restore the address.": "Посилання на цей вузол можуть перестати працювати. Видалити його block ID? Undo дозволяє відновити адресу.",
-  "No cached links to this node": "У кеші немає посилань на цей вузол"
+  "No cached links to this node": "У кеші немає посилань на цей вузол",
+  "General": "Загальне",
+  "Opening notes": "Відкриття нотаток",
+  "Planning lists": "Списки задач",
+  "Map appearance": "Вигляд карти",
+  "Navigation": "Навігація"
 }

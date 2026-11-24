@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.25
+
+### Changed
+
+- Group plugin settings into General, Opening notes, Planning lists, Map appearance, Navigation and Map hotkeys sections.
+
 ## 1.0.24
 
 ### Fixed

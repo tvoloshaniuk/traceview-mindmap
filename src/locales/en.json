@@ -345,5 +345,10 @@
   "Matching notes reopen as maps, overriding remembered Markdown. Open as Markdown keeps the current tab in Markdown.": "Matching notes reopen as maps, overriding remembered Markdown. Open as Markdown keeps the current tab in Markdown.",
   "Remove node address": "Remove node address",
   "Links to this node may stop working. Remove its block ID? Undo can restore the address.": "Links to this node may stop working. Remove its block ID? Undo can restore the address.",
-  "No cached links to this node": "No cached links to this node"
+  "No cached links to this node": "No cached links to this node",
+  "General": "General",
+  "Opening notes": "Opening notes",
+  "Planning lists": "Planning lists",
+  "Map appearance": "Map appearance",
+  "Navigation": "Navigation"
 }

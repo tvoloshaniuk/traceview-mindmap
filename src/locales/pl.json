@@ -345,5 +345,10 @@
   "Matching notes reopen as maps, overriding remembered Markdown. Open as Markdown keeps the current tab in Markdown.": "Pasujące notatki ponownie otwierają się jako mapy, pomimo zapamiętanego Markdown. Otwórz jako Markdown zachowuje Markdown w bieżącej karcie.",
   "Remove node address": "Usuń adres węzła",
   "Links to this node may stop working. Remove its block ID? Undo can restore the address.": "Odnośniki do tego węzła mogą przestać działać. Usunąć identyfikator bloku? Cofnij pozwala przywrócić adres.",
-  "No cached links to this node": "Brak odnośników do tego węzła w pamięci podręcznej"
+  "No cached links to this node": "Brak odnośników do tego węzła w pamięci podręcznej",
+  "General": "Ogólne",
+  "Opening notes": "Otwieranie notatek",
+  "Planning lists": "Listy zadań",
+  "Map appearance": "Wygląd mapy",
+  "Navigation": "Nawigacja"
 }

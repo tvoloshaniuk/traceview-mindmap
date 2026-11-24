@@ -1590,6 +1590,7 @@ class SettingsTab extends PluginSettingTab {
         new Notice(t("Default settings restored. Restart Obsidian to apply the language."));
       }, { label: t("Restore defaults"), focusConfirm: false }).open();
     });
+    this.containerEl.createEl('h3', {text: t("General")});
     new Setting(this.containerEl).setName(t("Language")).setDesc(t("Automatic follows Obsidian. Restart Obsidian to apply a language change.")).addDropdown(dropdown => {
       dropdown.addOption('auto', t("Automatic (Obsidian)"));
       for (const [code, name] of Object.entries(LANGUAGES)) dropdown.addOption(code, name);
@@ -1604,6 +1605,7 @@ class SettingsTab extends PluginSettingTab {
       dropdown.addOption('native', t("Native Obsidian")).addOption('text', t("Text input"));
       dropdown.setValue(this.plugin.settings.nodeEditor).onChange(async value => { this.plugin.settings.nodeEditor = value === 'text' ? 'text' : 'native'; await this.plugin.saveData(this.plugin.settings); });
     });
+    this.containerEl.createEl('h3', {text: t("Opening notes")});
     new Setting(this.containerEl).setName(t("Automatically open matching notes as maps")).setDesc(t("Matching notes reopen as maps, overriding remembered Markdown. Open as Markdown keeps the current tab in Markdown.")).addToggle(toggle => toggle.setValue(this.plugin.settings.autoOpen).onChange(async value => { this.plugin.settings.autoOpen = value; await this.plugin.saveData(this.plugin.settings); }));
     new Setting(this.containerEl).setName(t("Remember last note view")).setDesc(t("Reopen notes in their last map or Markdown view. Automatic map opening takes priority. Stores up to 500 map paths on this device.")).addToggle(toggle => toggle.setValue(this.plugin.settings.rememberLastMode).onChange(async value => {
       this.plugin.settings.rememberLastMode = value;
@@ -1650,6 +1652,7 @@ class SettingsTab extends PluginSettingTab {
       for (const leaf of this.app.workspace.getLeavesOfType(VIEW)) (leaf.view as MapView).refreshRestoreWait();
       await this.plugin.saveData(this.plugin.settings);
     }));
+    this.containerEl.createEl('h3', {text: t("Planning lists")});
     for (const [key, label] of [['queueExcludedMaps', t("Exclude maps from planning")],
       ['queueExcludedBranches', t("Exclude branches from planning")]] as const) {
       new Setting(this.containerEl).setName(label).setDesc(t("One term per line. Leave blank to show all."))
@@ -1659,6 +1662,12 @@ class SettingsTab extends PluginSettingTab {
           this.plugin.refreshQueues();
         }));
     }
+    for (const [key, label] of [['queueTaskMarker', t("Show [ ] in list text")], ['queueStepTag', t("Show #step in list text")]] as const) {
+      new Setting(this.containerEl).setName(label).setDesc(t("Affects only Steps · Deadlines · QA display. Note text and completion controls are preserved.")).addToggle(toggle => toggle.setValue(this.plugin.settings[key]).onChange(async value => {
+        this.plugin.settings[key] = value; await this.plugin.saveData(this.plugin.settings); this.plugin.refreshQueues();
+      }));
+    }
+    this.containerEl.createEl('h3', {text: t("Map appearance")});
     if (!Platform.isMobile) {
       new Setting(this.containerEl).setName(t("Map toolbar")).addDropdown(dropdown => {
         for (const [mode, label] of toolbarModes()) dropdown.addOption(mode, label);
@@ -1671,6 +1680,11 @@ class SettingsTab extends PluginSettingTab {
         for (const leaf of this.app.workspace.getLeavesOfType(VIEW)) (leaf.view as MapView).surface?.invalidateMarkdown();
         await this.plugin.saveData(this.plugin.settings);
       }));
+    new Setting(this.containerEl).setName(t("Map node width")).setDesc(t("Applies immediately to all open maps. Outline and Table keep their own widths.")).addDropdown(dropdown => {
+      for (const [mode, label] of widthModes()) dropdown.addOption(mode, label);
+      dropdown.setValue(this.plugin.settings.widthMode).onChange(value => { void this.plugin.setWidthMode(value as WidthMode).catch(error => new Notice(message(error))); });
+    });
+    this.containerEl.createEl('h3', {text: t("Navigation")});
     new Setting(this.containerEl).setName(t("Navigate across branches with arrow keys")).addToggle(toggle =>
       toggle.setValue(this.plugin.settings.arrowAcrossBranches).onChange(async value => {
         this.plugin.settings.arrowAcrossBranches = value;
@@ -1682,15 +1696,6 @@ class SettingsTab extends PluginSettingTab {
         await this.plugin.saveData(this.plugin.settings);
       }));
     new Setting(this.containerEl).setName(t("Left arrow collapses the branch first")).setDesc(t("Off: go straight to the parent. On: collapse the open branch first, then press again to select the parent.")).addToggle(toggle => toggle.setValue(this.plugin.settings.collapseOnLeft).onChange(async value => { this.plugin.settings.collapseOnLeft = value; await this.plugin.saveData(this.plugin.settings); }));
-    for (const [key, label] of [['queueTaskMarker', t("Show [ ] in list text")], ['queueStepTag', t("Show #step in list text")]] as const) {
-      new Setting(this.containerEl).setName(label).setDesc(t("Affects only Steps · Deadlines · QA display. Note text and completion controls are preserved.")).addToggle(toggle => toggle.setValue(this.plugin.settings[key]).onChange(async value => {
-        this.plugin.settings[key] = value; await this.plugin.saveData(this.plugin.settings); this.plugin.refreshQueues();
-      }));
-    }
-    new Setting(this.containerEl).setName(t("Map node width")).setDesc(t("Applies immediately to all open maps. Outline and Table keep their own widths.")).addDropdown(dropdown => {
-      for (const [mode, label] of widthModes()) dropdown.addOption(mode, label);
-      dropdown.setValue(this.plugin.settings.widthMode).onChange(value => { void this.plugin.setWidthMode(value as WidthMode).catch(error => new Notice(message(error))); });
-    });
     this.containerEl.createEl('p', { text: t("Folds and camera are saved on this device. Viewing does not rewrite Markdown or add hidden IDs. Windows and Android can keep different view states.") });
     this.containerEl.createEl('p', { text: t("Native input uses the Obsidian editor, text input uses the Editor API. For commands requiring a full Markdown view, use ⋯ → Open text in editor.") });
     this.containerEl.createEl('h3', { text: t("Map hotkeys") });

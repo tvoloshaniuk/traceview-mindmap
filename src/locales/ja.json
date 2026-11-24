@@ -345,5 +345,10 @@
   "Matching notes reopen as maps, overriding remembered Markdown. Open as Markdown keeps the current tab in Markdown.": "一致するノートは記憶されたMarkdown表示より優先してマップで開きます。Markdownで開く操作は現在のタブで維持されます。",
   "Remove node address": "ノードのアドレスを削除",
   "Links to this node may stop working. Remove its block ID? Undo can restore the address.": "このノードへのリンクが機能しなくなる可能性があります。ブロックIDを削除しますか？元に戻す操作でアドレスを復元できます。",
-  "No cached links to this node": "このノードへのリンクはキャッシュにありません"
+  "No cached links to this node": "このノードへのリンクはキャッシュにありません",
+  "General": "一般",
+  "Opening notes": "ノートを開く",
+  "Planning lists": "タスクリスト",
+  "Map appearance": "マップの表示",
+  "Navigation": "ナビゲーション"
 }

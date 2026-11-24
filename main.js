@@ -704,7 +704,12 @@ var en_default = {
   "Matching notes reopen as maps, overriding remembered Markdown. Open as Markdown keeps the current tab in Markdown.": "Matching notes reopen as maps, overriding remembered Markdown. Open as Markdown keeps the current tab in Markdown.",
   "Remove node address": "Remove node address",
   "Links to this node may stop working. Remove its block ID? Undo can restore the address.": "Links to this node may stop working. Remove its block ID? Undo can restore the address.",
-  "No cached links to this node": "No cached links to this node"
+  "No cached links to this node": "No cached links to this node",
+  General: "General",
+  "Opening notes": "Opening notes",
+  "Planning lists": "Planning lists",
+  "Map appearance": "Map appearance",
+  Navigation: "Navigation"
 };
 
 // src/locales/uk.json
@@ -1055,7 +1060,12 @@ var uk_default = {
   "Matching notes reopen as maps, overriding remembered Markdown. Open as Markdown keeps the current tab in Markdown.": "\u0412\u0456\u0434\u043F\u043E\u0432\u0456\u0434\u043D\u0456 \u043D\u043E\u0442\u0430\u0442\u043A\u0438 \u0437\u043D\u043E\u0432\u0443 \u0432\u0456\u0434\u043A\u0440\u0438\u0432\u0430\u044E\u0442\u044C\u0441\u044F \u043A\u0430\u0440\u0442\u043E\u044E, \u043F\u043E\u043F\u0440\u0438 \u0437\u0430\u043F\u0430\u043C\u2019\u044F\u0442\u043E\u0432\u0430\u043D\u0438\u0439 Markdown. \u041A\u043E\u043C\u0430\u043D\u0434\u0430 \u0432\u0456\u0434\u043A\u0440\u0438\u0442\u0442\u044F Markdown \u0437\u0431\u0435\u0440\u0456\u0433\u0430\u0454 \u043F\u043E\u0442\u043E\u0447\u043D\u0443 \u0432\u043A\u043B\u0430\u0434\u043A\u0443 \u0432 Markdown.",
   "Remove node address": "\u041F\u0440\u0438\u0431\u0440\u0430\u0442\u0438 \u0430\u0434\u0440\u0435\u0441\u0443 \u0432\u0443\u0437\u043B\u0430",
   "Links to this node may stop working. Remove its block ID? Undo can restore the address.": "\u041F\u043E\u0441\u0438\u043B\u0430\u043D\u043D\u044F \u043D\u0430 \u0446\u0435\u0439 \u0432\u0443\u0437\u043E\u043B \u043C\u043E\u0436\u0443\u0442\u044C \u043F\u0435\u0440\u0435\u0441\u0442\u0430\u0442\u0438 \u043F\u0440\u0430\u0446\u044E\u0432\u0430\u0442\u0438. \u0412\u0438\u0434\u0430\u043B\u0438\u0442\u0438 \u0439\u043E\u0433\u043E block ID? Undo \u0434\u043E\u0437\u0432\u043E\u043B\u044F\u0454 \u0432\u0456\u0434\u043D\u043E\u0432\u0438\u0442\u0438 \u0430\u0434\u0440\u0435\u0441\u0443.",
-  "No cached links to this node": "\u0423 \u043A\u0435\u0448\u0456 \u043D\u0435\u043C\u0430\u0454 \u043F\u043E\u0441\u0438\u043B\u0430\u043D\u044C \u043D\u0430 \u0446\u0435\u0439 \u0432\u0443\u0437\u043E\u043B"
+  "No cached links to this node": "\u0423 \u043A\u0435\u0448\u0456 \u043D\u0435\u043C\u0430\u0454 \u043F\u043E\u0441\u0438\u043B\u0430\u043D\u044C \u043D\u0430 \u0446\u0435\u0439 \u0432\u0443\u0437\u043E\u043B",
+  General: "\u0417\u0430\u0433\u0430\u043B\u044C\u043D\u0435",
+  "Opening notes": "\u0412\u0456\u0434\u043A\u0440\u0438\u0442\u0442\u044F \u043D\u043E\u0442\u0430\u0442\u043E\u043A",
+  "Planning lists": "\u0421\u043F\u0438\u0441\u043A\u0438 \u0437\u0430\u0434\u0430\u0447",
+  "Map appearance": "\u0412\u0438\u0433\u043B\u044F\u0434 \u043A\u0430\u0440\u0442\u0438",
+  Navigation: "\u041D\u0430\u0432\u0456\u0433\u0430\u0446\u0456\u044F"
 };
 
 // src/locales/pl.json
@@ -1406,7 +1416,12 @@ var pl_default = {
   "Matching notes reopen as maps, overriding remembered Markdown. Open as Markdown keeps the current tab in Markdown.": "Pasuj\u0105ce notatki ponownie otwieraj\u0105 si\u0119 jako mapy, pomimo zapami\u0119tanego Markdown. Otw\xF3rz jako Markdown zachowuje Markdown w bie\u017C\u0105cej karcie.",
   "Remove node address": "Usu\u0144 adres w\u0119z\u0142a",
   "Links to this node may stop working. Remove its block ID? Undo can restore the address.": "Odno\u015Bniki do tego w\u0119z\u0142a mog\u0105 przesta\u0107 dzia\u0142a\u0107. Usun\u0105\u0107 identyfikator bloku? Cofnij pozwala przywr\xF3ci\u0107 adres.",
-  "No cached links to this node": "Brak odno\u015Bnik\xF3w do tego w\u0119z\u0142a w pami\u0119ci podr\u0119cznej"
+  "No cached links to this node": "Brak odno\u015Bnik\xF3w do tego w\u0119z\u0142a w pami\u0119ci podr\u0119cznej",
+  General: "Og\xF3lne",
+  "Opening notes": "Otwieranie notatek",
+  "Planning lists": "Listy zada\u0144",
+  "Map appearance": "Wygl\u0105d mapy",
+  Navigation: "Nawigacja"
 };
 
 // src/locales/de.json
@@ -1757,7 +1772,12 @@ var de_default = {
   "Matching notes reopen as maps, overriding remembered Markdown. Open as Markdown keeps the current tab in Markdown.": "Passende Notizen \xF6ffnen erneut als Karte, auch nach Markdown. Als Markdown \xF6ffnen beh\xE4lt Markdown im aktuellen Tab bei.",
   "Remove node address": "Knotenadresse entfernen",
   "Links to this node may stop working. Remove its block ID? Undo can restore the address.": "Links zu diesem Knoten funktionieren m\xF6glicherweise nicht mehr. Block-ID entfernen? R\xFCckg\xE4ngig kann die Adresse wiederherstellen.",
-  "No cached links to this node": "Keine zwischengespeicherten Links zu diesem Knoten"
+  "No cached links to this node": "Keine zwischengespeicherten Links zu diesem Knoten",
+  General: "Allgemein",
+  "Opening notes": "Notizen \xF6ffnen",
+  "Planning lists": "Aufgabenlisten",
+  "Map appearance": "Kartendarstellung",
+  Navigation: "Navigation"
 };
 
 // src/locales/es.json
@@ -2108,7 +2128,12 @@ var es_default = {
   "Matching notes reopen as maps, overriding remembered Markdown. Open as Markdown keeps the current tab in Markdown.": "Las notas coincidentes vuelven a abrirse como mapas, incluso tras Markdown. Abrir como Markdown mantiene Markdown en la pesta\xF1a actual.",
   "Remove node address": "Eliminar direcci\xF3n del nodo",
   "Links to this node may stop working. Remove its block ID? Undo can restore the address.": "Los enlaces a este nodo podr\xEDan dejar de funcionar. \xBFEliminar su ID de bloque? Deshacer permite restaurar la direcci\xF3n.",
-  "No cached links to this node": "No hay enlaces en cach\xE9 a este nodo"
+  "No cached links to this node": "No hay enlaces en cach\xE9 a este nodo",
+  General: "General",
+  "Opening notes": "Apertura de notas",
+  "Planning lists": "Listas de tareas",
+  "Map appearance": "Apariencia del mapa",
+  Navigation: "Navegaci\xF3n"
 };
 
 // src/locales/fr.json
@@ -2459,7 +2484,12 @@ var fr_default = {
   "Matching notes reopen as maps, overriding remembered Markdown. Open as Markdown keeps the current tab in Markdown.": "Les notes correspondantes se rouvrent en carte, m\xEAme apr\xE8s Markdown. Ouvrir en Markdown conserve Markdown dans l\u2019onglet actuel.",
   "Remove node address": "Supprimer l\u2019adresse du n\u0153ud",
   "Links to this node may stop working. Remove its block ID? Undo can restore the address.": "Les liens vers ce n\u0153ud peuvent cesser de fonctionner. Supprimer son identifiant de bloc ? Annuler permet de restaurer l\u2019adresse.",
-  "No cached links to this node": "Aucun lien en cache vers ce n\u0153ud"
+  "No cached links to this node": "Aucun lien en cache vers ce n\u0153ud",
+  General: "G\xE9n\xE9ral",
+  "Opening notes": "Ouverture des notes",
+  "Planning lists": "Listes de t\xE2ches",
+  "Map appearance": "Apparence de la carte",
+  Navigation: "Navigation"
 };
 
 // src/locales/pt-BR.json
@@ -2810,7 +2840,12 @@ var pt_BR_default = {
   "Matching notes reopen as maps, overriding remembered Markdown. Open as Markdown keeps the current tab in Markdown.": "Notas correspondentes reabrem como mapas, mesmo ap\xF3s Markdown. Abrir como Markdown mant\xE9m Markdown na aba atual.",
   "Remove node address": "Remover endere\xE7o do n\xF3",
   "Links to this node may stop working. Remove its block ID? Undo can restore the address.": "Links para este n\xF3 podem parar de funcionar. Remover o ID do bloco? Desfazer permite restaurar o endere\xE7o.",
-  "No cached links to this node": "Nenhum link em cache para este n\xF3"
+  "No cached links to this node": "Nenhum link em cache para este n\xF3",
+  General: "Geral",
+  "Opening notes": "Abertura de notas",
+  "Planning lists": "Listas de tarefas",
+  "Map appearance": "Apar\xEAncia do mapa",
+  Navigation: "Navega\xE7\xE3o"
 };
 
 // src/locales/zh-CN.json
@@ -3161,7 +3196,12 @@ var zh_CN_default = {
   "Matching notes reopen as maps, overriding remembered Markdown. Open as Markdown keeps the current tab in Markdown.": "\u5339\u914D\u7684\u7B14\u8BB0\u4F1A\u91CD\u65B0\u4EE5\u5730\u56FE\u6253\u5F00\uFF0C\u4F18\u5148\u4E8E\u8BB0\u4F4F\u7684Markdown\u89C6\u56FE\u3002\u6253\u5F00\u4E3AMarkdown\u4F1A\u5728\u5F53\u524D\u6807\u7B7E\u9875\u4FDD\u7559Markdown\u3002",
   "Remove node address": "\u79FB\u9664\u8282\u70B9\u5730\u5740",
   "Links to this node may stop working. Remove its block ID? Undo can restore the address.": "\u6307\u5411\u6B64\u8282\u70B9\u7684\u94FE\u63A5\u53EF\u80FD\u5931\u6548\u3002\u79FB\u9664\u5176\u5757ID\u5417\uFF1F\u53EF\u4EE5\u901A\u8FC7\u64A4\u9500\u6062\u590D\u5730\u5740\u3002",
-  "No cached links to this node": "\u7F13\u5B58\u4E2D\u6CA1\u6709\u6307\u5411\u6B64\u8282\u70B9\u7684\u94FE\u63A5"
+  "No cached links to this node": "\u7F13\u5B58\u4E2D\u6CA1\u6709\u6307\u5411\u6B64\u8282\u70B9\u7684\u94FE\u63A5",
+  General: "\u5E38\u89C4",
+  "Opening notes": "\u6253\u5F00\u7B14\u8BB0",
+  "Planning lists": "\u4EFB\u52A1\u5217\u8868",
+  "Map appearance": "\u5730\u56FE\u5916\u89C2",
+  Navigation: "\u5BFC\u822A"
 };
 
 // src/locales/ja.json
@@ -3512,7 +3552,12 @@ var ja_default = {
   "Matching notes reopen as maps, overriding remembered Markdown. Open as Markdown keeps the current tab in Markdown.": "\u4E00\u81F4\u3059\u308B\u30CE\u30FC\u30C8\u306F\u8A18\u61B6\u3055\u308C\u305FMarkdown\u8868\u793A\u3088\u308A\u512A\u5148\u3057\u3066\u30DE\u30C3\u30D7\u3067\u958B\u304D\u307E\u3059\u3002Markdown\u3067\u958B\u304F\u64CD\u4F5C\u306F\u73FE\u5728\u306E\u30BF\u30D6\u3067\u7DAD\u6301\u3055\u308C\u307E\u3059\u3002",
   "Remove node address": "\u30CE\u30FC\u30C9\u306E\u30A2\u30C9\u30EC\u30B9\u3092\u524A\u9664",
   "Links to this node may stop working. Remove its block ID? Undo can restore the address.": "\u3053\u306E\u30CE\u30FC\u30C9\u3078\u306E\u30EA\u30F3\u30AF\u304C\u6A5F\u80FD\u3057\u306A\u304F\u306A\u308B\u53EF\u80FD\u6027\u304C\u3042\u308A\u307E\u3059\u3002\u30D6\u30ED\u30C3\u30AFID\u3092\u524A\u9664\u3057\u307E\u3059\u304B\uFF1F\u5143\u306B\u623B\u3059\u64CD\u4F5C\u3067\u30A2\u30C9\u30EC\u30B9\u3092\u5FA9\u5143\u3067\u304D\u307E\u3059\u3002",
-  "No cached links to this node": "\u3053\u306E\u30CE\u30FC\u30C9\u3078\u306E\u30EA\u30F3\u30AF\u306F\u30AD\u30E3\u30C3\u30B7\u30E5\u306B\u3042\u308A\u307E\u305B\u3093"
+  "No cached links to this node": "\u3053\u306E\u30CE\u30FC\u30C9\u3078\u306E\u30EA\u30F3\u30AF\u306F\u30AD\u30E3\u30C3\u30B7\u30E5\u306B\u3042\u308A\u307E\u305B\u3093",
+  General: "\u4E00\u822C",
+  "Opening notes": "\u30CE\u30FC\u30C8\u3092\u958B\u304F",
+  "Planning lists": "\u30BF\u30B9\u30AF\u30EA\u30B9\u30C8",
+  "Map appearance": "\u30DE\u30C3\u30D7\u306E\u8868\u793A",
+  Navigation: "\u30CA\u30D3\u30B2\u30FC\u30B7\u30E7\u30F3"
 };
 
 // src/locales/ko.json
@@ -3863,7 +3908,12 @@ var ko_default = {
   "Matching notes reopen as maps, overriding remembered Markdown. Open as Markdown keeps the current tab in Markdown.": "\uC77C\uCE58\uD558\uB294 \uB178\uD2B8\uB294 \uAE30\uC5B5\uB41C Markdown \uBCF4\uAE30\uBCF4\uB2E4 \uC9C0\uB3C4\uB85C \uC5F4\uAE30\uAC00 \uC6B0\uC120\uD569\uB2C8\uB2E4. Markdown\uC73C\uB85C \uC5F4\uBA74 \uD604\uC7AC \uD0ED\uC740 Markdown\uC73C\uB85C \uC720\uC9C0\uB429\uB2C8\uB2E4.",
   "Remove node address": "\uB178\uB4DC \uC8FC\uC18C \uC81C\uAC70",
   "Links to this node may stop working. Remove its block ID? Undo can restore the address.": "\uC774 \uB178\uB4DC\uB85C \uC5F0\uACB0\uB418\uB294 \uB9C1\uD06C\uAC00 \uC791\uB3D9\uD558\uC9C0 \uC54A\uC744 \uC218 \uC788\uC2B5\uB2C8\uB2E4. \uBE14\uB85D ID\uB97C \uC81C\uAC70\uD560\uAE4C\uC694? \uC2E4\uD589 \uCDE8\uC18C\uB85C \uC8FC\uC18C\uB97C \uBCF5\uC6D0\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4.",
-  "No cached links to this node": "\uC774 \uB178\uB4DC\uB85C \uC5F0\uACB0\uB418\uB294 \uCE90\uC2DC\uB41C \uB9C1\uD06C\uAC00 \uC5C6\uC2B5\uB2C8\uB2E4"
+  "No cached links to this node": "\uC774 \uB178\uB4DC\uB85C \uC5F0\uACB0\uB418\uB294 \uCE90\uC2DC\uB41C \uB9C1\uD06C\uAC00 \uC5C6\uC2B5\uB2C8\uB2E4",
+  General: "\uC77C\uBC18",
+  "Opening notes": "\uB178\uD2B8 \uC5F4\uAE30",
+  "Planning lists": "\uC791\uC5C5 \uBAA9\uB85D",
+  "Map appearance": "\uC9C0\uB3C4 \uD45C\uC2DC",
+  Navigation: "\uD0D0\uC0C9"
 };
 
 // src/locales/ru.json
@@ -4214,7 +4264,12 @@ var ru_default = {
   "Matching notes reopen as maps, overriding remembered Markdown. Open as Markdown keeps the current tab in Markdown.": "\u041F\u043E\u0434\u0445\u043E\u0434\u044F\u0449\u0438\u0435 \u0437\u0430\u043C\u0435\u0442\u043A\u0438 \u0441\u043D\u043E\u0432\u0430 \u043E\u0442\u043A\u0440\u044B\u0432\u0430\u044E\u0442\u0441\u044F \u043A\u0430\u0440\u0442\u043E\u0439 \u043D\u0435\u0437\u0430\u0432\u0438\u0441\u0438\u043C\u043E \u043E\u0442 \u0441\u043E\u0445\u0440\u0430\u043D\u0451\u043D\u043D\u043E\u0433\u043E Markdown. \u041A\u043E\u043C\u0430\u043D\u0434\u0430 \u043E\u0442\u043A\u0440\u044B\u0442\u0438\u044F Markdown \u043E\u0441\u0442\u0430\u0432\u043B\u044F\u0435\u0442 \u0442\u0435\u043A\u0443\u0449\u0443\u044E \u0432\u043A\u043B\u0430\u0434\u043A\u0443 \u0432 Markdown.",
   "Remove node address": "\u0423\u0431\u0440\u0430\u0442\u044C \u0430\u0434\u0440\u0435\u0441 \u0443\u0437\u043B\u0430",
   "Links to this node may stop working. Remove its block ID? Undo can restore the address.": "\u0421\u0441\u044B\u043B\u043A\u0438 \u043D\u0430 \u044D\u0442\u043E\u0442 \u0443\u0437\u0435\u043B \u043C\u043E\u0433\u0443\u0442 \u043F\u0435\u0440\u0435\u0441\u0442\u0430\u0442\u044C \u0440\u0430\u0431\u043E\u0442\u0430\u0442\u044C. \u0423\u0434\u0430\u043B\u0438\u0442\u044C \u0435\u0433\u043E block ID? Undo \u043F\u043E\u0437\u0432\u043E\u043B\u044F\u0435\u0442 \u0432\u043E\u0441\u0441\u0442\u0430\u043D\u043E\u0432\u0438\u0442\u044C \u0430\u0434\u0440\u0435\u0441.",
-  "No cached links to this node": "\u0412 \u043A\u044D\u0448\u0435 \u043D\u0435\u0442 \u0441\u0441\u044B\u043B\u043E\u043A \u043D\u0430 \u044D\u0442\u043E\u0442 \u0443\u0437\u0435\u043B"
+  "No cached links to this node": "\u0412 \u043A\u044D\u0448\u0435 \u043D\u0435\u0442 \u0441\u0441\u044B\u043B\u043E\u043A \u043D\u0430 \u044D\u0442\u043E\u0442 \u0443\u0437\u0435\u043B",
+  General: "\u041E\u0431\u0449\u0438\u0435",
+  "Opening notes": "\u041E\u0442\u043A\u0440\u044B\u0442\u0438\u0435 \u0437\u0430\u043C\u0435\u0442\u043E\u043A",
+  "Planning lists": "\u0421\u043F\u0438\u0441\u043A\u0438 \u0437\u0430\u0434\u0430\u0447",
+  "Map appearance": "\u0412\u0438\u0434 \u043A\u0430\u0440\u0442\u044B",
+  Navigation: "\u041D\u0430\u0432\u0438\u0433\u0430\u0446\u0438\u044F"
 };
 
 // src/i18n.ts
@@ -10921,6 +10976,7 @@ var SettingsTab = class extends import_obsidian5.PluginSettingTab {
         new import_obsidian5.Notice(t("Default settings restored. Restart Obsidian to apply the language."));
       }, { label: t("Restore defaults"), focusConfirm: false }).open();
     });
+    this.containerEl.createEl("h3", { text: t("General") });
     new import_obsidian5.Setting(this.containerEl).setName(t("Language")).setDesc(t("Automatic follows Obsidian. Restart Obsidian to apply a language change.")).addDropdown((dropdown) => {
       dropdown.addOption("auto", t("Automatic (Obsidian)"));
       for (const [code, name] of Object.entries(LANGUAGES)) dropdown.addOption(code, name);
@@ -10938,6 +10994,7 @@ var SettingsTab = class extends import_obsidian5.PluginSettingTab {
         await this.plugin.saveData(this.plugin.settings);
       });
     });
+    this.containerEl.createEl("h3", { text: t("Opening notes") });
     new import_obsidian5.Setting(this.containerEl).setName(t("Automatically open matching notes as maps")).setDesc(t("Matching notes reopen as maps, overriding remembered Markdown. Open as Markdown keeps the current tab in Markdown.")).addToggle((toggle) => toggle.setValue(this.plugin.settings.autoOpen).onChange(async (value) => {
       this.plugin.settings.autoOpen = value;
       await this.plugin.saveData(this.plugin.settings);
@@ -10999,6 +11056,7 @@ var SettingsTab = class extends import_obsidian5.PluginSettingTab {
       for (const leaf of this.app.workspace.getLeavesOfType(VIEW)) leaf.view.refreshRestoreWait();
       await this.plugin.saveData(this.plugin.settings);
     }));
+    this.containerEl.createEl("h3", { text: t("Planning lists") });
     for (const [key, label2] of [
       ["queueExcludedMaps", t("Exclude maps from planning")],
       ["queueExcludedBranches", t("Exclude branches from planning")]
@@ -11009,6 +11067,14 @@ var SettingsTab = class extends import_obsidian5.PluginSettingTab {
         this.plugin.refreshQueues();
       }));
     }
+    for (const [key, label2] of [["queueTaskMarker", t("Show [ ] in list text")], ["queueStepTag", t("Show #step in list text")]]) {
+      new import_obsidian5.Setting(this.containerEl).setName(label2).setDesc(t("Affects only Steps \xB7 Deadlines \xB7 QA display. Note text and completion controls are preserved.")).addToggle((toggle) => toggle.setValue(this.plugin.settings[key]).onChange(async (value) => {
+        this.plugin.settings[key] = value;
+        await this.plugin.saveData(this.plugin.settings);
+        this.plugin.refreshQueues();
+      }));
+    }
+    this.containerEl.createEl("h3", { text: t("Map appearance") });
     if (!import_obsidian5.Platform.isMobile) {
       new import_obsidian5.Setting(this.containerEl).setName(t("Map toolbar")).addDropdown((dropdown) => {
         for (const [mode, label2] of toolbarModes()) dropdown.addOption(mode, label2);
@@ -11020,6 +11086,13 @@ var SettingsTab = class extends import_obsidian5.PluginSettingTab {
       for (const leaf of this.app.workspace.getLeavesOfType(VIEW)) leaf.view.surface?.invalidateMarkdown();
       await this.plugin.saveData(this.plugin.settings);
     }));
+    new import_obsidian5.Setting(this.containerEl).setName(t("Map node width")).setDesc(t("Applies immediately to all open maps. Outline and Table keep their own widths.")).addDropdown((dropdown) => {
+      for (const [mode, label2] of widthModes()) dropdown.addOption(mode, label2);
+      dropdown.setValue(this.plugin.settings.widthMode).onChange((value) => {
+        void this.plugin.setWidthMode(value).catch((error) => new import_obsidian5.Notice(message(error)));
+      });
+    });
+    this.containerEl.createEl("h3", { text: t("Navigation") });
     new import_obsidian5.Setting(this.containerEl).setName(t("Navigate across branches with arrow keys")).addToggle((toggle) => toggle.setValue(this.plugin.settings.arrowAcrossBranches).onChange(async (value) => {
       this.plugin.settings.arrowAcrossBranches = value;
       await this.plugin.saveData(this.plugin.settings);
@@ -11032,19 +11105,6 @@ var SettingsTab = class extends import_obsidian5.PluginSettingTab {
       this.plugin.settings.collapseOnLeft = value;
       await this.plugin.saveData(this.plugin.settings);
     }));
-    for (const [key, label2] of [["queueTaskMarker", t("Show [ ] in list text")], ["queueStepTag", t("Show #step in list text")]]) {
-      new import_obsidian5.Setting(this.containerEl).setName(label2).setDesc(t("Affects only Steps \xB7 Deadlines \xB7 QA display. Note text and completion controls are preserved.")).addToggle((toggle) => toggle.setValue(this.plugin.settings[key]).onChange(async (value) => {
-        this.plugin.settings[key] = value;
-        await this.plugin.saveData(this.plugin.settings);
-        this.plugin.refreshQueues();
-      }));
-    }
-    new import_obsidian5.Setting(this.containerEl).setName(t("Map node width")).setDesc(t("Applies immediately to all open maps. Outline and Table keep their own widths.")).addDropdown((dropdown) => {
-      for (const [mode, label2] of widthModes()) dropdown.addOption(mode, label2);
-      dropdown.setValue(this.plugin.settings.widthMode).onChange((value) => {
-        void this.plugin.setWidthMode(value).catch((error) => new import_obsidian5.Notice(message(error)));
-      });
-    });
     this.containerEl.createEl("p", { text: t("Folds and camera are saved on this device. Viewing does not rewrite Markdown or add hidden IDs. Windows and Android can keep different view states.") });
     this.containerEl.createEl("p", { text: t("Native input uses the Obsidian editor, text input uses the Editor API. For commands requiring a full Markdown view, use \u22EF \u2192 Open text in editor.") });
     this.containerEl.createEl("h3", { text: t("Map hotkeys") });

@@ -345,5 +345,10 @@
   "Matching notes reopen as maps, overriding remembered Markdown. Open as Markdown keeps the current tab in Markdown.": "Passende Notizen öffnen erneut als Karte, auch nach Markdown. Als Markdown öffnen behält Markdown im aktuellen Tab bei.",
   "Remove node address": "Knotenadresse entfernen",
   "Links to this node may stop working. Remove its block ID? Undo can restore the address.": "Links zu diesem Knoten funktionieren möglicherweise nicht mehr. Block-ID entfernen? Rückgängig kann die Adresse wiederherstellen.",
-  "No cached links to this node": "Keine zwischengespeicherten Links zu diesem Knoten"
+  "No cached links to this node": "Keine zwischengespeicherten Links zu diesem Knoten",
+  "General": "Allgemein",
+  "Opening notes": "Notizen öffnen",
+  "Planning lists": "Aufgabenlisten",
+  "Map appearance": "Kartendarstellung",
+  "Navigation": "Navigation"
 }
