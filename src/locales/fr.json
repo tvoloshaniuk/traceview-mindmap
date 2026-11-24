@@ -326,7 +326,6 @@
   "Mark incomplete": "Marquer comme non terminé",
   "Invalid saved map patterns. Default patterns are active.": "Motifs enregistrés invalides. Les règles par défaut sont actives.",
   "Automatically open matching notes as maps": "Ouvrir automatiquement les notes correspondantes en cartes",
-  "Applies to notes matching the patterns below. Opening source Markdown explicitly keeps that note in Markdown mode.": "Pour les notes correspondant aux motifs ci-dessous. Ouvrir explicitement le Markdown source conserve ce mode.",
   "Invalid pattern on line {line}: {error}": "Motif invalide à la ligne {line} : {error}",
   "Patterns saved.": "Motifs enregistrés.",
   "Pattern syntax": "Syntaxe des motifs",
@@ -340,5 +339,8 @@
   "Restore default settings": "Rétablir les paramètres par défaut",
   "Restore defaults": "Rétablir",
   "Reset plugin preferences, shortcuts and map patterns? Device-local view states and saved notes are retained. Restart Obsidian to apply the language.": "Rétablir les paramètres, raccourcis et motifs de cartes ? Les vues locales et les notes enregistrées sont conservées. Redémarrez Obsidian pour appliquer la langue.",
-  "Default settings restored. Restart Obsidian to apply the language.": "Paramètres par défaut rétablis. Redémarrez Obsidian pour appliquer la langue."
+  "Default settings restored. Restart Obsidian to apply the language.": "Paramètres par défaut rétablis. Redémarrez Obsidian pour appliquer la langue.",
+  "Remember last note view": "Mémoriser la dernière vue des notes",
+  "Reopen notes in their last map or Markdown view. Automatic map opening takes priority. Stores up to 500 map paths on this device.": "Rouvrir les notes dans leur dernière vue carte ou Markdown. L’ouverture automatique des cartes est prioritaire. Stocke jusqu’à 500 chemins sur cet appareil.",
+  "Matching notes reopen as maps, overriding remembered Markdown. Open as Markdown keeps the current tab in Markdown.": "Les notes correspondantes se rouvrent en carte, même après Markdown. Ouvrir en Markdown conserve Markdown dans l’onglet actuel."
 }

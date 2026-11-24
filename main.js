@@ -685,7 +685,6 @@ var en_default = {
   "Mark incomplete": "Mark incomplete",
   "Invalid saved map patterns. Default patterns are active.": "Invalid saved map patterns. Default patterns are active.",
   "Automatically open matching notes as maps": "Automatically open matching notes as maps",
-  "Applies to notes matching the patterns below. Opening source Markdown explicitly keeps that note in Markdown mode.": "Applies to notes matching the patterns below. Opening source Markdown explicitly keeps that note in Markdown mode.",
   "Invalid pattern on line {line}: {error}": "Invalid pattern on line {line}: {error}",
   "Patterns saved.": "Patterns saved.",
   "Pattern syntax": "Pattern syntax",
@@ -699,7 +698,10 @@ var en_default = {
   "Restore default settings": "Restore default settings",
   "Restore defaults": "Restore defaults",
   "Reset plugin preferences, shortcuts and map patterns? Device-local view states and saved notes are retained. Restart Obsidian to apply the language.": "Reset plugin preferences, shortcuts and map patterns? Device-local view states and saved notes are retained. Restart Obsidian to apply the language.",
-  "Default settings restored. Restart Obsidian to apply the language.": "Default settings restored. Restart Obsidian to apply the language."
+  "Default settings restored. Restart Obsidian to apply the language.": "Default settings restored. Restart Obsidian to apply the language.",
+  "Remember last note view": "Remember last note view",
+  "Reopen notes in their last map or Markdown view. Automatic map opening takes priority. Stores up to 500 map paths on this device.": "Reopen notes in their last map or Markdown view. Automatic map opening takes priority. Stores up to 500 map paths on this device.",
+  "Matching notes reopen as maps, overriding remembered Markdown. Open as Markdown keeps the current tab in Markdown.": "Matching notes reopen as maps, overriding remembered Markdown. Open as Markdown keeps the current tab in Markdown."
 };
 
 // src/locales/uk.json
@@ -1031,7 +1033,6 @@ var uk_default = {
   "Mark incomplete": "\u041F\u043E\u0437\u043D\u0430\u0447\u0438\u0442\u0438 \u043D\u0435\u0432\u0438\u043A\u043E\u043D\u0430\u043D\u0438\u043C",
   "Invalid saved map patterns. Default patterns are active.": "\u0417\u0431\u0435\u0440\u0435\u0436\u0435\u043D\u0456 \u043F\u0430\u0442\u0435\u0440\u043D\u0438 \u043D\u0435\u043A\u043E\u0440\u0435\u043A\u0442\u043D\u0456. \u0414\u0456\u044E\u0442\u044C \u043F\u043E\u0447\u0430\u0442\u043A\u043E\u0432\u0456 \u043F\u0440\u0430\u0432\u0438\u043B\u0430.",
   "Automatically open matching notes as maps": "\u0410\u0432\u0442\u043E\u043C\u0430\u0442\u0438\u0447\u043D\u043E \u0432\u0456\u0434\u043A\u0440\u0438\u0432\u0430\u0442\u0438 \u0432\u0456\u0434\u043F\u043E\u0432\u0456\u0434\u043D\u0456 \u043D\u043E\u0442\u0430\u0442\u043A\u0438 \u044F\u043A \u043A\u0430\u0440\u0442\u0438",
-  "Applies to notes matching the patterns below. Opening source Markdown explicitly keeps that note in Markdown mode.": "\u0414\u043B\u044F \u043D\u043E\u0442\u0430\u0442\u043E\u043A, \u0449\u043E \u0432\u0456\u0434\u043F\u043E\u0432\u0456\u0434\u0430\u044E\u0442\u044C \u043F\u0440\u0430\u0432\u0438\u043B\u0430\u043C \u043D\u0438\u0436\u0447\u0435. \u042F\u0432\u043D\u0435 \u0432\u0456\u0434\u043A\u0440\u0438\u0442\u0442\u044F \u0432\u0438\u0445\u0456\u0434\u043D\u043E\u0433\u043E Markdown \u0437\u0430\u043B\u0438\u0448\u0430\u0454 \u043D\u043E\u0442\u0430\u0442\u043A\u0443 \u0432 \u0440\u0435\u0436\u0438\u043C\u0456 Markdown.",
   "Invalid pattern on line {line}: {error}": "\u041D\u0435\u043A\u043E\u0440\u0435\u043A\u0442\u043D\u0438\u0439 \u043F\u0430\u0442\u0435\u0440\u043D \u0443 \u0440\u044F\u0434\u043A\u0443 {line}: {error}",
   "Patterns saved.": "\u041F\u0430\u0442\u0435\u0440\u043D\u0438 \u0437\u0431\u0435\u0440\u0435\u0436\u0435\u043D\u043E.",
   "Pattern syntax": "\u0421\u0438\u043D\u0442\u0430\u043A\u0441\u0438\u0441 \u043F\u0430\u0442\u0435\u0440\u043D\u0456\u0432",
@@ -1045,7 +1046,10 @@ var uk_default = {
   "Restore default settings": "\u0412\u0456\u0434\u043D\u043E\u0432\u0438\u0442\u0438 \u043F\u043E\u0447\u0430\u0442\u043A\u043E\u0432\u0456 \u043D\u0430\u043B\u0430\u0448\u0442\u0443\u0432\u0430\u043D\u043D\u044F",
   "Restore defaults": "\u0412\u0456\u0434\u043D\u043E\u0432\u0438\u0442\u0438",
   "Reset plugin preferences, shortcuts and map patterns? Device-local view states and saved notes are retained. Restart Obsidian to apply the language.": "\u0412\u0456\u0434\u043D\u043E\u0432\u0438\u0442\u0438 \u043F\u043E\u0447\u0430\u0442\u043A\u043E\u0432\u0456 \u043D\u0430\u043B\u0430\u0448\u0442\u0443\u0432\u0430\u043D\u043D\u044F \u043F\u043B\u0430\u0433\u0456\u043D\u0430, \u0433\u0430\u0440\u044F\u0447\u0456 \u043A\u043B\u0430\u0432\u0456\u0448\u0456 \u0439 \u043F\u0430\u0442\u0435\u0440\u043D\u0438 \u043A\u0430\u0440\u0442? \u041B\u043E\u043A\u0430\u043B\u044C\u043D\u0456 \u0441\u0442\u0430\u043D\u0438 \u043F\u0435\u0440\u0435\u0433\u043B\u044F\u0434\u0443 \u0442\u0430 \u0437\u0431\u0435\u0440\u0435\u0436\u0435\u043D\u0456 \u043D\u043E\u0442\u0430\u0442\u043A\u0438 \u0437\u0430\u043B\u0438\u0448\u0430\u0442\u044C\u0441\u044F. \u0414\u043B\u044F \u0437\u0430\u0441\u0442\u043E\u0441\u0443\u0432\u0430\u043D\u043D\u044F \u043C\u043E\u0432\u0438 \u043F\u0435\u0440\u0435\u0437\u0430\u043F\u0443\u0441\u0442\u0438 Obsidian.",
-  "Default settings restored. Restart Obsidian to apply the language.": "\u041F\u043E\u0447\u0430\u0442\u043A\u043E\u0432\u0456 \u043D\u0430\u043B\u0430\u0448\u0442\u0443\u0432\u0430\u043D\u043D\u044F \u0432\u0456\u0434\u043D\u043E\u0432\u043B\u0435\u043D\u043E. \u041F\u0435\u0440\u0435\u0437\u0430\u043F\u0443\u0441\u0442\u0438 Obsidian, \u0449\u043E\u0431 \u0437\u0430\u0441\u0442\u043E\u0441\u0443\u0432\u0430\u0442\u0438 \u043C\u043E\u0432\u0443."
+  "Default settings restored. Restart Obsidian to apply the language.": "\u041F\u043E\u0447\u0430\u0442\u043A\u043E\u0432\u0456 \u043D\u0430\u043B\u0430\u0448\u0442\u0443\u0432\u0430\u043D\u043D\u044F \u0432\u0456\u0434\u043D\u043E\u0432\u043B\u0435\u043D\u043E. \u041F\u0435\u0440\u0435\u0437\u0430\u043F\u0443\u0441\u0442\u0438 Obsidian, \u0449\u043E\u0431 \u0437\u0430\u0441\u0442\u043E\u0441\u0443\u0432\u0430\u0442\u0438 \u043C\u043E\u0432\u0443.",
+  "Remember last note view": "\u041F\u0430\u043C\u2019\u044F\u0442\u0430\u0442\u0438 \u043E\u0441\u0442\u0430\u043D\u043D\u0456\u0439 \u0440\u0435\u0436\u0438\u043C \u043D\u043E\u0442\u0430\u0442\u043A\u0438",
+  "Reopen notes in their last map or Markdown view. Automatic map opening takes priority. Stores up to 500 map paths on this device.": "\u0412\u0456\u0434\u043A\u0440\u0438\u0432\u0430\u0442\u0438 \u043D\u043E\u0442\u0430\u0442\u043A\u0438 \u0432 \u043E\u0441\u0442\u0430\u043D\u043D\u044C\u043E\u043C\u0443 \u0440\u0435\u0436\u0438\u043C\u0456 \u043A\u0430\u0440\u0442\u0438 \u0430\u0431\u043E Markdown. \u0410\u0432\u0442\u043E\u0432\u0456\u0434\u043A\u0440\u0438\u0442\u0442\u044F \u043A\u0430\u0440\u0442 \u043C\u0430\u0454 \u043F\u0440\u0456\u043E\u0440\u0438\u0442\u0435\u0442. \u0417\u0431\u0435\u0440\u0456\u0433\u0430\u0454 \u0434\u043E 500 \u0448\u043B\u044F\u0445\u0456\u0432 \u043A\u0430\u0440\u0442 \u043D\u0430 \u0446\u044C\u043E\u043C\u0443 \u043F\u0440\u0438\u0441\u0442\u0440\u043E\u0457.",
+  "Matching notes reopen as maps, overriding remembered Markdown. Open as Markdown keeps the current tab in Markdown.": "\u0412\u0456\u0434\u043F\u043E\u0432\u0456\u0434\u043D\u0456 \u043D\u043E\u0442\u0430\u0442\u043A\u0438 \u0437\u043D\u043E\u0432\u0443 \u0432\u0456\u0434\u043A\u0440\u0438\u0432\u0430\u044E\u0442\u044C\u0441\u044F \u043A\u0430\u0440\u0442\u043E\u044E, \u043F\u043E\u043F\u0440\u0438 \u0437\u0430\u043F\u0430\u043C\u2019\u044F\u0442\u043E\u0432\u0430\u043D\u0438\u0439 Markdown. \u041A\u043E\u043C\u0430\u043D\u0434\u0430 \u0432\u0456\u0434\u043A\u0440\u0438\u0442\u0442\u044F Markdown \u0437\u0431\u0435\u0440\u0456\u0433\u0430\u0454 \u043F\u043E\u0442\u043E\u0447\u043D\u0443 \u0432\u043A\u043B\u0430\u0434\u043A\u0443 \u0432 Markdown."
 };
 
 // src/locales/pl.json
@@ -1377,7 +1381,6 @@ var pl_default = {
   "Mark incomplete": "Oznacz jako niewykonane",
   "Invalid saved map patterns. Default patterns are active.": "Zapisane wzorce s\u0105 nieprawid\u0142owe. Dzia\u0142aj\u0105 regu\u0142y domy\u015Blne.",
   "Automatically open matching notes as maps": "Automatycznie otwieraj pasuj\u0105ce notatki jako mapy",
-  "Applies to notes matching the patterns below. Opening source Markdown explicitly keeps that note in Markdown mode.": "Dotyczy notatek pasuj\u0105cych do poni\u017Cszych wzorc\xF3w. Jawne otwarcie \u017Ar\xF3d\u0142a pozostawia notatk\u0119 w Markdown.",
   "Invalid pattern on line {line}: {error}": "Nieprawid\u0142owy wzorzec w wierszu {line}: {error}",
   "Patterns saved.": "Wzorce zapisane.",
   "Pattern syntax": "Sk\u0142adnia wzorc\xF3w",
@@ -1391,7 +1394,10 @@ var pl_default = {
   "Restore default settings": "Przywr\xF3\u0107 ustawienia domy\u015Blne",
   "Restore defaults": "Przywr\xF3\u0107",
   "Reset plugin preferences, shortcuts and map patterns? Device-local view states and saved notes are retained. Restart Obsidian to apply the language.": "Przywr\xF3ci\u0107 ustawienia, skr\xF3ty i wzorce map? Lokalne stany widoku i zapisane notatki zostan\u0105 zachowane. Uruchom ponownie Obsidian, aby zastosowa\u0107 j\u0119zyk.",
-  "Default settings restored. Restart Obsidian to apply the language.": "Przywr\xF3cono ustawienia domy\u015Blne. Uruchom ponownie Obsidian, aby zastosowa\u0107 j\u0119zyk."
+  "Default settings restored. Restart Obsidian to apply the language.": "Przywr\xF3cono ustawienia domy\u015Blne. Uruchom ponownie Obsidian, aby zastosowa\u0107 j\u0119zyk.",
+  "Remember last note view": "Zapami\u0119taj ostatni widok notatki",
+  "Reopen notes in their last map or Markdown view. Automatic map opening takes priority. Stores up to 500 map paths on this device.": "Otwieraj notatki w ostatnim widoku mapy lub Markdown. Automatyczne otwieranie map ma pierwsze\u0144stwo. Zapisuje do 500 \u015Bcie\u017Cek na tym urz\u0105dzeniu.",
+  "Matching notes reopen as maps, overriding remembered Markdown. Open as Markdown keeps the current tab in Markdown.": "Pasuj\u0105ce notatki ponownie otwieraj\u0105 si\u0119 jako mapy, pomimo zapami\u0119tanego Markdown. Otw\xF3rz jako Markdown zachowuje Markdown w bie\u017C\u0105cej karcie."
 };
 
 // src/locales/de.json
@@ -1723,7 +1729,6 @@ var de_default = {
   "Mark incomplete": "Als unerledigt markieren",
   "Invalid saved map patterns. Default patterns are active.": "Gespeicherte Muster ung\xFCltig. Standardregeln sind aktiv.",
   "Automatically open matching notes as maps": "Passende Notizen automatisch als Karten \xF6ffnen",
-  "Applies to notes matching the patterns below. Opening source Markdown explicitly keeps that note in Markdown mode.": "F\xFCr Notizen nach den folgenden Mustern. Explizites \xD6ffnen des Markdown-Quelltexts beh\xE4lt den Markdown-Modus bei.",
   "Invalid pattern on line {line}: {error}": "Ung\xFCltiges Muster in Zeile {line}: {error}",
   "Patterns saved.": "Muster gespeichert.",
   "Pattern syntax": "Mustersyntax",
@@ -1737,7 +1742,10 @@ var de_default = {
   "Restore default settings": "Standardeinstellungen wiederherstellen",
   "Restore defaults": "Wiederherstellen",
   "Reset plugin preferences, shortcuts and map patterns? Device-local view states and saved notes are retained. Restart Obsidian to apply the language.": "Einstellungen, Tastenk\xFCrzel und Kartenmuster zur\xFCcksetzen? Lokale Ansichten und gespeicherte Notizen bleiben erhalten. Obsidian zum Anwenden der Sprache neu starten.",
-  "Default settings restored. Restart Obsidian to apply the language.": "Standardeinstellungen wiederhergestellt. Obsidian zum Anwenden der Sprache neu starten."
+  "Default settings restored. Restart Obsidian to apply the language.": "Standardeinstellungen wiederhergestellt. Obsidian zum Anwenden der Sprache neu starten.",
+  "Remember last note view": "Letzte Notizansicht merken",
+  "Reopen notes in their last map or Markdown view. Automatic map opening takes priority. Stores up to 500 map paths on this device.": "Notizen in ihrer letzten Karten- oder Markdown-Ansicht \xF6ffnen. Automatisches \xD6ffnen hat Vorrang. Speichert bis zu 500 Kartenpfade auf diesem Ger\xE4t.",
+  "Matching notes reopen as maps, overriding remembered Markdown. Open as Markdown keeps the current tab in Markdown.": "Passende Notizen \xF6ffnen erneut als Karte, auch nach Markdown. Als Markdown \xF6ffnen beh\xE4lt Markdown im aktuellen Tab bei."
 };
 
 // src/locales/es.json
@@ -2069,7 +2077,6 @@ var es_default = {
   "Mark incomplete": "Marcar incompleto",
   "Invalid saved map patterns. Default patterns are active.": "Patrones guardados inv\xE1lidos. Se usan los predeterminados.",
   "Automatically open matching notes as maps": "Abrir notas coincidentes como mapas autom\xE1ticamente",
-  "Applies to notes matching the patterns below. Opening source Markdown explicitly keeps that note in Markdown mode.": "Para notas que coincidan con los patrones siguientes. Abrir expl\xEDcitamente el Markdown fuente conserva ese modo.",
   "Invalid pattern on line {line}: {error}": "Patr\xF3n inv\xE1lido en la l\xEDnea {line}: {error}",
   "Patterns saved.": "Patrones guardados.",
   "Pattern syntax": "Sintaxis de patrones",
@@ -2083,7 +2090,10 @@ var es_default = {
   "Restore default settings": "Restaurar ajustes predeterminados",
   "Restore defaults": "Restaurar",
   "Reset plugin preferences, shortcuts and map patterns? Device-local view states and saved notes are retained. Restart Obsidian to apply the language.": "\xBFRestaurar ajustes, atajos y patrones de mapas? Se conservan las vistas locales y las notas guardadas. Reinicia Obsidian para aplicar el idioma.",
-  "Default settings restored. Restart Obsidian to apply the language.": "Ajustes predeterminados restaurados. Reinicia Obsidian para aplicar el idioma."
+  "Default settings restored. Restart Obsidian to apply the language.": "Ajustes predeterminados restaurados. Reinicia Obsidian para aplicar el idioma.",
+  "Remember last note view": "Recordar la \xFAltima vista de las notas",
+  "Reopen notes in their last map or Markdown view. Automatic map opening takes priority. Stores up to 500 map paths on this device.": "Reabrir notas en su \xFAltima vista de mapa o Markdown. La apertura autom\xE1tica tiene prioridad. Guarda hasta 500 rutas en este dispositivo.",
+  "Matching notes reopen as maps, overriding remembered Markdown. Open as Markdown keeps the current tab in Markdown.": "Las notas coincidentes vuelven a abrirse como mapas, incluso tras Markdown. Abrir como Markdown mantiene Markdown en la pesta\xF1a actual."
 };
 
 // src/locales/fr.json
@@ -2415,7 +2425,6 @@ var fr_default = {
   "Mark incomplete": "Marquer comme non termin\xE9",
   "Invalid saved map patterns. Default patterns are active.": "Motifs enregistr\xE9s invalides. Les r\xE8gles par d\xE9faut sont actives.",
   "Automatically open matching notes as maps": "Ouvrir automatiquement les notes correspondantes en cartes",
-  "Applies to notes matching the patterns below. Opening source Markdown explicitly keeps that note in Markdown mode.": "Pour les notes correspondant aux motifs ci-dessous. Ouvrir explicitement le Markdown source conserve ce mode.",
   "Invalid pattern on line {line}: {error}": "Motif invalide \xE0 la ligne {line} : {error}",
   "Patterns saved.": "Motifs enregistr\xE9s.",
   "Pattern syntax": "Syntaxe des motifs",
@@ -2429,7 +2438,10 @@ var fr_default = {
   "Restore default settings": "R\xE9tablir les param\xE8tres par d\xE9faut",
   "Restore defaults": "R\xE9tablir",
   "Reset plugin preferences, shortcuts and map patterns? Device-local view states and saved notes are retained. Restart Obsidian to apply the language.": "R\xE9tablir les param\xE8tres, raccourcis et motifs de cartes ? Les vues locales et les notes enregistr\xE9es sont conserv\xE9es. Red\xE9marrez Obsidian pour appliquer la langue.",
-  "Default settings restored. Restart Obsidian to apply the language.": "Param\xE8tres par d\xE9faut r\xE9tablis. Red\xE9marrez Obsidian pour appliquer la langue."
+  "Default settings restored. Restart Obsidian to apply the language.": "Param\xE8tres par d\xE9faut r\xE9tablis. Red\xE9marrez Obsidian pour appliquer la langue.",
+  "Remember last note view": "M\xE9moriser la derni\xE8re vue des notes",
+  "Reopen notes in their last map or Markdown view. Automatic map opening takes priority. Stores up to 500 map paths on this device.": "Rouvrir les notes dans leur derni\xE8re vue carte ou Markdown. L\u2019ouverture automatique des cartes est prioritaire. Stocke jusqu\u2019\xE0 500 chemins sur cet appareil.",
+  "Matching notes reopen as maps, overriding remembered Markdown. Open as Markdown keeps the current tab in Markdown.": "Les notes correspondantes se rouvrent en carte, m\xEAme apr\xE8s Markdown. Ouvrir en Markdown conserve Markdown dans l\u2019onglet actuel."
 };
 
 // src/locales/pt-BR.json
@@ -2761,7 +2773,6 @@ var pt_BR_default = {
   "Mark incomplete": "Marcar como pendente",
   "Invalid saved map patterns. Default patterns are active.": "Padr\xF5es salvos inv\xE1lidos. Os padr\xF5es iniciais est\xE3o ativos.",
   "Automatically open matching notes as maps": "Abrir notas correspondentes como mapas automaticamente",
-  "Applies to notes matching the patterns below. Opening source Markdown explicitly keeps that note in Markdown mode.": "Para notas que correspondam aos padr\xF5es abaixo. Abrir explicitamente o Markdown de origem mant\xE9m esse modo.",
   "Invalid pattern on line {line}: {error}": "Padr\xE3o inv\xE1lido na linha {line}: {error}",
   "Patterns saved.": "Padr\xF5es salvos.",
   "Pattern syntax": "Sintaxe dos padr\xF5es",
@@ -2775,7 +2786,10 @@ var pt_BR_default = {
   "Restore default settings": "Restaurar configura\xE7\xF5es padr\xE3o",
   "Restore defaults": "Restaurar",
   "Reset plugin preferences, shortcuts and map patterns? Device-local view states and saved notes are retained. Restart Obsidian to apply the language.": "Restaurar prefer\xEAncias, atalhos e padr\xF5es de mapas? Estados locais de visualiza\xE7\xE3o e notas salvas ser\xE3o preservados. Reinicie Obsidian para aplicar o idioma.",
-  "Default settings restored. Restart Obsidian to apply the language.": "Configura\xE7\xF5es padr\xE3o restauradas. Reinicie Obsidian para aplicar o idioma."
+  "Default settings restored. Restart Obsidian to apply the language.": "Configura\xE7\xF5es padr\xE3o restauradas. Reinicie Obsidian para aplicar o idioma.",
+  "Remember last note view": "Lembrar a \xFAltima visualiza\xE7\xE3o da nota",
+  "Reopen notes in their last map or Markdown view. Automatic map opening takes priority. Stores up to 500 map paths on this device.": "Reabrir notas na \xFAltima visualiza\xE7\xE3o de mapa ou Markdown. A abertura autom\xE1tica tem prioridade. Armazena at\xE9 500 caminhos neste dispositivo.",
+  "Matching notes reopen as maps, overriding remembered Markdown. Open as Markdown keeps the current tab in Markdown.": "Notas correspondentes reabrem como mapas, mesmo ap\xF3s Markdown. Abrir como Markdown mant\xE9m Markdown na aba atual."
 };
 
 // src/locales/zh-CN.json
@@ -3107,7 +3121,6 @@ var zh_CN_default = {
   "Mark incomplete": "\u6807\u8BB0\u4E3A\u672A\u5B8C\u6210",
   "Invalid saved map patterns. Default patterns are active.": "\u4FDD\u5B58\u7684\u89C4\u5219\u65E0\u6548\u3002\u5DF2\u542F\u7528\u9ED8\u8BA4\u89C4\u5219\u3002",
   "Automatically open matching notes as maps": "\u81EA\u52A8\u5C06\u5339\u914D\u7684\u7B14\u8BB0\u4F5C\u4E3A\u5BFC\u56FE\u6253\u5F00",
-  "Applies to notes matching the patterns below. Opening source Markdown explicitly keeps that note in Markdown mode.": "\u9002\u7528\u4E8E\u7B26\u5408\u4EE5\u4E0B\u89C4\u5219\u7684\u7B14\u8BB0\u3002\u660E\u786E\u6253\u5F00 Markdown \u6E90\u6587\u540E\uFF0C\u8BE5\u7B14\u8BB0\u4FDD\u6301 Markdown \u6A21\u5F0F\u3002",
   "Invalid pattern on line {line}: {error}": "\u7B2C {line} \u884C\u89C4\u5219\u65E0\u6548\uFF1A{error}",
   "Patterns saved.": "\u89C4\u5219\u5DF2\u4FDD\u5B58\u3002",
   "Pattern syntax": "\u89C4\u5219\u8BED\u6CD5",
@@ -3121,7 +3134,10 @@ var zh_CN_default = {
   "Restore default settings": "\u6062\u590D\u9ED8\u8BA4\u8BBE\u7F6E",
   "Restore defaults": "\u6062\u590D",
   "Reset plugin preferences, shortcuts and map patterns? Device-local view states and saved notes are retained. Restart Obsidian to apply the language.": "\u91CD\u7F6E\u63D2\u4EF6\u8BBE\u7F6E\u3001\u5FEB\u6377\u952E\u548C\u5BFC\u56FE\u89C4\u5219\uFF1F\u672C\u8BBE\u5907\u7684\u89C6\u56FE\u72B6\u6001\u548C\u5DF2\u4FDD\u5B58\u7684\u7B14\u8BB0\u5C06\u4FDD\u7559\u3002\u8BF7\u91CD\u542F Obsidian \u4EE5\u5E94\u7528\u8BED\u8A00\u3002",
-  "Default settings restored. Restart Obsidian to apply the language.": "\u5DF2\u6062\u590D\u9ED8\u8BA4\u8BBE\u7F6E\u3002\u8BF7\u91CD\u542F Obsidian \u4EE5\u5E94\u7528\u8BED\u8A00\u3002"
+  "Default settings restored. Restart Obsidian to apply the language.": "\u5DF2\u6062\u590D\u9ED8\u8BA4\u8BBE\u7F6E\u3002\u8BF7\u91CD\u542F Obsidian \u4EE5\u5E94\u7528\u8BED\u8A00\u3002",
+  "Remember last note view": "\u8BB0\u4F4F\u7B14\u8BB0\u7684\u4E0A\u6B21\u89C6\u56FE",
+  "Reopen notes in their last map or Markdown view. Automatic map opening takes priority. Stores up to 500 map paths on this device.": "\u4EE5\u7B14\u8BB0\u4E0A\u6B21\u4F7F\u7528\u7684\u5730\u56FE\u6216Markdown\u89C6\u56FE\u91CD\u65B0\u6253\u5F00\u3002\u81EA\u52A8\u6253\u5F00\u5730\u56FE\u4F18\u5148\u3002\u6B64\u8BBE\u5907\u6700\u591A\u4FDD\u5B58500\u4E2A\u5730\u56FE\u8DEF\u5F84\u3002",
+  "Matching notes reopen as maps, overriding remembered Markdown. Open as Markdown keeps the current tab in Markdown.": "\u5339\u914D\u7684\u7B14\u8BB0\u4F1A\u91CD\u65B0\u4EE5\u5730\u56FE\u6253\u5F00\uFF0C\u4F18\u5148\u4E8E\u8BB0\u4F4F\u7684Markdown\u89C6\u56FE\u3002\u6253\u5F00\u4E3AMarkdown\u4F1A\u5728\u5F53\u524D\u6807\u7B7E\u9875\u4FDD\u7559Markdown\u3002"
 };
 
 // src/locales/ja.json
@@ -3453,7 +3469,6 @@ var ja_default = {
   "Mark incomplete": "\u672A\u5B8C\u4E86\u3068\u3057\u3066\u30DE\u30FC\u30AF",
   "Invalid saved map patterns. Default patterns are active.": "\u4FDD\u5B58\u3055\u308C\u305F\u30D1\u30BF\u30FC\u30F3\u304C\u7121\u52B9\u3067\u3059\u3002\u521D\u671F\u30EB\u30FC\u30EB\u3092\u4F7F\u7528\u3057\u307E\u3059\u3002",
   "Automatically open matching notes as maps": "\u4E00\u81F4\u3059\u308B\u30CE\u30FC\u30C8\u3092\u81EA\u52D5\u3067\u30DE\u30C3\u30D7\u3068\u3057\u3066\u958B\u304F",
-  "Applies to notes matching the patterns below. Opening source Markdown explicitly keeps that note in Markdown mode.": "\u4EE5\u4E0B\u306E\u30D1\u30BF\u30FC\u30F3\u306B\u4E00\u81F4\u3059\u308B\u30CE\u30FC\u30C8\u304C\u5BFE\u8C61\u3067\u3059\u3002Markdown \u30BD\u30FC\u30B9\u3092\u660E\u793A\u7684\u306B\u958B\u304F\u3068\u3001\u305D\u306E\u30CE\u30FC\u30C8\u306F Markdown \u8868\u793A\u3092\u7DAD\u6301\u3057\u307E\u3059\u3002",
   "Invalid pattern on line {line}: {error}": "{line} \u884C\u76EE\u306E\u30D1\u30BF\u30FC\u30F3\u304C\u7121\u52B9\u3067\u3059: {error}",
   "Patterns saved.": "\u30D1\u30BF\u30FC\u30F3\u3092\u4FDD\u5B58\u3057\u307E\u3057\u305F\u3002",
   "Pattern syntax": "\u30D1\u30BF\u30FC\u30F3\u306E\u69CB\u6587",
@@ -3467,7 +3482,10 @@ var ja_default = {
   "Restore default settings": "\u521D\u671F\u8A2D\u5B9A\u306B\u623B\u3059",
   "Restore defaults": "\u521D\u671F\u5024\u306B\u623B\u3059",
   "Reset plugin preferences, shortcuts and map patterns? Device-local view states and saved notes are retained. Restart Obsidian to apply the language.": "\u8A2D\u5B9A\u3001\u30B7\u30E7\u30FC\u30C8\u30AB\u30C3\u30C8\u3001\u30DE\u30C3\u30D7\u30D1\u30BF\u30FC\u30F3\u3092\u521D\u671F\u5024\u306B\u623B\u3057\u307E\u3059\u304B\uFF1F\u7AEF\u672B\u306E\u8868\u793A\u72B6\u614B\u3068\u4FDD\u5B58\u6E08\u307F\u30CE\u30FC\u30C8\u306F\u4FDD\u6301\u3055\u308C\u307E\u3059\u3002\u8A00\u8A9E\u306E\u9069\u7528\u306B\u306F Obsidian \u3092\u518D\u8D77\u52D5\u3057\u3066\u304F\u3060\u3055\u3044\u3002",
-  "Default settings restored. Restart Obsidian to apply the language.": "\u521D\u671F\u8A2D\u5B9A\u306B\u623B\u3057\u307E\u3057\u305F\u3002\u8A00\u8A9E\u306E\u9069\u7528\u306B\u306F Obsidian \u3092\u518D\u8D77\u52D5\u3057\u3066\u304F\u3060\u3055\u3044\u3002"
+  "Default settings restored. Restart Obsidian to apply the language.": "\u521D\u671F\u8A2D\u5B9A\u306B\u623B\u3057\u307E\u3057\u305F\u3002\u8A00\u8A9E\u306E\u9069\u7528\u306B\u306F Obsidian \u3092\u518D\u8D77\u52D5\u3057\u3066\u304F\u3060\u3055\u3044\u3002",
+  "Remember last note view": "\u30CE\u30FC\u30C8\u306E\u6700\u5F8C\u306E\u8868\u793A\u3092\u8A18\u61B6",
+  "Reopen notes in their last map or Markdown view. Automatic map opening takes priority. Stores up to 500 map paths on this device.": "\u30CE\u30FC\u30C8\u3092\u6700\u5F8C\u306B\u4F7F\u7528\u3057\u305F\u30DE\u30C3\u30D7\u307E\u305F\u306FMarkdown\u8868\u793A\u3067\u958B\u304D\u307E\u3059\u3002\u30DE\u30C3\u30D7\u306E\u81EA\u52D5\u8868\u793A\u304C\u512A\u5148\u3055\u308C\u307E\u3059\u3002\u3053\u306E\u7AEF\u672B\u306B\u6700\u5927500\u4EF6\u306E\u30DE\u30C3\u30D7\u30D1\u30B9\u3092\u4FDD\u5B58\u3057\u307E\u3059\u3002",
+  "Matching notes reopen as maps, overriding remembered Markdown. Open as Markdown keeps the current tab in Markdown.": "\u4E00\u81F4\u3059\u308B\u30CE\u30FC\u30C8\u306F\u8A18\u61B6\u3055\u308C\u305FMarkdown\u8868\u793A\u3088\u308A\u512A\u5148\u3057\u3066\u30DE\u30C3\u30D7\u3067\u958B\u304D\u307E\u3059\u3002Markdown\u3067\u958B\u304F\u64CD\u4F5C\u306F\u73FE\u5728\u306E\u30BF\u30D6\u3067\u7DAD\u6301\u3055\u308C\u307E\u3059\u3002"
 };
 
 // src/locales/ko.json
@@ -3799,7 +3817,6 @@ var ko_default = {
   "Mark incomplete": "\uBBF8\uC644\uB8CC\uB85C \uD45C\uC2DC",
   "Invalid saved map patterns. Default patterns are active.": "\uC800\uC7A5\uB41C \uD328\uD134\uC774 \uC798\uBABB\uB418\uC5B4 \uAE30\uBCF8 \uADDC\uCE59\uC744 \uC0AC\uC6A9\uD569\uB2C8\uB2E4.",
   "Automatically open matching notes as maps": "\uC77C\uCE58\uD558\uB294 \uB178\uD2B8\uB97C \uC790\uB3D9\uC73C\uB85C \uB9C8\uC778\uB4DC\uB9F5\uC73C\uB85C \uC5F4\uAE30",
-  "Applies to notes matching the patterns below. Opening source Markdown explicitly keeps that note in Markdown mode.": "\uC544\uB798 \uD328\uD134\uC5D0 \uB9DE\uB294 \uB178\uD2B8\uC5D0 \uC801\uC6A9\uB429\uB2C8\uB2E4. Markdown \uC6D0\uBB38\uC744 \uC9C1\uC811 \uC5F4\uBA74 \uD574\uB2F9 \uB178\uD2B8\uB294 Markdown \uBAA8\uB4DC\uB97C \uC720\uC9C0\uD569\uB2C8\uB2E4.",
   "Invalid pattern on line {line}: {error}": "{line}\uC904\uC758 \uD328\uD134 \uC624\uB958: {error}",
   "Patterns saved.": "\uD328\uD134\uC744 \uC800\uC7A5\uD588\uC2B5\uB2C8\uB2E4.",
   "Pattern syntax": "\uD328\uD134 \uBB38\uBC95",
@@ -3813,7 +3830,10 @@ var ko_default = {
   "Restore default settings": "\uAE30\uBCF8 \uC124\uC815 \uBCF5\uC6D0",
   "Restore defaults": "\uBCF5\uC6D0",
   "Reset plugin preferences, shortcuts and map patterns? Device-local view states and saved notes are retained. Restart Obsidian to apply the language.": "\uD50C\uB7EC\uADF8\uC778 \uC124\uC815, \uB2E8\uCD95\uD0A4, \uB9C8\uC778\uB4DC\uB9F5 \uD328\uD134\uC744 \uCD08\uAE30\uD654\uD560\uAE4C\uC694? \uAE30\uAE30\uC758 \uBCF4\uAE30 \uC0C1\uD0DC\uC640 \uC800\uC7A5\uB41C \uB178\uD2B8\uB294 \uC720\uC9C0\uB429\uB2C8\uB2E4. \uC5B8\uC5B4\uB97C \uC801\uC6A9\uD558\uB824\uBA74 Obsidian\uC744 \uB2E4\uC2DC \uC2DC\uC791\uD558\uC138\uC694.",
-  "Default settings restored. Restart Obsidian to apply the language.": "\uAE30\uBCF8 \uC124\uC815\uC744 \uBCF5\uC6D0\uD588\uC2B5\uB2C8\uB2E4. \uC5B8\uC5B4\uB97C \uC801\uC6A9\uD558\uB824\uBA74 Obsidian\uC744 \uB2E4\uC2DC \uC2DC\uC791\uD558\uC138\uC694."
+  "Default settings restored. Restart Obsidian to apply the language.": "\uAE30\uBCF8 \uC124\uC815\uC744 \uBCF5\uC6D0\uD588\uC2B5\uB2C8\uB2E4. \uC5B8\uC5B4\uB97C \uC801\uC6A9\uD558\uB824\uBA74 Obsidian\uC744 \uB2E4\uC2DC \uC2DC\uC791\uD558\uC138\uC694.",
+  "Remember last note view": "\uB178\uD2B8\uC758 \uB9C8\uC9C0\uB9C9 \uBCF4\uAE30 \uAE30\uC5B5",
+  "Reopen notes in their last map or Markdown view. Automatic map opening takes priority. Stores up to 500 map paths on this device.": "\uB178\uD2B8\uB97C \uB9C8\uC9C0\uB9C9 \uC9C0\uB3C4 \uB610\uB294 Markdown \uBCF4\uAE30\uB85C \uC5FD\uB2C8\uB2E4. \uC9C0\uB3C4 \uC790\uB3D9 \uC5F4\uAE30\uAC00 \uC6B0\uC120\uD569\uB2C8\uB2E4. \uC774 \uAE30\uAE30\uC5D0 \uC9C0\uB3C4 \uACBD\uB85C\uB97C \uCD5C\uB300 500\uAC1C \uC800\uC7A5\uD569\uB2C8\uB2E4.",
+  "Matching notes reopen as maps, overriding remembered Markdown. Open as Markdown keeps the current tab in Markdown.": "\uC77C\uCE58\uD558\uB294 \uB178\uD2B8\uB294 \uAE30\uC5B5\uB41C Markdown \uBCF4\uAE30\uBCF4\uB2E4 \uC9C0\uB3C4\uB85C \uC5F4\uAE30\uAC00 \uC6B0\uC120\uD569\uB2C8\uB2E4. Markdown\uC73C\uB85C \uC5F4\uBA74 \uD604\uC7AC \uD0ED\uC740 Markdown\uC73C\uB85C \uC720\uC9C0\uB429\uB2C8\uB2E4."
 };
 
 // src/locales/ru.json
@@ -4145,7 +4165,6 @@ var ru_default = {
   "Mark incomplete": "\u041E\u0442\u043C\u0435\u0442\u0438\u0442\u044C \u043D\u0435\u0432\u044B\u043F\u043E\u043B\u043D\u0435\u043D\u043D\u044B\u043C",
   "Invalid saved map patterns. Default patterns are active.": "\u0421\u043E\u0445\u0440\u0430\u043D\u0451\u043D\u043D\u044B\u0435 \u0448\u0430\u0431\u043B\u043E\u043D\u044B \u043D\u0435\u043A\u043E\u0440\u0440\u0435\u043A\u0442\u043D\u044B. \u0414\u0435\u0439\u0441\u0442\u0432\u0443\u044E\u0442 \u0438\u0441\u0445\u043E\u0434\u043D\u044B\u0435 \u043F\u0440\u0430\u0432\u0438\u043B\u0430.",
   "Automatically open matching notes as maps": "\u0410\u0432\u0442\u043E\u043C\u0430\u0442\u0438\u0447\u0435\u0441\u043A\u0438 \u043E\u0442\u043A\u0440\u044B\u0432\u0430\u0442\u044C \u043F\u043E\u0434\u0445\u043E\u0434\u044F\u0449\u0438\u0435 \u0437\u0430\u043C\u0435\u0442\u043A\u0438 \u043A\u0430\u043A \u043A\u0430\u0440\u0442\u044B",
-  "Applies to notes matching the patterns below. Opening source Markdown explicitly keeps that note in Markdown mode.": "\u0414\u043B\u044F \u0437\u0430\u043C\u0435\u0442\u043E\u043A, \u0441\u043E\u043E\u0442\u0432\u0435\u0442\u0441\u0442\u0432\u0443\u044E\u0449\u0438\u0445 \u043F\u0440\u0430\u0432\u0438\u043B\u0430\u043C \u043D\u0438\u0436\u0435. \u042F\u0432\u043D\u043E\u0435 \u043E\u0442\u043A\u0440\u044B\u0442\u0438\u0435 \u0438\u0441\u0445\u043E\u0434\u043D\u043E\u0433\u043E Markdown \u0441\u043E\u0445\u0440\u0430\u043D\u044F\u0435\u0442 \u0440\u0435\u0436\u0438\u043C Markdown \u0434\u043B\u044F \u044D\u0442\u043E\u0439 \u0437\u0430\u043C\u0435\u0442\u043A\u0438.",
   "Invalid pattern on line {line}: {error}": "\u041D\u0435\u043A\u043E\u0440\u0440\u0435\u043A\u0442\u043D\u044B\u0439 \u0448\u0430\u0431\u043B\u043E\u043D \u0432 \u0441\u0442\u0440\u043E\u043A\u0435 {line}: {error}",
   "Patterns saved.": "\u0428\u0430\u0431\u043B\u043E\u043D\u044B \u0441\u043E\u0445\u0440\u0430\u043D\u0435\u043D\u044B.",
   "Pattern syntax": "\u0421\u0438\u043D\u0442\u0430\u043A\u0441\u0438\u0441 \u0448\u0430\u0431\u043B\u043E\u043D\u043E\u0432",
@@ -4159,7 +4178,10 @@ var ru_default = {
   "Restore default settings": "\u0412\u043E\u0441\u0441\u0442\u0430\u043D\u043E\u0432\u0438\u0442\u044C \u0438\u0441\u0445\u043E\u0434\u043D\u044B\u0435 \u043D\u0430\u0441\u0442\u0440\u043E\u0439\u043A\u0438",
   "Restore defaults": "\u0412\u043E\u0441\u0441\u0442\u0430\u043D\u043E\u0432\u0438\u0442\u044C",
   "Reset plugin preferences, shortcuts and map patterns? Device-local view states and saved notes are retained. Restart Obsidian to apply the language.": "\u0412\u043E\u0441\u0441\u0442\u0430\u043D\u043E\u0432\u0438\u0442\u044C \u0438\u0441\u0445\u043E\u0434\u043D\u044B\u0435 \u043D\u0430\u0441\u0442\u0440\u043E\u0439\u043A\u0438 \u043F\u043B\u0430\u0433\u0438\u043D\u0430, \u0433\u043E\u0440\u044F\u0447\u0438\u0435 \u043A\u043B\u0430\u0432\u0438\u0448\u0438 \u0438 \u0448\u0430\u0431\u043B\u043E\u043D\u044B \u043A\u0430\u0440\u0442? \u041B\u043E\u043A\u0430\u043B\u044C\u043D\u044B\u0435 \u0441\u043E\u0441\u0442\u043E\u044F\u043D\u0438\u044F \u043F\u0440\u043E\u0441\u043C\u043E\u0442\u0440\u0430 \u0438 \u0441\u043E\u0445\u0440\u0430\u043D\u0451\u043D\u043D\u044B\u0435 \u0437\u0430\u043C\u0435\u0442\u043A\u0438 \u043E\u0441\u0442\u0430\u043D\u0443\u0442\u0441\u044F. \u0414\u043B\u044F \u043F\u0440\u0438\u043C\u0435\u043D\u0435\u043D\u0438\u044F \u044F\u0437\u044B\u043A\u0430 \u043F\u0435\u0440\u0435\u0437\u0430\u043F\u0443\u0441\u0442\u0438\u0442\u0435 Obsidian.",
-  "Default settings restored. Restart Obsidian to apply the language.": "\u0418\u0441\u0445\u043E\u0434\u043D\u044B\u0435 \u043D\u0430\u0441\u0442\u0440\u043E\u0439\u043A\u0438 \u0432\u043E\u0441\u0441\u0442\u0430\u043D\u043E\u0432\u043B\u0435\u043D\u044B. \u041F\u0435\u0440\u0435\u0437\u0430\u043F\u0443\u0441\u0442\u0438\u0442\u0435 Obsidian \u0434\u043B\u044F \u043F\u0440\u0438\u043C\u0435\u043D\u0435\u043D\u0438\u044F \u044F\u0437\u044B\u043A\u0430."
+  "Default settings restored. Restart Obsidian to apply the language.": "\u0418\u0441\u0445\u043E\u0434\u043D\u044B\u0435 \u043D\u0430\u0441\u0442\u0440\u043E\u0439\u043A\u0438 \u0432\u043E\u0441\u0441\u0442\u0430\u043D\u043E\u0432\u043B\u0435\u043D\u044B. \u041F\u0435\u0440\u0435\u0437\u0430\u043F\u0443\u0441\u0442\u0438\u0442\u0435 Obsidian \u0434\u043B\u044F \u043F\u0440\u0438\u043C\u0435\u043D\u0435\u043D\u0438\u044F \u044F\u0437\u044B\u043A\u0430.",
+  "Remember last note view": "\u0417\u0430\u043F\u043E\u043C\u0438\u043D\u0430\u0442\u044C \u043F\u043E\u0441\u043B\u0435\u0434\u043D\u0438\u0439 \u0432\u0438\u0434 \u0437\u0430\u043C\u0435\u0442\u043A\u0438",
+  "Reopen notes in their last map or Markdown view. Automatic map opening takes priority. Stores up to 500 map paths on this device.": "\u041E\u0442\u043A\u0440\u044B\u0432\u0430\u0442\u044C \u0437\u0430\u043C\u0435\u0442\u043A\u0438 \u0432 \u043F\u043E\u0441\u043B\u0435\u0434\u043D\u0435\u043C \u0432\u0438\u0434\u0435 \u043A\u0430\u0440\u0442\u044B \u0438\u043B\u0438 Markdown. \u0410\u0432\u0442\u043E\u043E\u0442\u043A\u0440\u044B\u0442\u0438\u0435 \u043A\u0430\u0440\u0442 \u0438\u043C\u0435\u0435\u0442 \u043F\u0440\u0438\u043E\u0440\u0438\u0442\u0435\u0442. \u0425\u0440\u0430\u043D\u0438\u0442 \u0434\u043E 500 \u043F\u0443\u0442\u0435\u0439 \u043A\u0430\u0440\u0442 \u043D\u0430 \u044D\u0442\u043E\u043C \u0443\u0441\u0442\u0440\u043E\u0439\u0441\u0442\u0432\u0435.",
+  "Matching notes reopen as maps, overriding remembered Markdown. Open as Markdown keeps the current tab in Markdown.": "\u041F\u043E\u0434\u0445\u043E\u0434\u044F\u0449\u0438\u0435 \u0437\u0430\u043C\u0435\u0442\u043A\u0438 \u0441\u043D\u043E\u0432\u0430 \u043E\u0442\u043A\u0440\u044B\u0432\u0430\u044E\u0442\u0441\u044F \u043A\u0430\u0440\u0442\u043E\u0439 \u043D\u0435\u0437\u0430\u0432\u0438\u0441\u0438\u043C\u043E \u043E\u0442 \u0441\u043E\u0445\u0440\u0430\u043D\u0451\u043D\u043D\u043E\u0433\u043E Markdown. \u041A\u043E\u043C\u0430\u043D\u0434\u0430 \u043E\u0442\u043A\u0440\u044B\u0442\u0438\u044F Markdown \u043E\u0441\u0442\u0430\u0432\u043B\u044F\u0435\u0442 \u0442\u0435\u043A\u0443\u0449\u0443\u044E \u0432\u043A\u043B\u0430\u0434\u043A\u0443 \u0432 Markdown."
 };
 
 // src/i18n.ts
@@ -8854,7 +8876,7 @@ function hasLargeVisibleTree(doc, state) {
   }
   return false;
 }
-var DEFAULT_SETTINGS = { patternMode: "glob", mapPatterns: "*.mindmap.md\n\u{1F3AF}*.md", language: "auto", nodeEditor: "native", autoOpen: false, autoRestoreLargeMaps: true, queueExcludedMaps: "\u0430\u0440\u0445\u0456\u0432 \u0442\u0438\u0436\u043D\u0456\u0432\nold", queueExcludedBranches: "\u{1F9CA}\n\u274C", queueTaskMarker: true, queueStepTag: true, collapseOnLeft: false, arrowAcrossBranches: false, toolbarMode: "visible", showMapPreviews: true, collapsePastedBranches: true, hotkeys: {}, widthMode: "fixed" };
+var DEFAULT_SETTINGS = { patternMode: "glob", mapPatterns: "*.mindmap.md\n\u{1F3AF}*.md", language: "auto", nodeEditor: "native", autoOpen: false, rememberLastMode: false, autoRestoreLargeMaps: true, queueExcludedMaps: "\u0430\u0440\u0445\u0456\u0432 \u0442\u0438\u0436\u043D\u0456\u0432\nold", queueExcludedBranches: "\u{1F9CA}\n\u274C", queueTaskMarker: true, queueStepTag: true, collapseOnLeft: false, arrowAcrossBranches: false, toolbarMode: "visible", showMapPreviews: true, collapsePastedBranches: true, hotkeys: {}, widthMode: "fixed" };
 var widthModes = () => [["fixed", t("Fixed width")], ["content", t("Fit node content")], ["column", t("Fit visible column")]];
 var toolbarModes = () => [
   ["visible", t("Always show toolbar")],
@@ -8892,6 +8914,7 @@ var TraceViewMindmap = class extends import_obsidian5.Plugin {
     this.saveQueues = /* @__PURE__ */ new Map();
     this.sourceLeaves = /* @__PURE__ */ new WeakMap();
     this.sourcePreferences = /* @__PURE__ */ new Set();
+    this.mapPreferences = /* @__PURE__ */ new Set();
     this.autoTimers = /* @__PURE__ */ new Map();
     this.nativeLinkTargets = /* @__PURE__ */ new WeakMap();
     this.opening = /* @__PURE__ */ new WeakSet();
@@ -8913,6 +8936,12 @@ var TraceViewMindmap = class extends import_obsidian5.Plugin {
         this.sourcePreferences = new Set(paths.filter((path) => typeof path === "string"));
         this.rememberSource();
       }
+    } catch {
+    }
+    this.settings.rememberLastMode = saved?.rememberLastMode === true;
+    try {
+      const paths = this.app.loadLocalStorage("traceview-mindmap:map-preferences");
+      if (Array.isArray(paths)) this.mapPreferences = new Set(paths.filter((path) => typeof path === "string").slice(-500));
     } catch {
     }
     if (this.settings.nodeEditor !== "native" && this.settings.nodeEditor !== "text") this.settings.nodeEditor = "native";
@@ -8940,7 +8969,7 @@ var TraceViewMindmap = class extends import_obsidian5.Plugin {
     let observeLinks = true;
     const plugin = this;
     const receiveEphemeral = function(state) {
-      if (observeLinks && this.app === plugin.app && plugin.settings.autoOpen && this.file && plugin.isMap(this.file) && typeof state?.subpath === "string") {
+      if (observeLinks && this.app === plugin.app && this.file && plugin.shouldOpenMap(this.file) && typeof state?.subpath === "string") {
         plugin.nativeLinkTargets.set(this, { path: this.file.path, subpath: state.subpath });
       }
       return originalEphemeral.call(this, state);
@@ -9050,6 +9079,8 @@ var TraceViewMindmap = class extends import_obsidian5.Plugin {
       if (this.isMap(file)) this.refreshQueues();
     }));
     this.registerEvent(this.app.vault.on("rename", (file, oldPath) => {
+      this.mapPreferences = new Set([...this.mapPreferences].map((path) => path === oldPath || path.startsWith(oldPath + "/") ? file.path + path.slice(oldPath.length) : path));
+      this.rememberMaps();
       this.sourcePreferences = new Set([...this.sourcePreferences].map((path) => path === oldPath || path.startsWith(oldPath + "/") ? file.path + path.slice(oldPath.length) : path));
       this.rememberSource();
       for (const leaf of this.app.workspace.getLeavesOfType("markdown")) {
@@ -9060,6 +9091,8 @@ var TraceViewMindmap = class extends import_obsidian5.Plugin {
       this.refreshQueues();
     }));
     this.registerEvent(this.app.vault.on("delete", (file) => {
+      this.mapPreferences = new Set([...this.mapPreferences].filter((path) => path !== file.path && !path.startsWith(file.path + "/")));
+      this.rememberMaps();
       this.sourcePreferences = new Set([...this.sourcePreferences].filter((path) => path !== file.path && !path.startsWith(file.path + "/")));
       this.rememberSource();
       for (const leaf of this.app.workspace.getLeavesOfType(VIEW)) {
@@ -9088,6 +9121,15 @@ var TraceViewMindmap = class extends import_obsidian5.Plugin {
     } catch {
     }
   }
+  rememberMaps() {
+    try {
+      this.app.saveLocalStorage("traceview-mindmap:map-preferences", [...this.mapPreferences]);
+    } catch {
+    }
+  }
+  shouldOpenMap(file) {
+    return this.settings.autoOpen && this.isMap(file) || this.settings.rememberLastMode && this.mapPreferences.has(file.path) && !this.sourcePreferences.has(file.path);
+  }
   scheduleAutoOpen(leaf, expectedPath) {
     if (this.opening.has(leaf)) return;
     const previous = this.autoTimers.get(leaf);
@@ -9097,7 +9139,7 @@ var TraceViewMindmap = class extends import_obsidian5.Plugin {
       const view = leaf.view;
       if (!(view instanceof import_obsidian5.MarkdownView) || !view.file || expectedPath && view.file.path !== expectedPath) return;
       if (this.sourceLeaves.get(leaf) !== view.file.path) this.sourceLeaves.delete(leaf);
-      if (!this.settings.autoOpen || !this.isMap(view.file) || this.sourceLeaves.get(leaf) === view.file.path || this.sourcePreferences.has(view.file.path)) return;
+      if (!this.shouldOpenMap(view.file) || this.sourceLeaves.get(leaf) === view.file.path) return;
       this.opening.add(leaf);
       const file = view.file;
       const linkState = this.nativeLinkTargets.get(view);
@@ -9105,7 +9147,7 @@ var TraceViewMindmap = class extends import_obsidian5.Plugin {
       void (async () => {
         try {
           await view.save();
-          if (leaf.view === view && view.file === file && this.settings.autoOpen && !this.sourcePreferences.has(file.path)) {
+          if (leaf.view === view && view.file === file && this.shouldOpenMap(file) && this.sourceLeaves.get(leaf) !== file.path) {
             await this.openMap(file, leaf);
             if (linkState?.path === file.path && linkState.subpath && leaf.view instanceof MapView) leaf.view.revealSubpath(linkState.subpath);
           }
@@ -9198,6 +9240,11 @@ var TraceViewMindmap = class extends import_obsidian5.Plugin {
     this.sourceLeaves.delete(leaf);
     this.sourcePreferences.delete(file.path);
     this.rememberSource();
+    if (this.settings.rememberLastMode && !this.mapPreferences.has(file.path)) {
+      this.mapPreferences.add(file.path);
+      if (this.mapPreferences.size > 500) this.mapPreferences.delete(this.mapPreferences.values().next().value);
+      this.rememberMaps();
+    }
     await leaf.setViewState({ type: VIEW, state: { file: file.path, openNow: true }, active: true });
     await this.app.workspace.revealLeaf(leaf);
     if (nodeId && leaf.view instanceof MapView) {
@@ -9256,6 +9303,7 @@ var TraceViewMindmap = class extends import_obsidian5.Plugin {
     this.sourceLeaves.set(leaf, file.path);
     this.sourcePreferences.add(file.path);
     this.rememberSource();
+    if (this.mapPreferences.delete(file.path)) this.rememberMaps();
     await leaf.setViewState({ type: "markdown", state: { file: file.path, mode: "source" }, active: true });
     await this.app.workspace.revealLeaf(leaf);
     if (leaf.view instanceof import_obsidian5.MarkdownView) {
@@ -9321,7 +9369,7 @@ var TraceViewMindmap = class extends import_obsidian5.Plugin {
     const parts = (0, import_obsidian5.parseLinktext)(link);
     const file = parts.path ? this.app.metadataCache.getFirstLinkpathDest(parts.path, view.path) : view.file;
     const newTab = event.ctrlKey || event.metaKey || event.button === 1;
-    if (file && this.isMap(file)) {
+    if (file && (file === view.file || this.shouldOpenMap(file))) {
       const leaf = newTab ? this.app.workspace.getLeaf("tab") : view.leaf;
       await this.openMap(file, leaf);
       if (leaf.view instanceof MapView) leaf.view.revealSubpath(parts.subpath);
@@ -10719,8 +10767,12 @@ var SettingsTab = class extends import_obsidian5.PluginSettingTab {
         await this.plugin.saveData(this.plugin.settings);
       });
     });
-    new import_obsidian5.Setting(this.containerEl).setName(t("Automatically open matching notes as maps")).setDesc(t("Applies to notes matching the patterns below. Opening source Markdown explicitly keeps that note in Markdown mode.")).addToggle((toggle) => toggle.setValue(this.plugin.settings.autoOpen).onChange(async (value) => {
+    new import_obsidian5.Setting(this.containerEl).setName(t("Automatically open matching notes as maps")).setDesc(t("Matching notes reopen as maps, overriding remembered Markdown. Open as Markdown keeps the current tab in Markdown.")).addToggle((toggle) => toggle.setValue(this.plugin.settings.autoOpen).onChange(async (value) => {
       this.plugin.settings.autoOpen = value;
+      await this.plugin.saveData(this.plugin.settings);
+    }));
+    new import_obsidian5.Setting(this.containerEl).setName(t("Remember last note view")).setDesc(t("Reopen notes in their last map or Markdown view. Automatic map opening takes priority. Stores up to 500 map paths on this device.")).addToggle((toggle) => toggle.setValue(this.plugin.settings.rememberLastMode).onChange(async (value) => {
+      this.plugin.settings.rememberLastMode = value;
       await this.plugin.saveData(this.plugin.settings);
     }));
     let patternMode = this.plugin.settings.patternMode, mapPatterns = this.plugin.settings.mapPatterns;

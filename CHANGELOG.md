@@ -1,5 +1,17 @@
 # Changelog
 
+## 1.0.17
+
+### Added
+
+- Optional device-local memory for the last note view, including manually opened Markdown maps. Keeps up to 500 map paths and follows renames and deletions.
+
+### Fixed
+
+- Automatic opening of matching notes takes priority over remembered Markdown when reopening a note.
+- Explicit Open as Markdown remains active in the current tab.
+- Links respect automatic opening and remembered map modes.
+
 ## 1.0.16
 
 ### Fixed

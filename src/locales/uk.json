@@ -326,7 +326,6 @@
   "Mark incomplete": "Позначити невиконаним",
   "Invalid saved map patterns. Default patterns are active.": "Збережені патерни некоректні. Діють початкові правила.",
   "Automatically open matching notes as maps": "Автоматично відкривати відповідні нотатки як карти",
-  "Applies to notes matching the patterns below. Opening source Markdown explicitly keeps that note in Markdown mode.": "Для нотаток, що відповідають правилам нижче. Явне відкриття вихідного Markdown залишає нотатку в режимі Markdown.",
   "Invalid pattern on line {line}: {error}": "Некоректний патерн у рядку {line}: {error}",
   "Patterns saved.": "Патерни збережено.",
   "Pattern syntax": "Синтаксис патернів",
@@ -340,5 +339,8 @@
   "Restore default settings": "Відновити початкові налаштування",
   "Restore defaults": "Відновити",
   "Reset plugin preferences, shortcuts and map patterns? Device-local view states and saved notes are retained. Restart Obsidian to apply the language.": "Відновити початкові налаштування плагіна, гарячі клавіші й патерни карт? Локальні стани перегляду та збережені нотатки залишаться. Для застосування мови перезапусти Obsidian.",
-  "Default settings restored. Restart Obsidian to apply the language.": "Початкові налаштування відновлено. Перезапусти Obsidian, щоб застосувати мову."
+  "Default settings restored. Restart Obsidian to apply the language.": "Початкові налаштування відновлено. Перезапусти Obsidian, щоб застосувати мову.",
+  "Remember last note view": "Пам’ятати останній режим нотатки",
+  "Reopen notes in their last map or Markdown view. Automatic map opening takes priority. Stores up to 500 map paths on this device.": "Відкривати нотатки в останньому режимі карти або Markdown. Автовідкриття карт має пріоритет. Зберігає до 500 шляхів карт на цьому пристрої.",
+  "Matching notes reopen as maps, overriding remembered Markdown. Open as Markdown keeps the current tab in Markdown.": "Відповідні нотатки знову відкриваються картою, попри запам’ятований Markdown. Команда відкриття Markdown зберігає поточну вкладку в Markdown."
 }

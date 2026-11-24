@@ -326,7 +326,6 @@
   "Mark incomplete": "Отметить невыполненным",
   "Invalid saved map patterns. Default patterns are active.": "Сохранённые шаблоны некорректны. Действуют исходные правила.",
   "Automatically open matching notes as maps": "Автоматически открывать подходящие заметки как карты",
-  "Applies to notes matching the patterns below. Opening source Markdown explicitly keeps that note in Markdown mode.": "Для заметок, соответствующих правилам ниже. Явное открытие исходного Markdown сохраняет режим Markdown для этой заметки.",
   "Invalid pattern on line {line}: {error}": "Некорректный шаблон в строке {line}: {error}",
   "Patterns saved.": "Шаблоны сохранены.",
   "Pattern syntax": "Синтаксис шаблонов",
@@ -340,5 +339,8 @@
   "Restore default settings": "Восстановить исходные настройки",
   "Restore defaults": "Восстановить",
   "Reset plugin preferences, shortcuts and map patterns? Device-local view states and saved notes are retained. Restart Obsidian to apply the language.": "Восстановить исходные настройки плагина, горячие клавиши и шаблоны карт? Локальные состояния просмотра и сохранённые заметки останутся. Для применения языка перезапустите Obsidian.",
-  "Default settings restored. Restart Obsidian to apply the language.": "Исходные настройки восстановлены. Перезапустите Obsidian для применения языка."
+  "Default settings restored. Restart Obsidian to apply the language.": "Исходные настройки восстановлены. Перезапустите Obsidian для применения языка.",
+  "Remember last note view": "Запоминать последний вид заметки",
+  "Reopen notes in their last map or Markdown view. Automatic map opening takes priority. Stores up to 500 map paths on this device.": "Открывать заметки в последнем виде карты или Markdown. Автооткрытие карт имеет приоритет. Хранит до 500 путей карт на этом устройстве.",
+  "Matching notes reopen as maps, overriding remembered Markdown. Open as Markdown keeps the current tab in Markdown.": "Подходящие заметки снова открываются картой независимо от сохранённого Markdown. Команда открытия Markdown оставляет текущую вкладку в Markdown."
 }

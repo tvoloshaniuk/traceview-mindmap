@@ -326,7 +326,6 @@
   "Mark incomplete": "Marcar como pendente",
   "Invalid saved map patterns. Default patterns are active.": "Padrões salvos inválidos. Os padrões iniciais estão ativos.",
   "Automatically open matching notes as maps": "Abrir notas correspondentes como mapas automaticamente",
-  "Applies to notes matching the patterns below. Opening source Markdown explicitly keeps that note in Markdown mode.": "Para notas que correspondam aos padrões abaixo. Abrir explicitamente o Markdown de origem mantém esse modo.",
   "Invalid pattern on line {line}: {error}": "Padrão inválido na linha {line}: {error}",
   "Patterns saved.": "Padrões salvos.",
   "Pattern syntax": "Sintaxe dos padrões",
@@ -340,5 +339,8 @@
   "Restore default settings": "Restaurar configurações padrão",
   "Restore defaults": "Restaurar",
   "Reset plugin preferences, shortcuts and map patterns? Device-local view states and saved notes are retained. Restart Obsidian to apply the language.": "Restaurar preferências, atalhos e padrões de mapas? Estados locais de visualização e notas salvas serão preservados. Reinicie Obsidian para aplicar o idioma.",
-  "Default settings restored. Restart Obsidian to apply the language.": "Configurações padrão restauradas. Reinicie Obsidian para aplicar o idioma."
+  "Default settings restored. Restart Obsidian to apply the language.": "Configurações padrão restauradas. Reinicie Obsidian para aplicar o idioma.",
+  "Remember last note view": "Lembrar a última visualização da nota",
+  "Reopen notes in their last map or Markdown view. Automatic map opening takes priority. Stores up to 500 map paths on this device.": "Reabrir notas na última visualização de mapa ou Markdown. A abertura automática tem prioridade. Armazena até 500 caminhos neste dispositivo.",
+  "Matching notes reopen as maps, overriding remembered Markdown. Open as Markdown keeps the current tab in Markdown.": "Notas correspondentes reabrem como mapas, mesmo após Markdown. Abrir como Markdown mantém Markdown na aba atual."
 }

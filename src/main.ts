@@ -41,8 +41,8 @@ function hasLargeVisibleTree(doc: MapDocument, state?: MapViewState): boolean {
   }
   return false;
 }
-interface Settings extends MapRules { previousPluginId?: string; language: LanguageSetting; nodeEditor: 'native' | 'text'; autoOpen: boolean; autoRestoreLargeMaps: boolean; queueExcludedMaps: string; queueExcludedBranches: string; queueTaskMarker: boolean; queueStepTag: boolean; collapseOnLeft: boolean; arrowAcrossBranches: boolean; toolbarMode: ToolbarMode; showMapPreviews: boolean; collapsePastedBranches: boolean; hotkeys: Record<string, string>; widthMode: WidthMode; }
-const DEFAULT_SETTINGS: Settings = { patternMode: 'glob', mapPatterns: '*.mindmap.md\n🎯*.md', language: 'auto', nodeEditor: 'native', autoOpen: false, autoRestoreLargeMaps: true, queueExcludedMaps: 'архів тижнів\nold', queueExcludedBranches: '🧊\n❌', queueTaskMarker: true, queueStepTag: true, collapseOnLeft: false, arrowAcrossBranches: false, toolbarMode: 'visible', showMapPreviews: true, collapsePastedBranches: true, hotkeys: {}, widthMode: 'fixed' };
+interface Settings extends MapRules { previousPluginId?: string; language: LanguageSetting; nodeEditor: 'native' | 'text'; autoOpen: boolean; rememberLastMode: boolean; autoRestoreLargeMaps: boolean; queueExcludedMaps: string; queueExcludedBranches: string; queueTaskMarker: boolean; queueStepTag: boolean; collapseOnLeft: boolean; arrowAcrossBranches: boolean; toolbarMode: ToolbarMode; showMapPreviews: boolean; collapsePastedBranches: boolean; hotkeys: Record<string, string>; widthMode: WidthMode; }
+const DEFAULT_SETTINGS: Settings = { patternMode: 'glob', mapPatterns: '*.mindmap.md\n🎯*.md', language: 'auto', nodeEditor: 'native', autoOpen: false, rememberLastMode: false, autoRestoreLargeMaps: true, queueExcludedMaps: 'архів тижнів\nold', queueExcludedBranches: '🧊\n❌', queueTaskMarker: true, queueStepTag: true, collapseOnLeft: false, arrowAcrossBranches: false, toolbarMode: 'visible', showMapPreviews: true, collapsePastedBranches: true, hotkeys: {}, widthMode: 'fixed' };
 const widthModes = (): [WidthMode, string][] => [['fixed', t("Fixed width")], ['content', t("Fit node content")], ['column', t("Fit visible column")]];
 type ToolbarMode = 'visible' | 'hover' | 'hidden';
 const toolbarModes = (): [ToolbarMode, string][] => [
@@ -74,6 +74,7 @@ export default class TraceViewMindmap extends Plugin {
   private saveQueues = new Map<string, Promise<void>>();
   private sourceLeaves = new WeakMap<WorkspaceLeaf, string>();
   private sourcePreferences = new Set<string>();
+  private mapPreferences = new Set<string>();
   private autoTimers = new Map<WorkspaceLeaf, number>();
   private nativeLinkTargets = new WeakMap<MarkdownView, { path: string; subpath: string }>();
   private opening = new WeakSet<WorkspaceLeaf>();
@@ -90,6 +91,11 @@ export default class TraceViewMindmap extends Plugin {
       if (!Array.isArray(paths) && this.settings.previousPluginId) paths = this.app.loadLocalStorage(this.settings.previousPluginId + ':source-preferences');
       if (Array.isArray(paths)) { this.sourcePreferences = new Set(paths.filter(path => typeof path === 'string')); this.rememberSource(); }
     } catch { /* Optional local preferences. */ }
+    this.settings.rememberLastMode = saved?.rememberLastMode === true;
+    try {
+      const paths = this.app.loadLocalStorage('traceview-mindmap:map-preferences');
+      if (Array.isArray(paths)) this.mapPreferences = new Set(paths.filter(path => typeof path === 'string').slice(-500));
+    } catch { /* Device-local mode memory is optional. */ }
     if (this.settings.nodeEditor !== 'native' && this.settings.nodeEditor !== 'text') this.settings.nodeEditor = 'native';
     if (!isLanguageSetting(this.settings.language)) this.settings.language = 'auto';
     setLanguage(this.settings.language, typeof getLanguage === 'function' ? getLanguage() : 'en');
@@ -114,7 +120,7 @@ export default class TraceViewMindmap extends Plugin {
     let observeLinks = true;
     const plugin = this;
     const receiveEphemeral = function(this: MarkdownView, state: any) {
-      if (observeLinks && this.app === plugin.app && plugin.settings.autoOpen && this.file && plugin.isMap(this.file) && typeof state?.subpath === 'string') {
+      if (observeLinks && this.app === plugin.app && this.file && plugin.shouldOpenMap(this.file) && typeof state?.subpath === 'string') {
         plugin.nativeLinkTargets.set(this, { path: this.file.path, subpath: state.subpath });
       }
       return originalEphemeral.call(this, state);
@@ -199,6 +205,7 @@ export default class TraceViewMindmap extends Plugin {
       if (this.isMap(file)) this.refreshQueues();
     }));
     this.registerEvent(this.app.vault.on('rename', (file, oldPath) => {
+      this.mapPreferences = new Set([...this.mapPreferences].map(path => path === oldPath || path.startsWith(oldPath + '/') ? file.path + path.slice(oldPath.length) : path)); this.rememberMaps();
       this.sourcePreferences = new Set([...this.sourcePreferences].map(path => path === oldPath || path.startsWith(oldPath + '/') ? file.path + path.slice(oldPath.length) : path)); this.rememberSource();
       for (const leaf of this.app.workspace.getLeavesOfType('markdown')) {
         const explicit = this.sourceLeaves.get(leaf);
@@ -208,6 +215,7 @@ export default class TraceViewMindmap extends Plugin {
       this.refreshQueues();
     }));
     this.registerEvent(this.app.vault.on('delete', file => {
+      this.mapPreferences = new Set([...this.mapPreferences].filter(path => path !== file.path && !path.startsWith(file.path + '/'))); this.rememberMaps();
       this.sourcePreferences = new Set([...this.sourcePreferences].filter(path => path !== file.path && !path.startsWith(file.path + '/'))); this.rememberSource();
       for (const leaf of this.app.workspace.getLeavesOfType(VIEW)) {
         const view = leaf.view as MapView;
@@ -229,6 +237,13 @@ export default class TraceViewMindmap extends Plugin {
   private rememberSource(): void {
     try { this.app.saveLocalStorage('traceview-mindmap:source-preferences', [...this.sourcePreferences]); } catch { /* Storage may be full. */ }
   }
+  private rememberMaps(): void {
+    try { this.app.saveLocalStorage('traceview-mindmap:map-preferences', [...this.mapPreferences]); } catch { /* Storage may be full. */ }
+  }
+  private shouldOpenMap(file: TFile): boolean {
+    return (this.settings.autoOpen && this.isMap(file))
+      || (this.settings.rememberLastMode && this.mapPreferences.has(file.path) && !this.sourcePreferences.has(file.path));
+  }
   private scheduleAutoOpen(leaf: WorkspaceLeaf, expectedPath?: string): void {
     if (this.opening.has(leaf)) return;
     const previous = this.autoTimers.get(leaf); if (previous !== undefined) window.clearTimeout(previous);
@@ -237,14 +252,14 @@ export default class TraceViewMindmap extends Plugin {
       const view = leaf.view;
       if (!(view instanceof MarkdownView) || !view.file || (expectedPath && view.file.path !== expectedPath)) return;
       if (this.sourceLeaves.get(leaf) !== view.file.path) this.sourceLeaves.delete(leaf);
-      if (!this.settings.autoOpen || !this.isMap(view.file) || this.sourceLeaves.get(leaf) === view.file.path || this.sourcePreferences.has(view.file.path)) return;
+      if (!this.shouldOpenMap(view.file) || this.sourceLeaves.get(leaf) === view.file.path) return;
       this.opening.add(leaf);
       const file = view.file;
       const linkState = this.nativeLinkTargets.get(view); this.nativeLinkTargets.delete(view);
       void (async () => {
         try {
           await view.save();
-          if (leaf.view === view && view.file === file && this.settings.autoOpen && !this.sourcePreferences.has(file.path)) {
+          if (leaf.view === view && view.file === file && this.shouldOpenMap(file) && this.sourceLeaves.get(leaf) !== file.path) {
             await this.openMap(file, leaf);
             if (linkState?.path === file.path && linkState.subpath && leaf.view instanceof MapView) leaf.view.revealSubpath(linkState.subpath);
           }
@@ -318,6 +333,11 @@ export default class TraceViewMindmap extends Plugin {
     const leaf = target ?? existing ?? this.app.workspace.getLeaf('tab');
     if (leaf.view instanceof MapView && leaf.view.surface?.isEditing()) { new Notice(t("Save or cancel the node draft.")); leaf.view.surface.focusEditor(); return; }
     this.sourceLeaves.delete(leaf); this.sourcePreferences.delete(file.path); this.rememberSource();
+    if (this.settings.rememberLastMode && !this.mapPreferences.has(file.path)) {
+      this.mapPreferences.add(file.path);
+      if (this.mapPreferences.size > 500) this.mapPreferences.delete(this.mapPreferences.values().next().value!);
+      this.rememberMaps();
+    }
     await leaf.setViewState({ type: VIEW, state: { file: file.path, openNow: true }, active: true });
     await this.app.workspace.revealLeaf(leaf);
     if (nodeId && leaf.view instanceof MapView) { await leaf.view.reload(); leaf.view.surface?.reveal(nodeId); }
@@ -371,6 +391,7 @@ export default class TraceViewMindmap extends Plugin {
   async source(file: TFile, line = 0, target?: WorkspaceLeaf): Promise<void> {
     const leaf = target ?? this.app.workspace.getLeaf(false);
     this.sourceLeaves.set(leaf, file.path); this.sourcePreferences.add(file.path); this.rememberSource();
+    if (this.mapPreferences.delete(file.path)) this.rememberMaps();
     // Explicit view state avoids another plugin choosing a map view for this .md file.
     await leaf.setViewState({ type: 'markdown', state: { file: file.path, mode: 'source' }, active: true });
     await this.app.workspace.revealLeaf(leaf);
@@ -436,7 +457,7 @@ export default class TraceViewMindmap extends Plugin {
     const parts = parseLinktext(link);
     const file = parts.path ? this.app.metadataCache.getFirstLinkpathDest(parts.path, view.path) : view.file;
     const newTab = event.ctrlKey || event.metaKey || event.button === 1;
-    if (file && this.isMap(file)) {
+    if (file && (file === view.file || this.shouldOpenMap(file))) {
       const leaf = newTab ? this.app.workspace.getLeaf('tab') : view.leaf;
       await this.openMap(file, leaf);
       if (leaf.view instanceof MapView) leaf.view.revealSubpath(parts.subpath);
@@ -1545,7 +1566,11 @@ class SettingsTab extends PluginSettingTab {
       dropdown.addOption('native', t("Native Obsidian")).addOption('text', t("Text input"));
       dropdown.setValue(this.plugin.settings.nodeEditor).onChange(async value => { this.plugin.settings.nodeEditor = value === 'text' ? 'text' : 'native'; await this.plugin.saveData(this.plugin.settings); });
     });
-    new Setting(this.containerEl).setName(t("Automatically open matching notes as maps")).setDesc(t("Applies to notes matching the patterns below. Opening source Markdown explicitly keeps that note in Markdown mode.")).addToggle(toggle => toggle.setValue(this.plugin.settings.autoOpen).onChange(async value => { this.plugin.settings.autoOpen = value; await this.plugin.saveData(this.plugin.settings); }));
+    new Setting(this.containerEl).setName(t("Automatically open matching notes as maps")).setDesc(t("Matching notes reopen as maps, overriding remembered Markdown. Open as Markdown keeps the current tab in Markdown.")).addToggle(toggle => toggle.setValue(this.plugin.settings.autoOpen).onChange(async value => { this.plugin.settings.autoOpen = value; await this.plugin.saveData(this.plugin.settings); }));
+    new Setting(this.containerEl).setName(t("Remember last note view")).setDesc(t("Reopen notes in their last map or Markdown view. Automatic map opening takes priority. Stores up to 500 map paths on this device.")).addToggle(toggle => toggle.setValue(this.plugin.settings.rememberLastMode).onChange(async value => {
+      this.plugin.settings.rememberLastMode = value;
+      await this.plugin.saveData(this.plugin.settings);
+    }));
     let patternMode = this.plugin.settings.patternMode, mapPatterns = this.plugin.settings.mapPatterns;
     const patternStatus = this.containerEl.createEl('p', { cls: 'setting-item-description', attr: { role: 'status', 'aria-live': 'polite' } });
     const savePatterns = () => {

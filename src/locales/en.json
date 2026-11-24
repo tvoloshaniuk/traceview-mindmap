@@ -326,7 +326,6 @@
   "Mark incomplete": "Mark incomplete",
   "Invalid saved map patterns. Default patterns are active.": "Invalid saved map patterns. Default patterns are active.",
   "Automatically open matching notes as maps": "Automatically open matching notes as maps",
-  "Applies to notes matching the patterns below. Opening source Markdown explicitly keeps that note in Markdown mode.": "Applies to notes matching the patterns below. Opening source Markdown explicitly keeps that note in Markdown mode.",
   "Invalid pattern on line {line}: {error}": "Invalid pattern on line {line}: {error}",
   "Patterns saved.": "Patterns saved.",
   "Pattern syntax": "Pattern syntax",
@@ -340,5 +339,8 @@
   "Restore default settings": "Restore default settings",
   "Restore defaults": "Restore defaults",
   "Reset plugin preferences, shortcuts and map patterns? Device-local view states and saved notes are retained. Restart Obsidian to apply the language.": "Reset plugin preferences, shortcuts and map patterns? Device-local view states and saved notes are retained. Restart Obsidian to apply the language.",
-  "Default settings restored. Restart Obsidian to apply the language.": "Default settings restored. Restart Obsidian to apply the language."
+  "Default settings restored. Restart Obsidian to apply the language.": "Default settings restored. Restart Obsidian to apply the language.",
+  "Remember last note view": "Remember last note view",
+  "Reopen notes in their last map or Markdown view. Automatic map opening takes priority. Stores up to 500 map paths on this device.": "Reopen notes in their last map or Markdown view. Automatic map opening takes priority. Stores up to 500 map paths on this device.",
+  "Matching notes reopen as maps, overriding remembered Markdown. Open as Markdown keeps the current tab in Markdown.": "Matching notes reopen as maps, overriding remembered Markdown. Open as Markdown keeps the current tab in Markdown."
 }

@@ -125,7 +125,7 @@ test('distributed main.js evaluates and enables with the Obsidian API', async ()
 });
 
 test('map view exposes its file and replaces the same leaf for source/map links; modifiers use a new tab', async () => {
-  const loaded = await loadBundle(null);
+  const loaded = await loadBundle({autoOpen:true});
   const app = loaded.app as any, plugin = loaded.plugin as any;
   const calls: {leaf:string;state:any}[] = [];
   const leaf: any = { app, setViewState: async (state: any) => { calls.push({leaf:'current',state}); } };
@@ -573,4 +573,78 @@ test('queue reads only selected files and ignores an older load after switching 
   assert.deepEqual([...view.cache.keys()], [files[1].path]);
   assert.equal(view.getState().filter, files[1].path);
   dom.window.close();
+});
+
+test('note mode memory respects automatic-map priority, explicit source tabs and disabled memory', async () => {
+  const storage = new Map<string, unknown>();
+  const dom = new JSDOM('', {pretendToBeVisual:true});
+  const f = await loadBundle({autoOpen:false, rememberLastMode:true}, dom.window, [], storage);
+  const plugin = f.plugin as any, app = f.app as any;
+  app.metadataCache = {getFileCache: () => ({})};
+  app.workspace.getLeavesOfType = () => [];
+  app.workspace.revealLeaf = async () => {};
+  const file = new f.TFile('Ordinary.md');
+  const leaf: any = {view:{}, setViewState:async () => {}};
+  assert.equal(plugin.shouldOpenMap(file), false);
+  await plugin.openMap(file, leaf);
+  assert.equal(plugin.shouldOpenMap(file), true);
+  assert.deepEqual([...storage.get('traceview-mindmap:map-preferences') as string[]], [file.path]);
+  const fresh = await loadBundle({rememberLastMode:true}, dom.window, [], storage);
+  (fresh.app as any).metadataCache = app.metadataCache;
+  assert.equal((fresh.plugin as any).shouldOpenMap(file), true);
+  plugin.settings.rememberLastMode = false;
+  assert.equal(plugin.shouldOpenMap(file), false);
+  plugin.settings.rememberLastMode = true;
+  await plugin.source(file, 0, leaf);
+  assert.equal(plugin.shouldOpenMap(file), false);
+  plugin.settings.autoOpen = true;
+  plugin.settings.mapPatterns = '*.md';
+  await plugin.setMapRules({patternMode:'glob', mapPatterns:'*.md'});
+  assert.equal(plugin.shouldOpenMap(file), true, 'Automatic maps override the remembered Markdown mode');
+  let opened = 0;
+  plugin.openMap = async () => { opened++; };
+  const markdown: any = new f.MarkdownView();
+  markdown.file = file;
+  markdown.save = async () => {};
+  leaf.view = markdown;
+  plugin.scheduleAutoOpen(leaf);
+  await new Promise(resolve => dom.window.setTimeout(resolve, 15));
+  assert.equal(opened, 0, 'Explicit Markdown remains usable in the current tab');
+  const reopened = {view:markdown};
+  plugin.scheduleAutoOpen(reopened);
+  await new Promise(resolve => dom.window.setTimeout(resolve, 15));
+  assert.equal(opened, 1, 'Reopening in a fresh tab honors automatic map priority');
+  plugin.settings.autoOpen = false;
+  plugin.settings.rememberLastMode = false;
+  assert.equal(plugin.shouldOpenMap(file), false);
+  plugin.settings.rememberLastMode = true;
+  plugin.mapPreferences.add(file.path);
+  plugin.sourcePreferences.delete(file.path);
+  app.metadataCache.getFirstLinkpathDest = () => file;
+  const mapView: any = {file:null, path:'Origin.md', leaf:{}};
+  plugin.openMap = async (target: unknown, _leaf: unknown) => { assert.equal(target, file); opened++; };
+  await plugin.openMapLink('Ordinary#^target', mapView, {ctrlKey:false, metaKey:false, button:0});
+  assert.equal(opened, 2, 'Remembered ordinary Markdown notes open as maps through links');
+
+  dom.window.close();
+});
+
+test('remembered map paths are bounded, renamed and deleted without touching note content', async () => {
+  const storage = new Map<string, unknown>([['traceview-mindmap:map-preferences', Array.from({length:502}, (_,i) => 'Folder/'+i+'.md')]]);
+  const f = await loadBundle({rememberLastMode:true}, undefined, [], storage);
+  const plugin = f.plugin as any, app = f.app as any;
+  assert.equal(plugin.mapPreferences.size, 500);
+  app.workspace.getLeavesOfType = () => [];
+  app.workspace.revealLeaf = async () => {};
+  app.workspace.requestSaveLayout = () => {};
+  const leaf = {view:{}, setViewState:async () => {}};
+  await plugin.openMap(new f.TFile('New.md'), leaf);
+  assert.equal(plugin.mapPreferences.size, 500);
+  assert.equal(plugin.mapPreferences.has('Folder/2.md'), false);
+  const event = (name:string) => (f.registeredEvents as any[]).find(event => event.name === name).callback;
+  event('rename')(new f.TFile('Renamed'), 'Folder');
+  assert.equal(plugin.mapPreferences.has('Renamed/501.md'), true);
+  assert.equal(plugin.mapPreferences.has('Folder/501.md'), false);
+  event('delete')(new f.TFile('Renamed'));
+  assert.deepEqual([...plugin.mapPreferences], ['New.md']);
 });

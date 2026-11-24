@@ -326,7 +326,6 @@
   "Mark incomplete": "Oznacz jako niewykonane",
   "Invalid saved map patterns. Default patterns are active.": "Zapisane wzorce są nieprawidłowe. Działają reguły domyślne.",
   "Automatically open matching notes as maps": "Automatycznie otwieraj pasujące notatki jako mapy",
-  "Applies to notes matching the patterns below. Opening source Markdown explicitly keeps that note in Markdown mode.": "Dotyczy notatek pasujących do poniższych wzorców. Jawne otwarcie źródła pozostawia notatkę w Markdown.",
   "Invalid pattern on line {line}: {error}": "Nieprawidłowy wzorzec w wierszu {line}: {error}",
   "Patterns saved.": "Wzorce zapisane.",
   "Pattern syntax": "Składnia wzorców",
@@ -340,5 +339,8 @@
   "Restore default settings": "Przywróć ustawienia domyślne",
   "Restore defaults": "Przywróć",
   "Reset plugin preferences, shortcuts and map patterns? Device-local view states and saved notes are retained. Restart Obsidian to apply the language.": "Przywrócić ustawienia, skróty i wzorce map? Lokalne stany widoku i zapisane notatki zostaną zachowane. Uruchom ponownie Obsidian, aby zastosować język.",
-  "Default settings restored. Restart Obsidian to apply the language.": "Przywrócono ustawienia domyślne. Uruchom ponownie Obsidian, aby zastosować język."
+  "Default settings restored. Restart Obsidian to apply the language.": "Przywrócono ustawienia domyślne. Uruchom ponownie Obsidian, aby zastosować język.",
+  "Remember last note view": "Zapamiętaj ostatni widok notatki",
+  "Reopen notes in their last map or Markdown view. Automatic map opening takes priority. Stores up to 500 map paths on this device.": "Otwieraj notatki w ostatnim widoku mapy lub Markdown. Automatyczne otwieranie map ma pierwszeństwo. Zapisuje do 500 ścieżek na tym urządzeniu.",
+  "Matching notes reopen as maps, overriding remembered Markdown. Open as Markdown keeps the current tab in Markdown.": "Pasujące notatki ponownie otwierają się jako mapy, pomimo zapamiętanego Markdown. Otwórz jako Markdown zachowuje Markdown w bieżącej karcie."
 }

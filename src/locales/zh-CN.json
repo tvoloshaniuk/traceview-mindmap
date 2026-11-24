@@ -326,7 +326,6 @@
   "Mark incomplete": "标记为未完成",
   "Invalid saved map patterns. Default patterns are active.": "保存的规则无效。已启用默认规则。",
   "Automatically open matching notes as maps": "自动将匹配的笔记作为导图打开",
-  "Applies to notes matching the patterns below. Opening source Markdown explicitly keeps that note in Markdown mode.": "适用于符合以下规则的笔记。明确打开 Markdown 源文后，该笔记保持 Markdown 模式。",
   "Invalid pattern on line {line}: {error}": "第 {line} 行规则无效：{error}",
   "Patterns saved.": "规则已保存。",
   "Pattern syntax": "规则语法",
@@ -340,5 +339,8 @@
   "Restore default settings": "恢复默认设置",
   "Restore defaults": "恢复",
   "Reset plugin preferences, shortcuts and map patterns? Device-local view states and saved notes are retained. Restart Obsidian to apply the language.": "重置插件设置、快捷键和导图规则？本设备的视图状态和已保存的笔记将保留。请重启 Obsidian 以应用语言。",
-  "Default settings restored. Restart Obsidian to apply the language.": "已恢复默认设置。请重启 Obsidian 以应用语言。"
+  "Default settings restored. Restart Obsidian to apply the language.": "已恢复默认设置。请重启 Obsidian 以应用语言。",
+  "Remember last note view": "记住笔记的上次视图",
+  "Reopen notes in their last map or Markdown view. Automatic map opening takes priority. Stores up to 500 map paths on this device.": "以笔记上次使用的地图或Markdown视图重新打开。自动打开地图优先。此设备最多保存500个地图路径。",
+  "Matching notes reopen as maps, overriding remembered Markdown. Open as Markdown keeps the current tab in Markdown.": "匹配的笔记会重新以地图打开，优先于记住的Markdown视图。打开为Markdown会在当前标签页保留Markdown。"
 }

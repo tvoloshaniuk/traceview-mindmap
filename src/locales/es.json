@@ -326,7 +326,6 @@
   "Mark incomplete": "Marcar incompleto",
   "Invalid saved map patterns. Default patterns are active.": "Patrones guardados inválidos. Se usan los predeterminados.",
   "Automatically open matching notes as maps": "Abrir notas coincidentes como mapas automáticamente",
-  "Applies to notes matching the patterns below. Opening source Markdown explicitly keeps that note in Markdown mode.": "Para notas que coincidan con los patrones siguientes. Abrir explícitamente el Markdown fuente conserva ese modo.",
   "Invalid pattern on line {line}: {error}": "Patrón inválido en la línea {line}: {error}",
   "Patterns saved.": "Patrones guardados.",
   "Pattern syntax": "Sintaxis de patrones",
@@ -340,5 +339,8 @@
   "Restore default settings": "Restaurar ajustes predeterminados",
   "Restore defaults": "Restaurar",
   "Reset plugin preferences, shortcuts and map patterns? Device-local view states and saved notes are retained. Restart Obsidian to apply the language.": "¿Restaurar ajustes, atajos y patrones de mapas? Se conservan las vistas locales y las notas guardadas. Reinicia Obsidian para aplicar el idioma.",
-  "Default settings restored. Restart Obsidian to apply the language.": "Ajustes predeterminados restaurados. Reinicia Obsidian para aplicar el idioma."
+  "Default settings restored. Restart Obsidian to apply the language.": "Ajustes predeterminados restaurados. Reinicia Obsidian para aplicar el idioma.",
+  "Remember last note view": "Recordar la última vista de las notas",
+  "Reopen notes in their last map or Markdown view. Automatic map opening takes priority. Stores up to 500 map paths on this device.": "Reabrir notas en su última vista de mapa o Markdown. La apertura automática tiene prioridad. Guarda hasta 500 rutas en este dispositivo.",
+  "Matching notes reopen as maps, overriding remembered Markdown. Open as Markdown keeps the current tab in Markdown.": "Las notas coincidentes vuelven a abrirse como mapas, incluso tras Markdown. Abrir como Markdown mantiene Markdown en la pestaña actual."
 }
