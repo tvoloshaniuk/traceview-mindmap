@@ -355,5 +355,10 @@
   "Convert to multiline note…": "複数行ノートに変換…",
   "Short node title": "短いノード名",
   "Choose an existing note…": "既存のノートを選択…",
-  "Multiline note…": "複数行ノート…"
+  "Multiline note…": "複数行ノート…",
+  "Completed tasks": "完了したタスク",
+  "Hide completed tasks": "完了したタスクを非表示",
+  "Completed tasks below": "完了したタスクを下部に表示",
+  "Completed tasks in place": "完了したタスクを元の位置に表示",
+  "Completed ({count})": "完了 ({count})"
 }

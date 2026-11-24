@@ -355,5 +355,10 @@
   "Convert to multiline note…": "Перетворити на багаторядкову нотатку…",
   "Short node title": "Коротка назва ноди",
   "Choose an existing note…": "Обрати наявну нотатку…",
-  "Multiline note…": "Багаторядкова нотатка…"
+  "Multiline note…": "Багаторядкова нотатка…",
+  "Completed tasks": "Виконані задачі",
+  "Hide completed tasks": "Приховувати виконані задачі",
+  "Completed tasks below": "Виконані задачі внизу",
+  "Completed tasks in place": "Виконані задачі на своїх місцях",
+  "Completed ({count})": "Виконані ({count})"
 }

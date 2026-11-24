@@ -355,5 +355,10 @@
   "Convert to multiline note…": "Преобразовать в многострочную заметку…",
   "Short node title": "Краткое название узла",
   "Choose an existing note…": "Выбрать существующую заметку…",
-  "Multiline note…": "Многострочная заметка…"
+  "Multiline note…": "Многострочная заметка…",
+  "Completed tasks": "Выполненные задачи",
+  "Hide completed tasks": "Скрывать выполненные задачи",
+  "Completed tasks below": "Выполненные задачи внизу",
+  "Completed tasks in place": "Выполненные задачи на своих местах",
+  "Completed ({count})": "Выполненные ({count})"
 }

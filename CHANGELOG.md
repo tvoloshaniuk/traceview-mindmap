@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.0.30
+
+### Added
+
+- Choose how completed tasks appear in Steps: hidden, in a collapsible footer per map (default), or in their original order with muted text. Uncheck a completed task to restore it to the active list.
+- Remember the chosen display mode with the queue tab state. Completed tasks retain conflict protection and queue Undo/Redo.
+
+
 ## 1.0.29
 
 ### Added

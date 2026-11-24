@@ -355,5 +355,10 @@
   "Convert to multiline note…": "In mehrzeilige Notiz umwandeln…",
   "Short node title": "Kurzer Knotentitel",
   "Choose an existing note…": "Vorhandene Notiz auswählen…",
-  "Multiline note…": "Mehrzeilige Notiz…"
+  "Multiline note…": "Mehrzeilige Notiz…",
+  "Completed tasks": "Erledigte Aufgaben",
+  "Hide completed tasks": "Erledigte Aufgaben ausblenden",
+  "Completed tasks below": "Erledigte Aufgaben unten",
+  "Completed tasks in place": "Erledigte Aufgaben an gleicher Stelle",
+  "Completed ({count})": "Erledigt ({count})"
 }

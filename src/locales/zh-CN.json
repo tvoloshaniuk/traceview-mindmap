@@ -355,5 +355,10 @@
   "Convert to multiline note…": "转换为多行笔记…",
   "Short node title": "节点短标题",
   "Choose an existing note…": "选择现有笔记…",
-  "Multiline note…": "多行笔记…"
+  "Multiline note…": "多行笔记…",
+  "Completed tasks": "已完成任务",
+  "Hide completed tasks": "隐藏已完成任务",
+  "Completed tasks below": "已完成任务显示在底部",
+  "Completed tasks in place": "已完成任务保留原位",
+  "Completed ({count})": "已完成（{count}）"
 }

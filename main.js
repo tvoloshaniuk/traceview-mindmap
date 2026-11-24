@@ -714,7 +714,12 @@ var en_default = {
   "Convert to multiline note\u2026": "Convert to multiline note\u2026",
   "Short node title": "Short node title",
   "Choose an existing note\u2026": "Choose an existing note\u2026",
-  "Multiline note\u2026": "Multiline note\u2026"
+  "Multiline note\u2026": "Multiline note\u2026",
+  "Completed tasks": "Completed tasks",
+  "Hide completed tasks": "Hide completed tasks",
+  "Completed tasks below": "Completed tasks below",
+  "Completed tasks in place": "Completed tasks in place",
+  "Completed ({count})": "Completed ({count})"
 };
 
 // src/locales/uk.json
@@ -1075,7 +1080,12 @@ var uk_default = {
   "Convert to multiline note\u2026": "\u041F\u0435\u0440\u0435\u0442\u0432\u043E\u0440\u0438\u0442\u0438 \u043D\u0430 \u0431\u0430\u0433\u0430\u0442\u043E\u0440\u044F\u0434\u043A\u043E\u0432\u0443 \u043D\u043E\u0442\u0430\u0442\u043A\u0443\u2026",
   "Short node title": "\u041A\u043E\u0440\u043E\u0442\u043A\u0430 \u043D\u0430\u0437\u0432\u0430 \u043D\u043E\u0434\u0438",
   "Choose an existing note\u2026": "\u041E\u0431\u0440\u0430\u0442\u0438 \u043D\u0430\u044F\u0432\u043D\u0443 \u043D\u043E\u0442\u0430\u0442\u043A\u0443\u2026",
-  "Multiline note\u2026": "\u0411\u0430\u0433\u0430\u0442\u043E\u0440\u044F\u0434\u043A\u043E\u0432\u0430 \u043D\u043E\u0442\u0430\u0442\u043A\u0430\u2026"
+  "Multiline note\u2026": "\u0411\u0430\u0433\u0430\u0442\u043E\u0440\u044F\u0434\u043A\u043E\u0432\u0430 \u043D\u043E\u0442\u0430\u0442\u043A\u0430\u2026",
+  "Completed tasks": "\u0412\u0438\u043A\u043E\u043D\u0430\u043D\u0456 \u0437\u0430\u0434\u0430\u0447\u0456",
+  "Hide completed tasks": "\u041F\u0440\u0438\u0445\u043E\u0432\u0443\u0432\u0430\u0442\u0438 \u0432\u0438\u043A\u043E\u043D\u0430\u043D\u0456 \u0437\u0430\u0434\u0430\u0447\u0456",
+  "Completed tasks below": "\u0412\u0438\u043A\u043E\u043D\u0430\u043D\u0456 \u0437\u0430\u0434\u0430\u0447\u0456 \u0432\u043D\u0438\u0437\u0443",
+  "Completed tasks in place": "\u0412\u0438\u043A\u043E\u043D\u0430\u043D\u0456 \u0437\u0430\u0434\u0430\u0447\u0456 \u043D\u0430 \u0441\u0432\u043E\u0457\u0445 \u043C\u0456\u0441\u0446\u044F\u0445",
+  "Completed ({count})": "\u0412\u0438\u043A\u043E\u043D\u0430\u043D\u0456 ({count})"
 };
 
 // src/locales/pl.json
@@ -1436,7 +1446,12 @@ var pl_default = {
   "Convert to multiline note\u2026": "Przekszta\u0142\u0107 w notatk\u0119 wielowierszow\u0105\u2026",
   "Short node title": "Kr\xF3tki tytu\u0142 w\u0119z\u0142a",
   "Choose an existing note\u2026": "Wybierz istniej\u0105c\u0105 notatk\u0119\u2026",
-  "Multiline note\u2026": "Notatka wielowierszowa\u2026"
+  "Multiline note\u2026": "Notatka wielowierszowa\u2026",
+  "Completed tasks": "Uko\u0144czone zadania",
+  "Hide completed tasks": "Ukryj uko\u0144czone zadania",
+  "Completed tasks below": "Uko\u0144czone zadania na dole",
+  "Completed tasks in place": "Uko\u0144czone zadania na swoich miejscach",
+  "Completed ({count})": "Uko\u0144czone ({count})"
 };
 
 // src/locales/de.json
@@ -1797,7 +1812,12 @@ var de_default = {
   "Convert to multiline note\u2026": "In mehrzeilige Notiz umwandeln\u2026",
   "Short node title": "Kurzer Knotentitel",
   "Choose an existing note\u2026": "Vorhandene Notiz ausw\xE4hlen\u2026",
-  "Multiline note\u2026": "Mehrzeilige Notiz\u2026"
+  "Multiline note\u2026": "Mehrzeilige Notiz\u2026",
+  "Completed tasks": "Erledigte Aufgaben",
+  "Hide completed tasks": "Erledigte Aufgaben ausblenden",
+  "Completed tasks below": "Erledigte Aufgaben unten",
+  "Completed tasks in place": "Erledigte Aufgaben an gleicher Stelle",
+  "Completed ({count})": "Erledigt ({count})"
 };
 
 // src/locales/es.json
@@ -2158,7 +2178,12 @@ var es_default = {
   "Convert to multiline note\u2026": "Convertir en nota multil\xEDnea\u2026",
   "Short node title": "T\xEDtulo breve del nodo",
   "Choose an existing note\u2026": "Elegir una nota existente\u2026",
-  "Multiline note\u2026": "Nota multil\xEDnea\u2026"
+  "Multiline note\u2026": "Nota multil\xEDnea\u2026",
+  "Completed tasks": "Tareas completadas",
+  "Hide completed tasks": "Ocultar tareas completadas",
+  "Completed tasks below": "Tareas completadas abajo",
+  "Completed tasks in place": "Tareas completadas en su lugar",
+  "Completed ({count})": "Completadas ({count})"
 };
 
 // src/locales/fr.json
@@ -2519,7 +2544,12 @@ var fr_default = {
   "Convert to multiline note\u2026": "Convertir en note multiligne\u2026",
   "Short node title": "Titre court du n\u0153ud",
   "Choose an existing note\u2026": "Choisir une note existante\u2026",
-  "Multiline note\u2026": "Note multiligne\u2026"
+  "Multiline note\u2026": "Note multiligne\u2026",
+  "Completed tasks": "T\xE2ches termin\xE9es",
+  "Hide completed tasks": "Masquer les t\xE2ches termin\xE9es",
+  "Completed tasks below": "T\xE2ches termin\xE9es en bas",
+  "Completed tasks in place": "T\xE2ches termin\xE9es \xE0 leur place",
+  "Completed ({count})": "Termin\xE9es ({count})"
 };
 
 // src/locales/pt-BR.json
@@ -2880,7 +2910,12 @@ var pt_BR_default = {
   "Convert to multiline note\u2026": "Converter em nota com v\xE1rias linhas\u2026",
   "Short node title": "T\xEDtulo curto do n\xF3",
   "Choose an existing note\u2026": "Escolher uma nota existente\u2026",
-  "Multiline note\u2026": "Nota com v\xE1rias linhas\u2026"
+  "Multiline note\u2026": "Nota com v\xE1rias linhas\u2026",
+  "Completed tasks": "Tarefas conclu\xEDdas",
+  "Hide completed tasks": "Ocultar tarefas conclu\xEDdas",
+  "Completed tasks below": "Tarefas conclu\xEDdas abaixo",
+  "Completed tasks in place": "Tarefas conclu\xEDdas no lugar",
+  "Completed ({count})": "Conclu\xEDdas ({count})"
 };
 
 // src/locales/zh-CN.json
@@ -3241,7 +3276,12 @@ var zh_CN_default = {
   "Convert to multiline note\u2026": "\u8F6C\u6362\u4E3A\u591A\u884C\u7B14\u8BB0\u2026",
   "Short node title": "\u8282\u70B9\u77ED\u6807\u9898",
   "Choose an existing note\u2026": "\u9009\u62E9\u73B0\u6709\u7B14\u8BB0\u2026",
-  "Multiline note\u2026": "\u591A\u884C\u7B14\u8BB0\u2026"
+  "Multiline note\u2026": "\u591A\u884C\u7B14\u8BB0\u2026",
+  "Completed tasks": "\u5DF2\u5B8C\u6210\u4EFB\u52A1",
+  "Hide completed tasks": "\u9690\u85CF\u5DF2\u5B8C\u6210\u4EFB\u52A1",
+  "Completed tasks below": "\u5DF2\u5B8C\u6210\u4EFB\u52A1\u663E\u793A\u5728\u5E95\u90E8",
+  "Completed tasks in place": "\u5DF2\u5B8C\u6210\u4EFB\u52A1\u4FDD\u7559\u539F\u4F4D",
+  "Completed ({count})": "\u5DF2\u5B8C\u6210\uFF08{count}\uFF09"
 };
 
 // src/locales/ja.json
@@ -3602,7 +3642,12 @@ var ja_default = {
   "Convert to multiline note\u2026": "\u8907\u6570\u884C\u30CE\u30FC\u30C8\u306B\u5909\u63DB\u2026",
   "Short node title": "\u77ED\u3044\u30CE\u30FC\u30C9\u540D",
   "Choose an existing note\u2026": "\u65E2\u5B58\u306E\u30CE\u30FC\u30C8\u3092\u9078\u629E\u2026",
-  "Multiline note\u2026": "\u8907\u6570\u884C\u30CE\u30FC\u30C8\u2026"
+  "Multiline note\u2026": "\u8907\u6570\u884C\u30CE\u30FC\u30C8\u2026",
+  "Completed tasks": "\u5B8C\u4E86\u3057\u305F\u30BF\u30B9\u30AF",
+  "Hide completed tasks": "\u5B8C\u4E86\u3057\u305F\u30BF\u30B9\u30AF\u3092\u975E\u8868\u793A",
+  "Completed tasks below": "\u5B8C\u4E86\u3057\u305F\u30BF\u30B9\u30AF\u3092\u4E0B\u90E8\u306B\u8868\u793A",
+  "Completed tasks in place": "\u5B8C\u4E86\u3057\u305F\u30BF\u30B9\u30AF\u3092\u5143\u306E\u4F4D\u7F6E\u306B\u8868\u793A",
+  "Completed ({count})": "\u5B8C\u4E86 ({count})"
 };
 
 // src/locales/ko.json
@@ -3963,7 +4008,12 @@ var ko_default = {
   "Convert to multiline note\u2026": "\uC5EC\uB7EC \uC904 \uB178\uD2B8\uB85C \uBCC0\uD658\u2026",
   "Short node title": "\uC9E7\uC740 \uB178\uB4DC \uC81C\uBAA9",
   "Choose an existing note\u2026": "\uAE30\uC874 \uB178\uD2B8 \uC120\uD0DD\u2026",
-  "Multiline note\u2026": "\uC5EC\uB7EC \uC904 \uB178\uD2B8\u2026"
+  "Multiline note\u2026": "\uC5EC\uB7EC \uC904 \uB178\uD2B8\u2026",
+  "Completed tasks": "\uC644\uB8CC\uB41C \uC791\uC5C5",
+  "Hide completed tasks": "\uC644\uB8CC\uB41C \uC791\uC5C5 \uC228\uAE30\uAE30",
+  "Completed tasks below": "\uC644\uB8CC\uB41C \uC791\uC5C5\uC744 \uC544\uB798\uC5D0 \uD45C\uC2DC",
+  "Completed tasks in place": "\uC644\uB8CC\uB41C \uC791\uC5C5\uC744 \uC6D0\uB798 \uC704\uCE58\uC5D0 \uD45C\uC2DC",
+  "Completed ({count})": "\uC644\uB8CC ({count})"
 };
 
 // src/locales/ru.json
@@ -4324,7 +4374,12 @@ var ru_default = {
   "Convert to multiline note\u2026": "\u041F\u0440\u0435\u043E\u0431\u0440\u0430\u0437\u043E\u0432\u0430\u0442\u044C \u0432 \u043C\u043D\u043E\u0433\u043E\u0441\u0442\u0440\u043E\u0447\u043D\u0443\u044E \u0437\u0430\u043C\u0435\u0442\u043A\u0443\u2026",
   "Short node title": "\u041A\u0440\u0430\u0442\u043A\u043E\u0435 \u043D\u0430\u0437\u0432\u0430\u043D\u0438\u0435 \u0443\u0437\u043B\u0430",
   "Choose an existing note\u2026": "\u0412\u044B\u0431\u0440\u0430\u0442\u044C \u0441\u0443\u0449\u0435\u0441\u0442\u0432\u0443\u044E\u0449\u0443\u044E \u0437\u0430\u043C\u0435\u0442\u043A\u0443\u2026",
-  "Multiline note\u2026": "\u041C\u043D\u043E\u0433\u043E\u0441\u0442\u0440\u043E\u0447\u043D\u0430\u044F \u0437\u0430\u043C\u0435\u0442\u043A\u0430\u2026"
+  "Multiline note\u2026": "\u041C\u043D\u043E\u0433\u043E\u0441\u0442\u0440\u043E\u0447\u043D\u0430\u044F \u0437\u0430\u043C\u0435\u0442\u043A\u0430\u2026",
+  "Completed tasks": "\u0412\u044B\u043F\u043E\u043B\u043D\u0435\u043D\u043D\u044B\u0435 \u0437\u0430\u0434\u0430\u0447\u0438",
+  "Hide completed tasks": "\u0421\u043A\u0440\u044B\u0432\u0430\u0442\u044C \u0432\u044B\u043F\u043E\u043B\u043D\u0435\u043D\u043D\u044B\u0435 \u0437\u0430\u0434\u0430\u0447\u0438",
+  "Completed tasks below": "\u0412\u044B\u043F\u043E\u043B\u043D\u0435\u043D\u043D\u044B\u0435 \u0437\u0430\u0434\u0430\u0447\u0438 \u0432\u043D\u0438\u0437\u0443",
+  "Completed tasks in place": "\u0412\u044B\u043F\u043E\u043B\u043D\u0435\u043D\u043D\u044B\u0435 \u0437\u0430\u0434\u0430\u0447\u0438 \u043D\u0430 \u0441\u0432\u043E\u0438\u0445 \u043C\u0435\u0441\u0442\u0430\u0445",
+  "Completed ({count})": "\u0412\u044B\u043F\u043E\u043B\u043D\u0435\u043D\u043D\u044B\u0435 ({count})"
 };
 
 // src/i18n.ts
@@ -10851,6 +10906,8 @@ var QueueView = class extends import_obsidian5.ItemView {
     this.writing = false;
     this.cache = /* @__PURE__ */ new Map();
     this.mode = "steps";
+    this.completedMode = "footer";
+    this.completedExpanded = /* @__PURE__ */ new Set();
     this.collapsed = /* @__PURE__ */ new Set();
     this.filter = "";
     this.query = "";
@@ -10876,6 +10933,16 @@ var QueueView = class extends import_obsidian5.ItemView {
       this.mode = value;
       this.draw();
     });
+    this.completedControl = toolbar.createEl("select", { attr: { "aria-label": t("Completed tasks") } });
+    for (const [value, label2] of [["hide", t("Hide completed tasks")], ["footer", t("Completed tasks below")], ["inline", t("Completed tasks in place")]]) {
+      this.completedControl.createEl("option", { text: label2, value });
+    }
+    this.completedControl.value = this.completedMode;
+    this.completedControl.onchange = () => {
+      this.completedMode = this.completedControl.value;
+      this.draw();
+      this.app.workspace.requestSaveLayout();
+    };
     this.undoButton = iconButton(toolbar, "undo-2", t("Undo"), () => {
       void this.history("undo");
     });
@@ -10914,7 +10981,7 @@ var QueueView = class extends import_obsidian5.ItemView {
     this.host = this.contentEl.createDiv("tvm-panel");
   }
   getState() {
-    return { filter: this.filter };
+    return { filter: this.filter, completedMode: this.completedMode };
   }
   async setState(state, result) {
     const filter = typeof state.filter === "string" ? state.filter : "";
@@ -10924,6 +10991,8 @@ var QueueView = class extends import_obsidian5.ItemView {
     } catch {
       this.filter = "";
     }
+    this.completedMode = state.completedMode === "hide" || state.completedMode === "inline" ? state.completedMode : "footer";
+    if (this.completedControl) this.completedControl.value = this.completedMode;
     this.mapFilter?.set(this.filter);
     await this.reload();
     await super.setState(state, result);
@@ -10971,6 +11040,7 @@ var QueueView = class extends import_obsidian5.ItemView {
     this.renderer = this.addChild(new import_obsidian5.Component());
     this.host.empty();
     if (this.foldControls) this.foldControls.hidden = this.mode === "dates";
+    if (this.completedControl) this.completedControl.hidden = this.mode !== "steps";
     let count = 0;
     const matches = queueMapMatcher(this.filter);
     const maps = [...this.cache.values()].filter((map) => matches(map.file.path)).sort((a, b) => a.file.path.localeCompare(b.file.path));
@@ -10985,9 +11055,12 @@ var QueueView = class extends import_obsidian5.ItemView {
       }
     } else for (const map of maps) {
       const hidden = excluded.get(map);
-      const steps = getSteps(map.doc).filter((step) => !step.completed && !hidden.has(step.nodeId) && (!this.query || step.text.toLocaleLowerCase().includes(this.query)));
+      const allSteps = getSteps(map.doc).filter((step) => !hidden.has(step.nodeId) && (!this.query || step.text.toLocaleLowerCase().includes(this.query)));
+      const steps = allSteps.filter((step) => !step.completed || this.completedMode === "inline");
+      const completed = this.completedMode === "footer" ? allSteps.filter((step) => step.completed).sort(compareSteps) : [];
+      const stepCount = steps.length + completed.length;
       const questions = map.doc.nodes.filter((node) => !hidden.has(node.id) && /\[\[QA ❓(?:\||\]\])|\/\/todo\s+Q\s*:/i.test(node.text) && !node.text.includes("\u2705") && (!this.query || node.text.toLocaleLowerCase().includes(this.query)));
-      if (!(this.mode === "qa" ? questions.length : steps.length)) continue;
+      if (!(this.mode === "qa" ? questions.length : stepCount)) continue;
       const section = this.host.createDiv("tvm-queue-group");
       const header = section.createDiv("tvm-queue-heading");
       const collapsed = this.collapsed.has(map.file.path);
@@ -11003,9 +11076,9 @@ var QueueView = class extends import_obsidian5.ItemView {
       button(header, map.file.basename, () => {
         void this.plugin.openMap(map.file);
       }).addClass("tvm-queue-title");
-      header.createSpan({ cls: "tvm-badge", text: String(this.mode === "qa" ? questions.length : steps.length) });
+      header.createSpan({ cls: "tvm-badge", text: String(this.mode === "qa" ? questions.length : stepCount) });
       if (collapsed) {
-        count += this.mode === "qa" ? questions.length : steps.length;
+        count += this.mode === "qa" ? questions.length : stepCount;
         continue;
       }
       if (this.mode === "qa") for (const node of questions) {
@@ -11016,8 +11089,21 @@ var QueueView = class extends import_obsidian5.ItemView {
       else {
         steps.sort(compareSteps);
         for (const step of steps) {
-          this.stepRow(section, map, step, step.number !== null);
+          this.stepRow(section, map, step, step.number !== null && !step.completed);
           count++;
+        }
+        if (completed.length) {
+          const footer = section.createEl("details", { cls: "tvm-completed-tasks" });
+          footer.open = this.completedExpanded.has(map.file.path);
+          footer.createEl("summary", { text: t("Completed ({count})", { count: completed.length }) });
+          footer.addEventListener("toggle", () => {
+            if (footer.open) this.completedExpanded.add(map.file.path);
+            else this.completedExpanded.delete(map.file.path);
+          });
+          for (const step of completed) {
+            this.stepRow(footer, map, step, false);
+            count++;
+          }
         }
       }
     }
@@ -11048,7 +11134,9 @@ var QueueView = class extends import_obsidian5.ItemView {
   }
   stepRow(parent, map, step, reorder) {
     const row = parent.createDiv("tvm-step-row");
-    const checkbox = row.createEl("input", { type: "checkbox", attr: { "aria-label": t("Mark completed") } });
+    row.classList.toggle("is-complete", step.completed);
+    const checkbox = row.createEl("input", { type: "checkbox", attr: { "aria-label": t(step.completed ? "Mark incomplete" : "Mark completed") } });
+    checkbox.checked = step.completed;
     checkbox.onchange = () => {
       this.queueWrite(map, toggleTask(map.doc, step.nodeId));
     };

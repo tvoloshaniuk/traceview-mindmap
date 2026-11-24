@@ -1405,6 +1405,9 @@ class QueueView extends ItemView {
   private cache = new Map<string, IndexedMap>();
   private host?: HTMLElement;
   private mode = 'steps';
+  private completedMode: 'hide' | 'footer' | 'inline' = 'footer';
+  private completedControl?: HTMLSelectElement;
+  private completedExpanded = new Set<string>();
   private collapsed = new Set<string>();
   private foldControls?: HTMLElement;
   private filter = '';
@@ -1422,6 +1425,15 @@ class QueueView extends ItemView {
     this.closed = false; this.contentEl.empty(); this.contentEl.addClass('tvm-view', 'tvm-queue-view');
     const toolbar = this.contentEl.createDiv('tvm-toolbar');
     for (const [value, label] of [['steps', t("Steps")], ['dates', t("Deadlines")], ['qa', t("Open QA")]]) button(toolbar, label, () => { this.mode = value; this.draw(); });
+    this.completedControl = toolbar.createEl('select', { attr: { 'aria-label': t("Completed tasks") } });
+    for (const [value, label] of [['hide', t("Hide completed tasks")], ['footer', t("Completed tasks below")], ['inline', t("Completed tasks in place")]]) {
+      this.completedControl.createEl('option', { text: label, value });
+    }
+    this.completedControl.value = this.completedMode;
+    this.completedControl.onchange = () => {
+      this.completedMode = this.completedControl!.value as typeof this.completedMode;
+      this.draw(); this.app.workspace.requestSaveLayout();
+    };
     this.undoButton = iconButton(toolbar, 'undo-2', t("Undo"), () => { void this.history('undo'); });
     this.redoButton = iconButton(toolbar, 'redo-2', t("Redo"), () => { void this.history('redo'); });
     button(toolbar, t("Refresh"), () => { this.cache.clear(); void this.reload(); });
@@ -1444,11 +1456,13 @@ class QueueView extends ItemView {
     search.oninput = () => { this.query = search.value.toLocaleLowerCase(); this.draw(); };
     this.host = this.contentEl.createDiv('tvm-panel');
   }
-  getState(): Record<string, unknown> { return { filter: this.filter }; }
+  getState(): Record<string, unknown> { return { filter: this.filter, completedMode: this.completedMode }; }
   async setState(state: Record<string, unknown>, result: any): Promise<void> {
     const filter = typeof state.filter === 'string' ? state.filter : '';
     try { queueMapMatcher(filter); this.filter = filter; }
     catch { this.filter = ''; }
+    this.completedMode = state.completedMode === 'hide' || state.completedMode === 'inline' ? state.completedMode : 'footer';
+    if (this.completedControl) this.completedControl.value = this.completedMode;
     this.mapFilter?.set(this.filter);
     await this.reload();
     await super.setState(state, result);
@@ -1490,6 +1504,7 @@ class QueueView extends ItemView {
     this.renderer = this.addChild(new Component());
     this.host.empty();
     if (this.foldControls) this.foldControls.hidden = this.mode === 'dates';
+    if (this.completedControl) this.completedControl.hidden = this.mode !== 'steps';
     let count = 0;
     const matches = queueMapMatcher(this.filter);
     const maps = [...this.cache.values()].filter(map => matches(map.file.path)).sort((a, b) => a.file.path.localeCompare(b.file.path));
@@ -1501,9 +1516,12 @@ class QueueView extends ItemView {
       for (const { map, step } of rows) if (!this.query || step.text.toLocaleLowerCase().includes(this.query)) { this.stepRow(this.host, map, step, false); count++; }
     } else for (const map of maps) {
       const hidden = excluded.get(map)!;
-      const steps = getSteps(map.doc).filter(step => !step.completed && !hidden.has(step.nodeId) && (!this.query || step.text.toLocaleLowerCase().includes(this.query)));
+      const allSteps = getSteps(map.doc).filter(step => !hidden.has(step.nodeId) && (!this.query || step.text.toLocaleLowerCase().includes(this.query)));
+      const steps = allSteps.filter(step => !step.completed || this.completedMode === 'inline');
+      const completed = this.completedMode === 'footer' ? allSteps.filter(step => step.completed).sort(compareSteps) : [];
+      const stepCount = steps.length + completed.length;
       const questions = map.doc.nodes.filter(node => !hidden.has(node.id) && /\[\[QA ❓(?:\||\]\])|\/\/todo\s+Q\s*:/i.test(node.text) && !node.text.includes('✅') && (!this.query || node.text.toLocaleLowerCase().includes(this.query)));
-      if (!(this.mode === 'qa' ? questions.length : steps.length)) continue;
+      if (!(this.mode === 'qa' ? questions.length : stepCount)) continue;
       const section = this.host.createDiv('tvm-queue-group');
       const header = section.createDiv('tvm-queue-heading');
       const collapsed = this.collapsed.has(map.file.path);
@@ -1516,15 +1534,22 @@ class QueueView extends ItemView {
       toggle.dataset.foldPath = map.file.path;
       toggle.setAttribute('aria-expanded', String(!collapsed));
       button(header, map.file.basename, () => { void this.plugin.openMap(map.file); }).addClass('tvm-queue-title');
-      header.createSpan({ cls: 'tvm-badge', text: String(this.mode === 'qa' ? questions.length : steps.length) });
-      if (collapsed) { count += this.mode === 'qa' ? questions.length : steps.length; continue; }
+      header.createSpan({ cls: 'tvm-badge', text: String(this.mode === 'qa' ? questions.length : stepCount) });
+      if (collapsed) { count += this.mode === 'qa' ? questions.length : stepCount; continue; }
       if (this.mode === 'qa') for (const node of questions) {
         const row = section.createDiv('tvm-step-row');
         this.renderLabel(row, map, node.id, queueLabel(node.text, this.plugin.settings.queueTaskMarker, this.plugin.settings.queueStepTag));
         count++;
       } else {
         steps.sort(compareSteps);
-        for (const step of steps) { this.stepRow(section, map, step, step.number !== null); count++; }
+        for (const step of steps) { this.stepRow(section, map, step, step.number !== null && !step.completed); count++; }
+        if (completed.length) {
+          const footer = section.createEl('details', { cls: 'tvm-completed-tasks' });
+          footer.open = this.completedExpanded.has(map.file.path);
+          footer.createEl('summary', { text: t("Completed ({count})", { count: completed.length }) });
+          footer.addEventListener('toggle', () => { if (footer.open) this.completedExpanded.add(map.file.path); else this.completedExpanded.delete(map.file.path); });
+          for (const step of completed) { this.stepRow(footer, map, step, false); count++; }
+        }
       }
     }
     if (!count) this.host.createDiv({ cls: 'tvm-empty', text: t("No open items match this filter.") });
@@ -1552,7 +1577,9 @@ class QueueView extends ItemView {
   }
   private stepRow(parent: HTMLElement, map: IndexedMap, step: Step, reorder: boolean): void {
     const row = parent.createDiv('tvm-step-row');
-    const checkbox = row.createEl('input', { type: 'checkbox', attr: { 'aria-label': t("Mark completed") } });
+    row.classList.toggle('is-complete', step.completed);
+    const checkbox = row.createEl('input', { type: 'checkbox', attr: { 'aria-label': t(step.completed ? "Mark incomplete" : "Mark completed") } });
+    checkbox.checked = step.completed;
     checkbox.onchange = () => { this.queueWrite(map, toggleTask(map.doc, step.nodeId)); };
     if (reorder) {
       const controls = row.createDiv('tvm-step-controls');

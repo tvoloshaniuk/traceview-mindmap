@@ -355,5 +355,10 @@
   "Convert to multiline note…": "Converter em nota com várias linhas…",
   "Short node title": "Título curto do nó",
   "Choose an existing note…": "Escolher uma nota existente…",
-  "Multiline note…": "Nota com várias linhas…"
+  "Multiline note…": "Nota com várias linhas…",
+  "Completed tasks": "Tarefas concluídas",
+  "Hide completed tasks": "Ocultar tarefas concluídas",
+  "Completed tasks below": "Tarefas concluídas abaixo",
+  "Completed tasks in place": "Tarefas concluídas no lugar",
+  "Completed ({count})": "Concluídas ({count})"
 }

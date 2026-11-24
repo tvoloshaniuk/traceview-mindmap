@@ -355,5 +355,10 @@
   "Convert to multiline note…": "여러 줄 노트로 변환…",
   "Short node title": "짧은 노드 제목",
   "Choose an existing note…": "기존 노트 선택…",
-  "Multiline note…": "여러 줄 노트…"
+  "Multiline note…": "여러 줄 노트…",
+  "Completed tasks": "완료된 작업",
+  "Hide completed tasks": "완료된 작업 숨기기",
+  "Completed tasks below": "완료된 작업을 아래에 표시",
+  "Completed tasks in place": "완료된 작업을 원래 위치에 표시",
+  "Completed ({count})": "완료 ({count})"
 }

@@ -355,5 +355,10 @@
   "Convert to multiline note…": "Przekształć w notatkę wielowierszową…",
   "Short node title": "Krótki tytuł węzła",
   "Choose an existing note…": "Wybierz istniejącą notatkę…",
-  "Multiline note…": "Notatka wielowierszowa…"
+  "Multiline note…": "Notatka wielowierszowa…",
+  "Completed tasks": "Ukończone zadania",
+  "Hide completed tasks": "Ukryj ukończone zadania",
+  "Completed tasks below": "Ukończone zadania na dole",
+  "Completed tasks in place": "Ukończone zadania na swoich miejscach",
+  "Completed ({count})": "Ukończone ({count})"
 }

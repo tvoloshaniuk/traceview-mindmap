@@ -355,5 +355,10 @@
   "Convert to multiline note…": "Convert to multiline note…",
   "Short node title": "Short node title",
   "Choose an existing note…": "Choose an existing note…",
-  "Multiline note…": "Multiline note…"
+  "Multiline note…": "Multiline note…",
+  "Completed tasks": "Completed tasks",
+  "Hide completed tasks": "Hide completed tasks",
+  "Completed tasks below": "Completed tasks below",
+  "Completed tasks in place": "Completed tasks in place",
+  "Completed ({count})": "Completed ({count})"
 }
