@@ -802,3 +802,26 @@ test('node address marker opens backlinks by click and keyboard without entering
   assert.equal(f.actions.length, 2);
   assert.equal(f.surface.isEditing(), false);
 });
+
+test('navigation history includes arrow selection and temporary depth changes without editing Markdown', t => {
+  const f=fixture(t,'- Root\n  - A\n    - Hidden\n  - B\n');
+  f.surface.reveal(f.id('A'));
+  f.key('ArrowDown');
+  assert.equal(f.surface.getState().selected,f.id('B'));
+  f.key('ArrowLeft',{ctrlKey:true,altKey:true});
+  assert.equal(f.surface.getState().selected,f.id('A'));
+  f.key('ArrowRight',{ctrlKey:true,altKey:true});
+  assert.equal(f.surface.getState().selected,f.id('B'));
+  f.surface.setBranchDepth(f.id('Root'),0);
+  assert.deepEqual(f.visible(),['Root']);
+  f.surface.navigateHistory('back');
+  assert.deepEqual(f.visible(),['Root','A','Hidden','B']);
+  assert.equal(f.surface.getState().selected,f.id('B'));
+  assert.equal(f.actions.length,0);
+  const history=(f.surface as any).backStops;
+  for(let i=0;i<80;i++){f.key(i%2?'ArrowDown':'ArrowUp');}
+  assert.ok(history.length<=30);
+  f.surface.navigateHistory('back');
+  f.key('ArrowRight');
+  assert.equal(f.surface.canNavigateHistory('forward'),false);
+});

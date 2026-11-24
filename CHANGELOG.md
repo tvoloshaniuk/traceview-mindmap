@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.0.23
+
+### Added
+
+- Back and forward navigation now includes arrow selection and branch depth changes, with 30 in-memory view states.
+- Use configurable Mod+Alt+Left and Mod+Alt+Right shortcuts, command-palette actions or the map menu to navigate view history.
+
 ## 1.0.22
 
 ### Fixed

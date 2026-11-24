@@ -5027,6 +5027,12 @@ function nodeBacklinks(app, target, blockId) {
 
 // src/hotkeys.ts
 var HOTKEY_DEFINITIONS = [
+  { id: "history-back", get label() {
+    return t("Previous map location");
+  }, defaults: ["Mod+Alt+ArrowLeft"] },
+  { id: "history-forward", get label() {
+    return t("Next map location");
+  }, defaults: ["Mod+Alt+ArrowRight"] },
   { id: "select-previous", get label() {
     return t("Extend selection up");
   }, defaults: ["Shift+ArrowUp"] },
@@ -6125,12 +6131,17 @@ var MapSurface = class {
   }
   jumpTo(id) {
     if (!this.doc?.byId.has(id) || this.editing) return;
-    if (id !== this.state.selected) {
-      this.backStops.push({ view: this.getState(), selection: this.getSelection() });
-      if (this.backStops.length > 30) this.backStops.shift();
-      this.forwardStops.length = 0;
-    }
+    if (id !== this.state.selected) this.rememberNavigation();
     this.reveal(id);
+  }
+  rememberNavigation(stop = { view: this.getState(), selection: this.getSelection() }) {
+    if (this.editing) return;
+    this.backStops.push(stop);
+    if (this.backStops.length > 30) this.backStops.shift();
+    this.forwardStops.length = 0;
+  }
+  rememberFoldChange(stop) {
+    if (stop.view.collapsed.length !== this.collapsed.size || stop.view.collapsed.some((id) => !this.collapsed.has(id))) this.rememberNavigation(stop);
   }
   canNavigateHistory(direction) {
     return !this.editing && (direction === "back" ? this.backStops : this.forwardStops).length > 0;
@@ -6164,6 +6175,7 @@ var MapSurface = class {
   setDepth(depth) {
     if (this.editing) return;
     if (!this.doc) return;
+    const previous = { view: this.getState(), selection: this.getSelection() };
     this.collapsed.clear();
     if (Number.isFinite(depth)) {
       const maxLevel = Math.max(1, Math.floor(depth));
@@ -6179,6 +6191,7 @@ var MapSurface = class {
         for (const child of node.children) stack.push({ id: child, level: level + 1 });
       }
     }
+    this.rememberFoldChange(previous);
     this.render();
     if (this.state.selected) this.ensureVisible(this.state.selected);
     this.emitState();
@@ -6186,6 +6199,7 @@ var MapSurface = class {
   setBranchDepth(id, depth) {
     if (this.editing) return;
     if (!this.doc?.byId.has(id)) return;
+    const previous = { view: this.getState(), selection: this.getSelection() };
     const maxLevel = Math.max(0, Math.floor(depth));
     const pending = [{ id, level: 0 }];
     const seen = /* @__PURE__ */ new Set();
@@ -6199,6 +6213,7 @@ var MapSurface = class {
       else this.collapsed.delete(item.id);
       for (const child of node.children) pending.push({ id: child, level: item.level + 1 });
     }
+    this.rememberFoldChange(previous);
     this.render();
     if (this.state.selected) this.ensureVisible(this.state.selected);
     this.emitState();
@@ -6815,6 +6830,7 @@ var MapSurface = class {
   }
   select(id, follow = false, mode = "single") {
     if (!this.elements.has(id)) return;
+    if (id !== this.state.selected || mode !== "single") this.rememberNavigation();
     if (mode === "range") {
       this.selectionAnchor ?? (this.selectionAnchor = this.state.selected ?? id);
       const from = this.visible.indexOf(this.selectionAnchor), to = this.visible.indexOf(id);
@@ -6946,6 +6962,7 @@ var MapSurface = class {
   }
   toggleFold(id) {
     if (!this.doc?.byId.get(id)?.children.length) return;
+    this.rememberNavigation();
     if (this.collapsed.has(id)) this.collapsed.delete(id);
     else this.collapsed.add(id);
     this.render();
@@ -7023,6 +7040,10 @@ var MapSurface = class {
       const index = id ? this.visible.indexOf(id) : -1;
       const next2 = action === "select-next" ? this.visible[index + 1] : action === "select-previous" ? this.visible[Math.max(0, index - 1)] : action === "select-parent" ? node?.parentId : node?.children[0];
       if (next2) this.select(next2, true, "range");
+      return true;
+    }
+    if (action === "history-back" || action === "history-forward") {
+      this.navigateHistory(action === "history-back" ? "back" : "forward");
       return true;
     }
     if (action === "find") {
