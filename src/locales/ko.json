@@ -353,5 +353,7 @@
   "Navigation": "탐색",
   "Save (Ctrl/Cmd+Enter)": "저장 (Ctrl/Cmd+Enter)",
   "Convert to multiline note…": "여러 줄 노트로 변환…",
-  "Short node title": "짧은 노드 제목"
+  "Short node title": "짧은 노드 제목",
+  "Choose an existing note…": "기존 노트 선택…",
+  "Multiline note…": "여러 줄 노트…"
 }

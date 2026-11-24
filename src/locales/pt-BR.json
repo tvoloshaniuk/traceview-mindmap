@@ -353,5 +353,7 @@
   "Navigation": "Navegação",
   "Save (Ctrl/Cmd+Enter)": "Salvar (Ctrl/Cmd+Enter)",
   "Convert to multiline note…": "Converter em nota com várias linhas…",
-  "Short node title": "Título curto do nó"
+  "Short node title": "Título curto do nó",
+  "Choose an existing note…": "Escolher uma nota existente…",
+  "Multiline note…": "Nota com várias linhas…"
 }

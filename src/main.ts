@@ -20,7 +20,7 @@ import { Modal } from 'obsidian';
 import { DraftRecovery, type LocalDraft } from './draft-recovery';
 import { NodeTemplatePicker, type NodeTemplate } from './node-templates';
 import { attachImagePaste, saveClipboardImage } from './image-paste';
-import { attachNodeTools, ConfirmDialog, DateDialog, MapPicker, TextDialog } from './editor';
+import { attachNodeTools, ConfirmDialog, DateDialog, MapPicker, NotePicker, TextDialog } from './editor';
 import { exportHtml, exportSvg } from './export';
 import { guardedChange, History, restoreViewState, serializeViewState } from './session';
 import type { MapDocument, MapLayout, MapNode, MapViewState, NodeAction, Step, WidthMode, DropPosition } from './types';
@@ -162,7 +162,7 @@ export default class TraceViewMindmap extends Plugin {
       ['add-child', t("Add child node"), 'add-child'], ['add-sibling', t("Add sibling node"), 'add-sibling'],
       ['add-sibling-before', t("Add sibling above"), 'add-sibling-before'],
       ['add-parent', t("Add parent node"), 'add-parent'], ['insert-template', t("Insert template at selected node…"), 'insert-template'],
-      ['copy-node-link', t("Copy link to node"), 'copy-node-link'], ['remove-node-address', t("Remove node address"), 'remove-node-address'], ['edit-node', t("Edit node"), 'edit'], ['node-note', t("Edit embedded node note"), 'node-note'], ['convert-node-note', t("Convert to multiline note…"), 'convert-node-note'], ['make-step', t("Mark as atomic step"), 'make-step'],
+      ['copy-node-link', t("Copy link to node"), 'copy-node-link'], ['remove-node-address', t("Remove node address"), 'remove-node-address'], ['edit-node', t("Edit node"), 'edit'], ['node-note', t("Edit embedded node note"), 'node-note'], ['convert-node-note', t("Convert to multiline note…"), 'convert-node-note'], ['attach-node-note', t("Choose an existing note…"), 'attach-node-note'], ['make-step', t("Mark as atomic step"), 'make-step'],
       ['make-dated', t("Add step deadline"), 'make-dated'], ['make-question', t("Mark as QA"), 'make-question'],
       ['toggle-task', t("Toggle step completion"), 'toggle-task'], ['completed-bottom', t("Move completed children to bottom"), 'completed-bottom'], ['copy-node-labels', t("Copy selected nodes without children"), 'copy-node-labels'], ['copy-branch', t("Copy branch"), 'copy'], ['cut-branch', t("Cut branch"), 'cut'],
       ['paste-branch', t("Paste as child branch"), 'paste'], ['paste-after', t("Paste as sibling branch"), 'paste-after'], ['undo', t("Undo map change"), 'undo'], ['redo', t("Redo map change"), 'redo']
@@ -1006,6 +1006,8 @@ class MapView extends EditableFileView {
       }
       if (action === 'copy-node-text') { await this.plugin.copy(node.text); return; }
       if (action === 'completed-bottom') { await this.apply(doc, moveCompletedChildrenToBottom(doc, id)); return; }
+      if (action === 'node-note-options') { this.nodeNoteOptions(doc, node); return; }
+      if (action === 'attach-node-note') { this.attachNodeNote(doc, node); return; }
       if (action === 'convert-node-note') { this.convertNodeNote(doc, node); return; }
       if (action === 'node-note') { await this.editNodeNote(doc, node); return; }
       if (action === 'insert-template' && this.file) {
@@ -1140,6 +1142,28 @@ class MapView extends EditableFileView {
     menu.addItem(item => item.setTitle(t("Remove node address")).setIcon('unlink').onClick(() => { void this.action('remove-node-address', node.id); }));
     const anchor = this.contentEl.querySelector<HTMLElement>('.tvm-node.is-selected .tvm-node-address');
     this.showMenu(menu, anchor ?? this.contentEl);
+  }
+  private nodeNoteOptions(doc: MapDocument, node: MapNode): void {
+    const menu = new Menu();
+    menu.addItem(item => item.setTitle(t("Convert to multiline note…")).setIcon('file-plus').onClick(() => this.convertNodeNote(doc, node)));
+    menu.addItem(item => item.setTitle(t("Choose an existing note…")).setIcon('file-input').onClick(() => this.attachNodeNote(doc, node)));
+    const anchor = this.contentEl.querySelector<HTMLElement>('.tvm-node-note-options');
+    this.showMenu(menu, anchor ?? this.contentEl);
+  }
+  private attachNodeNote(doc: MapDocument, node: MapNode): void {
+    const map = this.file;
+    if (!map) return;
+    new NotePicker(this.app, file => file !== map && !this.plugin.isMap(file), file => {
+      void (async () => {
+        if (this.file !== map || this.doc !== doc || this.surface?.isEditing() || this.app.vault.getAbstractFileByPath(file.path) !== file) {
+          throw new Error(t("The note changed. Open it again at the current line."));
+        }
+        const embeds = [...node.text.matchAll(/!\[\[([^\]#|]+)(?:[^\]]*)\]\]/g)];
+        if (embeds.some(match => this.app.metadataCache.getFirstLinkpathDest(match[1], map.path) === file)) return;
+        const link = this.app.metadataCache.fileToLinktext(file, map.path, true);
+        await this.apply(doc, editNode(doc, node.id, node.text + ' ![[' + link + ']]'));
+      })().catch(error => new Notice(message(error), 8000));
+    }).open();
   }
   private convertNodeNote(doc: MapDocument, node: MapNode): void {
     const map = this.file;

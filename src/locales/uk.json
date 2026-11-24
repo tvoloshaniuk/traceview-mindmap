@@ -353,5 +353,7 @@
   "Navigation": "Навігація",
   "Save (Ctrl/Cmd+Enter)": "Зберегти (Ctrl/Cmd+Enter)",
   "Convert to multiline note…": "Перетворити на багаторядкову нотатку…",
-  "Short node title": "Коротка назва ноди"
+  "Short node title": "Коротка назва ноди",
+  "Choose an existing note…": "Обрати наявну нотатку…",
+  "Multiline note…": "Багаторядкова нотатка…"
 }

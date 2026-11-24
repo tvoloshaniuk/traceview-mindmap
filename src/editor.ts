@@ -25,6 +25,13 @@ export class MapPicker extends FuzzySuggestModal<TFile> {
   onChooseItem(file: TFile): void { this.choose(file); }
 }
 
+export class NotePicker extends FuzzySuggestModal<TFile> {
+  constructor(app: App, private matches: (file: TFile) => boolean, private choose: (file: TFile) => void) { super(app); this.setPlaceholder(t("Choose an existing note…")); }
+  getItems(): TFile[] { return this.app.vault.getMarkdownFiles().filter(this.matches); }
+  getItemText(file: TFile): string { return file.path.replace(/\.md$/, ''); }
+  onChooseItem(file: TFile): void { this.choose(file); }
+}
+
 export class LinkPicker extends SuggestModal<LinkTarget> {
   private targets: LinkTarget[];
   constructor(app: App, private sourcePath: string, private choose: (link: string) => void, private afterClose: () => void = () => {}) {

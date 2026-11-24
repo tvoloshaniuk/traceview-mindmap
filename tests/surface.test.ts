@@ -857,3 +857,18 @@ test('embedded frame clicks edit the exact note while links and controls keep th
   }
   assert.deepEqual(edited,['First','Second']);assert.deepEqual(opened,['Target','Target']);
 });
+
+
+test('one multiline-note corner button follows single selection and does not trigger node editing', t => {
+  const f=fixture(t,'- Parent\n\t- Child\n');
+  f.surface.reveal(f.id('Parent'));
+  let button=f.host.querySelector<HTMLButtonElement>('.tvm-node-note-options')!;
+  assert.ok(button);assert.equal(f.host.querySelectorAll('.tvm-node-note-options').length,1);
+  assert.equal(button.closest<HTMLElement>('.tvm-node')!.dataset.nodeId,f.id('Parent'));
+  button.click();assert.deepEqual(f.actions.pop(),{action:'node-note-options',id:f.id('Parent')});
+  f.surface.reveal(f.id('Child'));
+  assert.equal(f.host.querySelector('.tvm-node-note-options'),button);
+  assert.equal(button.closest<HTMLElement>('.tvm-node')!.dataset.nodeId,f.id('Child'));
+  f.surface.beginEdit(f.id('Child'),'Child',async()=>undefined);
+  assert.equal(f.host.querySelector('.tvm-node-note-options'),null);
+});

@@ -353,5 +353,7 @@
   "Navigation": "Navigation",
   "Save (Ctrl/Cmd+Enter)": "Speichern (Strg/Cmd+Enter)",
   "Convert to multiline note…": "In mehrzeilige Notiz umwandeln…",
-  "Short node title": "Kurzer Knotentitel"
+  "Short node title": "Kurzer Knotentitel",
+  "Choose an existing note…": "Vorhandene Notiz auswählen…",
+  "Multiline note…": "Mehrzeilige Notiz…"
 }

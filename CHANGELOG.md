@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.0.29
+
+### Added
+
+- Attach an existing Markdown note below the current node title, without modifying the attached file. Preserve children, anchors and Undo/Redo.
+- A single corner button follows the selected node and offers conversion or choosing an existing note; it is hidden during editing and multiple selection.
+
+
 ## 1.0.28
 
 ### Added

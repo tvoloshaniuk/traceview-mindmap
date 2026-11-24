@@ -353,5 +353,7 @@
   "Navigation": "Навигация",
   "Save (Ctrl/Cmd+Enter)": "Сохранить (Ctrl/Cmd+Enter)",
   "Convert to multiline note…": "Преобразовать в многострочную заметку…",
-  "Short node title": "Краткое название узла"
+  "Short node title": "Краткое название узла",
+  "Choose an existing note…": "Выбрать существующую заметку…",
+  "Multiline note…": "Многострочная заметка…"
 }

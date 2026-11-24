@@ -353,5 +353,7 @@
   "Navigation": "Nawigacja",
   "Save (Ctrl/Cmd+Enter)": "Zapisz (Ctrl/Cmd+Enter)",
   "Convert to multiline note…": "Przekształć w notatkę wielowierszową…",
-  "Short node title": "Krótki tytuł węzła"
+  "Short node title": "Krótki tytuł węzła",
+  "Choose an existing note…": "Wybierz istniejącą notatkę…",
+  "Multiline note…": "Notatka wielowierszowa…"
 }

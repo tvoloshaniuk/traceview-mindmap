@@ -712,7 +712,9 @@ var en_default = {
   Navigation: "Navigation",
   "Save (Ctrl/Cmd+Enter)": "Save (Ctrl/Cmd+Enter)",
   "Convert to multiline note\u2026": "Convert to multiline note\u2026",
-  "Short node title": "Short node title"
+  "Short node title": "Short node title",
+  "Choose an existing note\u2026": "Choose an existing note\u2026",
+  "Multiline note\u2026": "Multiline note\u2026"
 };
 
 // src/locales/uk.json
@@ -1071,7 +1073,9 @@ var uk_default = {
   Navigation: "\u041D\u0430\u0432\u0456\u0433\u0430\u0446\u0456\u044F",
   "Save (Ctrl/Cmd+Enter)": "\u0417\u0431\u0435\u0440\u0435\u0433\u0442\u0438 (Ctrl/Cmd+Enter)",
   "Convert to multiline note\u2026": "\u041F\u0435\u0440\u0435\u0442\u0432\u043E\u0440\u0438\u0442\u0438 \u043D\u0430 \u0431\u0430\u0433\u0430\u0442\u043E\u0440\u044F\u0434\u043A\u043E\u0432\u0443 \u043D\u043E\u0442\u0430\u0442\u043A\u0443\u2026",
-  "Short node title": "\u041A\u043E\u0440\u043E\u0442\u043A\u0430 \u043D\u0430\u0437\u0432\u0430 \u043D\u043E\u0434\u0438"
+  "Short node title": "\u041A\u043E\u0440\u043E\u0442\u043A\u0430 \u043D\u0430\u0437\u0432\u0430 \u043D\u043E\u0434\u0438",
+  "Choose an existing note\u2026": "\u041E\u0431\u0440\u0430\u0442\u0438 \u043D\u0430\u044F\u0432\u043D\u0443 \u043D\u043E\u0442\u0430\u0442\u043A\u0443\u2026",
+  "Multiline note\u2026": "\u0411\u0430\u0433\u0430\u0442\u043E\u0440\u044F\u0434\u043A\u043E\u0432\u0430 \u043D\u043E\u0442\u0430\u0442\u043A\u0430\u2026"
 };
 
 // src/locales/pl.json
@@ -1430,7 +1434,9 @@ var pl_default = {
   Navigation: "Nawigacja",
   "Save (Ctrl/Cmd+Enter)": "Zapisz (Ctrl/Cmd+Enter)",
   "Convert to multiline note\u2026": "Przekszta\u0142\u0107 w notatk\u0119 wielowierszow\u0105\u2026",
-  "Short node title": "Kr\xF3tki tytu\u0142 w\u0119z\u0142a"
+  "Short node title": "Kr\xF3tki tytu\u0142 w\u0119z\u0142a",
+  "Choose an existing note\u2026": "Wybierz istniej\u0105c\u0105 notatk\u0119\u2026",
+  "Multiline note\u2026": "Notatka wielowierszowa\u2026"
 };
 
 // src/locales/de.json
@@ -1789,7 +1795,9 @@ var de_default = {
   Navigation: "Navigation",
   "Save (Ctrl/Cmd+Enter)": "Speichern (Strg/Cmd+Enter)",
   "Convert to multiline note\u2026": "In mehrzeilige Notiz umwandeln\u2026",
-  "Short node title": "Kurzer Knotentitel"
+  "Short node title": "Kurzer Knotentitel",
+  "Choose an existing note\u2026": "Vorhandene Notiz ausw\xE4hlen\u2026",
+  "Multiline note\u2026": "Mehrzeilige Notiz\u2026"
 };
 
 // src/locales/es.json
@@ -2148,7 +2156,9 @@ var es_default = {
   Navigation: "Navegaci\xF3n",
   "Save (Ctrl/Cmd+Enter)": "Guardar (Ctrl/Cmd+Enter)",
   "Convert to multiline note\u2026": "Convertir en nota multil\xEDnea\u2026",
-  "Short node title": "T\xEDtulo breve del nodo"
+  "Short node title": "T\xEDtulo breve del nodo",
+  "Choose an existing note\u2026": "Elegir una nota existente\u2026",
+  "Multiline note\u2026": "Nota multil\xEDnea\u2026"
 };
 
 // src/locales/fr.json
@@ -2507,7 +2517,9 @@ var fr_default = {
   Navigation: "Navigation",
   "Save (Ctrl/Cmd+Enter)": "Enregistrer (Ctrl/Cmd+Entr\xE9e)",
   "Convert to multiline note\u2026": "Convertir en note multiligne\u2026",
-  "Short node title": "Titre court du n\u0153ud"
+  "Short node title": "Titre court du n\u0153ud",
+  "Choose an existing note\u2026": "Choisir une note existante\u2026",
+  "Multiline note\u2026": "Note multiligne\u2026"
 };
 
 // src/locales/pt-BR.json
@@ -2866,7 +2878,9 @@ var pt_BR_default = {
   Navigation: "Navega\xE7\xE3o",
   "Save (Ctrl/Cmd+Enter)": "Salvar (Ctrl/Cmd+Enter)",
   "Convert to multiline note\u2026": "Converter em nota com v\xE1rias linhas\u2026",
-  "Short node title": "T\xEDtulo curto do n\xF3"
+  "Short node title": "T\xEDtulo curto do n\xF3",
+  "Choose an existing note\u2026": "Escolher uma nota existente\u2026",
+  "Multiline note\u2026": "Nota com v\xE1rias linhas\u2026"
 };
 
 // src/locales/zh-CN.json
@@ -3225,7 +3239,9 @@ var zh_CN_default = {
   Navigation: "\u5BFC\u822A",
   "Save (Ctrl/Cmd+Enter)": "\u4FDD\u5B58 (Ctrl/Cmd+Enter)",
   "Convert to multiline note\u2026": "\u8F6C\u6362\u4E3A\u591A\u884C\u7B14\u8BB0\u2026",
-  "Short node title": "\u8282\u70B9\u77ED\u6807\u9898"
+  "Short node title": "\u8282\u70B9\u77ED\u6807\u9898",
+  "Choose an existing note\u2026": "\u9009\u62E9\u73B0\u6709\u7B14\u8BB0\u2026",
+  "Multiline note\u2026": "\u591A\u884C\u7B14\u8BB0\u2026"
 };
 
 // src/locales/ja.json
@@ -3584,7 +3600,9 @@ var ja_default = {
   Navigation: "\u30CA\u30D3\u30B2\u30FC\u30B7\u30E7\u30F3",
   "Save (Ctrl/Cmd+Enter)": "\u4FDD\u5B58 (Ctrl/Cmd+Enter)",
   "Convert to multiline note\u2026": "\u8907\u6570\u884C\u30CE\u30FC\u30C8\u306B\u5909\u63DB\u2026",
-  "Short node title": "\u77ED\u3044\u30CE\u30FC\u30C9\u540D"
+  "Short node title": "\u77ED\u3044\u30CE\u30FC\u30C9\u540D",
+  "Choose an existing note\u2026": "\u65E2\u5B58\u306E\u30CE\u30FC\u30C8\u3092\u9078\u629E\u2026",
+  "Multiline note\u2026": "\u8907\u6570\u884C\u30CE\u30FC\u30C8\u2026"
 };
 
 // src/locales/ko.json
@@ -3943,7 +3961,9 @@ var ko_default = {
   Navigation: "\uD0D0\uC0C9",
   "Save (Ctrl/Cmd+Enter)": "\uC800\uC7A5 (Ctrl/Cmd+Enter)",
   "Convert to multiline note\u2026": "\uC5EC\uB7EC \uC904 \uB178\uD2B8\uB85C \uBCC0\uD658\u2026",
-  "Short node title": "\uC9E7\uC740 \uB178\uB4DC \uC81C\uBAA9"
+  "Short node title": "\uC9E7\uC740 \uB178\uB4DC \uC81C\uBAA9",
+  "Choose an existing note\u2026": "\uAE30\uC874 \uB178\uD2B8 \uC120\uD0DD\u2026",
+  "Multiline note\u2026": "\uC5EC\uB7EC \uC904 \uB178\uD2B8\u2026"
 };
 
 // src/locales/ru.json
@@ -4302,7 +4322,9 @@ var ru_default = {
   Navigation: "\u041D\u0430\u0432\u0438\u0433\u0430\u0446\u0438\u044F",
   "Save (Ctrl/Cmd+Enter)": "\u0421\u043E\u0445\u0440\u0430\u043D\u0438\u0442\u044C (Ctrl/Cmd+Enter)",
   "Convert to multiline note\u2026": "\u041F\u0440\u0435\u043E\u0431\u0440\u0430\u0437\u043E\u0432\u0430\u0442\u044C \u0432 \u043C\u043D\u043E\u0433\u043E\u0441\u0442\u0440\u043E\u0447\u043D\u0443\u044E \u0437\u0430\u043C\u0435\u0442\u043A\u0443\u2026",
-  "Short node title": "\u041A\u0440\u0430\u0442\u043A\u043E\u0435 \u043D\u0430\u0437\u0432\u0430\u043D\u0438\u0435 \u0443\u0437\u043B\u0430"
+  "Short node title": "\u041A\u0440\u0430\u0442\u043A\u043E\u0435 \u043D\u0430\u0437\u0432\u0430\u043D\u0438\u0435 \u0443\u0437\u043B\u0430",
+  "Choose an existing note\u2026": "\u0412\u044B\u0431\u0440\u0430\u0442\u044C \u0441\u0443\u0449\u0435\u0441\u0442\u0432\u0443\u044E\u0449\u0443\u044E \u0437\u0430\u043C\u0435\u0442\u043A\u0443\u2026",
+  "Multiline note\u2026": "\u041C\u043D\u043E\u0433\u043E\u0441\u0442\u0440\u043E\u0447\u043D\u0430\u044F \u0437\u0430\u043C\u0435\u0442\u043A\u0430\u2026"
 };
 
 // src/i18n.ts
@@ -5990,6 +6012,17 @@ var MapSurface = class {
     this.cameraFrame = null;
     this.instanceId = Math.random().toString(36).slice(2, 9);
     const d = container.ownerDocument;
+    this.noteOptions = d.createElement("button");
+    this.noteOptions.type = "button";
+    this.noteOptions.className = "tvm-node-note-options";
+    this.noteOptions.textContent = "\u25A4";
+    this.noteOptions.title = t("Multiline note\u2026");
+    this.noteOptions.setAttribute("aria-label", t("Multiline note\u2026"));
+    this.listen(this.noteOptions, "click", (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+      if (!this.editing && this.selection.size === 1 && this.state.selected) this.options.onAction("node-note-options", this.state.selected);
+    });
     this.viewport = d.createElement("div");
     this.viewport.className = "tvm-surface";
     this.viewport.dataset.ignoreSwipe = "true";
@@ -6968,6 +7001,8 @@ var MapSurface = class {
   }
   updateActiveDescendant() {
     const el = this.state.selected ? this.elements.get(this.state.selected) : null;
+    if (el && !this.editing && this.selection.size === 1) el.append(this.noteOptions);
+    else this.noteOptions.remove();
     if (el) this.viewport.setAttribute("aria-activedescendant", el.id);
     else this.viewport.removeAttribute("aria-activedescendant");
   }
@@ -6976,7 +7011,7 @@ var MapSurface = class {
     return element?.closest?.(".tvm-node")?.dataset.nodeId ?? null;
   }
   click(event) {
-    if (event.target.closest(".tvm-create-handles, .tvm-create-first")) return;
+    if (event.target.closest(".tvm-create-handles, .tvm-create-first, .tvm-node-note-options")) return;
     if (this.editing) {
       if (Date.now() < this.suppressClickUntil) {
         event.preventDefault();
@@ -7256,7 +7291,7 @@ var MapSurface = class {
   }
   pointerDown(event) {
     this.stopCoasting();
-    if (event.target.closest(".tvm-create-handles, .tvm-create-first")) return;
+    if (event.target.closest(".tvm-create-handles, .tvm-create-first, .tvm-node-note-options")) return;
     if (this.editing && event.target.closest(".tvm-inline-editor")) return;
     if (this.editing) event.preventDefault();
     if (this.menu?.contains(event.target)) return;
@@ -7630,6 +7665,7 @@ var MapSurface = class {
       { label: t("Copy node text"), action: "copy-node-text" },
       { label: t("Edit embedded node note"), action: "node-note" },
       { label: t("Convert to multiline note\u2026"), action: "convert-node-note" },
+      { label: t("Choose an existing note\u2026"), action: "attach-node-note" },
       { label: t("Move completed children to bottom"), action: "completed-bottom" },
       { label: t("Copy selected nodes without children"), action: "copy-node-labels" },
       { label: t("Cut branch"), action: "cut" },
@@ -7650,7 +7686,7 @@ var MapSurface = class {
       button2.setAttribute("role", "menuitem");
       const label2 = this.container.ownerDocument.createElement("span");
       label2.textContent = this.selection.size > 1 && ["delete", "copy", "cut"].includes(entry.action) ? t(entry.action === "copy" ? "Copy selection" : entry.action === "cut" ? "Cut selection" : "Delete selection") : entry.label;
-      if (this.selection.size > 1 && ["edit", "copy-node-text", "node-note", "convert-node-note", "completed-bottom", "add-child", "add-sibling", "add-parent", "insert-template", "paste", "paste-after", "indent", "outdent"].includes(entry.action)) button2.disabled = true;
+      if (this.selection.size > 1 && ["edit", "copy-node-text", "node-note", "convert-node-note", "attach-node-note", "node-note-options", "completed-bottom", "add-child", "add-sibling", "add-parent", "insert-template", "paste", "paste-after", "indent", "outdent"].includes(entry.action)) button2.disabled = true;
       button2.append(label2);
       const binding = this.options.getHotkeys?.()[entry.action] ?? DEFAULT_HOTKEYS[entry.action];
       if (binding) {
@@ -8535,6 +8571,23 @@ var MapPicker = class extends import_obsidian4.FuzzySuggestModal {
     this.choose(file);
   }
 };
+var NotePicker = class extends import_obsidian4.FuzzySuggestModal {
+  constructor(app, matches, choose) {
+    super(app);
+    this.matches = matches;
+    this.choose = choose;
+    this.setPlaceholder(t("Choose an existing note\u2026"));
+  }
+  getItems() {
+    return this.app.vault.getMarkdownFiles().filter(this.matches);
+  }
+  getItemText(file) {
+    return file.path.replace(/\.md$/, "");
+  }
+  onChooseItem(file) {
+    this.choose(file);
+  }
+};
 var LinkPicker = class extends import_obsidian4.SuggestModal {
   constructor(app, sourcePath, choose, afterClose = () => {
   }) {
@@ -9278,6 +9331,7 @@ var TraceViewMindmap = class extends import_obsidian5.Plugin {
       ["edit-node", t("Edit node"), "edit"],
       ["node-note", t("Edit embedded node note"), "node-note"],
       ["convert-node-note", t("Convert to multiline note\u2026"), "convert-node-note"],
+      ["attach-node-note", t("Choose an existing note\u2026"), "attach-node-note"],
       ["make-step", t("Mark as atomic step"), "make-step"],
       ["make-dated", t("Add step deadline"), "make-dated"],
       ["make-question", t("Mark as QA"), "make-question"],
@@ -10317,6 +10371,14 @@ var MapView = class extends import_obsidian5.EditableFileView {
         await this.apply(doc, moveCompletedChildrenToBottom(doc, id));
         return;
       }
+      if (action === "node-note-options") {
+        this.nodeNoteOptions(doc, node);
+        return;
+      }
+      if (action === "attach-node-note") {
+        this.attachNodeNote(doc, node);
+        return;
+      }
       if (action === "convert-node-note") {
         this.convertNodeNote(doc, node);
         return;
@@ -10484,6 +10546,28 @@ var MapView = class extends import_obsidian5.EditableFileView {
     }));
     const anchor2 = this.contentEl.querySelector(".tvm-node.is-selected .tvm-node-address");
     this.showMenu(menu, anchor2 ?? this.contentEl);
+  }
+  nodeNoteOptions(doc, node) {
+    const menu = new import_obsidian5.Menu();
+    menu.addItem((item) => item.setTitle(t("Convert to multiline note\u2026")).setIcon("file-plus").onClick(() => this.convertNodeNote(doc, node)));
+    menu.addItem((item) => item.setTitle(t("Choose an existing note\u2026")).setIcon("file-input").onClick(() => this.attachNodeNote(doc, node)));
+    const anchor2 = this.contentEl.querySelector(".tvm-node-note-options");
+    this.showMenu(menu, anchor2 ?? this.contentEl);
+  }
+  attachNodeNote(doc, node) {
+    const map = this.file;
+    if (!map) return;
+    new NotePicker(this.app, (file) => file !== map && !this.plugin.isMap(file), (file) => {
+      void (async () => {
+        if (this.file !== map || this.doc !== doc || this.surface?.isEditing() || this.app.vault.getAbstractFileByPath(file.path) !== file) {
+          throw new Error(t("The note changed. Open it again at the current line."));
+        }
+        const embeds = [...node.text.matchAll(/!\[\[([^\]#|]+)(?:[^\]]*)\]\]/g)];
+        if (embeds.some((match) => this.app.metadataCache.getFirstLinkpathDest(match[1], map.path) === file)) return;
+        const link = this.app.metadataCache.fileToLinktext(file, map.path, true);
+        await this.apply(doc, editNode(doc, node.id, node.text + " ![[" + link + "]]"));
+      })().catch((error) => new import_obsidian5.Notice(message(error), 8e3));
+    }).open();
   }
   convertNodeNote(doc, node) {
     const map = this.file;
