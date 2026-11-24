@@ -6067,17 +6067,6 @@ var MapSurface = class {
     this.cameraFrame = null;
     this.instanceId = Math.random().toString(36).slice(2, 9);
     const d = container.ownerDocument;
-    this.noteOptions = d.createElement("button");
-    this.noteOptions.type = "button";
-    this.noteOptions.className = "tvm-node-note-options";
-    this.noteOptions.textContent = "\u25A4";
-    this.noteOptions.title = t("Multiline note\u2026");
-    this.noteOptions.setAttribute("aria-label", t("Multiline note\u2026"));
-    this.listen(this.noteOptions, "click", (event) => {
-      event.preventDefault();
-      event.stopPropagation();
-      if (!this.editing && this.selection.size === 1 && this.state.selected) this.options.onAction("node-note-options", this.state.selected);
-    });
     this.viewport = d.createElement("div");
     this.viewport.className = "tvm-surface";
     this.viewport.dataset.ignoreSwipe = "true";
@@ -7056,8 +7045,6 @@ var MapSurface = class {
   }
   updateActiveDescendant() {
     const el = this.state.selected ? this.elements.get(this.state.selected) : null;
-    if (el && !this.editing && this.selection.size === 1) el.append(this.noteOptions);
-    else this.noteOptions.remove();
     if (el) this.viewport.setAttribute("aria-activedescendant", el.id);
     else this.viewport.removeAttribute("aria-activedescendant");
   }
@@ -7066,7 +7053,7 @@ var MapSurface = class {
     return element?.closest?.(".tvm-node")?.dataset.nodeId ?? null;
   }
   click(event) {
-    if (event.target.closest(".tvm-create-handles, .tvm-create-first, .tvm-node-note-options")) return;
+    if (event.target.closest(".tvm-create-handles, .tvm-create-first")) return;
     if (this.editing) {
       if (Date.now() < this.suppressClickUntil) {
         event.preventDefault();
@@ -7346,7 +7333,7 @@ var MapSurface = class {
   }
   pointerDown(event) {
     this.stopCoasting();
-    if (event.target.closest(".tvm-create-handles, .tvm-create-first, .tvm-node-note-options")) return;
+    if (event.target.closest(".tvm-create-handles, .tvm-create-first")) return;
     if (this.editing && event.target.closest(".tvm-inline-editor")) return;
     if (this.editing) event.preventDefault();
     if (this.menu?.contains(event.target)) return;
@@ -7718,7 +7705,6 @@ var MapSurface = class {
       ...this.doc?.byId.get(id)?.blockId ? [{ label: t("Remove node address"), action: "remove-node-address" }] : [],
       { label: t("Copy branch"), action: "copy" },
       { label: t("Copy node text"), action: "copy-node-text" },
-      { label: t("Edit embedded node note"), action: "node-note" },
       { label: t("Convert to multiline note\u2026"), action: "convert-node-note" },
       { label: t("Choose an existing note\u2026"), action: "attach-node-note" },
       { label: t("Move completed children to bottom"), action: "completed-bottom" },
@@ -10602,12 +10588,12 @@ var MapView = class extends import_obsidian5.EditableFileView {
     const anchor2 = this.contentEl.querySelector(".tvm-node.is-selected .tvm-node-address");
     this.showMenu(menu, anchor2 ?? this.contentEl);
   }
-  nodeNoteOptions(doc, node) {
+  nodeNoteOptions(doc, node, position) {
     const menu = new import_obsidian5.Menu();
     menu.addItem((item) => item.setTitle(t("Convert to multiline note\u2026")).setIcon("file-plus").onClick(() => this.convertNodeNote(doc, node)));
     menu.addItem((item) => item.setTitle(t("Choose an existing note\u2026")).setIcon("file-input").onClick(() => this.attachNodeNote(doc, node)));
-    const anchor2 = this.contentEl.querySelector(".tvm-node-note-options");
-    this.showMenu(menu, anchor2 ?? this.contentEl);
+    if (position) menu.showAtPosition(position);
+    else this.showMenu(menu, this.contentEl.querySelector(".tvm-node.is-selected") ?? this.contentEl);
   }
   attachNodeNote(doc, node) {
     const map = this.file;
@@ -10792,6 +10778,15 @@ var MapView = class extends import_obsidian5.EditableFileView {
     return address.blockId;
   }
   mountEditor(input, tools, path, inline) {
+    const notes = tools.createEl("button", { text: "\u25A4", cls: "tvm-node-note-options", attr: { type: "button", title: t("Multiline note\u2026"), "aria-label": t("Multiline note\u2026") } });
+    notes.onclick = () => {
+      const rect = notes.getBoundingClientRect();
+      void (async () => {
+        if (!await this.surface?.saveForCreation() || this.path !== path) return;
+        const doc = this.doc, id = this.selected(), node = id ? doc?.byId.get(id) : void 0;
+        if (doc && node) this.nodeNoteOptions(doc, node, { x: rect.left, y: rect.bottom });
+      })().catch((error) => new import_obsidian5.Notice(message(error), 8e3));
+    };
     if (this.plugin.settings.nodeEditor === "native") {
       try {
         return mountNativeEditor(this, input, tools, inline, this.nativeConstructor, (file, line, expected) => this.nativeAddress(file, line, expected));

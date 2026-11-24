@@ -342,8 +342,6 @@
 .tvm-node-address[role="button"] { cursor: pointer; }
 .tvm-node-address[role="button"]:focus-visible { outline: 2px solid var(--interactive-accent); outline-offset: 2px; }
 
-.tvm-node-note-options { position: absolute; right: 2px; bottom: -9px; width: 24px; height: 22px; min-width: 0; padding: 0; font-size: 15px; line-height: 1; border: 1px solid var(--background-modifier-border); border-radius: 5px; background: var(--background-primary); color: var(--text-muted); cursor: pointer; z-index: 2; }
-.tvm-node-note-options:hover, .tvm-node-note-options:focus-visible { color: var(--interactive-accent); }
 
 .tvm-step-row.is-complete .tvm-step-text { color: var(--text-muted); opacity: .78; }
 .tvm-completed-tasks { margin-top: 12px; }

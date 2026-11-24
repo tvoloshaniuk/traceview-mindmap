@@ -41,7 +41,6 @@ export class MapSurface {
   private readonly live: HTMLDivElement;
   private readonly loading: HTMLDivElement;
   private handles: CreationHandles;
-  private readonly noteOptions: HTMLButtonElement;
   private doc: MapDocument | null = null;
   private state: MapViewState = { collapsed: [], selected: null, camera: { x: 36, y: 36, scale: 1 }, focusRoot: null };
   private collapsed = new Set<string>();
@@ -92,14 +91,6 @@ export class MapSurface {
 
   constructor(private readonly container: HTMLElement, private readonly options: MapSurfaceOptions) {
     const d = container.ownerDocument;
-    this.noteOptions = d.createElement('button');
-    this.noteOptions.type = 'button'; this.noteOptions.className = 'tvm-node-note-options';
-    this.noteOptions.textContent = '▤'; this.noteOptions.title = t("Multiline note…");
-    this.noteOptions.setAttribute('aria-label', t("Multiline note…"));
-    this.listen(this.noteOptions, 'click', event => {
-      event.preventDefault(); event.stopPropagation();
-      if (!this.editing && this.selection.size === 1 && this.state.selected) this.options.onAction('node-note-options', this.state.selected);
-    });
     this.viewport = d.createElement('div');
     this.viewport.className = 'tvm-surface';
     // Like Obsidian Canvas, own these gestures instead of starting workspace swipes.
@@ -1049,8 +1040,6 @@ export class MapSurface {
 
   private updateActiveDescendant(): void {
     const el = this.state.selected ? this.elements.get(this.state.selected) : null;
-    if (el && !this.editing && this.selection.size === 1) el.append(this.noteOptions);
-    else this.noteOptions.remove();
     if (el) this.viewport.setAttribute('aria-activedescendant', el.id);
     else this.viewport.removeAttribute('aria-activedescendant');
   }
@@ -1061,7 +1050,7 @@ export class MapSurface {
   }
 
   private click(event: MouseEvent): void {
-    if ((event.target as Element).closest('.tvm-create-handles, .tvm-create-first, .tvm-node-note-options')) return;
+    if ((event.target as Element).closest('.tvm-create-handles, .tvm-create-first')) return;
     if (this.editing) {
       if (Date.now() < this.suppressClickUntil) { event.preventDefault(); return; }
       const target = event.target as Element;
@@ -1276,7 +1265,7 @@ export class MapSurface {
 
   private pointerDown(event: PointerEvent): void {
     this.stopCoasting();
-    if ((event.target as Element).closest('.tvm-create-handles, .tvm-create-first, .tvm-node-note-options')) return;
+    if ((event.target as Element).closest('.tvm-create-handles, .tvm-create-first')) return;
     if (this.editing && (event.target as Element).closest('.tvm-inline-editor')) return;
     if (this.editing) event.preventDefault();
     if (this.menu?.contains(event.target as Node)) return;
@@ -1604,7 +1593,6 @@ export class MapSurface {
       ...(this.doc?.byId.get(id)?.blockId ? [{label: t("Remove node address"), action: 'remove-node-address' as const}] : []),
       { label: t("Copy branch"), action: 'copy' },
       { label: t("Copy node text"), action: 'copy-node-text' },
-      { label: t("Edit embedded node note"), action: 'node-note' },
       { label: t("Convert to multiline note…"), action: 'convert-node-note' },
       { label: t("Choose an existing note…"), action: 'attach-node-note' },
       { label: t("Move completed children to bottom"), action: 'completed-bottom' },

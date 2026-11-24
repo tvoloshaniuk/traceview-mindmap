@@ -1143,12 +1143,12 @@ class MapView extends EditableFileView {
     const anchor = this.contentEl.querySelector<HTMLElement>('.tvm-node.is-selected .tvm-node-address');
     this.showMenu(menu, anchor ?? this.contentEl);
   }
-  private nodeNoteOptions(doc: MapDocument, node: MapNode): void {
+  private nodeNoteOptions(doc: MapDocument, node: MapNode, position?: {x: number; y: number}): void {
     const menu = new Menu();
     menu.addItem(item => item.setTitle(t("Convert to multiline note…")).setIcon('file-plus').onClick(() => this.convertNodeNote(doc, node)));
     menu.addItem(item => item.setTitle(t("Choose an existing note…")).setIcon('file-input').onClick(() => this.attachNodeNote(doc, node)));
-    const anchor = this.contentEl.querySelector<HTMLElement>('.tvm-node-note-options');
-    this.showMenu(menu, anchor ?? this.contentEl);
+    if (position) menu.showAtPosition(position);
+    else this.showMenu(menu, this.contentEl.querySelector<HTMLElement>('.tvm-node.is-selected') ?? this.contentEl);
   }
   private attachNodeNote(doc: MapDocument, node: MapNode): void {
     const map = this.file;
@@ -1327,6 +1327,15 @@ class MapView extends EditableFileView {
     return address.blockId;
   }
   private mountEditor(input: HTMLTextAreaElement, tools: HTMLElement, path: string, inline: InlineEditor): (() => void) | InlineDriver {
+    const notes = tools.createEl('button', { text: '▤', cls: 'tvm-node-note-options', attr: { type: 'button', title: t("Multiline note…"), 'aria-label': t("Multiline note…") } });
+    notes.onclick = () => {
+      const rect = notes.getBoundingClientRect();
+      void (async () => {
+        if (!await this.surface?.saveForCreation() || this.path !== path) return;
+        const doc = this.doc, id = this.selected(), node = id ? doc?.byId.get(id) : undefined;
+        if (doc && node) this.nodeNoteOptions(doc, node, {x: rect.left, y: rect.bottom});
+      })().catch(error => new Notice(message(error), 8000));
+    };
     if (this.plugin.settings.nodeEditor === 'native') {
       try { return mountNativeEditor(this, input, tools, inline, this.nativeConstructor, (file, line, expected) => this.nativeAddress(file, line, expected)); }
       catch (error) {

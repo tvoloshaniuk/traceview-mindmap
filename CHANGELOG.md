@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.0.31
+
+### Changed
+
+- Move the multiline-note button from the selected node corner to the node editing toolbar. Save the current draft before showing conversion and existing-note choices.
+- Keep the embedded-note editing command in the command palette and remove its ambiguous node context-menu entry; click the embedded note frame to edit it directly.
+
+
 ## 1.0.30
 
 ### Added
