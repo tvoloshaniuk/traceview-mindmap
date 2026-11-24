@@ -214,6 +214,7 @@ export class MapSurface {
     if (this.editing || !this.doc || this.destroyed) { this.focusEditor(); return; }
     const original = this.doc, state = this.getState();
     const editor = new InlineEditor(this.container.ownerDocument, initial, {
+      allowEmpty: true,
       emptyFallback: original.byId.get(id)?.children.length ? t("Untitled") : undefined,
       save: async text => { const selected = await save(text); onFinish?.(); if (this.editing?.editor === editor) this.finishEdit(selected); },
       cancel: () => { onFinish?.(); this.finishEdit(); }, resize: () => this.scheduleLayout(true), mount,

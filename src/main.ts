@@ -1054,7 +1054,13 @@ class MapView extends EditableFileView {
       catch (error) { this.nativeConstructor = undefined; console.warn('TraceView Mindmap: preparing native editor failed', error); }
       if (this.path !== path || this.doc !== doc || this.surface?.isEditing()) return;
     }
-    const transformOn = (base: MapDocument, selected: string, text: string) => !node ? addFirstNode(base, text) : action === 'edit' ? editNode(base, selected, text) : action === 'add-parent' ? addParent(base, selected, text) : addNode(base, selected, action === 'add-child' ? 'child' : action === 'add-sibling-before' ? 'before' : 'sibling', text);
+    const transformOn = (base: MapDocument, selected: string, text: string): string => {
+      if (!node) return addFirstNode(base, text);
+      if (action === 'edit') return text.trim() ? editNode(base, selected, text) : deleteNode(base, selected);
+      if (action === 'add-parent') return addParent(base, selected, text);
+      const relation = action === 'add-child' ? 'child' : action === 'add-sibling-before' ? 'before' : 'sibling';
+      return addNode(base, selected, relation, text);
+    };
     const id = node?.id ?? '';
     const transform = (text: string) => transformOn(doc, id, text);
     const placeholder = `tvm-draft-${Date.now()}-${Math.random().toString(36).slice(2)}`;
@@ -1065,6 +1071,7 @@ class MapView extends EditableFileView {
     const storage = this.plugin.drafts;
     const record = storage ? recovered ?? {key: crypto.randomUUID(), path, nodeId:id, original:node?.text ?? '', action, text:initial} : undefined;
     this.surface?.beginEdit(draftNode.id, initial, async text => {
+      if (!text.trim() && action !== 'edit') return;
       if (this.path !== path) throw new Error(t("The note was renamed. Copy the draft and reopen the editor."));
       await this.reload();
       const base = this.doc;
@@ -1072,7 +1079,7 @@ class MapView extends EditableFileView {
       const selected = node ? base.nodes.find(candidate => candidate.line === node.line)?.id : '';
       if (selected === undefined) throw new Error(t("The node no longer exists. Your draft is preserved."));
       await this.apply(base, transformOn(base, selected, text));
-      return this.doc?.nodes.find(candidate => candidate.line === draftNode.line)?.id;
+      return text.trim() ? this.doc?.nodes.find(candidate => candidate.line === draftNode.line)?.id : base.byId.get(selected)?.parentId ?? undefined;
     }, (input, tools, inline) => {
       const driver = this.mountEditor(input, tools, path, inline);
       if (storage && record) {

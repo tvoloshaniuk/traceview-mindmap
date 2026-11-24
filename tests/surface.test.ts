@@ -779,3 +779,14 @@ test('vertical column mode fits individual labels and aligns grandchildren below
   f.surface.setLayout('map');
   assert.equal(f.element('short').style.width, f.element('a longer parent label').style.width);
 });
+
+test('empty parent confirmation passes a placeholder and preserves the editing flow', async t => {
+  const f = fixture(t, '- Root ^root\n  - Child\n');
+  let saved = '';
+  f.surface.beginEdit(f.id('Root'), 'Root', async text => {saved=text; return undefined;});
+  f.host.querySelector<HTMLTextAreaElement>('.tvm-inline-input')!.value = '';
+  f.key('Enter');
+  await Promise.resolve();
+  assert.equal(saved, 'Без назви');
+  assert.equal(f.surface.isEditing(), false);
+});

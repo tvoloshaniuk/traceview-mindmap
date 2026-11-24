@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.0.18
+
+### Fixed
+
+- Confirm an empty new node to cancel its creation without writing a blank Markdown item.
+- Clearing and confirming an existing leaf deletes it with Undo support and conflict checks.
+- Clearing a parent retains its placeholder title and children.
+
 ## 1.0.17
 
 ### Added

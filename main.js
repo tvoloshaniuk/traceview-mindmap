@@ -5711,7 +5711,7 @@ var InlineEditor = class {
     if (this.saving || this.disposed || this.input.readOnly || this.confirmation) return;
     const input = singleLine2(this.input.value);
     const text = input.trim() ? input : this.options.emptyFallback ?? "";
-    if (!text.trim()) {
+    if (!text.trim() && !this.options.allowEmpty) {
       this.error.textContent = t("A node cannot be empty.");
       this.resize();
       return;
@@ -5959,6 +5959,7 @@ var MapSurface = class {
     }
     const original = this.doc, state = this.getState();
     const editor = new InlineEditor(this.container.ownerDocument, initial, {
+      allowEmpty: true,
       emptyFallback: original.byId.get(id)?.children.length ? t("Untitled") : void 0,
       save: async (text) => {
         const selected = await save(text);
@@ -10129,7 +10130,13 @@ var MapView = class extends import_obsidian5.EditableFileView {
       }
       if (this.path !== path || this.doc !== doc || this.surface?.isEditing()) return;
     }
-    const transformOn = (base, selected, text) => !node ? addFirstNode(base, text) : action === "edit" ? editNode(base, selected, text) : action === "add-parent" ? addParent(base, selected, text) : addNode(base, selected, action === "add-child" ? "child" : action === "add-sibling-before" ? "before" : "sibling", text);
+    const transformOn = (base, selected, text) => {
+      if (!node) return addFirstNode(base, text);
+      if (action === "edit") return text.trim() ? editNode(base, selected, text) : deleteNode(base, selected);
+      if (action === "add-parent") return addParent(base, selected, text);
+      const relation = action === "add-child" ? "child" : action === "add-sibling-before" ? "before" : "sibling";
+      return addNode(base, selected, relation, text);
+    };
     const id = node?.id ?? "";
     const transform = (text) => transformOn(doc, id, text);
     const placeholder = `tvm-draft-${Date.now()}-${Math.random().toString(36).slice(2)}`;
@@ -10140,6 +10147,7 @@ var MapView = class extends import_obsidian5.EditableFileView {
     const storage = this.plugin.drafts;
     const record = storage ? recovered ?? { key: crypto.randomUUID(), path, nodeId: id, original: node?.text ?? "", action, text: initial } : void 0;
     this.surface?.beginEdit(draftNode.id, initial, async (text) => {
+      if (!text.trim() && action !== "edit") return;
       if (this.path !== path) throw new Error(t("The note was renamed. Copy the draft and reopen the editor."));
       await this.reload();
       const base = this.doc;
@@ -10147,7 +10155,7 @@ var MapView = class extends import_obsidian5.EditableFileView {
       const selected = node ? base.nodes.find((candidate) => candidate.line === node.line)?.id : "";
       if (selected === void 0) throw new Error(t("The node no longer exists. Your draft is preserved."));
       await this.apply(base, transformOn(base, selected, text));
-      return this.doc?.nodes.find((candidate) => candidate.line === draftNode.line)?.id;
+      return text.trim() ? this.doc?.nodes.find((candidate) => candidate.line === draftNode.line)?.id : base.byId.get(selected)?.parentId ?? void 0;
     }, (input, tools, inline) => {
       const driver = this.mountEditor(input, tools, path, inline);
       if (storage && record) {

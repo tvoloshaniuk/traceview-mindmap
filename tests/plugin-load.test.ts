@@ -648,3 +648,24 @@ test('remembered map paths are bounded, renamed and deleted without touching not
   event('delete')(new f.TFile('Renamed'));
   assert.deepEqual([...plugin.mapPreferences], ['New.md']);
 });
+
+test('confirming an empty leaf deletes it with Undo; empty new nodes do not write; external changes are guarded', async () => {
+  const f = await cutFixture();
+  (f.plugin.settings as any).nodeEditor = 'text';
+  let save!: (text: string) => Promise<unknown>;
+  f.view.surface = {beginEdit(_id: string, _initial: string, callback: typeof save) {save=callback;}, isEditing:()=>false};
+  const target = f.view.doc.byId.get(f.id('Target'));
+  await f.view.beginNodeEdit(f.view.doc, 'edit', target);
+  await save('');
+  assert.doesNotMatch(f.source(), /Target/);
+  await f.view.action('undo', null);
+  assert.equal(f.source(), f.original);
+  await f.view.beginNodeEdit(f.view.doc, 'add-child', f.view.doc.byId.get(f.id('Root')));
+  await save('   ');
+  assert.equal(f.source(), f.original);
+  await f.view.beginNodeEdit(f.view.doc, 'edit', f.view.doc.byId.get(f.id('Target')));
+  f.external(f.original + '  - External\n');
+  await assert.rejects(save(''));
+  assert.match(f.source(), /Target/);
+  assert.match(f.source(), /External/);
+});
