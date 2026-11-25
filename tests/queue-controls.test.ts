@@ -6,7 +6,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { parseMap } from '../src/core';
-import { queueLabel, queueMapMatcher, queueFolderPrefix, queueCounts, queueMetric, compareQueueMaps } from '../src/queue-controls';
+import { queueLabel, queueMapMatcher, queueFolderPrefix, queueCounts, queueMetric, compareQueueMaps, reorderQueueSelection } from '../src/queue-controls';
 
 test('queue marker settings are independent and preserve step numbers, dates and links', () => {
   const text = '[ ] #step 1.1) [[Programming|#step alias]] ![[image.png]]';
@@ -47,4 +47,17 @@ test('planning metrics count excluded branches consistently and rank the selecte
   const a={path:'A',basename:'A',score:2},b={path:'B',basename:'B',score:5};
   assert.ok(compareQueueMaps(a,b,'asc')<0);assert.ok(compareQueueMaps(a,b,'desc')>0);
   assert.ok(compareQueueMaps(a,b,'none')<0);assert.ok(compareQueueMaps({path:'Missing',basename:'Missing'},b,'desc')>0);
+});
+
+
+test('selected execution steps move as a stable group without losing intervening items', () => {
+  const order=['a','b','c','d','e'];
+  assert.deepEqual(reorderQueueSelection(order,['b','c'],-1),['b','c','a','d','e']);
+  assert.deepEqual(reorderQueueSelection(order,['b','c'],1),['a','d','b','c','e']);
+  assert.deepEqual(reorderQueueSelection(order,['b','d'],-1),['b','a','d','c','e']);
+  assert.deepEqual(reorderQueueSelection(order,['b','c'],'e'),['a','d','e','b','c']);
+  assert.deepEqual(reorderQueueSelection(order,['d','e'],'b'),['a','d','e','b','c']);
+  assert.deepEqual(reorderQueueSelection(order,['a','b'],-1),order);
+  assert.deepEqual(reorderQueueSelection(order,['b','c'],'b'),order);
+  assert.deepEqual(order,['a','b','c','d','e']);
 });

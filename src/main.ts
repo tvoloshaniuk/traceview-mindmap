@@ -12,7 +12,7 @@ import { compileMapPatterns, PatternError, type MapRules, type PatternMode } fro
 import { MapSearch } from './map-search';
 import { highlightRenderedSearch } from './search-highlight';
 import { MapSurface } from './surface';
-import { attachMapFilter, excludedQueueNodes, queueExclusions, queueLabel, queueMapMatcher, queueFolderPrefix, queueCounts, queueMetric, compareQueueMaps, type QueueMetric, type QueueCounts } from './queue-controls';
+import { attachMapFilter, excludedQueueNodes, queueExclusions, queueLabel, queueMapMatcher, queueFolderPrefix, queueCounts, queueMetric, compareQueueMaps, reorderQueueSelection, type QueueMetric, type QueueCounts } from './queue-controls';
 import { mountNativeEditor, prepareNativeEditor, type NativeConstructor } from './native-editor';
 import type { InlineEditor, InlineDriver } from './inline';
 import type { Editor } from 'obsidian';
@@ -1512,6 +1512,12 @@ class QueueView extends ItemView {
   private generation = 0;
   private closed = false;
   private dragged?: { path: string; id: string };
+  private selection = new Set<string>();
+  private selectionAnchor?: string;
+  private selectionMode = false;
+  private selectionButton?: HTMLButtonElement;
+  private bulkButtons: HTMLButtonElement[] = [];
+  private rows = new Map<string, {map: IndexedMap; id: string; row: HTMLElement}>();
   constructor(leaf: WorkspaceLeaf, private plugin: TraceViewMindmap) { super(leaf); }
   getViewType(): string { return QUEUE; }
   getDisplayText(): string { return t("Steps · Deadlines · QA"); }
@@ -1539,6 +1545,13 @@ class QueueView extends ItemView {
     for (const [value, label] of [['none', t("Name order")], ['asc', t("Count: low to high")], ['desc', t("Count: high to low")]]) this.sortControl.createEl('option', {value, text: label});
     this.sortControl.value = this.metricSort;
     this.sortControl.onchange = () => {this.metricSort = this.sortControl!.value as typeof this.metricSort; this.draw(); this.mapFilter?.refresh(); this.app.workspace.requestSaveLayout();};
+    this.selectionButton = iconButton(actions, 'list-checks', t("Select list items"), () => {this.selectionMode = !this.selectionMode; this.paintSelection();});
+    this.bulkButtons = [
+      iconButton(actions, 'check-check', t("Toggle completion"), () => {void this.bulk('complete');}),
+      iconButton(actions, 'list-minus', t("Remove step number"), () => {void this.bulk('unnumber');}),
+      iconButton(actions, 'arrow-up', t("Move earlier in execution order"), () => {void this.bulk('up');}),
+      iconButton(actions, 'arrow-down', t("Move later in execution order"), () => {void this.bulk('down');}),
+    ];
     this.undoButton = iconButton(actions, 'undo-2', t("Undo"), () => { void this.history('undo'); });
     this.redoButton = iconButton(actions, 'redo-2', t("Redo"), () => { void this.history('redo'); });
     button(actions, t("Refresh"), () => { this.cache.clear(); void this.reload(); });
@@ -1654,7 +1667,7 @@ class QueueView extends ItemView {
     this.refreshHistoryButtons();
     if (this.renderer) this.removeChild(this.renderer);
     this.renderer = this.addChild(new Component());
-    this.host.empty();
+    this.host.empty(); this.rows.clear();
     if (this.foldControls) this.foldControls.hidden = this.mode === 'dates';
     if (this.completedControl) this.completedControl.hidden = this.mode === 'qa';
     let count = 0;
@@ -1715,21 +1728,73 @@ class QueueView extends ItemView {
         }
       }
     }
+    this.selection = new Set([...this.selection].filter(key => this.rows.has(key))); this.paintSelection();
     if (!count) this.host.createDiv({ cls: 'tvm-empty', text: t("No open items match this filter.") });
+  }
+  private paintSelection(): void {
+    for (const [key, entry] of this.rows) {
+      entry.row.classList.toggle('is-selected', this.selection.has(key));
+      entry.row.setAttribute('aria-selected', String(this.selection.has(key)));
+    }
+    this.selectionButton?.setAttribute('aria-pressed', String(this.selectionMode));
+    this.selectionButton?.setAttribute('aria-label', t("Selected nodes: {count}", {count: this.selection.size}));
+    for (const button of this.bulkButtons) button.disabled = this.writing || !this.selection.size;
+  }
+  private selectRow(key: string, range: boolean): void {
+    if (range) {
+      const keys = [...this.rows.keys()], from = keys.indexOf(this.selectionAnchor ?? key), to = keys.indexOf(key);
+      this.selection = new Set(keys.slice(Math.min(from < 0 ? to : from, to), Math.max(from, to) + 1));
+    } else {
+      this.selectionAnchor = key;
+      if (this.selection.has(key)) this.selection.delete(key); else this.selection.add(key);
+    }
+    this.paintSelection();
+  }
+  private async bulk(action: 'complete' | 'unnumber' | 'up' | 'down'): Promise<void> {
+    if (this.writing) return;
+    const maps = new Map<IndexedMap, string[]>();
+    for (const key of this.selection) {
+      const entry = this.rows.get(key); if (!entry) continue;
+      const ids = maps.get(entry.map) ?? []; ids.push(entry.id); maps.set(entry.map, ids);
+    }
+    try {
+      for (const [map, ids] of maps) {
+        if (action === 'up' || action === 'down') await this.reorder(map, ids[0], action === 'up' ? -1 : 1, ids);
+        else await this.change(map, changeNodes(map.doc, ids, action === 'complete' ? toggleTask : unnumberStep));
+      }
+    } catch (error) { new Notice(message(error), 8000); }
   }
   private renderLabel(parent: HTMLElement, map: IndexedMap, id: string, text: string): void {
     const label = parent.createDiv('tvm-step-text');
     const row = parent.closest<HTMLElement>('.tvm-step-row');
     if (row) {
+      const key = JSON.stringify([map.file.path, id]); this.rows.set(key, {map, id, row}); row.dataset.queueKey = key;
       row.tabIndex = 0; row.setAttribute('role', 'group'); row.setAttribute('aria-label', t("Open node"));
       row.addEventListener('keydown', event => {
-        if (event.target !== row || event.key !== 'Enter') return;
+        if (event.target !== row) return;
+        if (event.key === 'Escape') {this.selection.clear(); this.selectionMode = false; this.paintSelection(); event.preventDefault(); return;}
+        if ((event.ctrlKey || event.metaKey) && event.key === 'Enter') {
+          if (!this.selection.has(key)) this.selection = new Set([key]);
+          event.preventDefault(); void this.bulk('complete'); return;
+        }
+        if ((event.ctrlKey || event.metaKey) && event.shiftKey && ['ArrowUp', 'ArrowDown'].includes(event.key)) {
+          if (!this.selection.has(key)) {this.selection = new Set([key]); this.paintSelection();}
+          event.preventDefault(); void this.bulk(event.key === 'ArrowUp' ? 'up' : 'down'); return;
+        }
+        if (event.key === ' ' || event.shiftKey && ['ArrowUp', 'ArrowDown'].includes(event.key)) {
+          const keys = [...this.rows.keys()], index = keys.indexOf(key), next = keys[index + (event.key === 'ArrowUp' ? -1 : 1)];
+          event.preventDefault(); this.selectRow(event.key === ' ' ? key : next ?? key, event.shiftKey); if (next && event.key !== ' ') this.rows.get(next)?.row.focus(); return;
+        }
+        if (event.key !== 'Enter') return;
         event.preventDefault(); event.stopPropagation(); void this.plugin.openMap(map.file, undefined, id);
       });
     }
     if (row) row.addEventListener('click', event => {
       if ((event.target as Element).closest('a, button, input, select, textarea')) return;
       if (!row.ownerDocument.getSelection()?.isCollapsed) return;
+      const key = JSON.stringify([map.file.path, id]);
+      if (this.selectionMode || event.ctrlKey || event.metaKey || event.shiftKey) {event.preventDefault(); this.selectRow(key, event.shiftKey); row.focus(); return;}
+      this.selectionAnchor = key;
       void this.plugin.openMap(map.file, undefined, id);
     });
     label.addEventListener('click', event => {
@@ -1782,21 +1847,19 @@ class QueueView extends ItemView {
     });
     this.renderLabel(content, map, step.nodeId, queueLabel(step.text, false, this.plugin.settings.queueStepTag));
   }
-  private async reorder(map: IndexedMap, id: string, target: number | string): Promise<void> {
+  private async reorder(map: IndexedMap, id: string, target: number | string, selected?: string[]): Promise<void> {
     const numbered = getSteps(map.doc).filter(step => step.number !== null).sort(compareSteps);
-    const ids = numbered.map(step => step.nodeId), from = ids.indexOf(id);
-    if (from < 0) return;
-    let to: number;
-    if (typeof target === 'string') to = ids.indexOf(target);
-    else {
-      const excluded = excludedQueueNodes(map.doc, queueExclusions(this.plugin.settings.queueExcludedBranches));
-      const visible = numbered.filter(step => !step.completed && !excluded.has(step.nodeId) && (!this.query || step.text.toLocaleLowerCase().includes(this.query)));
-      const position = visible.findIndex(step => step.nodeId === id);
-      to = ids.indexOf(visible[position + target]?.nodeId ?? '');
-    }
-    if (to < 0 || to === from) return;
-    ids.splice(from, 1); ids.splice(to, 0, id);
-    this.queueWrite(map, renumberSteps(map.doc, ids, true));
+    const excluded = excludedQueueNodes(map.doc, queueExclusions(this.plugin.settings.queueExcludedBranches));
+    const visible = numbered.filter(step => !step.completed && !excluded.has(step.nodeId) && (!this.query || step.text.toLocaleLowerCase().includes(this.query))).map(step => step.nodeId);
+    const key = JSON.stringify([map.file.path, id]);
+    const selection = selected ?? (this.selection.has(key) ? [...this.selection].flatMap(key => {
+      const entry = this.rows.get(key); return entry?.map.file === map.file ? [entry.id] : [];
+    }) : [id]);
+    const reordered = reorderQueueSelection(visible, selection, target), included = new Set(visible);
+    if (reordered.every((id, index) => id === visible[index])) return;
+    let index = 0;
+    const ids = numbered.map(step => included.has(step.nodeId) ? reordered[index++] : step.nodeId);
+    await this.change(map, renumberSteps(map.doc, ids, true));
   }
   private queueWrite(map: IndexedMap, next: string): void {
     void this.change(map, next).catch(error => new Notice(message(error), 8000));
@@ -1812,6 +1875,7 @@ class QueueView extends ItemView {
   private refreshHistoryButtons(): void {
     if (this.undoButton) this.undoButton.disabled = this.writing || !this.undoChanges.length;
     if (this.redoButton) this.redoButton.disabled = this.writing || !this.redoChanges.length;
+    this.paintSelection();
   }
   private async history(direction: 'undo' | 'redo'): Promise<void> {
     const undo = direction === 'undo';
@@ -1834,7 +1898,8 @@ class QueueView extends ItemView {
       record();
     } finally {
       this.writing = false;
-      this.cache.delete(file.path);
+      const cached = this.cache.get(file.path); if (cached) cached.mtime = -1;
+      this.metrics.delete(file.path);
       this.refreshHistoryButtons();
       if (!this.closed) await this.reload();
     }

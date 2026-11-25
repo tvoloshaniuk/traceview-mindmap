@@ -1,5 +1,16 @@
 # Changelog
 
+## 1.0.55
+
+### Added
+
+- Select planning list items with Ctrl/Cmd-click, Shift ranges, keyboard Space/Shift+Arrow, or the selection mode button. Keep normal row opening, native links and text selection.
+- Apply completion, remove step numbers, or move execution order to selected items. Ctrl/Cmd+Shift+Up/Down and drag handles move selected steps together within their map.
+
+### Improved
+
+- Preserve selected node identities across queue edits, including Undo/Redo. Multi-map bulk actions keep an undo entry for each changed note.
+
 ## 1.0.54
 
 ### Added

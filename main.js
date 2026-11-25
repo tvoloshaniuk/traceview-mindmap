@@ -743,7 +743,8 @@ var en_default = {
   "Open only": "Open only",
   "Open / total": "Open / total",
   "Completed / total": "Completed / total",
-  "Total only": "Total only"
+  "Total only": "Total only",
+  "Select list items": "Select list items"
 };
 
 // src/locales/uk.json
@@ -1133,7 +1134,8 @@ var uk_default = {
   "Open only": "\u041B\u0438\u0448\u0435 \u0432\u0456\u0434\u043A\u0440\u0438\u0442\u0456",
   "Open / total": "\u0412\u0456\u0434\u043A\u0440\u0438\u0442\u0456 / \u0443\u0441\u0456",
   "Completed / total": "\u0412\u0438\u043A\u043E\u043D\u0430\u043D\u0456 / \u0443\u0441\u0456",
-  "Total only": "\u041B\u0438\u0448\u0435 \u0437\u0430\u0433\u0430\u043B\u044C\u043D\u0430 \u043A\u0456\u043B\u044C\u043A\u0456\u0441\u0442\u044C"
+  "Total only": "\u041B\u0438\u0448\u0435 \u0437\u0430\u0433\u0430\u043B\u044C\u043D\u0430 \u043A\u0456\u043B\u044C\u043A\u0456\u0441\u0442\u044C",
+  "Select list items": "\u0412\u0438\u0434\u0456\u043B\u0435\u043D\u043D\u044F \u0435\u043B\u0435\u043C\u0435\u043D\u0442\u0456\u0432 \u0441\u043F\u0438\u0441\u043A\u0443"
 };
 
 // src/locales/pl.json
@@ -1523,7 +1525,8 @@ var pl_default = {
   "Open only": "Tylko otwarte",
   "Open / total": "Otwarte / wszystkie",
   "Completed / total": "Uko\u0144czone / wszystkie",
-  "Total only": "Tylko suma"
+  "Total only": "Tylko suma",
+  "Select list items": "Zaznaczanie element\xF3w listy"
 };
 
 // src/locales/de.json
@@ -1913,7 +1916,8 @@ var de_default = {
   "Open only": "Nur offene",
   "Open / total": "Offen / gesamt",
   "Completed / total": "Erledigt / gesamt",
-  "Total only": "Nur Gesamtzahl"
+  "Total only": "Nur Gesamtzahl",
+  "Select list items": "Listeneintr\xE4ge ausw\xE4hlen"
 };
 
 // src/locales/es.json
@@ -2303,7 +2307,8 @@ var es_default = {
   "Open only": "Solo abiertos",
   "Open / total": "Abiertos / total",
   "Completed / total": "Completados / total",
-  "Total only": "Solo total"
+  "Total only": "Solo total",
+  "Select list items": "Seleccionar elementos de la lista"
 };
 
 // src/locales/fr.json
@@ -2693,7 +2698,8 @@ var fr_default = {
   "Open only": "Ouverts uniquement",
   "Open / total": "Ouverts / total",
   "Completed / total": "Termin\xE9s / total",
-  "Total only": "Total uniquement"
+  "Total only": "Total uniquement",
+  "Select list items": "S\xE9lectionner des \xE9l\xE9ments"
 };
 
 // src/locales/pt-BR.json
@@ -3083,7 +3089,8 @@ var pt_BR_default = {
   "Open only": "Somente abertos",
   "Open / total": "Abertos / total",
   "Completed / total": "Conclu\xEDdos / total",
-  "Total only": "Somente total"
+  "Total only": "Somente total",
+  "Select list items": "Selecionar itens da lista"
 };
 
 // src/locales/zh-CN.json
@@ -3473,7 +3480,8 @@ var zh_CN_default = {
   "Open only": "\u4EC5\u672A\u5B8C\u6210",
   "Open / total": "\u672A\u5B8C\u6210 / \u603B\u6570",
   "Completed / total": "\u5DF2\u5B8C\u6210 / \u603B\u6570",
-  "Total only": "\u4EC5\u603B\u6570"
+  "Total only": "\u4EC5\u603B\u6570",
+  "Select list items": "\u9009\u62E9\u5217\u8868\u9879"
 };
 
 // src/locales/ja.json
@@ -3863,7 +3871,8 @@ var ja_default = {
   "Open only": "\u672A\u5B8C\u4E86\u306E\u307F",
   "Open / total": "\u672A\u5B8C\u4E86 / \u5408\u8A08",
   "Completed / total": "\u5B8C\u4E86 / \u5408\u8A08",
-  "Total only": "\u5408\u8A08\u306E\u307F"
+  "Total only": "\u5408\u8A08\u306E\u307F",
+  "Select list items": "\u30EA\u30B9\u30C8\u9805\u76EE\u3092\u9078\u629E"
 };
 
 // src/locales/ko.json
@@ -4253,7 +4262,8 @@ var ko_default = {
   "Open only": "\uBBF8\uC644\uB8CC\uB9CC",
   "Open / total": "\uBBF8\uC644\uB8CC / \uC804\uCCB4",
   "Completed / total": "\uC644\uB8CC / \uC804\uCCB4",
-  "Total only": "\uC804\uCCB4 \uAC1C\uC218\uB9CC"
+  "Total only": "\uC804\uCCB4 \uAC1C\uC218\uB9CC",
+  "Select list items": "\uBAA9\uB85D \uD56D\uBAA9 \uC120\uD0DD"
 };
 
 // src/locales/ru.json
@@ -4643,7 +4653,8 @@ var ru_default = {
   "Open only": "\u0422\u043E\u043B\u044C\u043A\u043E \u043E\u0442\u043A\u0440\u044B\u0442\u044B\u0435",
   "Open / total": "\u041E\u0442\u043A\u0440\u044B\u0442\u044B\u0435 / \u0432\u0441\u0435",
   "Completed / total": "\u0412\u044B\u043F\u043E\u043B\u043D\u0435\u043D\u043D\u044B\u0435 / \u0432\u0441\u0435",
-  "Total only": "\u0422\u043E\u043B\u044C\u043A\u043E \u043E\u0431\u0449\u0435\u0435 \u043A\u043E\u043B\u0438\u0447\u0435\u0441\u0442\u0432\u043E"
+  "Total only": "\u0422\u043E\u043B\u044C\u043A\u043E \u043E\u0431\u0449\u0435\u0435 \u043A\u043E\u043B\u0438\u0447\u0435\u0441\u0442\u0432\u043E",
+  "Select list items": "\u0412\u044B\u0434\u0435\u043B\u0435\u043D\u0438\u0435 \u044D\u043B\u0435\u043C\u0435\u043D\u0442\u043E\u0432 \u0441\u043F\u0438\u0441\u043A\u0430"
 };
 
 // src/i18n.ts
@@ -8594,6 +8605,25 @@ function compareQueueMaps(a, b, sort) {
   }
   return a.path.localeCompare(b.path);
 }
+function reorderQueueSelection(order, selected, target) {
+  const selection = new Set(selected), ids = order.filter((id) => selection.has(id));
+  if (!ids.length) return order;
+  const next = [...order];
+  if (typeof target === "number") {
+    const indices = order.map((_, index) => index);
+    if (target > 0) indices.reverse();
+    for (const index of indices) {
+      const neighbor = index + (target < 0 ? -1 : 1);
+      if (selection.has(next[index]) && neighbor >= 0 && neighbor < next.length && !selection.has(next[neighbor])) [next[index], next[neighbor]] = [next[neighbor], next[index]];
+    }
+    return next;
+  }
+  if (selection.has(target) || !order.includes(target)) return order;
+  const remaining = order.filter((id) => !selection.has(id));
+  const at = remaining.indexOf(target) + (order.indexOf(ids[0]) < order.indexOf(target) ? 1 : 0);
+  remaining.splice(at, 0, ...ids);
+  return remaining;
+}
 var nextFilterId = 0;
 function attachMapFilter(parent, getMaps, onSelect, getFolderPaths, options) {
   const host = parent.createDiv("tvm-map-filter");
@@ -11837,6 +11867,10 @@ var QueueView = class extends import_obsidian5.ItemView {
     this.timer = 0;
     this.generation = 0;
     this.closed = false;
+    this.selection = /* @__PURE__ */ new Set();
+    this.selectionMode = false;
+    this.bulkButtons = [];
+    this.rows = /* @__PURE__ */ new Map();
   }
   getViewType() {
     return QUEUE;
@@ -11881,6 +11915,24 @@ var QueueView = class extends import_obsidian5.ItemView {
       this.mapFilter?.refresh();
       this.app.workspace.requestSaveLayout();
     };
+    this.selectionButton = iconButton(actions, "list-checks", t("Select list items"), () => {
+      this.selectionMode = !this.selectionMode;
+      this.paintSelection();
+    });
+    this.bulkButtons = [
+      iconButton(actions, "check-check", t("Toggle completion"), () => {
+        void this.bulk("complete");
+      }),
+      iconButton(actions, "list-minus", t("Remove step number"), () => {
+        void this.bulk("unnumber");
+      }),
+      iconButton(actions, "arrow-up", t("Move earlier in execution order"), () => {
+        void this.bulk("up");
+      }),
+      iconButton(actions, "arrow-down", t("Move later in execution order"), () => {
+        void this.bulk("down");
+      })
+    ];
     this.undoButton = iconButton(actions, "undo-2", t("Undo"), () => {
       void this.history("undo");
     });
@@ -12037,6 +12089,7 @@ var QueueView = class extends import_obsidian5.ItemView {
     if (this.renderer) this.removeChild(this.renderer);
     this.renderer = this.addChild(new import_obsidian5.Component());
     this.host.empty();
+    this.rows.clear();
     if (this.foldControls) this.foldControls.hidden = this.mode === "dates";
     if (this.completedControl) this.completedControl.hidden = this.mode === "qa";
     let count = 0;
@@ -12122,17 +12175,91 @@ var QueueView = class extends import_obsidian5.ItemView {
         }
       }
     }
+    this.selection = new Set([...this.selection].filter((key) => this.rows.has(key)));
+    this.paintSelection();
     if (!count) this.host.createDiv({ cls: "tvm-empty", text: t("No open items match this filter.") });
+  }
+  paintSelection() {
+    for (const [key, entry] of this.rows) {
+      entry.row.classList.toggle("is-selected", this.selection.has(key));
+      entry.row.setAttribute("aria-selected", String(this.selection.has(key)));
+    }
+    this.selectionButton?.setAttribute("aria-pressed", String(this.selectionMode));
+    this.selectionButton?.setAttribute("aria-label", t("Selected nodes: {count}", { count: this.selection.size }));
+    for (const button2 of this.bulkButtons) button2.disabled = this.writing || !this.selection.size;
+  }
+  selectRow(key, range2) {
+    if (range2) {
+      const keys = [...this.rows.keys()], from = keys.indexOf(this.selectionAnchor ?? key), to = keys.indexOf(key);
+      this.selection = new Set(keys.slice(Math.min(from < 0 ? to : from, to), Math.max(from, to) + 1));
+    } else {
+      this.selectionAnchor = key;
+      if (this.selection.has(key)) this.selection.delete(key);
+      else this.selection.add(key);
+    }
+    this.paintSelection();
+  }
+  async bulk(action) {
+    if (this.writing) return;
+    const maps = /* @__PURE__ */ new Map();
+    for (const key of this.selection) {
+      const entry = this.rows.get(key);
+      if (!entry) continue;
+      const ids = maps.get(entry.map) ?? [];
+      ids.push(entry.id);
+      maps.set(entry.map, ids);
+    }
+    try {
+      for (const [map, ids] of maps) {
+        if (action === "up" || action === "down") await this.reorder(map, ids[0], action === "up" ? -1 : 1, ids);
+        else await this.change(map, changeNodes(map.doc, ids, action === "complete" ? toggleTask : unnumberStep));
+      }
+    } catch (error) {
+      new import_obsidian5.Notice(message(error), 8e3);
+    }
   }
   renderLabel(parent, map, id, text) {
     const label2 = parent.createDiv("tvm-step-text");
     const row = parent.closest(".tvm-step-row");
     if (row) {
+      const key = JSON.stringify([map.file.path, id]);
+      this.rows.set(key, { map, id, row });
+      row.dataset.queueKey = key;
       row.tabIndex = 0;
       row.setAttribute("role", "group");
       row.setAttribute("aria-label", t("Open node"));
       row.addEventListener("keydown", (event) => {
-        if (event.target !== row || event.key !== "Enter") return;
+        if (event.target !== row) return;
+        if (event.key === "Escape") {
+          this.selection.clear();
+          this.selectionMode = false;
+          this.paintSelection();
+          event.preventDefault();
+          return;
+        }
+        if ((event.ctrlKey || event.metaKey) && event.key === "Enter") {
+          if (!this.selection.has(key)) this.selection = /* @__PURE__ */ new Set([key]);
+          event.preventDefault();
+          void this.bulk("complete");
+          return;
+        }
+        if ((event.ctrlKey || event.metaKey) && event.shiftKey && ["ArrowUp", "ArrowDown"].includes(event.key)) {
+          if (!this.selection.has(key)) {
+            this.selection = /* @__PURE__ */ new Set([key]);
+            this.paintSelection();
+          }
+          event.preventDefault();
+          void this.bulk(event.key === "ArrowUp" ? "up" : "down");
+          return;
+        }
+        if (event.key === " " || event.shiftKey && ["ArrowUp", "ArrowDown"].includes(event.key)) {
+          const keys = [...this.rows.keys()], index = keys.indexOf(key), next = keys[index + (event.key === "ArrowUp" ? -1 : 1)];
+          event.preventDefault();
+          this.selectRow(event.key === " " ? key : next ?? key, event.shiftKey);
+          if (next && event.key !== " ") this.rows.get(next)?.row.focus();
+          return;
+        }
+        if (event.key !== "Enter") return;
         event.preventDefault();
         event.stopPropagation();
         void this.plugin.openMap(map.file, void 0, id);
@@ -12141,6 +12268,14 @@ var QueueView = class extends import_obsidian5.ItemView {
     if (row) row.addEventListener("click", (event) => {
       if (event.target.closest("a, button, input, select, textarea")) return;
       if (!row.ownerDocument.getSelection()?.isCollapsed) return;
+      const key = JSON.stringify([map.file.path, id]);
+      if (this.selectionMode || event.ctrlKey || event.metaKey || event.shiftKey) {
+        event.preventDefault();
+        this.selectRow(key, event.shiftKey);
+        row.focus();
+        return;
+      }
+      this.selectionAnchor = key;
       void this.plugin.openMap(map.file, void 0, id);
     });
     label2.addEventListener("click", (event) => {
@@ -12206,22 +12341,20 @@ var QueueView = class extends import_obsidian5.ItemView {
     });
     this.renderLabel(content, map, step.nodeId, queueLabel(step.text, false, this.plugin.settings.queueStepTag));
   }
-  async reorder(map, id, target) {
+  async reorder(map, id, target, selected) {
     const numbered = getSteps(map.doc).filter((step) => step.number !== null).sort(compareSteps);
-    const ids = numbered.map((step) => step.nodeId), from = ids.indexOf(id);
-    if (from < 0) return;
-    let to;
-    if (typeof target === "string") to = ids.indexOf(target);
-    else {
-      const excluded = excludedQueueNodes(map.doc, queueExclusions(this.plugin.settings.queueExcludedBranches));
-      const visible = numbered.filter((step) => !step.completed && !excluded.has(step.nodeId) && (!this.query || step.text.toLocaleLowerCase().includes(this.query)));
-      const position = visible.findIndex((step) => step.nodeId === id);
-      to = ids.indexOf(visible[position + target]?.nodeId ?? "");
-    }
-    if (to < 0 || to === from) return;
-    ids.splice(from, 1);
-    ids.splice(to, 0, id);
-    this.queueWrite(map, renumberSteps(map.doc, ids, true));
+    const excluded = excludedQueueNodes(map.doc, queueExclusions(this.plugin.settings.queueExcludedBranches));
+    const visible = numbered.filter((step) => !step.completed && !excluded.has(step.nodeId) && (!this.query || step.text.toLocaleLowerCase().includes(this.query))).map((step) => step.nodeId);
+    const key = JSON.stringify([map.file.path, id]);
+    const selection = selected ?? (this.selection.has(key) ? [...this.selection].flatMap((key2) => {
+      const entry = this.rows.get(key2);
+      return entry?.map.file === map.file ? [entry.id] : [];
+    }) : [id]);
+    const reordered = reorderQueueSelection(visible, selection, target), included = new Set(visible);
+    if (reordered.every((id2, index2) => id2 === visible[index2])) return;
+    let index = 0;
+    const ids = numbered.map((step) => included.has(step.nodeId) ? reordered[index++] : step.nodeId);
+    await this.change(map, renumberSteps(map.doc, ids, true));
   }
   queueWrite(map, next) {
     void this.change(map, next).catch((error) => new import_obsidian5.Notice(message(error), 8e3));
@@ -12237,6 +12370,7 @@ var QueueView = class extends import_obsidian5.ItemView {
   refreshHistoryButtons() {
     if (this.undoButton) this.undoButton.disabled = this.writing || !this.undoChanges.length;
     if (this.redoButton) this.redoButton.disabled = this.writing || !this.redoChanges.length;
+    this.paintSelection();
   }
   async history(direction) {
     const undo = direction === "undo";
@@ -12261,7 +12395,9 @@ var QueueView = class extends import_obsidian5.ItemView {
       record();
     } finally {
       this.writing = false;
-      this.cache.delete(file.path);
+      const cached = this.cache.get(file.path);
+      if (cached) cached.mtime = -1;
+      this.metrics.delete(file.path);
       this.refreshHistoryButtons();
       if (!this.closed) await this.reload();
     }

@@ -71,6 +71,24 @@ export function compareQueueMaps(a: MapChoice, b: MapChoice, sort: 'none' | 'asc
   }
   return a.path.localeCompare(b.path);
 }
+export function reorderQueueSelection(order: string[], selected: readonly string[], target: number | string): string[] {
+  const selection = new Set(selected), ids = order.filter(id => selection.has(id));
+  if (!ids.length) return order;
+  const next = [...order];
+  if (typeof target === 'number') {
+    const indices = order.map((_, index) => index);
+    if (target > 0) indices.reverse();
+    for (const index of indices) {
+      const neighbor = index + (target < 0 ? -1 : 1);
+      if (selection.has(next[index]) && neighbor >= 0 && neighbor < next.length && !selection.has(next[neighbor])) [next[index], next[neighbor]] = [next[neighbor], next[index]];
+    }
+    return next;
+  }
+  if (selection.has(target) || !order.includes(target)) return order;
+  const remaining = order.filter(id => !selection.has(id));
+  const at = remaining.indexOf(target) + (order.indexOf(ids[0]) < order.indexOf(target) ? 1 : 0);
+  remaining.splice(at, 0, ...ids); return remaining;
+}
 let nextFilterId = 0;
 
 export function attachMapFilter(parent: HTMLElement, getMaps: () => MapChoice[], onSelect: (path: string) => void, getFolderPaths?: () => string[], options?: {sort?: () => 'none' | 'asc' | 'desc'; onOpen?: () => void}): { set: (value: string) => void; refresh: () => void } {
