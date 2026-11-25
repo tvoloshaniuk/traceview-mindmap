@@ -43,6 +43,7 @@ export interface MapSurfaceOptions {
   useTransformPan?: () => boolean;
   getWidthMode?: () => WidthMode;
   getNodeMaxHeight?: () => number;
+  showCreationHandles?: () => boolean;
   getHotkeys?: () => Record<string, string>;
   getCollapseOnLeft?: () => boolean;
   getArrowAcrossBranches?: () => boolean;

@@ -42,8 +42,8 @@ function hasLargeVisibleTree(doc: MapDocument, state?: MapViewState): boolean {
   }
   return false;
 }
-interface Settings extends MapRules { previousPluginId?: string; language: LanguageSetting; nodeEditor: 'native' | 'text'; autoOpen: boolean; rememberLastMode: boolean; autoRestoreLargeMaps: boolean; queueExcludedMaps: string; queueExcludedBranches: string; queueTaskMarker: boolean; queueStepTag: boolean; collapseOnLeft: boolean; arrowAcrossBranches: boolean; toolbarMode: ToolbarMode; queueToolbarMode: ToolbarMode; showMapPreviews: boolean; collapsePastedBranches: boolean; hotkeys: Record<string, string>; widthMode: WidthMode; embeddedNoteFontSize: number; nodeMaxHeight: number; }
-const DEFAULT_SETTINGS: Settings = { patternMode: 'glob', mapPatterns: '*.mindmap.md\n🎯*.md', language: 'auto', nodeEditor: 'native', autoOpen: false, rememberLastMode: false, autoRestoreLargeMaps: true, queueExcludedMaps: 'архів тижнів\nold', queueExcludedBranches: '🧊\n❌', queueTaskMarker: true, queueStepTag: true, collapseOnLeft: false, arrowAcrossBranches: false, toolbarMode: 'visible', queueToolbarMode: 'visible', showMapPreviews: true, collapsePastedBranches: true, hotkeys: {}, widthMode: 'fixed', embeddedNoteFontSize: 0, nodeMaxHeight: 0 };
+interface Settings extends MapRules { previousPluginId?: string; language: LanguageSetting; nodeEditor: 'native' | 'text'; autoOpen: boolean; rememberLastMode: boolean; autoRestoreLargeMaps: boolean; queueExcludedMaps: string; queueExcludedBranches: string; queueTaskMarker: boolean; queueStepTag: boolean; collapseOnLeft: boolean; arrowAcrossBranches: boolean; toolbarMode: ToolbarMode; queueToolbarMode: ToolbarMode; showMapPreviews: boolean; collapsePastedBranches: boolean; hotkeys: Record<string, string>; widthMode: WidthMode; embeddedNoteFontSize: number; nodeMaxHeight: number; showDesktopCreationHandles: boolean; }
+const DEFAULT_SETTINGS: Settings = { patternMode: 'glob', mapPatterns: '*.mindmap.md\n🎯*.md', language: 'auto', nodeEditor: 'native', autoOpen: false, rememberLastMode: false, autoRestoreLargeMaps: true, queueExcludedMaps: 'архів тижнів\nold', queueExcludedBranches: '🧊\n❌', queueTaskMarker: true, queueStepTag: true, collapseOnLeft: false, arrowAcrossBranches: false, toolbarMode: 'visible', queueToolbarMode: 'visible', showMapPreviews: true, collapsePastedBranches: true, hotkeys: {}, widthMode: 'fixed', embeddedNoteFontSize: 0, nodeMaxHeight: 0, showDesktopCreationHandles: false };
 const widthModes = (): [WidthMode, string][] => [['fixed', t("Fixed width")], ['content', t("Fit node content")], ['column', t("Fit visible column")]];
 type ToolbarMode = 'visible' | 'hover' | 'hidden';
 const toolbarModes = (): [ToolbarMode, string][] => [
@@ -100,6 +100,7 @@ export default class TraceViewMindmap extends Plugin {
       if (Array.isArray(paths)) { this.sourcePreferences = new Set(paths.filter(path => typeof path === 'string')); this.rememberSource(); }
     } catch { /* Optional local preferences. */ }
     this.settings.rememberLastMode = saved?.rememberLastMode === true;
+    this.settings.showDesktopCreationHandles = saved?.showDesktopCreationHandles === true;
     if (!['visible', 'hover', 'hidden'].includes(this.settings.queueToolbarMode)) this.settings.queueToolbarMode = 'visible';
     try {
       const paths = this.app.loadLocalStorage('traceview-mindmap:map-preferences');
@@ -760,6 +761,7 @@ class MapView extends EditableFileView {
     this.surface = new MapSurface(this.host, {
       getWidthMode: () => this.plugin.settings.widthMode,
       getNodeMaxHeight: () => this.plugin.settings.nodeMaxHeight,
+      showCreationHandles: () => Platform.isMobile || this.plugin.settings.showDesktopCreationHandles,
       useTransformPan: () => Platform.isMobile,
       getHotkeys: () => this.plugin.settings.hotkeys,
       getCollapseOnLeft: () => this.plugin.settings.collapseOnLeft,
@@ -2000,6 +2002,16 @@ class SettingsTab extends PluginSettingTab {
       }));
     }
     updateConflicts();
+    if (!Platform.isMobile) {
+      const advanced = this.containerEl.createEl('details');
+      advanced.createEl('summary', {text: t("Advanced options")});
+      new Setting(advanced).setName(t("Show node creation handles on desktop")).setDesc(t("Drag handles remain enabled on mobile. Off by default on desktop.")).addToggle(toggle =>
+        toggle.setValue(this.plugin.settings.showDesktopCreationHandles).onChange(async value => {
+          this.plugin.settings.showDesktopCreationHandles = value;
+          for (const view of this.plugin.mapViews()) view.surface?.refreshLayout();
+          await this.plugin.saveData(this.plugin.settings);
+        }));
+    }
   }
 }
 

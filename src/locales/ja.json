@@ -372,5 +372,8 @@
   "Leave blank to follow the theme. Changes only embedded notes in maps.": "空欄でテーマの設定を使用します。マップ内の埋め込みノートのみに適用されます。",
   "Default maximum node height (px)": "ノードの既定の最大高さ (px)",
   "Leave blank for automatic height. Short content shrinks naturally; manual node sizes take precedence.": "空欄で高さを自動調整します。短い内容は自然な高さになり、手動のノードサイズが優先されます。",
-  "Planning list toolbar": "計画リストのツールバー"
+  "Planning list toolbar": "計画リストのツールバー",
+  "Advanced options": "詳細オプション",
+  "Show node creation handles on desktop": "デスクトップでノード作成ハンドルを表示",
+  "Drag handles remain enabled on mobile. Off by default on desktop.": "モバイルではハンドルが有効のままです。デスクトップでは既定で無効です。"
 }

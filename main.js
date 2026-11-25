@@ -731,7 +731,10 @@ var en_default = {
   "Leave blank to follow the theme. Changes only embedded notes in maps.": "Leave blank to follow the theme. Changes only embedded notes in maps.",
   "Default maximum node height (px)": "Default maximum node height (px)",
   "Leave blank for automatic height. Short content shrinks naturally; manual node sizes take precedence.": "Leave blank for automatic height. Short content shrinks naturally; manual node sizes take precedence.",
-  "Planning list toolbar": "Planning list toolbar"
+  "Planning list toolbar": "Planning list toolbar",
+  "Advanced options": "Advanced options",
+  "Show node creation handles on desktop": "Show node creation handles on desktop",
+  "Drag handles remain enabled on mobile. Off by default on desktop.": "Drag handles remain enabled on mobile. Off by default on desktop."
 };
 
 // src/locales/uk.json
@@ -1109,7 +1112,10 @@ var uk_default = {
   "Leave blank to follow the theme. Changes only embedded notes in maps.": "\u0417\u0430\u043B\u0438\u0448\u0442\u0435 \u043F\u043E\u0440\u043E\u0436\u043D\u0456\u043C, \u0449\u043E\u0431 \u0432\u0438\u043A\u043E\u0440\u0438\u0441\u0442\u043E\u0432\u0443\u0432\u0430\u0442\u0438 \u0442\u0435\u043C\u0443. \u0417\u043C\u0456\u043D\u044E\u0454 \u043B\u0438\u0448\u0435 \u0432\u043A\u043B\u0430\u0434\u0435\u043D\u0456 \u043D\u043E\u0442\u0430\u0442\u043A\u0438 \u043D\u0430 \u043A\u0430\u0440\u0442\u0430\u0445.",
   "Default maximum node height (px)": "\u0422\u0438\u043F\u043E\u0432\u0430 \u043C\u0430\u043A\u0441\u0438\u043C\u0430\u043B\u044C\u043D\u0430 \u0432\u0438\u0441\u043E\u0442\u0430 \u043D\u043E\u0434\u0438 (px)",
   "Leave blank for automatic height. Short content shrinks naturally; manual node sizes take precedence.": "\u0417\u0430\u043B\u0438\u0448\u0442\u0435 \u043F\u043E\u0440\u043E\u0436\u043D\u0456\u043C \u0434\u043B\u044F \u0430\u0432\u0442\u043E\u043C\u0430\u0442\u0438\u0447\u043D\u043E\u0457 \u0432\u0438\u0441\u043E\u0442\u0438. \u041A\u043E\u0440\u043E\u0442\u043A\u0438\u0439 \u0442\u0435\u043A\u0441\u0442 \u0441\u0442\u0438\u0441\u043A\u0430\u0454\u0442\u044C\u0441\u044F \u043F\u0456\u0434 \u0432\u043C\u0456\u0441\u0442; \u0440\u0443\u0447\u043D\u0438\u0439 \u0440\u043E\u0437\u043C\u0456\u0440 \u043D\u043E\u0434\u0438 \u043C\u0430\u0454 \u043F\u0440\u0456\u043E\u0440\u0438\u0442\u0435\u0442.",
-  "Planning list toolbar": "\u041F\u0430\u043D\u0435\u043B\u044C \u0441\u043F\u0438\u0441\u043A\u0456\u0432 \u043F\u043B\u0430\u043D\u0443\u0432\u0430\u043D\u043D\u044F"
+  "Planning list toolbar": "\u041F\u0430\u043D\u0435\u043B\u044C \u0441\u043F\u0438\u0441\u043A\u0456\u0432 \u043F\u043B\u0430\u043D\u0443\u0432\u0430\u043D\u043D\u044F",
+  "Advanced options": "\u0414\u043E\u0434\u0430\u0442\u043A\u043E\u0432\u0456 \u043F\u0430\u0440\u0430\u043C\u0435\u0442\u0440\u0438",
+  "Show node creation handles on desktop": "\u041F\u043E\u043A\u0430\u0437\u0443\u0432\u0430\u0442\u0438 \u0440\u0443\u0447\u043A\u0438 \u0441\u0442\u0432\u043E\u0440\u0435\u043D\u043D\u044F \u043D\u043E\u0434 \u043D\u0430 \u041F\u041A",
+  "Drag handles remain enabled on mobile. Off by default on desktop.": "\u041D\u0430 \u0442\u0435\u043B\u0435\u0444\u043E\u043D\u0456 \u0440\u0443\u0447\u043A\u0438 \u0437\u0430\u043B\u0438\u0448\u0430\u044E\u0442\u044C\u0441\u044F \u0432\u0432\u0456\u043C\u043A\u043D\u0435\u043D\u0438\u043C\u0438. \u041D\u0430 \u041F\u041A \u0442\u0438\u043F\u043E\u0432\u043E \u0432\u0438\u043C\u043A\u043D\u0435\u043D\u0456."
 };
 
 // src/locales/pl.json
@@ -1487,7 +1493,10 @@ var pl_default = {
   "Leave blank to follow the theme. Changes only embedded notes in maps.": "Pozostaw puste, aby u\u017Cy\u0107 motywu. Zmienia tylko osadzone notatki na mapach.",
   "Default maximum node height (px)": "Domy\u015Blna maksymalna wysoko\u015B\u0107 w\u0119z\u0142a (px)",
   "Leave blank for automatic height. Short content shrinks naturally; manual node sizes take precedence.": "Pozostaw puste dla automatycznej wysoko\u015Bci. Kr\xF3tka tre\u015B\u0107 zajmuje tylko potrzebne miejsce; r\u0119czny rozmiar ma pierwsze\u0144stwo.",
-  "Planning list toolbar": "Pasek list planowania"
+  "Planning list toolbar": "Pasek list planowania",
+  "Advanced options": "Opcje zaawansowane",
+  "Show node creation handles on desktop": "Poka\u017C uchwyty tworzenia w\u0119z\u0142\xF3w na komputerze",
+  "Drag handles remain enabled on mobile. Off by default on desktop.": "Na urz\u0105dzeniach mobilnych uchwyty pozostaj\u0105 w\u0142\u0105czone. Na komputerze s\u0105 domy\u015Blnie wy\u0142\u0105czone."
 };
 
 // src/locales/de.json
@@ -1865,7 +1874,10 @@ var de_default = {
   "Leave blank to follow the theme. Changes only embedded notes in maps.": "Leer lassen, um dem Design zu folgen. \xC4ndert nur eingebettete Notizen in Karten.",
   "Default maximum node height (px)": "Standardm\xE4\xDFige maximale Knotenh\xF6he (px)",
   "Leave blank for automatic height. Short content shrinks naturally; manual node sizes take precedence.": "Leer lassen f\xFCr automatische H\xF6he. Kurzer Inhalt schrumpft auf seine nat\xFCrliche H\xF6he; manuelle Knotengr\xF6\xDFen haben Vorrang.",
-  "Planning list toolbar": "Symbolleiste der Planungslisten"
+  "Planning list toolbar": "Symbolleiste der Planungslisten",
+  "Advanced options": "Erweiterte Optionen",
+  "Show node creation handles on desktop": "Griffe zum Erstellen von Knoten am Desktop anzeigen",
+  "Drag handles remain enabled on mobile. Off by default on desktop.": "Auf Mobilger\xE4ten bleiben die Griffe aktiviert. Am Desktop sind sie standardm\xE4\xDFig deaktiviert."
 };
 
 // src/locales/es.json
@@ -2243,7 +2255,10 @@ var es_default = {
   "Leave blank to follow the theme. Changes only embedded notes in maps.": "D\xE9jalo vac\xEDo para seguir el tema. Solo cambia las notas incrustadas en mapas.",
   "Default maximum node height (px)": "Altura m\xE1xima predeterminada de nodos (px)",
   "Leave blank for automatic height. Short content shrinks naturally; manual node sizes take precedence.": "D\xE9jalo vac\xEDo para altura autom\xE1tica. El contenido corto se ajusta a su altura natural; el tama\xF1o manual tiene prioridad.",
-  "Planning list toolbar": "Barra de listas de planificaci\xF3n"
+  "Planning list toolbar": "Barra de listas de planificaci\xF3n",
+  "Advanced options": "Opciones avanzadas",
+  "Show node creation handles on desktop": "Mostrar controles de creaci\xF3n de nodos en escritorio",
+  "Drag handles remain enabled on mobile. Off by default on desktop.": "Los controles siguen activos en m\xF3vil. En escritorio est\xE1n desactivados por defecto."
 };
 
 // src/locales/fr.json
@@ -2621,7 +2636,10 @@ var fr_default = {
   "Leave blank to follow the theme. Changes only embedded notes in maps.": "Laissez vide pour suivre le th\xE8me. Ne modifie que les notes int\xE9gr\xE9es aux cartes.",
   "Default maximum node height (px)": "Hauteur maximale des n\u0153uds par d\xE9faut (px)",
   "Leave blank for automatic height. Short content shrinks naturally; manual node sizes take precedence.": "Laissez vide pour une hauteur automatique. Le contenu court conserve sa hauteur naturelle ; les tailles manuelles sont prioritaires.",
-  "Planning list toolbar": "Barre d\u2019outils des listes de planification"
+  "Planning list toolbar": "Barre d\u2019outils des listes de planification",
+  "Advanced options": "Options avanc\xE9es",
+  "Show node creation handles on desktop": "Afficher les poign\xE9es de cr\xE9ation de n\u0153uds sur ordinateur",
+  "Drag handles remain enabled on mobile. Off by default on desktop.": "Les poign\xE9es restent actives sur mobile. Elles sont d\xE9sactiv\xE9es par d\xE9faut sur ordinateur."
 };
 
 // src/locales/pt-BR.json
@@ -2999,7 +3017,10 @@ var pt_BR_default = {
   "Leave blank to follow the theme. Changes only embedded notes in maps.": "Deixe vazio para seguir o tema. Altera apenas as notas incorporadas nos mapas.",
   "Default maximum node height (px)": "Altura m\xE1xima padr\xE3o dos n\xF3s (px)",
   "Leave blank for automatic height. Short content shrinks naturally; manual node sizes take precedence.": "Deixe vazio para altura autom\xE1tica. Conte\xFAdo curto mant\xE9m a altura natural; tamanhos manuais t\xEAm prioridade.",
-  "Planning list toolbar": "Barra das listas de planejamento"
+  "Planning list toolbar": "Barra das listas de planejamento",
+  "Advanced options": "Op\xE7\xF5es avan\xE7adas",
+  "Show node creation handles on desktop": "Mostrar al\xE7as de cria\xE7\xE3o de n\xF3s no computador",
+  "Drag handles remain enabled on mobile. Off by default on desktop.": "As al\xE7as permanecem ativas no celular. No computador, ficam desativadas por padr\xE3o."
 };
 
 // src/locales/zh-CN.json
@@ -3377,7 +3398,10 @@ var zh_CN_default = {
   "Leave blank to follow the theme. Changes only embedded notes in maps.": "\u7559\u7A7A\u4EE5\u8DDF\u968F\u4E3B\u9898\u3002\u4EC5\u66F4\u6539\u5730\u56FE\u4E2D\u7684\u5D4C\u5165\u7B14\u8BB0\u3002",
   "Default maximum node height (px)": "\u9ED8\u8BA4\u8282\u70B9\u6700\u5927\u9AD8\u5EA6 (px)",
   "Leave blank for automatic height. Short content shrinks naturally; manual node sizes take precedence.": "\u7559\u7A7A\u4EE5\u81EA\u52A8\u8C03\u6574\u9AD8\u5EA6\u3002\u77ED\u5185\u5BB9\u4FDD\u6301\u81EA\u7136\u9AD8\u5EA6\uFF1B\u624B\u52A8\u8282\u70B9\u5927\u5C0F\u4F18\u5148\u3002",
-  "Planning list toolbar": "\u8BA1\u5212\u5217\u8868\u5DE5\u5177\u680F"
+  "Planning list toolbar": "\u8BA1\u5212\u5217\u8868\u5DE5\u5177\u680F",
+  "Advanced options": "\u9AD8\u7EA7\u9009\u9879",
+  "Show node creation handles on desktop": "\u5728\u684C\u9762\u7AEF\u663E\u793A\u8282\u70B9\u521B\u5EFA\u624B\u67C4",
+  "Drag handles remain enabled on mobile. Off by default on desktop.": "\u79FB\u52A8\u7AEF\u4FDD\u7559\u624B\u67C4\u3002\u684C\u9762\u7AEF\u9ED8\u8BA4\u5173\u95ED\u3002"
 };
 
 // src/locales/ja.json
@@ -3755,7 +3779,10 @@ var ja_default = {
   "Leave blank to follow the theme. Changes only embedded notes in maps.": "\u7A7A\u6B04\u3067\u30C6\u30FC\u30DE\u306E\u8A2D\u5B9A\u3092\u4F7F\u7528\u3057\u307E\u3059\u3002\u30DE\u30C3\u30D7\u5185\u306E\u57CB\u3081\u8FBC\u307F\u30CE\u30FC\u30C8\u306E\u307F\u306B\u9069\u7528\u3055\u308C\u307E\u3059\u3002",
   "Default maximum node height (px)": "\u30CE\u30FC\u30C9\u306E\u65E2\u5B9A\u306E\u6700\u5927\u9AD8\u3055 (px)",
   "Leave blank for automatic height. Short content shrinks naturally; manual node sizes take precedence.": "\u7A7A\u6B04\u3067\u9AD8\u3055\u3092\u81EA\u52D5\u8ABF\u6574\u3057\u307E\u3059\u3002\u77ED\u3044\u5185\u5BB9\u306F\u81EA\u7136\u306A\u9AD8\u3055\u306B\u306A\u308A\u3001\u624B\u52D5\u306E\u30CE\u30FC\u30C9\u30B5\u30A4\u30BA\u304C\u512A\u5148\u3055\u308C\u307E\u3059\u3002",
-  "Planning list toolbar": "\u8A08\u753B\u30EA\u30B9\u30C8\u306E\u30C4\u30FC\u30EB\u30D0\u30FC"
+  "Planning list toolbar": "\u8A08\u753B\u30EA\u30B9\u30C8\u306E\u30C4\u30FC\u30EB\u30D0\u30FC",
+  "Advanced options": "\u8A73\u7D30\u30AA\u30D7\u30B7\u30E7\u30F3",
+  "Show node creation handles on desktop": "\u30C7\u30B9\u30AF\u30C8\u30C3\u30D7\u3067\u30CE\u30FC\u30C9\u4F5C\u6210\u30CF\u30F3\u30C9\u30EB\u3092\u8868\u793A",
+  "Drag handles remain enabled on mobile. Off by default on desktop.": "\u30E2\u30D0\u30A4\u30EB\u3067\u306F\u30CF\u30F3\u30C9\u30EB\u304C\u6709\u52B9\u306E\u307E\u307E\u3067\u3059\u3002\u30C7\u30B9\u30AF\u30C8\u30C3\u30D7\u3067\u306F\u65E2\u5B9A\u3067\u7121\u52B9\u3067\u3059\u3002"
 };
 
 // src/locales/ko.json
@@ -4133,7 +4160,10 @@ var ko_default = {
   "Leave blank to follow the theme. Changes only embedded notes in maps.": "\uBE44\uC6CC \uB450\uBA74 \uD14C\uB9C8 \uC124\uC815\uC744 \uB530\uB985\uB2C8\uB2E4. \uB9F5\uC758 \uC784\uBCA0\uB4DC \uB178\uD2B8\uC5D0\uB9CC \uC801\uC6A9\uB429\uB2C8\uB2E4.",
   "Default maximum node height (px)": "\uAE30\uBCF8 \uB178\uB4DC \uCD5C\uB300 \uB192\uC774 (px)",
   "Leave blank for automatic height. Short content shrinks naturally; manual node sizes take precedence.": "\uBE44\uC6CC \uB450\uBA74 \uB192\uC774\uB97C \uC790\uB3D9 \uC870\uC808\uD569\uB2C8\uB2E4. \uC9E7\uC740 \uB0B4\uC6A9\uC740 \uC790\uC5F0\uC2A4\uB7EC\uC6B4 \uB192\uC774\uB97C \uC0AC\uC6A9\uD558\uBA70 \uC218\uB3D9 \uD06C\uAE30\uAC00 \uC6B0\uC120\uD569\uB2C8\uB2E4.",
-  "Planning list toolbar": "\uACC4\uD68D \uBAA9\uB85D \uB3C4\uAD6C \uBAA8\uC74C"
+  "Planning list toolbar": "\uACC4\uD68D \uBAA9\uB85D \uB3C4\uAD6C \uBAA8\uC74C",
+  "Advanced options": "\uACE0\uAE09 \uC635\uC158",
+  "Show node creation handles on desktop": "\uB370\uC2A4\uD06C\uD1B1\uC5D0\uC11C \uB178\uB4DC \uC0DD\uC131 \uD578\uB4E4 \uD45C\uC2DC",
+  "Drag handles remain enabled on mobile. Off by default on desktop.": "\uBAA8\uBC14\uC77C\uC5D0\uC11C\uB294 \uD578\uB4E4\uC774 \uACC4\uC18D \uD65C\uC131\uD654\uB429\uB2C8\uB2E4. \uB370\uC2A4\uD06C\uD1B1\uC5D0\uC11C\uB294 \uAE30\uBCF8\uC801\uC73C\uB85C \uAEBC\uC838 \uC788\uC2B5\uB2C8\uB2E4."
 };
 
 // src/locales/ru.json
@@ -4511,7 +4541,10 @@ var ru_default = {
   "Leave blank to follow the theme. Changes only embedded notes in maps.": "\u041E\u0441\u0442\u0430\u0432\u044C\u0442\u0435 \u043F\u0443\u0441\u0442\u044B\u043C \u0434\u043B\u044F \u043D\u0430\u0441\u0442\u0440\u043E\u0439\u043A\u0438 \u0442\u0435\u043C\u044B. \u041C\u0435\u043D\u044F\u0435\u0442 \u0442\u043E\u043B\u044C\u043A\u043E \u0432\u043B\u043E\u0436\u0435\u043D\u043D\u044B\u0435 \u0437\u0430\u043C\u0435\u0442\u043A\u0438 \u043D\u0430 \u043A\u0430\u0440\u0442\u0430\u0445.",
   "Default maximum node height (px)": "\u041C\u0430\u043A\u0441\u0438\u043C\u0430\u043B\u044C\u043D\u0430\u044F \u0432\u044B\u0441\u043E\u0442\u0430 \u0443\u0437\u043B\u0430 \u043F\u043E \u0443\u043C\u043E\u043B\u0447\u0430\u043D\u0438\u044E (px)",
   "Leave blank for automatic height. Short content shrinks naturally; manual node sizes take precedence.": "\u041E\u0441\u0442\u0430\u0432\u044C\u0442\u0435 \u043F\u0443\u0441\u0442\u044B\u043C \u0434\u043B\u044F \u0430\u0432\u0442\u043E\u043C\u0430\u0442\u0438\u0447\u0435\u0441\u043A\u043E\u0439 \u0432\u044B\u0441\u043E\u0442\u044B. \u041A\u043E\u0440\u043E\u0442\u043A\u0438\u0439 \u0442\u0435\u043A\u0441\u0442 \u0441\u0436\u0438\u043C\u0430\u0435\u0442\u0441\u044F \u043F\u043E \u0441\u043E\u0434\u0435\u0440\u0436\u0438\u043C\u043E\u043C\u0443; \u0440\u0443\u0447\u043D\u043E\u0439 \u0440\u0430\u0437\u043C\u0435\u0440 \u0443\u0437\u043B\u0430 \u0438\u043C\u0435\u0435\u0442 \u043F\u0440\u0438\u043E\u0440\u0438\u0442\u0435\u0442.",
-  "Planning list toolbar": "\u041F\u0430\u043D\u0435\u043B\u044C \u0441\u043F\u0438\u0441\u043A\u043E\u0432 \u043F\u043B\u0430\u043D\u0438\u0440\u043E\u0432\u0430\u043D\u0438\u044F"
+  "Planning list toolbar": "\u041F\u0430\u043D\u0435\u043B\u044C \u0441\u043F\u0438\u0441\u043A\u043E\u0432 \u043F\u043B\u0430\u043D\u0438\u0440\u043E\u0432\u0430\u043D\u0438\u044F",
+  "Advanced options": "\u0414\u043E\u043F\u043E\u043B\u043D\u0438\u0442\u0435\u043B\u044C\u043D\u044B\u0435 \u043F\u0430\u0440\u0430\u043C\u0435\u0442\u0440\u044B",
+  "Show node creation handles on desktop": "\u041F\u043E\u043A\u0430\u0437\u044B\u0432\u0430\u0442\u044C \u0440\u0443\u0447\u043A\u0438 \u0441\u043E\u0437\u0434\u0430\u043D\u0438\u044F \u0443\u0437\u043B\u043E\u0432 \u043D\u0430 \u041F\u041A",
+  "Drag handles remain enabled on mobile. Off by default on desktop.": "\u041D\u0430 \u0442\u0435\u043B\u0435\u0444\u043E\u043D\u0435 \u0440\u0443\u0447\u043A\u0438 \u043E\u0441\u0442\u0430\u044E\u0442\u0441\u044F \u0432\u043A\u043B\u044E\u0447\u0451\u043D\u043D\u044B\u043C\u0438. \u041D\u0430 \u041F\u041A \u043F\u043E \u0443\u043C\u043E\u043B\u0447\u0430\u043D\u0438\u044E \u0432\u044B\u043A\u043B\u044E\u0447\u0435\u043D\u044B."
 };
 
 // src/i18n.ts
@@ -6405,7 +6438,6 @@ var MapSurface = class {
     this.loading.hidden = true;
     this.viewport.append(this.edges, this.world, this.live, this.loading, label2);
     container.append(this.viewport);
-    this.handles = new CreationHandles(this.viewport, (action, id) => this.options.onAction(action, id));
     this.listen(this.viewport, "click", (e) => this.click(e), { capture: true });
     this.listen(this.viewport, "auxclick", (e) => {
       if (e.button === 1 && e.target.closest("a")) this.click(e);
@@ -6833,7 +6865,7 @@ var MapSurface = class {
     this.observer?.disconnect();
     if (this.frame !== null) this.container.ownerDocument.defaultView?.cancelAnimationFrame(this.frame);
     this.closeMenu();
-    this.handles.destroy();
+    this.handles?.destroy();
     this.viewport.remove();
     this.elements.clear();
     this.positions.clear();
@@ -7342,6 +7374,12 @@ var MapSurface = class {
     return { width: this.viewport.clientWidth || rect.width || 800, height: this.viewport.clientHeight || rect.height || 600 };
   }
   updateHandles(viewportRect) {
+    if (this.options.showCreationHandles?.() === false) {
+      this.handles?.destroy();
+      this.handles = void 0;
+      return;
+    }
+    this.handles ?? (this.handles = new CreationHandles(this.viewport, (action, id2) => this.options.onAction(action, id2)));
     const id = this.editing?.id ?? (this.selection.size === 1 && !this.selectionMode ? this.state.selected : null);
     const pos = id ? this.positions.get(id) : void 0, c = this.state.camera;
     const geometry = viewportRect && pos ? { viewport: viewportRect, node: {
@@ -7636,7 +7674,7 @@ var MapSurface = class {
       this.finishResize(true);
       return true;
     }
-    if (event.key === "Escape" && this.handles.cancelIfActive()) {
+    if (event.key === "Escape" && this.handles?.cancelIfActive()) {
       event.preventDefault();
       event.stopPropagation();
       return true;
@@ -9813,7 +9851,7 @@ function hasLargeVisibleTree(doc, state) {
   }
   return false;
 }
-var DEFAULT_SETTINGS = { patternMode: "glob", mapPatterns: "*.mindmap.md\n\u{1F3AF}*.md", language: "auto", nodeEditor: "native", autoOpen: false, rememberLastMode: false, autoRestoreLargeMaps: true, queueExcludedMaps: "\u0430\u0440\u0445\u0456\u0432 \u0442\u0438\u0436\u043D\u0456\u0432\nold", queueExcludedBranches: "\u{1F9CA}\n\u274C", queueTaskMarker: true, queueStepTag: true, collapseOnLeft: false, arrowAcrossBranches: false, toolbarMode: "visible", queueToolbarMode: "visible", showMapPreviews: true, collapsePastedBranches: true, hotkeys: {}, widthMode: "fixed", embeddedNoteFontSize: 0, nodeMaxHeight: 0 };
+var DEFAULT_SETTINGS = { patternMode: "glob", mapPatterns: "*.mindmap.md\n\u{1F3AF}*.md", language: "auto", nodeEditor: "native", autoOpen: false, rememberLastMode: false, autoRestoreLargeMaps: true, queueExcludedMaps: "\u0430\u0440\u0445\u0456\u0432 \u0442\u0438\u0436\u043D\u0456\u0432\nold", queueExcludedBranches: "\u{1F9CA}\n\u274C", queueTaskMarker: true, queueStepTag: true, collapseOnLeft: false, arrowAcrossBranches: false, toolbarMode: "visible", queueToolbarMode: "visible", showMapPreviews: true, collapsePastedBranches: true, hotkeys: {}, widthMode: "fixed", embeddedNoteFontSize: 0, nodeMaxHeight: 0, showDesktopCreationHandles: false };
 var widthModes = () => [["fixed", t("Fixed width")], ["content", t("Fit node content")], ["column", t("Fit visible column")]];
 var toolbarModes = () => [
   ["visible", t("Always show toolbar")],
@@ -9883,6 +9921,7 @@ var TraceViewMindmap = class extends import_obsidian5.Plugin {
     } catch {
     }
     this.settings.rememberLastMode = saved?.rememberLastMode === true;
+    this.settings.showDesktopCreationHandles = saved?.showDesktopCreationHandles === true;
     if (!["visible", "hover", "hidden"].includes(this.settings.queueToolbarMode)) this.settings.queueToolbarMode = "visible";
     try {
       const paths = this.app.loadLocalStorage("traceview-mindmap:map-preferences");
@@ -10670,6 +10709,7 @@ var MapView = class extends import_obsidian5.EditableFileView {
     this.surface = new MapSurface(this.host, {
       getWidthMode: () => this.plugin.settings.widthMode,
       getNodeMaxHeight: () => this.plugin.settings.nodeMaxHeight,
+      showCreationHandles: () => import_obsidian5.Platform.isMobile || this.plugin.settings.showDesktopCreationHandles,
       useTransformPan: () => import_obsidian5.Platform.isMobile,
       getHotkeys: () => this.plugin.settings.hotkeys,
       getCollapseOnLeft: () => this.plugin.settings.collapseOnLeft,
@@ -12222,6 +12262,15 @@ var SettingsTab = class extends import_obsidian5.PluginSettingTab {
       }));
     }
     updateConflicts();
+    if (!import_obsidian5.Platform.isMobile) {
+      const advanced = this.containerEl.createEl("details");
+      advanced.createEl("summary", { text: t("Advanced options") });
+      new import_obsidian5.Setting(advanced).setName(t("Show node creation handles on desktop")).setDesc(t("Drag handles remain enabled on mobile. Off by default on desktop.")).addToggle((toggle) => toggle.setValue(this.plugin.settings.showDesktopCreationHandles).onChange(async (value) => {
+        this.plugin.settings.showDesktopCreationHandles = value;
+        for (const view of this.plugin.mapViews()) view.surface?.refreshLayout();
+        await this.plugin.saveData(this.plugin.settings);
+      }));
+    }
   }
 };
 function displayBinding(value) {

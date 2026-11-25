@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.0.46
+
+### Changed
+
+- Disable node-creation drag handles by default on desktop while keeping them enabled on mobile. Opt in on desktop from the collapsed Advanced options section.
+- Allocate creation-handle controls only while enabled and remove them immediately when disabled. Ordinary node creation shortcuts remain available.
+
 ## 1.0.45
 
 ### Added

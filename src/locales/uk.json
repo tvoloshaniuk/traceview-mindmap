@@ -372,5 +372,8 @@
   "Leave blank to follow the theme. Changes only embedded notes in maps.": "Залиште порожнім, щоб використовувати тему. Змінює лише вкладені нотатки на картах.",
   "Default maximum node height (px)": "Типова максимальна висота ноди (px)",
   "Leave blank for automatic height. Short content shrinks naturally; manual node sizes take precedence.": "Залиште порожнім для автоматичної висоти. Короткий текст стискається під вміст; ручний розмір ноди має пріоритет.",
-  "Planning list toolbar": "Панель списків планування"
+  "Planning list toolbar": "Панель списків планування",
+  "Advanced options": "Додаткові параметри",
+  "Show node creation handles on desktop": "Показувати ручки створення нод на ПК",
+  "Drag handles remain enabled on mobile. Off by default on desktop.": "На телефоні ручки залишаються ввімкненими. На ПК типово вимкнені."
 }

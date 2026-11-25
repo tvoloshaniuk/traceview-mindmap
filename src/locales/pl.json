@@ -372,5 +372,8 @@
   "Leave blank to follow the theme. Changes only embedded notes in maps.": "Pozostaw puste, aby użyć motywu. Zmienia tylko osadzone notatki na mapach.",
   "Default maximum node height (px)": "Domyślna maksymalna wysokość węzła (px)",
   "Leave blank for automatic height. Short content shrinks naturally; manual node sizes take precedence.": "Pozostaw puste dla automatycznej wysokości. Krótka treść zajmuje tylko potrzebne miejsce; ręczny rozmiar ma pierwszeństwo.",
-  "Planning list toolbar": "Pasek list planowania"
+  "Planning list toolbar": "Pasek list planowania",
+  "Advanced options": "Opcje zaawansowane",
+  "Show node creation handles on desktop": "Pokaż uchwyty tworzenia węzłów na komputerze",
+  "Drag handles remain enabled on mobile. Off by default on desktop.": "Na urządzeniach mobilnych uchwyty pozostają włączone. Na komputerze są domyślnie wyłączone."
 }

@@ -372,5 +372,8 @@
   "Leave blank to follow the theme. Changes only embedded notes in maps.": "留空以跟随主题。仅更改地图中的嵌入笔记。",
   "Default maximum node height (px)": "默认节点最大高度 (px)",
   "Leave blank for automatic height. Short content shrinks naturally; manual node sizes take precedence.": "留空以自动调整高度。短内容保持自然高度；手动节点大小优先。",
-  "Planning list toolbar": "计划列表工具栏"
+  "Planning list toolbar": "计划列表工具栏",
+  "Advanced options": "高级选项",
+  "Show node creation handles on desktop": "在桌面端显示节点创建手柄",
+  "Drag handles remain enabled on mobile. Off by default on desktop.": "移动端保留手柄。桌面端默认关闭。"
 }

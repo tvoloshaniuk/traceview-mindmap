@@ -40,7 +40,7 @@ export class MapSurface {
   private readonly nodeLayer: HTMLDivElement;
   private readonly live: HTMLDivElement;
   private readonly loading: HTMLDivElement;
-  private handles: CreationHandles;
+  private handles?: CreationHandles;
   private doc: MapDocument | null = null;
   private state: MapViewState = { collapsed: [], selected: null, camera: { x: 36, y: 36, scale: 1 }, focusRoot: null };
   private collapsed = new Set<string>();
@@ -122,7 +122,6 @@ export class MapSurface {
     this.loading.hidden = true;
     this.viewport.append(this.edges, this.world, this.live, this.loading, label);
     container.append(this.viewport);
-    this.handles = new CreationHandles(this.viewport, (action,id) => this.options.onAction(action,id));
     this.listen(this.viewport, 'click', (e) => this.click(e as MouseEvent), { capture: true });
     this.listen(this.viewport, 'auxclick', (e) => { if ((e as MouseEvent).button === 1 && (e.target as Element).closest('a')) this.click(e as MouseEvent); }, { capture: true });
     this.listen(this.viewport, 'mouseover', (event) => {
@@ -491,7 +490,7 @@ export class MapSurface {
     this.observer?.disconnect();
     if (this.frame !== null) this.container.ownerDocument.defaultView?.cancelAnimationFrame(this.frame);
     this.closeMenu();
-    this.handles.destroy();
+    this.handles?.destroy();
     this.viewport.remove();
     this.elements.clear();
     this.positions.clear();
@@ -997,6 +996,10 @@ export class MapSurface {
   }
 
   private updateHandles(viewportRect?: DOMRect): void {
+    if (this.options.showCreationHandles?.() === false) {
+      this.handles?.destroy(); this.handles = undefined; return;
+    }
+    this.handles ??= new CreationHandles(this.viewport, (action, id) => this.options.onAction(action, id));
     const id = this.editing?.id ?? (this.selection.size === 1 && !this.selectionMode ? this.state.selected : null);
     const pos = id ? this.positions.get(id) : undefined, c = this.state.camera;
     const geometry = viewportRect && pos ? { viewport: viewportRect, node: {
@@ -1263,7 +1266,7 @@ export class MapSurface {
   handleKeydown(event: KeyboardEvent): boolean {
     if (this.destroyed || event.defaultPrevented) return false;
     if (event.key === 'Escape' && this.resizing) { event.preventDefault(); event.stopPropagation(); this.finishResize(true); return true; }
-    if (event.key === 'Escape' && this.handles.cancelIfActive()) { event.preventDefault(); event.stopPropagation(); return true; }
+    if (event.key === 'Escape' && this.handles?.cancelIfActive()) { event.preventDefault(); event.stopPropagation(); return true; }
     if (this.editing) {
       if (resolveHotkey(event, this.options.getHotkeys?.()) !== 'find') return this.editing.editor.handleKeydown(event);
       event.preventDefault(); event.stopPropagation();

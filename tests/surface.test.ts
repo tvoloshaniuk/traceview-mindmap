@@ -909,3 +909,10 @@ test('corner resizing stores local dimensions without editing Markdown, and supp
   handle.dispatchEvent(new f.dom.window.KeyboardEvent('keydown',{key:'ArrowRight',bubbles:true,cancelable:true}));f.flush();assert.equal(f.surface.getState().nodeSizes![id].width,433);
   handle.dispatchEvent(new f.dom.window.MouseEvent('dblclick',{bubbles:true,cancelable:true}));f.flush();assert.equal(f.surface.getState().nodeSizes,undefined);assert.equal(f.doc.source,source);
 });
+
+test('disabled creation handles allocate no controls and can be enabled and disabled live', t => {
+  const f=fixture(t,'- Root\n');let enabled=false;f.options.showCreationHandles=()=>enabled;f.surface.refreshLayout();
+  assert.equal(f.host.querySelector('.tvm-create-handles'),null);
+  enabled=true;f.surface.refreshLayout();assert.ok(f.host.querySelector('.tvm-create-handles'));
+  enabled=false;f.surface.refreshLayout();assert.equal(f.host.querySelector('.tvm-create-handles'),null);
+});

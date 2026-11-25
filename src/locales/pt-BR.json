@@ -372,5 +372,8 @@
   "Leave blank to follow the theme. Changes only embedded notes in maps.": "Deixe vazio para seguir o tema. Altera apenas as notas incorporadas nos mapas.",
   "Default maximum node height (px)": "Altura máxima padrão dos nós (px)",
   "Leave blank for automatic height. Short content shrinks naturally; manual node sizes take precedence.": "Deixe vazio para altura automática. Conteúdo curto mantém a altura natural; tamanhos manuais têm prioridade.",
-  "Planning list toolbar": "Barra das listas de planejamento"
+  "Planning list toolbar": "Barra das listas de planejamento",
+  "Advanced options": "Opções avançadas",
+  "Show node creation handles on desktop": "Mostrar alças de criação de nós no computador",
+  "Drag handles remain enabled on mobile. Off by default on desktop.": "As alças permanecem ativas no celular. No computador, ficam desativadas por padrão."
 }
