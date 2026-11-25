@@ -463,9 +463,12 @@ test('reset restores preferences only after saving and retains imported state ac
   const plugin = loaded.plugin as any, app = loaded.app as any;
   app.metadataCache = { getFileCache: () => ({}) };
   let refreshed = 0, queues = 0, saved: any;
-  app.workspace.getLeavesOfType = (type: string) => type === 'traceview-mindmap-map'
-    ? [{ view: { refreshBindings() { refreshed++; }, surface: { refreshLayout() { refreshed++; } }, refreshRestoreWait() { refreshed++; } } }]
-    : [{ view: { scheduleReload() { queues++; } } }];
+  const mapLeaf: any = { app }, queueLeaf: any = { app };
+  mapLeaf.view = loaded.views.get('traceview-mindmap-map')!(mapLeaf);
+  Object.assign(mapLeaf.view, { refreshBindings() { refreshed++; }, surface: { refreshLayout() { refreshed++; } }, refreshRestoreWait() { refreshed++; } });
+  queueLeaf.view = loaded.views.get('traceview-mindmap-queue')!(queueLeaf);
+  queueLeaf.view.scheduleReload = () => { queues++; };
+  app.workspace.getLeavesOfType = (type: string) => type === 'traceview-mindmap-map' ? [mapLeaf] : [queueLeaf];
   const previousSettings = plugin.settings;
   plugin.saveData = async () => { throw new Error('Storage unavailable'); };
   await assert.rejects(plugin.resetSettings());
@@ -723,4 +726,36 @@ test('binary attachments use the native viewer and cannot enter any Markdown map
   const view=f.views.get('traceview-mindmap-map')!({app}) as any;
   await assert.rejects(()=>view.setState({file:image.path},{}));
   assert.equal(processes,0);
+});
+
+test('settings skip deferred leaves and persist preferences for later activation', async () => {
+  const loaded = await loadBundle(null);
+  const plugin = loaded.plugin as any, app = loaded.app as any;
+  const leaf: any = { app };
+  leaf.view = loaded.views.get('traceview-mindmap-map')!(leaf);
+  const toolbar = { dataset: {} as Record<string, string> };
+  leaf.view.toolbar = toolbar;
+  let layouts = 0, bindings = 0, queues = 0, saved: any;
+  leaf.view.surface = { refreshLayout() { layouts++; } };
+  leaf.view.refreshBindings = () => { bindings++; };
+  const queueLeaf: any = { app };
+  queueLeaf.view = loaded.views.get('traceview-mindmap-queue')!(queueLeaf);
+  queueLeaf.view.scheduleReload = () => { queues++; };
+  const deferred = { isDeferred: true, view: { getViewType: () => 'traceview-mindmap-map' }, loadIfDeferred() { throw Error('Must remain deferred'); } };
+  app.workspace.getLeavesOfType = (type: string) => type === 'traceview-mindmap-map' ? [deferred, leaf] : [deferred, queueLeaf];
+  plugin.saveData = async (value: unknown) => { saved = JSON.parse(JSON.stringify(value)); };
+  for (const mode of ['hidden', 'hover', 'visible']) {
+    await plugin.setToolbarMode(mode);
+    assert.equal(toolbar.dataset.mode, mode);
+    assert.equal(saved.toolbarMode, mode);
+  }
+  await plugin.setWidthMode('column');
+  plugin.refreshBindings(); plugin.refreshQueues();
+  assert.equal(layouts, 1); assert.equal(bindings, 1); assert.equal(queues, 1);
+  const restoredLeaf: any = { app };
+  restoredLeaf.view = loaded.views.get('traceview-mindmap-map')!(restoredLeaf);
+  const restoredToolbar = { dataset: {} as Record<string, string> };
+  restoredLeaf.view.toolbar = restoredToolbar;
+  restoredLeaf.view.refreshToolbarMode();
+  assert.equal(restoredToolbar.dataset.mode, 'visible');
 });

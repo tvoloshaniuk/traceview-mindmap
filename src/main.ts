@@ -202,7 +202,8 @@ export default class TraceViewMindmap extends Plugin {
     this.registerEvent(this.app.vault.on('modify', file => {
       if (!(file instanceof TFile)) return;
       for (const leaf of this.app.workspace.getLeavesOfType(VIEW)) {
-        const view = leaf.view as MapView;
+        const view = leaf.view;
+        if (!(view instanceof MapView)) continue;
         if (view.path === file.path) view.scheduleReload();
       }
       if (this.isMap(file)) this.refreshQueues();
@@ -221,7 +222,8 @@ export default class TraceViewMindmap extends Plugin {
       this.mapPreferences = new Set([...this.mapPreferences].filter(path => path !== file.path && !path.startsWith(file.path + '/'))); this.rememberMaps();
       this.sourcePreferences = new Set([...this.sourcePreferences].filter(path => path !== file.path && !path.startsWith(file.path + '/'))); this.rememberSource();
       for (const leaf of this.app.workspace.getLeavesOfType(VIEW)) {
-        const view = leaf.view as MapView;
+        const view = leaf.view;
+        if (!(view instanceof MapView)) continue;
         if (view.path === file.path) view.scheduleReload();
       }
       this.refreshQueues();
@@ -322,7 +324,7 @@ export default class TraceViewMindmap extends Plugin {
       button(modal.contentEl, t("Discard changes"), () => new ConfirmDialog(this.app, t("Discard changes"), draft.text, async () => {
         if (!this.liveDrafts.has(draft.key)) this.drafts?.remove(draft.key);
         modal.close();
-        for (const leaf of this.app.workspace.getLeavesOfType(VIEW)) (leaf.view as MapView).refreshDraftButton();
+        for (const view of this.mapViews()) view.refreshDraftButton();
       }, {label:t("Discard changes"), focusConfirm:false}).open());
     }
     modal.open();
@@ -372,27 +374,31 @@ export default class TraceViewMindmap extends Plugin {
     this.settings = defaults;
     this.matchesMap = compileMapPatterns(defaults);
     this.refreshBindings();
-    for (const leaf of this.app.workspace.getLeavesOfType(VIEW)) {
-      const view = leaf.view as MapView;
+    for (const view of this.mapViews()) {
       view.surface?.refreshLayout();
       view.refreshRestoreWait();
     }
     this.refreshQueues();
   }
+  mapViews(): MapView[] {
+    return this.app.workspace.getLeavesOfType(VIEW).map(leaf => leaf.view).filter((view): view is MapView => view instanceof MapView);
+  }
   refreshQueues(): void {
-    for (const leaf of this.app.workspace.getLeavesOfType(QUEUE)) (leaf.view as QueueView).scheduleReload();
+    for (const leaf of this.app.workspace.getLeavesOfType(QUEUE)) {
+      if (leaf.view instanceof QueueView) leaf.view.scheduleReload();
+    }
   }
   refreshBindings(): void {
-    for (const leaf of this.app.workspace.getLeavesOfType(VIEW)) (leaf.view as MapView).refreshBindings();
+    for (const view of this.mapViews()) view.refreshBindings();
   }
   async setWidthMode(mode: WidthMode): Promise<void> {
     this.settings.widthMode = mode;
-    for (const leaf of this.app.workspace.getLeavesOfType(VIEW)) (leaf.view as MapView).surface?.refreshLayout();
+    for (const view of this.mapViews()) view.surface?.refreshLayout();
     await this.saveData(this.settings);
   }
   async setToolbarMode(mode: ToolbarMode): Promise<void> {
     this.settings.toolbarMode = mode;
-    for (const leaf of this.app.workspace.getLeavesOfType(VIEW)) (leaf.view as MapView).refreshToolbarMode();
+    for (const view of this.mapViews()) view.refreshToolbarMode();
     await this.saveData(this.settings);
   }
   async source(file: TFile, line = 0, target?: WorkspaceLeaf): Promise<void> {
@@ -1330,7 +1336,7 @@ class MapView extends EditableFileView {
   }
   private async nativeAddress(file: TFile, line: number, expected: string): Promise<string | undefined> {
     if (!this.plugin.isMap(file)) return undefined;
-    const target = this.app.workspace.getLeavesOfType(VIEW).map(leaf => leaf.view as MapView).find(view => view.path === file.path);
+    const target = this.plugin.mapViews().find(view => view.path === file.path);
     if (target) await target.reload();
     const source = await this.app.vault.read(file);
     if (source !== expected) throw new Error(t("The target map changed. Reopen link suggestions. Your draft is preserved."));
@@ -1786,7 +1792,7 @@ class SettingsTab extends PluginSettingTab {
     this.containerEl.createEl('p', { cls: 'setting-item-description', text: t("The mindmap: true property also identifies a map. Invalid input keeps the last saved rules active. Patterns are shared by automatic opening, map search and step lists.") });
     if (Platform?.isWin) new Setting(this.containerEl).setName(t("Automatically restore large maps")).setDesc(t("At startup the active map waits for Obsidian to respond steadily. “Open now” skips the wait.")).addToggle(toggle => toggle.setValue(this.plugin.settings.autoRestoreLargeMaps).onChange(async value => {
       this.plugin.settings.autoRestoreLargeMaps = value;
-      for (const leaf of this.app.workspace.getLeavesOfType(VIEW)) (leaf.view as MapView).refreshRestoreWait();
+      for (const view of this.plugin.mapViews()) view.refreshRestoreWait();
       await this.plugin.saveData(this.plugin.settings);
     }));
     this.containerEl.createEl('h3', {text: t("Planning lists")});
@@ -1814,7 +1820,7 @@ class SettingsTab extends PluginSettingTab {
     new Setting(this.containerEl).setName(t("Show embedded map previews")).addToggle(toggle =>
       toggle.setValue(this.plugin.settings.showMapPreviews).onChange(async value => {
         this.plugin.settings.showMapPreviews = value;
-        for (const leaf of this.app.workspace.getLeavesOfType(VIEW)) (leaf.view as MapView).surface?.invalidateMarkdown();
+        for (const view of this.plugin.mapViews()) view.surface?.invalidateMarkdown();
         await this.plugin.saveData(this.plugin.settings);
       }));
     new Setting(this.containerEl).setName(t("Map node width")).setDesc(t("Applies immediately to all open maps. Outline and Table keep their own widths.")).addDropdown(dropdown => {

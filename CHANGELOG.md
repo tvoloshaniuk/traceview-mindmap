@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.0.35
+
+### Fixed
+
+- Apply toolbar preferences immediately when background map tabs are deferred by Obsidian. Keep those tabs unloaded and apply the current preferences when they are activated.
+- Refresh only loaded map and planning views during setting, draft and vault updates, avoiding calls to unavailable methods on deferred views.
+
 ## 1.0.34
 
 ### Fixed

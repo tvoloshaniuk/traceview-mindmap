@@ -9513,6 +9513,7 @@ var TraceViewMindmap = class extends import_obsidian5.Plugin {
       if (!(file instanceof import_obsidian5.TFile)) return;
       for (const leaf of this.app.workspace.getLeavesOfType(VIEW)) {
         const view = leaf.view;
+        if (!(view instanceof MapView)) continue;
         if (view.path === file.path) view.scheduleReload();
       }
       if (this.isMap(file)) this.refreshQueues();
@@ -9536,6 +9537,7 @@ var TraceViewMindmap = class extends import_obsidian5.Plugin {
       this.rememberSource();
       for (const leaf of this.app.workspace.getLeavesOfType(VIEW)) {
         const view = leaf.view;
+        if (!(view instanceof MapView)) continue;
         if (view.path === file.path) view.scheduleReload();
       }
       this.refreshQueues();
@@ -9656,7 +9658,7 @@ var TraceViewMindmap = class extends import_obsidian5.Plugin {
       button(modal.contentEl, t("Discard changes"), () => new ConfirmDialog(this.app, t("Discard changes"), draft.text, async () => {
         if (!this.liveDrafts.has(draft.key)) this.drafts?.remove(draft.key);
         modal.close();
-        for (const leaf of this.app.workspace.getLeavesOfType(VIEW)) leaf.view.refreshDraftButton();
+        for (const view of this.mapViews()) view.refreshDraftButton();
       }, { label: t("Discard changes"), focusConfirm: false }).open());
     }
     modal.open();
@@ -9717,27 +9719,31 @@ var TraceViewMindmap = class extends import_obsidian5.Plugin {
     this.settings = defaults;
     this.matchesMap = compileMapPatterns(defaults);
     this.refreshBindings();
-    for (const leaf of this.app.workspace.getLeavesOfType(VIEW)) {
-      const view = leaf.view;
+    for (const view of this.mapViews()) {
       view.surface?.refreshLayout();
       view.refreshRestoreWait();
     }
     this.refreshQueues();
   }
+  mapViews() {
+    return this.app.workspace.getLeavesOfType(VIEW).map((leaf) => leaf.view).filter((view) => view instanceof MapView);
+  }
   refreshQueues() {
-    for (const leaf of this.app.workspace.getLeavesOfType(QUEUE)) leaf.view.scheduleReload();
+    for (const leaf of this.app.workspace.getLeavesOfType(QUEUE)) {
+      if (leaf.view instanceof QueueView) leaf.view.scheduleReload();
+    }
   }
   refreshBindings() {
-    for (const leaf of this.app.workspace.getLeavesOfType(VIEW)) leaf.view.refreshBindings();
+    for (const view of this.mapViews()) view.refreshBindings();
   }
   async setWidthMode(mode) {
     this.settings.widthMode = mode;
-    for (const leaf of this.app.workspace.getLeavesOfType(VIEW)) leaf.view.surface?.refreshLayout();
+    for (const view of this.mapViews()) view.surface?.refreshLayout();
     await this.saveData(this.settings);
   }
   async setToolbarMode(mode) {
     this.settings.toolbarMode = mode;
-    for (const leaf of this.app.workspace.getLeavesOfType(VIEW)) leaf.view.refreshToolbarMode();
+    for (const view of this.mapViews()) view.refreshToolbarMode();
     await this.saveData(this.settings);
   }
   async source(file, line = 0, target) {
@@ -10867,7 +10873,7 @@ var MapView = class extends import_obsidian5.EditableFileView {
   }
   async nativeAddress(file, line, expected) {
     if (!this.plugin.isMap(file)) return void 0;
-    const target = this.app.workspace.getLeavesOfType(VIEW).map((leaf) => leaf.view).find((view) => view.path === file.path);
+    const target = this.plugin.mapViews().find((view) => view.path === file.path);
     if (target) await target.reload();
     const source = await this.app.vault.read(file);
     if (source !== expected) throw new Error(t("The target map changed. Reopen link suggestions. Your draft is preserved."));
@@ -11466,7 +11472,7 @@ var SettingsTab = class extends import_obsidian5.PluginSettingTab {
     this.containerEl.createEl("p", { cls: "setting-item-description", text: t("The mindmap: true property also identifies a map. Invalid input keeps the last saved rules active. Patterns are shared by automatic opening, map search and step lists.") });
     if (import_obsidian5.Platform?.isWin) new import_obsidian5.Setting(this.containerEl).setName(t("Automatically restore large maps")).setDesc(t("At startup the active map waits for Obsidian to respond steadily. \u201COpen now\u201D skips the wait.")).addToggle((toggle) => toggle.setValue(this.plugin.settings.autoRestoreLargeMaps).onChange(async (value) => {
       this.plugin.settings.autoRestoreLargeMaps = value;
-      for (const leaf of this.app.workspace.getLeavesOfType(VIEW)) leaf.view.refreshRestoreWait();
+      for (const view of this.plugin.mapViews()) view.refreshRestoreWait();
       await this.plugin.saveData(this.plugin.settings);
     }));
     this.containerEl.createEl("h3", { text: t("Planning lists") });
@@ -11496,7 +11502,7 @@ var SettingsTab = class extends import_obsidian5.PluginSettingTab {
     }
     new import_obsidian5.Setting(this.containerEl).setName(t("Show embedded map previews")).addToggle((toggle) => toggle.setValue(this.plugin.settings.showMapPreviews).onChange(async (value) => {
       this.plugin.settings.showMapPreviews = value;
-      for (const leaf of this.app.workspace.getLeavesOfType(VIEW)) leaf.view.surface?.invalidateMarkdown();
+      for (const view of this.plugin.mapViews()) view.surface?.invalidateMarkdown();
       await this.plugin.saveData(this.plugin.settings);
     }));
     new import_obsidian5.Setting(this.containerEl).setName(t("Map node width")).setDesc(t("Applies immediately to all open maps. Outline and Table keep their own widths.")).addDropdown((dropdown) => {
