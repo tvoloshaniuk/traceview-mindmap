@@ -4,7 +4,7 @@
  * See LICENSE, LICENSING.md and OBSIDIAN-HOST-PERMISSION.md.
  */
 import { t } from './i18n';
-import type { Camera, MapDocument, MapLayout, MapNode, MapSurfaceOptions, MapViewState, NodeAction, DropPosition, NodeSize } from './types';
+import type { Camera, MapDocument, MapLayout, MapNode, MapSurfaceOptions, MapViewState, NodeAction, DropPosition, NodeSize, EmbeddedEditContext } from './types';
 import { canDropBranches } from './core';
 import { MIN_SCALE, MAX_SCALE } from './types';
 import { DEFAULT_HOTKEYS, resolveHotkey, type HotkeyAction } from './hotkeys';
@@ -73,7 +73,7 @@ export class MapSurface {
   private resizing?: {id: string; pointer: number; capture: HTMLElement; x: number; y: number; width: number; height: number; previous?: NodeSize};
   private bounds = { width: 0, height: 0 };
   private mode: MapLayout = 'map';
-  private editing?: { id: string; editor: InlineEditor; original: MapDocument; state: MapViewState; latest?: MapDocument; latestState?: MapViewState; embedded?: { slot: HTMLElement; restore: () => void } };
+  private editing?: { id: string; editor: InlineEditor; original: MapDocument; state: MapViewState; latest?: MapDocument; latestState?: MapViewState; embedded?: { slot: HTMLElement; restore: () => void; floating?: boolean; maxHeight?: number } };
   private touchHold?: { pointer: number; x: number; y: number; timer: number };
   private lastPress?: { id: string; time: number; x: number; y: number };
   private dragScrollFrame: number | null = null;
@@ -234,7 +234,7 @@ export class MapSurface {
     this.rendered.clear();
     if (!this.editing) this.render();
   }
-  beginEdit(id: string, initial: string, save: (text: string) => Promise<string | undefined>, mount?: InlineOptions['mount'], draft?: MapDocument, onFinish?: () => void, multiline = false, embeddedFrame?: HTMLElement): void {
+  beginEdit(id: string, initial: string, save: (text: string) => Promise<string | undefined>, mount?: InlineOptions['mount'], draft?: MapDocument, onFinish?: () => void, multiline = false, embeddedFrame?: HTMLElement, anchor?: EmbeddedEditContext['anchor']): void {
     if (this.editing || !this.doc || this.destroyed) { this.focusEditor(); return; }
     this.preservedEditAnchor = undefined;
     const original = this.doc, state = this.getState();
@@ -249,20 +249,28 @@ export class MapSurface {
         return true;
       },
     });
-    let embedded: {slot: HTMLElement; restore: () => void} | undefined;
+    let embedded: {slot: HTMLElement; restore: () => void; floating?: boolean; maxHeight?: number} | undefined;
     const content = this.elements.get(id)?.querySelector<HTMLElement>('.tvm-node-content');
     if (embeddedFrame && content?.contains(embeddedFrame)) {
       const rect = embeddedFrame.getBoundingClientRect(), viewport = this.viewport.getBoundingClientRect(), area = this.editorArea();
       const left = viewport.left + area.left + EDITOR_VIEWPORT_PADDING, top = viewport.top + area.top + EDITOR_VIEWPORT_PADDING;
       const right = left + area.width - EDITOR_VIEWPORT_PADDING * 2, bottom = top + area.height - EDITOR_VIEWPORT_PADDING * 2;
       const slot = this.container.ownerDocument.createElement('div'); slot.className = 'tvm-embedded-note-editor';
-      if (rect.right > left && rect.left < right && rect.bottom > top && rect.top < bottom) {
+      if (!anchor && rect.right > left && rect.left < right && rect.bottom > top && rect.top < bottom) {
         slot.style.paddingTop = Math.max(0, (top - rect.top) / this.state.camera.scale) + 'px';
         slot.style.paddingLeft = Math.max(0, (left - rect.left) / this.state.camera.scale) + 'px';
         editor.host.style.width = Math.max(26, (Math.min(rect.right, right) - Math.max(rect.left, left)) / this.state.camera.scale) + 'px';
         editor.host.style.maxWidth = '100%';
       }
       embeddedFrame.before(slot); slot.append(editor.host);
+      let maxHeight: number | undefined;
+      if (anchor) {
+        const node = this.elements.get(id)!, origin = node.getBoundingClientRect();
+        const fieldTop = Math.max(top, Math.min(anchor.top, bottom - Math.min(180, bottom - top)));
+        maxHeight = (bottom - fieldTop) / this.state.camera.scale;
+        Object.assign(slot.style, {position: 'absolute', left: (anchor.left - origin.left) / this.state.camera.scale + 'px', top: (fieldTop - origin.top) / this.state.camera.scale + 'px', width: (anchor.right - anchor.left) / this.state.camera.scale + 'px', zIndex: '1', background: 'var(--background-primary)'});
+        editor.host.style.width = '100%'; node.append(slot);
+      }
       const display = embeddedFrame.style.display; embeddedFrame.style.display = 'none';
       const muted: HTMLElement[] = [], wrappers: HTMLElement[] = [];
       const dim = (parent: Element) => {
@@ -279,7 +287,7 @@ export class MapSurface {
         }
       };
       dim(content);
-      embedded = {slot, restore: () => {
+      embedded = {slot, floating: !!anchor, maxHeight, restore: () => {
         slot.remove(); embeddedFrame.style.display = display;
         if (!embeddedFrame.style.length) embeddedFrame.removeAttribute('style');
         for (const element of muted) {
@@ -697,6 +705,7 @@ export class MapSurface {
         el.classList.add('is-editing');
         if (this.editing.embedded) el.classList.add('is-editing-embed');
         else el.append(this.editing.editor.host);
+        if (this.editing.embedded?.floating) el.append(this.editing.embedded.slot);
       }
     }
     if (!this.visible.length) {
@@ -1103,7 +1112,7 @@ export class MapSurface {
     if (!this.editing) return;
     const node = this.elements.get(this.editing.id);
     if (!node) return;
-    const available = (this.editorArea().height - EDITOR_VIEWPORT_PADDING * 2) / this.state.camera.scale;
+    const available = Math.min((this.editorArea().height - EDITOR_VIEWPORT_PADDING * 2) / this.state.camera.scale, this.editing.embedded?.maxHeight ?? Infinity);
     this.editing.editor.fitHeight(this.editing.embedded ? this.editing.editor.host : node, available);
   }
 
@@ -1256,7 +1265,11 @@ export class MapSurface {
     const link = frame?.getAttribute('src');
     if (link && this.options.onEditEmbed) {
       event.preventDefault(); event.stopPropagation();
+      let context: EmbeddedEditContext | undefined;
       if (this.editing) {
+        const rect = frame!.getBoundingClientRect(), field = this.editing.editor.host.getBoundingClientRect(), viewport = this.viewport.getBoundingClientRect(), area = this.editorArea();
+        const anchor = {left: Math.max(rect.left, field.left, viewport.left + area.left + EDITOR_VIEWPORT_PADDING), top: Math.max(rect.top, field.top, viewport.top + area.top + EDITOR_VIEWPORT_PADDING), right: Math.min(rect.right, field.right, viewport.left + area.left + area.width - EDITOR_VIEWPORT_PADDING), bottom: Math.min(rect.bottom, field.bottom, viewport.top + area.top + area.height - EDITOR_VIEWPORT_PADDING)};
+        context = {sourcePath: this.options.getEditorSourcePath?.(), ...(anchor.right > anchor.left && anchor.bottom > anchor.top ? {anchor} : {})};
         await this.editing.editor.submit();
         if (this.editing || this.destroyed) return;
         id = this.state.selected ?? id;
@@ -1267,7 +1280,7 @@ export class MapSurface {
         if (!frame) return;
       }
       this.select(id);
-      if (this.options.onEditEmbed(id, link, frame!)) return;
+      if (this.options.onEditEmbed(id, link, frame!, context)) return;
     }
     if (this.editing) return;
     event.preventDefault();

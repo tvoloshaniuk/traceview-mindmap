@@ -948,3 +948,12 @@ test('opening another file does not reuse a previous file edit anchor with the s
   f.update('- Preceding ^other\n- Root ^root\n',{collapsed:[],selected:'block:root',focusRoot:null,camera:{x:12,y:24,scale:1}});
   assert.deepEqual(f.surface.getState().camera,{x:12,y:24,scale:1});
 });
+
+test('nested editor placement survives rendering outside clipped preview content and cleans up', async t => {
+  const f=fixture(t,'- Context ![[Note]] ^root\n',(_text,el)=>{el.innerHTML='<span class="markdown-embed internal-embed" src="Note">Before <span class="markdown-embed internal-embed" src="Other">Other</span> After</span>';});
+  const frame=f.host.querySelector<HTMLElement>('.markdown-embed[src="Other"]')!,content=f.host.querySelector('.tvm-node-content')!,before=content.innerHTML;
+  f.surface.beginEdit('block:root','Other',async()=> 'block:root',undefined,undefined,undefined,true,frame,{left:80,top:40,right:300,bottom:240});
+  let slot=f.host.querySelector<HTMLElement>('.tvm-embedded-note-editor')!;assert.equal(slot.style.position,'absolute');assert.equal(slot.parentElement?.classList.contains('tvm-node'),true);
+  assert.equal(content.querySelector('.tvm-inline-editor'),null);(f.surface as any).render();slot=f.host.querySelector<HTMLElement>('.tvm-embedded-note-editor')!;assert.ok(slot.isConnected);
+  f.host.querySelector<HTMLButtonElement>('.tvm-inline-tools .mod-cta')!.click();await Promise.resolve();await Promise.resolve();assert.equal(f.host.querySelector('.tvm-embedded-note-editor'),null);assert.equal(content.innerHTML,before);
+});

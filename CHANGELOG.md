@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.0.49
+
+### Fixed
+
+- Keep the active editing region in place when switching to a note embedded inside the current native editor. Preserve the map position and keep the new editor clear of clipping ancestors.
+- Resolve nested embedded-note links relative to the file being edited, so identically named notes in other folders are not edited accidentally.
+
 ## 1.0.48
 
 ### Fixed

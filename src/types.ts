@@ -39,11 +39,16 @@ export interface MapViewState {
   nodeSizes?: Record<string, NodeSize>;
 }
 export type NodeAction = 'node-backlinks' | 'remove-node-address' | 'copy-node-link' | 'copy-node-text' | 'completed-bottom' | 'node-note' | 'convert-node-note' | 'attach-node-note' | 'node-note-options' | 'edit' | 'add-child' | 'add-sibling' | 'add-sibling-before' | 'add-parent' | 'delete' | 'move-up' | 'move-down' | 'indent' | 'outdent' | 'copy' | 'copy-node-labels' | 'cut' | 'paste' | 'paste-after' | 'toggle-task' | 'make-step' | 'make-dated' | 'make-question' | 'source' | 'insert-template' | 'undo' | 'redo';
+export interface EmbeddedEditContext {
+  sourcePath?: string;
+  anchor?: {left: number; top: number; right: number; bottom: number};
+}
 export interface MapSurfaceOptions {
   useTransformPan?: () => boolean;
   getWidthMode?: () => WidthMode;
   getNodeMaxHeight?: () => number;
   showCreationHandles?: () => boolean;
+  getEditorSourcePath?: () => string | undefined;
   getHotkeys?: () => Record<string, string>;
   getCollapseOnLeft?: () => boolean;
   getArrowAcrossBranches?: () => boolean;
@@ -55,7 +60,7 @@ export interface MapSurfaceOptions {
   onMoveBranches?: (nodeIds: string[], targetId: string, position: DropPosition) => void;
   onState: (state: MapViewState) => void;
   renderMarkdown: (text: string, el: HTMLElement) => void | Promise<void>;
-  onEditEmbed?: (nodeId: string, link: string, frame: HTMLElement) => boolean;
+  onEditEmbed?: (nodeId: string, link: string, frame: HTMLElement, context?: EmbeddedEditContext) => boolean;
   onOpenLink?: (link: string, event: MouseEvent) => void;
   onHoverLink?: (event: MouseEvent, target: HTMLElement, link: string) => void;
 }

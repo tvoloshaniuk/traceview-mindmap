@@ -24,7 +24,7 @@ import { attachImagePaste, saveClipboardImage } from './image-paste';
 import { attachNodeTools, ConfirmDialog, DateDialog, EmbeddedNotePicker, MapPicker, NotePicker, TextDialog } from './editor';
 import { exportHtml, exportSvg } from './export';
 import { guardedChange, History, restoreViewState, serializeViewState } from './session';
-import type { MapDocument, MapLayout, MapNode, MapViewState, NodeAction, Step, WidthMode, DropPosition } from './types';
+import type { MapDocument, MapLayout, MapNode, MapViewState, NodeAction, Step, WidthMode, DropPosition, EmbeddedEditContext } from './types';
 
 const VIEW = 'traceview-mindmap-map';
 const QUEUE = 'traceview-mindmap-queue';
@@ -762,6 +762,7 @@ class MapView extends EditableFileView {
       getWidthMode: () => this.plugin.settings.widthMode,
       getNodeMaxHeight: () => this.plugin.settings.nodeMaxHeight,
       showCreationHandles: () => Platform.isMobile || this.plugin.settings.showDesktopCreationHandles,
+      getEditorSourcePath: () => this.app.workspace.activeEditor?.file?.path,
       useTransformPan: () => Platform.isMobile,
       getHotkeys: () => this.plugin.settings.hotkeys,
       getCollapseOnLeft: () => this.plugin.settings.collapseOnLeft,
@@ -804,12 +805,12 @@ class MapView extends EditableFileView {
           }
         }
       },
-      onEditEmbed: (id, link, frame) => {
+      onEditEmbed: (id, link, frame, context) => {
         const doc = this.doc, node = doc?.byId.get(id);
         const { path } = parseLinktext(link);
-        const file = path ? this.app.metadataCache.getFirstLinkpathDest(path, this.path) : this.file;
+        const file = path ? this.app.metadataCache.getFirstLinkpathDest(path, context?.sourcePath ?? this.path) : this.file;
         if (!doc || !node || !file || file === this.file || file.extension !== 'md' || this.plugin.isMap(file)) return false;
-        void this.editNodeNote(doc, node, file, frame).catch(error => new Notice(message(error), 8000));
+        void this.editNodeNote(doc, node, file, frame, context?.anchor).catch(error => new Notice(message(error), 8000));
         return true;
       },
       onOpenLink: (link, event) => { void this.plugin.openMapLink(link, this, event).catch(error => new Notice(message(error))); },
@@ -1248,7 +1249,7 @@ class MapView extends EditableFileView {
       })().catch(error => new Notice(message(error), 8000));
     }).open();
   }
-  private async editNodeNote(doc: MapDocument, node: MapNode, targetNote?: TFile, targetFrame?: HTMLElement): Promise<void> {
+  private async editNodeNote(doc: MapDocument, node: MapNode, targetNote?: TFile, targetFrame?: HTMLElement, anchor?: EmbeddedEditContext['anchor']): Promise<void> {
     const map = this.file;
     if (!map) return;
     const embeds = [...node.text.matchAll(/!\[\[([^\]#|]+)(?:\|[^\]]*)?\]\]/g)];
@@ -1297,7 +1298,7 @@ class MapView extends EditableFileView {
           if (this.editor === editor) this.editor = previousEditor;
         } };
       } catch (error) { this.removeChild(owner); throw error; }
-    }, undefined, undefined, true, frame);
+    }, undefined, undefined, true, frame, anchor);
   }
   private menu(anchor: HTMLElement): void {
     const menu = new Menu();

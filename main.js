@@ -6582,7 +6582,7 @@ var MapSurface = class {
     this.rendered.clear();
     if (!this.editing) this.render();
   }
-  beginEdit(id, initial, save, mount, draft, onFinish, multiline = false, embeddedFrame) {
+  beginEdit(id, initial, save, mount, draft, onFinish, multiline = false, embeddedFrame, anchor2) {
     if (this.editing || !this.doc || this.destroyed) {
       this.focusEditor();
       return;
@@ -6618,7 +6618,7 @@ var MapSurface = class {
       const right = left + area.width - EDITOR_VIEWPORT_PADDING * 2, bottom = top + area.height - EDITOR_VIEWPORT_PADDING * 2;
       const slot = this.container.ownerDocument.createElement("div");
       slot.className = "tvm-embedded-note-editor";
-      if (rect.right > left && rect.left < right && rect.bottom > top && rect.top < bottom) {
+      if (!anchor2 && rect.right > left && rect.left < right && rect.bottom > top && rect.top < bottom) {
         slot.style.paddingTop = Math.max(0, (top - rect.top) / this.state.camera.scale) + "px";
         slot.style.paddingLeft = Math.max(0, (left - rect.left) / this.state.camera.scale) + "px";
         editor.host.style.width = Math.max(26, (Math.min(rect.right, right) - Math.max(rect.left, left)) / this.state.camera.scale) + "px";
@@ -6626,6 +6626,15 @@ var MapSurface = class {
       }
       embeddedFrame.before(slot);
       slot.append(editor.host);
+      let maxHeight;
+      if (anchor2) {
+        const node = this.elements.get(id), origin = node.getBoundingClientRect();
+        const fieldTop = Math.max(top, Math.min(anchor2.top, bottom - Math.min(180, bottom - top)));
+        maxHeight = (bottom - fieldTop) / this.state.camera.scale;
+        Object.assign(slot.style, { position: "absolute", left: (anchor2.left - origin.left) / this.state.camera.scale + "px", top: (fieldTop - origin.top) / this.state.camera.scale + "px", width: (anchor2.right - anchor2.left) / this.state.camera.scale + "px", zIndex: "1", background: "var(--background-primary)" });
+        editor.host.style.width = "100%";
+        node.append(slot);
+      }
       const display = embeddedFrame.style.display;
       embeddedFrame.style.display = "none";
       const muted = [], wrappers = [];
@@ -6649,7 +6658,7 @@ var MapSurface = class {
         }
       };
       dim(content);
-      embedded = { slot, restore: () => {
+      embedded = { slot, floating: !!anchor2, maxHeight, restore: () => {
         slot.remove();
         embeddedFrame.style.display = display;
         if (!embeddedFrame.style.length) embeddedFrame.removeAttribute("style");
@@ -7086,6 +7095,7 @@ var MapSurface = class {
         el.classList.add("is-editing");
         if (this.editing.embedded) el.classList.add("is-editing-embed");
         else el.append(this.editing.editor.host);
+        if (this.editing.embedded?.floating) el.append(this.editing.embedded.slot);
       }
     }
     if (!this.visible.length) {
@@ -7481,7 +7491,7 @@ var MapSurface = class {
     if (!this.editing) return;
     const node = this.elements.get(this.editing.id);
     if (!node) return;
-    const available = (this.editorArea().height - EDITOR_VIEWPORT_PADDING * 2) / this.state.camera.scale;
+    const available = Math.min((this.editorArea().height - EDITOR_VIEWPORT_PADDING * 2) / this.state.camera.scale, this.editing.embedded?.maxHeight ?? Infinity);
     this.editing.editor.fitHeight(this.editing.embedded ? this.editing.editor.host : node, available);
   }
   ensureVisible(id, center = false) {
@@ -7658,7 +7668,11 @@ var MapSurface = class {
     if (link && this.options.onEditEmbed) {
       event.preventDefault();
       event.stopPropagation();
+      let context;
       if (this.editing) {
+        const rect = frame.getBoundingClientRect(), field = this.editing.editor.host.getBoundingClientRect(), viewport = this.viewport.getBoundingClientRect(), area = this.editorArea();
+        const anchor2 = { left: Math.max(rect.left, field.left, viewport.left + area.left + EDITOR_VIEWPORT_PADDING), top: Math.max(rect.top, field.top, viewport.top + area.top + EDITOR_VIEWPORT_PADDING), right: Math.min(rect.right, field.right, viewport.left + area.left + area.width - EDITOR_VIEWPORT_PADDING), bottom: Math.min(rect.bottom, field.bottom, viewport.top + area.top + area.height - EDITOR_VIEWPORT_PADDING) };
+        context = { sourcePath: this.options.getEditorSourcePath?.(), ...anchor2.right > anchor2.left && anchor2.bottom > anchor2.top ? { anchor: anchor2 } : {} };
         await this.editing.editor.submit();
         if (this.editing || this.destroyed) return;
         id = this.state.selected ?? id;
@@ -7668,7 +7682,7 @@ var MapSurface = class {
         if (!frame) return;
       }
       this.select(id);
-      if (this.options.onEditEmbed(id, link, frame)) return;
+      if (this.options.onEditEmbed(id, link, frame, context)) return;
     }
     if (this.editing) return;
     event.preventDefault();
@@ -10751,6 +10765,7 @@ var MapView = class extends import_obsidian5.EditableFileView {
       getWidthMode: () => this.plugin.settings.widthMode,
       getNodeMaxHeight: () => this.plugin.settings.nodeMaxHeight,
       showCreationHandles: () => import_obsidian5.Platform.isMobile || this.plugin.settings.showDesktopCreationHandles,
+      getEditorSourcePath: () => this.app.workspace.activeEditor?.file?.path,
       useTransformPan: () => import_obsidian5.Platform.isMobile,
       getHotkeys: () => this.plugin.settings.hotkeys,
       getCollapseOnLeft: () => this.plugin.settings.collapseOnLeft,
@@ -10803,12 +10818,12 @@ var MapView = class extends import_obsidian5.EditableFileView {
           }
         }
       },
-      onEditEmbed: (id, link, frame) => {
+      onEditEmbed: (id, link, frame, context) => {
         const doc = this.doc, node = doc?.byId.get(id);
         const { path } = (0, import_obsidian5.parseLinktext)(link);
-        const file = path ? this.app.metadataCache.getFirstLinkpathDest(path, this.path) : this.file;
+        const file = path ? this.app.metadataCache.getFirstLinkpathDest(path, context?.sourcePath ?? this.path) : this.file;
         if (!doc || !node || !file || file === this.file || file.extension !== "md" || this.plugin.isMap(file)) return false;
-        void this.editNodeNote(doc, node, file, frame).catch((error) => new import_obsidian5.Notice(message(error), 8e3));
+        void this.editNodeNote(doc, node, file, frame, context?.anchor).catch((error) => new import_obsidian5.Notice(message(error), 8e3));
         return true;
       },
       onOpenLink: (link, event) => {
@@ -11363,7 +11378,7 @@ var MapView = class extends import_obsidian5.EditableFileView {
       })().catch((error) => new import_obsidian5.Notice(message(error), 8e3));
     }).open();
   }
-  async editNodeNote(doc, node, targetNote, targetFrame) {
+  async editNodeNote(doc, node, targetNote, targetFrame, anchor2) {
     const map = this.file;
     if (!map) return;
     const embeds = [...node.text.matchAll(/!\[\[([^\]#|]+)(?:\|[^\]]*)?\]\]/g)];
@@ -11415,7 +11430,7 @@ var MapView = class extends import_obsidian5.EditableFileView {
         this.removeChild(owner);
         throw error;
       }
-    }, void 0, void 0, true, frame);
+    }, void 0, void 0, true, frame, anchor2);
   }
   menu(anchor2) {
     const menu = new import_obsidian5.Menu();
