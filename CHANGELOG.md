@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.42
+
+### Added
+
+- Apply all three completed-task display modes to Deadlines: hidden, inline in date order, or a collapsible completed footer. Uncheck a completed deadline to return it to the active date list, with Undo/Redo preserved.
+
 ## 1.0.41
 
 ### Fixed

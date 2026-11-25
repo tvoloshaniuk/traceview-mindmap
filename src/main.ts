@@ -1577,16 +1577,24 @@ class QueueView extends ItemView {
     this.renderer = this.addChild(new Component());
     this.host.empty();
     if (this.foldControls) this.foldControls.hidden = this.mode === 'dates';
-    if (this.completedControl) this.completedControl.hidden = this.mode !== 'steps';
+    if (this.completedControl) this.completedControl.hidden = this.mode === 'qa';
     let count = 0;
     const matches = queueMapMatcher(this.filter);
     const maps = [...this.cache.values()].filter(map => matches(map.file.path)).sort((a, b) => a.file.path.localeCompare(b.file.path));
     const terms = queueExclusions(this.plugin.settings.queueExcludedBranches);
     const excluded = new Map(maps.map(map => [map, excludedQueueNodes(map.doc, terms)]));
     if (this.mode === 'dates') {
-      const rows = maps.flatMap(map => getSteps(map.doc).filter(step => !step.completed && (step.date || step.unknownDate) && !excluded.get(map)!.has(step.nodeId)).map(step => ({ map, step })));
+      const rows = maps.flatMap(map => getSteps(map.doc).filter(step => (step.date || step.unknownDate) && !excluded.get(map)!.has(step.nodeId) && (!this.query || step.text.toLocaleLowerCase().includes(this.query))).map(step => ({ map, step })));
       rows.sort((a, b) => (a.step.unknownDate ? '' : a.step.date!).localeCompare(b.step.unknownDate ? '' : b.step.date!));
-      for (const { map, step } of rows) if (!this.query || step.text.toLocaleLowerCase().includes(this.query)) { this.stepRow(this.host, map, step, false); count++; }
+      for (const {map, step} of rows) if (!step.completed || this.completedMode === 'inline') { this.stepRow(this.host, map, step, false); count++; }
+      const completed = this.completedMode === 'footer' ? rows.filter(row => row.step.completed) : [];
+      if (completed.length) {
+        const footer = this.host.createEl('details', {cls: 'tvm-completed-tasks'});
+        footer.open = this.completedExpanded.has(':dates');
+        footer.createEl('summary', {text: t("Completed ({count})", {count: completed.length})});
+        footer.addEventListener('toggle', () => { if (footer.open) this.completedExpanded.add(':dates'); else this.completedExpanded.delete(':dates'); });
+        for (const {map, step} of completed) { this.stepRow(footer, map, step, false); count++; }
+      }
     } else for (const map of maps) {
       const hidden = excluded.get(map)!;
       const allSteps = getSteps(map.doc).filter(step => !hidden.has(step.nodeId) && (!this.query || step.text.toLocaleLowerCase().includes(this.query)));
