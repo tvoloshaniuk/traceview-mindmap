@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.0.36
+
+### Changed
+
+- Select embedded-note nodes with a single click and edit the specific embedded note with a double click. Preserve native links and controls.
+- Double-click embedded notes inside the native node editor to save the parent draft and switch to editing the embedded note. If saving fails, keep the parent draft open.
+
 ## 1.0.35
 
 ### Fixed

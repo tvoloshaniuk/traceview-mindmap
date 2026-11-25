@@ -6122,7 +6122,9 @@ var MapSurface = class {
         this.options.onHoverLink(event, anchor2, link);
       }
     }, { capture: true });
-    this.listen(this.viewport, "dblclick", (e) => this.doubleClick(e));
+    this.listen(this.viewport, "dblclick", (e) => {
+      void this.doubleClick(e);
+    }, { capture: true });
     this.listen(this.viewport, "contextmenu", (e) => this.contextMenu(e));
     this.listen(this.viewport, "keydown", (e) => this.handleKeydown(e), { capture: true });
     this.listen(this.viewport, "wheel", (e) => this.wheel(e), { passive: false });
@@ -6719,7 +6721,7 @@ var MapSurface = class {
         const pending = this.options.renderMarkdown(label2 || t("Untitled"), content);
         if (pending && typeof pending.then === "function") {
           this.markdownInFlight++;
-          void Promise.resolve(pending).catch(() => {
+          entry.pending = Promise.resolve(pending).catch(() => {
             if (!this.destroyed) content.textContent = label2;
           }).finally(() => {
             this.markdownInFlight--;
@@ -7191,14 +7193,6 @@ var MapSurface = class {
       }
       return;
     }
-    const embed = target.closest(".markdown-embed.internal-embed");
-    const embedLink = embed?.getAttribute("src");
-    if (id && embedLink && !target.closest('button, input, textarea, [contenteditable="true"]') && this.options.onEditEmbed?.(id, embedLink, embed)) {
-      event.preventDefault();
-      event.stopPropagation();
-      this.select(id);
-      return;
-    }
     const image = target.closest("img")?.closest(".internal-embed");
     const imageLink = image?.getAttribute("src");
     if (imageLink && this.options.onOpenLink) {
@@ -7229,12 +7223,30 @@ var MapSurface = class {
     this.updateActiveDescendant();
     this.emitState();
   }
-  doubleClick(event) {
+  async doubleClick(event) {
     if (this.selectionMode || event.shiftKey || event.ctrlKey || event.metaKey) return;
-    if (this.editing) return;
     if (event.target.closest("a, button, input") || Date.now() < this.suppressClickUntil) return;
-    const id = this.nodeFrom(event.target);
+    const target = event.target;
+    let id = this.nodeFrom(target);
     if (!id) return;
+    let frame = target.closest(".markdown-embed.internal-embed");
+    const link = frame?.getAttribute("src");
+    if (link && this.options.onEditEmbed) {
+      event.preventDefault();
+      event.stopPropagation();
+      if (this.editing) {
+        await this.editing.editor.submit();
+        if (this.editing || this.destroyed) return;
+        id = this.state.selected ?? id;
+        await this.rendered.get(id)?.pending;
+        if (this.editing || this.destroyed) return;
+        frame = [...this.elements.get(id)?.querySelectorAll(".markdown-embed.internal-embed") ?? []].find((element) => element.getAttribute("src") === link) ?? null;
+        if (!frame) return;
+      }
+      this.select(id);
+      if (this.options.onEditEmbed(id, link, frame)) return;
+    }
+    if (this.editing) return;
     event.preventDefault();
     this.select(id);
     this.options.onAction("edit", id);

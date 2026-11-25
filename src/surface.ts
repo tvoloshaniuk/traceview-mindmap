@@ -14,7 +14,7 @@ import { InlineEditor, type InlineOptions } from './inline';
 interface Position { x: number; y: number; width: number; height: number }
 interface TouchPoint { x: number; y: number }
 interface NavigationStop { view: MapViewState; selection: string[] }
-interface RenderedNode { label: string; content: HTMLDivElement; started: boolean }
+interface RenderedNode { label: string; content: HTMLDivElement; started: boolean; pending?: Promise<void> }
 const MARKDOWN_BATCH_SIZE = 8;
 const MARKDOWN_LOADING_THRESHOLD = 128;
 const WIDTH = 328;
@@ -131,7 +131,7 @@ export class MapSurface {
       const link = anchor.getAttribute('data-href') ?? anchor.getAttribute('href');
       if (link && this.options.onHoverLink) { event.stopPropagation(); this.options.onHoverLink(event as MouseEvent, anchor, link); }
     }, { capture: true });
-    this.listen(this.viewport, 'dblclick', (e) => this.doubleClick(e as MouseEvent));
+    this.listen(this.viewport, 'dblclick', (e) => { void this.doubleClick(e as MouseEvent); }, { capture: true });
     this.listen(this.viewport, 'contextmenu', (e) => this.contextMenu(e as MouseEvent));
     this.listen(this.viewport, 'keydown', (e) => this.handleKeydown(e as KeyboardEvent), { capture: true });
     this.listen(this.viewport, 'wheel', (e) => this.wheel(e as WheelEvent), { passive: false });
@@ -671,7 +671,7 @@ export class MapSurface {
         const pending = this.options.renderMarkdown(label || t("Untitled"), content);
         if (pending && typeof pending.then === 'function') {
           this.markdownInFlight++;
-          void Promise.resolve(pending).catch(() => {
+          entry.pending = Promise.resolve(pending).catch(() => {
             if (!this.destroyed) content.textContent = label;
           }).finally(() => {
             this.markdownInFlight--;
@@ -1142,11 +1142,6 @@ export class MapSurface {
       if (internal && link && this.options.onOpenLink) { event.preventDefault(); event.stopPropagation(); this.options.onOpenLink(link, event); }
       return;
     }
-    const embed = target.closest<HTMLElement>('.markdown-embed.internal-embed');
-    const embedLink = embed?.getAttribute('src');
-    if (id && embedLink && !target.closest('button, input, textarea, [contenteditable="true"]') && this.options.onEditEmbed?.(id, embedLink, embed!)) {
-      event.preventDefault(); event.stopPropagation(); this.select(id); return;
-    }
     const image = target.closest('img')?.closest('.internal-embed');
     const imageLink = image?.getAttribute('src');
     if (imageLink && this.options.onOpenLink) {
@@ -1174,12 +1169,30 @@ export class MapSurface {
     this.emitState();
   }
 
-  private doubleClick(event: MouseEvent): void {
+  private async doubleClick(event: MouseEvent): Promise<void> {
     if (this.selectionMode || event.shiftKey || event.ctrlKey || event.metaKey) return;
-    if (this.editing) return;
     if ((event.target as Element).closest('a, button, input') || Date.now() < this.suppressClickUntil) return;
-    const id = this.nodeFrom(event.target);
+    const target = event.target as Element;
+    let id = this.nodeFrom(target);
     if (!id) return;
+    let frame = target.closest<HTMLElement>('.markdown-embed.internal-embed');
+    const link = frame?.getAttribute('src');
+    if (link && this.options.onEditEmbed) {
+      event.preventDefault(); event.stopPropagation();
+      if (this.editing) {
+        await this.editing.editor.submit();
+        if (this.editing || this.destroyed) return;
+        id = this.state.selected ?? id;
+        await this.rendered.get(id)?.pending;
+        if (this.editing || this.destroyed) return;
+        frame = [...(this.elements.get(id)?.querySelectorAll<HTMLElement>('.markdown-embed.internal-embed') ?? [])]
+          .find(element => element.getAttribute('src') === link) ?? null;
+        if (!frame) return;
+      }
+      this.select(id);
+      if (this.options.onEditEmbed(id, link, frame!)) return;
+    }
+    if (this.editing) return;
     event.preventDefault();
     this.select(id);
     this.options.onAction('edit', id);

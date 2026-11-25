@@ -842,7 +842,7 @@ test('embedded note drafts keep multiline content and preserve parent title and 
 });
 
 
-test('embedded frame clicks edit the exact note while links and controls keep their actions', t => {
+test('embedded frames select on click and edit on double click while links and controls retain their actions', t => {
   const f = fixture(t, '- root\n');
   const edited: string[] = [], opened: string[] = [];
   f.options.onEditEmbed = (_id,link) => { edited.push(link); return true; };
@@ -852,7 +852,10 @@ test('embedded frame clicks edit the exact note while links and controls keep th
     frame.innerHTML='<p>Note text</p><a class="internal-link" data-href="Target">Link</a><button>Native control</button>';
     f.element('root').append(frame);
     const click=(el:Element)=>{const event=new f.dom.window.MouseEvent('click',{bubbles:true,cancelable:true});el.dispatchEvent(event);return event;};
-    assert.equal(click(frame.querySelector('p')!).defaultPrevented,true);
+    click(frame.querySelector('p')!);
+    assert.equal(edited.length,link==='First'?0:1);
+    const doubleClick=(el:Element)=>el.dispatchEvent(new f.dom.window.MouseEvent('dblclick',{bubbles:true,cancelable:true}));
+    doubleClick(frame.querySelector('p')!); doubleClick(frame.querySelector('a')!); doubleClick(frame.querySelector('button')!);
     click(frame.querySelector('a')!);click(frame.querySelector('button')!);
   }
   assert.deepEqual(edited,['First','Second']);assert.deepEqual(opened,['Target','Target']);
@@ -881,4 +884,17 @@ test('editing an embedded note preserves and dims its surrounding node content, 
   f.host.querySelector<HTMLButtonElement>('.tvm-inline-tools .mod-cta')!.click();await Promise.resolve();await Promise.resolve();
   assert.equal(f.surface.isEditing(),false);assert.equal(content.innerHTML,original);
   assert.equal(f.host.querySelector('.tvm-embedded-note-editor'),null);
+});
+
+test('double clicking an embedded note preserves a parent draft when its save fails', async t => {
+  const f=fixture(t,'- Parent ![[Note]] ^parent\n',(_text,el)=>{el.innerHTML='<div class="markdown-embed internal-embed" src="Note"><p>Note text</p></div>';});
+  let opened=0;f.options.onEditEmbed=()=>{opened++;return true;};
+  f.surface.beginEdit('block:parent','Parent ![[Note]]',async()=>{throw Error('External change');});
+  const host=f.host.querySelector('.tvm-inline-editor')!;
+  const frame=f.dom.window.document.createElement('div');frame.className='markdown-embed internal-embed';frame.setAttribute('src','Note');host.append(frame);
+  const input=f.host.querySelector<HTMLTextAreaElement>('.tvm-inline-input')!;input.value='Unsaved parent ![[Note]]';
+  frame.dispatchEvent(new f.dom.window.MouseEvent('dblclick',{bubbles:true,cancelable:true}));
+  await new Promise(resolve=>setTimeout(resolve,0));
+  assert.equal(opened,0);assert.equal(f.surface.isEditing(),true);assert.equal(input.value,'Unsaved parent ![[Note]]');
+  assert.match(f.host.querySelector('.tvm-inline-error')!.textContent!,/External change/);
 });
