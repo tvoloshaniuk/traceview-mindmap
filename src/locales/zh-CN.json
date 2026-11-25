@@ -1,4 +1,6 @@
 {
+  "Clear selection": "清除选择",
+  "Drag to reorder steps": "拖动以调整步骤顺序",
   "Reset all node sizes…": "重置所有节点大小…",
   "Restore default width and height for every node in this map on this device? Note contents and other devices are unchanged.": "将此设备上当前地图的所有节点恢复为默认宽度和高度？笔记内容和其他设备不会改变。",
   "Show embedded map previews": "显示嵌入地图预览",

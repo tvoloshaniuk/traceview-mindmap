@@ -1,4 +1,6 @@
 {
+  "Clear selection": "Limpar seleção",
+  "Drag to reorder steps": "Arraste para reordenar as etapas",
   "Reset all node sizes…": "Redefinir o tamanho de todos os nós…",
   "Restore default width and height for every node in this map on this device? Note contents and other devices are unchanged.": "Restaurar a largura e a altura padrão de todos os nós deste mapa neste dispositivo? O conteúdo das notas e os outros dispositivos permanecerão inalterados.",
   "Show embedded map previews": "Mostrar prévias de mapas incorporados",

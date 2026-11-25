@@ -1,4 +1,6 @@
 {
+  "Clear selection": "Effacer la sélection",
+  "Drag to reorder steps": "Glisser pour réorganiser les étapes",
   "Reset all node sizes…": "Réinitialiser la taille de tous les nœuds…",
   "Restore default width and height for every node in this map on this device? Note contents and other devices are unchanged.": "Rétablir la largeur et la hauteur par défaut de tous les nœuds de cette carte sur cet appareil ? Le contenu des notes et les autres appareils restent inchangés.",
   "Show embedded map previews": "Afficher les aperçus des cartes intégrées",

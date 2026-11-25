@@ -1527,6 +1527,7 @@ class QueueView extends ItemView {
   private selectionAnchor?: string;
   private selectionMode = false;
   private selectionButton?: HTMLButtonElement;
+  private clearSelectionButton?: HTMLButtonElement;
   private bulkButtons: HTMLButtonElement[] = [];
   private rows = new Map<string, {map: IndexedMap; id: string; row: HTMLElement}>();
   private marquee?: {pointer: number; x: number; y: number; moved: boolean; before: Set<string>; element: HTMLElement};
@@ -1559,6 +1560,7 @@ class QueueView extends ItemView {
     this.sortControl.value = this.metricSort;
     this.sortControl.onchange = () => {this.metricSort = this.sortControl!.value as typeof this.metricSort; this.draw(); this.mapFilter?.refresh(); this.app.workspace.requestSaveLayout();};
     this.selectionButton = iconButton(actions, 'list-checks', t("Select list items"), () => {this.selectionMode = !this.selectionMode; this.paintSelection();});
+    this.clearSelectionButton = iconButton(actions, 'list-x', t("Clear selection"), () => {this.selection.clear(); this.selectionMode = false; this.selectionAnchor = undefined; this.paintSelection();});
     this.bulkButtons = [
       iconButton(actions, 'check-check', t("Toggle completion"), () => {void this.bulk('complete');}),
       iconButton(actions, 'list-minus', t("Remove step number"), () => {void this.bulk('unnumber');}),
@@ -1594,6 +1596,7 @@ class QueueView extends ItemView {
       });
     }
     this.host = this.contentEl.createDiv('tvm-panel');
+    this.host.tabIndex = -1;
     this.registerDomEvent(this.host, 'pointerdown', event => {
       if (event.button !== 0 || !(this.selectionMode || event.shiftKey) || this.marquee || this.writing) return;
       const target = event.target as Element;
@@ -1621,7 +1624,11 @@ class QueueView extends ItemView {
     this.registerDomEvent(this.contentEl.ownerDocument, 'pointerup', event => {if (this.marquee?.pointer === event.pointerId) this.finishMarquee(false);});
     this.registerDomEvent(this.contentEl.ownerDocument, 'pointercancel', event => {if (this.marquee?.pointer === event.pointerId) this.finishMarquee(true);});
     this.registerDomEvent(this.contentEl, 'keydown', event => {
-      if (event.key === 'Escape' && this.marquee) {event.preventDefault(); event.stopPropagation(); this.finishMarquee(true);}
+      if (event.key !== 'Escape' || (event.target as Element).closest('input, textarea, [contenteditable="true"]')) return;
+      if (this.marquee) {event.preventDefault(); event.stopPropagation(); this.finishMarquee(true);}
+      else if (this.selection.size || this.selectionMode) {
+        event.preventDefault(); event.stopPropagation(); this.selection.clear(); this.selectionMode = false; this.selectionAnchor = undefined; this.paintSelection();
+      }
     }, {capture: true});
   }
   getState(): Record<string, unknown> { return { filter: this.filter, completedMode: this.completedMode, metricSort: this.metricSort }; }
@@ -1779,7 +1786,7 @@ class QueueView extends ItemView {
     this.marquee = undefined; box.element.remove();
     try {this.host?.releasePointerCapture(box.pointer);} catch { /* Pointer capture may already be released. */ }
     if (cancel) this.selection = box.before;
-    else if (box.moved) {this.selectionMode = false; this.suppressRowClickUntil = Date.now() + 300;}
+    else if (box.moved) {this.selectionMode = false; this.suppressRowClickUntil = Date.now() + 300; this.host?.focus({preventScroll: true});}
     this.paintSelection();
   }
   private paintSelection(): void {
@@ -1787,6 +1794,7 @@ class QueueView extends ItemView {
       entry.row.classList.toggle('is-selected', this.selection.has(key));
       entry.row.setAttribute('aria-selected', String(this.selection.has(key)));
     }
+    if (this.clearSelectionButton) this.clearSelectionButton.disabled = !this.selection.size && !this.selectionMode;
     this.selectionButton?.setAttribute('aria-pressed', String(this.selectionMode));
     this.selectionButton?.setAttribute('aria-label', t("Selected nodes: {count}", {count: this.selection.size}));
     for (const button of this.bulkButtons) button.disabled = this.writing || !this.selection.size;
@@ -1874,8 +1882,9 @@ class QueueView extends ItemView {
       const controls = row.createDiv('tvm-step-controls');
       button(controls, '↑', () => { void this.reorder(map, step.nodeId, -1); }, t("Move earlier in execution order"));
       button(controls, '↓', () => { void this.reorder(map, step.nodeId, 1); }, t("Move later in execution order"));
-      controls.draggable = true;
-      row.ondragstart = event => { this.dragged = { path: map.file.path, id: step.nodeId }; event.dataTransfer?.setData('text/plain', step.nodeId); };
+      const grip = controls.createDiv({cls: 'tvm-step-drag', attr: {draggable: 'true', role: 'img', 'aria-label': t("Drag to reorder steps"), title: t("Drag to reorder steps")}});
+      setIcon(grip, 'grip-vertical');
+      row.ondragstart = event => { if (!(event.target as Element).closest('.tvm-step-drag')) return; this.dragged = { path: map.file.path, id: step.nodeId }; event.dataTransfer?.setData('text/plain', step.nodeId); };
       row.ondragend = () => { this.dragged = undefined; };
       row.ondragover = event => { if (this.dragged?.path === map.file.path) event.preventDefault(); };
       row.ondrop = event => {

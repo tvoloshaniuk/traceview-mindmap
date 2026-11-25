@@ -1,4 +1,6 @@
 {
+  "Clear selection": "Auswahl aufheben",
+  "Drag to reorder steps": "Ziehen, um Schritte neu anzuordnen",
   "Reset all node sizes…": "Alle Knotengrößen zurücksetzen…",
   "Restore default width and height for every node in this map on this device? Note contents and other devices are unchanged.": "Standardbreite und -höhe aller Knoten dieser Karte auf diesem Gerät wiederherstellen? Notizinhalte und andere Geräte bleiben unverändert.",
   "Show embedded map previews": "Vorschau eingebetteter Karten anzeigen",

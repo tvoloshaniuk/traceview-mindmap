@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.0.63
+
+### Improved
+
+- Add a visible drag grip to numbered planning steps. Dragging the grip reorders a step or selected group, while dragging text and links retains native behavior.
+- Add Clear selection to the planning toolbar. After a selection rectangle, keep keyboard focus in the list so Escape clears the selection without opening a map. Escape also clears selection from other list controls.
+
 ## 1.0.62
 
 ### Improved

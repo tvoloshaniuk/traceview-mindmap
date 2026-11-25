@@ -385,3 +385,7 @@
 .tvm-step-row.is-selected { background: var(--background-modifier-hover); outline: 1px solid var(--interactive-accent); outline-offset: -1px; }
 
 .tvm-queue-view { position: relative; }
+
+.tvm-step-drag { display: flex; align-items: center; justify-content: center; min-height: 24px; cursor: grab; user-select: none; }
+.tvm-step-drag:active { cursor: grabbing; }
+.tvm-step-drag svg { width: 18px; height: 18px; pointer-events: none; }
