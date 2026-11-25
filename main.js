@@ -5573,6 +5573,22 @@ function compileMapPatterns(rules) {
 var editors = /* @__PURE__ */ new WeakMap();
 var highlightName = "traceview-search";
 var escaped = (text) => text.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+function highlightRenderedSearch(element, query) {
+  if (!query.trim()) return;
+  const walker = element.ownerDocument.createTreeWalker(element, 4), nodes = [];
+  while (walker.nextNode()) nodes.push(walker.currentNode);
+  for (const node of nodes) {
+    if (node.parentElement?.closest("script, style, button, .tvm-inline-editor")) continue;
+    for (const match of [...node.data.matchAll(new RegExp(escaped(query.trim()), "giu"))].reverse()) {
+      const text = node.splitText(match.index);
+      text.splitText(match[0].length);
+      const mark = element.ownerDocument.createElement("mark");
+      mark.className = "tvm-search-match";
+      text.replaceWith(mark);
+      mark.append(text);
+    }
+  }
+}
 function highlightSearchText(element, text, query) {
   element.replaceChildren();
   if (!query.trim()) {
@@ -11748,10 +11764,18 @@ var QueueView = class extends import_obsidian5.ItemView {
   }
   renderLabel(parent, map, id, text) {
     const label2 = parent.createDiv("tvm-step-text");
-    button(parent, "\u2197", () => {
-      void this.plugin.openMap(map.file, void 0, id);
-    }, t("Open node"));
     const row = parent.closest(".tvm-step-row");
+    if (row) {
+      row.tabIndex = 0;
+      row.setAttribute("role", "group");
+      row.setAttribute("aria-label", t("Open node"));
+      row.addEventListener("keydown", (event) => {
+        if (event.target !== row || event.key !== "Enter") return;
+        event.preventDefault();
+        event.stopPropagation();
+        void this.plugin.openMap(map.file, void 0, id);
+      });
+    }
     if (row) row.addEventListener("click", (event) => {
       if (event.target.closest("a, button, input, select, textarea")) return;
       if (!row.ownerDocument.getSelection()?.isCollapsed) return;
@@ -11765,8 +11789,11 @@ var QueueView = class extends import_obsidian5.ItemView {
       event.stopPropagation();
       void this.app.workspace.openLinkText(target, map.file.path, event.ctrlKey || event.metaKey);
     });
-    void import_obsidian5.MarkdownRenderer.render(this.app, text, label2, map.file.path, this.renderer).catch(() => {
+    const renderer = this.renderer, query = this.query;
+    void import_obsidian5.MarkdownRenderer.render(this.app, text, label2, map.file.path, renderer).catch(() => {
       label2.textContent = text;
+    }).then(() => {
+      if (this.renderer === renderer && label2.isConnected) highlightRenderedSearch(label2, query);
     });
   }
   stepRow(parent, map, step, reorder) {

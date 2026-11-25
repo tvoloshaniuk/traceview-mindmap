@@ -10,6 +10,7 @@ import { addressNode, onlyAddedBlockIds, removeNodeAddress, nodeBacklinks } from
 import { captureHotkey, DEFAULT_HOTKEYS, HOTKEY_DEFINITIONS, resolveHotkey, validateHotkeys } from './hotkeys';
 import { compileMapPatterns, PatternError, type MapRules, type PatternMode } from './map-patterns';
 import { MapSearch } from './map-search';
+import { highlightRenderedSearch } from './search-highlight';
 import { MapSurface } from './surface';
 import { attachMapFilter, excludedQueueNodes, queueExclusions, queueLabel, queueMapMatcher } from './queue-controls';
 import { mountNativeEditor, prepareNativeEditor, type NativeConstructor } from './native-editor';
@@ -1637,8 +1638,14 @@ class QueueView extends ItemView {
   }
   private renderLabel(parent: HTMLElement, map: IndexedMap, id: string, text: string): void {
     const label = parent.createDiv('tvm-step-text');
-    button(parent, '↗', () => { void this.plugin.openMap(map.file, undefined, id); }, t("Open node"));
     const row = parent.closest<HTMLElement>('.tvm-step-row');
+    if (row) {
+      row.tabIndex = 0; row.setAttribute('role', 'group'); row.setAttribute('aria-label', t("Open node"));
+      row.addEventListener('keydown', event => {
+        if (event.target !== row || event.key !== 'Enter') return;
+        event.preventDefault(); event.stopPropagation(); void this.plugin.openMap(map.file, undefined, id);
+      });
+    }
     if (row) row.addEventListener('click', event => {
       if ((event.target as Element).closest('a, button, input, select, textarea')) return;
       if (!row.ownerDocument.getSelection()?.isCollapsed) return;
@@ -1652,8 +1659,11 @@ class QueueView extends ItemView {
       event.stopPropagation();
       void this.app.workspace.openLinkText(target, map.file.path, event.ctrlKey || event.metaKey);
     });
-    void MarkdownRenderer.render(this.app, text, label, map.file.path, this.renderer!).catch(() => {
+    const renderer = this.renderer, query = this.query;
+    void MarkdownRenderer.render(this.app, text, label, map.file.path, renderer!).catch(() => {
       label.textContent = text;
+    }).then(() => {
+      if (this.renderer === renderer && label.isConnected) highlightRenderedSearch(label, query);
     });
   }
   private stepRow(parent: HTMLElement, map: IndexedMap, step: Step, reorder: boolean): void {

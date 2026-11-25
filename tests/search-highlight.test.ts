@@ -6,13 +6,20 @@
 import {test} from 'node:test';
 import assert from 'node:assert/strict';
 import {JSDOM} from 'jsdom';
-import {highlightSearchText, nativeSearchHighlighter} from '../src/search-highlight';
+import {highlightSearchText, highlightRenderedSearch, nativeSearchHighlighter} from '../src/search-highlight';
 
 test('result highlighting treats queries literally and preserves text safely', () => {
   const dom=new JSDOM('<div></div>'),el=dom.window.document.querySelector('div')!;
   const text='a+b <script> A+B';highlightSearchText(el,text,'a+b');
   assert.equal(el.textContent,text);assert.deepEqual([...el.querySelectorAll('mark')].map(mark=>mark.textContent),['a+b','A+B']);assert.equal(el.querySelector('script'),null);
   highlightSearchText(el,text,'');assert.equal(el.querySelector('mark'),null);assert.equal(el.textContent,text);dom.window.close();
+});
+
+test('rendered list search preserves Markdown links and formatting', () => {
+  const dom=new JSDOM('<div><p><a href="Target">Alias</a> <strong>Alias</strong></p></div>'),el=dom.window.document.querySelector('div')!;
+  const link=el.querySelector('a');highlightRenderedSearch(el,'alias');
+  assert.equal(el.querySelectorAll('mark').length,2);assert.equal(el.querySelector('a'),link);assert.equal(link!.getAttribute('href'),'Target');
+  assert.equal(el.textContent,'Alias Alias');assert.equal(el.querySelectorAll('strong').length,1);dom.window.close();
 });
 
 test('native highlights span tokens without DOM writes and keep other editors intact on cleanup', () => {

@@ -364,3 +364,4 @@
 .tvm-inline-editor { position: relative; }
 .tvm-inline-search-overlay { position: absolute; pointer-events: none; z-index: 1; box-sizing: border-box; border-style: solid; border-color: transparent; white-space: pre-wrap; overflow-wrap: break-word; overflow: hidden; color: transparent; }
 .tvm-inline-search-overlay .tvm-search-match { color: var(--text-normal); }
+.tvm-step-row:hover, .tvm-step-row:focus-visible { background-color: var(--background-modifier-hover, #80808015); }

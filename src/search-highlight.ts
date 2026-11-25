@@ -7,6 +7,20 @@ const editors = new WeakMap<Document, Map<HTMLElement, Range[]>>();
 const highlightName = 'traceview-search';
 const escaped = (text: string) => text.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 
+export function highlightRenderedSearch(element: HTMLElement, query: string): void {
+  if (!query.trim()) return;
+  const walker = element.ownerDocument.createTreeWalker(element, 4), nodes: Text[] = [];
+  while (walker.nextNode()) nodes.push(walker.currentNode as Text);
+  for (const node of nodes) {
+    if (node.parentElement?.closest('script, style, button, .tvm-inline-editor')) continue;
+    for (const match of [...node.data.matchAll(new RegExp(escaped(query.trim()), 'giu'))].reverse()) {
+      const text = node.splitText(match.index!); text.splitText(match[0].length);
+      const mark = element.ownerDocument.createElement('mark'); mark.className = 'tvm-search-match';
+      text.replaceWith(mark); mark.append(text);
+    }
+  }
+}
+
 export function highlightSearchText(element: HTMLElement, text: string, query: string): void {
   element.replaceChildren();
   if (!query.trim()) { element.textContent = text; return; }

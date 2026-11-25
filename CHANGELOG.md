@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.0.43
+
+### Changed
+
+- Highlight search matches in rendered Steps · Deadlines · QA labels while preserving Markdown links and formatting.
+- Replace the diagonal open-node button with row hover feedback and direct row navigation. Keep text selection, link actions and keyboard Enter navigation available.
+
 ## 1.0.42
 
 ### Added
