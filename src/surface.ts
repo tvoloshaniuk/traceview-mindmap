@@ -58,8 +58,8 @@ export class MapSurface {
   private collapsed = new Set<string>();
   private selection = new Set<string>();
   private selectionAnchor: string | null = null;
+  private hasMarqueeSelection = false;
   private selectionMode = false;
-  private hasTouchMarqueeSelection = false;
   private marquee?: { pointer: number; x: number; y: number; moved: boolean; base: string[]; before: string[]; element: HTMLDivElement };
 
   private readonly elements = new Map<string, HTMLDivElement>();
@@ -182,7 +182,7 @@ export class MapSurface {
     this.finishResize(true);
     this.clearDrag(); this.cancelMarquee();
     const previous = this.doc;
-    if (state) { this.selection.clear(); this.hasTouchMarqueeSelection = false; }
+    if (state) { this.selection.clear(); this.hasMarqueeSelection = false; }
     this.doc = doc;
     if (state) {
       this.state = {
@@ -1189,7 +1189,7 @@ export class MapSurface {
       this.selectionAnchor = id;
       if (mode === 'single') {
         this.selection = new Set([id]);
-        this.hasTouchMarqueeSelection = false;
+        this.hasMarqueeSelection = false;
       }
       else if (this.selection.has(id)) this.selection.delete(id); else this.selection.add(id);
     }
@@ -1259,7 +1259,8 @@ export class MapSurface {
   }
 
   private deselect(): void {
-    this.hasTouchMarqueeSelection = false;
+    this.hasMarqueeSelection = false;
+
     this.state.selected = null;
     this.selection.clear(); this.selectionAnchor = null;
     for (const element of this.elements.values()) {
@@ -1510,7 +1511,7 @@ export class MapSurface {
     }
     if (!this.marquee && !this.editing && !id && event.button === 0 && (this.selectionMode || event.shiftKey) && this.touches.size === 0) {
       const element = this.container.ownerDocument.createElement('div'); element.className = 'tvm-selection-box'; this.viewport.append(element);
-      const extend = event.ctrlKey || event.metaKey || (event.pointerType === 'touch' && this.hasTouchMarqueeSelection);
+      const extend = event.shiftKey || event.ctrlKey || event.metaKey || this.hasMarqueeSelection || this.selection.size > 1;
       this.marquee = { pointer: event.pointerId, x: event.clientX, y: event.clientY, moved: false, base: extend ? [...this.selection] : [], before: [...this.selection], element };
       try { this.viewport.setPointerCapture(event.pointerId); } catch { /* Synthetic pointer. */ }
       return;
@@ -1584,8 +1585,7 @@ export class MapSurface {
       for (const [id, element] of this.elements) {
         const bounds = element.getBoundingClientRect();
         if (bounds.right < left || bounds.left > right || bounds.bottom < top || bounds.top > bottom) continue;
-        if (event.pointerType === 'touch' && this.selection.has(id)) this.selection.delete(id);
-        else this.selection.add(id);
+        this.selection.add(id);
       }
       this.state.selected = [...this.selection].at(-1) ?? null;
       this.selectionAnchor = this.state.selected;
@@ -1733,10 +1733,8 @@ export class MapSurface {
       const box = this.marquee; box.element.remove(); this.marquee = undefined;
       if (box.moved) {
         this.suppressClickUntil = Date.now() + 350;
-        if (event.pointerType === 'touch' && this.selectionMode) {
-          this.hasTouchMarqueeSelection = this.selection.size > 0;
-          this.toggleSelectionMode();
-        }
+        this.hasMarqueeSelection = this.selection.size > 0;
+        if (this.selectionMode) this.toggleSelectionMode();
       }
       try { if (this.viewport.hasPointerCapture(event.pointerId)) this.viewport.releasePointerCapture(event.pointerId); } catch { /* Pointer already ended. */ }
       this.viewport.focus({ preventScroll: true }); return;

@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.0.60
+
+### Fixed
+
+- Accumulate map selection across repeated Shift-drag rectangles without needing Ctrl/Cmd. Overlapping touch rectangles retain already selected nodes instead of toggling them off.
+- Finish selection mode after one completed rectangle for mouse as well as touch, retaining the selection for another pass. Cancellation restores the previous selection.
+
 ## 1.0.59
 
 ### Improved

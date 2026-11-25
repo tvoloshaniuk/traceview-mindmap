@@ -611,7 +611,7 @@ test('touch selection rectangle uses screen geometry without panning and cancel 
   assert.deepEqual(f.surface.getSelection(),[f.id('A'),f.id('B')]);assert.equal(f.host.querySelector('.tvm-selection-box'),null);
   assert.equal(f.surface.isSelectionMode(), true);
   f.pointer('pointerdown',f.viewport,3,80,190);f.pointer('pointermove',f.viewport,3,190,260);f.pointer('pointerup',f.viewport,3,190,260);
-  assert.deepEqual(f.surface.getSelection(), [f.id('B')]);
+  assert.deepEqual(f.surface.getSelection(), [f.id('A'),f.id('B')]);
   assert.equal(f.surface.isSelectionMode(), false);
 });
 
@@ -986,4 +986,23 @@ test('viewport resize preserves map geometry and edge elements without relaying 
   assert.equal(child.style.transform,transform);
   const edges=f.host.querySelector<SVGElement>('.tvm-edges')!;
   assert.equal(edges.style.width,'800px');assert.equal(edges.style.height,'600px');
+});
+
+
+test('Shift rectangles accumulate on desktop and mouse selection mode finishes after one rectangle', t => {
+  const f=fixture(t,'- Root\n  - A\n  - B\n');
+  f.viewport.click();
+  for (const [index,name] of ['Root','A','B'].entries()) f.element(name).getBoundingClientRect=()=>({left:100,top:100+index*100,right:180,bottom:150+index*100,width:80,height:50,x:100,y:100+index*100,toJSON(){}});
+  const pointer=(type:string,x:number,y:number,shiftKey=true)=>{
+    const event=new f.dom.window.MouseEvent(type,{bubbles:true,cancelable:true,button:0,clientX:x,clientY:y,shiftKey});
+    Object.defineProperties(event,{pointerType:{value:'mouse'},pointerId:{value:1}});f.viewport.dispatchEvent(event);
+  };
+  pointer('pointerdown',80,190);pointer('pointermove',190,260);pointer('pointerup',190,260);
+  assert.deepEqual(f.surface.getSelection(),[f.id('A')]);
+  pointer('pointerdown',80,290);pointer('pointermove',190,360);pointer('pointerup',190,360);
+  assert.deepEqual(f.surface.getSelection(),[f.id('A'),f.id('B')]);
+  pointer('pointerdown',80,190);pointer('pointermove',190,260);pointer('pointerup',190,260);
+  assert.deepEqual(f.surface.getSelection(),[f.id('A'),f.id('B')]);
+  f.surface.toggleSelectionMode();pointer('pointerdown',80,90,false);pointer('pointermove',190,160,false);pointer('pointerup',190,160,false);
+  assert.equal(f.surface.isSelectionMode(),false);assert.deepEqual(new Set(f.surface.getSelection()),new Set([f.id('Root'),f.id('A'),f.id('B')]));
 });

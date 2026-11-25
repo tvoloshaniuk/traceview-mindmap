@@ -6497,8 +6497,8 @@ var MapSurface = class {
     this.collapsed = /* @__PURE__ */ new Set();
     this.selection = /* @__PURE__ */ new Set();
     this.selectionAnchor = null;
+    this.hasMarqueeSelection = false;
     this.selectionMode = false;
-    this.hasTouchMarqueeSelection = false;
     this.elements = /* @__PURE__ */ new Map();
     this.positions = /* @__PURE__ */ new Map();
     this.visible = [];
@@ -6627,7 +6627,7 @@ var MapSurface = class {
     const previous = this.doc;
     if (state) {
       this.selection.clear();
-      this.hasTouchMarqueeSelection = false;
+      this.hasMarqueeSelection = false;
     }
     this.doc = doc;
     if (state) {
@@ -7680,7 +7680,7 @@ var MapSurface = class {
       this.selectionAnchor = id;
       if (mode === "single") {
         this.selection = /* @__PURE__ */ new Set([id]);
-        this.hasTouchMarqueeSelection = false;
+        this.hasMarqueeSelection = false;
       } else if (this.selection.has(id)) this.selection.delete(id);
       else this.selection.add(id);
     }
@@ -7771,7 +7771,7 @@ var MapSurface = class {
     this.viewport.focus({ preventScroll: true });
   }
   deselect() {
-    this.hasTouchMarqueeSelection = false;
+    this.hasMarqueeSelection = false;
     this.state.selected = null;
     this.selection.clear();
     this.selectionAnchor = null;
@@ -8078,7 +8078,7 @@ var MapSurface = class {
       const element = this.container.ownerDocument.createElement("div");
       element.className = "tvm-selection-box";
       this.viewport.append(element);
-      const extend = event.ctrlKey || event.metaKey || event.pointerType === "touch" && this.hasTouchMarqueeSelection;
+      const extend = event.shiftKey || event.ctrlKey || event.metaKey || this.hasMarqueeSelection || this.selection.size > 1;
       this.marquee = { pointer: event.pointerId, x: event.clientX, y: event.clientY, moved: false, base: extend ? [...this.selection] : [], before: [...this.selection], element };
       try {
         this.viewport.setPointerCapture(event.pointerId);
@@ -8159,8 +8159,7 @@ var MapSurface = class {
       for (const [id, element] of this.elements) {
         const bounds = element.getBoundingClientRect();
         if (bounds.right < left || bounds.left > right || bounds.bottom < top || bounds.top > bottom) continue;
-        if (event.pointerType === "touch" && this.selection.has(id)) this.selection.delete(id);
-        else this.selection.add(id);
+        this.selection.add(id);
       }
       this.state.selected = [...this.selection].at(-1) ?? null;
       this.selectionAnchor = this.state.selected;
@@ -8335,10 +8334,8 @@ var MapSurface = class {
       this.marquee = void 0;
       if (box.moved) {
         this.suppressClickUntil = Date.now() + 350;
-        if (event.pointerType === "touch" && this.selectionMode) {
-          this.hasTouchMarqueeSelection = this.selection.size > 0;
-          this.toggleSelectionMode();
-        }
+        this.hasMarqueeSelection = this.selection.size > 0;
+        if (this.selectionMode) this.toggleSelectionMode();
       }
       try {
         if (this.viewport.hasPointerCapture(event.pointerId)) this.viewport.releasePointerCapture(event.pointerId);
