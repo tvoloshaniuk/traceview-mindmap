@@ -368,3 +368,5 @@
 
 .tvm-queue-view > .tvm-toolbar { flex-wrap: nowrap; flex-shrink: 0; }
 .tvm-queue-view > .tvm-toolbar > .tvm-actions { flex: 1; min-width: 0; margin-left: 0; }
+
+.tvm-node-content .markdown-preview-view img:not([width]) { width: auto; }

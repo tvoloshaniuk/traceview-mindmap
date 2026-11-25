@@ -7491,7 +7491,13 @@ var MapSurface = class {
     if (!this.editing) return;
     const node = this.elements.get(this.editing.id);
     if (!node) return;
-    const available = Math.min((this.editorArea().height - EDITOR_VIEWPORT_PADDING * 2) / this.state.camera.scale, this.editing.embedded?.maxHeight ?? Infinity);
+    const maxHeight = this.state.nodeSizes?.[this.editing.id]?.height ?? this.options.getNodeMaxHeight?.();
+    const contextHeight = this.editing.embedded ? node.offsetHeight - this.editing.editor.host.offsetHeight : 0;
+    const available = Math.min(
+      (this.editorArea().height - EDITOR_VIEWPORT_PADDING * 2) / this.state.camera.scale,
+      this.editing.embedded?.maxHeight ?? Infinity,
+      maxHeight ? Math.max(60, maxHeight - contextHeight) : Infinity
+    );
     this.editing.editor.fitHeight(this.editing.embedded ? this.editing.editor.host : node, available);
   }
   ensureVisible(id, center = false) {

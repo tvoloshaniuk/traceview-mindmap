@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.0.51
+
+### Fixed
+
+- Respect per-node and default maximum height while editing, preventing a constrained embedded note from growing to the full viewport. Short content still uses its natural height.
+- Keep unsized images in embedded map notes at their natural available width instead of theme percentage shrinkage; explicit image width attributes remain untouched.
+
 ## 1.0.50
 
 ### Improved
