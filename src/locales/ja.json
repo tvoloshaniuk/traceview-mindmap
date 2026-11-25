@@ -365,5 +365,7 @@
   "Note name or existing note…": "新しいノート名、または既存のノート…",
   "Create note: {name}": "ノートを作成: {name}",
   "Use a note name without path separators or reserved characters.": "パス区切り文字や予約文字を含まないノート名を指定してください。",
-  "Create an embedded note for multiline editing?": "複数行を編集するための埋め込みノートを作成しますか？"
+  "Create an embedded note for multiline editing?": "複数行を編集するための埋め込みノートを作成しますか？",
+  "Resize node": "ノードのサイズを変更",
+  "Drag to resize. Arrow keys adjust size; Home or double-click resets it.": "ドラッグでサイズを変更。矢印キーで調整し、Homeまたはダブルクリックでリセットします。"
 }

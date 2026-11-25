@@ -365,5 +365,7 @@
   "Note name or existing note…": "Name einer neuen oder vorhandenen Notiz…",
   "Create note: {name}": "Notiz erstellen: {name}",
   "Use a note name without path separators or reserved characters.": "Verwende einen Notiznamen ohne Pfadtrenner oder reservierte Zeichen.",
-  "Create an embedded note for multiline editing?": "Eine eingebettete Notiz für mehrzeilige Bearbeitung erstellen?"
+  "Create an embedded note for multiline editing?": "Eine eingebettete Notiz für mehrzeilige Bearbeitung erstellen?",
+  "Resize node": "Knotengröße ändern",
+  "Drag to resize. Arrow keys adjust size; Home or double-click resets it.": "Zum Ändern ziehen. Pfeiltasten passen die Größe an; Home oder Doppelklick setzt sie zurück."
 }

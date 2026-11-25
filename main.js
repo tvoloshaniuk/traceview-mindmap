@@ -724,7 +724,9 @@ var en_default = {
   "Note name or existing note\u2026": "Note name or existing note\u2026",
   "Create note: {name}": "Create note: {name}",
   "Use a note name without path separators or reserved characters.": "Use a note name without path separators or reserved characters.",
-  "Create an embedded note for multiline editing?": "Create an embedded note for multiline editing?"
+  "Create an embedded note for multiline editing?": "Create an embedded note for multiline editing?",
+  "Resize node": "Resize node",
+  "Drag to resize. Arrow keys adjust size; Home or double-click resets it.": "Drag to resize. Arrow keys adjust size; Home or double-click resets it."
 };
 
 // src/locales/uk.json
@@ -1095,7 +1097,9 @@ var uk_default = {
   "Note name or existing note\u2026": "\u041D\u0430\u0437\u0432\u0430 \u043D\u043E\u0432\u043E\u0457 \u0430\u0431\u043E \u043D\u0430\u044F\u0432\u043D\u043E\u0457 \u043D\u043E\u0442\u0430\u0442\u043A\u0438\u2026",
   "Create note: {name}": "\u0421\u0442\u0432\u043E\u0440\u0438\u0442\u0438 \u043D\u043E\u0442\u0430\u0442\u043A\u0443: {name}",
   "Use a note name without path separators or reserved characters.": "\u0412\u043A\u0430\u0436\u0456\u0442\u044C \u043D\u0430\u0437\u0432\u0443 \u043D\u043E\u0442\u0430\u0442\u043A\u0438 \u0431\u0435\u0437 \u0440\u043E\u0437\u0434\u0456\u043B\u044E\u0432\u0430\u0447\u0456\u0432 \u0448\u043B\u044F\u0445\u0443 \u0442\u0430 \u0437\u0430\u0431\u043E\u0440\u043E\u043D\u0435\u043D\u0438\u0445 \u0441\u0438\u043C\u0432\u043E\u043B\u0456\u0432.",
-  "Create an embedded note for multiline editing?": "\u0421\u0442\u0432\u043E\u0440\u0438\u0442\u0438 \u0432\u043A\u043B\u0430\u0434\u0435\u043D\u0443 \u043D\u043E\u0442\u0430\u0442\u043A\u0443 \u0434\u043B\u044F \u0431\u0430\u0433\u0430\u0442\u043E\u0440\u044F\u0434\u043A\u043E\u0432\u043E\u0433\u043E \u0440\u0435\u0434\u0430\u0433\u0443\u0432\u0430\u043D\u043D\u044F?"
+  "Create an embedded note for multiline editing?": "\u0421\u0442\u0432\u043E\u0440\u0438\u0442\u0438 \u0432\u043A\u043B\u0430\u0434\u0435\u043D\u0443 \u043D\u043E\u0442\u0430\u0442\u043A\u0443 \u0434\u043B\u044F \u0431\u0430\u0433\u0430\u0442\u043E\u0440\u044F\u0434\u043A\u043E\u0432\u043E\u0433\u043E \u0440\u0435\u0434\u0430\u0433\u0443\u0432\u0430\u043D\u043D\u044F?",
+  "Resize node": "\u0417\u043C\u0456\u043D\u0438\u0442\u0438 \u0440\u043E\u0437\u043C\u0456\u0440 \u043D\u043E\u0434\u0438",
+  "Drag to resize. Arrow keys adjust size; Home or double-click resets it.": "\u0422\u044F\u0433\u043D\u0456\u0442\u044C \u0434\u043B\u044F \u0437\u043C\u0456\u043D\u0438 \u0440\u043E\u0437\u043C\u0456\u0440\u0443. \u0421\u0442\u0440\u0456\u043B\u043A\u0438 \u0437\u043C\u0456\u043D\u044E\u044E\u0442\u044C \u0440\u043E\u0437\u043C\u0456\u0440; Home \u0430\u0431\u043E \u043F\u043E\u0434\u0432\u0456\u0439\u043D\u0438\u0439 \u043A\u043B\u0456\u043A \u0441\u043A\u0438\u0434\u0430\u0454 \u0439\u043E\u0433\u043E."
 };
 
 // src/locales/pl.json
@@ -1466,7 +1470,9 @@ var pl_default = {
   "Note name or existing note\u2026": "Nazwa nowej lub istniej\u0105cej notatki\u2026",
   "Create note: {name}": "Utw\xF3rz notatk\u0119: {name}",
   "Use a note name without path separators or reserved characters.": "Podaj nazw\u0119 notatki bez separator\xF3w \u015Bcie\u017Cki i zastrze\u017Conych znak\xF3w.",
-  "Create an embedded note for multiline editing?": "Utworzy\u0107 osadzon\u0105 notatk\u0119 do edycji wielowierszowej?"
+  "Create an embedded note for multiline editing?": "Utworzy\u0107 osadzon\u0105 notatk\u0119 do edycji wielowierszowej?",
+  "Resize node": "Zmie\u0144 rozmiar w\u0119z\u0142a",
+  "Drag to resize. Arrow keys adjust size; Home or double-click resets it.": "Przeci\u0105gnij, aby zmieni\u0107 rozmiar. Strza\u0142ki zmieniaj\u0105 rozmiar; Home lub dwuklik go resetuje."
 };
 
 // src/locales/de.json
@@ -1837,7 +1843,9 @@ var de_default = {
   "Note name or existing note\u2026": "Name einer neuen oder vorhandenen Notiz\u2026",
   "Create note: {name}": "Notiz erstellen: {name}",
   "Use a note name without path separators or reserved characters.": "Verwende einen Notiznamen ohne Pfadtrenner oder reservierte Zeichen.",
-  "Create an embedded note for multiline editing?": "Eine eingebettete Notiz f\xFCr mehrzeilige Bearbeitung erstellen?"
+  "Create an embedded note for multiline editing?": "Eine eingebettete Notiz f\xFCr mehrzeilige Bearbeitung erstellen?",
+  "Resize node": "Knotengr\xF6\xDFe \xE4ndern",
+  "Drag to resize. Arrow keys adjust size; Home or double-click resets it.": "Zum \xC4ndern ziehen. Pfeiltasten passen die Gr\xF6\xDFe an; Home oder Doppelklick setzt sie zur\xFCck."
 };
 
 // src/locales/es.json
@@ -2208,7 +2216,9 @@ var es_default = {
   "Note name or existing note\u2026": "Nombre de una nota nueva o existente\u2026",
   "Create note: {name}": "Crear nota: {name}",
   "Use a note name without path separators or reserved characters.": "Usa un nombre sin separadores de ruta ni caracteres reservados.",
-  "Create an embedded note for multiline editing?": "\xBFCrear una nota incrustada para editar varias l\xEDneas?"
+  "Create an embedded note for multiline editing?": "\xBFCrear una nota incrustada para editar varias l\xEDneas?",
+  "Resize node": "Cambiar tama\xF1o del nodo",
+  "Drag to resize. Arrow keys adjust size; Home or double-click resets it.": "Arrastra para cambiar el tama\xF1o. Las flechas lo ajustan; Inicio o un doble clic lo restablece."
 };
 
 // src/locales/fr.json
@@ -2579,7 +2589,9 @@ var fr_default = {
   "Note name or existing note\u2026": "Nom d\u2019une nouvelle note ou note existante\u2026",
   "Create note: {name}": "Cr\xE9er la note : {name}",
   "Use a note name without path separators or reserved characters.": "Utilisez un nom sans s\xE9parateurs de chemin ni caract\xE8res r\xE9serv\xE9s.",
-  "Create an embedded note for multiline editing?": "Cr\xE9er une note int\xE9gr\xE9e pour la saisie multiligne ?"
+  "Create an embedded note for multiline editing?": "Cr\xE9er une note int\xE9gr\xE9e pour la saisie multiligne ?",
+  "Resize node": "Redimensionner le n\u0153ud",
+  "Drag to resize. Arrow keys adjust size; Home or double-click resets it.": "Faites glisser pour redimensionner. Les fl\xE8ches ajustent la taille ; Home ou un double-clic la r\xE9initialise."
 };
 
 // src/locales/pt-BR.json
@@ -2950,7 +2962,9 @@ var pt_BR_default = {
   "Note name or existing note\u2026": "Nome de uma nota nova ou existente\u2026",
   "Create note: {name}": "Criar nota: {name}",
   "Use a note name without path separators or reserved characters.": "Use um nome sem separadores de caminho ou caracteres reservados.",
-  "Create an embedded note for multiline editing?": "Criar uma nota incorporada para edi\xE7\xE3o em v\xE1rias linhas?"
+  "Create an embedded note for multiline editing?": "Criar uma nota incorporada para edi\xE7\xE3o em v\xE1rias linhas?",
+  "Resize node": "Redimensionar n\xF3",
+  "Drag to resize. Arrow keys adjust size; Home or double-click resets it.": "Arraste para redimensionar. As setas ajustam o tamanho; Home ou clique duplo o redefine."
 };
 
 // src/locales/zh-CN.json
@@ -3321,7 +3335,9 @@ var zh_CN_default = {
   "Note name or existing note\u2026": "\u65B0\u7B14\u8BB0\u540D\u79F0\u6216\u73B0\u6709\u7B14\u8BB0\u2026",
   "Create note: {name}": "\u521B\u5EFA\u7B14\u8BB0\uFF1A{name}",
   "Use a note name without path separators or reserved characters.": "\u8BF7\u8F93\u5165\u4E0D\u542B\u8DEF\u5F84\u5206\u9694\u7B26\u6216\u4FDD\u7559\u5B57\u7B26\u7684\u7B14\u8BB0\u540D\u79F0\u3002",
-  "Create an embedded note for multiline editing?": "\u521B\u5EFA\u5D4C\u5165\u7B14\u8BB0\u4EE5\u8FDB\u884C\u591A\u884C\u7F16\u8F91\uFF1F"
+  "Create an embedded note for multiline editing?": "\u521B\u5EFA\u5D4C\u5165\u7B14\u8BB0\u4EE5\u8FDB\u884C\u591A\u884C\u7F16\u8F91\uFF1F",
+  "Resize node": "\u8C03\u6574\u8282\u70B9\u5927\u5C0F",
+  "Drag to resize. Arrow keys adjust size; Home or double-click resets it.": "\u62D6\u52A8\u4EE5\u8C03\u6574\u5927\u5C0F\u3002\u65B9\u5411\u952E\u8C03\u6574\uFF1BHome \u6216\u53CC\u51FB\u91CD\u7F6E\u3002"
 };
 
 // src/locales/ja.json
@@ -3692,7 +3708,9 @@ var ja_default = {
   "Note name or existing note\u2026": "\u65B0\u3057\u3044\u30CE\u30FC\u30C8\u540D\u3001\u307E\u305F\u306F\u65E2\u5B58\u306E\u30CE\u30FC\u30C8\u2026",
   "Create note: {name}": "\u30CE\u30FC\u30C8\u3092\u4F5C\u6210: {name}",
   "Use a note name without path separators or reserved characters.": "\u30D1\u30B9\u533A\u5207\u308A\u6587\u5B57\u3084\u4E88\u7D04\u6587\u5B57\u3092\u542B\u307E\u306A\u3044\u30CE\u30FC\u30C8\u540D\u3092\u6307\u5B9A\u3057\u3066\u304F\u3060\u3055\u3044\u3002",
-  "Create an embedded note for multiline editing?": "\u8907\u6570\u884C\u3092\u7DE8\u96C6\u3059\u308B\u305F\u3081\u306E\u57CB\u3081\u8FBC\u307F\u30CE\u30FC\u30C8\u3092\u4F5C\u6210\u3057\u307E\u3059\u304B\uFF1F"
+  "Create an embedded note for multiline editing?": "\u8907\u6570\u884C\u3092\u7DE8\u96C6\u3059\u308B\u305F\u3081\u306E\u57CB\u3081\u8FBC\u307F\u30CE\u30FC\u30C8\u3092\u4F5C\u6210\u3057\u307E\u3059\u304B\uFF1F",
+  "Resize node": "\u30CE\u30FC\u30C9\u306E\u30B5\u30A4\u30BA\u3092\u5909\u66F4",
+  "Drag to resize. Arrow keys adjust size; Home or double-click resets it.": "\u30C9\u30E9\u30C3\u30B0\u3067\u30B5\u30A4\u30BA\u3092\u5909\u66F4\u3002\u77E2\u5370\u30AD\u30FC\u3067\u8ABF\u6574\u3057\u3001Home\u307E\u305F\u306F\u30C0\u30D6\u30EB\u30AF\u30EA\u30C3\u30AF\u3067\u30EA\u30BB\u30C3\u30C8\u3057\u307E\u3059\u3002"
 };
 
 // src/locales/ko.json
@@ -4063,7 +4081,9 @@ var ko_default = {
   "Note name or existing note\u2026": "\uC0C8 \uB178\uD2B8 \uC774\uB984 \uB610\uB294 \uAE30\uC874 \uB178\uD2B8\u2026",
   "Create note: {name}": "\uB178\uD2B8 \uB9CC\uB4E4\uAE30: {name}",
   "Use a note name without path separators or reserved characters.": "\uACBD\uB85C \uAD6C\uBD84\uC790\uB098 \uC608\uC57D \uBB38\uC790\uAC00 \uC5C6\uB294 \uB178\uD2B8 \uC774\uB984\uC744 \uC785\uB825\uD558\uC138\uC694.",
-  "Create an embedded note for multiline editing?": "\uC5EC\uB7EC \uC904 \uD3B8\uC9D1\uC744 \uC704\uD55C \uC784\uBCA0\uB4DC \uB178\uD2B8\uB97C \uB9CC\uB4E4\uAE4C\uC694?"
+  "Create an embedded note for multiline editing?": "\uC5EC\uB7EC \uC904 \uD3B8\uC9D1\uC744 \uC704\uD55C \uC784\uBCA0\uB4DC \uB178\uD2B8\uB97C \uB9CC\uB4E4\uAE4C\uC694?",
+  "Resize node": "\uB178\uB4DC \uD06C\uAE30 \uBCC0\uACBD",
+  "Drag to resize. Arrow keys adjust size; Home or double-click resets it.": "\uB4DC\uB798\uADF8\uD558\uC5EC \uD06C\uAE30\uB97C \uBCC0\uACBD\uD558\uC138\uC694. \uBC29\uD5A5\uD0A4\uB85C \uC870\uC808\uD558\uACE0 Home \uB610\uB294 \uB450 \uBC88 \uD074\uB9AD\uC73C\uB85C \uCD08\uAE30\uD654\uD569\uB2C8\uB2E4."
 };
 
 // src/locales/ru.json
@@ -4434,7 +4454,9 @@ var ru_default = {
   "Note name or existing note\u2026": "\u041D\u0430\u0437\u0432\u0430\u043D\u0438\u0435 \u043D\u043E\u0432\u043E\u0439 \u0438\u043B\u0438 \u0441\u0443\u0449\u0435\u0441\u0442\u0432\u0443\u044E\u0449\u0435\u0439 \u0437\u0430\u043C\u0435\u0442\u043A\u0438\u2026",
   "Create note: {name}": "\u0421\u043E\u0437\u0434\u0430\u0442\u044C \u0437\u0430\u043C\u0435\u0442\u043A\u0443: {name}",
   "Use a note name without path separators or reserved characters.": "\u0423\u043A\u0430\u0436\u0438\u0442\u0435 \u043D\u0430\u0437\u0432\u0430\u043D\u0438\u0435 \u0437\u0430\u043C\u0435\u0442\u043A\u0438 \u0431\u0435\u0437 \u0440\u0430\u0437\u0434\u0435\u043B\u0438\u0442\u0435\u043B\u0435\u0439 \u043F\u0443\u0442\u0438 \u0438 \u0437\u0430\u043F\u0440\u0435\u0449\u0451\u043D\u043D\u044B\u0445 \u0441\u0438\u043C\u0432\u043E\u043B\u043E\u0432.",
-  "Create an embedded note for multiline editing?": "\u0421\u043E\u0437\u0434\u0430\u0442\u044C \u0432\u043B\u043E\u0436\u0435\u043D\u043D\u0443\u044E \u0437\u0430\u043C\u0435\u0442\u043A\u0443 \u0434\u043B\u044F \u043C\u043D\u043E\u0433\u043E\u0441\u0442\u0440\u043E\u0447\u043D\u043E\u0433\u043E \u0440\u0435\u0434\u0430\u043A\u0442\u0438\u0440\u043E\u0432\u0430\u043D\u0438\u044F?"
+  "Create an embedded note for multiline editing?": "\u0421\u043E\u0437\u0434\u0430\u0442\u044C \u0432\u043B\u043E\u0436\u0435\u043D\u043D\u0443\u044E \u0437\u0430\u043C\u0435\u0442\u043A\u0443 \u0434\u043B\u044F \u043C\u043D\u043E\u0433\u043E\u0441\u0442\u0440\u043E\u0447\u043D\u043E\u0433\u043E \u0440\u0435\u0434\u0430\u043A\u0442\u0438\u0440\u043E\u0432\u0430\u043D\u0438\u044F?",
+  "Resize node": "\u0418\u0437\u043C\u0435\u043D\u0438\u0442\u044C \u0440\u0430\u0437\u043C\u0435\u0440 \u0443\u0437\u043B\u0430",
+  "Drag to resize. Arrow keys adjust size; Home or double-click resets it.": "\u041F\u043E\u0442\u044F\u043D\u0438\u0442\u0435 \u0434\u043B\u044F \u0438\u0437\u043C\u0435\u043D\u0435\u043D\u0438\u044F \u0440\u0430\u0437\u043C\u0435\u0440\u0430. \u0421\u0442\u0440\u0435\u043B\u043A\u0438 \u043C\u0435\u043D\u044F\u044E\u0442 \u0440\u0430\u0437\u043C\u0435\u0440; Home \u0438\u043B\u0438 \u0434\u0432\u043E\u0439\u043D\u043E\u0439 \u0449\u0435\u043B\u0447\u043E\u043A \u0441\u0431\u0440\u0430\u0441\u044B\u0432\u0430\u0435\u0442 \u0435\u0433\u043E."
 };
 
 // src/i18n.ts
@@ -6184,6 +6206,7 @@ var MapSurface = class {
     this.listen(this.viewport, "pointercancel", (e) => this.pointerUp(e));
     this.listen(this.viewport, "lostpointercapture", (event) => {
       if (event.target === this.viewport) {
+        this.finishResize(false);
         this.clearDrag();
         this.cancelMarquee();
       }
@@ -6217,6 +6240,7 @@ var MapSurface = class {
       if (state) this.editing.latestState = state;
       return;
     }
+    this.finishResize(true);
     this.clearDrag();
     this.cancelMarquee();
     const previous = this.doc;
@@ -6230,10 +6254,12 @@ var MapSurface = class {
         collapsed: [...state.collapsed],
         selected: state.selected,
         focusRoot: state.focusRoot,
-        camera: this.safeCamera(state.camera)
+        camera: this.safeCamera(state.camera),
+        ...state.nodeSizes ? { nodeSizes: { ...state.nodeSizes } } : {}
       };
     }
     this.collapsed = new Set([...state?.collapsed ?? this.collapsed].filter((id) => doc.byId.has(id)));
+    if (this.state.nodeSizes) this.state.nodeSizes = Object.fromEntries(Object.entries(this.state.nodeSizes).filter(([id]) => doc.byId.has(id)));
     if (this.state.focusRoot && !doc.byId.has(this.state.focusRoot)) this.state.focusRoot = null;
     if (this.state.selected && !doc.byId.has(this.state.selected)) {
       let old = previous?.byId.get(this.state.selected);
@@ -6561,6 +6587,7 @@ var MapSurface = class {
     this.stopCoasting();
     if (this.destroyed) return;
     this.destroyed = true;
+    this.finishResize(true);
     this.cancelMarkdownFrame?.();
     this.markdownQueue = [];
     this.container.ownerDocument.defaultView?.clearTimeout(this.settleTimer);
@@ -6713,6 +6740,31 @@ var MapSurface = class {
       if (!entry.started) this.markdownQueue.push(entry);
       if (this.query || content.querySelector(".tvm-search-match")) this.paintSearchMatch(content, this.matches.has(id));
       el.append(content);
+      const resize = this.container.ownerDocument.createElement("button");
+      resize.type = "button";
+      resize.className = "tvm-node-resize";
+      resize.setAttribute("aria-label", t("Resize node"));
+      resize.title = t("Drag to resize. Arrow keys adjust size; Home or double-click resets it.");
+      resize.addEventListener("dblclick", (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        this.setNodeSize(id);
+        this.scheduleLayout();
+        this.emitState();
+      });
+      resize.addEventListener("keydown", (event) => {
+        if (this.editing || !["ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown", "Home"].includes(event.key)) return;
+        event.preventDefault();
+        event.stopPropagation();
+        const pos = this.positions.get(id);
+        if (!pos) return;
+        const size = this.state.nodeSizes?.[id] ?? pos, step = event.shiftKey ? 20 : 5;
+        this.preservedEditAnchor = id;
+        this.setNodeSize(id, event.key === "Home" ? void 0 : { width: size.width + (event.key === "ArrowLeft" ? -step : event.key === "ArrowRight" ? step : 0), height: size.height + (event.key === "ArrowUp" ? -step : event.key === "ArrowDown" ? step : 0) });
+        this.scheduleLayout();
+        this.emitState();
+      });
+      el.append(resize);
       if (node.blockId) {
         const marker = this.container.ownerDocument.createElement("span");
         marker.className = "tvm-node-address";
@@ -6895,11 +6947,21 @@ var MapSurface = class {
     const columns = /* @__PURE__ */ new Map();
     const vertical = this.mode === "vertical";
     const widthMode = this.mode === "map" || vertical ? this.options.getWidthMode?.() ?? "fixed" : "fixed";
+    const sizes = this.mode === "map" || vertical ? this.state.nodeSizes : void 0;
     for (const id of this.visible) {
       const el = this.elements.get(id);
       el.style.height = "";
       el.style.width = widthMode === "fixed" || id === this.editing?.id ? `${WIDTH}px` : "max-content";
       el.style.maxWidth = widthMode === "fixed" ? "" : `${WIDTH}px`;
+      const content = el.querySelector(".tvm-node-content");
+      if (content) {
+        content.style.maxHeight = "";
+        content.style.overflowY = "";
+      }
+      if (sizes?.[id]) {
+        el.style.width = `${sizes[id].width}px`;
+        el.style.maxWidth = "";
+      }
     }
     for (const id of this.visible) {
       const node = this.doc.byId.get(id);
@@ -6907,16 +6969,22 @@ var MapSurface = class {
       levels.set(id, level);
       const fallback = Math.max(MIN_WIDTH, Math.min(WIDTH, this.plainText(node.text).length * 7.5 + 34));
       const measured = this.elements.get(id).offsetWidth;
-      const width2 = widthMode === "fixed" ? WIDTH : measured ? Math.min(WIDTH, measured + 2) : fallback;
+      const width2 = sizes?.[id]?.width ?? (widthMode === "fixed" ? WIDTH : measured ? Math.min(WIDTH, measured + 2) : fallback);
       widths.set(id, width2);
       columns.set(level, Math.max(columns.get(level) ?? 0, width2));
     }
     for (const id of this.visible) {
-      const width2 = widthMode === "column" && !vertical ? columns.get(levels.get(id)) : widths.get(id);
+      const width2 = sizes?.[id]?.width ?? (widthMode === "column" && !vertical ? columns.get(levels.get(id)) : widths.get(id));
       widths.set(id, width2);
       const el = this.elements.get(id);
       el.style.width = `${width2}px`;
       el.style.maxWidth = "";
+      const size = sizes?.[id], content = el.querySelector(".tvm-node-content");
+      if (size && content && id !== this.editing?.id) {
+        const chrome = el.offsetHeight - content.offsetHeight;
+        content.style.maxHeight = `${Math.max(24, size.height - chrome)}px`;
+        content.style.overflowY = "auto";
+      }
     }
     if (this.mode !== "outline") this.fitEditorHeight();
     for (const id of this.visible) {
@@ -7205,7 +7273,7 @@ var MapSurface = class {
     return element?.closest?.(".tvm-node")?.dataset.nodeId ?? null;
   }
   click(event) {
-    if (event.target.closest(".tvm-create-handles, .tvm-create-first")) return;
+    if (event.target.closest(".tvm-create-handles, .tvm-create-first, .tvm-node-resize")) return;
     if (this.editing) {
       if (Date.now() < this.suppressClickUntil) {
         event.preventDefault();
@@ -7329,6 +7397,12 @@ var MapSurface = class {
   }
   handleKeydown(event) {
     if (this.destroyed || event.defaultPrevented) return false;
+    if (event.key === "Escape" && this.resizing) {
+      event.preventDefault();
+      event.stopPropagation();
+      this.finishResize(true);
+      return true;
+    }
     if (event.key === "Escape" && this.handles.cancelIfActive()) {
       event.preventDefault();
       event.stopPropagation();
@@ -7468,6 +7542,10 @@ var MapSurface = class {
     return true;
   }
   wheel(event) {
+    if (this.resizing) {
+      event.preventDefault();
+      return;
+    }
     this.preservedEditAnchor = void 0;
     this.stopCoasting();
     if (event.target.closest(".tvm-inline-editor")) return;
@@ -7495,8 +7573,26 @@ var MapSurface = class {
     this.applyCamera(true);
   }
   pointerDown(event) {
+    if (this.resizing) {
+      event.preventDefault();
+      return;
+    }
     this.preservedEditAnchor = void 0;
     this.stopCoasting();
+    if (event.target.closest(".tvm-node-resize")) {
+      event.preventDefault();
+      event.stopPropagation();
+      const id2 = this.nodeFrom(event.target), position = id2 ? this.positions.get(id2) : void 0;
+      if (!id2 || !position || this.editing || event.button !== 0 || !["map", "vertical"].includes(this.mode)) return;
+      this.select(id2);
+      this.resizing = { id: id2, pointer: event.pointerId, x: event.clientX, y: event.clientY, width: position.width, height: position.height, previous: this.state.nodeSizes?.[id2] };
+      this.viewport.classList.add("is-resizing-node");
+      try {
+        this.viewport.setPointerCapture(event.pointerId);
+      } catch {
+      }
+      return;
+    }
     if (event.target.closest(".tvm-create-handles, .tvm-create-first")) return;
     if (this.editing && event.target.closest(".tvm-inline-editor")) return;
     if (this.editing) event.preventDefault();
@@ -7577,6 +7673,15 @@ var MapSurface = class {
     }
   }
   pointerMove(event) {
+    if (this.resizing) {
+      if (this.resizing.pointer !== event.pointerId) return;
+      event.preventDefault();
+      const resize = this.resizing;
+      this.preservedEditAnchor = resize.id;
+      this.setNodeSize(resize.id, { width: resize.width + (event.clientX - resize.x) / this.state.camera.scale, height: resize.height + (event.clientY - resize.y) / this.state.camera.scale });
+      this.scheduleLayout();
+      return;
+    }
     if (this.touches.has(event.pointerId)) this.touches.set(event.pointerId, { x: event.clientX, y: event.clientY });
     if (this.touchHold?.pointer === event.pointerId && Math.hypot(event.clientX - this.touchHold.x, event.clientY - this.touchHold.y) > 4) this.cancelTouchHold();
     if (this.marquee?.pointer === event.pointerId) {
@@ -7752,6 +7857,10 @@ var MapSurface = class {
     }
   }
   pointerUp(event) {
+    if (this.resizing?.pointer === event.pointerId) {
+      this.finishResize(event.type === "pointercancel");
+      return;
+    }
     if (this.touchHold?.pointer === event.pointerId) this.cancelTouchHold();
     if (event.type === "pointercancel" && this.marquee?.pointer === event.pointerId) {
       this.cancelMarquee();
@@ -7940,6 +8049,30 @@ var MapSurface = class {
     if (!this.touchHold) return;
     this.container.ownerDocument.defaultView?.clearTimeout(this.touchHold.timer);
     this.touchHold = void 0;
+  }
+  setNodeSize(id, size) {
+    const sizes = { ...this.state.nodeSizes };
+    if (size) sizes[id] = { width: Math.max(MIN_WIDTH, Math.min(2400, size.width)), height: Math.max(40, Math.min(2400, size.height)) };
+    else delete sizes[id];
+    if (Object.keys(sizes).length) this.state.nodeSizes = sizes;
+    else delete this.state.nodeSizes;
+  }
+  finishResize(cancel) {
+    const resize = this.resizing;
+    if (!resize) return;
+    this.resizing = void 0;
+    if (cancel) this.setNodeSize(resize.id, resize.previous);
+    this.suppressClickUntil = Date.now() + 250;
+    this.preservedEditAnchor = resize.id;
+    this.viewport.classList.remove("is-resizing-node");
+    try {
+      if (this.viewport.hasPointerCapture(resize.pointer)) this.viewport.releasePointerCapture(resize.pointer);
+    } catch {
+    }
+    if (!this.destroyed) {
+      this.scheduleLayout();
+      this.emitState();
+    }
   }
   clearDrag() {
     this.cancelTouchHold();
@@ -9316,11 +9449,16 @@ function parseState(value) {
     if (!data || !Array.isArray(data.collapsed) || !data.camera) return void 0;
     const { x, y, scale } = data.camera;
     if (![x, y, scale].every((v) => typeof v === "number" && Number.isFinite(v))) return void 0;
+    const nodeSizes = Object.fromEntries(Object.entries(data.nodeSizes && typeof data.nodeSizes === "object" && !Array.isArray(data.nodeSizes) ? data.nodeSizes : {}).slice(0, 2e3).flatMap(([id, value2]) => {
+      const size = value2;
+      return size && typeof size.width === "number" && Number.isFinite(size.width) && typeof size.height === "number" && Number.isFinite(size.height) ? [[id, { width: Math.max(84, Math.min(2400, size.width)), height: Math.max(40, Math.min(2400, size.height)) }]] : [];
+    }));
     return {
       collapsed: data.collapsed.filter((id) => typeof id === "string").slice(0, 2e4),
       selected: typeof data.selected === "string" ? data.selected : null,
       focusRoot: typeof data.focusRoot === "string" ? data.focusRoot : null,
-      camera: { x, y, scale: Math.max(MIN_SCALE, Math.min(MAX_SCALE, scale)) }
+      camera: { x, y, scale: Math.max(MIN_SCALE, Math.min(MAX_SCALE, scale)) },
+      ...Object.keys(nodeSizes).length ? { nodeSizes } : {}
     };
   } catch {
     return void 0;
@@ -9346,6 +9484,10 @@ function serializeViewState(doc, state) {
     return node.id;
   };
   const saved = { ...state, collapsed: state.collapsed.map(translate).filter((id) => id !== null), selected: translate(state.selected), focusRoot: translate(state.focusRoot) };
+  if (state.nodeSizes) saved.nodeSizes = Object.fromEntries(Object.entries(state.nodeSizes).slice(0, 2e3).flatMap(([id, size]) => {
+    const target = translate(id);
+    return target ? [[target, size]] : [];
+  }));
   return JSON.stringify({ ...saved, refs });
 }
 function restoreViewState(doc, value) {
@@ -9367,7 +9509,12 @@ function restoreViewState(doc, value) {
     const sameParent = matches.filter((node) => (node.parentId ? label(doc.byId.get(node.parentId)) : "") === ref.parent);
     return sameParent.length === 1 ? sameParent[0].id : null;
   };
-  return { ...saved, collapsed: saved.collapsed.map(translate).filter((id) => id !== null), selected: translate(saved.selected), focusRoot: translate(saved.focusRoot) };
+  const restored = { ...saved, collapsed: saved.collapsed.map(translate).filter((id) => id !== null), selected: translate(saved.selected), focusRoot: translate(saved.focusRoot) };
+  if (saved.nodeSizes) restored.nodeSizes = Object.fromEntries(Object.entries(saved.nodeSizes).flatMap(([id, size]) => {
+    const target = translate(id);
+    return target ? [[target, size]] : [];
+  }));
+  return restored;
 }
 var History = class {
   constructor() {

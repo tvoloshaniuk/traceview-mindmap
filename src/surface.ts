@@ -4,7 +4,7 @@
  * See LICENSE, LICENSING.md and OBSIDIAN-HOST-PERMISSION.md.
  */
 import { t } from './i18n';
-import type { Camera, MapDocument, MapLayout, MapNode, MapSurfaceOptions, MapViewState, NodeAction, DropPosition } from './types';
+import type { Camera, MapDocument, MapLayout, MapNode, MapSurfaceOptions, MapViewState, NodeAction, DropPosition, NodeSize } from './types';
 import { canDropBranches } from './core';
 import { MIN_SCALE, MAX_SCALE } from './types';
 import { DEFAULT_HOTKEYS, resolveHotkey, type HotkeyAction } from './hotkeys';
@@ -70,6 +70,7 @@ export class MapSurface {
   private coastFrame: number | null = null;
   private pinch: { distance: number; scale: number; worldX: number; worldY: number } | null = null;
   private suppressClickUntil = 0;
+  private resizing?: {id: string; pointer: number; x: number; y: number; width: number; height: number; previous?: NodeSize};
   private bounds = { width: 0, height: 0 };
   private mode: MapLayout = 'map';
   private editing?: { id: string; editor: InlineEditor; original: MapDocument; state: MapViewState; latest?: MapDocument; latestState?: MapViewState; embedded?: { slot: HTMLElement; restore: () => void } };
@@ -139,7 +140,7 @@ export class MapSurface {
     this.listen(this.viewport, 'pointermove', (e) => this.pointerMove(e as PointerEvent));
     this.listen(this.viewport, 'pointerup', (e) => this.pointerUp(e as PointerEvent));
     this.listen(this.viewport, 'pointercancel', (e) => this.pointerUp(e as PointerEvent));
-    this.listen(this.viewport, 'lostpointercapture', event => { if (event.target === this.viewport) { this.clearDrag(); this.cancelMarquee(); } });
+    this.listen(this.viewport, 'lostpointercapture', event => { if (event.target === this.viewport) { this.finishResize(false); this.clearDrag(); this.cancelMarquee(); } });
     this.listen(this.nodeLayer, 'load', () => this.scheduleContentLayout(), { capture: true });
     this.listen(d, 'pointerdown', (e) => { if (this.menu && !this.menu.contains(e.target as Node)) this.closeMenu(); });
     const Observer = d.defaultView?.ResizeObserver;
@@ -160,6 +161,7 @@ export class MapSurface {
   update(doc: MapDocument, state?: MapViewState): void {
     if (this.destroyed) return;
     if (this.editing) { this.editing.latest = doc; if (state) this.editing.latestState = state; return; }
+    this.finishResize(true);
     this.clearDrag(); this.cancelMarquee();
     const previous = this.doc;
     if (state) { this.selection.clear(); this.hasTouchMarqueeSelection = false; }
@@ -168,9 +170,11 @@ export class MapSurface {
       this.state = {
         collapsed: [...state.collapsed], selected: state.selected, focusRoot: state.focusRoot,
         camera: this.safeCamera(state.camera),
+        ...(state.nodeSizes ? {nodeSizes: {...state.nodeSizes}} : {}),
       };
     }
     this.collapsed = new Set([...(state?.collapsed ?? this.collapsed)].filter((id) => doc.byId.has(id)));
+    if (this.state.nodeSizes) this.state.nodeSizes = Object.fromEntries(Object.entries(this.state.nodeSizes).filter(([id]) => doc.byId.has(id)));
     if (this.state.focusRoot && !doc.byId.has(this.state.focusRoot)) this.state.focusRoot = null;
     if (this.state.selected && !doc.byId.has(this.state.selected)) {
       let old = previous?.byId.get(this.state.selected);
@@ -472,6 +476,7 @@ export class MapSurface {
     this.stopCoasting();
     if (this.destroyed) return;
     this.destroyed = true;
+    this.finishResize(true);
     this.cancelMarkdownFrame?.();
     this.markdownQueue = [];
     this.container.ownerDocument.defaultView?.clearTimeout(this.settleTimer);
@@ -621,6 +626,21 @@ export class MapSurface {
       if (!entry.started) this.markdownQueue.push(entry);
       if (this.query || content.querySelector('.tvm-search-match')) this.paintSearchMatch(content, this.matches.has(id));
       el.append(content);
+      const resize = this.container.ownerDocument.createElement('button');
+      resize.type = 'button'; resize.className = 'tvm-node-resize';
+      resize.setAttribute('aria-label', t("Resize node"));
+      resize.title = t("Drag to resize. Arrow keys adjust size; Home or double-click resets it.");
+      resize.addEventListener('dblclick', event => { event.preventDefault(); event.stopPropagation(); this.setNodeSize(id); this.scheduleLayout(); this.emitState(); });
+      resize.addEventListener('keydown', event => {
+        if (this.editing || !['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', 'Home'].includes(event.key)) return;
+        event.preventDefault(); event.stopPropagation();
+        const pos = this.positions.get(id); if (!pos) return;
+        const size = this.state.nodeSizes?.[id] ?? pos, step = event.shiftKey ? 20 : 5;
+        this.preservedEditAnchor = id;
+        this.setNodeSize(id, event.key === 'Home' ? undefined : {width: size.width + (event.key === 'ArrowLeft' ? -step : event.key === 'ArrowRight' ? step : 0), height: size.height + (event.key === 'ArrowUp' ? -step : event.key === 'ArrowDown' ? step : 0)});
+        this.scheduleLayout(); this.emitState();
+      });
+      el.append(resize);
       if (node.blockId) {
         const marker = this.container.ownerDocument.createElement('span');
         marker.className = 'tvm-node-address'; marker.textContent = '🔗'; marker.title = t("Node address: ^") + node.blockId;
@@ -805,11 +825,15 @@ export class MapSurface {
     const columns = new Map<number, number>();
     const vertical = this.mode === 'vertical';
     const widthMode = this.mode === 'map' || vertical ? this.options.getWidthMode?.() ?? 'fixed' : 'fixed';
+    const sizes = this.mode === 'map' || vertical ? this.state.nodeSizes : undefined;
     for (const id of this.visible) {
       const el = this.elements.get(id)!;
       el.style.height = '';
       el.style.width = widthMode === 'fixed' || id === this.editing?.id ? `${WIDTH}px` : 'max-content';
       el.style.maxWidth = widthMode === 'fixed' ? '' : `${WIDTH}px`;
+      const content = el.querySelector<HTMLElement>('.tvm-node-content');
+      if (content) { content.style.maxHeight = ''; content.style.overflowY = ''; }
+      if (sizes?.[id]) { el.style.width = `${sizes[id].width}px`; el.style.maxWidth = ''; }
     }
     for (const id of this.visible) {
       const node = this.doc.byId.get(id)!;
@@ -819,16 +843,22 @@ export class MapSurface {
       // offsetWidth rounds to an integer; leave room for fractional text metrics
       // so a natural-width label cannot wrap merely because the zoom changed.
       const measured = this.elements.get(id)!.offsetWidth;
-      const width = widthMode === 'fixed' ? WIDTH : measured ? Math.min(WIDTH, measured + 2) : fallback;
+      const width = sizes?.[id]?.width ?? (widthMode === 'fixed' ? WIDTH : measured ? Math.min(WIDTH, measured + 2) : fallback);
       widths.set(id, width);
       columns.set(level, Math.max(columns.get(level) ?? 0, width));
     }
     for (const id of this.visible) {
-      const width = widthMode === 'column' && !vertical ? columns.get(levels.get(id)!)! : widths.get(id)!;
+      const width = sizes?.[id]?.width ?? (widthMode === 'column' && !vertical ? columns.get(levels.get(id)!)! : widths.get(id)!);
       widths.set(id, width);
       const el = this.elements.get(id)!;
       el.style.width = `${width}px`;
       el.style.maxWidth = '';
+      const size = sizes?.[id], content = el.querySelector<HTMLElement>('.tvm-node-content');
+      if (size && content && id !== this.editing?.id) {
+        const chrome = el.offsetHeight - content.offsetHeight;
+        content.style.maxHeight = `${Math.max(24, size.height - chrome)}px`;
+        content.style.overflowY = 'auto';
+      }
     }
     if (this.mode !== 'outline') this.fitEditorHeight();
     for (const id of this.visible) {
@@ -1127,7 +1157,7 @@ export class MapSurface {
   }
 
   private click(event: MouseEvent): void {
-    if ((event.target as Element).closest('.tvm-create-handles, .tvm-create-first')) return;
+    if ((event.target as Element).closest('.tvm-create-handles, .tvm-create-first, .tvm-node-resize')) return;
     if (this.editing) {
       if (Date.now() < this.suppressClickUntil) { event.preventDefault(); return; }
       const target = event.target as Element;
@@ -1227,6 +1257,7 @@ export class MapSurface {
 
   handleKeydown(event: KeyboardEvent): boolean {
     if (this.destroyed || event.defaultPrevented) return false;
+    if (event.key === 'Escape' && this.resizing) { event.preventDefault(); event.stopPropagation(); this.finishResize(true); return true; }
     if (event.key === 'Escape' && this.handles.cancelIfActive()) { event.preventDefault(); event.stopPropagation(); return true; }
     if (this.editing) {
       if (resolveHotkey(event, this.options.getHotkeys?.()) !== 'find') return this.editing.editor.handleKeydown(event);
@@ -1325,6 +1356,7 @@ export class MapSurface {
   }
 
   private wheel(event: WheelEvent): void {
+    if (this.resizing) { event.preventDefault(); return; }
     this.preservedEditAnchor = undefined;
     this.stopCoasting();
     if ((event.target as Element).closest('.tvm-inline-editor')) return;
@@ -1355,8 +1387,19 @@ export class MapSurface {
   }
 
   private pointerDown(event: PointerEvent): void {
+    if (this.resizing) { event.preventDefault(); return; }
     this.preservedEditAnchor = undefined;
     this.stopCoasting();
+    if ((event.target as Element).closest('.tvm-node-resize')) {
+      event.preventDefault(); event.stopPropagation();
+      const id = this.nodeFrom(event.target), position = id ? this.positions.get(id) : undefined;
+      if (!id || !position || this.editing || event.button !== 0 || !['map', 'vertical'].includes(this.mode)) return;
+      this.select(id);
+      this.resizing = {id, pointer: event.pointerId, x: event.clientX, y: event.clientY, width: position.width, height: position.height, previous: this.state.nodeSizes?.[id]};
+      this.viewport.classList.add('is-resizing-node');
+      try { this.viewport.setPointerCapture(event.pointerId); } catch { /* The pointer may already have ended. */ }
+      return;
+    }
     if ((event.target as Element).closest('.tvm-create-handles, .tvm-create-first')) return;
     if (this.editing && (event.target as Element).closest('.tvm-inline-editor')) return;
     if (this.editing) event.preventDefault();
@@ -1428,6 +1471,15 @@ export class MapSurface {
   }
 
   private pointerMove(event: PointerEvent): void {
+    if (this.resizing) {
+      if (this.resizing.pointer !== event.pointerId) return;
+      event.preventDefault();
+      const resize = this.resizing;
+      this.preservedEditAnchor = resize.id;
+      this.setNodeSize(resize.id, {width: resize.width + (event.clientX - resize.x) / this.state.camera.scale, height: resize.height + (event.clientY - resize.y) / this.state.camera.scale});
+      this.scheduleLayout();
+      return;
+    }
     if (this.touches.has(event.pointerId)) this.touches.set(event.pointerId, { x: event.clientX, y: event.clientY });
     if (this.touchHold?.pointer === event.pointerId && Math.hypot(event.clientX - this.touchHold.x, event.clientY - this.touchHold.y) > 4) this.cancelTouchHold();
     if (this.marquee?.pointer === event.pointerId) {
@@ -1584,6 +1636,7 @@ export class MapSurface {
   }
 
   private pointerUp(event: PointerEvent): void {
+    if (this.resizing?.pointer === event.pointerId) { this.finishResize(event.type === 'pointercancel'); return; }
     if (this.touchHold?.pointer === event.pointerId) this.cancelTouchHold();
     if (event.type === 'pointercancel' && this.marquee?.pointer === event.pointerId) { this.cancelMarquee(); return; }
     if (this.marquee?.pointer === event.pointerId) {
@@ -1750,6 +1803,24 @@ export class MapSurface {
     this.container.ownerDocument.defaultView?.clearTimeout(this.touchHold.timer); this.touchHold = undefined;
   }
 
+  private setNodeSize(id: string, size?: NodeSize): void {
+    const sizes = {...this.state.nodeSizes};
+    if (size) sizes[id] = {width: Math.max(MIN_WIDTH, Math.min(2400, size.width)), height: Math.max(40, Math.min(2400, size.height))};
+    else delete sizes[id];
+    if (Object.keys(sizes).length) this.state.nodeSizes = sizes;
+    else delete this.state.nodeSizes;
+  }
+  private finishResize(cancel: boolean): void {
+    const resize = this.resizing;
+    if (!resize) return;
+    this.resizing = undefined;
+    if (cancel) this.setNodeSize(resize.id, resize.previous);
+    this.suppressClickUntil = Date.now() + 250;
+    this.preservedEditAnchor = resize.id;
+    this.viewport.classList.remove('is-resizing-node');
+    try { if (this.viewport.hasPointerCapture(resize.pointer)) this.viewport.releasePointerCapture(resize.pointer); } catch { /* Capture may already have ended. */ }
+    if (!this.destroyed) { this.scheduleLayout(); this.emitState(); }
+  }
   private clearDrag(): void {
     this.cancelTouchHold();
     if (this.dragScrollFrame !== null) this.viewport.ownerDocument.defaultView?.cancelAnimationFrame(this.dragScrollFrame);

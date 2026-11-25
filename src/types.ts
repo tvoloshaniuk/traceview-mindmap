@@ -30,11 +30,13 @@ export const MIN_SCALE = 0.15;
 export const MAX_SCALE = 32;
 export type WidthMode = 'fixed' | 'content' | 'column';
 export type DropPosition = 'before' | 'after' | 'child';
+export interface NodeSize { width: number; height: number }
 export interface MapViewState {
   collapsed: string[];
   selected: string | null;
   camera: Camera;
   focusRoot: string | null;
+  nodeSizes?: Record<string, NodeSize>;
 }
 export type NodeAction = 'node-backlinks' | 'remove-node-address' | 'copy-node-link' | 'copy-node-text' | 'completed-bottom' | 'node-note' | 'convert-node-note' | 'attach-node-note' | 'node-note-options' | 'edit' | 'add-child' | 'add-sibling' | 'add-sibling-before' | 'add-parent' | 'delete' | 'move-up' | 'move-down' | 'indent' | 'outdent' | 'copy' | 'copy-node-labels' | 'cut' | 'paste' | 'paste-after' | 'toggle-task' | 'make-step' | 'make-dated' | 'make-question' | 'source' | 'insert-template' | 'undo' | 'redo';
 export interface MapSurfaceOptions {

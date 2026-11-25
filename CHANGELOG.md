@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.0.39
+
+### Added
+
+- Resize individual nodes in horizontal and vertical maps by dragging their lower-right corner. Width reflows the content without scaling text; height limits long content with scrolling and shrinks naturally for short content.
+- Save manual dimensions in device-local view state, preserving Markdown and synced files. Restore dimensions after reopening and keep them attached to node identities.
+- Reset a manual size with a double click or Home on its handle; arrow keys adjust dimensions. Escape or pointer cancellation restores the previous size. Outline and Table retain their own layouts.
+
 ## 1.0.38
 
 ### Changed

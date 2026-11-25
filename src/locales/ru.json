@@ -365,5 +365,7 @@
   "Note name or existing note…": "Название новой или существующей заметки…",
   "Create note: {name}": "Создать заметку: {name}",
   "Use a note name without path separators or reserved characters.": "Укажите название заметки без разделителей пути и запрещённых символов.",
-  "Create an embedded note for multiline editing?": "Создать вложенную заметку для многострочного редактирования?"
+  "Create an embedded note for multiline editing?": "Создать вложенную заметку для многострочного редактирования?",
+  "Resize node": "Изменить размер узла",
+  "Drag to resize. Arrow keys adjust size; Home or double-click resets it.": "Потяните для изменения размера. Стрелки меняют размер; Home или двойной щелчок сбрасывает его."
 }

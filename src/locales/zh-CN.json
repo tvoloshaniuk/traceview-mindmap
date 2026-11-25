@@ -365,5 +365,7 @@
   "Note name or existing note…": "新笔记名称或现有笔记…",
   "Create note: {name}": "创建笔记：{name}",
   "Use a note name without path separators or reserved characters.": "请输入不含路径分隔符或保留字符的笔记名称。",
-  "Create an embedded note for multiline editing?": "创建嵌入笔记以进行多行编辑？"
+  "Create an embedded note for multiline editing?": "创建嵌入笔记以进行多行编辑？",
+  "Resize node": "调整节点大小",
+  "Drag to resize. Arrow keys adjust size; Home or double-click resets it.": "拖动以调整大小。方向键调整；Home 或双击重置。"
 }

@@ -898,3 +898,14 @@ test('double clicking an embedded note preserves a parent draft when its save fa
   assert.equal(opened,0);assert.equal(f.surface.isEditing(),true);assert.equal(input.value,'Unsaved parent ![[Note]]');
   assert.match(f.host.querySelector('.tvm-inline-error')!.textContent!,/External change/);
 });
+
+test('corner resizing stores local dimensions without editing Markdown, and supports cancel and reset', t => {
+  const f=fixture(t,'- Root\n- Other\n');const id=f.id('Root'),source=f.doc.source;
+  const handle=f.element('Root').querySelector('.tvm-node-resize')!;
+  f.pointer('pointerdown',handle,7,10,10);f.pointer('pointermove',f.viewport,7,110,50);f.flush();f.pointer('pointerup',f.viewport,7,110,50);
+  const first=f.surface.getState().nodeSizes![id];assert.equal(first.width,428);assert.ok(first.height>=40);assert.equal(f.doc.source,source);assert.equal(f.actions.length,0);
+  f.pointer('pointerdown',handle,8,10,10);f.pointer('pointermove',f.viewport,8,210,50);f.key('Escape');f.flush();
+  assert.deepEqual(f.surface.getState().nodeSizes![id],first);
+  handle.dispatchEvent(new f.dom.window.KeyboardEvent('keydown',{key:'ArrowRight',bubbles:true,cancelable:true}));f.flush();assert.equal(f.surface.getState().nodeSizes![id].width,433);
+  handle.dispatchEvent(new f.dom.window.MouseEvent('dblclick',{bubbles:true,cancelable:true}));f.flush();assert.equal(f.surface.getState().nodeSizes,undefined);assert.equal(f.doc.source,source);
+});

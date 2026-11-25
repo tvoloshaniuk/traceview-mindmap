@@ -365,5 +365,7 @@
   "Note name or existing note…": "Nombre de una nota nueva o existente…",
   "Create note: {name}": "Crear nota: {name}",
   "Use a note name without path separators or reserved characters.": "Usa un nombre sin separadores de ruta ni caracteres reservados.",
-  "Create an embedded note for multiline editing?": "¿Crear una nota incrustada para editar varias líneas?"
+  "Create an embedded note for multiline editing?": "¿Crear una nota incrustada para editar varias líneas?",
+  "Resize node": "Cambiar tamaño del nodo",
+  "Drag to resize. Arrow keys adjust size; Home or double-click resets it.": "Arrastra para cambiar el tamaño. Las flechas lo ajustan; Inicio o un doble clic lo restablece."
 }

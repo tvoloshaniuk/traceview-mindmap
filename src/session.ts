@@ -17,11 +17,17 @@ export function parseState(value: string | null): MapViewState | undefined {
     if (!data || !Array.isArray(data.collapsed) || !data.camera) return undefined;
     const { x, y, scale } = data.camera;
     if (![x, y, scale].every(v => typeof v === 'number' && Number.isFinite(v))) return undefined;
+    const nodeSizes = Object.fromEntries(Object.entries(data.nodeSizes && typeof data.nodeSizes === 'object' && !Array.isArray(data.nodeSizes) ? data.nodeSizes : {}).slice(0, 2000).flatMap(([id, value]) => {
+      const size = value as {width?: unknown; height?: unknown} | null;
+      return size && typeof size.width === 'number' && Number.isFinite(size.width) && typeof size.height === 'number' && Number.isFinite(size.height)
+        ? [[id, {width: Math.max(84, Math.min(2400, size.width)), height: Math.max(40, Math.min(2400, size.height))}]] : [];
+    }));
     return {
       collapsed: data.collapsed.filter((id: unknown) => typeof id === 'string').slice(0, 20000),
       selected: typeof data.selected === 'string' ? data.selected : null,
       focusRoot: typeof data.focusRoot === 'string' ? data.focusRoot : null,
-      camera: { x, y, scale: Math.max(MIN_SCALE, Math.min(MAX_SCALE, scale)) }
+      camera: { x, y, scale: Math.max(MIN_SCALE, Math.min(MAX_SCALE, scale)) },
+      ...(Object.keys(nodeSizes).length ? {nodeSizes} : {}),
     };
   } catch { return undefined; }
 }
@@ -50,6 +56,9 @@ export function serializeViewState(doc: MapDocument, state: MapViewState): strin
     return node.id;
   };
   const saved: MapViewState = { ...state, collapsed: state.collapsed.map(translate).filter((id): id is string => id !== null), selected: translate(state.selected), focusRoot: translate(state.focusRoot) };
+  if (state.nodeSizes) saved.nodeSizes = Object.fromEntries(Object.entries(state.nodeSizes).slice(0, 2000).flatMap(([id, size]) => {
+    const target = translate(id); return target ? [[target, size]] : [];
+  }));
   return JSON.stringify({ ...saved, refs });
 }
 
@@ -68,7 +77,11 @@ export function restoreViewState(doc: MapDocument, value: string | null): MapVie
     const sameParent = matches.filter(node => (node.parentId ? label(doc.byId.get(node.parentId)!) : '') === ref.parent);
     return sameParent.length === 1 ? sameParent[0].id : null;
   };
-  return { ...saved, collapsed: saved.collapsed.map(translate).filter((id): id is string => id !== null), selected: translate(saved.selected), focusRoot: translate(saved.focusRoot) };
+  const restored = { ...saved, collapsed: saved.collapsed.map(translate).filter((id): id is string => id !== null), selected: translate(saved.selected), focusRoot: translate(saved.focusRoot) };
+  if (saved.nodeSizes) restored.nodeSizes = Object.fromEntries(Object.entries(saved.nodeSizes).flatMap(([id, size]) => {
+    const target = translate(id); return target ? [[target, size]] : [];
+  }));
+  return restored;
 }
 
 export class History {

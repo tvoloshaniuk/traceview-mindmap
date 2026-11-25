@@ -60,3 +60,15 @@ test('external ancestor rename while closed restores unique folded branch labels
   const fresh = parseMap('- Different root\n  - Inserted sibling\n  - Branch\n    - Leaf\n');
   assert.deepEqual(restoreViewState(fresh, saved)!.collapsed, [fresh.nodes[2].id]);
 });
+
+test('manual node sizes survive canonical identity changes and reject malformed dimensions', () => {
+  const before=parseMap('- Original\n- Other\n');const id=before.nodes[0].id;
+  const edited=parseMap(editNode(before,id,'Renamed'),before);
+  const state={collapsed:[],selected:id,focusRoot:null,camera:{x:0,y:0,scale:1},nodeSizes:{[id]:{width:500,height:120}}};
+  const serialized=serializeViewState(edited,state), restored=restoreViewState(parseMap(edited.source),serialized)!;
+  const canonical=parseMap(edited.source).nodes[0].id;
+  assert.deepEqual(restored.nodeSizes,{[canonical]:{width:500,height:120}});
+  assert.equal(edited.source,'- Renamed\n- Other\n');
+  const checked=parseState(JSON.stringify({...state,nodeSizes:{bad:{width:'500',height:100},huge:{width:1e6,height:-3},nil:null}}))!;
+  assert.deepEqual(checked.nodeSizes,{huge:{width:2400,height:40}});
+});

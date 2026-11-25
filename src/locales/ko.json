@@ -365,5 +365,7 @@
   "Note name or existing note…": "새 노트 이름 또는 기존 노트…",
   "Create note: {name}": "노트 만들기: {name}",
   "Use a note name without path separators or reserved characters.": "경로 구분자나 예약 문자가 없는 노트 이름을 입력하세요.",
-  "Create an embedded note for multiline editing?": "여러 줄 편집을 위한 임베드 노트를 만들까요?"
+  "Create an embedded note for multiline editing?": "여러 줄 편집을 위한 임베드 노트를 만들까요?",
+  "Resize node": "노드 크기 변경",
+  "Drag to resize. Arrow keys adjust size; Home or double-click resets it.": "드래그하여 크기를 변경하세요. 방향키로 조절하고 Home 또는 두 번 클릭으로 초기화합니다."
 }
