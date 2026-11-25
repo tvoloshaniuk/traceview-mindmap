@@ -8634,6 +8634,55 @@ var MapSurface = class {
   }
 };
 
+// src/map-preview.ts
+function renderMapPreview(container, doc, target, resolve) {
+  const document = container.ownerDocument;
+  const preview = document.createElement("div");
+  preview.className = "tvm-embedded-map";
+  container.append(preview);
+  const link = (parent, href, text) => {
+    const anchor2 = document.createElement("a");
+    anchor2.className = "internal-link";
+    anchor2.textContent = text;
+    anchor2.setAttribute("href", href);
+    anchor2.dataset.href = href;
+    parent.append(anchor2);
+  };
+  let remaining = 24, drawn = 0;
+  const draw = (parent, ids, depth) => {
+    for (const id of ids) {
+      if (remaining <= 0) break;
+      const node = doc.byId.get(id);
+      if (!node) continue;
+      remaining--;
+      drawn++;
+      const branch = document.createElement("div");
+      branch.className = "tvm-embedded-map-branch";
+      parent.append(branch);
+      const label2 = document.createElement("div");
+      label2.className = "tvm-embedded-map-label";
+      branch.append(label2);
+      let offset = 0;
+      for (const match of node.text.matchAll(/!?\[\[([^\]#|]+(?:#[^\]|]+)?)(?:\|([^\]]+))?\]\]/g)) {
+        label2.append(node.text.slice(offset, match.index));
+        const href = resolve(match[1]);
+        if (href) link(label2, href, match[2] ?? match[1]);
+        else label2.append(match[2] ?? match[1]);
+        offset = match.index + match[0].length;
+      }
+      label2.append(node.text.slice(offset) || (offset ? "" : t("Untitled")));
+      if (depth < 3 && node.children.length && remaining > 0) {
+        const children = document.createElement("div");
+        children.className = "tvm-embedded-map-children";
+        branch.append(children);
+        draw(children, node.children, depth + 1);
+      }
+    }
+  };
+  draw(preview, doc.roots, 0);
+  if (drawn < doc.nodes.length) link(preview, target, "\u2026");
+}
+
 // src/queue-controls.ts
 function queueExclusions(value) {
   return value.split(/\r?\n/).map((term) => term.trim().toLocaleLowerCase()).filter(Boolean);
@@ -10215,9 +10264,62 @@ var TraceViewMindmap = class extends import_obsidian5.Plugin {
     this.autoTimers = /* @__PURE__ */ new Map();
     this.nativeLinkTargets = /* @__PURE__ */ new WeakMap();
     this.opening = /* @__PURE__ */ new WeakSet();
+    this.markdownMapPreviews = /* @__PURE__ */ new Set();
+    this.previewDocuments = /* @__PURE__ */ new WeakMap();
+  }
+  refreshMarkdownMapPreviews() {
+    for (const child of this.markdownMapPreviews) void child.refresh();
   }
   async onload() {
     const saved = await this.loadData();
+    this.registerMarkdownPostProcessor(async (element, context) => {
+      const sourceFile = this.app.metadataCache.getFirstLinkpathDest(context.sourcePath, context.sourcePath);
+      if (sourceFile && this.isMap(sourceFile)) {
+        const container = context.containerEl;
+        const nativeEmbed = typeof container?.closest === "function" ? container.closest(".markdown-embed-content") : null;
+        if (nativeEmbed) {
+          const nativeTarget = nativeEmbed.closest(".internal-embed")?.getAttribute("src") ?? "";
+          if ((0, import_obsidian5.parseLinktext)(nativeTarget).subpath) return;
+          const info = context.getSectionInfo(element);
+          if (!info) return;
+          element.empty();
+          let cached = this.previewDocuments.get(container);
+          if (!cached || cached.mtime !== sourceFile.stat.mtime) {
+            const doc = sourceFile.stat.size <= 256e3 ? parseMap(await this.app.vault.cachedRead(sourceFile)) : parseMap("");
+            cached = { mtime: sourceFile.stat.mtime, doc };
+            this.previewDocuments.set(container, cached);
+          }
+          const line = cached.doc.nodes[0]?.line ?? 0;
+          if (info.lineStart > line || info.lineEnd < line) {
+            element.hidden = true;
+            return;
+          }
+          const host = element.createSpan("tvm-markdown-map tvm-native-embedded-map");
+          const child = new MarkdownMapPreview(host, this.app, sourceFile, "", "", () => this.settings.showMapPreviews, () => this.markdownMapPreviews.delete(child));
+          this.markdownMapPreviews.add(child);
+          context.addChild(child);
+          await child.refresh();
+          return;
+        }
+      }
+      for (const embed of element.querySelectorAll(".internal-embed[src]")) {
+        const target = embed.getAttribute("src"), { path, subpath } = (0, import_obsidian5.parseLinktext)(target);
+        if (subpath) continue;
+        const file = this.app.metadataCache.getFirstLinkpathDest(path || context.sourcePath, context.sourcePath);
+        if (!file || !this.isMap(file)) continue;
+        const host = embed.ownerDocument.createElement("span");
+        host.className = "tvm-markdown-map";
+        embed.replaceWith(host);
+        const child = new MarkdownMapPreview(host, this.app, file, context.sourcePath, subpath, () => this.settings.showMapPreviews, () => this.markdownMapPreviews.delete(child));
+        this.markdownMapPreviews.add(child);
+        context.addChild(child);
+        await child.refresh();
+      }
+    });
+    this.register(() => {
+      for (const child of this.markdownMapPreviews) child.unload();
+      this.markdownMapPreviews.clear();
+    });
     this.register(() => {
       for (const timer of this.autoTimers.values()) window.clearTimeout(timer);
       this.autoTimers.clear();
@@ -11767,39 +11869,11 @@ var MapView = class extends import_obsidian5.EditableFileView {
     const component = this.renderedNodes.get(container);
     const doc = parseMap(await this.app.vault.cachedRead(file));
     if (this.renderedNodes.get(container) !== component || !this.plugin.settings.showMapPreviews) return;
-    const preview = container.createDiv("tvm-embedded-map");
-    const link = (parent, linktext, label2) => {
-      const anchor2 = parent.createEl("a", { cls: "internal-link", text: label2, attr: { href: linktext, "data-href": linktext } });
-      return anchor2;
-    };
-    const nestedLink = (value) => {
+    renderMapPreview(container, doc, target, (value) => {
       const { path, subpath } = (0, import_obsidian5.parseLinktext)(value);
       const nested = path ? this.app.metadataCache.getFirstLinkpathDest(path, file.path) : file;
       return nested ? this.app.metadataCache.fileToLinktext(nested, this.path, true) + subpath : null;
-    };
-    let remaining = 24;
-    const draw = (parent, ids, depth) => {
-      for (const id of ids) {
-        if (remaining <= 0) break;
-        const node = doc.byId.get(id);
-        if (!node) continue;
-        remaining--;
-        const branch = parent.createDiv("tvm-embedded-map-branch");
-        const label2 = branch.createDiv("tvm-embedded-map-label");
-        let offset = 0;
-        for (const match of node.text.matchAll(/!?\[\[([^\]#|]+(?:#[^\]|]+)?)(?:\|([^\]]+))?\]\]/g)) {
-          label2.append(node.text.slice(offset, match.index));
-          const linktext = nestedLink(match[1]);
-          if (linktext) link(label2, linktext, match[2] ?? match[1]);
-          else label2.append(match[2] ?? match[1]);
-          offset = match.index + match[0].length;
-        }
-        label2.append(node.text.slice(offset) || (offset ? "" : t("Untitled")));
-        if (depth < 3 && node.children.length && remaining > 0) draw(branch.createDiv("tvm-embedded-map-children"), node.children, depth + 1);
-      }
-    };
-    draw(preview, doc.roots, 0);
-    if (doc.nodes.length > 24) link(preview, target, "\u2026");
+    });
   }
   async nativeAddress(file, line, expected) {
     if (!this.plugin.isMap(file)) return void 0;
@@ -12750,6 +12824,7 @@ var SettingsTab = class extends import_obsidian5.PluginSettingTab {
     }
     new import_obsidian5.Setting(this.containerEl).setName(t("Show embedded map previews")).addToggle((toggle) => toggle.setValue(this.plugin.settings.showMapPreviews).onChange(async (value) => {
       this.plugin.settings.showMapPreviews = value;
+      this.plugin.refreshMarkdownMapPreviews();
       for (const view of this.plugin.mapViews()) view.surface?.invalidateMarkdown();
       await this.plugin.saveData(this.plugin.settings);
     }));
@@ -12882,3 +12957,50 @@ var SettingsTab = class extends import_obsidian5.PluginSettingTab {
 function displayBinding(value) {
   return value.replace(/Key([A-Z])/g, "$1").replace(/Digit(\d)/g, "$1").replace(/Mod/g, "Ctrl");
 }
+var MarkdownMapPreview = class extends import_obsidian5.MarkdownRenderChild {
+  constructor(element, app, file, sourcePath, subpath, enabled, dispose) {
+    super(element);
+    this.app = app;
+    this.file = file;
+    this.sourcePath = sourcePath;
+    this.subpath = subpath;
+    this.enabled = enabled;
+    this.dispose = dispose;
+    this.revision = 0;
+    this.alive = true;
+  }
+  onload() {
+    this.registerEvent(this.app.vault.on("modify", (file) => {
+      if (file === this.file) void this.refresh();
+    }));
+    this.registerEvent(this.app.vault.on("rename", (file) => {
+      if (file === this.file || this.file.path.startsWith(file.path + "/")) void this.refresh();
+    }));
+    this.registerEvent(this.app.vault.on("delete", (file) => {
+      if (file === this.file) void this.refresh();
+    }));
+  }
+  onunload() {
+    this.alive = false;
+    this.revision++;
+    this.containerEl.querySelector(".tvm-embedded-map")?.remove();
+    this.dispose();
+  }
+  async refresh() {
+    const revision = ++this.revision, host = this.containerEl;
+    host.empty();
+    const target = this.app.metadataCache.fileToLinktext(this.file, this.sourcePath, true) + this.subpath;
+    host.createEl("a", { cls: "internal-link", text: this.file.basename, attr: { href: target, "data-href": target } });
+    if (!this.alive || !this.enabled() || this.file.stat.size > 256e3 || this.app.vault.getAbstractFileByPath(this.file.path) !== this.file) return;
+    try {
+      const source = await this.app.vault.cachedRead(this.file);
+      if (!this.alive || revision !== this.revision || !this.enabled()) return;
+      renderMapPreview(host, parseMap(source), target, (value) => {
+        const { path, subpath } = (0, import_obsidian5.parseLinktext)(value);
+        const nested = path ? this.app.metadataCache.getFirstLinkpathDest(path, this.file.path) : this.file;
+        return nested ? this.app.metadataCache.fileToLinktext(nested, this.sourcePath, true) + subpath : null;
+      });
+    } catch {
+    }
+  }
+};

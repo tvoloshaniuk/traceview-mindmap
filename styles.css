@@ -389,3 +389,9 @@
 .tvm-step-drag { display: flex; align-items: center; justify-content: center; min-height: 24px; cursor: grab; user-select: none; }
 .tvm-step-drag:active { cursor: grabbing; }
 .tvm-step-drag svg { width: 18px; height: 18px; pointer-events: none; }
+
+.tvm-markdown-map { display: inline-block; max-width: 100%; vertical-align: top; }
+.tvm-markdown-map > .tvm-embedded-map { max-height: 24em; max-width: 100%; overflow: auto; }
+.tvm-markdown-map .tvm-embedded-map-label { max-width: 16em; white-space: normal; flex-shrink: 0; }
+
+.tvm-native-embedded-map > a:first-child { display: none; }

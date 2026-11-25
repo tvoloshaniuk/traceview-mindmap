@@ -4,7 +4,7 @@
  * See LICENSE, LICENSING.md and OBSIDIAN-HOST-PERMISSION.md.
  */
 import { t, LANGUAGES, isLanguageSetting, setLanguage, type LanguageSetting } from './i18n';
-import { getLanguage, App, Component, EditableFileView, ItemView, MarkdownPreviewRenderer, MarkdownRenderer, MarkdownView, Menu, Notice, Platform, Plugin, PluginSettingTab, Scope, Setting, TFile, WorkspaceLeaf, normalizePath, parseLinktext, setIcon, type HoverPopover } from 'obsidian';
+import { getLanguage, App, Component, EditableFileView, ItemView, MarkdownPreviewRenderer, MarkdownRenderer, MarkdownRenderChild, MarkdownView, Menu, Notice, Platform, Plugin, PluginSettingTab, Scope, Setting, TFile, WorkspaceLeaf, normalizePath, parseLinktext, setIcon, type HoverPopover } from 'obsidian';
 import { canIndentNode, moveBranches, changeNodes, copyBranches, copyNodeLabels, deleteNodes, parseMap, restoreTemplateLineEndings, nodeNoteContent, nodeNoteLabel, editNode, addFirstNode, addNode, addParent, deleteNode, moveNode, copyBranch, pasteBranch, toggleTask, toggleStepNumber, setDated, setQuestion, getSteps, compareSteps, renumberSteps, moveCompletedChildrenToBottom, shiftSelectedBranches, unnumberStep } from './core';
 import { addressNode, onlyAddedBlockIds, removeNodeAddress, nodeBacklinks } from './block-links';
 import { captureHotkey, DEFAULT_HOTKEYS, HOTKEY_DEFINITIONS, resolveHotkey, validateHotkeys } from './hotkeys';
@@ -12,6 +12,7 @@ import { compileMapPatterns, PatternError, type MapRules, type PatternMode } fro
 import { MapSearch } from './map-search';
 import { highlightRenderedSearch } from './search-highlight';
 import { MapSurface } from './surface';
+import { renderMapPreview } from './map-preview';
 import { attachMapFilter, excludedQueueNodes, queueExclusions, queueLabel, queueMapMatcher, queueFolderPrefix, queueCounts, queueMetric, compareQueueMaps, reorderQueueSelection, type QueueMetric, type QueueCounts } from './queue-controls';
 import { mountNativeEditor, prepareNativeEditor, type NativeConstructor } from './native-editor';
 import type { InlineEditor, InlineDriver } from './inline';
@@ -82,9 +83,49 @@ export default class TraceViewMindmap extends Plugin {
   private autoTimers = new Map<WorkspaceLeaf, number>();
   private nativeLinkTargets = new WeakMap<MarkdownView, { path: string; subpath: string }>();
   private opening = new WeakSet<WorkspaceLeaf>();
+  private markdownMapPreviews = new Set<MarkdownMapPreview>();
+  private previewDocuments = new WeakMap<HTMLElement, {mtime: number; doc: MapDocument}>();
+
+  refreshMarkdownMapPreviews(): void {for (const child of this.markdownMapPreviews) void child.refresh();}
 
   async onload(): Promise<void> {
     const saved = await this.loadData();
+    this.registerMarkdownPostProcessor(async (element, context) => {
+      const sourceFile = this.app.metadataCache.getFirstLinkpathDest(context.sourcePath, context.sourcePath);
+      if (sourceFile && this.isMap(sourceFile)) {
+        // Native Live Preview has already resolved the outer embed before postprocessors run.
+        // The optional container is used only to recognize that native Markdown renderer.
+        const container = (context as typeof context & {containerEl?: HTMLElement}).containerEl;
+        const nativeEmbed = typeof container?.closest === 'function' ? container.closest('.markdown-embed-content') : null;
+        if (nativeEmbed) {
+          const nativeTarget = nativeEmbed.closest('.internal-embed')?.getAttribute('src') ?? '';
+          if (parseLinktext(nativeTarget).subpath) return;
+          const info = context.getSectionInfo(element);
+          if (!info) return;
+          element.empty();
+          let cached = this.previewDocuments.get(container!);
+          if (!cached || cached.mtime !== sourceFile.stat.mtime) {
+            const doc = sourceFile.stat.size <= 256_000 ? parseMap(await this.app.vault.cachedRead(sourceFile)) : parseMap('');
+            cached = {mtime: sourceFile.stat.mtime, doc}; this.previewDocuments.set(container!, cached);
+          }
+          const line = cached.doc.nodes[0]?.line ?? 0;
+          if (info.lineStart > line || info.lineEnd < line) {element.hidden = true; return;}
+          const host = element.createSpan('tvm-markdown-map tvm-native-embedded-map');
+          const child = new MarkdownMapPreview(host, this.app, sourceFile, '', '', () => this.settings.showMapPreviews, () => this.markdownMapPreviews.delete(child));
+          this.markdownMapPreviews.add(child); context.addChild(child); await child.refresh(); return;
+        }
+      }
+      for (const embed of element.querySelectorAll<HTMLElement>('.internal-embed[src]')) {
+        const target = embed.getAttribute('src')!, {path, subpath} = parseLinktext(target);
+        if (subpath) continue;
+        const file = this.app.metadataCache.getFirstLinkpathDest(path || context.sourcePath, context.sourcePath);
+        if (!file || !this.isMap(file)) continue;
+        const host = embed.ownerDocument.createElement('span'); host.className = 'tvm-markdown-map'; embed.replaceWith(host);
+        const child = new MarkdownMapPreview(host, this.app, file, context.sourcePath, subpath, () => this.settings.showMapPreviews, () => this.markdownMapPreviews.delete(child));
+        this.markdownMapPreviews.add(child); context.addChild(child); await child.refresh();
+      }
+    });
+    this.register(() => {for (const child of this.markdownMapPreviews) child.unload(); this.markdownMapPreviews.clear();});
     this.register(() => { for (const timer of this.autoTimers.values()) window.clearTimeout(timer); this.autoTimers.clear(); });
     this.settings = { ...DEFAULT_SETTINGS, ...saved, hotkeys: {} };
     for (const [key, min, max] of [['embeddedNoteFontSize', 10, 48], ['nodeMaxHeight', 80, 2400]] as const) {
@@ -1364,40 +1405,13 @@ class MapView extends EditableFileView {
     const component = this.renderedNodes.get(container);
     const doc = parseMap(await this.app.vault.cachedRead(file));
     if (this.renderedNodes.get(container) !== component || !this.plugin.settings.showMapPreviews) return;
-    const preview = container.createDiv('tvm-embedded-map');
-    const link = (parent: HTMLElement, linktext: string, label: string) => {
-      const anchor = parent.createEl('a', { cls: 'internal-link', text: label, attr: { href: linktext, 'data-href': linktext } });
-      return anchor;
-    };
-    const nestedLink = (value: string) => {
-      const { path, subpath } = parseLinktext(value);
+    renderMapPreview(container, doc, target, value => {
+      const {path, subpath} = parseLinktext(value);
       const nested = path ? this.app.metadataCache.getFirstLinkpathDest(path, file.path) : file;
       return nested ? this.app.metadataCache.fileToLinktext(nested, this.path, true) + subpath : null;
-    };
-    let remaining = 24;
-    const draw = (parent: HTMLElement, ids: string[], depth: number) => {
-      for (const id of ids) {
-        if (remaining <= 0) break;
-        const node = doc.byId.get(id);
-        if (!node) continue;
-        remaining--;
-        const branch = parent.createDiv('tvm-embedded-map-branch');
-        const label = branch.createDiv('tvm-embedded-map-label');
-        let offset = 0;
-        for (const match of node.text.matchAll(/!?\[\[([^\]#|]+(?:#[^\]|]+)?)(?:\|([^\]]+))?\]\]/g)) {
-          label.append(node.text.slice(offset, match.index));
-          const linktext = nestedLink(match[1]);
-          if (linktext) link(label, linktext, match[2] ?? match[1]);
-          else label.append(match[2] ?? match[1]);
-          offset = match.index! + match[0].length;
-        }
-        label.append(node.text.slice(offset) || (offset ? '' : t("Untitled")));
-        if (depth < 3 && node.children.length && remaining > 0) draw(branch.createDiv('tvm-embedded-map-children'), node.children, depth + 1);
-      }
-    };
-    draw(preview, doc.roots, 0);
-    if (doc.nodes.length > 24) link(preview, target, '…');
+    });
   }
+
   private async nativeAddress(file: TFile, line: number, expected: string): Promise<string | undefined> {
     if (!this.plugin.isMap(file)) return undefined;
     const target = this.plugin.mapViews().find(view => view.path === file.path);
@@ -2091,6 +2105,7 @@ class SettingsTab extends PluginSettingTab {
     new Setting(this.containerEl).setName(t("Show embedded map previews")).addToggle(toggle =>
       toggle.setValue(this.plugin.settings.showMapPreviews).onChange(async value => {
         this.plugin.settings.showMapPreviews = value;
+        this.plugin.refreshMarkdownMapPreviews();
         for (const view of this.plugin.mapViews()) view.surface?.invalidateMarkdown();
         await this.plugin.saveData(this.plugin.settings);
       }));
@@ -2204,4 +2219,32 @@ class SettingsTab extends PluginSettingTab {
 
 function displayBinding(value: string): string {
   return value.replace(/Key([A-Z])/g, '$1').replace(/Digit(\d)/g, '$1').replace(/Mod/g, 'Ctrl');
+}
+
+class MarkdownMapPreview extends MarkdownRenderChild {
+  private revision = 0;
+  private alive = true;
+  constructor(element: HTMLElement, private app: App, private file: TFile, private sourcePath: string, private subpath: string, private enabled: () => boolean, private dispose: () => void) {super(element);}
+  onload(): void {
+    this.registerEvent(this.app.vault.on('modify', file => {if (file === this.file) void this.refresh();}));
+    this.registerEvent(this.app.vault.on('rename', file => {if (file === this.file || this.file.path.startsWith(file.path + '/')) void this.refresh();}));
+    this.registerEvent(this.app.vault.on('delete', file => {if (file === this.file) void this.refresh();}));
+  }
+  onunload(): void {this.alive = false; this.revision++; this.containerEl.querySelector('.tvm-embedded-map')?.remove(); this.dispose();}
+  async refresh(): Promise<void> {
+    const revision = ++this.revision, host = this.containerEl;
+    host.empty();
+    const target = this.app.metadataCache.fileToLinktext(this.file, this.sourcePath, true) + this.subpath;
+    host.createEl('a', {cls: 'internal-link', text: this.file.basename, attr: {href: target, 'data-href': target}});
+    if (!this.alive || !this.enabled() || this.file.stat.size > 256_000 || this.app.vault.getAbstractFileByPath(this.file.path) !== this.file) return;
+    try {
+      const source = await this.app.vault.cachedRead(this.file);
+      if (!this.alive || revision !== this.revision || !this.enabled()) return;
+      renderMapPreview(host, parseMap(source), target, value => {
+        const {path, subpath} = parseLinktext(value);
+        const nested = path ? this.app.metadataCache.getFirstLinkpathDest(path, this.file.path) : this.file;
+        return nested ? this.app.metadataCache.fileToLinktext(nested, this.sourcePath, true) + subpath : null;
+      });
+    } catch { /* Keep the native link when the target is unavailable. */ }
+  }
 }

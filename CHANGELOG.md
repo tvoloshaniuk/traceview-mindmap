@@ -1,5 +1,16 @@
 # Changelog
 
+## 1.0.64
+
+### New features
+
+- Show bounded map previews for whole-note map embeds in ordinary Markdown Reading view and native Live Preview. Nested map references remain links, and Show embedded map previews switches previews to links only.
+- Keep previews up to date when their target changes or is renamed. Limit plugin preview parsing to 256 KB and rendering to 24 nodes across four visible tree levels; larger or unavailable targets retain a link. Heading and block embeds keep native rendering.
+
+### Improved
+
+- Share the preview renderer between ordinary notes and map nodes, preserving corner resizing and avoiding recursive map loading.
+
 ## 1.0.63
 
 ### Improved

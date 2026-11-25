@@ -48,6 +48,7 @@ async function loadBundle(savedSettings: unknown, window?: JSDOM['window'], loca
     registerEvent(event: unknown) { registeredEvents.push(event); }
     register(_cleanup: () => void) {}
     registerHoverLinkSource() {}
+    registerMarkdownPostProcessor() {}
   }
   class ItemView {
     app: MockApp;
@@ -71,6 +72,7 @@ async function loadBundle(savedSettings: unknown, window?: JSDOM['window'], loca
     Plugin, ItemView, FileView, EditableFileView: class extends FileView {async onOpen() {} onPaneMenu() {}}, Editor: class {}, Notice: class { constructor(text:string) {notices.push(text);} },
     Scope: class { register() {} },
     Component: class { addChild(child:any) {return child;} removeChild(child:any) {child.unload();} unload() {} },
+    MarkdownRenderChild: class {},
     MarkdownRenderer: {render:async(_app:any,text:string,el:HTMLElement)=>{el.textContent=text;}},
     PluginSettingTab: class {},
     FuzzySuggestModal: class {},
