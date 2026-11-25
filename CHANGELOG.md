@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.0.57
+
+### Fixed
+
+- Let manually resized nodes show more of embedded map previews. Remove the preview’s separate compact height cap and wrap labels to use the resized width. The node’s chosen maximum height still controls scrolling.
+- Resetting node dimensions restores compact preview limits. Automatic previews keep their existing bounded rendering budget.
+
 ## 1.0.56
 
 ### Added

@@ -7361,6 +7361,9 @@ var MapSurface = class {
         el.style.width = `${sizes[id].width}px`;
         el.style.maxWidth = "";
       }
+      el.classList.toggle("has-custom-size", !!sizes?.[id]);
+      if (sizes?.[id]) el.style.setProperty("--tvm-preview-label-width", `${Math.max(100, (sizes[id].width - 120) / 4)}px`);
+      else el.style.removeProperty("--tvm-preview-label-width");
     }
     for (const id of this.visible) {
       const node = this.doc.byId.get(id);

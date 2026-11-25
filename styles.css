@@ -149,6 +149,8 @@
 .tvm-embedded-map-branch { display: flex; align-items: center; gap: 5px; margin: 2px 0; min-width: 0; }
 .tvm-embedded-map-children { border-inline-start: 1px solid var(--background-modifier-border); padding-inline-start: 4px; min-width: 0; }
 .tvm-embedded-map-label { max-width: 9em; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; padding: 1px 4px; border: 1px solid var(--background-modifier-border); border-radius: 3px; }
+.tvm-node.has-custom-size .tvm-embedded-map { max-height: none; overflow: visible; }
+.tvm-node.has-custom-size .tvm-embedded-map-label { max-width: var(--tvm-preview-label-width); white-space: normal; overflow-wrap: anywhere; flex-shrink: 0; }
 .tvm-node-content table { display: block; max-width: 100%; overflow: auto; max-height: 12em; font-size: .88em; }
 .tvm-node.is-complete .tvm-node-content { color: var(--text-muted, #777780); opacity: 0.78; }
 .tvm-node.is-task { display: flex; align-items: flex-start; gap: 8px; }
