@@ -6477,6 +6477,7 @@ var MapSurface = class {
     if (Observer) {
       this.observer = new Observer(() => {
         if (this.editing) this.followEditorViewport();
+        else if (this.mode === "map" || this.mode === "vertical") this.applyCamera(true);
         else this.scheduleLayout();
       });
       this.observer.observe(this.viewport);
@@ -7383,6 +7384,8 @@ var MapSurface = class {
   paintEdges(size) {
     if (this.mode !== "map" && this.mode !== "vertical") return;
     const { x, y, scale } = this.state.camera;
+    this.edges.style.width = `${size.width}px`;
+    this.edges.style.height = `${size.height}px`;
     this.edges.setAttribute("viewBox", `${-x / scale} ${-y / scale} ${size.width / scale} ${size.height / scale}`);
   }
   estimateHeight(text) {

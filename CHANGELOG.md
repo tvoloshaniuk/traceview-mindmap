@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.0.53
+
+### Improved
+
+- Resize horizontal and vertical map viewports without rebuilding every node and connector, reducing sidebar animation work on large maps. Keep SVG viewport dimensions stable between resize frames.
+- Preserve full layout updates for editing, Outline, and Table views.
+
 ## 1.0.52
 
 ### Fixed

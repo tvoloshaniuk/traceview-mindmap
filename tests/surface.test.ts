@@ -975,3 +975,15 @@ test('images select on click and preview on double click without editing their e
   image.dispatchEvent(new f.dom.window.MouseEvent('dblclick',{bubbles:true,cancelable:true}));
   assert.deepEqual(opened,['Photo.png']);
 });
+
+
+test('viewport resize preserves map geometry and edge elements without relaying out every node', t => {
+  const f=fixture(t,'- Root\n  - Child\n');f.flush();
+  const child=f.element('Child'),edge=f.host.querySelector('.tvm-edges path');
+  assert.ok(edge);const transform=child.style.transform;
+  f.resize();f.resize();f.resize();
+  assert.equal(f.host.querySelector('.tvm-edges path'),edge);
+  assert.equal(child.style.transform,transform);
+  const edges=f.host.querySelector<SVGElement>('.tvm-edges')!;
+  assert.equal(edges.style.width,'800px');assert.equal(edges.style.height,'600px');
+});
