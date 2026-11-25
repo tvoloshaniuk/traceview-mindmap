@@ -930,3 +930,21 @@ test('wheel scrolls only selected overflowing nodes, including members of a mult
   root.dispatchEvent(new f.dom.window.MouseEvent('click',{ctrlKey:true,bubbles:true,cancelable:true}));before=camera();wheel(root);assert.notEqual(camera(),before);assert.equal(content.scrollTop,140);
   const scale=f.surface.getState().camera.scale;wheel(root,true);assert.notEqual(f.surface.getState().camera.scale,scale);
 });
+
+test('embedded edit preserves its screen anchor when parent centering changes across a full render', async t => {
+  const source='- Context ![[Note]] ^root\n\t- First\n\t- Second\n';
+  const f=fixture(t,source,(_text,el)=>{el.innerHTML='<span class="markdown-embed internal-embed" src="Note">Embedded text</span>';});
+  Object.defineProperty(f.dom.window.HTMLElement.prototype,'offsetHeight',{get(){return this.classList.contains('tvm-node') ? this.dataset.nodeId==='block:root' ? this.classList.contains('is-editing') ? 40 : 400 : 100 : 26;}});
+  f.update(source,{collapsed:[],selected:'block:root',focusRoot:null,camera:{x:60,y:70,scale:3}});
+  const screen=()=>{const s=f.surface as any,pos=s.positions.get('block:root'),camera=f.surface.getState().camera;return {x:pos.x*camera.scale+camera.x,y:pos.y*camera.scale+camera.y};};
+  const before=screen(),frame=f.host.querySelector<HTMLElement>('.markdown-embed')!;
+  f.surface.beginEdit('block:root','Embedded text',async()=> 'block:root',undefined,undefined,undefined,true,frame);f.flush();assert.deepEqual(screen(),before);
+  f.host.querySelector<HTMLButtonElement>('.tvm-inline-tools .mod-cta')!.click();await Promise.resolve();await Promise.resolve();f.flush();assert.deepEqual(screen(),before);
+});
+
+test('opening another file does not reuse a previous file edit anchor with the same block ID', t => {
+  const f=fixture(t,'- Root ^root\n');let path='First.md';f.options.getRenderKey=()=>path;f.surface.update(f.doc);
+  (f.surface as any).preservedEditAnchor='block:root';path='Second.md';
+  f.update('- Preceding ^other\n- Root ^root\n',{collapsed:[],selected:'block:root',focusRoot:null,camera:{x:12,y:24,scale:1}});
+  assert.deepEqual(f.surface.getState().camera,{x:12,y:24,scale:1});
+});

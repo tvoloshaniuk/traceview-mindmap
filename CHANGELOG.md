@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.0.48
+
+### Fixed
+
+- Keep an embedded-note node anchored when entering or leaving inline editing, including high zoom and a node larger than the viewport. Place the editor within the visible part of the embed instead of recentering the map.
+- Preserve layout coordinates across full renders and use the current camera scale for embedded-editor positions. Ignore stale editor-follow requests after editing finishes.
+
 ## 1.0.47
 
 ### Added

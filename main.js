@@ -6613,8 +6613,17 @@ var MapSurface = class {
     let embedded;
     const content = this.elements.get(id)?.querySelector(".tvm-node-content");
     if (embeddedFrame && content?.contains(embeddedFrame)) {
+      const rect = embeddedFrame.getBoundingClientRect(), viewport = this.viewport.getBoundingClientRect(), area = this.editorArea();
+      const left = viewport.left + area.left + EDITOR_VIEWPORT_PADDING, top = viewport.top + area.top + EDITOR_VIEWPORT_PADDING;
+      const right = left + area.width - EDITOR_VIEWPORT_PADDING * 2, bottom = top + area.height - EDITOR_VIEWPORT_PADDING * 2;
       const slot = this.container.ownerDocument.createElement("div");
       slot.className = "tvm-embedded-note-editor";
+      if (rect.right > left && rect.left < right && rect.bottom > top && rect.top < bottom) {
+        slot.style.paddingTop = Math.max(0, (top - rect.top) / this.state.camera.scale) + "px";
+        slot.style.paddingLeft = Math.max(0, (left - rect.left) / this.state.camera.scale) + "px";
+        editor.host.style.width = Math.max(26, (Math.min(rect.right, right) - Math.max(rect.left, left)) / this.state.camera.scale) + "px";
+        editor.host.style.maxWidth = "100%";
+      }
       embeddedFrame.before(slot);
       slot.append(editor.host);
       const display = embeddedFrame.style.display;
@@ -6653,8 +6662,11 @@ var MapSurface = class {
     }
     this.editing = { id, editor, original, state, embedded };
     this.doc = draft ?? original;
-    if (embedded) this.render();
-    this.reveal(id);
+    if (embedded) {
+      this.select(id);
+      this.preservedEditAnchor = id;
+      this.render();
+    } else this.reveal(id);
     editor.focus();
     this.followEditorViewport();
     editor.input.setSelectionRange(editor.input.value.length, editor.input.value.length);
@@ -6929,6 +6941,8 @@ var MapSurface = class {
     if (!this.doc || this.destroyed) return;
     const key = this.options.getRenderKey?.() ?? "";
     if (key !== this.renderKey) {
+      this.preservedEditAnchor = void 0;
+      this.positions.clear();
       this.lastChildByParent.clear();
       this.backStops.length = 0;
       this.forwardStops.length = 0;
@@ -6943,7 +6957,6 @@ var MapSurface = class {
     this.markdownQueue = [];
     this.closeMenu();
     this.elements.clear();
-    this.positions.clear();
     this.nodeLayer.replaceChildren();
     this.edges.replaceChildren();
     this.visible = [];
@@ -7183,7 +7196,7 @@ var MapSurface = class {
           this.setMarkdownLoading(false);
           this.applyCamera();
         }
-        if (this.followAfterLayout && this.state.selected) {
+        if (this.followAfterLayout && this.editing && this.state.selected) {
           this.ensureVisible(this.state.selected);
           this.emitState();
         }
@@ -7469,7 +7482,7 @@ var MapSurface = class {
     const node = this.elements.get(this.editing.id);
     if (!node) return;
     const available = (this.editorArea().height - EDITOR_VIEWPORT_PADDING * 2) / this.state.camera.scale;
-    this.editing.editor.fitHeight(this.editing.embedded?.slot ?? node, available);
+    this.editing.editor.fitHeight(this.editing.embedded ? this.editing.editor.host : node, available);
   }
   ensureVisible(id, center = false) {
     let pos = this.positions.get(id);
@@ -7477,18 +7490,23 @@ var MapSurface = class {
     const embedded = this.editing?.id === id ? this.editing.embedded : void 0;
     const node = this.elements.get(id);
     if (embedded && node) {
-      const rect = embedded.slot.getBoundingClientRect(), parent = node.getBoundingClientRect();
+      const field = this.editing.editor.host;
+      const rect = field.getBoundingClientRect(), parent = node.getBoundingClientRect();
       pos = {
-        x: pos.x + (rect.left - parent.left) / this.paintScale,
-        y: pos.y + (rect.top - parent.top) / this.paintScale,
-        width: embedded.slot.offsetWidth,
-        height: embedded.slot.offsetHeight
+        x: pos.x + (rect.left - parent.left) / this.state.camera.scale,
+        y: pos.y + (rect.top - parent.top) / this.state.camera.scale,
+        width: field.offsetWidth,
+        height: field.offsetHeight
       };
     }
     const c = this.state.camera;
     const area = this.editing?.id === id ? this.editorArea() : { left: 0, top: 0, ...this.viewportSize() };
     const size = { width: area.width, height: area.height };
     const padding = this.editing?.id === id ? EDITOR_VIEWPORT_PADDING : 44;
+    if (embedded && !center) {
+      const left = pos.x * c.scale + c.x, top = pos.y * c.scale + c.y;
+      if (left < area.left + size.width - padding && left + pos.width * c.scale > area.left + padding && top < area.top + size.height - padding && top + pos.height * c.scale > area.top + padding) return;
+    }
     if (center) {
       c.x = area.left + size.width / 2 - (pos.x + pos.width / 2) * c.scale;
       c.y = area.top + size.height / 2 - (pos.y + pos.height / 2) * c.scale;
