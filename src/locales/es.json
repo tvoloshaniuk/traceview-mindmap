@@ -367,5 +367,9 @@
   "Use a note name without path separators or reserved characters.": "Usa un nombre sin separadores de ruta ni caracteres reservados.",
   "Create an embedded note for multiline editing?": "¿Crear una nota incrustada para editar varias líneas?",
   "Resize node": "Cambiar tamaño del nodo",
-  "Drag to resize. Arrow keys adjust size; Home or double-click resets it.": "Arrastra para cambiar el tamaño. Las flechas lo ajustan; Inicio o un doble clic lo restablece."
+  "Drag to resize. Arrow keys adjust size; Home or double-click resets it.": "Arrastra para cambiar el tamaño. Las flechas lo ajustan; Inicio o un doble clic lo restablece.",
+  "Embedded note font size (px)": "Tamaño de fuente de notas incrustadas (px)",
+  "Leave blank to follow the theme. Changes only embedded notes in maps.": "Déjalo vacío para seguir el tema. Solo cambia las notas incrustadas en mapas.",
+  "Default maximum node height (px)": "Altura máxima predeterminada de nodos (px)",
+  "Leave blank for automatic height. Short content shrinks naturally; manual node sizes take precedence.": "Déjalo vacío para altura automática. El contenido corto se ajusta a su altura natural; el tamaño manual tiene prioridad."
 }

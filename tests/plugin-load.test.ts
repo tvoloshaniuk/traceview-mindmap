@@ -759,3 +759,17 @@ test('settings skip deferred leaves and persist preferences for later activation
   restoredLeaf.view.refreshToolbarMode();
   assert.equal(restoredToolbar.dataset.mode, 'visible');
 });
+
+test('appearance preferences validate saved values and update only loaded maps', async () => {
+  const loaded=await loadBundle({embeddedNoteFontSize:200,nodeMaxHeight:-1});
+  const plugin=loaded.plugin as any,app=loaded.app as any;
+  assert.equal(plugin.settings.embeddedNoteFontSize,0);assert.equal(plugin.settings.nodeMaxHeight,0);
+  const leaf:any={app};leaf.view=loaded.views.get('traceview-mindmap-map')!(leaf);
+  let refreshes=0,saves=0;leaf.view.refreshAppearance=()=>{refreshes++;};
+  app.workspace.getLeavesOfType=()=>[{view:{}},leaf];plugin.saveData=async()=>{saves++;};
+  await plugin.setMapAppearance('embeddedNoteFontSize',22);await plugin.setMapAppearance('nodeMaxHeight',160);
+  assert.equal(plugin.settings.embeddedNoteFontSize,22);assert.equal(plugin.settings.nodeMaxHeight,160);assert.equal(refreshes,2);assert.equal(saves,2);
+  await plugin.setMapAppearance('embeddedNoteFontSize',NaN);await plugin.setMapAppearance('nodeMaxHeight',4);
+  assert.equal(refreshes,2);assert.equal(saves,2);
+  await plugin.setMapAppearance('nodeMaxHeight',0);assert.equal(plugin.settings.nodeMaxHeight,0);
+});

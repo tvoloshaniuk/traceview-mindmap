@@ -367,5 +367,9 @@
   "Use a note name without path separators or reserved characters.": "Укажите название заметки без разделителей пути и запрещённых символов.",
   "Create an embedded note for multiline editing?": "Создать вложенную заметку для многострочного редактирования?",
   "Resize node": "Изменить размер узла",
-  "Drag to resize. Arrow keys adjust size; Home or double-click resets it.": "Потяните для изменения размера. Стрелки меняют размер; Home или двойной щелчок сбрасывает его."
+  "Drag to resize. Arrow keys adjust size; Home or double-click resets it.": "Потяните для изменения размера. Стрелки меняют размер; Home или двойной щелчок сбрасывает его.",
+  "Embedded note font size (px)": "Размер шрифта вложенных заметок (px)",
+  "Leave blank to follow the theme. Changes only embedded notes in maps.": "Оставьте пустым для настройки темы. Меняет только вложенные заметки на картах.",
+  "Default maximum node height (px)": "Максимальная высота узла по умолчанию (px)",
+  "Leave blank for automatic height. Short content shrinks naturally; manual node sizes take precedence.": "Оставьте пустым для автоматической высоты. Короткий текст сжимается по содержимому; ручной размер узла имеет приоритет."
 }

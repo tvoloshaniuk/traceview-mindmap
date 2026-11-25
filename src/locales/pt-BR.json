@@ -367,5 +367,9 @@
   "Use a note name without path separators or reserved characters.": "Use um nome sem separadores de caminho ou caracteres reservados.",
   "Create an embedded note for multiline editing?": "Criar uma nota incorporada para edição em várias linhas?",
   "Resize node": "Redimensionar nó",
-  "Drag to resize. Arrow keys adjust size; Home or double-click resets it.": "Arraste para redimensionar. As setas ajustam o tamanho; Home ou clique duplo o redefine."
+  "Drag to resize. Arrow keys adjust size; Home or double-click resets it.": "Arraste para redimensionar. As setas ajustam o tamanho; Home ou clique duplo o redefine.",
+  "Embedded note font size (px)": "Tamanho da fonte das notas incorporadas (px)",
+  "Leave blank to follow the theme. Changes only embedded notes in maps.": "Deixe vazio para seguir o tema. Altera apenas as notas incorporadas nos mapas.",
+  "Default maximum node height (px)": "Altura máxima padrão dos nós (px)",
+  "Leave blank for automatic height. Short content shrinks naturally; manual node sizes take precedence.": "Deixe vazio para altura automática. Conteúdo curto mantém a altura natural; tamanhos manuais têm prioridade."
 }

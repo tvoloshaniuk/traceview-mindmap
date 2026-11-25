@@ -41,8 +41,8 @@ function hasLargeVisibleTree(doc: MapDocument, state?: MapViewState): boolean {
   }
   return false;
 }
-interface Settings extends MapRules { previousPluginId?: string; language: LanguageSetting; nodeEditor: 'native' | 'text'; autoOpen: boolean; rememberLastMode: boolean; autoRestoreLargeMaps: boolean; queueExcludedMaps: string; queueExcludedBranches: string; queueTaskMarker: boolean; queueStepTag: boolean; collapseOnLeft: boolean; arrowAcrossBranches: boolean; toolbarMode: ToolbarMode; showMapPreviews: boolean; collapsePastedBranches: boolean; hotkeys: Record<string, string>; widthMode: WidthMode; }
-const DEFAULT_SETTINGS: Settings = { patternMode: 'glob', mapPatterns: '*.mindmap.md\n🎯*.md', language: 'auto', nodeEditor: 'native', autoOpen: false, rememberLastMode: false, autoRestoreLargeMaps: true, queueExcludedMaps: 'архів тижнів\nold', queueExcludedBranches: '🧊\n❌', queueTaskMarker: true, queueStepTag: true, collapseOnLeft: false, arrowAcrossBranches: false, toolbarMode: 'visible', showMapPreviews: true, collapsePastedBranches: true, hotkeys: {}, widthMode: 'fixed' };
+interface Settings extends MapRules { previousPluginId?: string; language: LanguageSetting; nodeEditor: 'native' | 'text'; autoOpen: boolean; rememberLastMode: boolean; autoRestoreLargeMaps: boolean; queueExcludedMaps: string; queueExcludedBranches: string; queueTaskMarker: boolean; queueStepTag: boolean; collapseOnLeft: boolean; arrowAcrossBranches: boolean; toolbarMode: ToolbarMode; showMapPreviews: boolean; collapsePastedBranches: boolean; hotkeys: Record<string, string>; widthMode: WidthMode; embeddedNoteFontSize: number; nodeMaxHeight: number; }
+const DEFAULT_SETTINGS: Settings = { patternMode: 'glob', mapPatterns: '*.mindmap.md\n🎯*.md', language: 'auto', nodeEditor: 'native', autoOpen: false, rememberLastMode: false, autoRestoreLargeMaps: true, queueExcludedMaps: 'архів тижнів\nold', queueExcludedBranches: '🧊\n❌', queueTaskMarker: true, queueStepTag: true, collapseOnLeft: false, arrowAcrossBranches: false, toolbarMode: 'visible', showMapPreviews: true, collapsePastedBranches: true, hotkeys: {}, widthMode: 'fixed', embeddedNoteFontSize: 0, nodeMaxHeight: 0 };
 const widthModes = (): [WidthMode, string][] => [['fixed', t("Fixed width")], ['content', t("Fit node content")], ['column', t("Fit visible column")]];
 type ToolbarMode = 'visible' | 'hover' | 'hidden';
 const toolbarModes = (): [ToolbarMode, string][] => [
@@ -86,6 +86,10 @@ export default class TraceViewMindmap extends Plugin {
     const saved = await this.loadData();
     this.register(() => { for (const timer of this.autoTimers.values()) window.clearTimeout(timer); this.autoTimers.clear(); });
     this.settings = { ...DEFAULT_SETTINGS, ...saved, hotkeys: {} };
+    for (const [key, min, max] of [['embeddedNoteFontSize', 10, 48], ['nodeMaxHeight', 80, 2400]] as const) {
+      const value = this.settings[key];
+      if (!Number.isInteger(value) || (value !== 0 && (value < min || value > max))) this.settings[key] = 0;
+    }
     if (typeof saved?.queueExcludedMaps !== 'string') this.settings.queueExcludedMaps = DEFAULT_SETTINGS.queueExcludedMaps;
     if (typeof saved?.queueExcludedBranches !== 'string') this.settings.queueExcludedBranches = saved?.hideFrozen === false ? '' : DEFAULT_SETTINGS.queueExcludedBranches;
     if (typeof this.settings.previousPluginId !== 'string' || !/^[a-z0-9][a-z0-9-]*$/.test(this.settings.previousPluginId) || this.settings.previousPluginId === 'traceview-mindmap') delete this.settings.previousPluginId;
@@ -375,7 +379,7 @@ export default class TraceViewMindmap extends Plugin {
     this.matchesMap = compileMapPatterns(defaults);
     this.refreshBindings();
     for (const view of this.mapViews()) {
-      view.surface?.refreshLayout();
+      view.refreshAppearance();
       view.refreshRestoreWait();
     }
     this.refreshQueues();
@@ -390,6 +394,13 @@ export default class TraceViewMindmap extends Plugin {
   }
   refreshBindings(): void {
     for (const view of this.mapViews()) view.refreshBindings();
+  }
+  async setMapAppearance(key: 'embeddedNoteFontSize' | 'nodeMaxHeight', value: number): Promise<void> {
+    const [min, max] = key === 'embeddedNoteFontSize' ? [10, 48] : [80, 2400];
+    if (!Number.isInteger(value) || (value !== 0 && (value < min || value > max))) return;
+    this.settings[key] = value;
+    for (const view of this.mapViews()) view.refreshAppearance();
+    await this.saveData(this.settings);
   }
   async setWidthMode(mode: WidthMode): Promise<void> {
     this.settings.widthMode = mode;
@@ -686,7 +697,7 @@ class MapView extends EditableFileView {
     this.addChild(this.renderer);
     const toolbar = this.contentEl.createDiv('tvm-toolbar');
     this.toolbar = toolbar;
-    this.refreshToolbarMode();
+    this.refreshToolbarMode(); this.refreshAppearance();
     this.title = this.containerEl.querySelector<HTMLElement>('.view-header-title') ?? undefined;
     const actions = toolbar.createDiv('tvm-actions');
     this.undoButton = iconButton(actions, 'undo-2', t("Undo"), () => { void this.action('undo', null); });
@@ -739,6 +750,7 @@ class MapView extends EditableFileView {
     };
     this.surface = new MapSurface(this.host, {
       getWidthMode: () => this.plugin.settings.widthMode,
+      getNodeMaxHeight: () => this.plugin.settings.nodeMaxHeight,
       useTransformPan: () => Platform.isMobile,
       getHotkeys: () => this.plugin.settings.hotkeys,
       getCollapseOnLeft: () => this.plugin.settings.collapseOnLeft,
@@ -1305,6 +1317,15 @@ class MapView extends EditableFileView {
     }));
     const rect = anchor.getBoundingClientRect(); menu.showAtPosition({ x: rect.left, y: rect.bottom });
   }
+  refreshAppearance(): void {
+    const size = this.plugin.settings.embeddedNoteFontSize;
+    if (this.contentEl) {
+      this.contentEl.classList.toggle('has-embed-font-size', size > 0);
+      if (size) this.contentEl.style.setProperty('--tvm-embed-font-size', size + 'px');
+      else this.contentEl.style.removeProperty('--tvm-embed-font-size');
+    }
+    this.surface?.refreshLayout();
+  }
   refreshToolbarMode(): void {
     if (this.toolbar) this.toolbar.dataset.mode = Platform.isMobile ? 'visible' : this.plugin.settings.toolbarMode;
   }
@@ -1843,6 +1864,20 @@ class SettingsTab extends PluginSettingTab {
       for (const [mode, label] of widthModes()) dropdown.addOption(mode, label);
       dropdown.setValue(this.plugin.settings.widthMode).onChange(value => { void this.plugin.setWidthMode(value as WidthMode).catch(error => new Notice(message(error))); });
     });
+    for (const [key, label, description, min, max] of [
+      ['embeddedNoteFontSize', t("Embedded note font size (px)"), t("Leave blank to follow the theme. Changes only embedded notes in maps."), 10, 48],
+      ['nodeMaxHeight', t("Default maximum node height (px)"), t("Leave blank for automatic height. Short content shrinks naturally; manual node sizes take precedence."), 80, 2400],
+    ] as const) {
+      new Setting(this.containerEl).setName(label).setDesc(description).addText(input => {
+        input.inputEl.type = 'number'; input.inputEl.min = String(min); input.inputEl.max = String(max); input.inputEl.step = '1';
+        input.setValue(this.plugin.settings[key] ? String(this.plugin.settings[key]) : '').onChange(async text => {
+          const value = text.trim() ? Number(text) : 0;
+          const valid = Number.isInteger(value) && (value === 0 || (value >= min && value <= max));
+          input.inputEl.setAttribute('aria-invalid', String(!valid));
+          if (valid) await this.plugin.setMapAppearance(key, value);
+        });
+      });
+    }
     this.containerEl.createEl('h3', {text: t("Navigation")});
     new Setting(this.containerEl).setName(t("Navigate across branches with arrow keys")).addToggle(toggle =>
       toggle.setValue(this.plugin.settings.arrowAcrossBranches).onChange(async value => {

@@ -357,3 +357,6 @@
 .tvm-node:is(:hover, .is-selected) .tvm-node-resize, .tvm-node .tvm-node-resize:focus-visible { opacity: 1; }
 .tvm-node.is-editing .tvm-node-resize, .tvm-surface:is([data-layout="outline"], [data-layout="table"]) .tvm-node-resize { display: none; }
 .tvm-surface.is-resizing-node, .tvm-surface.is-resizing-node * { cursor: nwse-resize !important; }
+.tvm-map-view.has-embed-font-size .tvm-node-content .markdown-embed,
+.tvm-map-view.has-embed-font-size .tvm-node-content .markdown-embed .markdown-preview-view,
+.tvm-map-view.has-embed-font-size .tvm-embedded-note-editor { font-size: var(--tvm-embed-font-size); --font-text-size: var(--tvm-embed-font-size); }

@@ -367,5 +367,9 @@
   "Use a note name without path separators or reserved characters.": "Podaj nazwę notatki bez separatorów ścieżki i zastrzeżonych znaków.",
   "Create an embedded note for multiline editing?": "Utworzyć osadzoną notatkę do edycji wielowierszowej?",
   "Resize node": "Zmień rozmiar węzła",
-  "Drag to resize. Arrow keys adjust size; Home or double-click resets it.": "Przeciągnij, aby zmienić rozmiar. Strzałki zmieniają rozmiar; Home lub dwuklik go resetuje."
+  "Drag to resize. Arrow keys adjust size; Home or double-click resets it.": "Przeciągnij, aby zmienić rozmiar. Strzałki zmieniają rozmiar; Home lub dwuklik go resetuje.",
+  "Embedded note font size (px)": "Rozmiar czcionki osadzonych notatek (px)",
+  "Leave blank to follow the theme. Changes only embedded notes in maps.": "Pozostaw puste, aby użyć motywu. Zmienia tylko osadzone notatki na mapach.",
+  "Default maximum node height (px)": "Domyślna maksymalna wysokość węzła (px)",
+  "Leave blank for automatic height. Short content shrinks naturally; manual node sizes take precedence.": "Pozostaw puste dla automatycznej wysokości. Krótka treść zajmuje tylko potrzebne miejsce; ręczny rozmiar ma pierwszeństwo."
 }

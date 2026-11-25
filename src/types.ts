@@ -42,6 +42,7 @@ export type NodeAction = 'node-backlinks' | 'remove-node-address' | 'copy-node-l
 export interface MapSurfaceOptions {
   useTransformPan?: () => boolean;
   getWidthMode?: () => WidthMode;
+  getNodeMaxHeight?: () => number;
   getHotkeys?: () => Record<string, string>;
   getCollapseOnLeft?: () => boolean;
   getArrowAcrossBranches?: () => boolean;

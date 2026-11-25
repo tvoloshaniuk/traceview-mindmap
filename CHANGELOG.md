@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.0.40
+
+### Added
+
+- Set embedded-note font size independently of ordinary map nodes and Obsidian’s global font. Apply the same size in preview and inline embedded-note editing; leave the field blank to follow the theme.
+- Set a default maximum node height for horizontal and vertical maps. Short notes retain their natural height, long notes scroll, and device-local manual sizes take precedence. Blank restores automatic height.
+
 ## 1.0.39
 
 ### Added

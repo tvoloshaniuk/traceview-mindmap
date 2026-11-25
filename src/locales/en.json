@@ -367,5 +367,9 @@
   "Use a note name without path separators or reserved characters.": "Use a note name without path separators or reserved characters.",
   "Create an embedded note for multiline editing?": "Create an embedded note for multiline editing?",
   "Resize node": "Resize node",
-  "Drag to resize. Arrow keys adjust size; Home or double-click resets it.": "Drag to resize. Arrow keys adjust size; Home or double-click resets it."
+  "Drag to resize. Arrow keys adjust size; Home or double-click resets it.": "Drag to resize. Arrow keys adjust size; Home or double-click resets it.",
+  "Embedded note font size (px)": "Embedded note font size (px)",
+  "Leave blank to follow the theme. Changes only embedded notes in maps.": "Leave blank to follow the theme. Changes only embedded notes in maps.",
+  "Default maximum node height (px)": "Default maximum node height (px)",
+  "Leave blank for automatic height. Short content shrinks naturally; manual node sizes take precedence.": "Leave blank for automatic height. Short content shrinks naturally; manual node sizes take precedence."
 }

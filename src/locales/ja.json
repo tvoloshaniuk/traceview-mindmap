@@ -367,5 +367,9 @@
   "Use a note name without path separators or reserved characters.": "パス区切り文字や予約文字を含まないノート名を指定してください。",
   "Create an embedded note for multiline editing?": "複数行を編集するための埋め込みノートを作成しますか？",
   "Resize node": "ノードのサイズを変更",
-  "Drag to resize. Arrow keys adjust size; Home or double-click resets it.": "ドラッグでサイズを変更。矢印キーで調整し、Homeまたはダブルクリックでリセットします。"
+  "Drag to resize. Arrow keys adjust size; Home or double-click resets it.": "ドラッグでサイズを変更。矢印キーで調整し、Homeまたはダブルクリックでリセットします。",
+  "Embedded note font size (px)": "埋め込みノートの文字サイズ (px)",
+  "Leave blank to follow the theme. Changes only embedded notes in maps.": "空欄でテーマの設定を使用します。マップ内の埋め込みノートのみに適用されます。",
+  "Default maximum node height (px)": "ノードの既定の最大高さ (px)",
+  "Leave blank for automatic height. Short content shrinks naturally; manual node sizes take precedence.": "空欄で高さを自動調整します。短い内容は自然な高さになり、手動のノードサイズが優先されます。"
 }

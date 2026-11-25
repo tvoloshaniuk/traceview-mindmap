@@ -367,5 +367,9 @@
   "Use a note name without path separators or reserved characters.": "请输入不含路径分隔符或保留字符的笔记名称。",
   "Create an embedded note for multiline editing?": "创建嵌入笔记以进行多行编辑？",
   "Resize node": "调整节点大小",
-  "Drag to resize. Arrow keys adjust size; Home or double-click resets it.": "拖动以调整大小。方向键调整；Home 或双击重置。"
+  "Drag to resize. Arrow keys adjust size; Home or double-click resets it.": "拖动以调整大小。方向键调整；Home 或双击重置。",
+  "Embedded note font size (px)": "嵌入笔记字号 (px)",
+  "Leave blank to follow the theme. Changes only embedded notes in maps.": "留空以跟随主题。仅更改地图中的嵌入笔记。",
+  "Default maximum node height (px)": "默认节点最大高度 (px)",
+  "Leave blank for automatic height. Short content shrinks naturally; manual node sizes take precedence.": "留空以自动调整高度。短内容保持自然高度；手动节点大小优先。"
 }

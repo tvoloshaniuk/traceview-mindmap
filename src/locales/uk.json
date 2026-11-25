@@ -367,5 +367,9 @@
   "Use a note name without path separators or reserved characters.": "Вкажіть назву нотатки без розділювачів шляху та заборонених символів.",
   "Create an embedded note for multiline editing?": "Створити вкладену нотатку для багаторядкового редагування?",
   "Resize node": "Змінити розмір ноди",
-  "Drag to resize. Arrow keys adjust size; Home or double-click resets it.": "Тягніть для зміни розміру. Стрілки змінюють розмір; Home або подвійний клік скидає його."
+  "Drag to resize. Arrow keys adjust size; Home or double-click resets it.": "Тягніть для зміни розміру. Стрілки змінюють розмір; Home або подвійний клік скидає його.",
+  "Embedded note font size (px)": "Розмір шрифту вкладених нотаток (px)",
+  "Leave blank to follow the theme. Changes only embedded notes in maps.": "Залиште порожнім, щоб використовувати тему. Змінює лише вкладені нотатки на картах.",
+  "Default maximum node height (px)": "Типова максимальна висота ноди (px)",
+  "Leave blank for automatic height. Short content shrinks naturally; manual node sizes take precedence.": "Залиште порожнім для автоматичної висоти. Короткий текст стискається під вміст; ручний розмір ноди має пріоритет."
 }

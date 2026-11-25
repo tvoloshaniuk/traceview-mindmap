@@ -726,7 +726,11 @@ var en_default = {
   "Use a note name without path separators or reserved characters.": "Use a note name without path separators or reserved characters.",
   "Create an embedded note for multiline editing?": "Create an embedded note for multiline editing?",
   "Resize node": "Resize node",
-  "Drag to resize. Arrow keys adjust size; Home or double-click resets it.": "Drag to resize. Arrow keys adjust size; Home or double-click resets it."
+  "Drag to resize. Arrow keys adjust size; Home or double-click resets it.": "Drag to resize. Arrow keys adjust size; Home or double-click resets it.",
+  "Embedded note font size (px)": "Embedded note font size (px)",
+  "Leave blank to follow the theme. Changes only embedded notes in maps.": "Leave blank to follow the theme. Changes only embedded notes in maps.",
+  "Default maximum node height (px)": "Default maximum node height (px)",
+  "Leave blank for automatic height. Short content shrinks naturally; manual node sizes take precedence.": "Leave blank for automatic height. Short content shrinks naturally; manual node sizes take precedence."
 };
 
 // src/locales/uk.json
@@ -1099,7 +1103,11 @@ var uk_default = {
   "Use a note name without path separators or reserved characters.": "\u0412\u043A\u0430\u0436\u0456\u0442\u044C \u043D\u0430\u0437\u0432\u0443 \u043D\u043E\u0442\u0430\u0442\u043A\u0438 \u0431\u0435\u0437 \u0440\u043E\u0437\u0434\u0456\u043B\u044E\u0432\u0430\u0447\u0456\u0432 \u0448\u043B\u044F\u0445\u0443 \u0442\u0430 \u0437\u0430\u0431\u043E\u0440\u043E\u043D\u0435\u043D\u0438\u0445 \u0441\u0438\u043C\u0432\u043E\u043B\u0456\u0432.",
   "Create an embedded note for multiline editing?": "\u0421\u0442\u0432\u043E\u0440\u0438\u0442\u0438 \u0432\u043A\u043B\u0430\u0434\u0435\u043D\u0443 \u043D\u043E\u0442\u0430\u0442\u043A\u0443 \u0434\u043B\u044F \u0431\u0430\u0433\u0430\u0442\u043E\u0440\u044F\u0434\u043A\u043E\u0432\u043E\u0433\u043E \u0440\u0435\u0434\u0430\u0433\u0443\u0432\u0430\u043D\u043D\u044F?",
   "Resize node": "\u0417\u043C\u0456\u043D\u0438\u0442\u0438 \u0440\u043E\u0437\u043C\u0456\u0440 \u043D\u043E\u0434\u0438",
-  "Drag to resize. Arrow keys adjust size; Home or double-click resets it.": "\u0422\u044F\u0433\u043D\u0456\u0442\u044C \u0434\u043B\u044F \u0437\u043C\u0456\u043D\u0438 \u0440\u043E\u0437\u043C\u0456\u0440\u0443. \u0421\u0442\u0440\u0456\u043B\u043A\u0438 \u0437\u043C\u0456\u043D\u044E\u044E\u0442\u044C \u0440\u043E\u0437\u043C\u0456\u0440; Home \u0430\u0431\u043E \u043F\u043E\u0434\u0432\u0456\u0439\u043D\u0438\u0439 \u043A\u043B\u0456\u043A \u0441\u043A\u0438\u0434\u0430\u0454 \u0439\u043E\u0433\u043E."
+  "Drag to resize. Arrow keys adjust size; Home or double-click resets it.": "\u0422\u044F\u0433\u043D\u0456\u0442\u044C \u0434\u043B\u044F \u0437\u043C\u0456\u043D\u0438 \u0440\u043E\u0437\u043C\u0456\u0440\u0443. \u0421\u0442\u0440\u0456\u043B\u043A\u0438 \u0437\u043C\u0456\u043D\u044E\u044E\u0442\u044C \u0440\u043E\u0437\u043C\u0456\u0440; Home \u0430\u0431\u043E \u043F\u043E\u0434\u0432\u0456\u0439\u043D\u0438\u0439 \u043A\u043B\u0456\u043A \u0441\u043A\u0438\u0434\u0430\u0454 \u0439\u043E\u0433\u043E.",
+  "Embedded note font size (px)": "\u0420\u043E\u0437\u043C\u0456\u0440 \u0448\u0440\u0438\u0444\u0442\u0443 \u0432\u043A\u043B\u0430\u0434\u0435\u043D\u0438\u0445 \u043D\u043E\u0442\u0430\u0442\u043E\u043A (px)",
+  "Leave blank to follow the theme. Changes only embedded notes in maps.": "\u0417\u0430\u043B\u0438\u0448\u0442\u0435 \u043F\u043E\u0440\u043E\u0436\u043D\u0456\u043C, \u0449\u043E\u0431 \u0432\u0438\u043A\u043E\u0440\u0438\u0441\u0442\u043E\u0432\u0443\u0432\u0430\u0442\u0438 \u0442\u0435\u043C\u0443. \u0417\u043C\u0456\u043D\u044E\u0454 \u043B\u0438\u0448\u0435 \u0432\u043A\u043B\u0430\u0434\u0435\u043D\u0456 \u043D\u043E\u0442\u0430\u0442\u043A\u0438 \u043D\u0430 \u043A\u0430\u0440\u0442\u0430\u0445.",
+  "Default maximum node height (px)": "\u0422\u0438\u043F\u043E\u0432\u0430 \u043C\u0430\u043A\u0441\u0438\u043C\u0430\u043B\u044C\u043D\u0430 \u0432\u0438\u0441\u043E\u0442\u0430 \u043D\u043E\u0434\u0438 (px)",
+  "Leave blank for automatic height. Short content shrinks naturally; manual node sizes take precedence.": "\u0417\u0430\u043B\u0438\u0448\u0442\u0435 \u043F\u043E\u0440\u043E\u0436\u043D\u0456\u043C \u0434\u043B\u044F \u0430\u0432\u0442\u043E\u043C\u0430\u0442\u0438\u0447\u043D\u043E\u0457 \u0432\u0438\u0441\u043E\u0442\u0438. \u041A\u043E\u0440\u043E\u0442\u043A\u0438\u0439 \u0442\u0435\u043A\u0441\u0442 \u0441\u0442\u0438\u0441\u043A\u0430\u0454\u0442\u044C\u0441\u044F \u043F\u0456\u0434 \u0432\u043C\u0456\u0441\u0442; \u0440\u0443\u0447\u043D\u0438\u0439 \u0440\u043E\u0437\u043C\u0456\u0440 \u043D\u043E\u0434\u0438 \u043C\u0430\u0454 \u043F\u0440\u0456\u043E\u0440\u0438\u0442\u0435\u0442."
 };
 
 // src/locales/pl.json
@@ -1472,7 +1480,11 @@ var pl_default = {
   "Use a note name without path separators or reserved characters.": "Podaj nazw\u0119 notatki bez separator\xF3w \u015Bcie\u017Cki i zastrze\u017Conych znak\xF3w.",
   "Create an embedded note for multiline editing?": "Utworzy\u0107 osadzon\u0105 notatk\u0119 do edycji wielowierszowej?",
   "Resize node": "Zmie\u0144 rozmiar w\u0119z\u0142a",
-  "Drag to resize. Arrow keys adjust size; Home or double-click resets it.": "Przeci\u0105gnij, aby zmieni\u0107 rozmiar. Strza\u0142ki zmieniaj\u0105 rozmiar; Home lub dwuklik go resetuje."
+  "Drag to resize. Arrow keys adjust size; Home or double-click resets it.": "Przeci\u0105gnij, aby zmieni\u0107 rozmiar. Strza\u0142ki zmieniaj\u0105 rozmiar; Home lub dwuklik go resetuje.",
+  "Embedded note font size (px)": "Rozmiar czcionki osadzonych notatek (px)",
+  "Leave blank to follow the theme. Changes only embedded notes in maps.": "Pozostaw puste, aby u\u017Cy\u0107 motywu. Zmienia tylko osadzone notatki na mapach.",
+  "Default maximum node height (px)": "Domy\u015Blna maksymalna wysoko\u015B\u0107 w\u0119z\u0142a (px)",
+  "Leave blank for automatic height. Short content shrinks naturally; manual node sizes take precedence.": "Pozostaw puste dla automatycznej wysoko\u015Bci. Kr\xF3tka tre\u015B\u0107 zajmuje tylko potrzebne miejsce; r\u0119czny rozmiar ma pierwsze\u0144stwo."
 };
 
 // src/locales/de.json
@@ -1845,7 +1857,11 @@ var de_default = {
   "Use a note name without path separators or reserved characters.": "Verwende einen Notiznamen ohne Pfadtrenner oder reservierte Zeichen.",
   "Create an embedded note for multiline editing?": "Eine eingebettete Notiz f\xFCr mehrzeilige Bearbeitung erstellen?",
   "Resize node": "Knotengr\xF6\xDFe \xE4ndern",
-  "Drag to resize. Arrow keys adjust size; Home or double-click resets it.": "Zum \xC4ndern ziehen. Pfeiltasten passen die Gr\xF6\xDFe an; Home oder Doppelklick setzt sie zur\xFCck."
+  "Drag to resize. Arrow keys adjust size; Home or double-click resets it.": "Zum \xC4ndern ziehen. Pfeiltasten passen die Gr\xF6\xDFe an; Home oder Doppelklick setzt sie zur\xFCck.",
+  "Embedded note font size (px)": "Schriftgr\xF6\xDFe eingebetteter Notizen (px)",
+  "Leave blank to follow the theme. Changes only embedded notes in maps.": "Leer lassen, um dem Design zu folgen. \xC4ndert nur eingebettete Notizen in Karten.",
+  "Default maximum node height (px)": "Standardm\xE4\xDFige maximale Knotenh\xF6he (px)",
+  "Leave blank for automatic height. Short content shrinks naturally; manual node sizes take precedence.": "Leer lassen f\xFCr automatische H\xF6he. Kurzer Inhalt schrumpft auf seine nat\xFCrliche H\xF6he; manuelle Knotengr\xF6\xDFen haben Vorrang."
 };
 
 // src/locales/es.json
@@ -2218,7 +2234,11 @@ var es_default = {
   "Use a note name without path separators or reserved characters.": "Usa un nombre sin separadores de ruta ni caracteres reservados.",
   "Create an embedded note for multiline editing?": "\xBFCrear una nota incrustada para editar varias l\xEDneas?",
   "Resize node": "Cambiar tama\xF1o del nodo",
-  "Drag to resize. Arrow keys adjust size; Home or double-click resets it.": "Arrastra para cambiar el tama\xF1o. Las flechas lo ajustan; Inicio o un doble clic lo restablece."
+  "Drag to resize. Arrow keys adjust size; Home or double-click resets it.": "Arrastra para cambiar el tama\xF1o. Las flechas lo ajustan; Inicio o un doble clic lo restablece.",
+  "Embedded note font size (px)": "Tama\xF1o de fuente de notas incrustadas (px)",
+  "Leave blank to follow the theme. Changes only embedded notes in maps.": "D\xE9jalo vac\xEDo para seguir el tema. Solo cambia las notas incrustadas en mapas.",
+  "Default maximum node height (px)": "Altura m\xE1xima predeterminada de nodos (px)",
+  "Leave blank for automatic height. Short content shrinks naturally; manual node sizes take precedence.": "D\xE9jalo vac\xEDo para altura autom\xE1tica. El contenido corto se ajusta a su altura natural; el tama\xF1o manual tiene prioridad."
 };
 
 // src/locales/fr.json
@@ -2591,7 +2611,11 @@ var fr_default = {
   "Use a note name without path separators or reserved characters.": "Utilisez un nom sans s\xE9parateurs de chemin ni caract\xE8res r\xE9serv\xE9s.",
   "Create an embedded note for multiline editing?": "Cr\xE9er une note int\xE9gr\xE9e pour la saisie multiligne ?",
   "Resize node": "Redimensionner le n\u0153ud",
-  "Drag to resize. Arrow keys adjust size; Home or double-click resets it.": "Faites glisser pour redimensionner. Les fl\xE8ches ajustent la taille ; Home ou un double-clic la r\xE9initialise."
+  "Drag to resize. Arrow keys adjust size; Home or double-click resets it.": "Faites glisser pour redimensionner. Les fl\xE8ches ajustent la taille ; Home ou un double-clic la r\xE9initialise.",
+  "Embedded note font size (px)": "Taille de police des notes int\xE9gr\xE9es (px)",
+  "Leave blank to follow the theme. Changes only embedded notes in maps.": "Laissez vide pour suivre le th\xE8me. Ne modifie que les notes int\xE9gr\xE9es aux cartes.",
+  "Default maximum node height (px)": "Hauteur maximale des n\u0153uds par d\xE9faut (px)",
+  "Leave blank for automatic height. Short content shrinks naturally; manual node sizes take precedence.": "Laissez vide pour une hauteur automatique. Le contenu court conserve sa hauteur naturelle ; les tailles manuelles sont prioritaires."
 };
 
 // src/locales/pt-BR.json
@@ -2964,7 +2988,11 @@ var pt_BR_default = {
   "Use a note name without path separators or reserved characters.": "Use um nome sem separadores de caminho ou caracteres reservados.",
   "Create an embedded note for multiline editing?": "Criar uma nota incorporada para edi\xE7\xE3o em v\xE1rias linhas?",
   "Resize node": "Redimensionar n\xF3",
-  "Drag to resize. Arrow keys adjust size; Home or double-click resets it.": "Arraste para redimensionar. As setas ajustam o tamanho; Home ou clique duplo o redefine."
+  "Drag to resize. Arrow keys adjust size; Home or double-click resets it.": "Arraste para redimensionar. As setas ajustam o tamanho; Home ou clique duplo o redefine.",
+  "Embedded note font size (px)": "Tamanho da fonte das notas incorporadas (px)",
+  "Leave blank to follow the theme. Changes only embedded notes in maps.": "Deixe vazio para seguir o tema. Altera apenas as notas incorporadas nos mapas.",
+  "Default maximum node height (px)": "Altura m\xE1xima padr\xE3o dos n\xF3s (px)",
+  "Leave blank for automatic height. Short content shrinks naturally; manual node sizes take precedence.": "Deixe vazio para altura autom\xE1tica. Conte\xFAdo curto mant\xE9m a altura natural; tamanhos manuais t\xEAm prioridade."
 };
 
 // src/locales/zh-CN.json
@@ -3337,7 +3365,11 @@ var zh_CN_default = {
   "Use a note name without path separators or reserved characters.": "\u8BF7\u8F93\u5165\u4E0D\u542B\u8DEF\u5F84\u5206\u9694\u7B26\u6216\u4FDD\u7559\u5B57\u7B26\u7684\u7B14\u8BB0\u540D\u79F0\u3002",
   "Create an embedded note for multiline editing?": "\u521B\u5EFA\u5D4C\u5165\u7B14\u8BB0\u4EE5\u8FDB\u884C\u591A\u884C\u7F16\u8F91\uFF1F",
   "Resize node": "\u8C03\u6574\u8282\u70B9\u5927\u5C0F",
-  "Drag to resize. Arrow keys adjust size; Home or double-click resets it.": "\u62D6\u52A8\u4EE5\u8C03\u6574\u5927\u5C0F\u3002\u65B9\u5411\u952E\u8C03\u6574\uFF1BHome \u6216\u53CC\u51FB\u91CD\u7F6E\u3002"
+  "Drag to resize. Arrow keys adjust size; Home or double-click resets it.": "\u62D6\u52A8\u4EE5\u8C03\u6574\u5927\u5C0F\u3002\u65B9\u5411\u952E\u8C03\u6574\uFF1BHome \u6216\u53CC\u51FB\u91CD\u7F6E\u3002",
+  "Embedded note font size (px)": "\u5D4C\u5165\u7B14\u8BB0\u5B57\u53F7 (px)",
+  "Leave blank to follow the theme. Changes only embedded notes in maps.": "\u7559\u7A7A\u4EE5\u8DDF\u968F\u4E3B\u9898\u3002\u4EC5\u66F4\u6539\u5730\u56FE\u4E2D\u7684\u5D4C\u5165\u7B14\u8BB0\u3002",
+  "Default maximum node height (px)": "\u9ED8\u8BA4\u8282\u70B9\u6700\u5927\u9AD8\u5EA6 (px)",
+  "Leave blank for automatic height. Short content shrinks naturally; manual node sizes take precedence.": "\u7559\u7A7A\u4EE5\u81EA\u52A8\u8C03\u6574\u9AD8\u5EA6\u3002\u77ED\u5185\u5BB9\u4FDD\u6301\u81EA\u7136\u9AD8\u5EA6\uFF1B\u624B\u52A8\u8282\u70B9\u5927\u5C0F\u4F18\u5148\u3002"
 };
 
 // src/locales/ja.json
@@ -3710,7 +3742,11 @@ var ja_default = {
   "Use a note name without path separators or reserved characters.": "\u30D1\u30B9\u533A\u5207\u308A\u6587\u5B57\u3084\u4E88\u7D04\u6587\u5B57\u3092\u542B\u307E\u306A\u3044\u30CE\u30FC\u30C8\u540D\u3092\u6307\u5B9A\u3057\u3066\u304F\u3060\u3055\u3044\u3002",
   "Create an embedded note for multiline editing?": "\u8907\u6570\u884C\u3092\u7DE8\u96C6\u3059\u308B\u305F\u3081\u306E\u57CB\u3081\u8FBC\u307F\u30CE\u30FC\u30C8\u3092\u4F5C\u6210\u3057\u307E\u3059\u304B\uFF1F",
   "Resize node": "\u30CE\u30FC\u30C9\u306E\u30B5\u30A4\u30BA\u3092\u5909\u66F4",
-  "Drag to resize. Arrow keys adjust size; Home or double-click resets it.": "\u30C9\u30E9\u30C3\u30B0\u3067\u30B5\u30A4\u30BA\u3092\u5909\u66F4\u3002\u77E2\u5370\u30AD\u30FC\u3067\u8ABF\u6574\u3057\u3001Home\u307E\u305F\u306F\u30C0\u30D6\u30EB\u30AF\u30EA\u30C3\u30AF\u3067\u30EA\u30BB\u30C3\u30C8\u3057\u307E\u3059\u3002"
+  "Drag to resize. Arrow keys adjust size; Home or double-click resets it.": "\u30C9\u30E9\u30C3\u30B0\u3067\u30B5\u30A4\u30BA\u3092\u5909\u66F4\u3002\u77E2\u5370\u30AD\u30FC\u3067\u8ABF\u6574\u3057\u3001Home\u307E\u305F\u306F\u30C0\u30D6\u30EB\u30AF\u30EA\u30C3\u30AF\u3067\u30EA\u30BB\u30C3\u30C8\u3057\u307E\u3059\u3002",
+  "Embedded note font size (px)": "\u57CB\u3081\u8FBC\u307F\u30CE\u30FC\u30C8\u306E\u6587\u5B57\u30B5\u30A4\u30BA (px)",
+  "Leave blank to follow the theme. Changes only embedded notes in maps.": "\u7A7A\u6B04\u3067\u30C6\u30FC\u30DE\u306E\u8A2D\u5B9A\u3092\u4F7F\u7528\u3057\u307E\u3059\u3002\u30DE\u30C3\u30D7\u5185\u306E\u57CB\u3081\u8FBC\u307F\u30CE\u30FC\u30C8\u306E\u307F\u306B\u9069\u7528\u3055\u308C\u307E\u3059\u3002",
+  "Default maximum node height (px)": "\u30CE\u30FC\u30C9\u306E\u65E2\u5B9A\u306E\u6700\u5927\u9AD8\u3055 (px)",
+  "Leave blank for automatic height. Short content shrinks naturally; manual node sizes take precedence.": "\u7A7A\u6B04\u3067\u9AD8\u3055\u3092\u81EA\u52D5\u8ABF\u6574\u3057\u307E\u3059\u3002\u77ED\u3044\u5185\u5BB9\u306F\u81EA\u7136\u306A\u9AD8\u3055\u306B\u306A\u308A\u3001\u624B\u52D5\u306E\u30CE\u30FC\u30C9\u30B5\u30A4\u30BA\u304C\u512A\u5148\u3055\u308C\u307E\u3059\u3002"
 };
 
 // src/locales/ko.json
@@ -4083,7 +4119,11 @@ var ko_default = {
   "Use a note name without path separators or reserved characters.": "\uACBD\uB85C \uAD6C\uBD84\uC790\uB098 \uC608\uC57D \uBB38\uC790\uAC00 \uC5C6\uB294 \uB178\uD2B8 \uC774\uB984\uC744 \uC785\uB825\uD558\uC138\uC694.",
   "Create an embedded note for multiline editing?": "\uC5EC\uB7EC \uC904 \uD3B8\uC9D1\uC744 \uC704\uD55C \uC784\uBCA0\uB4DC \uB178\uD2B8\uB97C \uB9CC\uB4E4\uAE4C\uC694?",
   "Resize node": "\uB178\uB4DC \uD06C\uAE30 \uBCC0\uACBD",
-  "Drag to resize. Arrow keys adjust size; Home or double-click resets it.": "\uB4DC\uB798\uADF8\uD558\uC5EC \uD06C\uAE30\uB97C \uBCC0\uACBD\uD558\uC138\uC694. \uBC29\uD5A5\uD0A4\uB85C \uC870\uC808\uD558\uACE0 Home \uB610\uB294 \uB450 \uBC88 \uD074\uB9AD\uC73C\uB85C \uCD08\uAE30\uD654\uD569\uB2C8\uB2E4."
+  "Drag to resize. Arrow keys adjust size; Home or double-click resets it.": "\uB4DC\uB798\uADF8\uD558\uC5EC \uD06C\uAE30\uB97C \uBCC0\uACBD\uD558\uC138\uC694. \uBC29\uD5A5\uD0A4\uB85C \uC870\uC808\uD558\uACE0 Home \uB610\uB294 \uB450 \uBC88 \uD074\uB9AD\uC73C\uB85C \uCD08\uAE30\uD654\uD569\uB2C8\uB2E4.",
+  "Embedded note font size (px)": "\uC784\uBCA0\uB4DC \uB178\uD2B8 \uAE00\uAF34 \uD06C\uAE30 (px)",
+  "Leave blank to follow the theme. Changes only embedded notes in maps.": "\uBE44\uC6CC \uB450\uBA74 \uD14C\uB9C8 \uC124\uC815\uC744 \uB530\uB985\uB2C8\uB2E4. \uB9F5\uC758 \uC784\uBCA0\uB4DC \uB178\uD2B8\uC5D0\uB9CC \uC801\uC6A9\uB429\uB2C8\uB2E4.",
+  "Default maximum node height (px)": "\uAE30\uBCF8 \uB178\uB4DC \uCD5C\uB300 \uB192\uC774 (px)",
+  "Leave blank for automatic height. Short content shrinks naturally; manual node sizes take precedence.": "\uBE44\uC6CC \uB450\uBA74 \uB192\uC774\uB97C \uC790\uB3D9 \uC870\uC808\uD569\uB2C8\uB2E4. \uC9E7\uC740 \uB0B4\uC6A9\uC740 \uC790\uC5F0\uC2A4\uB7EC\uC6B4 \uB192\uC774\uB97C \uC0AC\uC6A9\uD558\uBA70 \uC218\uB3D9 \uD06C\uAE30\uAC00 \uC6B0\uC120\uD569\uB2C8\uB2E4."
 };
 
 // src/locales/ru.json
@@ -4456,7 +4496,11 @@ var ru_default = {
   "Use a note name without path separators or reserved characters.": "\u0423\u043A\u0430\u0436\u0438\u0442\u0435 \u043D\u0430\u0437\u0432\u0430\u043D\u0438\u0435 \u0437\u0430\u043C\u0435\u0442\u043A\u0438 \u0431\u0435\u0437 \u0440\u0430\u0437\u0434\u0435\u043B\u0438\u0442\u0435\u043B\u0435\u0439 \u043F\u0443\u0442\u0438 \u0438 \u0437\u0430\u043F\u0440\u0435\u0449\u0451\u043D\u043D\u044B\u0445 \u0441\u0438\u043C\u0432\u043E\u043B\u043E\u0432.",
   "Create an embedded note for multiline editing?": "\u0421\u043E\u0437\u0434\u0430\u0442\u044C \u0432\u043B\u043E\u0436\u0435\u043D\u043D\u0443\u044E \u0437\u0430\u043C\u0435\u0442\u043A\u0443 \u0434\u043B\u044F \u043C\u043D\u043E\u0433\u043E\u0441\u0442\u0440\u043E\u0447\u043D\u043E\u0433\u043E \u0440\u0435\u0434\u0430\u043A\u0442\u0438\u0440\u043E\u0432\u0430\u043D\u0438\u044F?",
   "Resize node": "\u0418\u0437\u043C\u0435\u043D\u0438\u0442\u044C \u0440\u0430\u0437\u043C\u0435\u0440 \u0443\u0437\u043B\u0430",
-  "Drag to resize. Arrow keys adjust size; Home or double-click resets it.": "\u041F\u043E\u0442\u044F\u043D\u0438\u0442\u0435 \u0434\u043B\u044F \u0438\u0437\u043C\u0435\u043D\u0435\u043D\u0438\u044F \u0440\u0430\u0437\u043C\u0435\u0440\u0430. \u0421\u0442\u0440\u0435\u043B\u043A\u0438 \u043C\u0435\u043D\u044F\u044E\u0442 \u0440\u0430\u0437\u043C\u0435\u0440; Home \u0438\u043B\u0438 \u0434\u0432\u043E\u0439\u043D\u043E\u0439 \u0449\u0435\u043B\u0447\u043E\u043A \u0441\u0431\u0440\u0430\u0441\u044B\u0432\u0430\u0435\u0442 \u0435\u0433\u043E."
+  "Drag to resize. Arrow keys adjust size; Home or double-click resets it.": "\u041F\u043E\u0442\u044F\u043D\u0438\u0442\u0435 \u0434\u043B\u044F \u0438\u0437\u043C\u0435\u043D\u0435\u043D\u0438\u044F \u0440\u0430\u0437\u043C\u0435\u0440\u0430. \u0421\u0442\u0440\u0435\u043B\u043A\u0438 \u043C\u0435\u043D\u044F\u044E\u0442 \u0440\u0430\u0437\u043C\u0435\u0440; Home \u0438\u043B\u0438 \u0434\u0432\u043E\u0439\u043D\u043E\u0439 \u0449\u0435\u043B\u0447\u043E\u043A \u0441\u0431\u0440\u0430\u0441\u044B\u0432\u0430\u0435\u0442 \u0435\u0433\u043E.",
+  "Embedded note font size (px)": "\u0420\u0430\u0437\u043C\u0435\u0440 \u0448\u0440\u0438\u0444\u0442\u0430 \u0432\u043B\u043E\u0436\u0435\u043D\u043D\u044B\u0445 \u0437\u0430\u043C\u0435\u0442\u043E\u043A (px)",
+  "Leave blank to follow the theme. Changes only embedded notes in maps.": "\u041E\u0441\u0442\u0430\u0432\u044C\u0442\u0435 \u043F\u0443\u0441\u0442\u044B\u043C \u0434\u043B\u044F \u043D\u0430\u0441\u0442\u0440\u043E\u0439\u043A\u0438 \u0442\u0435\u043C\u044B. \u041C\u0435\u043D\u044F\u0435\u0442 \u0442\u043E\u043B\u044C\u043A\u043E \u0432\u043B\u043E\u0436\u0435\u043D\u043D\u044B\u0435 \u0437\u0430\u043C\u0435\u0442\u043A\u0438 \u043D\u0430 \u043A\u0430\u0440\u0442\u0430\u0445.",
+  "Default maximum node height (px)": "\u041C\u0430\u043A\u0441\u0438\u043C\u0430\u043B\u044C\u043D\u0430\u044F \u0432\u044B\u0441\u043E\u0442\u0430 \u0443\u0437\u043B\u0430 \u043F\u043E \u0443\u043C\u043E\u043B\u0447\u0430\u043D\u0438\u044E (px)",
+  "Leave blank for automatic height. Short content shrinks naturally; manual node sizes take precedence.": "\u041E\u0441\u0442\u0430\u0432\u044C\u0442\u0435 \u043F\u0443\u0441\u0442\u044B\u043C \u0434\u043B\u044F \u0430\u0432\u0442\u043E\u043C\u0430\u0442\u0438\u0447\u0435\u0441\u043A\u043E\u0439 \u0432\u044B\u0441\u043E\u0442\u044B. \u041A\u043E\u0440\u043E\u0442\u043A\u0438\u0439 \u0442\u0435\u043A\u0441\u0442 \u0441\u0436\u0438\u043C\u0430\u0435\u0442\u0441\u044F \u043F\u043E \u0441\u043E\u0434\u0435\u0440\u0436\u0438\u043C\u043E\u043C\u0443; \u0440\u0443\u0447\u043D\u043E\u0439 \u0440\u0430\u0437\u043C\u0435\u0440 \u0443\u0437\u043B\u0430 \u0438\u043C\u0435\u0435\u0442 \u043F\u0440\u0438\u043E\u0440\u0438\u0442\u0435\u0442."
 };
 
 // src/i18n.ts
@@ -6979,10 +7023,10 @@ var MapSurface = class {
       const el = this.elements.get(id);
       el.style.width = `${width2}px`;
       el.style.maxWidth = "";
-      const size = sizes?.[id], content = el.querySelector(".tvm-node-content");
-      if (size && content && id !== this.editing?.id) {
+      const maxHeight = sizes?.[id]?.height ?? this.options.getNodeMaxHeight?.(), content = el.querySelector(".tvm-node-content");
+      if (maxHeight && content && id !== this.editing?.id && ["map", "vertical"].includes(this.mode)) {
         const chrome = el.offsetHeight - content.offsetHeight;
-        content.style.maxHeight = `${Math.max(24, size.height - chrome)}px`;
+        content.style.maxHeight = `${Math.max(24, maxHeight - chrome)}px`;
         content.style.overflowY = "auto";
       }
     }
@@ -9566,7 +9610,7 @@ function hasLargeVisibleTree(doc, state) {
   }
   return false;
 }
-var DEFAULT_SETTINGS = { patternMode: "glob", mapPatterns: "*.mindmap.md\n\u{1F3AF}*.md", language: "auto", nodeEditor: "native", autoOpen: false, rememberLastMode: false, autoRestoreLargeMaps: true, queueExcludedMaps: "\u0430\u0440\u0445\u0456\u0432 \u0442\u0438\u0436\u043D\u0456\u0432\nold", queueExcludedBranches: "\u{1F9CA}\n\u274C", queueTaskMarker: true, queueStepTag: true, collapseOnLeft: false, arrowAcrossBranches: false, toolbarMode: "visible", showMapPreviews: true, collapsePastedBranches: true, hotkeys: {}, widthMode: "fixed" };
+var DEFAULT_SETTINGS = { patternMode: "glob", mapPatterns: "*.mindmap.md\n\u{1F3AF}*.md", language: "auto", nodeEditor: "native", autoOpen: false, rememberLastMode: false, autoRestoreLargeMaps: true, queueExcludedMaps: "\u0430\u0440\u0445\u0456\u0432 \u0442\u0438\u0436\u043D\u0456\u0432\nold", queueExcludedBranches: "\u{1F9CA}\n\u274C", queueTaskMarker: true, queueStepTag: true, collapseOnLeft: false, arrowAcrossBranches: false, toolbarMode: "visible", showMapPreviews: true, collapsePastedBranches: true, hotkeys: {}, widthMode: "fixed", embeddedNoteFontSize: 0, nodeMaxHeight: 0 };
 var widthModes = () => [["fixed", t("Fixed width")], ["content", t("Fit node content")], ["column", t("Fit visible column")]];
 var toolbarModes = () => [
   ["visible", t("Always show toolbar")],
@@ -9619,6 +9663,10 @@ var TraceViewMindmap = class extends import_obsidian5.Plugin {
       this.autoTimers.clear();
     });
     this.settings = { ...DEFAULT_SETTINGS, ...saved, hotkeys: {} };
+    for (const [key, min, max] of [["embeddedNoteFontSize", 10, 48], ["nodeMaxHeight", 80, 2400]]) {
+      const value = this.settings[key];
+      if (!Number.isInteger(value) || value !== 0 && (value < min || value > max)) this.settings[key] = 0;
+    }
     if (typeof saved?.queueExcludedMaps !== "string") this.settings.queueExcludedMaps = DEFAULT_SETTINGS.queueExcludedMaps;
     if (typeof saved?.queueExcludedBranches !== "string") this.settings.queueExcludedBranches = saved?.hideFrozen === false ? "" : DEFAULT_SETTINGS.queueExcludedBranches;
     if (typeof this.settings.previousPluginId !== "string" || !/^[a-z0-9][a-z0-9-]*$/.test(this.settings.previousPluginId) || this.settings.previousPluginId === "traceview-mindmap") delete this.settings.previousPluginId;
@@ -9977,7 +10025,7 @@ var TraceViewMindmap = class extends import_obsidian5.Plugin {
     this.matchesMap = compileMapPatterns(defaults);
     this.refreshBindings();
     for (const view of this.mapViews()) {
-      view.surface?.refreshLayout();
+      view.refreshAppearance();
       view.refreshRestoreWait();
     }
     this.refreshQueues();
@@ -9992,6 +10040,13 @@ var TraceViewMindmap = class extends import_obsidian5.Plugin {
   }
   refreshBindings() {
     for (const view of this.mapViews()) view.refreshBindings();
+  }
+  async setMapAppearance(key, value) {
+    const [min, max] = key === "embeddedNoteFontSize" ? [10, 48] : [80, 2400];
+    if (!Number.isInteger(value) || value !== 0 && (value < min || value > max)) return;
+    this.settings[key] = value;
+    for (const view of this.mapViews()) view.refreshAppearance();
+    await this.saveData(this.settings);
   }
   async setWidthMode(mode) {
     this.settings.widthMode = mode;
@@ -10329,6 +10384,7 @@ var MapView = class extends import_obsidian5.EditableFileView {
     const toolbar = this.contentEl.createDiv("tvm-toolbar");
     this.toolbar = toolbar;
     this.refreshToolbarMode();
+    this.refreshAppearance();
     this.title = this.containerEl.querySelector(".view-header-title") ?? void 0;
     const actions = toolbar.createDiv("tvm-actions");
     this.undoButton = iconButton(actions, "undo-2", t("Undo"), () => {
@@ -10402,6 +10458,7 @@ var MapView = class extends import_obsidian5.EditableFileView {
     };
     this.surface = new MapSurface(this.host, {
       getWidthMode: () => this.plugin.settings.widthMode,
+      getNodeMaxHeight: () => this.plugin.settings.nodeMaxHeight,
       useTransformPan: () => import_obsidian5.Platform.isMobile,
       getHotkeys: () => this.plugin.settings.hotkeys,
       getCollapseOnLeft: () => this.plugin.settings.collapseOnLeft,
@@ -11101,6 +11158,15 @@ var MapView = class extends import_obsidian5.EditableFileView {
     const rect = anchor2.getBoundingClientRect();
     menu.showAtPosition({ x: rect.left, y: rect.bottom });
   }
+  refreshAppearance() {
+    const size = this.plugin.settings.embeddedNoteFontSize;
+    if (this.contentEl) {
+      this.contentEl.classList.toggle("has-embed-font-size", size > 0);
+      if (size) this.contentEl.style.setProperty("--tvm-embed-font-size", size + "px");
+      else this.contentEl.style.removeProperty("--tvm-embed-font-size");
+    }
+    this.surface?.refreshLayout();
+  }
   refreshToolbarMode() {
     if (this.toolbar) this.toolbar.dataset.mode = import_obsidian5.Platform.isMobile ? "visible" : this.plugin.settings.toolbarMode;
   }
@@ -11790,6 +11856,23 @@ var SettingsTab = class extends import_obsidian5.PluginSettingTab {
         void this.plugin.setWidthMode(value).catch((error) => new import_obsidian5.Notice(message(error)));
       });
     });
+    for (const [key, label2, description, min, max] of [
+      ["embeddedNoteFontSize", t("Embedded note font size (px)"), t("Leave blank to follow the theme. Changes only embedded notes in maps."), 10, 48],
+      ["nodeMaxHeight", t("Default maximum node height (px)"), t("Leave blank for automatic height. Short content shrinks naturally; manual node sizes take precedence."), 80, 2400]
+    ]) {
+      new import_obsidian5.Setting(this.containerEl).setName(label2).setDesc(description).addText((input) => {
+        input.inputEl.type = "number";
+        input.inputEl.min = String(min);
+        input.inputEl.max = String(max);
+        input.inputEl.step = "1";
+        input.setValue(this.plugin.settings[key] ? String(this.plugin.settings[key]) : "").onChange(async (text) => {
+          const value = text.trim() ? Number(text) : 0;
+          const valid = Number.isInteger(value) && (value === 0 || value >= min && value <= max);
+          input.inputEl.setAttribute("aria-invalid", String(!valid));
+          if (valid) await this.plugin.setMapAppearance(key, value);
+        });
+      });
+    }
     this.containerEl.createEl("h3", { text: t("Navigation") });
     new import_obsidian5.Setting(this.containerEl).setName(t("Navigate across branches with arrow keys")).addToggle((toggle) => toggle.setValue(this.plugin.settings.arrowAcrossBranches).onChange(async (value) => {
       this.plugin.settings.arrowAcrossBranches = value;

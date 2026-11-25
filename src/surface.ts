@@ -853,10 +853,10 @@ export class MapSurface {
       const el = this.elements.get(id)!;
       el.style.width = `${width}px`;
       el.style.maxWidth = '';
-      const size = sizes?.[id], content = el.querySelector<HTMLElement>('.tvm-node-content');
-      if (size && content && id !== this.editing?.id) {
+      const maxHeight = sizes?.[id]?.height ?? this.options.getNodeMaxHeight?.(), content = el.querySelector<HTMLElement>('.tvm-node-content');
+      if (maxHeight && content && id !== this.editing?.id && ['map', 'vertical'].includes(this.mode)) {
         const chrome = el.offsetHeight - content.offsetHeight;
-        content.style.maxHeight = `${Math.max(24, size.height - chrome)}px`;
+        content.style.maxHeight = `${Math.max(24, maxHeight - chrome)}px`;
         content.style.overflowY = 'auto';
       }
     }
