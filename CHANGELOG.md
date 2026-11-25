@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.0.58
+
+### Fixed
+
+- Use the native filename basename for map view titles. Native file reload and rename no longer turn an unchanged ordinary note into a .md.md file or drop the .mindmap part of a map filename.
+- Keep existing filenames and note contents intact; this fix does not automatically rename previously duplicated extensions.
+
 ## 1.0.57
 
 ### Fixed

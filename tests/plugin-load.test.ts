@@ -368,6 +368,15 @@ test('cursor command is additional, checks exact node lines, saves and opens the
 });
 
 
+test('map display names use native basenames so rename does not duplicate or drop filename suffixes', async () => {
+  const loaded = await loadBundle(null);
+  const view = loaded.views.get('traceview-mindmap-map')!({app: loaded.app}) as any;
+  for (const [path, name] of [['Folder/Plan.md', 'Plan'], ['Folder/Plan.mindmap.md', 'Plan.mindmap'], ['Folder/Meeting.MD', 'Meeting'], ['Folder/Existing.md.md', 'Existing.md']]) {
+    view.path = path;
+    assert.equal(view.getDisplayText(), name);
+  }
+});
+
 test('vault-wide rename cannot substitute a map or disturb its active draft', async () => {
   const loaded = await loadBundle(null);
   const view = loaded.views.get('traceview-mindmap-map')!({app: loaded.app}) as any;

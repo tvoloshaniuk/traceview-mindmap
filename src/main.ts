@@ -605,7 +605,7 @@ class MapView extends EditableFileView {
   getViewType(): string { return VIEW; }
   // Native editor commands check this before calling our Editor adapter.
   getMode(): 'source' | 'preview' { return this.editor ? 'source' : 'preview'; }
-  getDisplayText(): string { return this.path.split('/').pop()?.replace(/\.mindmap\.md$/, '') || 'TraceView Mindmap'; }
+  getDisplayText(): string { return this.path.split('/').pop()?.replace(/\.md$/i, '') || 'TraceView Mindmap'; }
   getIcon(): string { return 'git-fork'; }
   canAcceptExtension(_extension: string): boolean { return false; }
   getState(): Record<string, unknown> { return { file: this.path }; }

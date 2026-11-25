@@ -10743,7 +10743,7 @@ var MapView = class extends import_obsidian5.EditableFileView {
     return this.editor ? "source" : "preview";
   }
   getDisplayText() {
-    return this.path.split("/").pop()?.replace(/\.mindmap\.md$/, "") || "TraceView Mindmap";
+    return this.path.split("/").pop()?.replace(/\.md$/i, "") || "TraceView Mindmap";
   }
   getIcon() {
     return "git-fork";
