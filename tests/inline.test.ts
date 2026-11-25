@@ -76,3 +76,14 @@ test('multiline drafts preserve paragraphs, allow Enter, and save only on explic
   editor.input.value = ''; await editor.submit(); assert.equal(saved[1], '');
   editor.dispose(); dom.window.close();
 });
+
+test('multiline prompt takes precedence over sibling creation only inside a single-line editor', () => {
+  const dom=new JSDOM('<body></body>');let prompts=0,siblings=0;
+  const options={save:async()=>{},cancel:()=>{},resize:()=>{},createAbove:()=>{siblings++;return true;}};
+  const editor=new InlineEditor(dom.window.document,'Draft',options);editor.requestMultiline=()=>{prompts++;};
+  const key=(repeat=false)=>new dom.window.KeyboardEvent('keydown',{key:'Enter',shiftKey:true,repeat,bubbles:true,cancelable:true});
+  editor.handleKeydown(key());editor.handleKeydown(key(true));assert.equal(prompts,1);assert.equal(siblings,0);
+  const multiline=new InlineEditor(dom.window.document,'Paragraph',{...options,multiline:true});multiline.requestMultiline=()=>{prompts++;};
+  assert.equal(multiline.handleKeydown(key()),false);assert.equal(prompts,1);assert.equal(siblings,0);
+  editor.dispose();multiline.dispose();dom.window.close();
+});

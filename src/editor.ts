@@ -32,6 +32,30 @@ export class NotePicker extends FuzzySuggestModal<TFile> {
   onChooseItem(file: TFile): void { this.choose(file); }
 }
 
+export class EmbeddedNotePicker extends SuggestModal<LinkTarget> {
+  private targets: LinkTarget[];
+  constructor(app: App, private initial: string, matches: (file: TFile) => boolean, private choose: (target: LinkTarget) => void) {
+    super(app);
+    this.setPlaceholder(t("Note name or existing note…"));
+    this.targets = buildLinkTargets(app.vault.getMarkdownFiles().filter(matches).map(file => ({
+      path: file.path, basename: file.basename,
+      aliases: parseFrontMatterAliases(app.metadataCache.getFileCache(file)?.frontmatter) ?? [],
+    })), {});
+  }
+  onOpen(): void {
+    super.onOpen();
+    this.inputEl.value = this.initial;
+    this.inputEl.dispatchEvent(new this.inputEl.ownerDocument.defaultView!.Event('input', { bubbles: true }));
+    this.inputEl.select();
+  }
+  getSuggestions(query: string): LinkTarget[] { return searchLinkTargets(this.targets, query, 80); }
+  renderSuggestion(target: LinkTarget, el: HTMLElement): void {
+    el.createDiv({text: target.kind === 'new' ? t("Create note: {name}", {name: target.label}) : target.label});
+    if (target.kind === 'file') el.createDiv({cls: 'tvm-link-path', text: target.path});
+  }
+  onChooseSuggestion(target: LinkTarget): void { this.choose(target); }
+}
+
 export class LinkPicker extends SuggestModal<LinkTarget> {
   private targets: LinkTarget[];
   constructor(app: App, private sourcePath: string, private choose: (link: string) => void, private afterClose: () => void = () => {}) {
@@ -225,7 +249,7 @@ export class TextDialog extends Modal {
 
 export class ConfirmDialog extends Modal {
   private saving = false;
-  constructor(app: App, private title: string, private detail: string, private confirm: () => Promise<void>, private options: { label?: string; focusConfirm?: boolean } = {}) { super(app); }
+  constructor(app: App, private title: string, private detail: string, private confirm: () => Promise<void>, private options: { label?: string; focusConfirm?: boolean; warning?: boolean } = {}) { super(app); }
   onOpen(): void {
     this.titleEl.setText(this.title);
     this.contentEl.createEl('p', { text: this.detail });
@@ -236,7 +260,8 @@ export class ConfirmDialog extends Modal {
         window.setTimeout(() => { if (button.buttonEl.isConnected) button.buttonEl.focus(); }, 0);
       }
     }).addButton(button => {
-      button.setButtonText(this.options.label ?? t("Delete branch")).setWarning().onClick(() => { void this.submit(); });
+      button.setButtonText(this.options.label ?? t("Delete branch")).onClick(() => { void this.submit(); });
+      if (this.options.warning === false) button.setCta(); else button.setWarning();
       if (this.options.focusConfirm !== false) {
         button.buttonEl.focus();
         window.setTimeout(() => { if (button.buttonEl.isConnected) button.buttonEl.focus(); }, 0);

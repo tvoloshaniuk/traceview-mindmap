@@ -29,6 +29,7 @@ let nextLabelId = 0;
 
 /** The draft lives in this element, never in the Markdown document. */
 export class InlineEditor {
+  requestMultiline?: () => void;
   readonly host: HTMLDivElement;
   readonly input: HTMLTextAreaElement;
   get multiline(): boolean { return !!this.options.multiline; }
@@ -114,6 +115,11 @@ export class InlineEditor {
     }
     if (event.key !== 'Enter' || (event.target as HTMLElement | null)?.closest('button')) return false;
     if (this.multiline && !(event.ctrlKey || event.metaKey)) return false;
+    if (!this.multiline && event.shiftKey && !event.ctrlKey && !event.metaKey && !event.altKey && this.requestMultiline) {
+      event.preventDefault(); event.stopPropagation();
+      if (!event.repeat) this.requestMultiline();
+      return true;
+    }
     if (!this.multiline && event.shiftKey && this.options.createAbove?.(event)) {
       event.preventDefault(); event.stopPropagation();
       return true;

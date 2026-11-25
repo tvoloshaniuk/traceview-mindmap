@@ -361,5 +361,9 @@
   "Completed tasks below": "Ukończone zadania na dole",
   "Completed tasks in place": "Ukończone zadania na swoich miejscach",
   "Completed ({count})": "Ukończone ({count})",
-  "Only Markdown notes can be edited as maps.": "Tylko notatki Markdown można edytować jako mapy."
+  "Only Markdown notes can be edited as maps.": "Tylko notatki Markdown można edytować jako mapy.",
+  "Note name or existing note…": "Nazwa nowej lub istniejącej notatki…",
+  "Create note: {name}": "Utwórz notatkę: {name}",
+  "Use a note name without path separators or reserved characters.": "Podaj nazwę notatki bez separatorów ścieżki i zastrzeżonych znaków.",
+  "Create an embedded note for multiline editing?": "Utworzyć osadzoną notatkę do edycji wielowierszowej?"
 }

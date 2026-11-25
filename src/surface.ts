@@ -205,6 +205,22 @@ export class MapSurface {
     return !this.editing;
   }
   focusEditor(): void { this.editing?.editor.focus(); }
+  async waitForNodeMarkdown(id: string): Promise<void> {
+    const entry = this.rendered.get(id);
+    if (!entry) return;
+    if (!entry.started) {
+      this.markdownQueue = this.markdownQueue.filter(value => value !== entry);
+      this.markdownQueue.push(entry);
+      this.renderMarkdownBatch();
+      while (!entry.started && !this.destroyed && this.rendered.get(id) === entry) {
+        const pending = [...this.rendered.values()].find(value => value.pending)?.pending;
+        if (!pending) return;
+        await pending;
+        this.renderMarkdownBatch();
+      }
+    }
+    await entry.pending;
+  }
   invalidateMarkdown(): void {
     this.markdownQueue = [];
     for (const value of this.rendered.values()) this.options.releaseMarkdown?.(value.content);
@@ -675,6 +691,7 @@ export class MapSurface {
             if (!this.destroyed) content.textContent = label;
           }).finally(() => {
             this.markdownInFlight--;
+            entry.pending = undefined;
             if (this.query && !this.destroyed) this.paintSearchMatch(content, this.matches.has(content.parentElement?.dataset.nodeId ?? ''));
             if (this.loadingMarkdown || this.nodeLayer.contains(content)) this.scheduleContentLayout();
             this.scheduleMarkdownBatch();
@@ -1183,7 +1200,7 @@ export class MapSurface {
         await this.editing.editor.submit();
         if (this.editing || this.destroyed) return;
         id = this.state.selected ?? id;
-        await this.rendered.get(id)?.pending;
+        await this.waitForNodeMarkdown(id);
         if (this.editing || this.destroyed) return;
         frame = [...(this.elements.get(id)?.querySelectorAll<HTMLElement>('.markdown-embed.internal-embed') ?? [])]
           .find(element => element.getAttribute('src') === link) ?? null;

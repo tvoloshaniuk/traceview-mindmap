@@ -361,5 +361,9 @@
   "Completed tasks below": "Выполненные задачи внизу",
   "Completed tasks in place": "Выполненные задачи на своих местах",
   "Completed ({count})": "Выполненные ({count})",
-  "Only Markdown notes can be edited as maps.": "В режиме карты можно редактировать только Markdown-заметки."
+  "Only Markdown notes can be edited as maps.": "В режиме карты можно редактировать только Markdown-заметки.",
+  "Note name or existing note…": "Название новой или существующей заметки…",
+  "Create note: {name}": "Создать заметку: {name}",
+  "Use a note name without path separators or reserved characters.": "Укажите название заметки без разделителей пути и запрещённых символов.",
+  "Create an embedded note for multiline editing?": "Создать вложенную заметку для многострочного редактирования?"
 }

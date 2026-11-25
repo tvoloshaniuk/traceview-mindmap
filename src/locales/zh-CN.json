@@ -361,5 +361,9 @@
   "Completed tasks below": "已完成任务显示在底部",
   "Completed tasks in place": "已完成任务保留原位",
   "Completed ({count})": "已完成（{count}）",
-  "Only Markdown notes can be edited as maps.": "只有 Markdown 笔记可以作为导图编辑。"
+  "Only Markdown notes can be edited as maps.": "只有 Markdown 笔记可以作为导图编辑。",
+  "Note name or existing note…": "新笔记名称或现有笔记…",
+  "Create note: {name}": "创建笔记：{name}",
+  "Use a note name without path separators or reserved characters.": "请输入不含路径分隔符或保留字符的笔记名称。",
+  "Create an embedded note for multiline editing?": "创建嵌入笔记以进行多行编辑？"
 }

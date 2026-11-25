@@ -20,7 +20,7 @@ import { Modal } from 'obsidian';
 import { DraftRecovery, type LocalDraft } from './draft-recovery';
 import { NodeTemplatePicker, type NodeTemplate } from './node-templates';
 import { attachImagePaste, saveClipboardImage } from './image-paste';
-import { attachNodeTools, ConfirmDialog, DateDialog, MapPicker, NotePicker, TextDialog } from './editor';
+import { attachNodeTools, ConfirmDialog, DateDialog, EmbeddedNotePicker, MapPicker, NotePicker, TextDialog } from './editor';
 import { exportHtml, exportSvg } from './export';
 import { guardedChange, History, restoreViewState, serializeViewState } from './session';
 import type { MapDocument, MapLayout, MapNode, MapViewState, NodeAction, Step, WidthMode, DropPosition } from './types';
@@ -1187,30 +1187,43 @@ class MapView extends EditableFileView {
   private convertNodeNote(doc: MapDocument, node: MapNode): void {
     const map = this.file;
     if (!map) return;
-    const { prefix, body } = nodeNoteLabel(node.text);
-    new TextDialog(this.app, t("Short node title"), body.slice(0, 80), async value => {
-      const title = value.trim();
-      if (!title) throw new Error(t("A node cannot be empty."));
-      if (this.file !== map || this.doc !== doc || this.surface?.isEditing() || await this.app.vault.read(map) !== doc.source) {
-        throw new Error(t("The note changed. Open it again at the current line."));
-      }
-      const name = map.basename.replace(/\.mindmap$/, '').replace(/[\\/:*?"<>|#\[\]^]/g, ' ').slice(0, 40).trim() || 'Map';
-      // Keep relative links in the moved text valid in the new file.
-      const destination = map.parent?.path ?? '';
-      const suffix = globalThis.crypto.randomUUID().slice(0, 8);
-      const path = normalizePath((destination ? destination + '/' : '') + name + ' - note ' + suffix + '.md');
-      const content = nodeNoteContent(node.text, this.app.metadataCache.fileToLinktext(map, path, true), map.name);
-      const created = await this.app.vault.create(path, content);
-      const link = this.app.metadataCache.fileToLinktext(created, map.path, true);
-      try {
-        await this.apply(doc, editNode(doc, node.id, prefix + title + ' ![[' + link + ']]'));
-      } catch (error) {
-        // A second file cannot participate in vault.process; roll back only our untouched note.
-        const current = await this.app.vault.read(map);
-        if (!current.includes('![[' + link + ']]') && await this.app.vault.read(created) === content) await this.app.vault.trash(created, true);
-        throw error;
-      }
-    }, map.path, 'single-line').open();
+    const name = map.basename.replace(/\.mindmap$/, '').replace(/[\\/:*?"<>|#\[\]^]/g, ' ').slice(0, 40).trim() || 'Map';
+    const initial = name + ' - note ' + globalThis.crypto.randomUUID().slice(0, 8);
+    new EmbeddedNotePicker(this.app, initial, file => file !== map && !this.plugin.isMap(file), target => {
+      void (async () => {
+        if (this.file !== map || this.doc !== doc || this.surface?.isEditing() || await this.app.vault.read(map) !== doc.source) {
+          throw new Error(t("The note changed. Open it again at the current line."));
+        }
+        let note: TFile;
+        let created: TFile | undefined;
+        let content = '';
+        if (target.kind === 'file') {
+          const existing = this.app.vault.getAbstractFileByPath(target.path);
+          if (!(existing instanceof TFile) || existing.extension !== 'md' || existing === map || this.plugin.isMap(existing)) throw new Error(t("The file changed or was deleted. Search again."));
+          note = existing;
+        } else {
+          const title = target.path.trim().replace(/(?:\.md)+$/i, '');
+          if (!title || title === '.' || title === '..' || /[\\/:*?"<>|#\[\]^\x00-\x1f]/.test(title) || /[. ]$/.test(title)) throw new Error(t("Use a note name without path separators or reserved characters."));
+          const destination = map.parent?.path ?? '';
+          const path = normalizePath((destination ? destination + '/' : '') + title + '.md');
+          const {body} = nodeNoteLabel(node.text);
+          content = nodeNoteContent(body, this.app.metadataCache.fileToLinktext(map, path, true), map.name);
+          note = created = await this.app.vault.create(path, content);
+        }
+        const link = this.app.metadataCache.fileToLinktext(note, map.path, true);
+        const label = created ? nodeNoteLabel(node.text).prefix + '![[' + link + ']]' : node.text + ' ![[' + link + ']]';
+        try {
+          await this.apply(doc, editNode(doc, node.id, label));
+        } catch (error) {
+          if (created && !(await this.app.vault.read(map)).includes('![[' + link + ']]') && await this.app.vault.read(created) === content) await this.app.vault.trash(created, true);
+          throw error;
+        }
+        const next = this.doc, selected = next?.nodes.find(candidate => candidate.line === node.line);
+        if (!next || !selected || this.file !== map) return;
+        await this.surface?.waitForNodeMarkdown(selected.id);
+        if (this.doc === next && this.file === map && !this.surface?.isEditing()) await this.editNodeNote(next, selected, note);
+      })().catch(error => new Notice(message(error), 8000));
+    }).open();
   }
   private async editNodeNote(doc: MapDocument, node: MapNode, targetNote?: TFile, targetFrame?: HTMLElement): Promise<void> {
     const map = this.file;
@@ -1352,15 +1365,18 @@ class MapView extends EditableFileView {
   }
   private mountEditor(input: HTMLTextAreaElement, tools: HTMLElement, path: string, inline: InlineEditor): (() => void) | InlineDriver {
     const notes = tools.ownerDocument.createElement('button');
-    notes.type = 'button'; notes.className = 'tvm-node-note-options'; notes.textContent = '▤';
+    notes.type = 'button'; notes.className = 'tvm-node-note-options'; notes.textContent = '![[…]]';
     notes.title = t("Multiline note…"); notes.setAttribute('aria-label', notes.title); tools.append(notes);
-    notes.onclick = () => {
-      const rect = notes.getBoundingClientRect();
-      void (async () => {
-        if (!await this.surface?.saveForCreation() || this.path !== path) return;
-        const doc = this.doc, id = this.selected(), node = id ? doc?.byId.get(id) : undefined;
-        if (doc && node) this.nodeNoteOptions(doc, node, {x: rect.left, y: rect.bottom});
-      })().catch(error => new Notice(message(error), 8000));
+    const convert = async () => {
+      if (!await this.surface?.saveForCreation() || this.path !== path) return;
+      const doc = this.doc, id = this.selected(), node = id ? doc?.byId.get(id) : undefined;
+      if (doc && node) this.convertNodeNote(doc, node);
+    };
+    notes.onclick = () => { void convert().catch(error => new Notice(message(error), 8000)); };
+    inline.requestMultiline = () => {
+      new ConfirmDialog(this.app, t("Convert to multiline note…"), t("Create an embedded note for multiline editing?"), async () => {
+        window.setTimeout(() => { if (input.isConnected) void convert().catch(error => new Notice(message(error), 8000)); }, 0);
+      }, {label: t("Convert to multiline note…"), warning: false}).open();
     };
     if (this.plugin.settings.nodeEditor === 'native') {
       try { return mountNativeEditor(this, input, tools, inline, this.nativeConstructor, (file, line, expected) => this.nativeAddress(file, line, expected)); }

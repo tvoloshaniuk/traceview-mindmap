@@ -233,7 +233,7 @@ async function inlineFixture() {
   const input=dom.window.document.querySelector('textarea')!; input.value='Before selected after'; input.setSelectionRange(7,15);
   let updates=0; app.mobileToolbar={update(){updates++;}};
   assert.equal(view.getMode(),'preview');
-  const close=view.mountEditor(input,dom.window.document.querySelector('#tools')!,view.path);
+  const close=view.mountEditor(input,dom.window.document.querySelector('#tools')!,view.path,{handleKeydown:()=>false});
   input.focus();
   return {...loaded,dom,app,view,input,close,updates:()=>updates};
 }
@@ -250,7 +250,7 @@ test('inline editor exposes the native source-mode contract and updates the mobi
     assert.equal(f.view.getMode(),'preview'); assert.equal(f.app.workspace.activeEditor,null);
     editor.replaceSelection('late attachment'); assert.equal(f.input.value,'Before selected after');
     delete f.app.mobileToolbar;
-    const close=f.view.mountEditor(f.input,f.dom.window.document.querySelector('#tools')!,f.view.path); close();
+    const close=f.view.mountEditor(f.input,f.dom.window.document.querySelector('#tools')!,f.view.path,{handleKeydown:()=>false}); close();
   } finally { f.close(); f.dom.window.close(); }
 });
 

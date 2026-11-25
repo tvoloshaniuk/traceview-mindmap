@@ -361,5 +361,9 @@
   "Completed tasks below": "完了したタスクを下部に表示",
   "Completed tasks in place": "完了したタスクを元の位置に表示",
   "Completed ({count})": "完了 ({count})",
-  "Only Markdown notes can be edited as maps.": "マップとして編集できるのはMarkdownノートのみです。"
+  "Only Markdown notes can be edited as maps.": "マップとして編集できるのはMarkdownノートのみです。",
+  "Note name or existing note…": "新しいノート名、または既存のノート…",
+  "Create note: {name}": "ノートを作成: {name}",
+  "Use a note name without path separators or reserved characters.": "パス区切り文字や予約文字を含まないノート名を指定してください。",
+  "Create an embedded note for multiline editing?": "複数行を編集するための埋め込みノートを作成しますか？"
 }

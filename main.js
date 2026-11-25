@@ -720,7 +720,11 @@ var en_default = {
   "Completed tasks below": "Completed tasks below",
   "Completed tasks in place": "Completed tasks in place",
   "Completed ({count})": "Completed ({count})",
-  "Only Markdown notes can be edited as maps.": "Only Markdown notes can be edited as maps."
+  "Only Markdown notes can be edited as maps.": "Only Markdown notes can be edited as maps.",
+  "Note name or existing note\u2026": "Note name or existing note\u2026",
+  "Create note: {name}": "Create note: {name}",
+  "Use a note name without path separators or reserved characters.": "Use a note name without path separators or reserved characters.",
+  "Create an embedded note for multiline editing?": "Create an embedded note for multiline editing?"
 };
 
 // src/locales/uk.json
@@ -1087,7 +1091,11 @@ var uk_default = {
   "Completed tasks below": "\u0412\u0438\u043A\u043E\u043D\u0430\u043D\u0456 \u0437\u0430\u0434\u0430\u0447\u0456 \u0432\u043D\u0438\u0437\u0443",
   "Completed tasks in place": "\u0412\u0438\u043A\u043E\u043D\u0430\u043D\u0456 \u0437\u0430\u0434\u0430\u0447\u0456 \u043D\u0430 \u0441\u0432\u043E\u0457\u0445 \u043C\u0456\u0441\u0446\u044F\u0445",
   "Completed ({count})": "\u0412\u0438\u043A\u043E\u043D\u0430\u043D\u0456 ({count})",
-  "Only Markdown notes can be edited as maps.": "\u0423 \u0440\u0435\u0436\u0438\u043C\u0456 \u043A\u0430\u0440\u0442\u0438 \u043C\u043E\u0436\u043D\u0430 \u0440\u0435\u0434\u0430\u0433\u0443\u0432\u0430\u0442\u0438 \u043B\u0438\u0448\u0435 Markdown-\u043D\u043E\u0442\u0430\u0442\u043A\u0438."
+  "Only Markdown notes can be edited as maps.": "\u0423 \u0440\u0435\u0436\u0438\u043C\u0456 \u043A\u0430\u0440\u0442\u0438 \u043C\u043E\u0436\u043D\u0430 \u0440\u0435\u0434\u0430\u0433\u0443\u0432\u0430\u0442\u0438 \u043B\u0438\u0448\u0435 Markdown-\u043D\u043E\u0442\u0430\u0442\u043A\u0438.",
+  "Note name or existing note\u2026": "\u041D\u0430\u0437\u0432\u0430 \u043D\u043E\u0432\u043E\u0457 \u0430\u0431\u043E \u043D\u0430\u044F\u0432\u043D\u043E\u0457 \u043D\u043E\u0442\u0430\u0442\u043A\u0438\u2026",
+  "Create note: {name}": "\u0421\u0442\u0432\u043E\u0440\u0438\u0442\u0438 \u043D\u043E\u0442\u0430\u0442\u043A\u0443: {name}",
+  "Use a note name without path separators or reserved characters.": "\u0412\u043A\u0430\u0436\u0456\u0442\u044C \u043D\u0430\u0437\u0432\u0443 \u043D\u043E\u0442\u0430\u0442\u043A\u0438 \u0431\u0435\u0437 \u0440\u043E\u0437\u0434\u0456\u043B\u044E\u0432\u0430\u0447\u0456\u0432 \u0448\u043B\u044F\u0445\u0443 \u0442\u0430 \u0437\u0430\u0431\u043E\u0440\u043E\u043D\u0435\u043D\u0438\u0445 \u0441\u0438\u043C\u0432\u043E\u043B\u0456\u0432.",
+  "Create an embedded note for multiline editing?": "\u0421\u0442\u0432\u043E\u0440\u0438\u0442\u0438 \u0432\u043A\u043B\u0430\u0434\u0435\u043D\u0443 \u043D\u043E\u0442\u0430\u0442\u043A\u0443 \u0434\u043B\u044F \u0431\u0430\u0433\u0430\u0442\u043E\u0440\u044F\u0434\u043A\u043E\u0432\u043E\u0433\u043E \u0440\u0435\u0434\u0430\u0433\u0443\u0432\u0430\u043D\u043D\u044F?"
 };
 
 // src/locales/pl.json
@@ -1454,7 +1462,11 @@ var pl_default = {
   "Completed tasks below": "Uko\u0144czone zadania na dole",
   "Completed tasks in place": "Uko\u0144czone zadania na swoich miejscach",
   "Completed ({count})": "Uko\u0144czone ({count})",
-  "Only Markdown notes can be edited as maps.": "Tylko notatki Markdown mo\u017Cna edytowa\u0107 jako mapy."
+  "Only Markdown notes can be edited as maps.": "Tylko notatki Markdown mo\u017Cna edytowa\u0107 jako mapy.",
+  "Note name or existing note\u2026": "Nazwa nowej lub istniej\u0105cej notatki\u2026",
+  "Create note: {name}": "Utw\xF3rz notatk\u0119: {name}",
+  "Use a note name without path separators or reserved characters.": "Podaj nazw\u0119 notatki bez separator\xF3w \u015Bcie\u017Cki i zastrze\u017Conych znak\xF3w.",
+  "Create an embedded note for multiline editing?": "Utworzy\u0107 osadzon\u0105 notatk\u0119 do edycji wielowierszowej?"
 };
 
 // src/locales/de.json
@@ -1821,7 +1833,11 @@ var de_default = {
   "Completed tasks below": "Erledigte Aufgaben unten",
   "Completed tasks in place": "Erledigte Aufgaben an gleicher Stelle",
   "Completed ({count})": "Erledigt ({count})",
-  "Only Markdown notes can be edited as maps.": "Nur Markdown-Notizen k\xF6nnen als Karten bearbeitet werden."
+  "Only Markdown notes can be edited as maps.": "Nur Markdown-Notizen k\xF6nnen als Karten bearbeitet werden.",
+  "Note name or existing note\u2026": "Name einer neuen oder vorhandenen Notiz\u2026",
+  "Create note: {name}": "Notiz erstellen: {name}",
+  "Use a note name without path separators or reserved characters.": "Verwende einen Notiznamen ohne Pfadtrenner oder reservierte Zeichen.",
+  "Create an embedded note for multiline editing?": "Eine eingebettete Notiz f\xFCr mehrzeilige Bearbeitung erstellen?"
 };
 
 // src/locales/es.json
@@ -2188,7 +2204,11 @@ var es_default = {
   "Completed tasks below": "Tareas completadas abajo",
   "Completed tasks in place": "Tareas completadas en su lugar",
   "Completed ({count})": "Completadas ({count})",
-  "Only Markdown notes can be edited as maps.": "Solo se pueden editar notas Markdown como mapas."
+  "Only Markdown notes can be edited as maps.": "Solo se pueden editar notas Markdown como mapas.",
+  "Note name or existing note\u2026": "Nombre de una nota nueva o existente\u2026",
+  "Create note: {name}": "Crear nota: {name}",
+  "Use a note name without path separators or reserved characters.": "Usa un nombre sin separadores de ruta ni caracteres reservados.",
+  "Create an embedded note for multiline editing?": "\xBFCrear una nota incrustada para editar varias l\xEDneas?"
 };
 
 // src/locales/fr.json
@@ -2555,7 +2575,11 @@ var fr_default = {
   "Completed tasks below": "T\xE2ches termin\xE9es en bas",
   "Completed tasks in place": "T\xE2ches termin\xE9es \xE0 leur place",
   "Completed ({count})": "Termin\xE9es ({count})",
-  "Only Markdown notes can be edited as maps.": "Seules les notes Markdown peuvent \xEAtre modifi\xE9es sous forme de cartes."
+  "Only Markdown notes can be edited as maps.": "Seules les notes Markdown peuvent \xEAtre modifi\xE9es sous forme de cartes.",
+  "Note name or existing note\u2026": "Nom d\u2019une nouvelle note ou note existante\u2026",
+  "Create note: {name}": "Cr\xE9er la note : {name}",
+  "Use a note name without path separators or reserved characters.": "Utilisez un nom sans s\xE9parateurs de chemin ni caract\xE8res r\xE9serv\xE9s.",
+  "Create an embedded note for multiline editing?": "Cr\xE9er une note int\xE9gr\xE9e pour la saisie multiligne ?"
 };
 
 // src/locales/pt-BR.json
@@ -2922,7 +2946,11 @@ var pt_BR_default = {
   "Completed tasks below": "Tarefas conclu\xEDdas abaixo",
   "Completed tasks in place": "Tarefas conclu\xEDdas no lugar",
   "Completed ({count})": "Conclu\xEDdas ({count})",
-  "Only Markdown notes can be edited as maps.": "Somente notas Markdown podem ser editadas como mapas."
+  "Only Markdown notes can be edited as maps.": "Somente notas Markdown podem ser editadas como mapas.",
+  "Note name or existing note\u2026": "Nome de uma nota nova ou existente\u2026",
+  "Create note: {name}": "Criar nota: {name}",
+  "Use a note name without path separators or reserved characters.": "Use um nome sem separadores de caminho ou caracteres reservados.",
+  "Create an embedded note for multiline editing?": "Criar uma nota incorporada para edi\xE7\xE3o em v\xE1rias linhas?"
 };
 
 // src/locales/zh-CN.json
@@ -3289,7 +3317,11 @@ var zh_CN_default = {
   "Completed tasks below": "\u5DF2\u5B8C\u6210\u4EFB\u52A1\u663E\u793A\u5728\u5E95\u90E8",
   "Completed tasks in place": "\u5DF2\u5B8C\u6210\u4EFB\u52A1\u4FDD\u7559\u539F\u4F4D",
   "Completed ({count})": "\u5DF2\u5B8C\u6210\uFF08{count}\uFF09",
-  "Only Markdown notes can be edited as maps.": "\u53EA\u6709 Markdown \u7B14\u8BB0\u53EF\u4EE5\u4F5C\u4E3A\u5BFC\u56FE\u7F16\u8F91\u3002"
+  "Only Markdown notes can be edited as maps.": "\u53EA\u6709 Markdown \u7B14\u8BB0\u53EF\u4EE5\u4F5C\u4E3A\u5BFC\u56FE\u7F16\u8F91\u3002",
+  "Note name or existing note\u2026": "\u65B0\u7B14\u8BB0\u540D\u79F0\u6216\u73B0\u6709\u7B14\u8BB0\u2026",
+  "Create note: {name}": "\u521B\u5EFA\u7B14\u8BB0\uFF1A{name}",
+  "Use a note name without path separators or reserved characters.": "\u8BF7\u8F93\u5165\u4E0D\u542B\u8DEF\u5F84\u5206\u9694\u7B26\u6216\u4FDD\u7559\u5B57\u7B26\u7684\u7B14\u8BB0\u540D\u79F0\u3002",
+  "Create an embedded note for multiline editing?": "\u521B\u5EFA\u5D4C\u5165\u7B14\u8BB0\u4EE5\u8FDB\u884C\u591A\u884C\u7F16\u8F91\uFF1F"
 };
 
 // src/locales/ja.json
@@ -3656,7 +3688,11 @@ var ja_default = {
   "Completed tasks below": "\u5B8C\u4E86\u3057\u305F\u30BF\u30B9\u30AF\u3092\u4E0B\u90E8\u306B\u8868\u793A",
   "Completed tasks in place": "\u5B8C\u4E86\u3057\u305F\u30BF\u30B9\u30AF\u3092\u5143\u306E\u4F4D\u7F6E\u306B\u8868\u793A",
   "Completed ({count})": "\u5B8C\u4E86 ({count})",
-  "Only Markdown notes can be edited as maps.": "\u30DE\u30C3\u30D7\u3068\u3057\u3066\u7DE8\u96C6\u3067\u304D\u308B\u306E\u306FMarkdown\u30CE\u30FC\u30C8\u306E\u307F\u3067\u3059\u3002"
+  "Only Markdown notes can be edited as maps.": "\u30DE\u30C3\u30D7\u3068\u3057\u3066\u7DE8\u96C6\u3067\u304D\u308B\u306E\u306FMarkdown\u30CE\u30FC\u30C8\u306E\u307F\u3067\u3059\u3002",
+  "Note name or existing note\u2026": "\u65B0\u3057\u3044\u30CE\u30FC\u30C8\u540D\u3001\u307E\u305F\u306F\u65E2\u5B58\u306E\u30CE\u30FC\u30C8\u2026",
+  "Create note: {name}": "\u30CE\u30FC\u30C8\u3092\u4F5C\u6210: {name}",
+  "Use a note name without path separators or reserved characters.": "\u30D1\u30B9\u533A\u5207\u308A\u6587\u5B57\u3084\u4E88\u7D04\u6587\u5B57\u3092\u542B\u307E\u306A\u3044\u30CE\u30FC\u30C8\u540D\u3092\u6307\u5B9A\u3057\u3066\u304F\u3060\u3055\u3044\u3002",
+  "Create an embedded note for multiline editing?": "\u8907\u6570\u884C\u3092\u7DE8\u96C6\u3059\u308B\u305F\u3081\u306E\u57CB\u3081\u8FBC\u307F\u30CE\u30FC\u30C8\u3092\u4F5C\u6210\u3057\u307E\u3059\u304B\uFF1F"
 };
 
 // src/locales/ko.json
@@ -4023,7 +4059,11 @@ var ko_default = {
   "Completed tasks below": "\uC644\uB8CC\uB41C \uC791\uC5C5\uC744 \uC544\uB798\uC5D0 \uD45C\uC2DC",
   "Completed tasks in place": "\uC644\uB8CC\uB41C \uC791\uC5C5\uC744 \uC6D0\uB798 \uC704\uCE58\uC5D0 \uD45C\uC2DC",
   "Completed ({count})": "\uC644\uB8CC ({count})",
-  "Only Markdown notes can be edited as maps.": "Markdown \uB178\uD2B8\uB9CC \uB9F5\uC73C\uB85C \uD3B8\uC9D1\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4."
+  "Only Markdown notes can be edited as maps.": "Markdown \uB178\uD2B8\uB9CC \uB9F5\uC73C\uB85C \uD3B8\uC9D1\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4.",
+  "Note name or existing note\u2026": "\uC0C8 \uB178\uD2B8 \uC774\uB984 \uB610\uB294 \uAE30\uC874 \uB178\uD2B8\u2026",
+  "Create note: {name}": "\uB178\uD2B8 \uB9CC\uB4E4\uAE30: {name}",
+  "Use a note name without path separators or reserved characters.": "\uACBD\uB85C \uAD6C\uBD84\uC790\uB098 \uC608\uC57D \uBB38\uC790\uAC00 \uC5C6\uB294 \uB178\uD2B8 \uC774\uB984\uC744 \uC785\uB825\uD558\uC138\uC694.",
+  "Create an embedded note for multiline editing?": "\uC5EC\uB7EC \uC904 \uD3B8\uC9D1\uC744 \uC704\uD55C \uC784\uBCA0\uB4DC \uB178\uD2B8\uB97C \uB9CC\uB4E4\uAE4C\uC694?"
 };
 
 // src/locales/ru.json
@@ -4390,7 +4430,11 @@ var ru_default = {
   "Completed tasks below": "\u0412\u044B\u043F\u043E\u043B\u043D\u0435\u043D\u043D\u044B\u0435 \u0437\u0430\u0434\u0430\u0447\u0438 \u0432\u043D\u0438\u0437\u0443",
   "Completed tasks in place": "\u0412\u044B\u043F\u043E\u043B\u043D\u0435\u043D\u043D\u044B\u0435 \u0437\u0430\u0434\u0430\u0447\u0438 \u043D\u0430 \u0441\u0432\u043E\u0438\u0445 \u043C\u0435\u0441\u0442\u0430\u0445",
   "Completed ({count})": "\u0412\u044B\u043F\u043E\u043B\u043D\u0435\u043D\u043D\u044B\u0435 ({count})",
-  "Only Markdown notes can be edited as maps.": "\u0412 \u0440\u0435\u0436\u0438\u043C\u0435 \u043A\u0430\u0440\u0442\u044B \u043C\u043E\u0436\u043D\u043E \u0440\u0435\u0434\u0430\u043A\u0442\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u0442\u043E\u043B\u044C\u043A\u043E Markdown-\u0437\u0430\u043C\u0435\u0442\u043A\u0438."
+  "Only Markdown notes can be edited as maps.": "\u0412 \u0440\u0435\u0436\u0438\u043C\u0435 \u043A\u0430\u0440\u0442\u044B \u043C\u043E\u0436\u043D\u043E \u0440\u0435\u0434\u0430\u043A\u0442\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u0442\u043E\u043B\u044C\u043A\u043E Markdown-\u0437\u0430\u043C\u0435\u0442\u043A\u0438.",
+  "Note name or existing note\u2026": "\u041D\u0430\u0437\u0432\u0430\u043D\u0438\u0435 \u043D\u043E\u0432\u043E\u0439 \u0438\u043B\u0438 \u0441\u0443\u0449\u0435\u0441\u0442\u0432\u0443\u044E\u0449\u0435\u0439 \u0437\u0430\u043C\u0435\u0442\u043A\u0438\u2026",
+  "Create note: {name}": "\u0421\u043E\u0437\u0434\u0430\u0442\u044C \u0437\u0430\u043C\u0435\u0442\u043A\u0443: {name}",
+  "Use a note name without path separators or reserved characters.": "\u0423\u043A\u0430\u0436\u0438\u0442\u0435 \u043D\u0430\u0437\u0432\u0430\u043D\u0438\u0435 \u0437\u0430\u043C\u0435\u0442\u043A\u0438 \u0431\u0435\u0437 \u0440\u0430\u0437\u0434\u0435\u043B\u0438\u0442\u0435\u043B\u0435\u0439 \u043F\u0443\u0442\u0438 \u0438 \u0437\u0430\u043F\u0440\u0435\u0449\u0451\u043D\u043D\u044B\u0445 \u0441\u0438\u043C\u0432\u043E\u043B\u043E\u0432.",
+  "Create an embedded note for multiline editing?": "\u0421\u043E\u0437\u0434\u0430\u0442\u044C \u0432\u043B\u043E\u0436\u0435\u043D\u043D\u0443\u044E \u0437\u0430\u043C\u0435\u0442\u043A\u0443 \u0434\u043B\u044F \u043C\u043D\u043E\u0433\u043E\u0441\u0442\u0440\u043E\u0447\u043D\u043E\u0433\u043E \u0440\u0435\u0434\u0430\u043A\u0442\u0438\u0440\u043E\u0432\u0430\u043D\u0438\u044F?"
 };
 
 // src/i18n.ts
@@ -5896,6 +5940,12 @@ var InlineEditor = class {
     }
     if (event.key !== "Enter" || event.target?.closest("button")) return false;
     if (this.multiline && !(event.ctrlKey || event.metaKey)) return false;
+    if (!this.multiline && event.shiftKey && !event.ctrlKey && !event.metaKey && !event.altKey && this.requestMultiline) {
+      event.preventDefault();
+      event.stopPropagation();
+      if (!event.repeat) this.requestMultiline();
+      return true;
+    }
     if (!this.multiline && event.shiftKey && this.options.createAbove?.(event)) {
       event.preventDefault();
       event.stopPropagation();
@@ -6222,6 +6272,22 @@ var MapSurface = class {
   }
   focusEditor() {
     this.editing?.editor.focus();
+  }
+  async waitForNodeMarkdown(id) {
+    const entry = this.rendered.get(id);
+    if (!entry) return;
+    if (!entry.started) {
+      this.markdownQueue = this.markdownQueue.filter((value) => value !== entry);
+      this.markdownQueue.push(entry);
+      this.renderMarkdownBatch();
+      while (!entry.started && !this.destroyed && this.rendered.get(id) === entry) {
+        const pending = [...this.rendered.values()].find((value) => value.pending)?.pending;
+        if (!pending) return;
+        await pending;
+        this.renderMarkdownBatch();
+      }
+    }
+    await entry.pending;
   }
   invalidateMarkdown() {
     this.markdownQueue = [];
@@ -6725,6 +6791,7 @@ var MapSurface = class {
             if (!this.destroyed) content.textContent = label2;
           }).finally(() => {
             this.markdownInFlight--;
+            entry.pending = void 0;
             if (this.query && !this.destroyed) this.paintSearchMatch(content, this.matches.has(content.parentElement?.dataset.nodeId ?? ""));
             if (this.loadingMarkdown || this.nodeLayer.contains(content)) this.scheduleContentLayout();
             this.scheduleMarkdownBatch();
@@ -7238,7 +7305,7 @@ var MapSurface = class {
         await this.editing.editor.submit();
         if (this.editing || this.destroyed) return;
         id = this.state.selected ?? id;
-        await this.rendered.get(id)?.pending;
+        await this.waitForNodeMarkdown(id);
         if (this.editing || this.destroyed) return;
         frame = [...this.elements.get(id)?.querySelectorAll(".markdown-embed.internal-embed") ?? []].find((element) => element.getAttribute("src") === link) ?? null;
         if (!frame) return;
@@ -8726,6 +8793,35 @@ var NotePicker = class extends import_obsidian4.FuzzySuggestModal {
     this.choose(file);
   }
 };
+var EmbeddedNotePicker = class extends import_obsidian4.SuggestModal {
+  constructor(app, initial, matches, choose) {
+    super(app);
+    this.initial = initial;
+    this.choose = choose;
+    this.setPlaceholder(t("Note name or existing note\u2026"));
+    this.targets = buildLinkTargets(app.vault.getMarkdownFiles().filter(matches).map((file) => ({
+      path: file.path,
+      basename: file.basename,
+      aliases: (0, import_obsidian4.parseFrontMatterAliases)(app.metadataCache.getFileCache(file)?.frontmatter) ?? []
+    })), {});
+  }
+  onOpen() {
+    super.onOpen();
+    this.inputEl.value = this.initial;
+    this.inputEl.dispatchEvent(new this.inputEl.ownerDocument.defaultView.Event("input", { bubbles: true }));
+    this.inputEl.select();
+  }
+  getSuggestions(query) {
+    return searchLinkTargets(this.targets, query, 80);
+  }
+  renderSuggestion(target, el) {
+    el.createDiv({ text: target.kind === "new" ? t("Create note: {name}", { name: target.label }) : target.label });
+    if (target.kind === "file") el.createDiv({ cls: "tvm-link-path", text: target.path });
+  }
+  onChooseSuggestion(target) {
+    this.choose(target);
+  }
+};
 var LinkPicker = class extends import_obsidian4.SuggestModal {
   constructor(app, sourcePath, choose, afterClose = () => {
   }) {
@@ -9028,9 +9124,11 @@ var ConfirmDialog = class extends import_obsidian4.Modal {
         }, 0);
       }
     }).addButton((button2) => {
-      button2.setButtonText(this.options.label ?? t("Delete branch")).setWarning().onClick(() => {
+      button2.setButtonText(this.options.label ?? t("Delete branch")).onClick(() => {
         void this.submit();
       });
+      if (this.options.warning === false) button2.setCta();
+      else button2.setWarning();
       if (this.options.focusConfirm !== false) {
         button2.buttonEl.focus();
         window.setTimeout(() => {
@@ -10731,28 +10829,43 @@ var MapView = class extends import_obsidian5.EditableFileView {
   convertNodeNote(doc, node) {
     const map = this.file;
     if (!map) return;
-    const { prefix, body } = nodeNoteLabel(node.text);
-    new TextDialog(this.app, t("Short node title"), body.slice(0, 80), async (value) => {
-      const title = value.trim();
-      if (!title) throw new Error(t("A node cannot be empty."));
-      if (this.file !== map || this.doc !== doc || this.surface?.isEditing() || await this.app.vault.read(map) !== doc.source) {
-        throw new Error(t("The note changed. Open it again at the current line."));
-      }
-      const name = map.basename.replace(/\.mindmap$/, "").replace(/[\\/:*?"<>|#\[\]^]/g, " ").slice(0, 40).trim() || "Map";
-      const destination = map.parent?.path ?? "";
-      const suffix = globalThis.crypto.randomUUID().slice(0, 8);
-      const path = (0, import_obsidian5.normalizePath)((destination ? destination + "/" : "") + name + " - note " + suffix + ".md");
-      const content = nodeNoteContent(node.text, this.app.metadataCache.fileToLinktext(map, path, true), map.name);
-      const created = await this.app.vault.create(path, content);
-      const link = this.app.metadataCache.fileToLinktext(created, map.path, true);
-      try {
-        await this.apply(doc, editNode(doc, node.id, prefix + title + " ![[" + link + "]]"));
-      } catch (error) {
-        const current = await this.app.vault.read(map);
-        if (!current.includes("![[" + link + "]]") && await this.app.vault.read(created) === content) await this.app.vault.trash(created, true);
-        throw error;
-      }
-    }, map.path, "single-line").open();
+    const name = map.basename.replace(/\.mindmap$/, "").replace(/[\\/:*?"<>|#\[\]^]/g, " ").slice(0, 40).trim() || "Map";
+    const initial = name + " - note " + globalThis.crypto.randomUUID().slice(0, 8);
+    new EmbeddedNotePicker(this.app, initial, (file) => file !== map && !this.plugin.isMap(file), (target) => {
+      void (async () => {
+        if (this.file !== map || this.doc !== doc || this.surface?.isEditing() || await this.app.vault.read(map) !== doc.source) {
+          throw new Error(t("The note changed. Open it again at the current line."));
+        }
+        let note;
+        let created;
+        let content = "";
+        if (target.kind === "file") {
+          const existing = this.app.vault.getAbstractFileByPath(target.path);
+          if (!(existing instanceof import_obsidian5.TFile) || existing.extension !== "md" || existing === map || this.plugin.isMap(existing)) throw new Error(t("The file changed or was deleted. Search again."));
+          note = existing;
+        } else {
+          const title = target.path.trim().replace(/(?:\.md)+$/i, "");
+          if (!title || title === "." || title === ".." || /[\\/:*?"<>|#\[\]^\x00-\x1f]/.test(title) || /[. ]$/.test(title)) throw new Error(t("Use a note name without path separators or reserved characters."));
+          const destination = map.parent?.path ?? "";
+          const path = (0, import_obsidian5.normalizePath)((destination ? destination + "/" : "") + title + ".md");
+          const { body } = nodeNoteLabel(node.text);
+          content = nodeNoteContent(body, this.app.metadataCache.fileToLinktext(map, path, true), map.name);
+          note = created = await this.app.vault.create(path, content);
+        }
+        const link = this.app.metadataCache.fileToLinktext(note, map.path, true);
+        const label2 = created ? nodeNoteLabel(node.text).prefix + "![[" + link + "]]" : node.text + " ![[" + link + "]]";
+        try {
+          await this.apply(doc, editNode(doc, node.id, label2));
+        } catch (error) {
+          if (created && !(await this.app.vault.read(map)).includes("![[" + link + "]]") && await this.app.vault.read(created) === content) await this.app.vault.trash(created, true);
+          throw error;
+        }
+        const next = this.doc, selected = next?.nodes.find((candidate) => candidate.line === node.line);
+        if (!next || !selected || this.file !== map) return;
+        await this.surface?.waitForNodeMarkdown(selected.id);
+        if (this.doc === next && this.file === map && !this.surface?.isEditing()) await this.editNodeNote(next, selected, note);
+      })().catch((error) => new import_obsidian5.Notice(message(error), 8e3));
+    }).open();
   }
   async editNodeNote(doc, node, targetNote, targetFrame) {
     const map = this.file;
@@ -10904,17 +11017,24 @@ var MapView = class extends import_obsidian5.EditableFileView {
     const notes = tools.ownerDocument.createElement("button");
     notes.type = "button";
     notes.className = "tvm-node-note-options";
-    notes.textContent = "\u25A4";
+    notes.textContent = "![[\u2026]]";
     notes.title = t("Multiline note\u2026");
     notes.setAttribute("aria-label", notes.title);
     tools.append(notes);
+    const convert = async () => {
+      if (!await this.surface?.saveForCreation() || this.path !== path) return;
+      const doc = this.doc, id = this.selected(), node = id ? doc?.byId.get(id) : void 0;
+      if (doc && node) this.convertNodeNote(doc, node);
+    };
     notes.onclick = () => {
-      const rect = notes.getBoundingClientRect();
-      void (async () => {
-        if (!await this.surface?.saveForCreation() || this.path !== path) return;
-        const doc = this.doc, id = this.selected(), node = id ? doc?.byId.get(id) : void 0;
-        if (doc && node) this.nodeNoteOptions(doc, node, { x: rect.left, y: rect.bottom });
-      })().catch((error) => new import_obsidian5.Notice(message(error), 8e3));
+      void convert().catch((error) => new import_obsidian5.Notice(message(error), 8e3));
+    };
+    inline.requestMultiline = () => {
+      new ConfirmDialog(this.app, t("Convert to multiline note\u2026"), t("Create an embedded note for multiline editing?"), async () => {
+        window.setTimeout(() => {
+          if (input.isConnected) void convert().catch((error) => new import_obsidian5.Notice(message(error), 8e3));
+        }, 0);
+      }, { label: t("Convert to multiline note\u2026"), warning: false }).open();
     };
     if (this.plugin.settings.nodeEditor === "native") {
       try {

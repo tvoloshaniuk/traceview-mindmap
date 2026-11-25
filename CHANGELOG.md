@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.0.38
+
+### Changed
+
+- Create multiline embedded notes from one compact name-and-search prompt, with an editable generated filename and fuzzy suggestions for existing notes.
+- Use the note filename as its embedded title, move the original node text into the new note without repeating it above the embed, and enter inline editing immediately. Preserve parent context when attaching an existing note.
+- Open the same workflow directly from the embed toolbar button. Keep the ordinary link button separate.
+- Offer multiline-note creation on Shift+Enter inside a regular node editor, ahead of the sibling shortcut. Cancel returns to the unchanged draft; normal multiline Enter remains native.
+
 ## 1.0.37
 
 ### Fixed
