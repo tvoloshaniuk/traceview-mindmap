@@ -14,7 +14,7 @@ test('group shift preserves unselected gaps, children, anchors and file endings'
   assert.equal(copyNodeLabels(doc, ids), '- B\r\n- D\r\n');
   assert.equal(shiftSelectedBranches(doc, ids, 'up'), '- B ^b\r\n  - Child\r\n- A\r\n- D ^d\r\n- C');
 });
-import { nodeNoteContent, nodeNoteLabel, parseMap, restoreTemplateLineEndings, editNode, addNode, addParent, deleteNode, moveNode, reparentNode, copyBranch, pasteBranch, toggleTask, setStep, toggleStepNumber, setDated, setQuestion, getSteps, compareSteps, renumberSteps } from '../src/core';
+import { canIndentNode, nodeNoteContent, nodeNoteLabel, parseMap, restoreTemplateLineEndings, editNode, addNode, addParent, deleteNode, moveNode, reparentNode, copyBranch, pasteBranch, toggleTask, setStep, toggleStepNumber, setDated, setQuestion, getSteps, compareSteps, renumberSteps } from '../src/core';
 import type { MapDocument } from '../src/types';
 
 test('template insertion preserves the surrounding source line endings, including on a repeat', () => {
@@ -501,4 +501,12 @@ test('note conversion separates the title from checkbox, step number and deadlin
 
 test('moved note self-links still target the source map; code and other links stay literal', () => {
   assert.equal(nodeNoteContent('[[#^node|Alias]] [[Relative]] [heading](#Section) `[[#Code]]`\\[[#Escaped]]', 'Map Name.mindmap', 'Map Name.mindmap.md'), '[[Map Name.mindmap#^node|Alias]] [[Relative]] [heading](<Map%20Name.mindmap.md#Section>) `[[#Code]]`\\[[#Escaped]]');
+});
+
+test('indent availability requires a previous sibling of the same Markdown kind', () => {
+  const doc = parseMap('# Heading\n- First ^first\n- Second ^second\n\t- Child ^child');
+  assert.equal(canIndentNode(doc, 'block:first'), false);
+  assert.equal(canIndentNode(doc, 'block:second'), true);
+  assert.equal(canIndentNode(doc, 'block:child'), false);
+  assert.equal(canIndentNode(doc, 'missing'), false);
 });

@@ -5,7 +5,7 @@
  */
 import { t, LANGUAGES, isLanguageSetting, setLanguage, type LanguageSetting } from './i18n';
 import { getLanguage, App, Component, EditableFileView, ItemView, MarkdownPreviewRenderer, MarkdownRenderer, MarkdownView, Menu, Notice, Platform, Plugin, PluginSettingTab, Scope, Setting, TFile, WorkspaceLeaf, normalizePath, parseLinktext, setIcon, type HoverPopover } from 'obsidian';
-import { moveBranches, changeNodes, copyBranches, copyNodeLabels, deleteNodes, parseMap, restoreTemplateLineEndings, nodeNoteContent, nodeNoteLabel, editNode, addFirstNode, addNode, addParent, deleteNode, moveNode, copyBranch, pasteBranch, toggleTask, toggleStepNumber, setDated, setQuestion, getSteps, compareSteps, renumberSteps, moveCompletedChildrenToBottom, shiftSelectedBranches, unnumberStep } from './core';
+import { canIndentNode, moveBranches, changeNodes, copyBranches, copyNodeLabels, deleteNodes, parseMap, restoreTemplateLineEndings, nodeNoteContent, nodeNoteLabel, editNode, addFirstNode, addNode, addParent, deleteNode, moveNode, copyBranch, pasteBranch, toggleTask, toggleStepNumber, setDated, setQuestion, getSteps, compareSteps, renumberSteps, moveCompletedChildrenToBottom, shiftSelectedBranches, unnumberStep } from './core';
 import { addressNode, onlyAddedBlockIds, removeNodeAddress, nodeBacklinks } from './block-links';
 import { captureHotkey, DEFAULT_HOTKEYS, HOTKEY_DEFINITIONS, resolveHotkey, validateHotkeys } from './hotkeys';
 import { compileMapPatterns, PatternError, type MapRules, type PatternMode } from './map-patterns';
@@ -181,6 +181,7 @@ export default class TraceViewMindmap extends Plugin {
     for (const [id, name, action] of commands) this.addCommand({ id, name, checkCallback: checking => {
       const view = this.app.workspace.getActiveViewOfType(MapView);
       if (!view) return false;
+      if (action === 'indent' && (!view.doc || view.surface?.getSelection().length !== 1 || !canIndentNode(view.doc, view.surface?.getState().selected ?? ''))) return false;
       if (action === 'insert-template' && (view.surface?.isEditing() || view.surface?.getSelection().length !== 1)) return false;
       if (!checking) void view.action(action, view.surface?.getState().selected ?? null);
       return true;
@@ -1119,6 +1120,7 @@ class MapView extends EditableFileView {
         : action === 'make-question' ? setQuestion(doc, id)
         : moveNode(doc, id, action === 'move-up' ? 'up' : action === 'move-down' ? 'down' : action === 'indent' ? 'indent' : 'outdent');
       await this.apply(doc, next);
+      if (next !== doc.source && this.path === path && (action === 'indent' || action === 'outdent')) this.surface?.revealSelection([id]);
     } catch (error) { new Notice(message(error), 8000); }
   }
   private async beginNodeEdit(doc: MapDocument, action: NodeAction, node?: MapNode, recovered?: LocalDraft): Promise<void> {

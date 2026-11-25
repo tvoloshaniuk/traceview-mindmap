@@ -501,6 +501,14 @@ function relocate(doc: MapDocument, node: MapNode, destination: number, block: s
   return source;
 }
 
+export function canIndentNode(doc: MapDocument, id: string): boolean {
+  const node = doc.byId.get(id);
+  if (!node) return false;
+  const siblings = node.parentId ? doc.byId.get(node.parentId)?.children ?? [] : doc.roots;
+  const previous = doc.byId.get(siblings[siblings.indexOf(id) - 1]);
+  return !!previous && previous.kind === node.kind;
+}
+
 export function moveNode(doc: MapDocument, id: string, direction: 'up' | 'down' | 'indent' | 'outdent'): string {
   const node = required(doc, id);
   assertStructural(doc, node);

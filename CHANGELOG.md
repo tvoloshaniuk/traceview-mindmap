@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.0.61
+
+### Fixed
+
+- Keep a moved branch visible and selected after indenting it into a collapsed previous sibling or moving it up one level. Preserve source content, node addresses and Undo/Redo.
+- Disable nesting in the previous sibling when none exists or its Markdown kind is incompatible, in the node menu and command palette.
+
 ## 1.0.60
 
 ### Fixed

@@ -5,7 +5,7 @@
  */
 import { t } from './i18n';
 import type { Camera, MapDocument, MapLayout, MapNode, MapSurfaceOptions, MapViewState, NodeAction, DropPosition, NodeSize, EmbeddedEditContext } from './types';
-import { canDropBranches } from './core';
+import { canDropBranches, canIndentNode } from './core';
 import { MIN_SCALE, MAX_SCALE } from './types';
 import { DEFAULT_HOTKEYS, resolveHotkey, type HotkeyAction } from './hotkeys';
 import { CreationHandles } from './creation-handles';
@@ -1860,6 +1860,7 @@ export class MapSurface {
       label.className = 'tvm-menu-label';
       label.textContent = this.selection.size > 1 && ['delete', 'copy', 'cut'].includes(entry.action) ? t(entry.action === "copy" ? "Copy selection" : entry.action === "cut" ? "Cut selection" : "Delete selection") : entry.label;
       if (this.selection.size > 1 && ['edit', 'copy-node-text', 'node-note', 'convert-node-note', 'attach-node-note', 'node-note-options', 'completed-bottom', 'add-child', 'add-sibling', 'add-parent', 'insert-template', 'paste', 'paste-after', 'indent', 'outdent'].includes(entry.action)) button.disabled = true;
+      if (entry.action === 'indent' && (!this.doc || !canIndentNode(this.doc, id))) button.disabled = true;
       button.append(label);
       const binding = this.options.getHotkeys?.()[entry.action] ?? DEFAULT_HOTKEYS[entry.action];
       if (binding) {
