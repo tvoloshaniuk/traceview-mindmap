@@ -916,3 +916,17 @@ test('disabled creation handles allocate no controls and can be enabled and disa
   enabled=true;f.surface.refreshLayout();assert.ok(f.host.querySelector('.tvm-create-handles'));
   enabled=false;f.surface.refreshLayout();assert.equal(f.host.querySelector('.tvm-create-handles'),null);
 });
+
+test('wheel scrolls only selected overflowing nodes, including members of a multiple selection', t => {
+  const f=fixture(t,'- Root\n- Other\n'),root=f.element('Root'),other=f.element('Other');
+  const content=root.querySelector<HTMLElement>('.tvm-node-content')!;content.style.overflowY='auto';
+  Object.defineProperties(content,{scrollHeight:{value:600},clientHeight:{value:100}});
+  const wheel=(target:Element,ctrlKey=false)=>target.dispatchEvent(new f.dom.window.WheelEvent('wheel',{deltaY:70,ctrlKey,bubbles:true,cancelable:true}));
+  const camera=()=>JSON.stringify(f.surface.getState().camera);
+  root.click();let before=camera();wheel(root);assert.equal(camera(),before);assert.equal(content.scrollTop,70);
+  other.dispatchEvent(new f.dom.window.MouseEvent('click',{ctrlKey:true,bubbles:true,cancelable:true}));assert.equal(f.surface.getSelection().length,2);
+  before=camera();wheel(root);assert.equal(camera(),before);assert.equal(content.scrollTop,140);
+  before=camera();wheel(other);assert.notEqual(camera(),before);
+  root.dispatchEvent(new f.dom.window.MouseEvent('click',{ctrlKey:true,bubbles:true,cancelable:true}));before=camera();wheel(root);assert.notEqual(camera(),before);assert.equal(content.scrollTop,140);
+  const scale=f.surface.getState().camera.scale;wheel(root,true);assert.notEqual(f.surface.getState().camera.scale,scale);
+});

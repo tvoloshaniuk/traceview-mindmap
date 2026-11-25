@@ -1,5 +1,15 @@
 # Changelog
 
+## 1.0.47
+
+### Added
+
+- Scroll overflowing selected nodes with the mouse wheel or touchpad while hovering them, including members of a multiple selection. Unselected nodes, nodes without scrollable content and the background continue to pan the map. Preserve pinch zoom and prevent map jumps at a selected note’s scroll boundary.
+
+### Fixed
+
+- Deliver real pointer clicks to the resize corner so a double click resets both manual dimensions. Restore the configured node-width mode and default maximum height, or automatic height when no limit is configured.
+
 ## 1.0.46
 
 ### Changed

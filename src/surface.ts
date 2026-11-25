@@ -70,7 +70,7 @@ export class MapSurface {
   private coastFrame: number | null = null;
   private pinch: { distance: number; scale: number; worldX: number; worldY: number } | null = null;
   private suppressClickUntil = 0;
-  private resizing?: {id: string; pointer: number; x: number; y: number; width: number; height: number; previous?: NodeSize};
+  private resizing?: {id: string; pointer: number; capture: HTMLElement; x: number; y: number; width: number; height: number; previous?: NodeSize};
   private bounds = { width: 0, height: 0 };
   private mode: MapLayout = 'map';
   private editing?: { id: string; editor: InlineEditor; original: MapDocument; state: MapViewState; latest?: MapDocument; latestState?: MapViewState; embedded?: { slot: HTMLElement; restore: () => void } };
@@ -139,7 +139,10 @@ export class MapSurface {
     this.listen(this.viewport, 'pointermove', (e) => this.pointerMove(e as PointerEvent));
     this.listen(this.viewport, 'pointerup', (e) => this.pointerUp(e as PointerEvent));
     this.listen(this.viewport, 'pointercancel', (e) => this.pointerUp(e as PointerEvent));
-    this.listen(this.viewport, 'lostpointercapture', event => { if (event.target === this.viewport) { this.finishResize(false); this.clearDrag(); this.cancelMarquee(); } });
+    this.listen(this.viewport, 'lostpointercapture', event => {
+      if (this.resizing?.pointer === (event as PointerEvent).pointerId) this.finishResize(false);
+      if (event.target === this.viewport) { this.clearDrag(); this.cancelMarquee(); }
+    });
     this.listen(this.nodeLayer, 'load', () => this.scheduleContentLayout(), { capture: true });
     this.listen(d, 'pointerdown', (e) => { if (this.menu && !this.menu.contains(e.target as Node)) this.closeMenu(); });
     const Observer = d.defaultView?.ResizeObserver;
@@ -1369,11 +1372,32 @@ export class MapSurface {
     this.stopCoasting();
     if ((event.target as Element).closest('.tvm-inline-editor')) return;
     if (this.menu?.contains(event.target as Node)) return;
-    const table = (event.target as Element).closest<HTMLElement>('.tvm-node-content table');
-    if (table && !event.ctrlKey && !event.metaKey &&
-      (table.scrollWidth > table.clientWidth || table.scrollHeight > table.clientHeight)) return;
-    event.preventDefault();
     const multiplier = event.deltaMode === 1 ? 18 : event.deltaMode === 2 ? this.viewportSize().height : 1;
+    if (!event.ctrlKey && !event.metaKey) {
+      const id = this.nodeFrom(event.target), node = id ? this.elements.get(id) : undefined;
+      if (id && node && this.selection.has(id)) {
+        const dx = (event.shiftKey && !event.deltaX ? event.deltaY : event.deltaX) * multiplier;
+        const dy = (event.shiftKey && !event.deltaX ? 0 : event.deltaY) * multiplier;
+        const scrolls = (element: HTMLElement): boolean => {
+          const style = element.ownerDocument.defaultView!.getComputedStyle(element);
+          return (Math.abs(dy) >= Math.abs(dx) && dy !== 0 && element.scrollHeight > element.clientHeight + 1 && /auto|scroll/.test(style.overflowY))
+            || (dx !== 0 && element.scrollWidth > element.clientWidth + 1 && /auto|scroll/.test(style.overflowX));
+        };
+        let target = event.target as HTMLElement | null;
+        while (target && target !== node && !scrolls(target)) target = target.parentElement;
+        if (target === node || !target) {
+          const content = node.querySelector<HTMLElement>('.tvm-node-content');
+          target = content && scrolls(content) ? content : null;
+        }
+        if (target) {
+          event.preventDefault(); event.stopPropagation();
+          target.scrollTop += dy / this.state.camera.scale;
+          target.scrollLeft += dx / this.state.camera.scale;
+          return;
+        }
+      }
+    }
+    event.preventDefault();
     if (event.ctrlKey || event.metaKey) {
       const rect = this.viewport.getBoundingClientRect();
       this.zoomAt(event.clientX - rect.left, event.clientY - rect.top, Math.exp(-event.deltaY * multiplier * 0.006 / Math.max(1, Math.sqrt(this.state.camera.scale))));
@@ -1398,14 +1422,15 @@ export class MapSurface {
     if (this.resizing) { event.preventDefault(); return; }
     this.preservedEditAnchor = undefined;
     this.stopCoasting();
-    if ((event.target as Element).closest('.tvm-node-resize')) {
+    const resizeHandle = (event.target as Element).closest<HTMLElement>('.tvm-node-resize');
+    if (resizeHandle) {
       event.preventDefault(); event.stopPropagation();
       const id = this.nodeFrom(event.target), position = id ? this.positions.get(id) : undefined;
       if (!id || !position || this.editing || event.button !== 0 || !['map', 'vertical'].includes(this.mode)) return;
       this.select(id);
-      this.resizing = {id, pointer: event.pointerId, x: event.clientX, y: event.clientY, width: position.width, height: position.height, previous: this.state.nodeSizes?.[id]};
+      this.resizing = {id, pointer: event.pointerId, capture: resizeHandle, x: event.clientX, y: event.clientY, width: position.width, height: position.height, previous: this.state.nodeSizes?.[id]};
       this.viewport.classList.add('is-resizing-node');
-      try { this.viewport.setPointerCapture(event.pointerId); } catch { /* The pointer may already have ended. */ }
+      try { resizeHandle.setPointerCapture(event.pointerId); } catch { /* The pointer may already have ended. */ }
       return;
     }
     if ((event.target as Element).closest('.tvm-create-handles, .tvm-create-first')) return;
@@ -1826,7 +1851,7 @@ export class MapSurface {
     this.suppressClickUntil = Date.now() + 250;
     this.preservedEditAnchor = resize.id;
     this.viewport.classList.remove('is-resizing-node');
-    try { if (this.viewport.hasPointerCapture(resize.pointer)) this.viewport.releasePointerCapture(resize.pointer); } catch { /* Capture may already have ended. */ }
+    try { if (resize.capture.hasPointerCapture(resize.pointer)) resize.capture.releasePointerCapture(resize.pointer); } catch { /* Capture may already have ended. */ }
     if (!this.destroyed) { this.scheduleLayout(); this.emitState(); }
   }
   private clearDrag(): void {

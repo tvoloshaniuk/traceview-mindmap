@@ -6463,8 +6463,8 @@ var MapSurface = class {
     this.listen(this.viewport, "pointerup", (e) => this.pointerUp(e));
     this.listen(this.viewport, "pointercancel", (e) => this.pointerUp(e));
     this.listen(this.viewport, "lostpointercapture", (event) => {
+      if (this.resizing?.pointer === event.pointerId) this.finishResize(false);
       if (event.target === this.viewport) {
-        this.finishResize(false);
         this.clearDrag();
         this.cancelMarquee();
       }
@@ -7821,10 +7821,32 @@ var MapSurface = class {
     this.stopCoasting();
     if (event.target.closest(".tvm-inline-editor")) return;
     if (this.menu?.contains(event.target)) return;
-    const table = event.target.closest(".tvm-node-content table");
-    if (table && !event.ctrlKey && !event.metaKey && (table.scrollWidth > table.clientWidth || table.scrollHeight > table.clientHeight)) return;
-    event.preventDefault();
     const multiplier = event.deltaMode === 1 ? 18 : event.deltaMode === 2 ? this.viewportSize().height : 1;
+    if (!event.ctrlKey && !event.metaKey) {
+      const id = this.nodeFrom(event.target), node = id ? this.elements.get(id) : void 0;
+      if (id && node && this.selection.has(id)) {
+        const dx = (event.shiftKey && !event.deltaX ? event.deltaY : event.deltaX) * multiplier;
+        const dy = (event.shiftKey && !event.deltaX ? 0 : event.deltaY) * multiplier;
+        const scrolls = (element) => {
+          const style = element.ownerDocument.defaultView.getComputedStyle(element);
+          return Math.abs(dy) >= Math.abs(dx) && dy !== 0 && element.scrollHeight > element.clientHeight + 1 && /auto|scroll/.test(style.overflowY) || dx !== 0 && element.scrollWidth > element.clientWidth + 1 && /auto|scroll/.test(style.overflowX);
+        };
+        let target = event.target;
+        while (target && target !== node && !scrolls(target)) target = target.parentElement;
+        if (target === node || !target) {
+          const content = node.querySelector(".tvm-node-content");
+          target = content && scrolls(content) ? content : null;
+        }
+        if (target) {
+          event.preventDefault();
+          event.stopPropagation();
+          target.scrollTop += dy / this.state.camera.scale;
+          target.scrollLeft += dx / this.state.camera.scale;
+          return;
+        }
+      }
+    }
+    event.preventDefault();
     if (event.ctrlKey || event.metaKey) {
       const rect = this.viewport.getBoundingClientRect();
       this.zoomAt(event.clientX - rect.left, event.clientY - rect.top, Math.exp(-event.deltaY * multiplier * 6e-3 / Math.max(1, Math.sqrt(this.state.camera.scale))));
@@ -7850,16 +7872,17 @@ var MapSurface = class {
     }
     this.preservedEditAnchor = void 0;
     this.stopCoasting();
-    if (event.target.closest(".tvm-node-resize")) {
+    const resizeHandle = event.target.closest(".tvm-node-resize");
+    if (resizeHandle) {
       event.preventDefault();
       event.stopPropagation();
       const id2 = this.nodeFrom(event.target), position = id2 ? this.positions.get(id2) : void 0;
       if (!id2 || !position || this.editing || event.button !== 0 || !["map", "vertical"].includes(this.mode)) return;
       this.select(id2);
-      this.resizing = { id: id2, pointer: event.pointerId, x: event.clientX, y: event.clientY, width: position.width, height: position.height, previous: this.state.nodeSizes?.[id2] };
+      this.resizing = { id: id2, pointer: event.pointerId, capture: resizeHandle, x: event.clientX, y: event.clientY, width: position.width, height: position.height, previous: this.state.nodeSizes?.[id2] };
       this.viewport.classList.add("is-resizing-node");
       try {
-        this.viewport.setPointerCapture(event.pointerId);
+        resizeHandle.setPointerCapture(event.pointerId);
       } catch {
       }
       return;
@@ -8337,7 +8360,7 @@ var MapSurface = class {
     this.preservedEditAnchor = resize.id;
     this.viewport.classList.remove("is-resizing-node");
     try {
-      if (this.viewport.hasPointerCapture(resize.pointer)) this.viewport.releasePointerCapture(resize.pointer);
+      if (resize.capture.hasPointerCapture(resize.pointer)) resize.capture.releasePointerCapture(resize.pointer);
     } catch {
     }
     if (!this.destroyed) {
