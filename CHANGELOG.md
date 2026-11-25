@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.0.52
+
+### Fixed
+
+- Keep colored highlights readable and consistent between map previews and inline native editing when a theme forces black highlight text or yellow backgrounds.
+- Keep native highlight color swatches inline and compact despite theme rules for ordinary images. Changes are scoped to TraceView.
+
 ## 1.0.51
 
 ### Fixed
