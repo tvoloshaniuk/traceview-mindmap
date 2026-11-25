@@ -253,6 +253,12 @@
 .tvm-context-menu button:hover, .tvm-context-menu button:focus-visible { background: var(--background-modifier-hover, #ededf3); outline: 2px solid transparent; }
 .tvm-context-menu button.is-danger { color: var(--text-error, #d64040); }
 .tvm-menu-shortcut { flex-shrink: 0; color: var(--text-muted, #777780); font-size: 10px; }
+.tvm-menu-separator { border-top: 1px solid var(--background-modifier-border); margin: 5px 6px; }
+.tvm-menu-label { flex: 1; min-width: 0; text-align: start; white-space: normal; overflow-wrap: anywhere; }
+.tvm-context-menu .tvm-menu-shortcut { max-width: 50%; white-space: normal; overflow-wrap: anywhere; text-align: end; }
+.tvm-menu-icon { display: inline-flex; width: 16px; height: 16px; flex-shrink: 0; color: var(--text-muted); }
+.tvm-menu-icon svg { width: 16px; height: 16px; }
+.tvm-context-menu button.is-danger .tvm-menu-icon { color: inherit; }
 @media (pointer: coarse) {
   .tvm-map-view .tvm-toolbar .tvm-icon-button { flex-basis: 36px; min-width: 36px; width: 36px; height: 36px; min-height: 36px; }
   .tvm-actions button, .tvm-toolbar > button, .tvm-search-bar button, .tvm-result { min-height: 40px; }

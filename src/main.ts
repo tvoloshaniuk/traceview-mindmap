@@ -760,6 +760,7 @@ class MapView extends EditableFileView {
       search.show();
     };
     this.surface = new MapSurface(this.host, {
+      renderIcon: (element, icon) => setIcon(element, icon),
       getWidthMode: () => this.plugin.settings.widthMode,
       getNodeMaxHeight: () => this.plugin.settings.nodeMaxHeight,
       showCreationHandles: () => Platform.isMobile || this.plugin.settings.showDesktopCreationHandles,

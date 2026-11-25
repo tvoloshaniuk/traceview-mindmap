@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.0.59
+
+### Improved
+
+- Group node context-menu actions by purpose and add native icons, with separate editing, creation, folding, planning, links, clipboard, movement, source and deletion sections.
+- Wrap long menu labels and display compact arrow-key hints to avoid overlaps. Keyboard navigation skips disabled actions and keeps separators out of the focus order.
+
 ## 1.0.58
 
 ### Fixed

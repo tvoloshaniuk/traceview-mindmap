@@ -23,6 +23,18 @@ const ROW_GAP = 18;
 const ROOT_GAP = 44;
 const MIN_WIDTH = 84;
 const EDITOR_VIEWPORT_PADDING = 12;
+const MENU_GROUPS: [HotkeyAction, string][][] = [
+  [['edit', 'pencil'], ['convert-node-note', 'file-plus-2'], ['attach-node-note', 'file-input'], ['insert-template', 'layout-template']],
+  [['add-child', 'git-branch-plus'], ['add-sibling', 'plus'], ['add-parent', 'git-fork']],
+  [['fold', 'list-tree'], ['collapse-branch', 'fold-vertical'], ['expand-branch', 'unfold-vertical']],
+  [['toggle-task', 'check-square'], ['make-step', 'list-ordered'], ['make-dated', 'calendar'], ['make-question', 'circle-help'], ['completed-bottom', 'list-checks']],
+  [['copy-node-link', 'link'], ['remove-node-address', 'unlink']],
+  [['copy', 'copy'], ['copy-node-text', 'text-select'], ['copy-node-labels', 'list'], ['cut', 'scissors'], ['paste', 'clipboard-paste'], ['paste-after', 'clipboard-plus']],
+  [['move-up', 'arrow-up'], ['move-down', 'arrow-down'], ['indent', 'indent-increase'], ['outdent', 'indent-decrease']],
+  [['source', 'file-code']],
+  [['delete', 'trash-2']],
+];
+const MENU_PRESENTATION = new Map(MENU_GROUPS.flatMap((entries, group) => entries.map(([action, icon], index) => [action, {group, icon, order: group * 100 + index}] as const)));
 const VERTICAL_NAVIGATION: Partial<Record<HotkeyAction, HotkeyAction>> = {
   parent: 'previous', child: 'next', previous: 'parent', next: 'child',
   'select-parent': 'select-previous', 'select-child': 'select-next',
@@ -1831,12 +1843,23 @@ export class MapSurface {
       { label: t("Insert template at selected node…"), action: 'insert-template' },
       { label: t("Delete branch"), action: 'delete' },
     ];
+    entries.sort((a, b) => MENU_PRESENTATION.get(a.action)!.order - MENU_PRESENTATION.get(b.action)!.order);
+    let previousGroup: number | undefined;
     for (const entry of entries) {
       if (['fold', 'collapse-branch', 'expand-branch'].includes(entry.action) && !this.doc?.byId.get(id)?.children.length) continue;
+      const presentation = MENU_PRESENTATION.get(entry.action)!;
+      if (previousGroup !== undefined && previousGroup !== presentation.group) {
+        const separator = this.container.ownerDocument.createElement('div'); separator.className = 'tvm-menu-separator'; separator.setAttribute('role', 'separator'); menu.append(separator);
+      }
+      previousGroup = presentation.group;
       const button = this.container.ownerDocument.createElement('button');
       button.type = 'button';
       button.setAttribute('role', 'menuitem');
+      if (this.options.renderIcon) {
+        const icon = this.container.ownerDocument.createElement('span'); icon.className = 'tvm-menu-icon'; icon.setAttribute('aria-hidden', 'true'); this.options.renderIcon(icon, presentation.icon); button.append(icon);
+      }
       const label = this.container.ownerDocument.createElement('span');
+      label.className = 'tvm-menu-label';
       label.textContent = this.selection.size > 1 && ['delete', 'copy', 'cut'].includes(entry.action) ? t(entry.action === "copy" ? "Copy selection" : entry.action === "cut" ? "Cut selection" : "Delete selection") : entry.label;
       if (this.selection.size > 1 && ['edit', 'copy-node-text', 'node-note', 'convert-node-note', 'attach-node-note', 'node-note-options', 'completed-bottom', 'add-child', 'add-sibling', 'add-parent', 'insert-template', 'paste', 'paste-after', 'indent', 'outdent'].includes(entry.action)) button.disabled = true;
       button.append(label);
@@ -1844,7 +1867,8 @@ export class MapSurface {
       if (binding) {
         const shortcut = this.container.ownerDocument.createElement('span');
         shortcut.className = 'tvm-menu-shortcut';
-        shortcut.textContent = binding.replace(/Key|Digit/g, '').replace(/Mod/g, 'Ctrl/Cmd');
+        shortcut.textContent = binding.replace(/Key|Digit/g, '').replace(/Mod/g, 'Ctrl/Cmd')
+          .replace(/ArrowLeft/g, '←').replace(/ArrowRight/g, '→').replace(/ArrowUp/g, '↑').replace(/ArrowDown/g, '↓');
         button.append(shortcut);
       }
       if (entry.action === 'delete') button.classList.add('is-danger');
@@ -1858,7 +1882,7 @@ export class MapSurface {
       if (e.key === 'Escape') { e.preventDefault(); e.stopPropagation(); this.closeMenu(); this.viewport.focus({ preventScroll: true }); return; }
       if (e.key !== 'ArrowUp' && e.key !== 'ArrowDown') return;
       e.preventDefault(); e.stopPropagation();
-      const buttons = [...menu.querySelectorAll('button')];
+      const buttons = [...menu.querySelectorAll<HTMLButtonElement>('button:not(:disabled)')];
       const index = buttons.indexOf(this.container.ownerDocument.activeElement as HTMLButtonElement);
       buttons[(index + (e.key === 'ArrowDown' ? 1 : buttons.length - 1)) % buttons.length]?.focus();
     });
@@ -1868,7 +1892,7 @@ export class MapSurface {
     const size = this.viewportSize();
     menu.style.left = `${Math.max(8, Math.min(event.clientX - rect.left, size.width - (menu.offsetWidth || 260) - 8))}px`;
     menu.style.top = `${Math.max(8, Math.min(event.clientY - rect.top, size.height - (menu.offsetHeight || 480) - 8))}px`;
-    menu.querySelector('button')?.focus();
+    menu.querySelector<HTMLButtonElement>('button:not(:disabled)')?.focus();
   }
 
   private closeMenu(): void {
