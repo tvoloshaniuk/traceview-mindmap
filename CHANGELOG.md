@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.0.45
+
+### Added
+
+- Choose folders directly in the planning map filter. Include Markdown tasks from that folder and descendants, including ordinary notes outside automatic map patterns.
+- Match folder paths by their full prefix so similarly named neighboring folders stay excluded. Keep reads scoped to the selected folder and limit visible filter suggestions to 100.
+
 ## 1.0.44
 
 ### Added

@@ -5,7 +5,7 @@
  */
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { queueLabel, queueMapMatcher } from '../src/queue-controls';
+import { queueLabel, queueMapMatcher, queueFolderPrefix } from '../src/queue-controls';
 
 test('queue marker settings are independent and preserve step numbers, dates and links', () => {
   const text = '[ ] #step 1.1) [[Programming|#step alias]] ![[image.png]]';
@@ -25,4 +25,12 @@ test('queue map filters support paths, text, glob and explicit regular expressio
   assert.equal(queueMapMatcher('/^Folder\\/.*Plan/')('Folder/MyPlan.md'), true);
   assert.equal(queueMapMatcher('/^Folder\\//')('Other/Plan.md'), false);
   assert.throws(() => queueMapMatcher('/[/'));
+});
+
+test('folder filters include descendants without matching similarly named or nested unrelated folders', () => {
+  const matches=queueMapMatcher('Plans/');
+  assert.equal(matches('Plans/One.md'),true);assert.equal(matches('plans/Sub/Two.md'),true);
+  assert.equal(matches('Plans2/Other.md'),false);assert.equal(matches('Other/Plans/Three.md'),false);
+  assert.equal(queueFolderPrefix(' Plans/Sub/ '),'Plans/Sub/');
+  assert.equal(queueFolderPrefix('/Plans/'),undefined);assert.equal(queueFolderPrefix('Plans/*'),undefined);
 });

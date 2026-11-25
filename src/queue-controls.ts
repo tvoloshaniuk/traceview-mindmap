@@ -28,6 +28,11 @@ export function queueLabel(text: string, showTask = true, showStep = true): stri
   return label.trim() || text;
 }
 
+export function queueFolderPrefix(filter: string): string | undefined {
+  const query = filter.trim();
+  return query.endsWith('/') && !query.startsWith('/') && !/[?*]/.test(query) ? query : undefined;
+}
+
 export function queueMapMatcher(filter: string): (path: string) => boolean {
   const query = filter.trim();
   if (!query) return () => true;
@@ -36,13 +41,15 @@ export function queueMapMatcher(filter: string): (path: string) => boolean {
     return path => expression.test(path);
   }
   if (query.includes('*') || query.includes('?')) return compileMapPatterns({ patternMode: 'glob', mapPatterns: query });
+  const folder = queueFolderPrefix(query)?.toLocaleLowerCase();
+  if (folder) return path => path.toLocaleLowerCase().startsWith(folder);
   return path => path.toLocaleLowerCase().includes(query.toLocaleLowerCase());
 }
 
-interface MapChoice { path: string; basename: string; }
+interface MapChoice { path: string; basename: string; folder?: boolean; }
 let nextFilterId = 0;
 
-export function attachMapFilter(parent: HTMLElement, getMaps: () => MapChoice[], onSelect: (path: string) => void): { set: (value: string) => void } {
+export function attachMapFilter(parent: HTMLElement, getMaps: () => MapChoice[], onSelect: (path: string) => void, getFolderPaths?: () => string[]): { set: (value: string) => void } {
   const host = parent.createDiv('tvm-map-filter');
   const input = host.createEl('input', { type: 'text', attr: { role: 'combobox', 'aria-label': t("Map filter"), 'aria-autocomplete': 'list', 'aria-expanded': 'false', autocomplete: 'off', placeholder: t("All maps") } });
   const list = host.createDiv('tvm-map-options');
@@ -68,14 +75,19 @@ export function attachMapFilter(parent: HTMLElement, getMaps: () => MapChoice[],
   };
   const draw = () => {
     const query = input.value.trim().toLocaleLowerCase();
-    choices = [{ path: '', basename: t("All maps") }, ...getMaps().sort((a, b) => a.path.localeCompare(b.path))]
-      .filter(choice => !choice.path || `${choice.basename} ${choice.path}`.toLocaleLowerCase().includes(query));
+    const maps = getMaps(), folders = new Set<string>();
+    for (const path of getFolderPaths?.() ?? maps.map(map => map.path)) {
+      const parts = path.split('/');
+      for (let level = 1; level < parts.length; level++) folders.add(parts.slice(0, level).join('/') + '/');
+    }
+    choices = [{ path: '', basename: t("All maps") }, ...[...folders].sort().map(path => ({path, basename: path, folder: true})), ...[...maps].sort((a, b) => a.path.localeCompare(b.path))]
+      .filter(choice => !choice.path || `${choice.basename} ${choice.path}`.toLocaleLowerCase().includes(query)).slice(0, 100);
     list.empty(); active = -1;
     for (const [index, choice] of choices.entries()) {
       const option = list.createDiv('tvm-map-option');
       option.id = `${list.id}-${index}`; option.setAttribute('role', 'option'); option.setAttribute('aria-selected', 'false');
-      option.createDiv({ text: choice.basename });
-      if (choice.path) option.createDiv({ cls: 'tvm-map-option-path', text: choice.path });
+      option.createDiv({ text: (choice.folder ? '📁 ' : '') + choice.basename });
+      if (choice.path && !choice.folder) option.createDiv({ cls: 'tvm-map-option-path', text: choice.path });
       // Keep keyboard focus in the input; touch scrolling remains native.
       option.onmousedown = event => event.preventDefault();
       option.onclick = () => choose(choice);

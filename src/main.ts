@@ -12,7 +12,7 @@ import { compileMapPatterns, PatternError, type MapRules, type PatternMode } fro
 import { MapSearch } from './map-search';
 import { highlightRenderedSearch } from './search-highlight';
 import { MapSurface } from './surface';
-import { attachMapFilter, excludedQueueNodes, queueExclusions, queueLabel, queueMapMatcher } from './queue-controls';
+import { attachMapFilter, excludedQueueNodes, queueExclusions, queueLabel, queueMapMatcher, queueFolderPrefix } from './queue-controls';
 import { mountNativeEditor, prepareNativeEditor, type NativeConstructor } from './native-editor';
 import type { InlineEditor, InlineDriver } from './inline';
 import type { Editor } from 'obsidian';
@@ -1529,7 +1529,7 @@ class QueueView extends ItemView {
       catch (error) { new Notice(message(error)); this.mapFilter?.set(this.filter); return; }
       this.filter = path;
       void this.reload();
-    });
+    }, () => this.app.vault.getMarkdownFiles().map(file => file.path));
     this.foldControls = actions.createDiv('tvm-queue-fold-controls');
     button(this.foldControls, t("Collapse all"), () => {
       for (const path of this.cache.keys()) if (queueMapMatcher(this.filter)(path)) this.collapsed.add(path);
@@ -1565,7 +1565,8 @@ class QueueView extends ItemView {
   scheduleReload(): void { window.clearTimeout(this.timer); this.timer = window.setTimeout(() => { void this.reload(); }, 250); }
   private queueFiles(): TFile[] {
     const terms = queueExclusions(this.plugin.settings.queueExcludedMaps);
-    return this.app.vault.getMarkdownFiles().filter(file => (this.plugin.isMap(file) || file.path === this.filter)
+    const folder = queueFolderPrefix(this.filter) ? queueMapMatcher(this.filter) : undefined;
+    return this.app.vault.getMarkdownFiles().filter(file => (this.plugin.isMap(file) || file.path === this.filter || folder?.(file.path))
       && !terms.some(term => file.basename.toLocaleLowerCase().includes(term)));
   }
   private async reload(): Promise<void> {

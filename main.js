@@ -8349,6 +8349,10 @@ function queueLabel(text, showTask = true, showStep = true) {
   const label2 = (showTask ? match[1] ?? "" : "") + (showStep ? match[2] ?? "" : "") + match[3];
   return label2.trim() || text;
 }
+function queueFolderPrefix(filter) {
+  const query = filter.trim();
+  return query.endsWith("/") && !query.startsWith("/") && !/[?*]/.test(query) ? query : void 0;
+}
 function queueMapMatcher(filter) {
   const query = filter.trim();
   if (!query) return () => true;
@@ -8357,10 +8361,12 @@ function queueMapMatcher(filter) {
     return (path) => expression.test(path);
   }
   if (query.includes("*") || query.includes("?")) return compileMapPatterns({ patternMode: "glob", mapPatterns: query });
+  const folder = queueFolderPrefix(query)?.toLocaleLowerCase();
+  if (folder) return (path) => path.toLocaleLowerCase().startsWith(folder);
   return (path) => path.toLocaleLowerCase().includes(query.toLocaleLowerCase());
 }
 var nextFilterId = 0;
-function attachMapFilter(parent, getMaps, onSelect) {
+function attachMapFilter(parent, getMaps, onSelect, getFolderPaths) {
   const host = parent.createDiv("tvm-map-filter");
   const input = host.createEl("input", { type: "text", attr: { role: "combobox", "aria-label": t("Map filter"), "aria-autocomplete": "list", "aria-expanded": "false", autocomplete: "off", placeholder: t("All maps") } });
   const list = host.createDiv("tvm-map-options");
@@ -8395,7 +8401,12 @@ function attachMapFilter(parent, getMaps, onSelect) {
   };
   const draw = () => {
     const query = input.value.trim().toLocaleLowerCase();
-    choices = [{ path: "", basename: t("All maps") }, ...getMaps().sort((a, b) => a.path.localeCompare(b.path))].filter((choice) => !choice.path || `${choice.basename} ${choice.path}`.toLocaleLowerCase().includes(query));
+    const maps = getMaps(), folders = /* @__PURE__ */ new Set();
+    for (const path of getFolderPaths?.() ?? maps.map((map) => map.path)) {
+      const parts = path.split("/");
+      for (let level = 1; level < parts.length; level++) folders.add(parts.slice(0, level).join("/") + "/");
+    }
+    choices = [{ path: "", basename: t("All maps") }, ...[...folders].sort().map((path) => ({ path, basename: path, folder: true })), ...[...maps].sort((a, b) => a.path.localeCompare(b.path))].filter((choice) => !choice.path || `${choice.basename} ${choice.path}`.toLocaleLowerCase().includes(query)).slice(0, 100);
     list.empty();
     active = -1;
     for (const [index, choice] of choices.entries()) {
@@ -8403,8 +8414,8 @@ function attachMapFilter(parent, getMaps, onSelect) {
       option.id = `${list.id}-${index}`;
       option.setAttribute("role", "option");
       option.setAttribute("aria-selected", "false");
-      option.createDiv({ text: choice.basename });
-      if (choice.path) option.createDiv({ cls: "tvm-map-option-path", text: choice.path });
+      option.createDiv({ text: (choice.folder ? "\u{1F4C1} " : "") + choice.basename });
+      if (choice.path && !choice.folder) option.createDiv({ cls: "tvm-map-option-path", text: choice.path });
       option.onmousedown = (event) => event.preventDefault();
       option.onclick = () => choose(choice);
     }
@@ -11626,7 +11637,7 @@ var QueueView = class extends import_obsidian5.ItemView {
       }
       this.filter = path;
       void this.reload();
-    });
+    }, () => this.app.vault.getMarkdownFiles().map((file) => file.path));
     this.foldControls = actions.createDiv("tvm-queue-fold-controls");
     button(this.foldControls, t("Collapse all"), () => {
       for (const path of this.cache.keys()) if (queueMapMatcher(this.filter)(path)) this.collapsed.add(path);
@@ -11678,7 +11689,8 @@ var QueueView = class extends import_obsidian5.ItemView {
   }
   queueFiles() {
     const terms = queueExclusions(this.plugin.settings.queueExcludedMaps);
-    return this.app.vault.getMarkdownFiles().filter((file) => (this.plugin.isMap(file) || file.path === this.filter) && !terms.some((term) => file.basename.toLocaleLowerCase().includes(term)));
+    const folder = queueFolderPrefix(this.filter) ? queueMapMatcher(this.filter) : void 0;
+    return this.app.vault.getMarkdownFiles().filter((file) => (this.plugin.isMap(file) || file.path === this.filter || folder?.(file.path)) && !terms.some((term) => file.basename.toLocaleLowerCase().includes(term)));
   }
   async reload() {
     const generation = ++this.generation;
