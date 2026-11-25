@@ -88,9 +88,9 @@ Obsidian's linked Local graph follows the active map. Copy a link to an individu
 - Copy, cut and paste entire branches. Undo and redo cover changes made during the current map session.
 - Select multiple nodes using keyboard ranges, modified clicks or the selection tool. Move branches together with their children.
 - On desktop, drag a branch by holding the second press of a double-click. On touch screens, hold a node before dragging. The target indicator shows insertion before, after or inside a node.
-- Create nodes using the handles around a selected node. Pan and zoom while editing.
+- Create nodes using the handles around a selected node on mobile. Desktop handles are optional under Advanced options. Pan and zoom while editing.
 - Search within a map, including collapsed branches. Confirm a result to navigate to it.
-- Switch between map, outline and table layouts and choose how node widths are calculated.
+- Switch between horizontal map, vertical Tree, outline and table layouts and choose how node widths are calculated.
 
 Configure shortcuts in the plugin settings. Standard text editing shortcuts apply while entering node text.
 
@@ -100,7 +100,13 @@ Use Obsidian links, aliases and links to notes that have not been created yet. *
 
 The native node editor provides Obsidian Live Preview and suggestions. A text editor is also available. Paste clipboard images while editing, or use the mobile attachment toolbar. Image files are stored as vault attachments.
 
-The **Steps, deadlines and QA** command opens a planning view. Mark nodes as numbered steps, set dates with the calendar, toggle completion, and review questions. Lists can be filtered by map and text. Step ordering changes numbered, undated steps within their file.
+Double-click an embedded Markdown note to edit that note in place. Enter inserts a new line; Ctrl/Cmd+Enter saves. Use the multiline-note button in the node editor to choose an existing note or accept an editable generated filename for a new one. Double-click an image to open the native fullscreen viewer in supported Obsidian versions while keeping the map open.
+
+Drag a node's lower-right corner to change its width and maximum height. Short content uses its natural height; longer content scrolls. Double-click the corner to reset. Sizes stay local to each device. **Map appearance** settings provide an embedded-note font size and a default maximum node height. Hover a selected overflowing node to scroll its content; otherwise the gesture pans the map.
+
+The **Steps, deadlines and QA** command opens a planning view, initially scoped to the current note. Filter by map, folder path, glob, regular expression or task text. Choose how completed tasks appear, adjust dates, and use Undo/Redo. Configure open, open/total, completed/total or total counts under **Planning lists**; count sorting is shared by map headings and picker suggestions.
+
+Select list items with Ctrl/Cmd-click, Shift ranges or the selection mode button. Shift-drag on list whitespace draws a rectangle; after the rectangle the mode switches off and the selection remains. Apply completion or remove step numbers to the selection. Drag numbered steps by their handles or use Ctrl/Cmd+Shift+Up/Down to change execution order within their map. Multi-map bulk actions retain an undo entry per changed note.
 
 HTML and SVG exports are available from the map actions menu. HTML exports include a folding outline and retain Markdown labels.
 
@@ -149,13 +155,13 @@ Installable files are written to `release/traceview-mindmap/`. The minimum decla
 ## Current limitations
 
 - Structural editing preserves Markdown heading and list semantics. Operations that would discard paragraphs, code blocks or ambiguous mixed structure require editing source Markdown.
-- Node text is single-line. More content can be placed in child nodes or linked notes.
-- Unconfirmed drafts and Undo history do not survive an app restart. Save a node before leaving the app. Discard confirmation currently focuses the discard action.
+- Ordinary node labels remain single-line to preserve list structure. Multiline editing uses embedded Markdown notes.
+- Undo history does not survive an app restart. Android has device-local draft recovery; save edits explicitly when finished.
 - Native editing uses an internal Obsidian editor implementation. If unavailable, the plugin falls back to text input. Commands requiring a complete Markdown view should be run in source Markdown.
 - The stored deadline marker currently uses the literal `до`, independently of the interface language. Use **Set date** to manage it.
 - An empty note needs an initial heading or list item in source Markdown before map editing.
 - Large restored maps on Windows wait for a quiet startup period before rendering. **Open now** bypasses that wait.
-- Desktop integration has been checked with Obsidian 1.15.0. Physical Android verification and native-speaker translation review remain manual.
+- Desktop integration has been checked with Obsidian 1.15.1. Physical Android verification and native-speaker translation review remain manual.
 
 ## Data
 
