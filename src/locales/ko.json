@@ -1,4 +1,6 @@
 {
+  "Reset all node sizes…": "모든 노드 크기 초기화…",
+  "Restore default width and height for every node in this map on this device? Note contents and other devices are unchanged.": "이 기기에서 이 지도의 모든 노드를 기본 너비와 높이로 되돌릴까요? 노트 내용과 다른 기기는 변경되지 않습니다.",
   "Show embedded map previews": "임베드 지도 미리보기 표시",
   "Always show toolbar": "도구 모음 항상 표시",
   "Show toolbar on hover": "마우스를 올리면 도구 모음 표시",

@@ -874,6 +874,7 @@ export class MapSurface {
     for (const id of this.visible) {
       const el = this.elements.get(id)!;
       el.style.height = '';
+      el.style.minHeight = sizes?.[id] ? `${sizes[id].height}px` : '';
       el.style.width = widthMode === 'fixed' || id === this.editing?.id ? `${WIDTH}px` : 'max-content';
       el.style.maxWidth = widthMode === 'fixed' ? '' : `${WIDTH}px`;
       const content = el.querySelector<HTMLElement>('.tvm-node-content');
@@ -1902,6 +1903,12 @@ export class MapSurface {
   private cancelTouchHold(): void {
     if (!this.touchHold) return;
     this.container.ownerDocument.defaultView?.clearTimeout(this.touchHold.timer); this.touchHold = undefined;
+  }
+
+  resetNodeSizes(): void {
+    if (this.editing || this.resizing || !this.state.nodeSizes) return;
+    delete this.state.nodeSizes;
+    this.layout(); this.emitState();
   }
 
   private setNodeSize(id: string, size?: NodeSize): void {

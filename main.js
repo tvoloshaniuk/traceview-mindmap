@@ -358,6 +358,8 @@ module.exports = __toCommonJS(main_exports);
 
 // src/locales/en.json
 var en_default = {
+  "Reset all node sizes\u2026": "Reset all node sizes\u2026",
+  "Restore default width and height for every node in this map on this device? Note contents and other devices are unchanged.": "Restore default width and height for every node in this map on this device? Note contents and other devices are unchanged.",
   "Show embedded map previews": "Show embedded map previews",
   "Always show toolbar": "Always show toolbar",
   "Show toolbar on hover": "Show toolbar on hover",
@@ -749,6 +751,8 @@ var en_default = {
 
 // src/locales/uk.json
 var uk_default = {
+  "Reset all node sizes\u2026": "\u0421\u043A\u0438\u043D\u0443\u0442\u0438 \u0440\u043E\u0437\u043C\u0456\u0440\u0438 \u0432\u0441\u0456\u0445 \u0432\u0443\u0437\u043B\u0456\u0432\u2026",
+  "Restore default width and height for every node in this map on this device? Note contents and other devices are unchanged.": "\u0412\u0456\u0434\u043D\u043E\u0432\u0438\u0442\u0438 \u0441\u0442\u0430\u043D\u0434\u0430\u0440\u0442\u043D\u0443 \u0448\u0438\u0440\u0438\u043D\u0443 \u0439 \u0432\u0438\u0441\u043E\u0442\u0443 \u0432\u0441\u0456\u0445 \u0432\u0443\u0437\u043B\u0456\u0432 \u0446\u0456\u0454\u0457 \u043A\u0430\u0440\u0442\u0438 \u043D\u0430 \u0446\u044C\u043E\u043C\u0443 \u043F\u0440\u0438\u0441\u0442\u0440\u043E\u0457? \u0412\u043C\u0456\u0441\u0442 \u043D\u043E\u0442\u0430\u0442\u043E\u043A \u0442\u0430 \u0456\u043D\u0448\u0456 \u043F\u0440\u0438\u0441\u0442\u0440\u043E\u0457 \u043D\u0435 \u0437\u043C\u0456\u043D\u044F\u0442\u044C\u0441\u044F.",
   "Show embedded map previews": "\u041F\u043E\u043A\u0430\u0437\u0443\u0432\u0430\u0442\u0438 \u043F\u0435\u0440\u0435\u0433\u043B\u044F\u0434\u0438 \u0432\u043A\u043B\u0430\u0434\u0435\u043D\u0438\u0445 \u043A\u0430\u0440\u0442",
   "Always show toolbar": "\u0417\u0430\u0432\u0436\u0434\u0438 \u043F\u043E\u043A\u0430\u0437\u0443\u0432\u0430\u0442\u0438 \u043F\u0430\u043D\u0435\u043B\u044C",
   "Show toolbar on hover": "\u041F\u043E\u043A\u0430\u0437\u0443\u0432\u0430\u0442\u0438 \u043F\u0430\u043D\u0435\u043B\u044C \u043F\u0440\u0438 \u043D\u0430\u0432\u0435\u0434\u0435\u043D\u043D\u0456",
@@ -1140,6 +1144,8 @@ var uk_default = {
 
 // src/locales/pl.json
 var pl_default = {
+  "Reset all node sizes\u2026": "Przywr\xF3\u0107 rozmiary wszystkich w\u0119z\u0142\xF3w\u2026",
+  "Restore default width and height for every node in this map on this device? Note contents and other devices are unchanged.": "Przywr\xF3ci\u0107 domy\u015Bln\u0105 szeroko\u015B\u0107 i wysoko\u015B\u0107 wszystkich w\u0119z\u0142\xF3w tej mapy na tym urz\u0105dzeniu? Tre\u015B\u0107 notatek i inne urz\u0105dzenia pozostan\u0105 bez zmian.",
   "Show embedded map previews": "Wy\u015Bwietlaj podgl\u0105d osadzonych map",
   "Always show toolbar": "Zawsze pokazuj pasek",
   "Show toolbar on hover": "Pokazuj pasek po najechaniu",
@@ -1531,6 +1537,8 @@ var pl_default = {
 
 // src/locales/de.json
 var de_default = {
+  "Reset all node sizes\u2026": "Alle Knotengr\xF6\xDFen zur\xFCcksetzen\u2026",
+  "Restore default width and height for every node in this map on this device? Note contents and other devices are unchanged.": "Standardbreite und -h\xF6he aller Knoten dieser Karte auf diesem Ger\xE4t wiederherstellen? Notizinhalte und andere Ger\xE4te bleiben unver\xE4ndert.",
   "Show embedded map previews": "Vorschau eingebetteter Karten anzeigen",
   "Always show toolbar": "Symbolleiste immer anzeigen",
   "Show toolbar on hover": "Symbolleiste beim \xDCberfahren anzeigen",
@@ -1922,6 +1930,8 @@ var de_default = {
 
 // src/locales/es.json
 var es_default = {
+  "Reset all node sizes\u2026": "Restablecer el tama\xF1o de todos los nodos\u2026",
+  "Restore default width and height for every node in this map on this device? Note contents and other devices are unchanged.": "\xBFRestaurar el ancho y la altura predeterminados de todos los nodos de este mapa en este dispositivo? El contenido de las notas y los dem\xE1s dispositivos no cambiar\xE1n.",
   "Show embedded map previews": "Mostrar vistas previas de mapas incrustados",
   "Always show toolbar": "Mostrar siempre la barra",
   "Show toolbar on hover": "Mostrar la barra al pasar el cursor",
@@ -2313,6 +2323,8 @@ var es_default = {
 
 // src/locales/fr.json
 var fr_default = {
+  "Reset all node sizes\u2026": "R\xE9initialiser la taille de tous les n\u0153uds\u2026",
+  "Restore default width and height for every node in this map on this device? Note contents and other devices are unchanged.": "R\xE9tablir la largeur et la hauteur par d\xE9faut de tous les n\u0153uds de cette carte sur cet appareil ? Le contenu des notes et les autres appareils restent inchang\xE9s.",
   "Show embedded map previews": "Afficher les aper\xE7us des cartes int\xE9gr\xE9es",
   "Always show toolbar": "Toujours afficher la barre",
   "Show toolbar on hover": "Afficher la barre au survol",
@@ -2704,6 +2716,8 @@ var fr_default = {
 
 // src/locales/pt-BR.json
 var pt_BR_default = {
+  "Reset all node sizes\u2026": "Redefinir o tamanho de todos os n\xF3s\u2026",
+  "Restore default width and height for every node in this map on this device? Note contents and other devices are unchanged.": "Restaurar a largura e a altura padr\xE3o de todos os n\xF3s deste mapa neste dispositivo? O conte\xFAdo das notas e os outros dispositivos permanecer\xE3o inalterados.",
   "Show embedded map previews": "Mostrar pr\xE9vias de mapas incorporados",
   "Always show toolbar": "Sempre mostrar a barra",
   "Show toolbar on hover": "Mostrar a barra ao passar o cursor",
@@ -3095,6 +3109,8 @@ var pt_BR_default = {
 
 // src/locales/zh-CN.json
 var zh_CN_default = {
+  "Reset all node sizes\u2026": "\u91CD\u7F6E\u6240\u6709\u8282\u70B9\u5927\u5C0F\u2026",
+  "Restore default width and height for every node in this map on this device? Note contents and other devices are unchanged.": "\u5C06\u6B64\u8BBE\u5907\u4E0A\u5F53\u524D\u5730\u56FE\u7684\u6240\u6709\u8282\u70B9\u6062\u590D\u4E3A\u9ED8\u8BA4\u5BBD\u5EA6\u548C\u9AD8\u5EA6\uFF1F\u7B14\u8BB0\u5185\u5BB9\u548C\u5176\u4ED6\u8BBE\u5907\u4E0D\u4F1A\u6539\u53D8\u3002",
   "Show embedded map previews": "\u663E\u793A\u5D4C\u5165\u5730\u56FE\u9884\u89C8",
   "Always show toolbar": "\u59CB\u7EC8\u663E\u793A\u5DE5\u5177\u680F",
   "Show toolbar on hover": "\u60AC\u505C\u65F6\u663E\u793A\u5DE5\u5177\u680F",
@@ -3486,6 +3502,8 @@ var zh_CN_default = {
 
 // src/locales/ja.json
 var ja_default = {
+  "Reset all node sizes\u2026": "\u3059\u3079\u3066\u306E\u30CE\u30FC\u30C9\u306E\u30B5\u30A4\u30BA\u3092\u30EA\u30BB\u30C3\u30C8\u2026",
+  "Restore default width and height for every node in this map on this device? Note contents and other devices are unchanged.": "\u3053\u306E\u30C7\u30D0\u30A4\u30B9\u3067\u3001\u3053\u306E\u30DE\u30C3\u30D7\u306E\u3059\u3079\u3066\u306E\u30CE\u30FC\u30C9\u3092\u65E2\u5B9A\u306E\u5E45\u3068\u9AD8\u3055\u306B\u623B\u3057\u307E\u3059\u304B\uFF1F\u30CE\u30FC\u30C8\u306E\u5185\u5BB9\u3068\u4ED6\u306E\u30C7\u30D0\u30A4\u30B9\u306F\u5909\u66F4\u3055\u308C\u307E\u305B\u3093\u3002",
   "Show embedded map previews": "\u57CB\u3081\u8FBC\u307F\u30DE\u30C3\u30D7\u306E\u30D7\u30EC\u30D3\u30E5\u30FC\u3092\u8868\u793A",
   "Always show toolbar": "\u30C4\u30FC\u30EB\u30D0\u30FC\u3092\u5E38\u306B\u8868\u793A",
   "Show toolbar on hover": "\u30DB\u30D0\u30FC\u6642\u306B\u30C4\u30FC\u30EB\u30D0\u30FC\u3092\u8868\u793A",
@@ -3877,6 +3895,8 @@ var ja_default = {
 
 // src/locales/ko.json
 var ko_default = {
+  "Reset all node sizes\u2026": "\uBAA8\uB4E0 \uB178\uB4DC \uD06C\uAE30 \uCD08\uAE30\uD654\u2026",
+  "Restore default width and height for every node in this map on this device? Note contents and other devices are unchanged.": "\uC774 \uAE30\uAE30\uC5D0\uC11C \uC774 \uC9C0\uB3C4\uC758 \uBAA8\uB4E0 \uB178\uB4DC\uB97C \uAE30\uBCF8 \uB108\uBE44\uC640 \uB192\uC774\uB85C \uB418\uB3CC\uB9B4\uAE4C\uC694? \uB178\uD2B8 \uB0B4\uC6A9\uACFC \uB2E4\uB978 \uAE30\uAE30\uB294 \uBCC0\uACBD\uB418\uC9C0 \uC54A\uC2B5\uB2C8\uB2E4.",
   "Show embedded map previews": "\uC784\uBCA0\uB4DC \uC9C0\uB3C4 \uBBF8\uB9AC\uBCF4\uAE30 \uD45C\uC2DC",
   "Always show toolbar": "\uB3C4\uAD6C \uBAA8\uC74C \uD56D\uC0C1 \uD45C\uC2DC",
   "Show toolbar on hover": "\uB9C8\uC6B0\uC2A4\uB97C \uC62C\uB9AC\uBA74 \uB3C4\uAD6C \uBAA8\uC74C \uD45C\uC2DC",
@@ -4268,6 +4288,8 @@ var ko_default = {
 
 // src/locales/ru.json
 var ru_default = {
+  "Reset all node sizes\u2026": "\u0421\u0431\u0440\u043E\u0441\u0438\u0442\u044C \u0440\u0430\u0437\u043C\u0435\u0440\u044B \u0432\u0441\u0435\u0445 \u0443\u0437\u043B\u043E\u0432\u2026",
+  "Restore default width and height for every node in this map on this device? Note contents and other devices are unchanged.": "\u0412\u043E\u0441\u0441\u0442\u0430\u043D\u043E\u0432\u0438\u0442\u044C \u0441\u0442\u0430\u043D\u0434\u0430\u0440\u0442\u043D\u0443\u044E \u0448\u0438\u0440\u0438\u043D\u0443 \u0438 \u0432\u044B\u0441\u043E\u0442\u0443 \u0432\u0441\u0435\u0445 \u0443\u0437\u043B\u043E\u0432 \u044D\u0442\u043E\u0439 \u043A\u0430\u0440\u0442\u044B \u043D\u0430 \u044D\u0442\u043E\u043C \u0443\u0441\u0442\u0440\u043E\u0439\u0441\u0442\u0432\u0435? \u0421\u043E\u0434\u0435\u0440\u0436\u0438\u043C\u043E\u0435 \u0437\u0430\u043C\u0435\u0442\u043E\u043A \u0438 \u0434\u0440\u0443\u0433\u0438\u0435 \u0443\u0441\u0442\u0440\u043E\u0439\u0441\u0442\u0432\u0430 \u043D\u0435 \u0438\u0437\u043C\u0435\u043D\u044F\u0442\u0441\u044F.",
   "Show embedded map previews": "\u041F\u043E\u043A\u0430\u0437\u044B\u0432\u0430\u0442\u044C \u043F\u0440\u0435\u0434\u043F\u0440\u043E\u0441\u043C\u043E\u0442\u0440 \u0432\u043B\u043E\u0436\u0435\u043D\u043D\u044B\u0445 \u043A\u0430\u0440\u0442",
   "Always show toolbar": "\u0412\u0441\u0435\u0433\u0434\u0430 \u043F\u043E\u043A\u0430\u0437\u044B\u0432\u0430\u0442\u044C \u043F\u0430\u043D\u0435\u043B\u044C",
   "Show toolbar on hover": "\u041F\u043E\u043A\u0430\u0437\u044B\u0432\u0430\u0442\u044C \u043F\u0430\u043D\u0435\u043B\u044C \u043F\u0440\u0438 \u043D\u0430\u0432\u0435\u0434\u0435\u043D\u0438\u0438",
@@ -7369,6 +7391,7 @@ var MapSurface = class {
     for (const id of this.visible) {
       const el = this.elements.get(id);
       el.style.height = "";
+      el.style.minHeight = sizes?.[id] ? `${sizes[id].height}px` : "";
       el.style.width = widthMode === "fixed" || id === this.editing?.id ? `${WIDTH}px` : "max-content";
       el.style.maxWidth = widthMode === "fixed" ? "" : `${WIDTH}px`;
       const content = el.querySelector(".tvm-node-content");
@@ -8535,6 +8558,12 @@ var MapSurface = class {
     if (!this.touchHold) return;
     this.container.ownerDocument.defaultView?.clearTimeout(this.touchHold.timer);
     this.touchHold = void 0;
+  }
+  resetNodeSizes() {
+    if (this.editing || this.resizing || !this.state.nodeSizes) return;
+    delete this.state.nodeSizes;
+    this.layout();
+    this.emitState();
   }
   setNodeSize(id, size) {
     const sizes = { ...this.state.nodeSizes };
@@ -11681,6 +11710,12 @@ var MapView = class extends import_obsidian5.EditableFileView {
       void this.action(action, this.selected());
     }));
     menu.addSeparator();
+    menu.addItem((item) => item.setTitle(t("Reset all node sizes\u2026")).setIcon("rotate-ccw").setDisabled(!this.surface?.getState().nodeSizes || !!this.surface?.isEditing()).onClick(() => {
+      const path = this.path, surface = this.surface;
+      new ConfirmDialog(this.app, t("Reset all node sizes\u2026"), t("Restore default width and height for every node in this map on this device? Note contents and other devices are unchanged."), async () => {
+        if (!this.closed && this.path === path && this.surface === surface) surface?.resetNodeSizes();
+      }, { label: t("Restore defaults"), focusConfirm: false, warning: false }).open();
+    }));
     menu.addItem((item) => item.setTitle(t("Export HTML\u2026")).onClick(() => this.export("html")));
     menu.addItem((item) => item.setTitle(t("Export SVG\u2026")).onClick(() => this.export("svg")));
     menu.addItem((item) => item.setTitle(t("Paste branch text\u2026")).onClick(() => {

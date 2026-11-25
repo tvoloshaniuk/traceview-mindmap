@@ -1328,6 +1328,14 @@ class MapView extends EditableFileView {
     const actions: [string, NodeAction][] = [ [t("Mark as atomic step"), 'make-step'], [t("Step deadline…"), 'make-dated'], [t("Mark as QA"), 'make-question'], [t("Completed / incomplete"), 'toggle-task'], [t("Copy link to node"), 'copy-node-link'], [t("Copy branch"), 'copy'], [t("Cut branch"), 'cut'], [t("Paste as child branch"), 'paste'], [t("Paste as sibling branch"), 'paste-after'], [t("Add parent node"), 'add-parent'], [t("Move up"), 'move-up'], [t("Move down"), 'move-down'], [t("Nest in previous branch"), 'indent'], [t("Move up one level"), 'outdent'], [t("Open text in editor"), 'source'], [t("Delete branch…"), 'delete'] ];
     for (const [label, action] of actions) menu.addItem(item => item.setTitle(this.commandLabel(label, action)).onClick(() => { void this.action(action, this.selected()); }));
     menu.addSeparator();
+    menu.addItem(item => item.setTitle(t("Reset all node sizes…")).setIcon('rotate-ccw')
+      .setDisabled(!this.surface?.getState().nodeSizes || !!this.surface?.isEditing())
+      .onClick(() => {
+        const path = this.path, surface = this.surface;
+        new ConfirmDialog(this.app, t("Reset all node sizes…"), t("Restore default width and height for every node in this map on this device? Note contents and other devices are unchanged."), async () => {
+          if (!this.closed && this.path === path && this.surface === surface) surface?.resetNodeSizes();
+        }, { label: t("Restore defaults"), focusConfirm: false, warning: false }).open();
+      }));
     menu.addItem(item => item.setTitle(t("Export HTML…")).onClick(() => this.export('html')));
     menu.addItem(item => item.setTitle(t("Export SVG…")).onClick(() => this.export('svg')));
     menu.addItem(item => item.setTitle(t("Paste branch text…")).onClick(() => {

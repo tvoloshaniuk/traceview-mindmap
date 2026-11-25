@@ -1,4 +1,6 @@
 {
+  "Reset all node sizes…": "Сбросить размеры всех узлов…",
+  "Restore default width and height for every node in this map on this device? Note contents and other devices are unchanged.": "Восстановить стандартную ширину и высоту всех узлов этой карты на этом устройстве? Содержимое заметок и другие устройства не изменятся.",
   "Show embedded map previews": "Показывать предпросмотр вложенных карт",
   "Always show toolbar": "Всегда показывать панель",
   "Show toolbar on hover": "Показывать панель при наведении",

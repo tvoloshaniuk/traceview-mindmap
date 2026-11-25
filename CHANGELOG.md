@@ -1,5 +1,15 @@
 # Changelog
 
+## 1.0.62
+
+### Improved
+
+- Keep the height chosen by manual corner resizing even when a short node leaves empty space below its content. Automatic heights still follow the content, and default maximum height still limits long nodes.
+
+### New features
+
+- Add Reset all node sizes to Map actions, with a confirmation dialog. Reset widths and heights for the whole map, including folded nodes, on this device while keeping note contents and folds intact.
+
 ## 1.0.61
 
 ### Fixed

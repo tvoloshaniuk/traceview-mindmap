@@ -1006,3 +1006,15 @@ test('Shift rectangles accumulate on desktop and mouse selection mode finishes a
   f.surface.toggleSelectionMode();pointer('pointerdown',80,90,false);pointer('pointermove',190,160,false);pointer('pointerup',190,160,false);
   assert.equal(f.surface.isSelectionMode(),false);assert.deepEqual(new Set(f.surface.getSelection()),new Set([f.id('Root'),f.id('A'),f.id('B')]));
 });
+
+test('manual node height keeps empty space and reset clears sizes for hidden nodes too', t => {
+  const f=fixture(t,'- Root\n\t- Child\n');const id=f.id('Root'), child=f.id('Child');
+  f.update(f.doc.source,{...f.surface.getState(),collapsed:[id],nodeSizes:{[id]:{width:500,height:400},[child]:{width:600,height:700}}});
+  assert.equal(f.element('Root').style.minHeight,'400px');
+  assert.equal(f.element('Root').style.width,'500px');
+  f.surface.resetNodeSizes();f.flush();
+  assert.equal(f.surface.getState().nodeSizes,undefined);
+  assert.equal(f.element('Root').style.minHeight,'');
+  assert.equal(f.surface.getState().collapsed.includes(id),true);
+  assert.equal(f.actions.length,0);
+});

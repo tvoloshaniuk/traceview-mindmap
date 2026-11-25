@@ -1,4 +1,6 @@
 {
+  "Reset all node sizes…": "Przywróć rozmiary wszystkich węzłów…",
+  "Restore default width and height for every node in this map on this device? Note contents and other devices are unchanged.": "Przywrócić domyślną szerokość i wysokość wszystkich węzłów tej mapy na tym urządzeniu? Treść notatek i inne urządzenia pozostaną bez zmian.",
   "Show embedded map previews": "Wyświetlaj podgląd osadzonych map",
   "Always show toolbar": "Zawsze pokazuj pasek",
   "Show toolbar on hover": "Pokazuj pasek po najechaniu",

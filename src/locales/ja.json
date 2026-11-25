@@ -1,4 +1,6 @@
 {
+  "Reset all node sizes…": "すべてのノードのサイズをリセット…",
+  "Restore default width and height for every node in this map on this device? Note contents and other devices are unchanged.": "このデバイスで、このマップのすべてのノードを既定の幅と高さに戻しますか？ノートの内容と他のデバイスは変更されません。",
   "Show embedded map previews": "埋め込みマップのプレビューを表示",
   "Always show toolbar": "ツールバーを常に表示",
   "Show toolbar on hover": "ホバー時にツールバーを表示",
