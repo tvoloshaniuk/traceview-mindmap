@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.0.41
+
+### Fixed
+
+- Highlight every visible search match live while editing a node, including the search results list. Clear highlights when search closes or its query is cleared.
+- Paint native-editor search matches using browser highlight ranges without changing CodeMirror DOM, draft text, selection or undo history. Provide a matching overlay for the text-editor fallback.
+- Exclude live editor DOM from ordinary rendered-map text highlighting.
+
 ## 1.0.40
 
 ### Added

@@ -5569,6 +5569,156 @@ function compileMapPatterns(rules) {
   };
 }
 
+// src/search-highlight.ts
+var editors = /* @__PURE__ */ new WeakMap();
+var highlightName = "traceview-search";
+var escaped = (text) => text.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+function highlightSearchText(element, text, query) {
+  element.replaceChildren();
+  if (!query.trim()) {
+    element.textContent = text;
+    return;
+  }
+  let offset = 0;
+  for (const match of text.matchAll(new RegExp(escaped(query.trim()), "giu"))) {
+    element.append(text.slice(offset, match.index));
+    const mark = element.ownerDocument.createElement("mark");
+    mark.className = "tvm-search-match";
+    mark.textContent = match[0];
+    element.append(mark);
+    offset = match.index + match[0].length;
+  }
+  element.append(text.slice(offset));
+}
+function nativeSearchHighlighter(host) {
+  const doc = host.ownerDocument;
+  const win = doc.defaultView;
+  const registry = win?.CSS?.highlights, Highlight = win?.Highlight;
+  if (!win || !registry || !Highlight) return { setQuery() {
+  }, dispose() {
+  } };
+  let query = "", frame, disposed = false;
+  const active = editors.get(doc) ?? /* @__PURE__ */ new Map();
+  editors.set(doc, active);
+  const publish = () => {
+    const ranges = [...active.values()].flat();
+    if (ranges.length) registry.set(highlightName, new Highlight(...ranges));
+    else registry.delete(highlightName);
+  };
+  const paint = () => {
+    frame = void 0;
+    if (disposed || !query || !host.isConnected) return;
+    const root = host.querySelector(".cm-content") ?? host;
+    const walker = doc.createTreeWalker(root, 4);
+    const segments = [];
+    let text = "", previousLine = null;
+    while (walker.nextNode()) {
+      const node = walker.currentNode;
+      if (!node.data || node.parentElement?.closest('button, input, textarea, script, style, .cm-widgetBuffer, [aria-hidden="true"]')) continue;
+      const line = node.parentElement?.closest(".cm-line") ?? null;
+      if (segments.length && line !== previousLine) text += "\n";
+      previousLine = line;
+      const start = text.length;
+      text += node.data;
+      segments.push({ node, start, end: text.length });
+    }
+    const ranges = [];
+    let index = 0;
+    for (const match of text.matchAll(new RegExp(escaped(query), "giu"))) {
+      const from = match.index, to = from + match[0].length;
+      while (index < segments.length && segments[index].end <= from) index++;
+      let last = index;
+      while (last + 1 < segments.length && segments[last].end < to) last++;
+      if (!segments[index] || !segments[last]) continue;
+      const range2 = doc.createRange();
+      range2.setStart(segments[index].node, from - segments[index].start);
+      range2.setEnd(segments[last].node, to - segments[last].start);
+      ranges.push(range2);
+    }
+    active.set(host, ranges);
+    publish();
+  };
+  const schedule = () => {
+    if (!disposed && query && frame === void 0) frame = win.requestAnimationFrame(paint);
+  };
+  const observer = new win.MutationObserver(schedule);
+  return {
+    setQuery(value) {
+      query = value.trim();
+      observer.disconnect();
+      if (frame !== void 0) {
+        win.cancelAnimationFrame(frame);
+        frame = void 0;
+      }
+      if (!query) {
+        active.delete(host);
+        publish();
+        return;
+      }
+      observer.observe(host, { subtree: true, childList: true, characterData: true });
+      schedule();
+    },
+    dispose() {
+      disposed = true;
+      observer.disconnect();
+      if (frame !== void 0) win.cancelAnimationFrame(frame);
+      active.delete(host);
+      publish();
+    }
+  };
+}
+function textareaSearchHighlighter(input) {
+  const win = input.ownerDocument.defaultView;
+  const overlay = input.ownerDocument.createElement("div");
+  overlay.className = "tvm-inline-search-overlay";
+  overlay.setAttribute("aria-hidden", "true");
+  overlay.hidden = true;
+  input.after(overlay);
+  let query = "", frame;
+  const paint = () => {
+    frame = void 0;
+    if (!query || !input.isConnected || input.hidden) return;
+    const style = win.getComputedStyle(input);
+    for (const key of ["font", "fontFamily", "fontSize", "fontWeight", "fontStyle", "lineHeight", "letterSpacing", "textIndent", "paddingTop", "paddingRight", "paddingBottom", "paddingLeft", "borderTopWidth", "borderRightWidth", "borderBottomWidth", "borderLeftWidth"]) overlay.style[key] = style[key];
+    const scrollbar = Math.max(0, input.offsetWidth - input.clientWidth - parseFloat(style.borderLeftWidth || "0") - parseFloat(style.borderRightWidth || "0"));
+    overlay.style.paddingRight = parseFloat(style.paddingRight || "0") + scrollbar + "px";
+    Object.assign(overlay.style, { left: input.offsetLeft + "px", top: input.offsetTop + "px", width: input.offsetWidth + "px", height: input.offsetHeight + "px" });
+    highlightSearchText(overlay, input.value + "\n", query);
+    overlay.scrollTop = input.scrollTop;
+    overlay.scrollLeft = input.scrollLeft;
+  };
+  const schedule = () => {
+    if (query && frame === void 0) frame = win.requestAnimationFrame(paint);
+  };
+  const observer = win.ResizeObserver ? new win.ResizeObserver(schedule) : void 0;
+  input.addEventListener("input", schedule);
+  input.addEventListener("scroll", schedule);
+  return {
+    setQuery(value) {
+      query = value.trim();
+      overlay.hidden = !query;
+      observer?.disconnect();
+      if (query) {
+        observer?.observe(input);
+        schedule();
+      } else {
+        overlay.replaceChildren();
+        if (frame !== void 0) {
+          win.cancelAnimationFrame(frame);
+          frame = void 0;
+        }
+      }
+    },
+    dispose() {
+      observer?.disconnect();
+      input.removeEventListener("input", schedule);
+      input.removeEventListener("scroll", schedule);
+      if (frame !== void 0) win.cancelAnimationFrame(frame);
+      overlay.remove();
+    }
+  };
+}
+
 // src/map-search.ts
 var nextSearchId = 0;
 var MapSearch = class {
@@ -5657,7 +5807,7 @@ var MapSearch = class {
       button2.type = "button";
       button2.className = "tvm-result";
       button2.id = this.results.id + "-" + index;
-      button2.textContent = node.text;
+      highlightSearchText(button2, node.text, this.input.value);
       button2.setAttribute("role", "option");
       button2.onclick = () => this.go(index);
       this.results.append(button2);
@@ -6028,6 +6178,10 @@ var InlineEditor = class {
     else if (this.driver) this.driver.focus();
     else this.input.focus({ preventScroll: true });
   }
+  highlightSearch(query) {
+    if (this.driver?.setSearchQuery) this.driver.setSearchQuery(query);
+    else if (query.trim() || this.searchOverlay) (this.searchOverlay ?? (this.searchOverlay = textareaSearchHighlighter(this.input))).setQuery(query);
+  }
   fitHeight(node, available) {
     const field = this.driver?.element ?? this.input;
     const surroundingHeight = node.offsetHeight - field.offsetHeight;
@@ -6095,6 +6249,7 @@ var InlineEditor = class {
   }
   dispose() {
     this.disposed = true;
+    this.searchOverlay?.dispose();
     this.unmount?.();
     this.host.remove();
   }
@@ -6342,6 +6497,9 @@ var MapSurface = class {
   }
   focusEditor() {
     this.editing?.editor.focus();
+  }
+  highlightDraft(query) {
+    this.editing?.editor.highlightSearch(query);
   }
   async waitForNodeMarkdown(id) {
     const entry = this.rendered.get(id);
@@ -6682,6 +6840,7 @@ var MapSurface = class {
   }
   paintSearchMatch(content, matched) {
     for (const mark of content.querySelectorAll("mark.tvm-search-match")) {
+      if (mark.closest(".tvm-inline-editor")) continue;
       const parent = mark.parentNode;
       mark.replaceWith(...mark.childNodes);
       parent?.normalize();
@@ -6691,7 +6850,10 @@ var MapSurface = class {
     const doc = content.ownerDocument;
     const walker = doc.createTreeWalker(content, 4);
     const textNodes = [];
-    while (walker.nextNode()) textNodes.push(walker.currentNode);
+    while (walker.nextNode()) {
+      const node = walker.currentNode;
+      if (!node.parentElement?.closest(".tvm-inline-editor")) textNodes.push(node);
+    }
     for (const node of textNodes) {
       const matches = [...node.data.matchAll(matcher)];
       for (const match of matches.reverse()) {
@@ -8319,6 +8481,7 @@ function mountNativeEditor(owner, input, tools, inline, Native, ensureAddress) {
   const host = document.createElement("div");
   host.className = "tvm-native-editor";
   input.before(host);
+  const search = nativeSearchHighlighter(host);
   const previousEditor = owner.editor, previousMode = owner.editMode;
   let active = true, syncing = false, scoped = false, initializing = true;
   const scope = new import_obsidian.Scope(owner.app.scope);
@@ -8427,6 +8590,7 @@ function mountNativeEditor(owner, input, tools, inline, Native, ensureAddress) {
   const dispose = () => {
     if (!active) return;
     active = false;
+    search.dispose();
     cancelResize?.();
     cancelResize = void 0;
     blur();
@@ -8541,6 +8705,7 @@ function mountNativeEditor(owner, input, tools, inline, Native, ensureAddress) {
         if (native) native.cm.contentDOM.contentEditable = String(!value);
       },
       suggestionActive: () => !!native?.editorSuggest.isShowingSuggestion(),
+      setSearchQuery: (query) => search.setQuery(query),
       dispose
     };
   } catch (error) {
@@ -10430,6 +10595,7 @@ var MapView = class extends import_obsidian5.EditableFileView {
     const search = new MapSearch(this.host, {
       search: (text, alpha) => {
         if (!searchDraft) return this.surface?.search(text, alpha, searchSelection) ?? [];
+        this.surface?.highlightDraft(text);
         const draft = this.editor?.getValue() ?? "";
         return text.trim() && draft.toLocaleLowerCase().includes(text.trim().toLocaleLowerCase()) ? [{ id: "draft", text: draft }] : [];
       },

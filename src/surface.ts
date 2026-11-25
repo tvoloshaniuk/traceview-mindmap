@@ -209,6 +209,7 @@ export class MapSurface {
     return !this.editing;
   }
   focusEditor(): void { this.editing?.editor.focus(); }
+  highlightDraft(query: string): void { this.editing?.editor.highlightSearch(query); }
   async waitForNodeMarkdown(id: string): Promise<void> {
     const entry = this.rendered.get(id);
     if (!entry) return;
@@ -528,6 +529,7 @@ export class MapSurface {
 
   private paintSearchMatch(content: Element, matched: boolean): void {
     for (const mark of content.querySelectorAll('mark.tvm-search-match')) {
+      if (mark.closest('.tvm-inline-editor')) continue;
       const parent = mark.parentNode;
       mark.replaceWith(...mark.childNodes);
       parent?.normalize();
@@ -537,7 +539,10 @@ export class MapSurface {
     const doc = content.ownerDocument;
     const walker = doc.createTreeWalker(content, 4);
     const textNodes: Text[] = [];
-    while (walker.nextNode()) textNodes.push(walker.currentNode as Text);
+    while (walker.nextNode()) {
+      const node = walker.currentNode as Text;
+      if (!node.parentElement?.closest('.tvm-inline-editor')) textNodes.push(node);
+    }
     for (const node of textNodes) {
       const matches = [...node.data.matchAll(matcher)];
       for (const match of matches.reverse()) {

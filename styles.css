@@ -129,7 +129,7 @@
   box-shadow: 0 0 0 2px var(--interactive-accent, #705dcf), 0 3px 12px #0000000c;
   z-index: 2;
 }
-.tvm-search-match { background: var(--text-highlight-bg, #fff0a9); color: inherit; }
+.tvm-search-match { background: color-mix(in srgb, var(--interactive-accent, #705dcf) 30%, var(--background-primary, #fff)); color: var(--text-normal, #27272a); }
 .tvm-map-view { position: relative; }
 .tvm-map-view > .tvm-toolbar[data-mode="hover"],
 .tvm-map-view > .tvm-toolbar[data-mode="hidden"] { position: absolute; inset: 0 0 auto; z-index: 10; background: transparent; border-color: transparent; }
@@ -360,3 +360,7 @@
 .tvm-map-view.has-embed-font-size .tvm-node-content .markdown-embed,
 .tvm-map-view.has-embed-font-size .tvm-node-content .markdown-embed .markdown-preview-view,
 .tvm-map-view.has-embed-font-size .tvm-embedded-note-editor { font-size: var(--tvm-embed-font-size); --font-text-size: var(--tvm-embed-font-size); }
+::highlight(traceview-search) { background-color: color-mix(in srgb, var(--interactive-accent, #705dcf) 30%, var(--background-primary, #fff)); color: var(--text-normal, #27272a); }
+.tvm-inline-editor { position: relative; }
+.tvm-inline-search-overlay { position: absolute; pointer-events: none; z-index: 1; box-sizing: border-box; border-style: solid; border-color: transparent; white-space: pre-wrap; overflow-wrap: break-word; overflow: hidden; color: transparent; }
+.tvm-inline-search-overlay .tvm-search-match { color: var(--text-normal); }

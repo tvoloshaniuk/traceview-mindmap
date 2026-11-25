@@ -4,12 +4,14 @@
  * See LICENSE, LICENSING.md and OBSIDIAN-HOST-PERMISSION.md.
  */
 import { t } from './i18n';
+import { textareaSearchHighlighter } from './search-highlight';
 export interface InlineDriver {
   element: HTMLElement;
   focus: () => void;
   resize: () => void;
   setReadOnly: (value: boolean) => void;
   suggestionActive: () => boolean;
+  setSearchQuery?: (query: string) => void;
   dispose: () => void;
 }
 
@@ -39,6 +41,7 @@ export class InlineEditor {
   private disposed = false;
   private unmount?: () => void;
   private driver?: InlineDriver;
+  private searchOverlay?: ReturnType<typeof textareaSearchHighlighter>;
   private initial: string;
   private confirmation?: HTMLDivElement;
   constructor(document: Document, initial: string, private options: InlineOptions) {
@@ -134,6 +137,10 @@ export class InlineEditor {
     else if (this.driver) this.driver.focus();
     else this.input.focus({ preventScroll: true });
   }
+  highlightSearch(query: string): void {
+    if (this.driver?.setSearchQuery) this.driver.setSearchQuery(query);
+    else if (query.trim() || this.searchOverlay) (this.searchOverlay ??= textareaSearchHighlighter(this.input)).setQuery(query);
+  }
   fitHeight(node: HTMLElement, available: number): void {
     const field = this.driver?.element ?? this.input;
     const surroundingHeight = node.offsetHeight - field.offsetHeight;
@@ -176,7 +183,7 @@ export class InlineEditor {
     this.confirmation.remove(); this.confirmation = undefined;
     this.resize(); this.focus();
   }
-  dispose(): void { this.disposed = true; this.unmount?.(); this.host.remove(); }
+  dispose(): void { this.disposed = true; this.searchOverlay?.dispose(); this.unmount?.(); this.host.remove(); }
   async submit(): Promise<void> {
     if (this.saving || this.disposed || this.input.readOnly || this.confirmation) return;
     const input = this.normalize(this.input.value);

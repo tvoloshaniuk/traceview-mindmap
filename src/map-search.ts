@@ -4,6 +4,7 @@
  * See LICENSE, LICENSING.md and OBSIDIAN-HOST-PERMISSION.md.
  */
 import { t } from './i18n';
+import { highlightSearchText } from './search-highlight';
 interface SearchNode { id: string; text: string; }
 let nextSearchId = 0;
 export class MapSearch {
@@ -38,7 +39,7 @@ export class MapSearch {
   private close(): void {this.overlay.hidden=true;this.input.setAttribute('aria-expanded','false');this.options.search('',false);this.options.focusMap();}
   private find(): void {
     this.matches=this.options.search(this.input.value,this.alpha.checked);this.active=Math.min(this.active,Math.max(0,this.matches.length-1));this.results.replaceChildren();
-    this.matches.forEach((node,index)=>{const button=this.results.ownerDocument.createElement('button');button.type='button';button.className='tvm-result';button.id=this.results.id+'-'+index;button.textContent=node.text;button.setAttribute('role','option');button.onclick=()=>this.go(index);this.results.append(button);});
+    this.matches.forEach((node,index)=>{const button=this.results.ownerDocument.createElement('button');button.type='button';button.className='tvm-result';button.id=this.results.id+'-'+index;highlightSearchText(button,node.text,this.input.value);button.setAttribute('role','option');button.onclick=()=>this.go(index);this.results.append(button);});
     if(this.input.value&&!this.matches.length)this.results.textContent=t("No results");this.highlight();
   }
   private highlight(): void {

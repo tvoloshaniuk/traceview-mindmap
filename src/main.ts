@@ -725,6 +725,7 @@ class MapView extends EditableFileView {
     const search = new MapSearch(this.host, {
       search: (text, alpha) => {
         if (!searchDraft) return this.surface?.search(text, alpha, searchSelection) ?? [];
+        this.surface?.highlightDraft(text);
         const draft = this.editor?.getValue() ?? '';
         return text.trim() && draft.toLocaleLowerCase().includes(text.trim().toLocaleLowerCase()) ? [{ id: 'draft', text: draft }] : [];
       },

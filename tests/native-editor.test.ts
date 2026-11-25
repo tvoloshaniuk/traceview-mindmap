@@ -10,6 +10,7 @@ import {runInNewContext} from 'node:vm';
 import ts from 'typescript';
 import {JSDOM} from 'jsdom';
 import {singleLine} from '../src/inline';
+import {nativeSearchHighlighter} from '../src/search-highlight';
 import * as i18n from '../src/i18n';
 
 test('native draft takes command ownership on focus and reacquires it without stacking scopes',()=>{
@@ -28,7 +29,7 @@ test('native draft takes command ownership on focus and reacquires it without st
   }
   const source=ts.transpileModule(readFileSync('src/native-editor.ts','utf8'),{compilerOptions:{module:ts.ModuleKind.CommonJS,target:ts.ScriptTarget.ES2020}}).outputText;
   const exports:any={};
-  runInNewContext(source,{exports,require:(name:string)=>name==='obsidian'?{Scope:class {register(){}},MarkdownView:class {}}:name==='./inline'?{singleLine}:i18n});
+  runInNewContext(source,{exports,require:(name:string)=>name==='obsidian'?{Scope:class {register(){}},MarkdownView:class {}}:name==='./inline'?{singleLine}:name==='./search-highlight'?{nativeSearchHighlighter}:i18n});
   const driver=exports.mountNativeEditor(owner,input,document.querySelector('#tools'),{handleKeydown:()=>false},Native);
   driver.focus();
   assert.equal(app.workspace.activeEditor,owner,'Formatting commands must target the focused native draft');
@@ -56,7 +57,7 @@ test('native draft shares the textarea label instead of a tooltip attribute; unl
   }
   const source=ts.transpileModule(readFileSync('src/native-editor.ts','utf8'),{compilerOptions:{module:ts.ModuleKind.CommonJS,target:ts.ScriptTarget.ES2020}}).outputText;
   const exports:any={};
-  runInNewContext(source,{exports,require:(name:string)=>name==='obsidian'?{Scope:class {register(){}},MarkdownView:class {}}:name==='./inline'?{singleLine}:i18n});
+  runInNewContext(source,{exports,require:(name:string)=>name==='obsidian'?{Scope:class {register(){}},MarkdownView:class {}}:name==='./inline'?{singleLine}:name==='./search-highlight'?{nativeSearchHighlighter}:i18n});
   const mount=(id:string)=>{
    const root=document.getElementById(id)!,owner:any={app,file:{path:'Note.md'},addChild:()=>{},removeChild:()=>{}};
    const driver=exports.mountNativeEditor(owner,root.querySelector('textarea'),root.querySelector('.tools'),{handleKeydown:()=>false},Native);
@@ -101,7 +102,7 @@ test('native resize waits for the editor update, coalesces requests and closes s
     }
     const source=ts.transpileModule(readFileSync('src/native-editor.ts','utf8'),{compilerOptions:{module:ts.ModuleKind.CommonJS,target:ts.ScriptTarget.ES2020}}).outputText;
     const exports:any={};
-    runInNewContext(source,{exports,require:(name:string)=>name==='obsidian'?{Scope:class {register(){}},MarkdownView:class {}}:name==='./inline'?{singleLine}:i18n});
+    runInNewContext(source,{exports,require:(name:string)=>name==='obsidian'?{Scope:class {register(){}},MarkdownView:class {}}:name==='./inline'?{singleLine}:name==='./search-highlight'?{nativeSearchHighlighter}:i18n});
     const driver=exports.mountNativeEditor(owner,input,document.querySelector('#tools'),{handleKeydown:()=>false},Native);
     const native=owner.editMode;
     native.editorSuggest.currentSuggest={context:{editor:native.editor,start:{line:0,ch:0},end:{line:0,ch:4}}};
@@ -132,7 +133,7 @@ test('native multiline transactions preserve paragraphs while ordinary node draf
     }
     const source=ts.transpileModule(readFileSync('src/native-editor.ts','utf8'),{compilerOptions:{module:ts.ModuleKind.CommonJS,target:ts.ScriptTarget.ES2020}}).outputText;
     const exports:any={};
-    runInNewContext(source,{exports,require:(name:string)=>name==='obsidian'?{Scope:class {register(){}},MarkdownView:class {}}:name==='./inline'?{singleLine}:i18n});
+    runInNewContext(source,{exports,require:(name:string)=>name==='obsidian'?{Scope:class {register(){}},MarkdownView:class {}}:name==='./inline'?{singleLine}:name==='./search-highlight'?{nativeSearchHighlighter}:i18n});
     for (const multiline of [false,true]) {
       const input=document.createElement('textarea'),tools=document.createElement('div'); document.body.append(input,tools);
       const owner:any={app,file:{path:'Note.md'},addChild(){},removeChild(){}};

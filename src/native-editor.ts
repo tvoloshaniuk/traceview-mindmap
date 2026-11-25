@@ -6,6 +6,7 @@
 import { t } from './i18n';
 import { Scope, MarkdownView, type App, type Component, type Editor, type MarkdownFileInfo, type TFile, type EditorPosition } from 'obsidian';
 import { singleLine, type InlineDriver, type InlineEditor } from './inline';
+import { nativeSearchHighlighter } from './search-highlight';
 
 // Obsidian does not expose its standalone Markdown editor as a public constructor.
 // Keep the private bridge here; the caller falls back to the textarea on failure.
@@ -61,6 +62,7 @@ export function mountNativeEditor(owner: NativeOwner, input: HTMLTextAreaElement
   const normalize = (text: string) => inline.multiline ? text : singleLine(text);
   const host = document.createElement('div'); host.className = 'tvm-native-editor';
   input.before(host);
+  const search = nativeSearchHighlighter(host);
   const previousEditor = owner.editor, previousMode = owner.editMode;
   let active = true, syncing = false, scoped = false, initializing = true;
   const scope = new Scope(owner.app.scope);
@@ -144,7 +146,7 @@ export function mountNativeEditor(owner: NativeOwner, input: HTMLTextAreaElement
     if (!inline.multiline && (event.inputType === 'insertParagraph' || event.inputType === 'insertLineBreak')) event.preventDefault();
   };
   const dispose = () => {
-    if (!active) return; active = false; cancelResize?.(); cancelResize = undefined; blur(); for (const release of releaseSuggestions) release();
+    if (!active) return; active = false; search.dispose(); cancelResize?.(); cancelResize = undefined; blur(); for (const release of releaseSuggestions) release();
     input.removeEventListener('input', pull); host.removeEventListener('keydown', keydown, true); host.removeEventListener('beforeinput', beforeinput); host.removeEventListener('focusin', focus); host.removeEventListener('focusout', blur);
     if (native) {
       native.editorSuggest.close(); owner.removeChild(native); native.destroy();
@@ -210,6 +212,7 @@ export function mountNativeEditor(owner: NativeOwner, input: HTMLTextAreaElement
       resize,
       setReadOnly: value => { if (native) native.cm.contentDOM.contentEditable = String(!value); },
       suggestionActive: () => !!native?.editorSuggest.isShowingSuggestion(),
+      setSearchQuery: query => search.setQuery(query),
       dispose,
     };
   } catch (error) { dispose(); throw error; }
