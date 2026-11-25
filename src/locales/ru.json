@@ -375,5 +375,14 @@
   "Planning list toolbar": "Панель списков планирования",
   "Advanced options": "Дополнительные параметры",
   "Show node creation handles on desktop": "Показывать ручки создания узлов на ПК",
-  "Drag handles remain enabled on mobile. Off by default on desktop.": "На телефоне ручки остаются включёнными. На ПК по умолчанию выключены."
+  "Drag handles remain enabled on mobile. Off by default on desktop.": "На телефоне ручки остаются включёнными. На ПК по умолчанию выключены.",
+  "Sort maps by count": "Сортировка карт по количеству",
+  "Name order": "По имени",
+  "Count: low to high": "Количество: по возрастанию",
+  "Count: high to low": "Количество: по убыванию",
+  "Planning list counts": "Счётчики списков планирования",
+  "Open only": "Только открытые",
+  "Open / total": "Открытые / все",
+  "Completed / total": "Выполненные / все",
+  "Total only": "Только общее количество"
 }

@@ -375,5 +375,14 @@
   "Planning list toolbar": "Pasek list planowania",
   "Advanced options": "Opcje zaawansowane",
   "Show node creation handles on desktop": "Pokaż uchwyty tworzenia węzłów na komputerze",
-  "Drag handles remain enabled on mobile. Off by default on desktop.": "Na urządzeniach mobilnych uchwyty pozostają włączone. Na komputerze są domyślnie wyłączone."
+  "Drag handles remain enabled on mobile. Off by default on desktop.": "Na urządzeniach mobilnych uchwyty pozostają włączone. Na komputerze są domyślnie wyłączone.",
+  "Sort maps by count": "Sortuj mapy według liczby",
+  "Name order": "Według nazwy",
+  "Count: low to high": "Liczba: rosnąco",
+  "Count: high to low": "Liczba: malejąco",
+  "Planning list counts": "Liczniki list planowania",
+  "Open only": "Tylko otwarte",
+  "Open / total": "Otwarte / wszystkie",
+  "Completed / total": "Ukończone / wszystkie",
+  "Total only": "Tylko suma"
 }

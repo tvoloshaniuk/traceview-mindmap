@@ -734,7 +734,16 @@ var en_default = {
   "Planning list toolbar": "Planning list toolbar",
   "Advanced options": "Advanced options",
   "Show node creation handles on desktop": "Show node creation handles on desktop",
-  "Drag handles remain enabled on mobile. Off by default on desktop.": "Drag handles remain enabled on mobile. Off by default on desktop."
+  "Drag handles remain enabled on mobile. Off by default on desktop.": "Drag handles remain enabled on mobile. Off by default on desktop.",
+  "Sort maps by count": "Sort maps by count",
+  "Name order": "Name order",
+  "Count: low to high": "Count: low to high",
+  "Count: high to low": "Count: high to low",
+  "Planning list counts": "Planning list counts",
+  "Open only": "Open only",
+  "Open / total": "Open / total",
+  "Completed / total": "Completed / total",
+  "Total only": "Total only"
 };
 
 // src/locales/uk.json
@@ -1115,7 +1124,16 @@ var uk_default = {
   "Planning list toolbar": "\u041F\u0430\u043D\u0435\u043B\u044C \u0441\u043F\u0438\u0441\u043A\u0456\u0432 \u043F\u043B\u0430\u043D\u0443\u0432\u0430\u043D\u043D\u044F",
   "Advanced options": "\u0414\u043E\u0434\u0430\u0442\u043A\u043E\u0432\u0456 \u043F\u0430\u0440\u0430\u043C\u0435\u0442\u0440\u0438",
   "Show node creation handles on desktop": "\u041F\u043E\u043A\u0430\u0437\u0443\u0432\u0430\u0442\u0438 \u0440\u0443\u0447\u043A\u0438 \u0441\u0442\u0432\u043E\u0440\u0435\u043D\u043D\u044F \u043D\u043E\u0434 \u043D\u0430 \u041F\u041A",
-  "Drag handles remain enabled on mobile. Off by default on desktop.": "\u041D\u0430 \u0442\u0435\u043B\u0435\u0444\u043E\u043D\u0456 \u0440\u0443\u0447\u043A\u0438 \u0437\u0430\u043B\u0438\u0448\u0430\u044E\u0442\u044C\u0441\u044F \u0432\u0432\u0456\u043C\u043A\u043D\u0435\u043D\u0438\u043C\u0438. \u041D\u0430 \u041F\u041A \u0442\u0438\u043F\u043E\u0432\u043E \u0432\u0438\u043C\u043A\u043D\u0435\u043D\u0456."
+  "Drag handles remain enabled on mobile. Off by default on desktop.": "\u041D\u0430 \u0442\u0435\u043B\u0435\u0444\u043E\u043D\u0456 \u0440\u0443\u0447\u043A\u0438 \u0437\u0430\u043B\u0438\u0448\u0430\u044E\u0442\u044C\u0441\u044F \u0432\u0432\u0456\u043C\u043A\u043D\u0435\u043D\u0438\u043C\u0438. \u041D\u0430 \u041F\u041A \u0442\u0438\u043F\u043E\u0432\u043E \u0432\u0438\u043C\u043A\u043D\u0435\u043D\u0456.",
+  "Sort maps by count": "\u0421\u043E\u0440\u0442\u0443\u0432\u0430\u043D\u043D\u044F \u043A\u0430\u0440\u0442 \u0437\u0430 \u043A\u0456\u043B\u044C\u043A\u0456\u0441\u0442\u044E",
+  "Name order": "\u0417\u0430 \u043D\u0430\u0437\u0432\u043E\u044E",
+  "Count: low to high": "\u041A\u0456\u043B\u044C\u043A\u0456\u0441\u0442\u044C: \u0437\u0430 \u0437\u0440\u043E\u0441\u0442\u0430\u043D\u043D\u044F\u043C",
+  "Count: high to low": "\u041A\u0456\u043B\u044C\u043A\u0456\u0441\u0442\u044C: \u0437\u0430 \u0441\u043F\u0430\u0434\u0430\u043D\u043D\u044F\u043C",
+  "Planning list counts": "\u041B\u0456\u0447\u0438\u043B\u044C\u043D\u0438\u043A\u0438 \u0441\u043F\u0438\u0441\u043A\u0456\u0432 \u043F\u043B\u0430\u043D\u0443\u0432\u0430\u043D\u043D\u044F",
+  "Open only": "\u041B\u0438\u0448\u0435 \u0432\u0456\u0434\u043A\u0440\u0438\u0442\u0456",
+  "Open / total": "\u0412\u0456\u0434\u043A\u0440\u0438\u0442\u0456 / \u0443\u0441\u0456",
+  "Completed / total": "\u0412\u0438\u043A\u043E\u043D\u0430\u043D\u0456 / \u0443\u0441\u0456",
+  "Total only": "\u041B\u0438\u0448\u0435 \u0437\u0430\u0433\u0430\u043B\u044C\u043D\u0430 \u043A\u0456\u043B\u044C\u043A\u0456\u0441\u0442\u044C"
 };
 
 // src/locales/pl.json
@@ -1496,7 +1514,16 @@ var pl_default = {
   "Planning list toolbar": "Pasek list planowania",
   "Advanced options": "Opcje zaawansowane",
   "Show node creation handles on desktop": "Poka\u017C uchwyty tworzenia w\u0119z\u0142\xF3w na komputerze",
-  "Drag handles remain enabled on mobile. Off by default on desktop.": "Na urz\u0105dzeniach mobilnych uchwyty pozostaj\u0105 w\u0142\u0105czone. Na komputerze s\u0105 domy\u015Blnie wy\u0142\u0105czone."
+  "Drag handles remain enabled on mobile. Off by default on desktop.": "Na urz\u0105dzeniach mobilnych uchwyty pozostaj\u0105 w\u0142\u0105czone. Na komputerze s\u0105 domy\u015Blnie wy\u0142\u0105czone.",
+  "Sort maps by count": "Sortuj mapy wed\u0142ug liczby",
+  "Name order": "Wed\u0142ug nazwy",
+  "Count: low to high": "Liczba: rosn\u0105co",
+  "Count: high to low": "Liczba: malej\u0105co",
+  "Planning list counts": "Liczniki list planowania",
+  "Open only": "Tylko otwarte",
+  "Open / total": "Otwarte / wszystkie",
+  "Completed / total": "Uko\u0144czone / wszystkie",
+  "Total only": "Tylko suma"
 };
 
 // src/locales/de.json
@@ -1877,7 +1904,16 @@ var de_default = {
   "Planning list toolbar": "Symbolleiste der Planungslisten",
   "Advanced options": "Erweiterte Optionen",
   "Show node creation handles on desktop": "Griffe zum Erstellen von Knoten am Desktop anzeigen",
-  "Drag handles remain enabled on mobile. Off by default on desktop.": "Auf Mobilger\xE4ten bleiben die Griffe aktiviert. Am Desktop sind sie standardm\xE4\xDFig deaktiviert."
+  "Drag handles remain enabled on mobile. Off by default on desktop.": "Auf Mobilger\xE4ten bleiben die Griffe aktiviert. Am Desktop sind sie standardm\xE4\xDFig deaktiviert.",
+  "Sort maps by count": "Karten nach Anzahl sortieren",
+  "Name order": "Nach Name",
+  "Count: low to high": "Anzahl: aufsteigend",
+  "Count: high to low": "Anzahl: absteigend",
+  "Planning list counts": "Z\xE4hler der Planungslisten",
+  "Open only": "Nur offene",
+  "Open / total": "Offen / gesamt",
+  "Completed / total": "Erledigt / gesamt",
+  "Total only": "Nur Gesamtzahl"
 };
 
 // src/locales/es.json
@@ -2258,7 +2294,16 @@ var es_default = {
   "Planning list toolbar": "Barra de listas de planificaci\xF3n",
   "Advanced options": "Opciones avanzadas",
   "Show node creation handles on desktop": "Mostrar controles de creaci\xF3n de nodos en escritorio",
-  "Drag handles remain enabled on mobile. Off by default on desktop.": "Los controles siguen activos en m\xF3vil. En escritorio est\xE1n desactivados por defecto."
+  "Drag handles remain enabled on mobile. Off by default on desktop.": "Los controles siguen activos en m\xF3vil. En escritorio est\xE1n desactivados por defecto.",
+  "Sort maps by count": "Ordenar mapas por cantidad",
+  "Name order": "Por nombre",
+  "Count: low to high": "Cantidad: ascendente",
+  "Count: high to low": "Cantidad: descendente",
+  "Planning list counts": "Contadores de listas de planificaci\xF3n",
+  "Open only": "Solo abiertos",
+  "Open / total": "Abiertos / total",
+  "Completed / total": "Completados / total",
+  "Total only": "Solo total"
 };
 
 // src/locales/fr.json
@@ -2639,7 +2684,16 @@ var fr_default = {
   "Planning list toolbar": "Barre d\u2019outils des listes de planification",
   "Advanced options": "Options avanc\xE9es",
   "Show node creation handles on desktop": "Afficher les poign\xE9es de cr\xE9ation de n\u0153uds sur ordinateur",
-  "Drag handles remain enabled on mobile. Off by default on desktop.": "Les poign\xE9es restent actives sur mobile. Elles sont d\xE9sactiv\xE9es par d\xE9faut sur ordinateur."
+  "Drag handles remain enabled on mobile. Off by default on desktop.": "Les poign\xE9es restent actives sur mobile. Elles sont d\xE9sactiv\xE9es par d\xE9faut sur ordinateur.",
+  "Sort maps by count": "Trier les cartes par nombre",
+  "Name order": "Par nom",
+  "Count: low to high": "Nombre croissant",
+  "Count: high to low": "Nombre d\xE9croissant",
+  "Planning list counts": "Compteurs des listes de planification",
+  "Open only": "Ouverts uniquement",
+  "Open / total": "Ouverts / total",
+  "Completed / total": "Termin\xE9s / total",
+  "Total only": "Total uniquement"
 };
 
 // src/locales/pt-BR.json
@@ -3020,7 +3074,16 @@ var pt_BR_default = {
   "Planning list toolbar": "Barra das listas de planejamento",
   "Advanced options": "Op\xE7\xF5es avan\xE7adas",
   "Show node creation handles on desktop": "Mostrar al\xE7as de cria\xE7\xE3o de n\xF3s no computador",
-  "Drag handles remain enabled on mobile. Off by default on desktop.": "As al\xE7as permanecem ativas no celular. No computador, ficam desativadas por padr\xE3o."
+  "Drag handles remain enabled on mobile. Off by default on desktop.": "As al\xE7as permanecem ativas no celular. No computador, ficam desativadas por padr\xE3o.",
+  "Sort maps by count": "Ordenar mapas por quantidade",
+  "Name order": "Por nome",
+  "Count: low to high": "Quantidade: crescente",
+  "Count: high to low": "Quantidade: decrescente",
+  "Planning list counts": "Contadores das listas de planejamento",
+  "Open only": "Somente abertos",
+  "Open / total": "Abertos / total",
+  "Completed / total": "Conclu\xEDdos / total",
+  "Total only": "Somente total"
 };
 
 // src/locales/zh-CN.json
@@ -3401,7 +3464,16 @@ var zh_CN_default = {
   "Planning list toolbar": "\u8BA1\u5212\u5217\u8868\u5DE5\u5177\u680F",
   "Advanced options": "\u9AD8\u7EA7\u9009\u9879",
   "Show node creation handles on desktop": "\u5728\u684C\u9762\u7AEF\u663E\u793A\u8282\u70B9\u521B\u5EFA\u624B\u67C4",
-  "Drag handles remain enabled on mobile. Off by default on desktop.": "\u79FB\u52A8\u7AEF\u4FDD\u7559\u624B\u67C4\u3002\u684C\u9762\u7AEF\u9ED8\u8BA4\u5173\u95ED\u3002"
+  "Drag handles remain enabled on mobile. Off by default on desktop.": "\u79FB\u52A8\u7AEF\u4FDD\u7559\u624B\u67C4\u3002\u684C\u9762\u7AEF\u9ED8\u8BA4\u5173\u95ED\u3002",
+  "Sort maps by count": "\u6309\u6570\u91CF\u6392\u5E8F\u5730\u56FE",
+  "Name order": "\u6309\u540D\u79F0",
+  "Count: low to high": "\u6570\u91CF\u4ECE\u5C11\u5230\u591A",
+  "Count: high to low": "\u6570\u91CF\u4ECE\u591A\u5230\u5C11",
+  "Planning list counts": "\u89C4\u5212\u5217\u8868\u8BA1\u6570",
+  "Open only": "\u4EC5\u672A\u5B8C\u6210",
+  "Open / total": "\u672A\u5B8C\u6210 / \u603B\u6570",
+  "Completed / total": "\u5DF2\u5B8C\u6210 / \u603B\u6570",
+  "Total only": "\u4EC5\u603B\u6570"
 };
 
 // src/locales/ja.json
@@ -3782,7 +3854,16 @@ var ja_default = {
   "Planning list toolbar": "\u8A08\u753B\u30EA\u30B9\u30C8\u306E\u30C4\u30FC\u30EB\u30D0\u30FC",
   "Advanced options": "\u8A73\u7D30\u30AA\u30D7\u30B7\u30E7\u30F3",
   "Show node creation handles on desktop": "\u30C7\u30B9\u30AF\u30C8\u30C3\u30D7\u3067\u30CE\u30FC\u30C9\u4F5C\u6210\u30CF\u30F3\u30C9\u30EB\u3092\u8868\u793A",
-  "Drag handles remain enabled on mobile. Off by default on desktop.": "\u30E2\u30D0\u30A4\u30EB\u3067\u306F\u30CF\u30F3\u30C9\u30EB\u304C\u6709\u52B9\u306E\u307E\u307E\u3067\u3059\u3002\u30C7\u30B9\u30AF\u30C8\u30C3\u30D7\u3067\u306F\u65E2\u5B9A\u3067\u7121\u52B9\u3067\u3059\u3002"
+  "Drag handles remain enabled on mobile. Off by default on desktop.": "\u30E2\u30D0\u30A4\u30EB\u3067\u306F\u30CF\u30F3\u30C9\u30EB\u304C\u6709\u52B9\u306E\u307E\u307E\u3067\u3059\u3002\u30C7\u30B9\u30AF\u30C8\u30C3\u30D7\u3067\u306F\u65E2\u5B9A\u3067\u7121\u52B9\u3067\u3059\u3002",
+  "Sort maps by count": "\u4EF6\u6570\u3067\u30DE\u30C3\u30D7\u3092\u4E26\u3079\u66FF\u3048",
+  "Name order": "\u540D\u524D\u9806",
+  "Count: low to high": "\u4EF6\u6570\u306E\u5C11\u306A\u3044\u9806",
+  "Count: high to low": "\u4EF6\u6570\u306E\u591A\u3044\u9806",
+  "Planning list counts": "\u8A08\u753B\u30EA\u30B9\u30C8\u306E\u4EF6\u6570",
+  "Open only": "\u672A\u5B8C\u4E86\u306E\u307F",
+  "Open / total": "\u672A\u5B8C\u4E86 / \u5408\u8A08",
+  "Completed / total": "\u5B8C\u4E86 / \u5408\u8A08",
+  "Total only": "\u5408\u8A08\u306E\u307F"
 };
 
 // src/locales/ko.json
@@ -4163,7 +4244,16 @@ var ko_default = {
   "Planning list toolbar": "\uACC4\uD68D \uBAA9\uB85D \uB3C4\uAD6C \uBAA8\uC74C",
   "Advanced options": "\uACE0\uAE09 \uC635\uC158",
   "Show node creation handles on desktop": "\uB370\uC2A4\uD06C\uD1B1\uC5D0\uC11C \uB178\uB4DC \uC0DD\uC131 \uD578\uB4E4 \uD45C\uC2DC",
-  "Drag handles remain enabled on mobile. Off by default on desktop.": "\uBAA8\uBC14\uC77C\uC5D0\uC11C\uB294 \uD578\uB4E4\uC774 \uACC4\uC18D \uD65C\uC131\uD654\uB429\uB2C8\uB2E4. \uB370\uC2A4\uD06C\uD1B1\uC5D0\uC11C\uB294 \uAE30\uBCF8\uC801\uC73C\uB85C \uAEBC\uC838 \uC788\uC2B5\uB2C8\uB2E4."
+  "Drag handles remain enabled on mobile. Off by default on desktop.": "\uBAA8\uBC14\uC77C\uC5D0\uC11C\uB294 \uD578\uB4E4\uC774 \uACC4\uC18D \uD65C\uC131\uD654\uB429\uB2C8\uB2E4. \uB370\uC2A4\uD06C\uD1B1\uC5D0\uC11C\uB294 \uAE30\uBCF8\uC801\uC73C\uB85C \uAEBC\uC838 \uC788\uC2B5\uB2C8\uB2E4.",
+  "Sort maps by count": "\uAC1C\uC218\uB85C \uC9C0\uB3C4 \uC815\uB82C",
+  "Name order": "\uC774\uB984\uC21C",
+  "Count: low to high": "\uAC1C\uC218 \uC624\uB984\uCC28\uC21C",
+  "Count: high to low": "\uAC1C\uC218 \uB0B4\uB9BC\uCC28\uC21C",
+  "Planning list counts": "\uACC4\uD68D \uBAA9\uB85D \uAC1C\uC218",
+  "Open only": "\uBBF8\uC644\uB8CC\uB9CC",
+  "Open / total": "\uBBF8\uC644\uB8CC / \uC804\uCCB4",
+  "Completed / total": "\uC644\uB8CC / \uC804\uCCB4",
+  "Total only": "\uC804\uCCB4 \uAC1C\uC218\uB9CC"
 };
 
 // src/locales/ru.json
@@ -4544,7 +4634,16 @@ var ru_default = {
   "Planning list toolbar": "\u041F\u0430\u043D\u0435\u043B\u044C \u0441\u043F\u0438\u0441\u043A\u043E\u0432 \u043F\u043B\u0430\u043D\u0438\u0440\u043E\u0432\u0430\u043D\u0438\u044F",
   "Advanced options": "\u0414\u043E\u043F\u043E\u043B\u043D\u0438\u0442\u0435\u043B\u044C\u043D\u044B\u0435 \u043F\u0430\u0440\u0430\u043C\u0435\u0442\u0440\u044B",
   "Show node creation handles on desktop": "\u041F\u043E\u043A\u0430\u0437\u044B\u0432\u0430\u0442\u044C \u0440\u0443\u0447\u043A\u0438 \u0441\u043E\u0437\u0434\u0430\u043D\u0438\u044F \u0443\u0437\u043B\u043E\u0432 \u043D\u0430 \u041F\u041A",
-  "Drag handles remain enabled on mobile. Off by default on desktop.": "\u041D\u0430 \u0442\u0435\u043B\u0435\u0444\u043E\u043D\u0435 \u0440\u0443\u0447\u043A\u0438 \u043E\u0441\u0442\u0430\u044E\u0442\u0441\u044F \u0432\u043A\u043B\u044E\u0447\u0451\u043D\u043D\u044B\u043C\u0438. \u041D\u0430 \u041F\u041A \u043F\u043E \u0443\u043C\u043E\u043B\u0447\u0430\u043D\u0438\u044E \u0432\u044B\u043A\u043B\u044E\u0447\u0435\u043D\u044B."
+  "Drag handles remain enabled on mobile. Off by default on desktop.": "\u041D\u0430 \u0442\u0435\u043B\u0435\u0444\u043E\u043D\u0435 \u0440\u0443\u0447\u043A\u0438 \u043E\u0441\u0442\u0430\u044E\u0442\u0441\u044F \u0432\u043A\u043B\u044E\u0447\u0451\u043D\u043D\u044B\u043C\u0438. \u041D\u0430 \u041F\u041A \u043F\u043E \u0443\u043C\u043E\u043B\u0447\u0430\u043D\u0438\u044E \u0432\u044B\u043A\u043B\u044E\u0447\u0435\u043D\u044B.",
+  "Sort maps by count": "\u0421\u043E\u0440\u0442\u0438\u0440\u043E\u0432\u043A\u0430 \u043A\u0430\u0440\u0442 \u043F\u043E \u043A\u043E\u043B\u0438\u0447\u0435\u0441\u0442\u0432\u0443",
+  "Name order": "\u041F\u043E \u0438\u043C\u0435\u043D\u0438",
+  "Count: low to high": "\u041A\u043E\u043B\u0438\u0447\u0435\u0441\u0442\u0432\u043E: \u043F\u043E \u0432\u043E\u0437\u0440\u0430\u0441\u0442\u0430\u043D\u0438\u044E",
+  "Count: high to low": "\u041A\u043E\u043B\u0438\u0447\u0435\u0441\u0442\u0432\u043E: \u043F\u043E \u0443\u0431\u044B\u0432\u0430\u043D\u0438\u044E",
+  "Planning list counts": "\u0421\u0447\u0451\u0442\u0447\u0438\u043A\u0438 \u0441\u043F\u0438\u0441\u043A\u043E\u0432 \u043F\u043B\u0430\u043D\u0438\u0440\u043E\u0432\u0430\u043D\u0438\u044F",
+  "Open only": "\u0422\u043E\u043B\u044C\u043A\u043E \u043E\u0442\u043A\u0440\u044B\u0442\u044B\u0435",
+  "Open / total": "\u041E\u0442\u043A\u0440\u044B\u0442\u044B\u0435 / \u0432\u0441\u0435",
+  "Completed / total": "\u0412\u044B\u043F\u043E\u043B\u043D\u0435\u043D\u043D\u044B\u0435 / \u0432\u0441\u0435",
+  "Total only": "\u0422\u043E\u043B\u044C\u043A\u043E \u043E\u0431\u0449\u0435\u0435 \u043A\u043E\u043B\u0438\u0447\u0435\u0441\u0442\u0432\u043E"
 };
 
 // src/i18n.ts
@@ -8470,8 +8569,33 @@ function queueMapMatcher(filter) {
   if (folder) return (path) => path.toLocaleLowerCase().startsWith(folder);
   return (path) => path.toLocaleLowerCase().includes(query.toLocaleLowerCase());
 }
+function queueCounts(doc, terms) {
+  const excluded = excludedQueueNodes(doc, terms), steps = getSteps(doc).filter((step) => !excluded.has(step.nodeId));
+  const dates = steps.filter((step) => step.date || step.unknownDate);
+  return {
+    open: steps.filter((step) => !step.completed).length,
+    total: steps.length,
+    datesOpen: dates.filter((step) => !step.completed).length,
+    datesTotal: dates.length,
+    questions: doc.nodes.filter((node) => !excluded.has(node.id) && /\[\[QA ❓(?:\||\]\])|\/\/todo\s+Q\s*:/i.test(node.text) && !node.text.includes("\u2705")).length
+  };
+}
+function queueMetric(counts, metric, mode = "steps") {
+  if (mode === "qa") return { text: String(counts.questions), value: counts.questions };
+  const open = mode === "dates" ? counts.datesOpen : counts.open, total = mode === "dates" ? counts.datesTotal : counts.total;
+  const value = metric === "total" ? total : metric === "closed-total" ? total - open : open;
+  return { text: metric.endsWith("-total") ? value + "/" + total : String(value), value };
+}
+function compareQueueMaps(a, b, sort) {
+  if (sort !== "none" && a.score !== b.score) {
+    if (a.score === void 0) return 1;
+    if (b.score === void 0) return -1;
+    return (a.score - b.score) * (sort === "asc" ? 1 : -1);
+  }
+  return a.path.localeCompare(b.path);
+}
 var nextFilterId = 0;
-function attachMapFilter(parent, getMaps, onSelect, getFolderPaths) {
+function attachMapFilter(parent, getMaps, onSelect, getFolderPaths, options) {
   const host = parent.createDiv("tvm-map-filter");
   const input = host.createEl("input", { type: "text", attr: { role: "combobox", "aria-label": t("Map filter"), "aria-autocomplete": "list", "aria-expanded": "false", autocomplete: "off", placeholder: t("All maps") } });
   const list = host.createDiv("tvm-map-options");
@@ -8511,7 +8635,7 @@ function attachMapFilter(parent, getMaps, onSelect, getFolderPaths) {
       const parts = path.split("/");
       for (let level = 1; level < parts.length; level++) folders.add(parts.slice(0, level).join("/") + "/");
     }
-    choices = [{ path: "", basename: t("All maps") }, ...[...folders].sort().map((path) => ({ path, basename: path, folder: true })), ...[...maps].sort((a, b) => a.path.localeCompare(b.path))].filter((choice) => !choice.path || `${choice.basename} ${choice.path}`.toLocaleLowerCase().includes(query)).slice(0, 100);
+    choices = [{ path: "", basename: t("All maps") }, ...[...folders].sort().map((path) => ({ path, basename: path, folder: true })), ...[...maps].sort((a, b) => compareQueueMaps(a, b, options?.sort?.() ?? "none"))].filter((choice) => !choice.path || `${choice.basename} ${choice.path}`.toLocaleLowerCase().includes(query)).slice(0, 100);
     list.empty();
     active = -1;
     for (const [index, choice] of choices.entries()) {
@@ -8519,7 +8643,7 @@ function attachMapFilter(parent, getMaps, onSelect, getFolderPaths) {
       option.id = `${list.id}-${index}`;
       option.setAttribute("role", "option");
       option.setAttribute("aria-selected", "false");
-      option.createDiv({ text: (choice.folder ? "\u{1F4C1} " : "") + choice.basename });
+      option.createDiv({ text: (choice.folder ? "\u{1F4C1} " : "") + choice.basename + (choice.metric === void 0 ? "" : " \xB7 " + choice.metric) });
       if (choice.path && !choice.folder) option.createDiv({ cls: "tvm-map-option-path", text: choice.path });
       option.onmousedown = (event) => event.preventDefault();
       option.onclick = () => choose(choice);
@@ -8533,11 +8657,13 @@ function attachMapFilter(parent, getMaps, onSelect, getFolderPaths) {
     edited = false;
     input.value = "";
     draw();
+    options?.onOpen?.();
   };
   input.onclick = () => {
     if (list.hidden) {
       input.value = "";
       draw();
+      options?.onOpen?.();
     }
   };
   input.oninput = () => {
@@ -8572,7 +8698,14 @@ function attachMapFilter(parent, getMaps, onSelect, getFolderPaths) {
       choose({ path: value, basename: value });
     } else close();
   };
-  return { set(value) {
+  return { refresh() {
+    if (!list.hidden) {
+      const path = choices[active]?.path;
+      draw();
+      active = path === void 0 ? -1 : choices.findIndex((choice) => choice.path === path);
+      highlight();
+    }
+  }, set(value) {
     selected = getMaps().find((map) => map.path === value) ?? { path: value, basename: value };
     edited = false;
     close();
@@ -9918,7 +10051,7 @@ function hasLargeVisibleTree(doc, state) {
   }
   return false;
 }
-var DEFAULT_SETTINGS = { patternMode: "glob", mapPatterns: "*.mindmap.md\n\u{1F3AF}*.md", language: "auto", nodeEditor: "native", autoOpen: false, rememberLastMode: false, autoRestoreLargeMaps: true, queueExcludedMaps: "\u0430\u0440\u0445\u0456\u0432 \u0442\u0438\u0436\u043D\u0456\u0432\nold", queueExcludedBranches: "\u{1F9CA}\n\u274C", queueTaskMarker: true, queueStepTag: true, collapseOnLeft: false, arrowAcrossBranches: false, toolbarMode: "visible", queueToolbarMode: "visible", showMapPreviews: true, collapsePastedBranches: true, hotkeys: {}, widthMode: "fixed", embeddedNoteFontSize: 0, nodeMaxHeight: 0, showDesktopCreationHandles: false };
+var DEFAULT_SETTINGS = { patternMode: "glob", mapPatterns: "*.mindmap.md\n\u{1F3AF}*.md", language: "auto", nodeEditor: "native", autoOpen: false, rememberLastMode: false, autoRestoreLargeMaps: true, queueExcludedMaps: "\u0430\u0440\u0445\u0456\u0432 \u0442\u0438\u0436\u043D\u0456\u0432\nold", queueExcludedBranches: "\u{1F9CA}\n\u274C", queueMetric: "open-total", queueTaskMarker: true, queueStepTag: true, collapseOnLeft: false, arrowAcrossBranches: false, toolbarMode: "visible", queueToolbarMode: "visible", showMapPreviews: true, collapsePastedBranches: true, hotkeys: {}, widthMode: "fixed", embeddedNoteFontSize: 0, nodeMaxHeight: 0, showDesktopCreationHandles: false };
 var widthModes = () => [["fixed", t("Fixed width")], ["content", t("Fit node content")], ["column", t("Fit visible column")]];
 var toolbarModes = () => [
   ["visible", t("Always show toolbar")],
@@ -9989,6 +10122,7 @@ var TraceViewMindmap = class extends import_obsidian5.Plugin {
     }
     this.settings.rememberLastMode = saved?.rememberLastMode === true;
     this.settings.showDesktopCreationHandles = saved?.showDesktopCreationHandles === true;
+    if (!["open", "open-total", "closed-total", "total"].includes(this.settings.queueMetric)) this.settings.queueMetric = "open-total";
     if (!["visible", "hover", "hidden"].includes(this.settings.queueToolbarMode)) this.settings.queueToolbarMode = "visible";
     try {
       const paths = this.app.loadLocalStorage("traceview-mindmap:map-preferences");
@@ -11693,6 +11827,8 @@ var QueueView = class extends import_obsidian5.ItemView {
     this.writing = false;
     this.cache = /* @__PURE__ */ new Map();
     this.mode = "steps";
+    this.metricSort = "none";
+    this.metrics = /* @__PURE__ */ new Map();
     this.completedMode = "footer";
     this.completedExpanded = /* @__PURE__ */ new Set();
     this.collapsed = /* @__PURE__ */ new Set();
@@ -11736,6 +11872,15 @@ var QueueView = class extends import_obsidian5.ItemView {
       this.draw();
       this.app.workspace.requestSaveLayout();
     };
+    this.sortControl = actions.createEl("select", { attr: { "aria-label": t("Sort maps by count") } });
+    for (const [value, label2] of [["none", t("Name order")], ["asc", t("Count: low to high")], ["desc", t("Count: high to low")]]) this.sortControl.createEl("option", { value, text: label2 });
+    this.sortControl.value = this.metricSort;
+    this.sortControl.onchange = () => {
+      this.metricSort = this.sortControl.value;
+      this.draw();
+      this.mapFilter?.refresh();
+      this.app.workspace.requestSaveLayout();
+    };
     this.undoButton = iconButton(actions, "undo-2", t("Undo"), () => {
       void this.history("undo");
     });
@@ -11746,7 +11891,7 @@ var QueueView = class extends import_obsidian5.ItemView {
       this.cache.clear();
       void this.reload();
     });
-    this.mapFilter = attachMapFilter(actions, () => this.queueFiles(), (path) => {
+    this.mapFilter = attachMapFilter(actions, () => this.queueFiles().map((file) => this.mapChoice(file)), (path) => {
       try {
         queueMapMatcher(path);
       } catch (error) {
@@ -11756,7 +11901,9 @@ var QueueView = class extends import_obsidian5.ItemView {
       }
       this.filter = path;
       void this.reload();
-    }, () => this.app.vault.getMarkdownFiles().map((file) => file.path));
+    }, () => this.app.vault.getMarkdownFiles().map((file) => file.path), { sort: () => this.metricSort, onOpen: () => {
+      void this.loadMetrics();
+    } });
     this.foldControls = actions.createDiv("tvm-queue-fold-controls");
     button(this.foldControls, t("Collapse all"), () => {
       for (const path of this.cache.keys()) if (queueMapMatcher(this.filter)(path)) this.collapsed.add(path);
@@ -11784,9 +11931,11 @@ var QueueView = class extends import_obsidian5.ItemView {
     this.host = this.contentEl.createDiv("tvm-panel");
   }
   getState() {
-    return { filter: this.filter, completedMode: this.completedMode };
+    return { filter: this.filter, completedMode: this.completedMode, metricSort: this.metricSort };
   }
   async setState(state, result) {
+    this.metricSort = state.metricSort === "asc" || state.metricSort === "desc" ? state.metricSort : "none";
+    if (this.sortControl) this.sortControl.value = this.metricSort;
     const filter = typeof state.filter === "string" ? state.filter : "";
     try {
       queueMapMatcher(filter);
@@ -11805,6 +11954,51 @@ var QueueView = class extends import_obsidian5.ItemView {
     this.timer = window.setTimeout(() => {
       void this.reload();
     }, 250);
+  }
+  recordCounts(map) {
+    const terms = this.plugin.settings.queueExcludedBranches;
+    const cached = this.metrics.get(map.file.path);
+    if (cached?.mtime === map.mtime && cached.terms === terms) return cached.counts;
+    const counts = queueCounts(map.doc, queueExclusions(terms));
+    this.metrics.set(map.file.path, { mtime: map.mtime, terms, counts });
+    return counts;
+  }
+  mapChoice(file) {
+    const cached = this.metrics.get(file.path);
+    const counts = cached?.mtime === file.stat.mtime && cached.terms === this.plugin.settings.queueExcludedBranches ? cached.counts : void 0;
+    const metric = counts ? queueMetric(counts, this.plugin.settings.queueMetric, this.mode) : void 0;
+    return { path: file.path, basename: file.basename, metric: metric?.text, score: metric?.value };
+  }
+  loadMetrics() {
+    if (this.metricsPending) return this.metricsPending;
+    const load = async () => {
+      const files = this.queueFiles(), paths = new Set(files.map((file) => file.path));
+      for (const path of this.metrics.keys()) if (!paths.has(path)) this.metrics.delete(path);
+      for (let offset = 0; offset < files.length && !this.closed; offset += 8) {
+        await Promise.all(files.slice(offset, offset + 8).map(async (file) => {
+          const cached = this.metrics.get(file.path), terms = this.plugin.settings.queueExcludedBranches;
+          if (cached?.mtime === file.stat.mtime && cached.terms === terms) return;
+          const loaded = this.cache.get(file.path);
+          if (loaded?.mtime === file.stat.mtime) {
+            this.recordCounts(loaded);
+            return;
+          }
+          try {
+            const mtime = file.stat.mtime, source = await this.app.vault.cachedRead(file);
+            if (!this.closed && mtime === file.stat.mtime && terms === this.plugin.settings.queueExcludedBranches) this.recordCounts({ file, mtime, doc: parseMap(source) });
+          } catch {
+            this.metrics.delete(file.path);
+          }
+        }));
+        if (!this.closed) this.mapFilter?.refresh();
+        await new Promise((resolve) => window.setTimeout(resolve, 0));
+      }
+    };
+    const pending = load().finally(() => {
+      if (this.metricsPending === pending) this.metricsPending = void 0;
+    });
+    this.metricsPending = pending;
+    return pending;
   }
   queueFiles() {
     const terms = queueExclusions(this.plugin.settings.queueExcludedMaps);
@@ -11847,7 +12041,10 @@ var QueueView = class extends import_obsidian5.ItemView {
     if (this.completedControl) this.completedControl.hidden = this.mode === "qa";
     let count = 0;
     const matches = queueMapMatcher(this.filter);
-    const maps = [...this.cache.values()].filter((map) => matches(map.file.path)).sort((a, b) => a.file.path.localeCompare(b.file.path));
+    const maps = [...this.cache.values()].filter((map) => matches(map.file.path));
+    for (const map of maps) this.recordCounts(map);
+    maps.sort((a, b) => compareQueueMaps(this.mapChoice(a.file), this.mapChoice(b.file), this.metricSort));
+    this.mapFilter?.refresh();
     const terms = queueExclusions(this.plugin.settings.queueExcludedBranches);
     const excluded = new Map(maps.map((map) => [map, excludedQueueNodes(map.doc, terms)]));
     if (this.mode === "dates") {
@@ -11894,7 +12091,7 @@ var QueueView = class extends import_obsidian5.ItemView {
       button(header, map.file.basename, () => {
         void this.plugin.openMap(map.file);
       }).addClass("tvm-queue-title");
-      header.createSpan({ cls: "tvm-badge", text: String(this.mode === "qa" ? questions.length : stepCount) });
+      header.createSpan({ cls: "tvm-badge", text: this.mapChoice(map.file).metric ?? String(this.mode === "qa" ? questions.length : stepCount) });
       if (collapsed) {
         count += this.mode === "qa" ? questions.length : stepCount;
         continue;
@@ -12074,6 +12271,7 @@ var QueueView = class extends import_obsidian5.ItemView {
     this.generation++;
     window.clearTimeout(this.timer);
     this.cache.clear();
+    this.metrics.clear();
     this.contentEl.empty();
   }
 };
@@ -12196,6 +12394,14 @@ var SettingsTab = class extends import_obsidian5.PluginSettingTab {
     if (!import_obsidian5.Platform.isMobile) new import_obsidian5.Setting(this.containerEl).setName(t("Planning list toolbar")).addDropdown((dropdown) => {
       for (const [mode, label2] of toolbarModes()) dropdown.addOption(mode, label2);
       dropdown.setValue(this.plugin.settings.queueToolbarMode).onChange((value) => this.plugin.setQueueToolbarMode(value));
+    });
+    new import_obsidian5.Setting(this.containerEl).setName(t("Planning list counts")).addDropdown((dropdown) => {
+      for (const [value, label2] of [["open", t("Open only")], ["open-total", t("Open / total")], ["closed-total", t("Completed / total")], ["total", t("Total only")]]) dropdown.addOption(value, label2);
+      dropdown.setValue(this.plugin.settings.queueMetric).onChange(async (value) => {
+        this.plugin.settings.queueMetric = value;
+        await this.plugin.saveData(this.plugin.settings);
+        this.plugin.refreshQueues();
+      });
     });
     for (const [key, label2] of [
       ["queueExcludedMaps", t("Exclude maps from planning")],

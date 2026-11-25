@@ -375,5 +375,14 @@
   "Planning list toolbar": "Barre d’outils des listes de planification",
   "Advanced options": "Options avancées",
   "Show node creation handles on desktop": "Afficher les poignées de création de nœuds sur ordinateur",
-  "Drag handles remain enabled on mobile. Off by default on desktop.": "Les poignées restent actives sur mobile. Elles sont désactivées par défaut sur ordinateur."
+  "Drag handles remain enabled on mobile. Off by default on desktop.": "Les poignées restent actives sur mobile. Elles sont désactivées par défaut sur ordinateur.",
+  "Sort maps by count": "Trier les cartes par nombre",
+  "Name order": "Par nom",
+  "Count: low to high": "Nombre croissant",
+  "Count: high to low": "Nombre décroissant",
+  "Planning list counts": "Compteurs des listes de planification",
+  "Open only": "Ouverts uniquement",
+  "Open / total": "Ouverts / total",
+  "Completed / total": "Terminés / total",
+  "Total only": "Total uniquement"
 }

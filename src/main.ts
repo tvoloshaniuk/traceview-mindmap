@@ -12,7 +12,7 @@ import { compileMapPatterns, PatternError, type MapRules, type PatternMode } fro
 import { MapSearch } from './map-search';
 import { highlightRenderedSearch } from './search-highlight';
 import { MapSurface } from './surface';
-import { attachMapFilter, excludedQueueNodes, queueExclusions, queueLabel, queueMapMatcher, queueFolderPrefix } from './queue-controls';
+import { attachMapFilter, excludedQueueNodes, queueExclusions, queueLabel, queueMapMatcher, queueFolderPrefix, queueCounts, queueMetric, compareQueueMaps, type QueueMetric, type QueueCounts } from './queue-controls';
 import { mountNativeEditor, prepareNativeEditor, type NativeConstructor } from './native-editor';
 import type { InlineEditor, InlineDriver } from './inline';
 import type { Editor } from 'obsidian';
@@ -42,8 +42,8 @@ function hasLargeVisibleTree(doc: MapDocument, state?: MapViewState): boolean {
   }
   return false;
 }
-interface Settings extends MapRules { previousPluginId?: string; language: LanguageSetting; nodeEditor: 'native' | 'text'; autoOpen: boolean; rememberLastMode: boolean; autoRestoreLargeMaps: boolean; queueExcludedMaps: string; queueExcludedBranches: string; queueTaskMarker: boolean; queueStepTag: boolean; collapseOnLeft: boolean; arrowAcrossBranches: boolean; toolbarMode: ToolbarMode; queueToolbarMode: ToolbarMode; showMapPreviews: boolean; collapsePastedBranches: boolean; hotkeys: Record<string, string>; widthMode: WidthMode; embeddedNoteFontSize: number; nodeMaxHeight: number; showDesktopCreationHandles: boolean; }
-const DEFAULT_SETTINGS: Settings = { patternMode: 'glob', mapPatterns: '*.mindmap.md\n🎯*.md', language: 'auto', nodeEditor: 'native', autoOpen: false, rememberLastMode: false, autoRestoreLargeMaps: true, queueExcludedMaps: 'архів тижнів\nold', queueExcludedBranches: '🧊\n❌', queueTaskMarker: true, queueStepTag: true, collapseOnLeft: false, arrowAcrossBranches: false, toolbarMode: 'visible', queueToolbarMode: 'visible', showMapPreviews: true, collapsePastedBranches: true, hotkeys: {}, widthMode: 'fixed', embeddedNoteFontSize: 0, nodeMaxHeight: 0, showDesktopCreationHandles: false };
+interface Settings extends MapRules { previousPluginId?: string; language: LanguageSetting; nodeEditor: 'native' | 'text'; autoOpen: boolean; rememberLastMode: boolean; autoRestoreLargeMaps: boolean; queueExcludedMaps: string; queueExcludedBranches: string; queueMetric: QueueMetric; queueTaskMarker: boolean; queueStepTag: boolean; collapseOnLeft: boolean; arrowAcrossBranches: boolean; toolbarMode: ToolbarMode; queueToolbarMode: ToolbarMode; showMapPreviews: boolean; collapsePastedBranches: boolean; hotkeys: Record<string, string>; widthMode: WidthMode; embeddedNoteFontSize: number; nodeMaxHeight: number; showDesktopCreationHandles: boolean; }
+const DEFAULT_SETTINGS: Settings = { patternMode: 'glob', mapPatterns: '*.mindmap.md\n🎯*.md', language: 'auto', nodeEditor: 'native', autoOpen: false, rememberLastMode: false, autoRestoreLargeMaps: true, queueExcludedMaps: 'архів тижнів\nold', queueExcludedBranches: '🧊\n❌', queueMetric: 'open-total', queueTaskMarker: true, queueStepTag: true, collapseOnLeft: false, arrowAcrossBranches: false, toolbarMode: 'visible', queueToolbarMode: 'visible', showMapPreviews: true, collapsePastedBranches: true, hotkeys: {}, widthMode: 'fixed', embeddedNoteFontSize: 0, nodeMaxHeight: 0, showDesktopCreationHandles: false };
 const widthModes = (): [WidthMode, string][] => [['fixed', t("Fixed width")], ['content', t("Fit node content")], ['column', t("Fit visible column")]];
 type ToolbarMode = 'visible' | 'hover' | 'hidden';
 const toolbarModes = (): [ToolbarMode, string][] => [
@@ -101,6 +101,7 @@ export default class TraceViewMindmap extends Plugin {
     } catch { /* Optional local preferences. */ }
     this.settings.rememberLastMode = saved?.rememberLastMode === true;
     this.settings.showDesktopCreationHandles = saved?.showDesktopCreationHandles === true;
+    if (!['open', 'open-total', 'closed-total', 'total'].includes(this.settings.queueMetric)) this.settings.queueMetric = 'open-total';
     if (!['visible', 'hover', 'hidden'].includes(this.settings.queueToolbarMode)) this.settings.queueToolbarMode = 'visible';
     try {
       const paths = this.app.loadLocalStorage('traceview-mindmap:map-preferences');
@@ -1495,6 +1496,10 @@ class QueueView extends ItemView {
   private cache = new Map<string, IndexedMap>();
   private host?: HTMLElement;
   private mode = 'steps';
+  private metricSort: 'none' | 'asc' | 'desc' = 'none';
+  private sortControl?: HTMLSelectElement;
+  private metrics = new Map<string, {mtime: number; terms: string; counts: QueueCounts}>();
+  private metricsPending?: Promise<void>;
   private completedMode: 'hide' | 'footer' | 'inline' = 'footer';
   private completedControl?: HTMLSelectElement;
   private completedExpanded = new Set<string>();
@@ -1530,15 +1535,19 @@ class QueueView extends ItemView {
       this.completedMode = this.completedControl!.value as typeof this.completedMode;
       this.draw(); this.app.workspace.requestSaveLayout();
     };
+    this.sortControl = actions.createEl('select', {attr: {'aria-label': t("Sort maps by count")}});
+    for (const [value, label] of [['none', t("Name order")], ['asc', t("Count: low to high")], ['desc', t("Count: high to low")]]) this.sortControl.createEl('option', {value, text: label});
+    this.sortControl.value = this.metricSort;
+    this.sortControl.onchange = () => {this.metricSort = this.sortControl!.value as typeof this.metricSort; this.draw(); this.mapFilter?.refresh(); this.app.workspace.requestSaveLayout();};
     this.undoButton = iconButton(actions, 'undo-2', t("Undo"), () => { void this.history('undo'); });
     this.redoButton = iconButton(actions, 'redo-2', t("Redo"), () => { void this.history('redo'); });
     button(actions, t("Refresh"), () => { this.cache.clear(); void this.reload(); });
-    this.mapFilter = attachMapFilter(actions, () => this.queueFiles(), path => {
+    this.mapFilter = attachMapFilter(actions, () => this.queueFiles().map(file => this.mapChoice(file)), path => {
       try { queueMapMatcher(path); }
       catch (error) { new Notice(message(error)); this.mapFilter?.set(this.filter); return; }
       this.filter = path;
       void this.reload();
-    }, () => this.app.vault.getMarkdownFiles().map(file => file.path));
+    }, () => this.app.vault.getMarkdownFiles().map(file => file.path), {sort: () => this.metricSort, onOpen: () => { void this.loadMetrics(); }});
     this.foldControls = actions.createDiv('tvm-queue-fold-controls');
     button(this.foldControls, t("Collapse all"), () => {
       for (const path of this.cache.keys()) if (queueMapMatcher(this.filter)(path)) this.collapsed.add(path);
@@ -1560,8 +1569,10 @@ class QueueView extends ItemView {
     }
     this.host = this.contentEl.createDiv('tvm-panel');
   }
-  getState(): Record<string, unknown> { return { filter: this.filter, completedMode: this.completedMode }; }
+  getState(): Record<string, unknown> { return { filter: this.filter, completedMode: this.completedMode, metricSort: this.metricSort }; }
   async setState(state: Record<string, unknown>, result: any): Promise<void> {
+    this.metricSort = state.metricSort === 'asc' || state.metricSort === 'desc' ? state.metricSort : 'none';
+    if (this.sortControl) this.sortControl.value = this.metricSort;
     const filter = typeof state.filter === 'string' ? state.filter : '';
     try { queueMapMatcher(filter); this.filter = filter; }
     catch { this.filter = ''; }
@@ -1572,6 +1583,42 @@ class QueueView extends ItemView {
     await super.setState(state, result);
   }
   scheduleReload(): void { window.clearTimeout(this.timer); this.timer = window.setTimeout(() => { void this.reload(); }, 250); }
+  private recordCounts(map: IndexedMap): QueueCounts {
+    const terms = this.plugin.settings.queueExcludedBranches;
+    const cached = this.metrics.get(map.file.path);
+    if (cached?.mtime === map.mtime && cached.terms === terms) return cached.counts;
+    const counts = queueCounts(map.doc, queueExclusions(terms));
+    this.metrics.set(map.file.path, {mtime: map.mtime, terms, counts}); return counts;
+  }
+  private mapChoice(file: TFile) {
+    const cached = this.metrics.get(file.path);
+    const counts = cached?.mtime === file.stat.mtime && cached.terms === this.plugin.settings.queueExcludedBranches ? cached.counts : undefined;
+    const metric = counts ? queueMetric(counts, this.plugin.settings.queueMetric, this.mode) : undefined;
+    return {path: file.path, basename: file.basename, metric: metric?.text, score: metric?.value};
+  }
+  private loadMetrics(): Promise<void> {
+    if (this.metricsPending) return this.metricsPending;
+    const load = async () => {
+      const files = this.queueFiles(), paths = new Set(files.map(file => file.path));
+      for (const path of this.metrics.keys()) if (!paths.has(path)) this.metrics.delete(path);
+      for (let offset = 0; offset < files.length && !this.closed; offset += 8) {
+        await Promise.all(files.slice(offset, offset + 8).map(async file => {
+          const cached = this.metrics.get(file.path), terms = this.plugin.settings.queueExcludedBranches;
+          if (cached?.mtime === file.stat.mtime && cached.terms === terms) return;
+          const loaded = this.cache.get(file.path);
+          if (loaded?.mtime === file.stat.mtime) {this.recordCounts(loaded); return;}
+          try {
+            const mtime = file.stat.mtime, source = await this.app.vault.cachedRead(file);
+            if (!this.closed && mtime === file.stat.mtime && terms === this.plugin.settings.queueExcludedBranches) this.recordCounts({file, mtime, doc: parseMap(source)});
+          } catch { this.metrics.delete(file.path); }
+        }));
+        if (!this.closed) this.mapFilter?.refresh();
+        await new Promise<void>(resolve => window.setTimeout(resolve, 0));
+      }
+    };
+    const pending = load().finally(() => {if (this.metricsPending === pending) this.metricsPending = undefined;});
+    this.metricsPending = pending; return pending;
+  }
   private queueFiles(): TFile[] {
     const terms = queueExclusions(this.plugin.settings.queueExcludedMaps);
     const folder = queueFolderPrefix(this.filter) ? queueMapMatcher(this.filter) : undefined;
@@ -1612,7 +1659,10 @@ class QueueView extends ItemView {
     if (this.completedControl) this.completedControl.hidden = this.mode === 'qa';
     let count = 0;
     const matches = queueMapMatcher(this.filter);
-    const maps = [...this.cache.values()].filter(map => matches(map.file.path)).sort((a, b) => a.file.path.localeCompare(b.file.path));
+    const maps = [...this.cache.values()].filter(map => matches(map.file.path));
+    for (const map of maps) this.recordCounts(map);
+    maps.sort((a, b) => compareQueueMaps(this.mapChoice(a.file), this.mapChoice(b.file), this.metricSort));
+    this.mapFilter?.refresh();
     const terms = queueExclusions(this.plugin.settings.queueExcludedBranches);
     const excluded = new Map(maps.map(map => [map, excludedQueueNodes(map.doc, terms)]));
     if (this.mode === 'dates') {
@@ -1647,7 +1697,7 @@ class QueueView extends ItemView {
       toggle.dataset.foldPath = map.file.path;
       toggle.setAttribute('aria-expanded', String(!collapsed));
       button(header, map.file.basename, () => { void this.plugin.openMap(map.file); }).addClass('tvm-queue-title');
-      header.createSpan({ cls: 'tvm-badge', text: String(this.mode === 'qa' ? questions.length : stepCount) });
+      header.createSpan({ cls: 'tvm-badge', text: this.mapChoice(map.file).metric ?? String(this.mode === 'qa' ? questions.length : stepCount) });
       if (collapsed) { count += this.mode === 'qa' ? questions.length : stepCount; continue; }
       if (this.mode === 'qa') for (const node of questions) {
         const row = section.createDiv('tvm-step-row');
@@ -1789,7 +1839,7 @@ class QueueView extends ItemView {
       if (!this.closed) await this.reload();
     }
   }
-  async onClose(): Promise<void> { this.closed = true; this.generation++; window.clearTimeout(this.timer); this.cache.clear(); this.contentEl.empty(); }
+  async onClose(): Promise<void> { this.closed = true; this.generation++; window.clearTimeout(this.timer); this.cache.clear(); this.metrics.clear(); this.contentEl.empty(); }
 }
 
 class SettingsTab extends PluginSettingTab {
@@ -1886,6 +1936,10 @@ class SettingsTab extends PluginSettingTab {
     if (!Platform.isMobile) new Setting(this.containerEl).setName(t("Planning list toolbar")).addDropdown(dropdown => {
       for (const [mode, label] of toolbarModes()) dropdown.addOption(mode, label);
       dropdown.setValue(this.plugin.settings.queueToolbarMode).onChange(value => this.plugin.setQueueToolbarMode(value as ToolbarMode));
+    });
+    new Setting(this.containerEl).setName(t("Planning list counts")).addDropdown(dropdown => {
+      for (const [value, label] of [['open', t("Open only")], ['open-total', t("Open / total")], ['closed-total', t("Completed / total")], ['total', t("Total only")]]) dropdown.addOption(value, label);
+      dropdown.setValue(this.plugin.settings.queueMetric).onChange(async value => {this.plugin.settings.queueMetric = value as QueueMetric; await this.plugin.saveData(this.plugin.settings); this.plugin.refreshQueues();});
     });
     for (const [key, label] of [['queueExcludedMaps', t("Exclude maps from planning")],
       ['queueExcludedBranches', t("Exclude branches from planning")]] as const) {

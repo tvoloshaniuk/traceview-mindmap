@@ -375,5 +375,14 @@
   "Planning list toolbar": "Planning list toolbar",
   "Advanced options": "Advanced options",
   "Show node creation handles on desktop": "Show node creation handles on desktop",
-  "Drag handles remain enabled on mobile. Off by default on desktop.": "Drag handles remain enabled on mobile. Off by default on desktop."
+  "Drag handles remain enabled on mobile. Off by default on desktop.": "Drag handles remain enabled on mobile. Off by default on desktop.",
+  "Sort maps by count": "Sort maps by count",
+  "Name order": "Name order",
+  "Count: low to high": "Count: low to high",
+  "Count: high to low": "Count: high to low",
+  "Planning list counts": "Planning list counts",
+  "Open only": "Open only",
+  "Open / total": "Open / total",
+  "Completed / total": "Completed / total",
+  "Total only": "Total only"
 }

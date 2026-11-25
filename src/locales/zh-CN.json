@@ -375,5 +375,14 @@
   "Planning list toolbar": "计划列表工具栏",
   "Advanced options": "高级选项",
   "Show node creation handles on desktop": "在桌面端显示节点创建手柄",
-  "Drag handles remain enabled on mobile. Off by default on desktop.": "移动端保留手柄。桌面端默认关闭。"
+  "Drag handles remain enabled on mobile. Off by default on desktop.": "移动端保留手柄。桌面端默认关闭。",
+  "Sort maps by count": "按数量排序地图",
+  "Name order": "按名称",
+  "Count: low to high": "数量从少到多",
+  "Count: high to low": "数量从多到少",
+  "Planning list counts": "规划列表计数",
+  "Open only": "仅未完成",
+  "Open / total": "未完成 / 总数",
+  "Completed / total": "已完成 / 总数",
+  "Total only": "仅总数"
 }

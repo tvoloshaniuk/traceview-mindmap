@@ -375,5 +375,14 @@
   "Planning list toolbar": "Панель списків планування",
   "Advanced options": "Додаткові параметри",
   "Show node creation handles on desktop": "Показувати ручки створення нод на ПК",
-  "Drag handles remain enabled on mobile. Off by default on desktop.": "На телефоні ручки залишаються ввімкненими. На ПК типово вимкнені."
+  "Drag handles remain enabled on mobile. Off by default on desktop.": "На телефоні ручки залишаються ввімкненими. На ПК типово вимкнені.",
+  "Sort maps by count": "Сортування карт за кількістю",
+  "Name order": "За назвою",
+  "Count: low to high": "Кількість: за зростанням",
+  "Count: high to low": "Кількість: за спаданням",
+  "Planning list counts": "Лічильники списків планування",
+  "Open only": "Лише відкриті",
+  "Open / total": "Відкриті / усі",
+  "Completed / total": "Виконані / усі",
+  "Total only": "Лише загальна кількість"
 }

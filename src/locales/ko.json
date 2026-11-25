@@ -375,5 +375,14 @@
   "Planning list toolbar": "계획 목록 도구 모음",
   "Advanced options": "고급 옵션",
   "Show node creation handles on desktop": "데스크톱에서 노드 생성 핸들 표시",
-  "Drag handles remain enabled on mobile. Off by default on desktop.": "모바일에서는 핸들이 계속 활성화됩니다. 데스크톱에서는 기본적으로 꺼져 있습니다."
+  "Drag handles remain enabled on mobile. Off by default on desktop.": "모바일에서는 핸들이 계속 활성화됩니다. 데스크톱에서는 기본적으로 꺼져 있습니다.",
+  "Sort maps by count": "개수로 지도 정렬",
+  "Name order": "이름순",
+  "Count: low to high": "개수 오름차순",
+  "Count: high to low": "개수 내림차순",
+  "Planning list counts": "계획 목록 개수",
+  "Open only": "미완료만",
+  "Open / total": "미완료 / 전체",
+  "Completed / total": "완료 / 전체",
+  "Total only": "전체 개수만"
 }

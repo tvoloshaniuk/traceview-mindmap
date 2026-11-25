@@ -4,6 +4,7 @@
  * See LICENSE, LICENSING.md and OBSIDIAN-HOST-PERMISSION.md.
  */
 import { compileMapPatterns } from './map-patterns';
+import { getSteps } from './core';
 import { t } from './i18n';
 import type { MapDocument } from './types';
 
@@ -46,10 +47,33 @@ export function queueMapMatcher(filter: string): (path: string) => boolean {
   return path => path.toLocaleLowerCase().includes(query.toLocaleLowerCase());
 }
 
-interface MapChoice { path: string; basename: string; folder?: boolean; }
+export type QueueMetric = 'open' | 'open-total' | 'closed-total' | 'total';
+export interface QueueCounts { open: number; total: number; datesOpen: number; datesTotal: number; questions: number; }
+export function queueCounts(doc: MapDocument, terms: readonly string[]): QueueCounts {
+  const excluded = excludedQueueNodes(doc, terms), steps = getSteps(doc).filter(step => !excluded.has(step.nodeId));
+  const dates = steps.filter(step => step.date || step.unknownDate);
+  return {open: steps.filter(step => !step.completed).length, total: steps.length,
+    datesOpen: dates.filter(step => !step.completed).length, datesTotal: dates.length,
+    questions: doc.nodes.filter(node => !excluded.has(node.id) && /\[\[QA ❓(?:\||\]\])|\/\/todo\s+Q\s*:/i.test(node.text) && !node.text.includes('✅')).length};
+}
+export function queueMetric(counts: QueueCounts, metric: QueueMetric, mode = 'steps'): {text: string; value: number} {
+  if (mode === 'qa') return {text: String(counts.questions), value: counts.questions};
+  const open = mode === 'dates' ? counts.datesOpen : counts.open, total = mode === 'dates' ? counts.datesTotal : counts.total;
+  const value = metric === 'total' ? total : metric === 'closed-total' ? total - open : open;
+  return {text: metric.endsWith('-total') ? value + '/' + total : String(value), value};
+}
+export interface MapChoice { path: string; basename: string; folder?: boolean; metric?: string; score?: number; }
+export function compareQueueMaps(a: MapChoice, b: MapChoice, sort: 'none' | 'asc' | 'desc'): number {
+  if (sort !== 'none' && a.score !== b.score) {
+    if (a.score === undefined) return 1;
+    if (b.score === undefined) return -1;
+    return (a.score - b.score) * (sort === 'asc' ? 1 : -1);
+  }
+  return a.path.localeCompare(b.path);
+}
 let nextFilterId = 0;
 
-export function attachMapFilter(parent: HTMLElement, getMaps: () => MapChoice[], onSelect: (path: string) => void, getFolderPaths?: () => string[]): { set: (value: string) => void } {
+export function attachMapFilter(parent: HTMLElement, getMaps: () => MapChoice[], onSelect: (path: string) => void, getFolderPaths?: () => string[], options?: {sort?: () => 'none' | 'asc' | 'desc'; onOpen?: () => void}): { set: (value: string) => void; refresh: () => void } {
   const host = parent.createDiv('tvm-map-filter');
   const input = host.createEl('input', { type: 'text', attr: { role: 'combobox', 'aria-label': t("Map filter"), 'aria-autocomplete': 'list', 'aria-expanded': 'false', autocomplete: 'off', placeholder: t("All maps") } });
   const list = host.createDiv('tvm-map-options');
@@ -80,13 +104,13 @@ export function attachMapFilter(parent: HTMLElement, getMaps: () => MapChoice[],
       const parts = path.split('/');
       for (let level = 1; level < parts.length; level++) folders.add(parts.slice(0, level).join('/') + '/');
     }
-    choices = [{ path: '', basename: t("All maps") }, ...[...folders].sort().map(path => ({path, basename: path, folder: true})), ...[...maps].sort((a, b) => a.path.localeCompare(b.path))]
+    choices = [{ path: '', basename: t("All maps") }, ...[...folders].sort().map(path => ({path, basename: path, folder: true})), ...[...maps].sort((a, b) => compareQueueMaps(a, b, options?.sort?.() ?? 'none'))]
       .filter(choice => !choice.path || `${choice.basename} ${choice.path}`.toLocaleLowerCase().includes(query)).slice(0, 100);
     list.empty(); active = -1;
     for (const [index, choice] of choices.entries()) {
       const option = list.createDiv('tvm-map-option');
       option.id = `${list.id}-${index}`; option.setAttribute('role', 'option'); option.setAttribute('aria-selected', 'false');
-      option.createDiv({ text: (choice.folder ? '📁 ' : '') + choice.basename });
+      option.createDiv({ text: (choice.folder ? '📁 ' : '') + choice.basename + (choice.metric === undefined ? '' : ' · ' + choice.metric) });
       if (choice.path && !choice.folder) option.createDiv({ cls: 'tvm-map-option-path', text: choice.path });
       // Keep keyboard focus in the input; touch scrolling remains native.
       option.onmousedown = event => event.preventDefault();
@@ -95,8 +119,8 @@ export function attachMapFilter(parent: HTMLElement, getMaps: () => MapChoice[],
     if (query && choices.length === 1) list.createDiv({ cls: 'tvm-map-option-path tvm-map-no-results', text: t("No maps match this search.") });
     list.hidden = false; input.setAttribute('aria-expanded', 'true'); input.removeAttribute('aria-activedescendant');
   };
-  input.onfocus = () => { edited = false; input.value = ''; draw(); };
-  input.onclick = () => { if (list.hidden) { input.value = ''; draw(); } };
+  input.onfocus = () => { edited = false; input.value = ''; draw(); options?.onOpen?.(); };
+  input.onclick = () => { if (list.hidden) { input.value = ''; draw(); options?.onOpen?.(); } };
   input.oninput = () => { edited = true; draw(); };
   input.onkeydown = event => {
     if (event.key === 'Escape' && !list.hidden) { event.preventDefault(); event.stopPropagation(); close(); }
@@ -114,7 +138,7 @@ export function attachMapFilter(parent: HTMLElement, getMaps: () => MapChoice[],
     if (edited) { const value = input.value.trim(); choose({ path: value, basename: value }); }
     else close();
   };
-  return { set(value) {
+  return { refresh() { if (!list.hidden) { const path = choices[active]?.path; draw(); active = path === undefined ? -1 : choices.findIndex(choice => choice.path === path); highlight(); } }, set(value) {
     selected = getMaps().find(map => map.path === value) ?? { path: value, basename: value };
     edited = false;
     close();

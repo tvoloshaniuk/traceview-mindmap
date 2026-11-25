@@ -375,5 +375,14 @@
   "Planning list toolbar": "Symbolleiste der Planungslisten",
   "Advanced options": "Erweiterte Optionen",
   "Show node creation handles on desktop": "Griffe zum Erstellen von Knoten am Desktop anzeigen",
-  "Drag handles remain enabled on mobile. Off by default on desktop.": "Auf Mobilgeräten bleiben die Griffe aktiviert. Am Desktop sind sie standardmäßig deaktiviert."
+  "Drag handles remain enabled on mobile. Off by default on desktop.": "Auf Mobilgeräten bleiben die Griffe aktiviert. Am Desktop sind sie standardmäßig deaktiviert.",
+  "Sort maps by count": "Karten nach Anzahl sortieren",
+  "Name order": "Nach Name",
+  "Count: low to high": "Anzahl: aufsteigend",
+  "Count: high to low": "Anzahl: absteigend",
+  "Planning list counts": "Zähler der Planungslisten",
+  "Open only": "Nur offene",
+  "Open / total": "Offen / gesamt",
+  "Completed / total": "Erledigt / gesamt",
+  "Total only": "Nur Gesamtzahl"
 }

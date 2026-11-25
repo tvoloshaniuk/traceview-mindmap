@@ -375,5 +375,14 @@
   "Planning list toolbar": "Barra de listas de planificación",
   "Advanced options": "Opciones avanzadas",
   "Show node creation handles on desktop": "Mostrar controles de creación de nodos en escritorio",
-  "Drag handles remain enabled on mobile. Off by default on desktop.": "Los controles siguen activos en móvil. En escritorio están desactivados por defecto."
+  "Drag handles remain enabled on mobile. Off by default on desktop.": "Los controles siguen activos en móvil. En escritorio están desactivados por defecto.",
+  "Sort maps by count": "Ordenar mapas por cantidad",
+  "Name order": "Por nombre",
+  "Count: low to high": "Cantidad: ascendente",
+  "Count: high to low": "Cantidad: descendente",
+  "Planning list counts": "Contadores de listas de planificación",
+  "Open only": "Solo abiertos",
+  "Open / total": "Abiertos / total",
+  "Completed / total": "Completados / total",
+  "Total only": "Solo total"
 }

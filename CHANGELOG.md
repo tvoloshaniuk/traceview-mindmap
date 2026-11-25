@@ -1,5 +1,16 @@
 # Changelog
 
+## 1.0.54
+
+### Added
+
+- Planning list count formats: open, open/total, completed/total, or total. Use the same counts in map group headings and map filter suggestions.
+- Sort map groups and filter suggestions together by count ascending, count descending, or name. Remember the chosen sort in the list view.
+
+### Improved
+
+- Load other map counts lazily when opening the map picker, in small batches with a compact cache. Opening a scoped planning list still reads only the selected maps. Counts respect excluded branches.
+
 ## 1.0.53
 
 ### Improved

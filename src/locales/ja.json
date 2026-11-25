@@ -375,5 +375,14 @@
   "Planning list toolbar": "計画リストのツールバー",
   "Advanced options": "詳細オプション",
   "Show node creation handles on desktop": "デスクトップでノード作成ハンドルを表示",
-  "Drag handles remain enabled on mobile. Off by default on desktop.": "モバイルではハンドルが有効のままです。デスクトップでは既定で無効です。"
+  "Drag handles remain enabled on mobile. Off by default on desktop.": "モバイルではハンドルが有効のままです。デスクトップでは既定で無効です。",
+  "Sort maps by count": "件数でマップを並べ替え",
+  "Name order": "名前順",
+  "Count: low to high": "件数の少ない順",
+  "Count: high to low": "件数の多い順",
+  "Planning list counts": "計画リストの件数",
+  "Open only": "未完了のみ",
+  "Open / total": "未完了 / 合計",
+  "Completed / total": "完了 / 合計",
+  "Total only": "合計のみ"
 }

@@ -375,5 +375,14 @@
   "Planning list toolbar": "Barra das listas de planejamento",
   "Advanced options": "Opções avançadas",
   "Show node creation handles on desktop": "Mostrar alças de criação de nós no computador",
-  "Drag handles remain enabled on mobile. Off by default on desktop.": "As alças permanecem ativas no celular. No computador, ficam desativadas por padrão."
+  "Drag handles remain enabled on mobile. Off by default on desktop.": "As alças permanecem ativas no celular. No computador, ficam desativadas por padrão.",
+  "Sort maps by count": "Ordenar mapas por quantidade",
+  "Name order": "Por nome",
+  "Count: low to high": "Quantidade: crescente",
+  "Count: high to low": "Quantidade: decrescente",
+  "Planning list counts": "Contadores das listas de planejamento",
+  "Open only": "Somente abertos",
+  "Open / total": "Abertos / total",
+  "Completed / total": "Concluídos / total",
+  "Total only": "Somente total"
 }
