@@ -360,5 +360,6 @@
   "Hide completed tasks": "Erledigte Aufgaben ausblenden",
   "Completed tasks below": "Erledigte Aufgaben unten",
   "Completed tasks in place": "Erledigte Aufgaben an gleicher Stelle",
-  "Completed ({count})": "Erledigt ({count})"
+  "Completed ({count})": "Erledigt ({count})",
+  "Only Markdown notes can be edited as maps.": "Nur Markdown-Notizen können als Karten bearbeitet werden."
 }

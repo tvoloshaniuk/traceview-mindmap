@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.0.34
+
+### Fixed
+
+- Open images and other non-Markdown attachments in their native viewers instead of forcing a Markdown editor, preventing binary attachments from being saved as text.
+- Reject non-Markdown files at map opening, source mode, restored map state and guarded text writes, including queued writes.
+
+
 ## 1.0.33
 
 ### Fixed

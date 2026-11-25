@@ -719,7 +719,8 @@ var en_default = {
   "Hide completed tasks": "Hide completed tasks",
   "Completed tasks below": "Completed tasks below",
   "Completed tasks in place": "Completed tasks in place",
-  "Completed ({count})": "Completed ({count})"
+  "Completed ({count})": "Completed ({count})",
+  "Only Markdown notes can be edited as maps.": "Only Markdown notes can be edited as maps."
 };
 
 // src/locales/uk.json
@@ -1085,7 +1086,8 @@ var uk_default = {
   "Hide completed tasks": "\u041F\u0440\u0438\u0445\u043E\u0432\u0443\u0432\u0430\u0442\u0438 \u0432\u0438\u043A\u043E\u043D\u0430\u043D\u0456 \u0437\u0430\u0434\u0430\u0447\u0456",
   "Completed tasks below": "\u0412\u0438\u043A\u043E\u043D\u0430\u043D\u0456 \u0437\u0430\u0434\u0430\u0447\u0456 \u0432\u043D\u0438\u0437\u0443",
   "Completed tasks in place": "\u0412\u0438\u043A\u043E\u043D\u0430\u043D\u0456 \u0437\u0430\u0434\u0430\u0447\u0456 \u043D\u0430 \u0441\u0432\u043E\u0457\u0445 \u043C\u0456\u0441\u0446\u044F\u0445",
-  "Completed ({count})": "\u0412\u0438\u043A\u043E\u043D\u0430\u043D\u0456 ({count})"
+  "Completed ({count})": "\u0412\u0438\u043A\u043E\u043D\u0430\u043D\u0456 ({count})",
+  "Only Markdown notes can be edited as maps.": "\u0423 \u0440\u0435\u0436\u0438\u043C\u0456 \u043A\u0430\u0440\u0442\u0438 \u043C\u043E\u0436\u043D\u0430 \u0440\u0435\u0434\u0430\u0433\u0443\u0432\u0430\u0442\u0438 \u043B\u0438\u0448\u0435 Markdown-\u043D\u043E\u0442\u0430\u0442\u043A\u0438."
 };
 
 // src/locales/pl.json
@@ -1451,7 +1453,8 @@ var pl_default = {
   "Hide completed tasks": "Ukryj uko\u0144czone zadania",
   "Completed tasks below": "Uko\u0144czone zadania na dole",
   "Completed tasks in place": "Uko\u0144czone zadania na swoich miejscach",
-  "Completed ({count})": "Uko\u0144czone ({count})"
+  "Completed ({count})": "Uko\u0144czone ({count})",
+  "Only Markdown notes can be edited as maps.": "Tylko notatki Markdown mo\u017Cna edytowa\u0107 jako mapy."
 };
 
 // src/locales/de.json
@@ -1817,7 +1820,8 @@ var de_default = {
   "Hide completed tasks": "Erledigte Aufgaben ausblenden",
   "Completed tasks below": "Erledigte Aufgaben unten",
   "Completed tasks in place": "Erledigte Aufgaben an gleicher Stelle",
-  "Completed ({count})": "Erledigt ({count})"
+  "Completed ({count})": "Erledigt ({count})",
+  "Only Markdown notes can be edited as maps.": "Nur Markdown-Notizen k\xF6nnen als Karten bearbeitet werden."
 };
 
 // src/locales/es.json
@@ -2183,7 +2187,8 @@ var es_default = {
   "Hide completed tasks": "Ocultar tareas completadas",
   "Completed tasks below": "Tareas completadas abajo",
   "Completed tasks in place": "Tareas completadas en su lugar",
-  "Completed ({count})": "Completadas ({count})"
+  "Completed ({count})": "Completadas ({count})",
+  "Only Markdown notes can be edited as maps.": "Solo se pueden editar notas Markdown como mapas."
 };
 
 // src/locales/fr.json
@@ -2549,7 +2554,8 @@ var fr_default = {
   "Hide completed tasks": "Masquer les t\xE2ches termin\xE9es",
   "Completed tasks below": "T\xE2ches termin\xE9es en bas",
   "Completed tasks in place": "T\xE2ches termin\xE9es \xE0 leur place",
-  "Completed ({count})": "Termin\xE9es ({count})"
+  "Completed ({count})": "Termin\xE9es ({count})",
+  "Only Markdown notes can be edited as maps.": "Seules les notes Markdown peuvent \xEAtre modifi\xE9es sous forme de cartes."
 };
 
 // src/locales/pt-BR.json
@@ -2915,7 +2921,8 @@ var pt_BR_default = {
   "Hide completed tasks": "Ocultar tarefas conclu\xEDdas",
   "Completed tasks below": "Tarefas conclu\xEDdas abaixo",
   "Completed tasks in place": "Tarefas conclu\xEDdas no lugar",
-  "Completed ({count})": "Conclu\xEDdas ({count})"
+  "Completed ({count})": "Conclu\xEDdas ({count})",
+  "Only Markdown notes can be edited as maps.": "Somente notas Markdown podem ser editadas como mapas."
 };
 
 // src/locales/zh-CN.json
@@ -3281,7 +3288,8 @@ var zh_CN_default = {
   "Hide completed tasks": "\u9690\u85CF\u5DF2\u5B8C\u6210\u4EFB\u52A1",
   "Completed tasks below": "\u5DF2\u5B8C\u6210\u4EFB\u52A1\u663E\u793A\u5728\u5E95\u90E8",
   "Completed tasks in place": "\u5DF2\u5B8C\u6210\u4EFB\u52A1\u4FDD\u7559\u539F\u4F4D",
-  "Completed ({count})": "\u5DF2\u5B8C\u6210\uFF08{count}\uFF09"
+  "Completed ({count})": "\u5DF2\u5B8C\u6210\uFF08{count}\uFF09",
+  "Only Markdown notes can be edited as maps.": "\u53EA\u6709 Markdown \u7B14\u8BB0\u53EF\u4EE5\u4F5C\u4E3A\u5BFC\u56FE\u7F16\u8F91\u3002"
 };
 
 // src/locales/ja.json
@@ -3647,7 +3655,8 @@ var ja_default = {
   "Hide completed tasks": "\u5B8C\u4E86\u3057\u305F\u30BF\u30B9\u30AF\u3092\u975E\u8868\u793A",
   "Completed tasks below": "\u5B8C\u4E86\u3057\u305F\u30BF\u30B9\u30AF\u3092\u4E0B\u90E8\u306B\u8868\u793A",
   "Completed tasks in place": "\u5B8C\u4E86\u3057\u305F\u30BF\u30B9\u30AF\u3092\u5143\u306E\u4F4D\u7F6E\u306B\u8868\u793A",
-  "Completed ({count})": "\u5B8C\u4E86 ({count})"
+  "Completed ({count})": "\u5B8C\u4E86 ({count})",
+  "Only Markdown notes can be edited as maps.": "\u30DE\u30C3\u30D7\u3068\u3057\u3066\u7DE8\u96C6\u3067\u304D\u308B\u306E\u306FMarkdown\u30CE\u30FC\u30C8\u306E\u307F\u3067\u3059\u3002"
 };
 
 // src/locales/ko.json
@@ -4013,7 +4022,8 @@ var ko_default = {
   "Hide completed tasks": "\uC644\uB8CC\uB41C \uC791\uC5C5 \uC228\uAE30\uAE30",
   "Completed tasks below": "\uC644\uB8CC\uB41C \uC791\uC5C5\uC744 \uC544\uB798\uC5D0 \uD45C\uC2DC",
   "Completed tasks in place": "\uC644\uB8CC\uB41C \uC791\uC5C5\uC744 \uC6D0\uB798 \uC704\uCE58\uC5D0 \uD45C\uC2DC",
-  "Completed ({count})": "\uC644\uB8CC ({count})"
+  "Completed ({count})": "\uC644\uB8CC ({count})",
+  "Only Markdown notes can be edited as maps.": "Markdown \uB178\uD2B8\uB9CC \uB9F5\uC73C\uB85C \uD3B8\uC9D1\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4."
 };
 
 // src/locales/ru.json
@@ -4379,7 +4389,8 @@ var ru_default = {
   "Hide completed tasks": "\u0421\u043A\u0440\u044B\u0432\u0430\u0442\u044C \u0432\u044B\u043F\u043E\u043B\u043D\u0435\u043D\u043D\u044B\u0435 \u0437\u0430\u0434\u0430\u0447\u0438",
   "Completed tasks below": "\u0412\u044B\u043F\u043E\u043B\u043D\u0435\u043D\u043D\u044B\u0435 \u0437\u0430\u0434\u0430\u0447\u0438 \u0432\u043D\u0438\u0437\u0443",
   "Completed tasks in place": "\u0412\u044B\u043F\u043E\u043B\u043D\u0435\u043D\u043D\u044B\u0435 \u0437\u0430\u0434\u0430\u0447\u0438 \u043D\u0430 \u0441\u0432\u043E\u0438\u0445 \u043C\u0435\u0441\u0442\u0430\u0445",
-  "Completed ({count})": "\u0412\u044B\u043F\u043E\u043B\u043D\u0435\u043D\u043D\u044B\u0435 ({count})"
+  "Completed ({count})": "\u0412\u044B\u043F\u043E\u043B\u043D\u0435\u043D\u043D\u044B\u0435 ({count})",
+  "Only Markdown notes can be edited as maps.": "\u0412 \u0440\u0435\u0436\u0438\u043C\u0435 \u043A\u0430\u0440\u0442\u044B \u043C\u043E\u0436\u043D\u043E \u0440\u0435\u0434\u0430\u043A\u0442\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u0442\u043E\u043B\u044C\u043A\u043E Markdown-\u0437\u0430\u043C\u0435\u0442\u043A\u0438."
 };
 
 // src/i18n.ts
@@ -9313,6 +9324,9 @@ var highlightColors = {
   "\u{1F535}": "blue",
   "\u{1F7E3}": "purple"
 };
+var requireMarkdown = (file) => {
+  if (file.extension.toLowerCase() !== "md") throw new Error(t("Only Markdown notes can be edited as maps."));
+};
 var message = (error) => error instanceof Error ? error.message : String(error);
 var createsNode = (action) => action === "add-child" || action === "add-parent" || action === "add-sibling" || action === "add-sibling-before";
 var button = (parent, label2, action, title = label2) => {
@@ -9553,6 +9567,7 @@ var TraceViewMindmap = class extends import_obsidian5.Plugin {
     }
   }
   opensAsMap(file) {
+    if (file.extension.toLowerCase() !== "md") return false;
     return this.settings.autoOpen && this.isMap(file) || this.settings.rememberLastMode && this.mapPreferences.has(file.path) && !this.sourcePreferences.has(file.path);
   }
   scheduleAutoOpen(leaf, expectedPath) {
@@ -9655,6 +9670,7 @@ var TraceViewMindmap = class extends import_obsidian5.Plugin {
     return this.app.workspace.getActiveFile();
   }
   async openMap(file, target, nodeId, replaceHistory = false) {
+    requireMarkdown(file);
     const existing = this.app.workspace.getLeavesOfType(VIEW).find((leaf2) => leaf2.view.path === file.path);
     const leaf = target ?? existing ?? this.app.workspace.getLeaf("tab");
     if (leaf.view instanceof MapView && leaf.view.surface?.isEditing()) {
@@ -9725,6 +9741,7 @@ var TraceViewMindmap = class extends import_obsidian5.Plugin {
     await this.saveData(this.settings);
   }
   async source(file, line = 0, target) {
+    requireMarkdown(file);
     const leaf = target ?? this.app.workspace.getLeaf(false);
     this.sourceLeaves.set(leaf, file.path);
     this.sourcePreferences.add(file.path);
@@ -9802,6 +9819,10 @@ var TraceViewMindmap = class extends import_obsidian5.Plugin {
     } else {
       if (file) {
         const leaf = newTab ? this.app.workspace.getLeaf("tab") : view.leaf;
+        if (file.extension.toLowerCase() !== "md") {
+          await leaf.openFile(file, { active: true });
+          return;
+        }
         await leaf.setViewState({ type: "markdown", state: { file: file.path }, active: true });
         if (parts.subpath) leaf.setEphemeralState({ subpath: parts.subpath });
       } else await this.app.workspace.openLinkText(link, view.path, newTab ? "tab" : false, { active: true });
@@ -9833,9 +9854,11 @@ ${body}`);
     }, "", false).open();
   }
   async write(file, expected, next) {
+    requireMarkdown(file);
     if (expected === next) return;
     const previous = this.saveQueues.get(file.path) ?? Promise.resolve();
     const operation = previous.catch(() => void 0).then(async () => {
+      requireMarkdown(file);
       for (const leaf of this.app.workspace.getLeavesOfType("markdown")) {
         const view = leaf.view;
         if (view instanceof import_obsidian5.MarkdownView && view.file?.path === file.path && view.editor.getValue() !== expected) throw new Error(t("The Markdown editor has newer text. Wait for it to save and try again."));
@@ -9931,6 +9954,7 @@ var MapView = class extends import_obsidian5.EditableFileView {
     return { file: this.path };
   }
   async setState(state, result) {
+    if (state.file && !/\.md$/i.test(state.file)) throw new Error(t("Only Markdown notes can be edited as maps."));
     if (state.file && this.path !== state.file) {
       if (this.surface?.isEditing()) {
         new import_obsidian5.Notice(t("Save or cancel the node draft before navigating."));
@@ -9945,6 +9969,7 @@ var MapView = class extends import_obsidian5.EditableFileView {
     this.refreshTitle();
   }
   async onLoadFile(file) {
+    requireMarkdown(file);
     this.cancelRestoreWait?.();
     this.path = file.path;
     this.doc = void 0;

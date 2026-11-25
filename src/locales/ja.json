@@ -360,5 +360,6 @@
   "Hide completed tasks": "完了したタスクを非表示",
   "Completed tasks below": "完了したタスクを下部に表示",
   "Completed tasks in place": "完了したタスクを元の位置に表示",
-  "Completed ({count})": "完了 ({count})"
+  "Completed ({count})": "完了 ({count})",
+  "Only Markdown notes can be edited as maps.": "マップとして編集できるのはMarkdownノートのみです。"
 }

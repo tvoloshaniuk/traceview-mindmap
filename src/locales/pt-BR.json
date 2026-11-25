@@ -360,5 +360,6 @@
   "Hide completed tasks": "Ocultar tarefas concluídas",
   "Completed tasks below": "Tarefas concluídas abaixo",
   "Completed tasks in place": "Tarefas concluídas no lugar",
-  "Completed ({count})": "Concluídas ({count})"
+  "Completed ({count})": "Concluídas ({count})",
+  "Only Markdown notes can be edited as maps.": "Somente notas Markdown podem ser editadas como mapas."
 }

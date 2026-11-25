@@ -360,5 +360,6 @@
   "Hide completed tasks": "Hide completed tasks",
   "Completed tasks below": "Completed tasks below",
   "Completed tasks in place": "Completed tasks in place",
-  "Completed ({count})": "Completed ({count})"
+  "Completed ({count})": "Completed ({count})",
+  "Only Markdown notes can be edited as maps.": "Only Markdown notes can be edited as maps."
 }

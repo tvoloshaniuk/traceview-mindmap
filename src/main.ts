@@ -51,6 +51,9 @@ const toolbarModes = (): [ToolbarMode, string][] => [
 const highlightColors: Record<string, string> = {
   '🔴': 'red', '🟠': 'orange', '🟡': 'yellow', '🟢': 'green', '🔵': 'blue', '🟣': 'purple',
 };
+const requireMarkdown = (file: TFile): void => {
+  if (file.extension.toLowerCase() !== 'md') throw new Error(t("Only Markdown notes can be edited as maps."));
+};
 const message = (error: unknown) => error instanceof Error ? error.message : String(error);
 const createsNode = (action: NodeAction) => action === 'add-child' || action === 'add-parent' || action === 'add-sibling' || action === 'add-sibling-before';
 const button = (parent: HTMLElement, label: string, action: () => void, title = label) => {
@@ -241,6 +244,7 @@ export default class TraceViewMindmap extends Plugin {
     try { this.app.saveLocalStorage('traceview-mindmap:map-preferences', [...this.mapPreferences]); } catch { /* Storage may be full. */ }
   }
   opensAsMap(file: TFile): boolean {
+    if (file.extension.toLowerCase() !== 'md') return false;
     return (this.settings.autoOpen && this.isMap(file))
       || (this.settings.rememberLastMode && this.mapPreferences.has(file.path) && !this.sourcePreferences.has(file.path));
   }
@@ -329,6 +333,7 @@ export default class TraceViewMindmap extends Plugin {
     return this.app.workspace.getActiveFile();
   }
   async openMap(file: TFile, target?: WorkspaceLeaf, nodeId?: string, replaceHistory = false): Promise<void> {
+    requireMarkdown(file);
     const existing = this.app.workspace.getLeavesOfType(VIEW).find(leaf => (leaf.view as MapView).path === file.path);
     const leaf = target ?? existing ?? this.app.workspace.getLeaf('tab');
     if (leaf.view instanceof MapView && leaf.view.surface?.isEditing()) { new Notice(t("Save or cancel the node draft.")); leaf.view.surface.focusEditor(); return; }
@@ -391,6 +396,7 @@ export default class TraceViewMindmap extends Plugin {
     await this.saveData(this.settings);
   }
   async source(file: TFile, line = 0, target?: WorkspaceLeaf): Promise<void> {
+    requireMarkdown(file);
     const leaf = target ?? this.app.workspace.getLeaf(false);
     this.sourceLeaves.set(leaf, file.path); this.sourcePreferences.add(file.path); this.rememberSource();
     if (this.mapPreferences.delete(file.path)) this.rememberMaps();
@@ -466,6 +472,7 @@ export default class TraceViewMindmap extends Plugin {
     } else {
       if (file) {
         const leaf = newTab ? this.app.workspace.getLeaf('tab') : view.leaf;
+        if (file.extension.toLowerCase() !== 'md') { await leaf.openFile(file, {active: true}); return; }
         await leaf.setViewState({ type: 'markdown', state: { file: file.path }, active: true });
         if (parts.subpath) leaf.setEphemeralState({ subpath: parts.subpath });
       } else await this.app.workspace.openLinkText(link, view.path, newTab ? 'tab' : false, { active: true });
@@ -485,9 +492,11 @@ export default class TraceViewMindmap extends Plugin {
   }
 
   async write(file: TFile, expected: string, next: string): Promise<void> {
+    requireMarkdown(file);
     if (expected === next) return;
     const previous = this.saveQueues.get(file.path) ?? Promise.resolve();
     const operation = previous.catch(() => undefined).then(async () => {
+      requireMarkdown(file);
       // A native editor may have a newer buffer than the last file system read.
       for (const leaf of this.app.workspace.getLeavesOfType('markdown')) {
         const view = leaf.view;
@@ -574,6 +583,7 @@ class MapView extends EditableFileView {
   canAcceptExtension(_extension: string): boolean { return false; }
   getState(): Record<string, unknown> { return { file: this.path }; }
   async setState(state: { file?: string; openNow?: boolean }, result: Parameters<ItemView['setState']>[1]): Promise<void> {
+    if (state.file && !/\.md$/i.test(state.file)) throw new Error(t("Only Markdown notes can be edited as maps."));
     if (state.file && this.path !== state.file) {
       if (this.surface?.isEditing()) { new Notice(t("Save or cancel the node draft before navigating.")); this.surface.focusEditor(); return; }
       this.restoredRender = Platform?.isWin && !state.openNow ? 'inspect' : 'allowed';
@@ -584,6 +594,7 @@ class MapView extends EditableFileView {
     this.refreshTitle();
   }
   async onLoadFile(file: TFile): Promise<void> {
+    requireMarkdown(file);
     this.cancelRestoreWait?.();
     this.path = file.path; this.doc = undefined; this.history = new History();
     this.refreshDraftButton();

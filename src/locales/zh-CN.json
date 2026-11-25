@@ -360,5 +360,6 @@
   "Hide completed tasks": "隐藏已完成任务",
   "Completed tasks below": "已完成任务显示在底部",
   "Completed tasks in place": "已完成任务保留原位",
-  "Completed ({count})": "已完成（{count}）"
+  "Completed ({count})": "已完成（{count}）",
+  "Only Markdown notes can be edited as maps.": "只有 Markdown 笔记可以作为导图编辑。"
 }

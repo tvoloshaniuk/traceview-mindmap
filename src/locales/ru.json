@@ -360,5 +360,6 @@
   "Hide completed tasks": "Скрывать выполненные задачи",
   "Completed tasks below": "Выполненные задачи внизу",
   "Completed tasks in place": "Выполненные задачи на своих местах",
-  "Completed ({count})": "Выполненные ({count})"
+  "Completed ({count})": "Выполненные ({count})",
+  "Only Markdown notes can be edited as maps.": "В режиме карты можно редактировать только Markdown-заметки."
 }

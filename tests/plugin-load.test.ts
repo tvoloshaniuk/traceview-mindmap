@@ -704,3 +704,23 @@ test('automatic map conversion replaces the current native visit while direct ma
   await plugin.openMap(file,leaf);assert.equal(states.length,2);assert.equal(states[1].popstate,undefined);
   dom.window.close();
 });
+
+
+test('binary attachments use the native viewer and cannot enter any Markdown map write path', async () => {
+  const f=await loadBundle({autoOpen:true,rememberLastMode:true});const plugin=f.plugin as any,app=f.app as any;
+  const image=new f.TFile('Picture.png');image.extension='png';
+  const calls:any[]=[];const leaf:any={view:{},openFile:async(file:any)=>calls.push(file.path),setViewState:async()=>{throw Error('Must never force a text view for binary data');}};
+  app.workspace.getLeaf=()=>leaf;app.metadataCache={getFirstLinkpathDest:()=>image};
+  const map:any={path:'Map.mindmap.md',file:new f.TFile('Map.mindmap.md'),leaf};
+  plugin.mapPreferences.add(image.path);assert.equal(plugin.opensAsMap(image),false);
+  for(const modifiers of [{ctrlKey:false,metaKey:false,button:0},{ctrlKey:true,metaKey:false,button:0},{ctrlKey:false,metaKey:false,button:1}])await plugin.openMapLink('Picture.png',map,modifiers);
+  assert.deepEqual(calls,['Picture.png','Picture.png','Picture.png']);
+  let processes=0;app.vault.process=async()=>{processes++;};
+  await assert.rejects(()=>plugin.write(image,'old','new'));
+  await assert.rejects(()=>plugin.write(image,'same','same'));
+  await assert.rejects(()=>plugin.source(image,0,leaf));
+  await assert.rejects(()=>plugin.openMap(image,leaf));
+  const view=f.views.get('traceview-mindmap-map')!({app}) as any;
+  await assert.rejects(()=>view.setState({file:image.path},{}));
+  assert.equal(processes,0);
+});
