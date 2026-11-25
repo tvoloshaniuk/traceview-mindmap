@@ -371,5 +371,6 @@
   "Embedded note font size (px)": "Tamaño de fuente de notas incrustadas (px)",
   "Leave blank to follow the theme. Changes only embedded notes in maps.": "Déjalo vacío para seguir el tema. Solo cambia las notas incrustadas en mapas.",
   "Default maximum node height (px)": "Altura máxima predeterminada de nodos (px)",
-  "Leave blank for automatic height. Short content shrinks naturally; manual node sizes take precedence.": "Déjalo vacío para altura automática. El contenido corto se ajusta a su altura natural; el tamaño manual tiene prioridad."
+  "Leave blank for automatic height. Short content shrinks naturally; manual node sizes take precedence.": "Déjalo vacío para altura automática. El contenido corto se ajusta a su altura natural; el tamaño manual tiene prioridad.",
+  "Planning list toolbar": "Barra de listas de planificación"
 }

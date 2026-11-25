@@ -773,3 +773,12 @@ test('appearance preferences validate saved values and update only loaded maps',
   assert.equal(refreshes,2);assert.equal(saves,2);
   await plugin.setMapAppearance('nodeMaxHeight',0);assert.equal(plugin.settings.nodeMaxHeight,0);
 });
+
+test('planning toolbar preferences update loaded queues without waking deferred views', async () => {
+  const loaded=await loadBundle({queueToolbarMode:'invalid'}),plugin=loaded.plugin as any,app=loaded.app as any;
+  assert.equal(plugin.settings.queueToolbarMode,'visible');
+  const leaf:any={app};leaf.view=loaded.views.get('traceview-mindmap-queue')!(leaf);leaf.view.toolbar={dataset:{}};
+  app.workspace.getLeavesOfType=()=>[{view:{},loadIfDeferred(){throw Error('Must remain deferred');}},leaf];plugin.saveData=async()=>{};
+  for(const mode of ['hidden','hover','visible']){await plugin.setQueueToolbarMode(mode);assert.equal(leaf.view.toolbar.dataset.mode,mode);}
+  assert.equal(plugin.settings.toolbarMode,'visible');
+});

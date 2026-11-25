@@ -42,8 +42,8 @@ function hasLargeVisibleTree(doc: MapDocument, state?: MapViewState): boolean {
   }
   return false;
 }
-interface Settings extends MapRules { previousPluginId?: string; language: LanguageSetting; nodeEditor: 'native' | 'text'; autoOpen: boolean; rememberLastMode: boolean; autoRestoreLargeMaps: boolean; queueExcludedMaps: string; queueExcludedBranches: string; queueTaskMarker: boolean; queueStepTag: boolean; collapseOnLeft: boolean; arrowAcrossBranches: boolean; toolbarMode: ToolbarMode; showMapPreviews: boolean; collapsePastedBranches: boolean; hotkeys: Record<string, string>; widthMode: WidthMode; embeddedNoteFontSize: number; nodeMaxHeight: number; }
-const DEFAULT_SETTINGS: Settings = { patternMode: 'glob', mapPatterns: '*.mindmap.md\n🎯*.md', language: 'auto', nodeEditor: 'native', autoOpen: false, rememberLastMode: false, autoRestoreLargeMaps: true, queueExcludedMaps: 'архів тижнів\nold', queueExcludedBranches: '🧊\n❌', queueTaskMarker: true, queueStepTag: true, collapseOnLeft: false, arrowAcrossBranches: false, toolbarMode: 'visible', showMapPreviews: true, collapsePastedBranches: true, hotkeys: {}, widthMode: 'fixed', embeddedNoteFontSize: 0, nodeMaxHeight: 0 };
+interface Settings extends MapRules { previousPluginId?: string; language: LanguageSetting; nodeEditor: 'native' | 'text'; autoOpen: boolean; rememberLastMode: boolean; autoRestoreLargeMaps: boolean; queueExcludedMaps: string; queueExcludedBranches: string; queueTaskMarker: boolean; queueStepTag: boolean; collapseOnLeft: boolean; arrowAcrossBranches: boolean; toolbarMode: ToolbarMode; queueToolbarMode: ToolbarMode; showMapPreviews: boolean; collapsePastedBranches: boolean; hotkeys: Record<string, string>; widthMode: WidthMode; embeddedNoteFontSize: number; nodeMaxHeight: number; }
+const DEFAULT_SETTINGS: Settings = { patternMode: 'glob', mapPatterns: '*.mindmap.md\n🎯*.md', language: 'auto', nodeEditor: 'native', autoOpen: false, rememberLastMode: false, autoRestoreLargeMaps: true, queueExcludedMaps: 'архів тижнів\nold', queueExcludedBranches: '🧊\n❌', queueTaskMarker: true, queueStepTag: true, collapseOnLeft: false, arrowAcrossBranches: false, toolbarMode: 'visible', queueToolbarMode: 'visible', showMapPreviews: true, collapsePastedBranches: true, hotkeys: {}, widthMode: 'fixed', embeddedNoteFontSize: 0, nodeMaxHeight: 0 };
 const widthModes = (): [WidthMode, string][] => [['fixed', t("Fixed width")], ['content', t("Fit node content")], ['column', t("Fit visible column")]];
 type ToolbarMode = 'visible' | 'hover' | 'hidden';
 const toolbarModes = (): [ToolbarMode, string][] => [
@@ -100,6 +100,7 @@ export default class TraceViewMindmap extends Plugin {
       if (Array.isArray(paths)) { this.sourcePreferences = new Set(paths.filter(path => typeof path === 'string')); this.rememberSource(); }
     } catch { /* Optional local preferences. */ }
     this.settings.rememberLastMode = saved?.rememberLastMode === true;
+    if (!['visible', 'hover', 'hidden'].includes(this.settings.queueToolbarMode)) this.settings.queueToolbarMode = 'visible';
     try {
       const paths = this.app.loadLocalStorage('traceview-mindmap:map-preferences');
       if (Array.isArray(paths)) this.mapPreferences = new Set(paths.filter(path => typeof path === 'string').slice(-500));
@@ -383,6 +384,7 @@ export default class TraceViewMindmap extends Plugin {
       view.refreshAppearance();
       view.refreshRestoreWait();
     }
+    for (const leaf of this.app.workspace.getLeavesOfType(QUEUE)) if (leaf.view instanceof QueueView) leaf.view.refreshToolbarMode();
     this.refreshQueues();
   }
   mapViews(): MapView[] {
@@ -406,6 +408,11 @@ export default class TraceViewMindmap extends Plugin {
   async setWidthMode(mode: WidthMode): Promise<void> {
     this.settings.widthMode = mode;
     for (const view of this.mapViews()) view.surface?.refreshLayout();
+    await this.saveData(this.settings);
+  }
+  async setQueueToolbarMode(mode: ToolbarMode): Promise<void> {
+    this.settings.queueToolbarMode = mode;
+    for (const leaf of this.app.workspace.getLeavesOfType(QUEUE)) if (leaf.view instanceof QueueView) leaf.view.refreshToolbarMode();
     await this.saveData(this.settings);
   }
   async setToolbarMode(mode: ToolbarMode): Promise<void> {
@@ -1495,11 +1502,17 @@ class QueueView extends ItemView {
   getViewType(): string { return QUEUE; }
   getDisplayText(): string { return t("Steps · Deadlines · QA"); }
   getIcon(): string { return 'list-checks'; }
+  private toolbar?: HTMLDivElement;
+  refreshToolbarMode(): void {
+    if (this.toolbar) this.toolbar.dataset.mode = Platform.isMobile ? 'visible' : this.plugin.settings.queueToolbarMode;
+  }
   async onOpen(): Promise<void> {
     this.closed = false; this.contentEl.empty(); this.contentEl.addClass('tvm-view', 'tvm-queue-view');
-    const toolbar = this.contentEl.createDiv('tvm-toolbar');
-    for (const [value, label] of [['steps', t("Steps")], ['dates', t("Deadlines")], ['qa', t("Open QA")]]) button(toolbar, label, () => { this.mode = value; this.draw(); });
-    this.completedControl = toolbar.createEl('select', { attr: { 'aria-label': t("Completed tasks") } });
+    const toolbar = this.contentEl.createDiv('tvm-toolbar'); this.toolbar = toolbar;
+    const actions = toolbar.createDiv('tvm-actions');
+    this.refreshToolbarMode();
+    for (const [value, label] of [['steps', t("Steps")], ['dates', t("Deadlines")], ['qa', t("Open QA")]]) button(actions, label, () => { this.mode = value; this.draw(); });
+    this.completedControl = actions.createEl('select', { attr: { 'aria-label': t("Completed tasks") } });
     for (const [value, label] of [['hide', t("Hide completed tasks")], ['footer', t("Completed tasks below")], ['inline', t("Completed tasks in place")]]) {
       this.completedControl.createEl('option', { text: label, value });
     }
@@ -1508,16 +1521,16 @@ class QueueView extends ItemView {
       this.completedMode = this.completedControl!.value as typeof this.completedMode;
       this.draw(); this.app.workspace.requestSaveLayout();
     };
-    this.undoButton = iconButton(toolbar, 'undo-2', t("Undo"), () => { void this.history('undo'); });
-    this.redoButton = iconButton(toolbar, 'redo-2', t("Redo"), () => { void this.history('redo'); });
-    button(toolbar, t("Refresh"), () => { this.cache.clear(); void this.reload(); });
-    this.mapFilter = attachMapFilter(toolbar, () => this.queueFiles(), path => {
+    this.undoButton = iconButton(actions, 'undo-2', t("Undo"), () => { void this.history('undo'); });
+    this.redoButton = iconButton(actions, 'redo-2', t("Redo"), () => { void this.history('redo'); });
+    button(actions, t("Refresh"), () => { this.cache.clear(); void this.reload(); });
+    this.mapFilter = attachMapFilter(actions, () => this.queueFiles(), path => {
       try { queueMapMatcher(path); }
       catch (error) { new Notice(message(error)); this.mapFilter?.set(this.filter); return; }
       this.filter = path;
       void this.reload();
     });
-    this.foldControls = toolbar.createDiv('tvm-queue-fold-controls');
+    this.foldControls = actions.createDiv('tvm-queue-fold-controls');
     button(this.foldControls, t("Collapse all"), () => {
       for (const path of this.cache.keys()) if (queueMapMatcher(this.filter)(path)) this.collapsed.add(path);
       this.draw();
@@ -1526,8 +1539,16 @@ class QueueView extends ItemView {
       for (const path of this.cache.keys()) if (!this.filter || path === this.filter) this.collapsed.delete(path);
       this.draw();
     });
-    const search = toolbar.createEl('input', { type: 'search', attr: { 'aria-label': t("Search steps"), placeholder: t("Find…") } });
+    const search = actions.createEl('input', { type: 'search', attr: { 'aria-label': t("Search steps"), placeholder: t("Find…") } });
     search.oninput = () => { this.query = search.value.toLocaleLowerCase(); this.draw(); };
+    if (!Platform.isMobile) {
+      const more = iconButton(toolbar, 'ellipsis', t("Steps · Deadlines · QA"), () => {
+        const menu = new Menu();
+        for (const [mode, label] of toolbarModes()) menu.addItem(item => item.setTitle(label).setChecked(this.plugin.settings.queueToolbarMode === mode)
+          .onClick(() => { void this.plugin.setQueueToolbarMode(mode).catch(error => new Notice(message(error))); }));
+        const rect = more.getBoundingClientRect(); menu.showAtPosition({x: rect.left, y: rect.bottom});
+      });
+    }
     this.host = this.contentEl.createDiv('tvm-panel');
   }
   getState(): Record<string, unknown> { return { filter: this.filter, completedMode: this.completedMode }; }
@@ -1852,6 +1873,10 @@ class SettingsTab extends PluginSettingTab {
       await this.plugin.saveData(this.plugin.settings);
     }));
     this.containerEl.createEl('h3', {text: t("Planning lists")});
+    if (!Platform.isMobile) new Setting(this.containerEl).setName(t("Planning list toolbar")).addDropdown(dropdown => {
+      for (const [mode, label] of toolbarModes()) dropdown.addOption(mode, label);
+      dropdown.setValue(this.plugin.settings.queueToolbarMode).onChange(value => this.plugin.setQueueToolbarMode(value as ToolbarMode));
+    });
     for (const [key, label] of [['queueExcludedMaps', t("Exclude maps from planning")],
       ['queueExcludedBranches', t("Exclude branches from planning")]] as const) {
       new Setting(this.containerEl).setName(label).setDesc(t("One term per line. Leave blank to show all."))

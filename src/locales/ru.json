@@ -371,5 +371,6 @@
   "Embedded note font size (px)": "Размер шрифта вложенных заметок (px)",
   "Leave blank to follow the theme. Changes only embedded notes in maps.": "Оставьте пустым для настройки темы. Меняет только вложенные заметки на картах.",
   "Default maximum node height (px)": "Максимальная высота узла по умолчанию (px)",
-  "Leave blank for automatic height. Short content shrinks naturally; manual node sizes take precedence.": "Оставьте пустым для автоматической высоты. Короткий текст сжимается по содержимому; ручной размер узла имеет приоритет."
+  "Leave blank for automatic height. Short content shrinks naturally; manual node sizes take precedence.": "Оставьте пустым для автоматической высоты. Короткий текст сжимается по содержимому; ручной размер узла имеет приоритет.",
+  "Planning list toolbar": "Панель списков планирования"
 }

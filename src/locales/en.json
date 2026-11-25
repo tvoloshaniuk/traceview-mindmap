@@ -371,5 +371,6 @@
   "Embedded note font size (px)": "Embedded note font size (px)",
   "Leave blank to follow the theme. Changes only embedded notes in maps.": "Leave blank to follow the theme. Changes only embedded notes in maps.",
   "Default maximum node height (px)": "Default maximum node height (px)",
-  "Leave blank for automatic height. Short content shrinks naturally; manual node sizes take precedence.": "Leave blank for automatic height. Short content shrinks naturally; manual node sizes take precedence."
+  "Leave blank for automatic height. Short content shrinks naturally; manual node sizes take precedence.": "Leave blank for automatic height. Short content shrinks naturally; manual node sizes take precedence.",
+  "Planning list toolbar": "Planning list toolbar"
 }

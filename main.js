@@ -730,7 +730,8 @@ var en_default = {
   "Embedded note font size (px)": "Embedded note font size (px)",
   "Leave blank to follow the theme. Changes only embedded notes in maps.": "Leave blank to follow the theme. Changes only embedded notes in maps.",
   "Default maximum node height (px)": "Default maximum node height (px)",
-  "Leave blank for automatic height. Short content shrinks naturally; manual node sizes take precedence.": "Leave blank for automatic height. Short content shrinks naturally; manual node sizes take precedence."
+  "Leave blank for automatic height. Short content shrinks naturally; manual node sizes take precedence.": "Leave blank for automatic height. Short content shrinks naturally; manual node sizes take precedence.",
+  "Planning list toolbar": "Planning list toolbar"
 };
 
 // src/locales/uk.json
@@ -1107,7 +1108,8 @@ var uk_default = {
   "Embedded note font size (px)": "\u0420\u043E\u0437\u043C\u0456\u0440 \u0448\u0440\u0438\u0444\u0442\u0443 \u0432\u043A\u043B\u0430\u0434\u0435\u043D\u0438\u0445 \u043D\u043E\u0442\u0430\u0442\u043E\u043A (px)",
   "Leave blank to follow the theme. Changes only embedded notes in maps.": "\u0417\u0430\u043B\u0438\u0448\u0442\u0435 \u043F\u043E\u0440\u043E\u0436\u043D\u0456\u043C, \u0449\u043E\u0431 \u0432\u0438\u043A\u043E\u0440\u0438\u0441\u0442\u043E\u0432\u0443\u0432\u0430\u0442\u0438 \u0442\u0435\u043C\u0443. \u0417\u043C\u0456\u043D\u044E\u0454 \u043B\u0438\u0448\u0435 \u0432\u043A\u043B\u0430\u0434\u0435\u043D\u0456 \u043D\u043E\u0442\u0430\u0442\u043A\u0438 \u043D\u0430 \u043A\u0430\u0440\u0442\u0430\u0445.",
   "Default maximum node height (px)": "\u0422\u0438\u043F\u043E\u0432\u0430 \u043C\u0430\u043A\u0441\u0438\u043C\u0430\u043B\u044C\u043D\u0430 \u0432\u0438\u0441\u043E\u0442\u0430 \u043D\u043E\u0434\u0438 (px)",
-  "Leave blank for automatic height. Short content shrinks naturally; manual node sizes take precedence.": "\u0417\u0430\u043B\u0438\u0448\u0442\u0435 \u043F\u043E\u0440\u043E\u0436\u043D\u0456\u043C \u0434\u043B\u044F \u0430\u0432\u0442\u043E\u043C\u0430\u0442\u0438\u0447\u043D\u043E\u0457 \u0432\u0438\u0441\u043E\u0442\u0438. \u041A\u043E\u0440\u043E\u0442\u043A\u0438\u0439 \u0442\u0435\u043A\u0441\u0442 \u0441\u0442\u0438\u0441\u043A\u0430\u0454\u0442\u044C\u0441\u044F \u043F\u0456\u0434 \u0432\u043C\u0456\u0441\u0442; \u0440\u0443\u0447\u043D\u0438\u0439 \u0440\u043E\u0437\u043C\u0456\u0440 \u043D\u043E\u0434\u0438 \u043C\u0430\u0454 \u043F\u0440\u0456\u043E\u0440\u0438\u0442\u0435\u0442."
+  "Leave blank for automatic height. Short content shrinks naturally; manual node sizes take precedence.": "\u0417\u0430\u043B\u0438\u0448\u0442\u0435 \u043F\u043E\u0440\u043E\u0436\u043D\u0456\u043C \u0434\u043B\u044F \u0430\u0432\u0442\u043E\u043C\u0430\u0442\u0438\u0447\u043D\u043E\u0457 \u0432\u0438\u0441\u043E\u0442\u0438. \u041A\u043E\u0440\u043E\u0442\u043A\u0438\u0439 \u0442\u0435\u043A\u0441\u0442 \u0441\u0442\u0438\u0441\u043A\u0430\u0454\u0442\u044C\u0441\u044F \u043F\u0456\u0434 \u0432\u043C\u0456\u0441\u0442; \u0440\u0443\u0447\u043D\u0438\u0439 \u0440\u043E\u0437\u043C\u0456\u0440 \u043D\u043E\u0434\u0438 \u043C\u0430\u0454 \u043F\u0440\u0456\u043E\u0440\u0438\u0442\u0435\u0442.",
+  "Planning list toolbar": "\u041F\u0430\u043D\u0435\u043B\u044C \u0441\u043F\u0438\u0441\u043A\u0456\u0432 \u043F\u043B\u0430\u043D\u0443\u0432\u0430\u043D\u043D\u044F"
 };
 
 // src/locales/pl.json
@@ -1484,7 +1486,8 @@ var pl_default = {
   "Embedded note font size (px)": "Rozmiar czcionki osadzonych notatek (px)",
   "Leave blank to follow the theme. Changes only embedded notes in maps.": "Pozostaw puste, aby u\u017Cy\u0107 motywu. Zmienia tylko osadzone notatki na mapach.",
   "Default maximum node height (px)": "Domy\u015Blna maksymalna wysoko\u015B\u0107 w\u0119z\u0142a (px)",
-  "Leave blank for automatic height. Short content shrinks naturally; manual node sizes take precedence.": "Pozostaw puste dla automatycznej wysoko\u015Bci. Kr\xF3tka tre\u015B\u0107 zajmuje tylko potrzebne miejsce; r\u0119czny rozmiar ma pierwsze\u0144stwo."
+  "Leave blank for automatic height. Short content shrinks naturally; manual node sizes take precedence.": "Pozostaw puste dla automatycznej wysoko\u015Bci. Kr\xF3tka tre\u015B\u0107 zajmuje tylko potrzebne miejsce; r\u0119czny rozmiar ma pierwsze\u0144stwo.",
+  "Planning list toolbar": "Pasek list planowania"
 };
 
 // src/locales/de.json
@@ -1861,7 +1864,8 @@ var de_default = {
   "Embedded note font size (px)": "Schriftgr\xF6\xDFe eingebetteter Notizen (px)",
   "Leave blank to follow the theme. Changes only embedded notes in maps.": "Leer lassen, um dem Design zu folgen. \xC4ndert nur eingebettete Notizen in Karten.",
   "Default maximum node height (px)": "Standardm\xE4\xDFige maximale Knotenh\xF6he (px)",
-  "Leave blank for automatic height. Short content shrinks naturally; manual node sizes take precedence.": "Leer lassen f\xFCr automatische H\xF6he. Kurzer Inhalt schrumpft auf seine nat\xFCrliche H\xF6he; manuelle Knotengr\xF6\xDFen haben Vorrang."
+  "Leave blank for automatic height. Short content shrinks naturally; manual node sizes take precedence.": "Leer lassen f\xFCr automatische H\xF6he. Kurzer Inhalt schrumpft auf seine nat\xFCrliche H\xF6he; manuelle Knotengr\xF6\xDFen haben Vorrang.",
+  "Planning list toolbar": "Symbolleiste der Planungslisten"
 };
 
 // src/locales/es.json
@@ -2238,7 +2242,8 @@ var es_default = {
   "Embedded note font size (px)": "Tama\xF1o de fuente de notas incrustadas (px)",
   "Leave blank to follow the theme. Changes only embedded notes in maps.": "D\xE9jalo vac\xEDo para seguir el tema. Solo cambia las notas incrustadas en mapas.",
   "Default maximum node height (px)": "Altura m\xE1xima predeterminada de nodos (px)",
-  "Leave blank for automatic height. Short content shrinks naturally; manual node sizes take precedence.": "D\xE9jalo vac\xEDo para altura autom\xE1tica. El contenido corto se ajusta a su altura natural; el tama\xF1o manual tiene prioridad."
+  "Leave blank for automatic height. Short content shrinks naturally; manual node sizes take precedence.": "D\xE9jalo vac\xEDo para altura autom\xE1tica. El contenido corto se ajusta a su altura natural; el tama\xF1o manual tiene prioridad.",
+  "Planning list toolbar": "Barra de listas de planificaci\xF3n"
 };
 
 // src/locales/fr.json
@@ -2615,7 +2620,8 @@ var fr_default = {
   "Embedded note font size (px)": "Taille de police des notes int\xE9gr\xE9es (px)",
   "Leave blank to follow the theme. Changes only embedded notes in maps.": "Laissez vide pour suivre le th\xE8me. Ne modifie que les notes int\xE9gr\xE9es aux cartes.",
   "Default maximum node height (px)": "Hauteur maximale des n\u0153uds par d\xE9faut (px)",
-  "Leave blank for automatic height. Short content shrinks naturally; manual node sizes take precedence.": "Laissez vide pour une hauteur automatique. Le contenu court conserve sa hauteur naturelle ; les tailles manuelles sont prioritaires."
+  "Leave blank for automatic height. Short content shrinks naturally; manual node sizes take precedence.": "Laissez vide pour une hauteur automatique. Le contenu court conserve sa hauteur naturelle ; les tailles manuelles sont prioritaires.",
+  "Planning list toolbar": "Barre d\u2019outils des listes de planification"
 };
 
 // src/locales/pt-BR.json
@@ -2992,7 +2998,8 @@ var pt_BR_default = {
   "Embedded note font size (px)": "Tamanho da fonte das notas incorporadas (px)",
   "Leave blank to follow the theme. Changes only embedded notes in maps.": "Deixe vazio para seguir o tema. Altera apenas as notas incorporadas nos mapas.",
   "Default maximum node height (px)": "Altura m\xE1xima padr\xE3o dos n\xF3s (px)",
-  "Leave blank for automatic height. Short content shrinks naturally; manual node sizes take precedence.": "Deixe vazio para altura autom\xE1tica. Conte\xFAdo curto mant\xE9m a altura natural; tamanhos manuais t\xEAm prioridade."
+  "Leave blank for automatic height. Short content shrinks naturally; manual node sizes take precedence.": "Deixe vazio para altura autom\xE1tica. Conte\xFAdo curto mant\xE9m a altura natural; tamanhos manuais t\xEAm prioridade.",
+  "Planning list toolbar": "Barra das listas de planejamento"
 };
 
 // src/locales/zh-CN.json
@@ -3369,7 +3376,8 @@ var zh_CN_default = {
   "Embedded note font size (px)": "\u5D4C\u5165\u7B14\u8BB0\u5B57\u53F7 (px)",
   "Leave blank to follow the theme. Changes only embedded notes in maps.": "\u7559\u7A7A\u4EE5\u8DDF\u968F\u4E3B\u9898\u3002\u4EC5\u66F4\u6539\u5730\u56FE\u4E2D\u7684\u5D4C\u5165\u7B14\u8BB0\u3002",
   "Default maximum node height (px)": "\u9ED8\u8BA4\u8282\u70B9\u6700\u5927\u9AD8\u5EA6 (px)",
-  "Leave blank for automatic height. Short content shrinks naturally; manual node sizes take precedence.": "\u7559\u7A7A\u4EE5\u81EA\u52A8\u8C03\u6574\u9AD8\u5EA6\u3002\u77ED\u5185\u5BB9\u4FDD\u6301\u81EA\u7136\u9AD8\u5EA6\uFF1B\u624B\u52A8\u8282\u70B9\u5927\u5C0F\u4F18\u5148\u3002"
+  "Leave blank for automatic height. Short content shrinks naturally; manual node sizes take precedence.": "\u7559\u7A7A\u4EE5\u81EA\u52A8\u8C03\u6574\u9AD8\u5EA6\u3002\u77ED\u5185\u5BB9\u4FDD\u6301\u81EA\u7136\u9AD8\u5EA6\uFF1B\u624B\u52A8\u8282\u70B9\u5927\u5C0F\u4F18\u5148\u3002",
+  "Planning list toolbar": "\u8BA1\u5212\u5217\u8868\u5DE5\u5177\u680F"
 };
 
 // src/locales/ja.json
@@ -3746,7 +3754,8 @@ var ja_default = {
   "Embedded note font size (px)": "\u57CB\u3081\u8FBC\u307F\u30CE\u30FC\u30C8\u306E\u6587\u5B57\u30B5\u30A4\u30BA (px)",
   "Leave blank to follow the theme. Changes only embedded notes in maps.": "\u7A7A\u6B04\u3067\u30C6\u30FC\u30DE\u306E\u8A2D\u5B9A\u3092\u4F7F\u7528\u3057\u307E\u3059\u3002\u30DE\u30C3\u30D7\u5185\u306E\u57CB\u3081\u8FBC\u307F\u30CE\u30FC\u30C8\u306E\u307F\u306B\u9069\u7528\u3055\u308C\u307E\u3059\u3002",
   "Default maximum node height (px)": "\u30CE\u30FC\u30C9\u306E\u65E2\u5B9A\u306E\u6700\u5927\u9AD8\u3055 (px)",
-  "Leave blank for automatic height. Short content shrinks naturally; manual node sizes take precedence.": "\u7A7A\u6B04\u3067\u9AD8\u3055\u3092\u81EA\u52D5\u8ABF\u6574\u3057\u307E\u3059\u3002\u77ED\u3044\u5185\u5BB9\u306F\u81EA\u7136\u306A\u9AD8\u3055\u306B\u306A\u308A\u3001\u624B\u52D5\u306E\u30CE\u30FC\u30C9\u30B5\u30A4\u30BA\u304C\u512A\u5148\u3055\u308C\u307E\u3059\u3002"
+  "Leave blank for automatic height. Short content shrinks naturally; manual node sizes take precedence.": "\u7A7A\u6B04\u3067\u9AD8\u3055\u3092\u81EA\u52D5\u8ABF\u6574\u3057\u307E\u3059\u3002\u77ED\u3044\u5185\u5BB9\u306F\u81EA\u7136\u306A\u9AD8\u3055\u306B\u306A\u308A\u3001\u624B\u52D5\u306E\u30CE\u30FC\u30C9\u30B5\u30A4\u30BA\u304C\u512A\u5148\u3055\u308C\u307E\u3059\u3002",
+  "Planning list toolbar": "\u8A08\u753B\u30EA\u30B9\u30C8\u306E\u30C4\u30FC\u30EB\u30D0\u30FC"
 };
 
 // src/locales/ko.json
@@ -4123,7 +4132,8 @@ var ko_default = {
   "Embedded note font size (px)": "\uC784\uBCA0\uB4DC \uB178\uD2B8 \uAE00\uAF34 \uD06C\uAE30 (px)",
   "Leave blank to follow the theme. Changes only embedded notes in maps.": "\uBE44\uC6CC \uB450\uBA74 \uD14C\uB9C8 \uC124\uC815\uC744 \uB530\uB985\uB2C8\uB2E4. \uB9F5\uC758 \uC784\uBCA0\uB4DC \uB178\uD2B8\uC5D0\uB9CC \uC801\uC6A9\uB429\uB2C8\uB2E4.",
   "Default maximum node height (px)": "\uAE30\uBCF8 \uB178\uB4DC \uCD5C\uB300 \uB192\uC774 (px)",
-  "Leave blank for automatic height. Short content shrinks naturally; manual node sizes take precedence.": "\uBE44\uC6CC \uB450\uBA74 \uB192\uC774\uB97C \uC790\uB3D9 \uC870\uC808\uD569\uB2C8\uB2E4. \uC9E7\uC740 \uB0B4\uC6A9\uC740 \uC790\uC5F0\uC2A4\uB7EC\uC6B4 \uB192\uC774\uB97C \uC0AC\uC6A9\uD558\uBA70 \uC218\uB3D9 \uD06C\uAE30\uAC00 \uC6B0\uC120\uD569\uB2C8\uB2E4."
+  "Leave blank for automatic height. Short content shrinks naturally; manual node sizes take precedence.": "\uBE44\uC6CC \uB450\uBA74 \uB192\uC774\uB97C \uC790\uB3D9 \uC870\uC808\uD569\uB2C8\uB2E4. \uC9E7\uC740 \uB0B4\uC6A9\uC740 \uC790\uC5F0\uC2A4\uB7EC\uC6B4 \uB192\uC774\uB97C \uC0AC\uC6A9\uD558\uBA70 \uC218\uB3D9 \uD06C\uAE30\uAC00 \uC6B0\uC120\uD569\uB2C8\uB2E4.",
+  "Planning list toolbar": "\uACC4\uD68D \uBAA9\uB85D \uB3C4\uAD6C \uBAA8\uC74C"
 };
 
 // src/locales/ru.json
@@ -4500,7 +4510,8 @@ var ru_default = {
   "Embedded note font size (px)": "\u0420\u0430\u0437\u043C\u0435\u0440 \u0448\u0440\u0438\u0444\u0442\u0430 \u0432\u043B\u043E\u0436\u0435\u043D\u043D\u044B\u0445 \u0437\u0430\u043C\u0435\u0442\u043E\u043A (px)",
   "Leave blank to follow the theme. Changes only embedded notes in maps.": "\u041E\u0441\u0442\u0430\u0432\u044C\u0442\u0435 \u043F\u0443\u0441\u0442\u044B\u043C \u0434\u043B\u044F \u043D\u0430\u0441\u0442\u0440\u043E\u0439\u043A\u0438 \u0442\u0435\u043C\u044B. \u041C\u0435\u043D\u044F\u0435\u0442 \u0442\u043E\u043B\u044C\u043A\u043E \u0432\u043B\u043E\u0436\u0435\u043D\u043D\u044B\u0435 \u0437\u0430\u043C\u0435\u0442\u043A\u0438 \u043D\u0430 \u043A\u0430\u0440\u0442\u0430\u0445.",
   "Default maximum node height (px)": "\u041C\u0430\u043A\u0441\u0438\u043C\u0430\u043B\u044C\u043D\u0430\u044F \u0432\u044B\u0441\u043E\u0442\u0430 \u0443\u0437\u043B\u0430 \u043F\u043E \u0443\u043C\u043E\u043B\u0447\u0430\u043D\u0438\u044E (px)",
-  "Leave blank for automatic height. Short content shrinks naturally; manual node sizes take precedence.": "\u041E\u0441\u0442\u0430\u0432\u044C\u0442\u0435 \u043F\u0443\u0441\u0442\u044B\u043C \u0434\u043B\u044F \u0430\u0432\u0442\u043E\u043C\u0430\u0442\u0438\u0447\u0435\u0441\u043A\u043E\u0439 \u0432\u044B\u0441\u043E\u0442\u044B. \u041A\u043E\u0440\u043E\u0442\u043A\u0438\u0439 \u0442\u0435\u043A\u0441\u0442 \u0441\u0436\u0438\u043C\u0430\u0435\u0442\u0441\u044F \u043F\u043E \u0441\u043E\u0434\u0435\u0440\u0436\u0438\u043C\u043E\u043C\u0443; \u0440\u0443\u0447\u043D\u043E\u0439 \u0440\u0430\u0437\u043C\u0435\u0440 \u0443\u0437\u043B\u0430 \u0438\u043C\u0435\u0435\u0442 \u043F\u0440\u0438\u043E\u0440\u0438\u0442\u0435\u0442."
+  "Leave blank for automatic height. Short content shrinks naturally; manual node sizes take precedence.": "\u041E\u0441\u0442\u0430\u0432\u044C\u0442\u0435 \u043F\u0443\u0441\u0442\u044B\u043C \u0434\u043B\u044F \u0430\u0432\u0442\u043E\u043C\u0430\u0442\u0438\u0447\u0435\u0441\u043A\u043E\u0439 \u0432\u044B\u0441\u043E\u0442\u044B. \u041A\u043E\u0440\u043E\u0442\u043A\u0438\u0439 \u0442\u0435\u043A\u0441\u0442 \u0441\u0436\u0438\u043C\u0430\u0435\u0442\u0441\u044F \u043F\u043E \u0441\u043E\u0434\u0435\u0440\u0436\u0438\u043C\u043E\u043C\u0443; \u0440\u0443\u0447\u043D\u043E\u0439 \u0440\u0430\u0437\u043C\u0435\u0440 \u0443\u0437\u043B\u0430 \u0438\u043C\u0435\u0435\u0442 \u043F\u0440\u0438\u043E\u0440\u0438\u0442\u0435\u0442.",
+  "Planning list toolbar": "\u041F\u0430\u043D\u0435\u043B\u044C \u0441\u043F\u0438\u0441\u043A\u043E\u0432 \u043F\u043B\u0430\u043D\u0438\u0440\u043E\u0432\u0430\u043D\u0438\u044F"
 };
 
 // src/i18n.ts
@@ -9791,7 +9802,7 @@ function hasLargeVisibleTree(doc, state) {
   }
   return false;
 }
-var DEFAULT_SETTINGS = { patternMode: "glob", mapPatterns: "*.mindmap.md\n\u{1F3AF}*.md", language: "auto", nodeEditor: "native", autoOpen: false, rememberLastMode: false, autoRestoreLargeMaps: true, queueExcludedMaps: "\u0430\u0440\u0445\u0456\u0432 \u0442\u0438\u0436\u043D\u0456\u0432\nold", queueExcludedBranches: "\u{1F9CA}\n\u274C", queueTaskMarker: true, queueStepTag: true, collapseOnLeft: false, arrowAcrossBranches: false, toolbarMode: "visible", showMapPreviews: true, collapsePastedBranches: true, hotkeys: {}, widthMode: "fixed", embeddedNoteFontSize: 0, nodeMaxHeight: 0 };
+var DEFAULT_SETTINGS = { patternMode: "glob", mapPatterns: "*.mindmap.md\n\u{1F3AF}*.md", language: "auto", nodeEditor: "native", autoOpen: false, rememberLastMode: false, autoRestoreLargeMaps: true, queueExcludedMaps: "\u0430\u0440\u0445\u0456\u0432 \u0442\u0438\u0436\u043D\u0456\u0432\nold", queueExcludedBranches: "\u{1F9CA}\n\u274C", queueTaskMarker: true, queueStepTag: true, collapseOnLeft: false, arrowAcrossBranches: false, toolbarMode: "visible", queueToolbarMode: "visible", showMapPreviews: true, collapsePastedBranches: true, hotkeys: {}, widthMode: "fixed", embeddedNoteFontSize: 0, nodeMaxHeight: 0 };
 var widthModes = () => [["fixed", t("Fixed width")], ["content", t("Fit node content")], ["column", t("Fit visible column")]];
 var toolbarModes = () => [
   ["visible", t("Always show toolbar")],
@@ -9861,6 +9872,7 @@ var TraceViewMindmap = class extends import_obsidian5.Plugin {
     } catch {
     }
     this.settings.rememberLastMode = saved?.rememberLastMode === true;
+    if (!["visible", "hover", "hidden"].includes(this.settings.queueToolbarMode)) this.settings.queueToolbarMode = "visible";
     try {
       const paths = this.app.loadLocalStorage("traceview-mindmap:map-preferences");
       if (Array.isArray(paths)) this.mapPreferences = new Set(paths.filter((path) => typeof path === "string").slice(-500));
@@ -10209,6 +10221,7 @@ var TraceViewMindmap = class extends import_obsidian5.Plugin {
       view.refreshAppearance();
       view.refreshRestoreWait();
     }
+    for (const leaf of this.app.workspace.getLeavesOfType(QUEUE)) if (leaf.view instanceof QueueView) leaf.view.refreshToolbarMode();
     this.refreshQueues();
   }
   mapViews() {
@@ -10232,6 +10245,11 @@ var TraceViewMindmap = class extends import_obsidian5.Plugin {
   async setWidthMode(mode) {
     this.settings.widthMode = mode;
     for (const view of this.mapViews()) view.surface?.refreshLayout();
+    await this.saveData(this.settings);
+  }
+  async setQueueToolbarMode(mode) {
+    this.settings.queueToolbarMode = mode;
+    for (const leaf of this.app.workspace.getLeavesOfType(QUEUE)) if (leaf.view instanceof QueueView) leaf.view.refreshToolbarMode();
     await this.saveData(this.settings);
   }
   async setToolbarMode(mode) {
@@ -11563,16 +11581,22 @@ var QueueView = class extends import_obsidian5.ItemView {
   getIcon() {
     return "list-checks";
   }
+  refreshToolbarMode() {
+    if (this.toolbar) this.toolbar.dataset.mode = import_obsidian5.Platform.isMobile ? "visible" : this.plugin.settings.queueToolbarMode;
+  }
   async onOpen() {
     this.closed = false;
     this.contentEl.empty();
     this.contentEl.addClass("tvm-view", "tvm-queue-view");
     const toolbar = this.contentEl.createDiv("tvm-toolbar");
-    for (const [value, label2] of [["steps", t("Steps")], ["dates", t("Deadlines")], ["qa", t("Open QA")]]) button(toolbar, label2, () => {
+    this.toolbar = toolbar;
+    const actions = toolbar.createDiv("tvm-actions");
+    this.refreshToolbarMode();
+    for (const [value, label2] of [["steps", t("Steps")], ["dates", t("Deadlines")], ["qa", t("Open QA")]]) button(actions, label2, () => {
       this.mode = value;
       this.draw();
     });
-    this.completedControl = toolbar.createEl("select", { attr: { "aria-label": t("Completed tasks") } });
+    this.completedControl = actions.createEl("select", { attr: { "aria-label": t("Completed tasks") } });
     for (const [value, label2] of [["hide", t("Hide completed tasks")], ["footer", t("Completed tasks below")], ["inline", t("Completed tasks in place")]]) {
       this.completedControl.createEl("option", { text: label2, value });
     }
@@ -11582,17 +11606,17 @@ var QueueView = class extends import_obsidian5.ItemView {
       this.draw();
       this.app.workspace.requestSaveLayout();
     };
-    this.undoButton = iconButton(toolbar, "undo-2", t("Undo"), () => {
+    this.undoButton = iconButton(actions, "undo-2", t("Undo"), () => {
       void this.history("undo");
     });
-    this.redoButton = iconButton(toolbar, "redo-2", t("Redo"), () => {
+    this.redoButton = iconButton(actions, "redo-2", t("Redo"), () => {
       void this.history("redo");
     });
-    button(toolbar, t("Refresh"), () => {
+    button(actions, t("Refresh"), () => {
       this.cache.clear();
       void this.reload();
     });
-    this.mapFilter = attachMapFilter(toolbar, () => this.queueFiles(), (path) => {
+    this.mapFilter = attachMapFilter(actions, () => this.queueFiles(), (path) => {
       try {
         queueMapMatcher(path);
       } catch (error) {
@@ -11603,7 +11627,7 @@ var QueueView = class extends import_obsidian5.ItemView {
       this.filter = path;
       void this.reload();
     });
-    this.foldControls = toolbar.createDiv("tvm-queue-fold-controls");
+    this.foldControls = actions.createDiv("tvm-queue-fold-controls");
     button(this.foldControls, t("Collapse all"), () => {
       for (const path of this.cache.keys()) if (queueMapMatcher(this.filter)(path)) this.collapsed.add(path);
       this.draw();
@@ -11612,11 +11636,21 @@ var QueueView = class extends import_obsidian5.ItemView {
       for (const path of this.cache.keys()) if (!this.filter || path === this.filter) this.collapsed.delete(path);
       this.draw();
     });
-    const search = toolbar.createEl("input", { type: "search", attr: { "aria-label": t("Search steps"), placeholder: t("Find\u2026") } });
+    const search = actions.createEl("input", { type: "search", attr: { "aria-label": t("Search steps"), placeholder: t("Find\u2026") } });
     search.oninput = () => {
       this.query = search.value.toLocaleLowerCase();
       this.draw();
     };
+    if (!import_obsidian5.Platform.isMobile) {
+      const more = iconButton(toolbar, "ellipsis", t("Steps \xB7 Deadlines \xB7 QA"), () => {
+        const menu = new import_obsidian5.Menu();
+        for (const [mode, label2] of toolbarModes()) menu.addItem((item) => item.setTitle(label2).setChecked(this.plugin.settings.queueToolbarMode === mode).onClick(() => {
+          void this.plugin.setQueueToolbarMode(mode).catch((error) => new import_obsidian5.Notice(message(error)));
+        }));
+        const rect = more.getBoundingClientRect();
+        menu.showAtPosition({ x: rect.left, y: rect.bottom });
+      });
+    }
     this.host = this.contentEl.createDiv("tvm-panel");
   }
   getState() {
@@ -12028,6 +12062,10 @@ var SettingsTab = class extends import_obsidian5.PluginSettingTab {
       await this.plugin.saveData(this.plugin.settings);
     }));
     this.containerEl.createEl("h3", { text: t("Planning lists") });
+    if (!import_obsidian5.Platform.isMobile) new import_obsidian5.Setting(this.containerEl).setName(t("Planning list toolbar")).addDropdown((dropdown) => {
+      for (const [mode, label2] of toolbarModes()) dropdown.addOption(mode, label2);
+      dropdown.setValue(this.plugin.settings.queueToolbarMode).onChange((value) => this.plugin.setQueueToolbarMode(value));
+    });
     for (const [key, label2] of [
       ["queueExcludedMaps", t("Exclude maps from planning")],
       ["queueExcludedBranches", t("Exclude branches from planning")]

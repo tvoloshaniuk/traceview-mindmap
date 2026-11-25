@@ -371,5 +371,6 @@
   "Embedded note font size (px)": "Taille de police des notes intégrées (px)",
   "Leave blank to follow the theme. Changes only embedded notes in maps.": "Laissez vide pour suivre le thème. Ne modifie que les notes intégrées aux cartes.",
   "Default maximum node height (px)": "Hauteur maximale des nœuds par défaut (px)",
-  "Leave blank for automatic height. Short content shrinks naturally; manual node sizes take precedence.": "Laissez vide pour une hauteur automatique. Le contenu court conserve sa hauteur naturelle ; les tailles manuelles sont prioritaires."
+  "Leave blank for automatic height. Short content shrinks naturally; manual node sizes take precedence.": "Laissez vide pour une hauteur automatique. Le contenu court conserve sa hauteur naturelle ; les tailles manuelles sont prioritaires.",
+  "Planning list toolbar": "Barre d’outils des listes de planification"
 }

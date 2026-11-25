@@ -371,5 +371,6 @@
   "Embedded note font size (px)": "임베드 노트 글꼴 크기 (px)",
   "Leave blank to follow the theme. Changes only embedded notes in maps.": "비워 두면 테마 설정을 따릅니다. 맵의 임베드 노트에만 적용됩니다.",
   "Default maximum node height (px)": "기본 노드 최대 높이 (px)",
-  "Leave blank for automatic height. Short content shrinks naturally; manual node sizes take precedence.": "비워 두면 높이를 자동 조절합니다. 짧은 내용은 자연스러운 높이를 사용하며 수동 크기가 우선합니다."
+  "Leave blank for automatic height. Short content shrinks naturally; manual node sizes take precedence.": "비워 두면 높이를 자동 조절합니다. 짧은 내용은 자연스러운 높이를 사용하며 수동 크기가 우선합니다.",
+  "Planning list toolbar": "계획 목록 도구 모음"
 }

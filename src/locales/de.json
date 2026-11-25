@@ -371,5 +371,6 @@
   "Embedded note font size (px)": "Schriftgröße eingebetteter Notizen (px)",
   "Leave blank to follow the theme. Changes only embedded notes in maps.": "Leer lassen, um dem Design zu folgen. Ändert nur eingebettete Notizen in Karten.",
   "Default maximum node height (px)": "Standardmäßige maximale Knotenhöhe (px)",
-  "Leave blank for automatic height. Short content shrinks naturally; manual node sizes take precedence.": "Leer lassen für automatische Höhe. Kurzer Inhalt schrumpft auf seine natürliche Höhe; manuelle Knotengrößen haben Vorrang."
+  "Leave blank for automatic height. Short content shrinks naturally; manual node sizes take precedence.": "Leer lassen für automatische Höhe. Kurzer Inhalt schrumpft auf seine natürliche Höhe; manuelle Knotengrößen haben Vorrang.",
+  "Planning list toolbar": "Symbolleiste der Planungslisten"
 }

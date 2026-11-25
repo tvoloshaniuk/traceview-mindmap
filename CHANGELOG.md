@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.0.44
+
+### Added
+
+- Configure the planning-list toolbar independently: always visible, visible on hover/focus, or hidden. A persistent menu button restores access to its display modes.
+- Apply planning-toolbar preferences immediately to loaded list views without loading deferred tabs. Mobile retains its visible controls.
+
 ## 1.0.43
 
 ### Changed

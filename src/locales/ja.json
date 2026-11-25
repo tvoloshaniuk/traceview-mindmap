@@ -371,5 +371,6 @@
   "Embedded note font size (px)": "埋め込みノートの文字サイズ (px)",
   "Leave blank to follow the theme. Changes only embedded notes in maps.": "空欄でテーマの設定を使用します。マップ内の埋め込みノートのみに適用されます。",
   "Default maximum node height (px)": "ノードの既定の最大高さ (px)",
-  "Leave blank for automatic height. Short content shrinks naturally; manual node sizes take precedence.": "空欄で高さを自動調整します。短い内容は自然な高さになり、手動のノードサイズが優先されます。"
+  "Leave blank for automatic height. Short content shrinks naturally; manual node sizes take precedence.": "空欄で高さを自動調整します。短い内容は自然な高さになり、手動のノードサイズが優先されます。",
+  "Planning list toolbar": "計画リストのツールバー"
 }

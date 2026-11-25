@@ -371,5 +371,6 @@
   "Embedded note font size (px)": "Розмір шрифту вкладених нотаток (px)",
   "Leave blank to follow the theme. Changes only embedded notes in maps.": "Залиште порожнім, щоб використовувати тему. Змінює лише вкладені нотатки на картах.",
   "Default maximum node height (px)": "Типова максимальна висота ноди (px)",
-  "Leave blank for automatic height. Short content shrinks naturally; manual node sizes take precedence.": "Залиште порожнім для автоматичної висоти. Короткий текст стискається під вміст; ручний розмір ноди має пріоритет."
+  "Leave blank for automatic height. Short content shrinks naturally; manual node sizes take precedence.": "Залиште порожнім для автоматичної висоти. Короткий текст стискається під вміст; ручний розмір ноди має пріоритет.",
+  "Planning list toolbar": "Панель списків планування"
 }

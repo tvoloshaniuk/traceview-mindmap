@@ -130,14 +130,14 @@
   z-index: 2;
 }
 .tvm-search-match { background: color-mix(in srgb, var(--interactive-accent, #705dcf) 30%, var(--background-primary, #fff)); color: var(--text-normal, #27272a); }
-.tvm-map-view { position: relative; }
-.tvm-map-view > .tvm-toolbar[data-mode="hover"],
-.tvm-map-view > .tvm-toolbar[data-mode="hidden"] { position: absolute; inset: 0 0 auto; z-index: 10; background: transparent; border-color: transparent; }
-.tvm-map-view > .tvm-toolbar[data-mode="hover"]:is(:hover, :focus-within) { background: var(--background-primary); }
-.tvm-map-view > .tvm-toolbar[data-mode="hover"]:not(:hover):not(:focus-within) > .tvm-actions,
-.tvm-map-view > .tvm-toolbar[data-mode="hidden"] > .tvm-actions { visibility: hidden; }
-.tvm-map-view > .tvm-toolbar[data-mode="hidden"] { pointer-events: none; }
-.tvm-map-view > .tvm-toolbar[data-mode="hidden"] > button { pointer-events: auto; }
+.tvm-map-view, .tvm-queue-view { position: relative; }
+:is(.tvm-map-view, .tvm-queue-view) > .tvm-toolbar[data-mode="hover"],
+:is(.tvm-map-view, .tvm-queue-view) > .tvm-toolbar[data-mode="hidden"] { position: absolute; inset: 0 0 auto; z-index: 10; background: transparent; border-color: transparent; }
+:is(.tvm-map-view, .tvm-queue-view) > .tvm-toolbar[data-mode="hover"]:is(:hover, :focus-within) { background: var(--background-primary); }
+:is(.tvm-map-view, .tvm-queue-view) > .tvm-toolbar[data-mode="hover"]:not(:hover):not(:focus-within) > .tvm-actions,
+:is(.tvm-map-view, .tvm-queue-view) > .tvm-toolbar[data-mode="hidden"] > .tvm-actions { visibility: hidden; }
+:is(.tvm-map-view, .tvm-queue-view) > .tvm-toolbar[data-mode="hidden"] { pointer-events: none; }
+:is(.tvm-map-view, .tvm-queue-view) > .tvm-toolbar[data-mode="hidden"] > button { pointer-events: auto; }
 .tvm-node-content mark[data-tvm-highlight] { color: var(--text-normal); background: color-mix(in srgb, var(--tvm-mark-color) 35%, var(--background-primary)); }
 .tvm-node-content mark[data-tvm-highlight="red"] { --tvm-mark-color: var(--color-red, #e35d65); }
 .tvm-node-content mark[data-tvm-highlight="orange"] { --tvm-mark-color: var(--color-orange, #eb914a); }
@@ -365,3 +365,6 @@
 .tvm-inline-search-overlay { position: absolute; pointer-events: none; z-index: 1; box-sizing: border-box; border-style: solid; border-color: transparent; white-space: pre-wrap; overflow-wrap: break-word; overflow: hidden; color: transparent; }
 .tvm-inline-search-overlay .tvm-search-match { color: var(--text-normal); }
 .tvm-step-row:hover, .tvm-step-row:focus-visible { background-color: var(--background-modifier-hover, #80808015); }
+
+.tvm-queue-view > .tvm-toolbar { flex-wrap: nowrap; flex-shrink: 0; }
+.tvm-queue-view > .tvm-toolbar > .tvm-actions { flex: 1; min-width: 0; margin-left: 0; }
