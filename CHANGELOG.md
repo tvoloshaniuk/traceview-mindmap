@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.0.37
+
+### Fixed
+
+- Wrap long embedded-note titles within map nodes, including themes that normally keep embed titles on one line.
+- Keep the embedded-note hover outline inside its frame, aligned with the existing leading border.
+
 ## 1.0.36
 
 ### Changed
