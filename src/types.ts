@@ -61,6 +61,7 @@ export interface MapSurfaceOptions {
   onState: (state: MapViewState) => void;
   renderMarkdown: (text: string, el: HTMLElement) => void | Promise<void>;
   onEditEmbed?: (nodeId: string, link: string, frame: HTMLElement, context?: EmbeddedEditContext) => boolean;
+  onPreviewImage?: (image: HTMLImageElement, event: MouseEvent) => boolean;
   onOpenLink?: (link: string, event: MouseEvent) => void;
   onHoverLink?: (event: MouseEvent, target: HTMLElement, link: string) => void;
 }

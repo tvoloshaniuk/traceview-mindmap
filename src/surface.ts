@@ -1228,14 +1228,6 @@ export class MapSurface {
       if (internal && link && this.options.onOpenLink) { event.preventDefault(); event.stopPropagation(); this.options.onOpenLink(link, event); }
       return;
     }
-    const image = target.closest('img')?.closest('.internal-embed');
-    const imageLink = image?.getAttribute('src');
-    if (imageLink && this.options.onOpenLink) {
-      if (id) this.select(id);
-      event.preventDefault(); event.stopPropagation();
-      this.options.onOpenLink(imageLink, event);
-      return;
-    }
     if (id) {
       this.select(id);
       if (target.closest('input[type="checkbox"]')) { event.preventDefault(); this.options.onAction('toggle-task', id); }
@@ -1261,6 +1253,16 @@ export class MapSurface {
     const target = event.target as Element;
     let id = this.nodeFrom(target);
     if (!id) return;
+    const image = target.closest<HTMLImageElement>('img');
+    if (image) {
+      if (target.closest('.tvm-inline-editor')) return;
+      event.preventDefault(); event.stopPropagation(); this.select(id);
+      if (!this.options.onPreviewImage?.(image, event)) {
+        const link = image.closest('.internal-embed')?.getAttribute('src');
+        if (link) this.options.onOpenLink?.(link, event);
+      }
+      return;
+    }
     let frame = target.closest<HTMLElement>('.markdown-embed.internal-embed');
     const link = frame?.getAttribute('src');
     if (link && this.options.onEditEmbed) {

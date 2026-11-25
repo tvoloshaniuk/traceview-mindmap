@@ -957,3 +957,21 @@ test('nested editor placement survives rendering outside clipped preview content
   assert.equal(content.querySelector('.tvm-inline-editor'),null);(f.surface as any).render();slot=f.host.querySelector<HTMLElement>('.tvm-embedded-note-editor')!;assert.ok(slot.isConnected);
   f.host.querySelector<HTMLButtonElement>('.tvm-inline-tools .mod-cta')!.click();await Promise.resolve();await Promise.resolve();assert.equal(f.host.querySelector('.tvm-embedded-note-editor'),null);assert.equal(content.innerHTML,before);
 });
+
+
+test('images select on click and preview on double click without editing their enclosing note', t => {
+  const f=fixture(t,'- Picture\n'),opened:string[]=[],previews:Element[]=[];
+  f.options.onOpenLink=link=>opened.push(link);
+  f.options.onEditEmbed=()=>{throw Error('Image must not open note editing');};
+  f.options.onPreviewImage=image=>{previews.push(image);return true;};
+  const frame=f.dom.window.document.createElement('div');frame.className='markdown-embed internal-embed';frame.setAttribute('src','Note');
+  frame.innerHTML='<span class="internal-embed" src="Photo.png"><img></span>';f.element('Picture').append(frame);
+  const image=frame.querySelector('img')!;
+  image.dispatchEvent(new f.dom.window.MouseEvent('click',{bubbles:true,cancelable:true}));
+  assert.equal(previews.length,0);assert.equal(opened.length,0);
+  image.dispatchEvent(new f.dom.window.MouseEvent('dblclick',{bubbles:true,cancelable:true}));
+  assert.deepEqual(previews,[image]);assert.deepEqual(opened,[]);
+  f.options.onPreviewImage=()=>false;
+  image.dispatchEvent(new f.dom.window.MouseEvent('dblclick',{bubbles:true,cancelable:true}));
+  assert.deepEqual(opened,['Photo.png']);
+});

@@ -4,7 +4,7 @@
  * See LICENSE, LICENSING.md and OBSIDIAN-HOST-PERMISSION.md.
  */
 import { t, LANGUAGES, isLanguageSetting, setLanguage, type LanguageSetting } from './i18n';
-import { getLanguage, App, Component, EditableFileView, ItemView, MarkdownRenderer, MarkdownView, Menu, Notice, Platform, Plugin, PluginSettingTab, Scope, Setting, TFile, WorkspaceLeaf, normalizePath, parseLinktext, setIcon, type HoverPopover } from 'obsidian';
+import { getLanguage, App, Component, EditableFileView, ItemView, MarkdownPreviewRenderer, MarkdownRenderer, MarkdownView, Menu, Notice, Platform, Plugin, PluginSettingTab, Scope, Setting, TFile, WorkspaceLeaf, normalizePath, parseLinktext, setIcon, type HoverPopover } from 'obsidian';
 import { moveBranches, changeNodes, copyBranches, copyNodeLabels, deleteNodes, parseMap, restoreTemplateLineEndings, nodeNoteContent, nodeNoteLabel, editNode, addFirstNode, addNode, addParent, deleteNode, moveNode, copyBranch, pasteBranch, toggleTask, toggleStepNumber, setDated, setQuestion, getSteps, compareSteps, renumberSteps, moveCompletedChildrenToBottom, shiftSelectedBranches, unnumberStep } from './core';
 import { addressNode, onlyAddedBlockIds, removeNodeAddress, nodeBacklinks } from './block-links';
 import { captureHotkey, DEFAULT_HOTKEYS, HOTKEY_DEFINITIONS, resolveHotkey, validateHotkeys } from './hotkeys';
@@ -812,6 +812,12 @@ class MapView extends EditableFileView {
         if (!doc || !node || !file || file === this.file || file.extension !== 'md' || this.plugin.isMap(file)) return false;
         void this.editNodeNote(doc, node, file, frame, context?.anchor).catch(error => new Notice(message(error), 8000));
         return true;
+      },
+      onPreviewImage: (image, event) => {
+        const native = MarkdownPreviewRenderer.prototype as unknown as {handleMediaClick?: (this: {sections: {el: HTMLElement}[]}, event: MouseEvent, image: HTMLImageElement) => void};
+        if (!this.host || typeof native.handleMediaClick !== 'function') return false;
+        try { native.handleMediaClick.call({sections: [{el: this.host}]}, event, image); return true; }
+        catch (error) { console.warn('TraceView Mindmap: native image preview unavailable', error); return false; }
       },
       onOpenLink: (link, event) => { void this.plugin.openMapLink(link, this, event).catch(error => new Notice(message(error))); },
       onHoverLink: (event, targetEl, linktext) => this.app.workspace.trigger('hover-link', { event, source: 'traceview-mindmap', hoverParent: this, targetEl, linktext, sourcePath: this.path }),

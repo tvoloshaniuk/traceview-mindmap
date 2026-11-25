@@ -7627,15 +7627,6 @@ var MapSurface = class {
       }
       return;
     }
-    const image = target.closest("img")?.closest(".internal-embed");
-    const imageLink = image?.getAttribute("src");
-    if (imageLink && this.options.onOpenLink) {
-      if (id) this.select(id);
-      event.preventDefault();
-      event.stopPropagation();
-      this.options.onOpenLink(imageLink, event);
-      return;
-    }
     if (id) {
       this.select(id);
       if (target.closest('input[type="checkbox"]')) {
@@ -7663,6 +7654,18 @@ var MapSurface = class {
     const target = event.target;
     let id = this.nodeFrom(target);
     if (!id) return;
+    const image = target.closest("img");
+    if (image) {
+      if (target.closest(".tvm-inline-editor")) return;
+      event.preventDefault();
+      event.stopPropagation();
+      this.select(id);
+      if (!this.options.onPreviewImage?.(image, event)) {
+        const link2 = image.closest(".internal-embed")?.getAttribute("src");
+        if (link2) this.options.onOpenLink?.(link2, event);
+      }
+      return;
+    }
     let frame = target.closest(".markdown-embed.internal-embed");
     const link = frame?.getAttribute("src");
     if (link && this.options.onEditEmbed) {
@@ -10825,6 +10828,17 @@ var MapView = class extends import_obsidian5.EditableFileView {
         if (!doc || !node || !file || file === this.file || file.extension !== "md" || this.plugin.isMap(file)) return false;
         void this.editNodeNote(doc, node, file, frame, context?.anchor).catch((error) => new import_obsidian5.Notice(message(error), 8e3));
         return true;
+      },
+      onPreviewImage: (image, event) => {
+        const native = import_obsidian5.MarkdownPreviewRenderer.prototype;
+        if (!this.host || typeof native.handleMediaClick !== "function") return false;
+        try {
+          native.handleMediaClick.call({ sections: [{ el: this.host }] }, event, image);
+          return true;
+        } catch (error) {
+          console.warn("TraceView Mindmap: native image preview unavailable", error);
+          return false;
+        }
       },
       onOpenLink: (link, event) => {
         void this.plugin.openMapLink(link, this, event).catch((error) => new import_obsidian5.Notice(message(error)));

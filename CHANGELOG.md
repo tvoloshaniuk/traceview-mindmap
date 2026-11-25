@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.0.50
+
+### Improved
+
+- Double-click images in maps to use the native Obsidian fullscreen image viewer, keeping the map open. Single clicks select the node. Older hosts without the viewer retain safe attachment opening.
+- Images inside embedded notes no longer trigger editing of the enclosing note on double-click.
+
 ## 1.0.49
 
 ### Fixed
