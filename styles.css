@@ -375,3 +375,5 @@
 .tvm-native-editor .cm-highlight-color-widget img.highlight-swatch { display: inline-block; width: 1em; height: 1em; max-height: none; margin: 0; vertical-align: -.1em; transform: none; }
 
 .tvm-step-row.is-selected { background: var(--background-modifier-hover); outline: 1px solid var(--interactive-accent); outline-offset: -1px; }
+
+.tvm-queue-view { position: relative; }

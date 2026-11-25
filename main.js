@@ -11871,6 +11871,7 @@ var QueueView = class extends import_obsidian5.ItemView {
     this.selectionMode = false;
     this.bulkButtons = [];
     this.rows = /* @__PURE__ */ new Map();
+    this.suppressRowClickUntil = 0;
   }
   getViewType() {
     return QUEUE;
@@ -11981,6 +11982,50 @@ var QueueView = class extends import_obsidian5.ItemView {
       });
     }
     this.host = this.contentEl.createDiv("tvm-panel");
+    this.registerDomEvent(this.host, "pointerdown", (event) => {
+      if (event.button !== 0 || !(this.selectionMode || event.shiftKey) || this.marquee || this.writing) return;
+      const target = event.target;
+      if (target.closest("a, button, input, select, textarea") || !this.selectionMode && target.closest(".tvm-step-text")) return;
+      event.preventDefault();
+      const element = this.contentEl.createDiv("tvm-selection-box");
+      element.hidden = true;
+      this.marquee = { pointer: event.pointerId, x: event.clientX, y: event.clientY, moved: false, before: new Set(this.selection), element };
+      try {
+        this.host?.setPointerCapture(event.pointerId);
+      } catch {
+      }
+    });
+    this.registerDomEvent(this.contentEl.ownerDocument, "pointermove", (event) => {
+      const box = this.marquee;
+      if (!box || box.pointer !== event.pointerId) return;
+      if (!box.moved && Math.hypot(event.clientX - box.x, event.clientY - box.y) < 5) return;
+      box.moved = true;
+      box.element.hidden = false;
+      event.preventDefault();
+      const origin = this.contentEl.getBoundingClientRect(), viewport = this.host.getBoundingClientRect();
+      const left = Math.max(viewport.left, Math.min(box.x, event.clientX)), right = Math.min(viewport.right, Math.max(box.x, event.clientX));
+      const top = Math.max(viewport.top, Math.min(box.y, event.clientY)), bottom = Math.min(viewport.bottom, Math.max(box.y, event.clientY));
+      Object.assign(box.element.style, { left: left - origin.left + "px", top: top - origin.top + "px", width: Math.max(0, right - left) + "px", height: Math.max(0, bottom - top) + "px" });
+      this.selection = new Set(box.before);
+      if (right > left && bottom > top) for (const [key, { row }] of this.rows) {
+        const rect = row.getBoundingClientRect();
+        if (rect.width && rect.height && rect.left < right && rect.right > left && rect.top < bottom && rect.bottom > top) this.selection.add(key);
+      }
+      this.paintSelection();
+    });
+    this.registerDomEvent(this.contentEl.ownerDocument, "pointerup", (event) => {
+      if (this.marquee?.pointer === event.pointerId) this.finishMarquee(false);
+    });
+    this.registerDomEvent(this.contentEl.ownerDocument, "pointercancel", (event) => {
+      if (this.marquee?.pointer === event.pointerId) this.finishMarquee(true);
+    });
+    this.registerDomEvent(this.contentEl, "keydown", (event) => {
+      if (event.key === "Escape" && this.marquee) {
+        event.preventDefault();
+        event.stopPropagation();
+        this.finishMarquee(true);
+      }
+    }, { capture: true });
   }
   getState() {
     return { filter: this.filter, completedMode: this.completedMode, metricSort: this.metricSort };
@@ -12085,6 +12130,7 @@ var QueueView = class extends import_obsidian5.ItemView {
   }
   draw() {
     if (!this.host) return;
+    this.finishMarquee(true);
     this.refreshHistoryButtons();
     if (this.renderer) this.removeChild(this.renderer);
     this.renderer = this.addChild(new import_obsidian5.Component());
@@ -12179,6 +12225,22 @@ var QueueView = class extends import_obsidian5.ItemView {
     this.paintSelection();
     if (!count) this.host.createDiv({ cls: "tvm-empty", text: t("No open items match this filter.") });
   }
+  finishMarquee(cancel) {
+    const box = this.marquee;
+    if (!box) return;
+    this.marquee = void 0;
+    box.element.remove();
+    try {
+      this.host?.releasePointerCapture(box.pointer);
+    } catch {
+    }
+    if (cancel) this.selection = box.before;
+    else if (box.moved) {
+      this.selectionMode = false;
+      this.suppressRowClickUntil = Date.now() + 300;
+    }
+    this.paintSelection();
+  }
   paintSelection() {
     for (const [key, entry] of this.rows) {
       entry.row.classList.toggle("is-selected", this.selection.has(key));
@@ -12266,6 +12328,11 @@ var QueueView = class extends import_obsidian5.ItemView {
       });
     }
     if (row) row.addEventListener("click", (event) => {
+      if (Date.now() < this.suppressRowClickUntil) {
+        event.preventDefault();
+        event.stopPropagation();
+        return;
+      }
       if (event.target.closest("a, button, input, select, textarea")) return;
       if (!row.ownerDocument.getSelection()?.isCollapsed) return;
       const key = JSON.stringify([map.file.path, id]);
@@ -12403,6 +12470,7 @@ var QueueView = class extends import_obsidian5.ItemView {
     }
   }
   async onClose() {
+    this.finishMarquee(true);
     this.closed = true;
     this.generation++;
     window.clearTimeout(this.timer);

@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.0.56
+
+### Added
+
+- Rectangle selection in planning lists with Shift-drag on the list background or the selection mode button. Add to the current selection; after a rectangle, leave selection mode and keep selected items.
+- Escape or pointer cancellation restores the selection from before the rectangle. Normal text selection remains available outside selection mode.
+
 ## 1.0.55
 
 ### Added
